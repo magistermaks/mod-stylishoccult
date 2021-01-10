@@ -1,0 +1,32 @@
+{
+  "block.stylish_occult.lava_demon": "Magmowy demon",
+  "block.stylish_occult.candle": "Świeca",
+  "block.stylish_occult.extinguished_candle": "Zgaszona świeca",
+  "block.stylish_occult.wax_block": "Blok wosku",
+  "block.stylish_occult.candelabra": "Świecznik",
+  "block.stylish_occult.wall_candelabra": "Świecznik ścienny",
+  "block.stylish_occult.urn": "Urna",
+  "block.stylish_occult.chandelier": "Żyrandol",
+  "block.stylish_occult.lava_stone": "Magmowy kamień",
+  "block.stylish_occult.old_bricks": "Stare cegły",
+  "block.stylish_occult.cracked_bricks": "Popękane cegły",
+  "block.stylish_occult.small_stone_bricks_1": "Małe kwadratowe kamienne cegły",
+  "block.stylish_occult.small_stone_bricks_2": "Małe kamienne cegły",
+  "block.stylish_occult.small_stone_bricks_3": "Małe gliniane cegły",
+  "block.stylish_occult.granite_pedestal": "Granitowy piedestał",
+  "block.stylish_occult.andesite_pedestal": "Andezytowy piedestał",
+  "block.stylish_occult.diorite_pedestal": "Diorytowy piedestał",
+  "block.stylish_occult.granite_slim_pillar": "Granitowy filar",
+  "block.stylish_occult.andesite_slim_pillar": "Andezytowy filar",
+  "block.stylish_occult.diorite_slim_pillar": "Diorytowy filar",
+  "block.stylish_occult.fiery_lantern": "Ognista latarnia",
+  "item.stylish_occult.flesh": "Ciało",
+  "item.stylish_occult.wax": "Wosk",
+  "item.stylish_occult.lava_heart": "Magmowa kula",
+  "item.stylish_occult.candle.tooltip": "Długość:",
+  "sound.stylish_occult.lava_demon.wakeup": "Magmowy demon budzi się",
+  "sound.stylish_occult.lava_demon.die": "Magmowy demon umiera",
+  "itemGroup.stylish_occult.stylish_occult": "Stylish Occult"
+}
+
+

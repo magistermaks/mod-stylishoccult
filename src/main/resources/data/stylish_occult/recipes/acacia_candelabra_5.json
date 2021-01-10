@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "candelabra_5",
+  "pattern": [
+    "333",
+    "313",
+    " 2 "
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:stick"
+    },
+    "2": {
+      "item": "minecraft:acacia_planks"
+    },
+    "3": {
+      "item": "minecraft:acacia_slab"
+    }
+  },
+  "result": {
+    "item": "stylish_occult:acacia_candelabra_5"
+  }
+}

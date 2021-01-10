@@ -1,0 +1,12 @@
+    {
+      "variants": {
+        "material=oak": { "model": "stylish_occult:block/chandelier/oak" },
+        "material=dark_oak": { "model": "stylish_occult:block/chandelier/dark_oak" },
+        "material=acacia": { "model": "stylish_occult:block/chandelier/acacia" },
+        "material=jungle": { "model": "stylish_occult:block/chandelier/jungle" },
+        "material=birch": { "model": "stylish_occult:block/chandelier/birch" },
+        "material=spruce": { "model": "stylish_occult:block/chandelier/spruce" }
+      }
+    }
+
+

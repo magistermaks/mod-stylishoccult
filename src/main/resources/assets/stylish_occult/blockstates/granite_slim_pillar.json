@@ -1,0 +1,9 @@
+    {
+      "variants": {
+        "axis=y": { "model": "stylish_occult:block/slim_pillar/granite" },
+        "axis=z": { "model": "stylish_occult:block/slim_pillar/granite", "x": 90 },
+        "axis=x": { "model": "stylish_occult:block/slim_pillar/granite", "x": 90, "y": 90 }
+      }
+    }
+
+

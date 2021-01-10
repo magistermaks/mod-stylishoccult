@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "stylish_occult:item/acacia_wall_candelabra"
+  }
+}
+

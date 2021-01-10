@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "chandelier",
+  "pattern": [
+    " 2 ",
+    "313",
+    "3 3"
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:iron_ingot"
+    },
+    "2": {
+      "item": "minecraft:dark_oak_planks"
+    },
+    "3": {
+      "item": "minecraft:dark_oak_slab"
+    }
+  },
+  "result": {
+    "item": "stylish_occult:dark_oak_chandelier"
+  }
+}

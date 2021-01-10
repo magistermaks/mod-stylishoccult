@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "1",
+    "2"
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:polished_diorite_slab"
+    },
+    "2": {
+      "item": "stylish_occult:diorite_slim_pillar"
+    }
+  },
+  "result": {
+    "item": "stylish_occult:diorite_pedestal"
+  }
+}

@@ -1,0 +1,53 @@
+    {
+      "variants": {
+        "material=oak,type=one": { "model": "stylish_occult:block/candelabra/oak_1" },
+        "material=oak,type=two_north_south": { "model": "stylish_occult:block/candelabra/oak_2" },
+        "material=oak,type=two_west_east": { "model": "stylish_occult:block/candelabra/oak_2", "y": 90 },
+        "material=oak,type=three_north_south": { "model": "stylish_occult:block/candelabra/oak_3" },
+        "material=oak,type=three_west_east": { "model": "stylish_occult:block/candelabra/oak_3", "y": 90 },
+        "material=oak,type=four": { "model": "stylish_occult:block/candelabra/oak_4" },
+        "material=oak,type=five": { "model": "stylish_occult:block/candelabra/oak_5" },
+
+        "material=acacia,type=one": { "model": "stylish_occult:block/candelabra/acacia_1" },
+        "material=acacia,type=two_north_south": { "model": "stylish_occult:block/candelabra/acacia_2" },
+        "material=acacia,type=two_west_east": { "model": "stylish_occult:block/candelabra/acacia_2", "y": 90 },
+        "material=acacia,type=three_north_south": { "model": "stylish_occult:block/candelabra/acacia_3" },
+        "material=acacia,type=three_west_east": { "model": "stylish_occult:block/candelabra/acacia_3", "y": 90 },
+        "material=acacia,type=four": { "model": "stylish_occult:block/candelabra/acacia_4" },
+        "material=acacia,type=five": { "model": "stylish_occult:block/candelabra/acacia_5" },
+
+        "material=birch,type=one": { "model": "stylish_occult:block/candelabra/birch_1" },
+        "material=birch,type=two_north_south": { "model": "stylish_occult:block/candelabra/birch_2" },
+        "material=birch,type=two_west_east": { "model": "stylish_occult:block/candelabra/birch_2", "y": 90 },
+        "material=birch,type=three_north_south": { "model": "stylish_occult:block/candelabra/birch_3" },
+        "material=birch,type=three_west_east": { "model": "stylish_occult:block/candelabra/birch_3", "y": 90 },
+        "material=birch,type=four": { "model": "stylish_occult:block/candelabra/birch_4" },
+        "material=birch,type=five": { "model": "stylish_occult:block/candelabra/birch_5" },
+
+        "material=spruce,type=one": { "model": "stylish_occult:block/candelabra/spruce_1" },
+        "material=spruce,type=two_north_south": { "model": "stylish_occult:block/candelabra/spruce_2" },
+        "material=spruce,type=two_west_east": { "model": "stylish_occult:block/candelabra/spruce_2", "y": 90 },
+        "material=spruce,type=three_north_south": { "model": "stylish_occult:block/candelabra/spruce_3" },
+        "material=spruce,type=three_west_east": { "model": "stylish_occult:block/candelabra/spruce_3", "y": 90 },
+        "material=spruce,type=four": { "model": "stylish_occult:block/candelabra/spruce_4" },
+        "material=spruce,type=five": { "model": "stylish_occult:block/candelabra/spruce_5" },
+
+        "material=dark_oak,type=one": { "model": "stylish_occult:block/candelabra/dark_oak_1" },
+        "material=dark_oak,type=two_north_south": { "model": "stylish_occult:block/candelabra/dark_oak_2" },
+        "material=dark_oak,type=two_west_east": { "model": "stylish_occult:block/candelabra/dark_oak_2", "y": 90 },
+        "material=dark_oak,type=three_north_south": { "model": "stylish_occult:block/candelabra/dark_oak_3" },
+        "material=dark_oak,type=three_west_east": { "model": "stylish_occult:block/candelabra/dark_oak_3", "y": 90 },
+        "material=dark_oak,type=four": { "model": "stylish_occult:block/candelabra/dark_oak_4" },
+        "material=dark_oak,type=five": { "model": "stylish_occult:block/candelabra/dark_oak_5" },
+
+        "material=jungle,type=one": { "model": "stylish_occult:block/candelabra/jungle_1" },
+        "material=jungle,type=two_north_south": { "model": "stylish_occult:block/candelabra/jungle_2" },
+        "material=jungle,type=two_west_east": { "model": "stylish_occult:block/candelabra/jungle_2", "y": 90 },
+        "material=jungle,type=three_north_south": { "model": "stylish_occult:block/candelabra/jungle_3" },
+        "material=jungle,type=three_west_east": { "model": "stylish_occult:block/candelabra/jungle_3", "y": 90 },
+        "material=jungle,type=four": { "model": "stylish_occult:block/candelabra/jungle_4" },
+        "material=jungle,type=five": { "model": "stylish_occult:block/candelabra/jungle_5" }
+      }
+    }
+
+

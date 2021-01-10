@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "chandelier",
+  "pattern": [
+    " 2 ",
+    "313",
+    "3 3"
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:iron_ingot"
+    },
+    "2": {
+      "item": "minecraft:birch_planks"
+    },
+    "3": {
+      "item": "minecraft:birch_slab"
+    }
+  },
+  "result": {
+    "item": "stylish_occult:birch_chandelier"
+  }
+}

@@ -1,0 +1,25 @@
+{
+    "lava_demon_wakeup": {
+        "subtitle": "sound.stylish_occult.lava_demon.wakeup",
+        "sounds": [
+            "stylish_occult:lava_demon_wakeup_1",
+            "stylish_occult:lava_demon_wakeup_2", 
+            "stylish_occult:lava_demon_wakeup_3"
+        ]   
+    },
+    "lava_demon_die": {
+        "subtitle": "sound.stylish_occult.lava_demon.die",
+        "sounds": [
+            "stylish_occult:lava_demon_die"
+        ]   
+    },
+    "urn_broken": {
+        "subtitle": "sound.stylish_occult.urn.broken",
+        "sounds": [
+            "stylish_occult:urn_1",
+            "stylish_occult:urn_2", 
+            "stylish_occult:urn_3",
+            "stylish_occult:urn_4"
+        ]   
+    }
+}

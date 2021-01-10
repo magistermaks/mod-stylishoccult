@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "stylish_occult:wax_block"
+    }
+  ],
+  "result": {
+    "item": "stylish_occult:wax",
+    "count": 4
+  }
+}

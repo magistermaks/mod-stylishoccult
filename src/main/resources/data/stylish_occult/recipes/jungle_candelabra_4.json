@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "candelabra_4",
+  "pattern": [
+    "3 3",
+    "313",
+    " 2 "
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:stick"
+    },
+    "2": {
+      "item": "minecraft:jungle_planks"
+    },
+    "3": {
+      "item": "minecraft:jungle_slab"
+    }
+  },
+  "result": {
+    "item": "stylish_occult:jungle_candelabra_4"
+  }
+}

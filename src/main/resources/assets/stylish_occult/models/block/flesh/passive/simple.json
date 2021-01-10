@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "stylish_occult:block/flesh_block"
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "11",
+    "11"
+  ],
+  "key": {
+    "1": {
+      "item": "stylish_occult:small_stone_bricks_1"
+    }
+  },
+  "result": {
+    "item": "stylish_occult:small_stone_bricks_2",
+    "count": 4
+  }
+}

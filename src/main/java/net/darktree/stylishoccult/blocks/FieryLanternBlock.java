@@ -1,0 +1,120 @@
+package net.darktree.stylishoccult.blocks;
+
+import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTables;
+import net.darktree.stylishoccult.particles.Particles;
+import net.darktree.stylishoccult.utils.RandUtils;
+import net.darktree.stylishoccult.utils.SimpleBlock;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
+
+import java.util.Random;
+
+public class FieryLanternBlock extends SimpleBlock implements Waterloggable {
+
+    public static final BooleanProperty HANGING = Properties.HANGING;
+    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+    protected static final VoxelShape STANDING_SHAPE = VoxelShapes.union(
+            Block.createCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 7.0D, 11.0D),
+            Block.createCuboidShape(6.0D, 7.0D, 6.0D, 10.0D, 9.0D, 10.0D));
+    protected static final VoxelShape HANGING_SHAPE = VoxelShapes.union(
+            Block.createCuboidShape(5.0D, 1.0D, 5.0D, 11.0D, 8.0D, 11.0D),
+            Block.createCuboidShape(6.0D, 8.0D, 6.0D, 10.0D, 10.0D, 10.0D));
+
+    public FieryLanternBlock() {
+        super( AbstractBlock.Settings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.LANTERN).luminance((state) -> 15).nonOpaque() );
+        this.setDefaultState(this.stateManager.getDefaultState().with(HANGING, false).with(WATERLOGGED, false));
+    }
+
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
+        Direction[] dirs = ctx.getPlacementDirections();
+
+        for( Direction dir : dirs ) {
+            if (dir.getAxis() == Direction.Axis.Y) {
+                BlockState blockState = getDefaultState().with(HANGING, dir == Direction.UP);
+                if (blockState.canPlaceAt(ctx.getWorld(), ctx.getBlockPos())) {
+                    return blockState.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return state.get(HANGING) ? HANGING_SHAPE : STANDING_SHAPE;
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(HANGING, WATERLOGGED);
+    }
+
+    @Override
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        Direction direction = attachedDirection(state).getOpposite();
+        return Block.sideCoversSmallSquare(world, pos.offset(direction), direction.getOpposite());
+    }
+
+    protected static Direction attachedDirection(BlockState state) {
+        return state.get(HANGING) ? Direction.DOWN : Direction.UP;
+    }
+
+    @Override
+    public PistonBehavior getPistonBehavior(BlockState state) {
+        return PistonBehavior.DESTROY;
+    }
+
+    @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
+        if (state.get(WATERLOGGED)) {
+            world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+        }
+
+        return attachedDirection(state).getOpposite() == direction && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state) {
+        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+    }
+
+    @Override
+    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+        return false;
+    }
+
+    @Override
+    @Environment(EnvType.CLIENT)
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if( !state.get(WATERLOGGED) || RandUtils.getBool( 50 ) ) {
+            world.addParticle(Particles.ORBITING_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0.0D, 0.0D, 0.0D);
+        }
+    }
+
+    @Override
+    public BakedLootTable getInternalLootTableId() {
+        return LootTables.SIMPLE;
+    }
+}

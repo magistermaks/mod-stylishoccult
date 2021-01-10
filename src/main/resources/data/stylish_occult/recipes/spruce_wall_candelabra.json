@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wall_candelabra",
+  "pattern": [
+    " 3 ",
+    "21 ",
+    "   "
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:stick"
+    },
+    "2": {
+      "item": "minecraft:spruce_planks"
+    },
+    "3": {
+      "item": "minecraft:spruce_slab"
+    }
+  },
+  "result": {
+    "item": "stylish_occult:spruce_wall_candelabra"
+  }
+}

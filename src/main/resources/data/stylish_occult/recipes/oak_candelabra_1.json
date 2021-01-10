@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "candelabra_1",
+  "pattern": [
+    "3",
+    "1",
+    "2"
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:stick"
+    },
+    "2": {
+      "item": "minecraft:oak_planks"
+    },
+    "3": {
+      "item": "minecraft:oak_slab"
+    }
+  },
+  "result": {
+    "item": "stylish_occult:oak_candelabra_1"
+  }
+}

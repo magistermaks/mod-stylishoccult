@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "hanging=false": { "model": "stylish_occult:block/lantern/default" },
+    "hanging=true": { "model": "stylish_occult:block/lantern/hanging" }
+  }
+}
