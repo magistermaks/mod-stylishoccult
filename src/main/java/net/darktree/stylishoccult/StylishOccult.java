@@ -2,11 +2,13 @@ package net.darktree.stylishoccult;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.entities.BlockEntities;
+import net.darktree.stylishoccult.effects.ModEffects;
 import net.darktree.stylishoccult.entities.ModEntities;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.sounds.Sounds;
+import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.darktree.stylishoccult.worldgen.ModFeatures;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -16,6 +18,8 @@ import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.DropperBlock;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,6 +51,7 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
         BlockEntities.init();
         ModEntities.init();
         ModFeatures.init();
+        ModEffects.init();
     }
 
     @Override

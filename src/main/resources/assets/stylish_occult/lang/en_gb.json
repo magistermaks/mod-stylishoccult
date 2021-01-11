@@ -20,12 +20,15 @@
   "block.stylish_occult.andesite_slim_pillar": "Andesite Slim Pillar",
   "block.stylish_occult.diorite_slim_pillar": "Diorite Slim Pillar",
   "block.stylish_occult.fiery_lantern": "Fiery Lantern",
+  "block.stylish_occult.flesh_block": "Flesh Block",
   "item.stylish_occult.flesh": "Flesh",
   "item.stylish_occult.wax": "Wax",
   "item.stylish_occult.lava_heart": "Lava Orb",
+  "item.stylish_occult.blood_bottle": "Blood Bottle",
   "item.stylish_occult.candle.tooltip": "Length:",
   "sound.stylish_occult.lava_demon.wakeup": "Lava Demon Wakes Up",
   "sound.stylish_occult.lava_demon.die": "Lava Demon Dies",
-  "itemGroup.stylish_occult.stylish_occult": "Stylish Occult"
+  "itemGroup.stylish_occult.stylish_occult": "Stylish Occult",
+  "effect.stylish_occult.corrupted_blood": "Corrupted Blood"
 }
 

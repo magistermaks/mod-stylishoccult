@@ -20,13 +20,16 @@
   "block.stylish_occult.andesite_slim_pillar": "Andezytowy filar",
   "block.stylish_occult.diorite_slim_pillar": "Diorytowy filar",
   "block.stylish_occult.fiery_lantern": "Ognista latarnia",
+  "block.stylish_occult.flesh_block": "Blok ciała",
   "item.stylish_occult.flesh": "Ciało",
   "item.stylish_occult.wax": "Wosk",
   "item.stylish_occult.lava_heart": "Magmowa kula",
+  "item.stylish_occult.blood_bottle": "Butelka z krwią",
   "item.stylish_occult.candle.tooltip": "Długość:",
   "sound.stylish_occult.lava_demon.wakeup": "Magmowy demon budzi się",
   "sound.stylish_occult.lava_demon.die": "Magmowy demon umiera",
-  "itemGroup.stylish_occult.stylish_occult": "Stylish Occult"
+  "itemGroup.stylish_occult.stylish_occult": "Stylish Occult",
+  "effect.stylish_occult.corrupted_blood": "Zepsuta krew"
 }
 
 
