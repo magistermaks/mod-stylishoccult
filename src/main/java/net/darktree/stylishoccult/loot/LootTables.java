@@ -140,6 +140,15 @@ public class LootTables {
                 .pop()
             .build("stylish_occult:passive_flesh");
 
+    public static final BakedLootTable SPARK_VENT = LootManager.create()
+            .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
+                .addItem( ModItems.SPARK_VENT )
+                .pop()
+            .addElse()
+                .addItem( Items.NETHERRACK )
+                .pop()
+            .build("stylish_occult:spark_vent");
+
     public static void init() {
         // load class
     }

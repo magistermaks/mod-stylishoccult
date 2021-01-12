@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.sounds;
 
+import net.minecraft.server.command.PlaySoundCommand;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -16,6 +17,7 @@ public class Sounds {
         SoundManager.loadSound( "lava_demon_wakeup", SoundCategory.BLOCKS );
         SoundManager.loadSound( "lava_demon_die", SoundCategory.BLOCKS );
         SoundManager.loadSound( "urn_broken", SoundCategory.BLOCKS );
+        SoundManager.loadSound( "vent", SoundCategory.BLOCKS ).volume( 2.8f ).pitch( 0.8f, 1.1f );
 
         FLESH = SoundManager.createGroup()
                 .setBreakSound(SoundEvents.BLOCK_HONEY_BLOCK_BREAK)

@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.worldgen;
 
 import com.mojang.serialization.Codec;
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.PassiveFleshBlock;
 import net.darktree.stylishoccult.utils.RandUtils;
@@ -99,7 +100,7 @@ public class FleshPatchFeature extends OreFeature implements SimpleFeature {
                                             mutable.set(ah, aj, al);
                                             if (config.target.test(world.getBlockState(mutable), random)) {
 
-                                                if( RandUtils.getBool(11, random) ) {
+                                                if( RandUtils.getBool(StylishOccult.SETTINGS.featureFleshBloodChance, random) ) {
                                                     world.setBlockState(mutable, config.state.with(PassiveFleshBlock.BLOODY, true), 2);
                                                 }else{
                                                     world.setBlockState(mutable, config.state, 2);

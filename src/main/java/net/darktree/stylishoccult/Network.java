@@ -35,7 +35,7 @@ public class Network {
 
         if( player != null && player.world != null && player.world.canSetBlock(pos) ) {
 
-            AbstractCandleHolderBlockEntity entity = BlockUtils.getEntity(
+            AbstractCandleHolderBlockEntity<?> entity = BlockUtils.getEntity(
                     AbstractCandleHolderBlockEntity.class,
                     player.world,
                     pos);

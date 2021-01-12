@@ -33,6 +33,7 @@ public class ModItems {
     public static final Item URN = RegUtil.item( "urn", new BlockItem( ModBlocks.URN, new Item.Settings().group( Groups.STYLISH_OCCULT ).rarity( Rarity.UNCOMMON ) ) );
     public static final Item FLESH = RegUtil.item( "flesh", new Item.Settings().group( Groups.STYLISH_OCCULT ).food( ModFoodComponents.FLESH_FOOD ) );
     public static final Item BLOOD_BOTTLE = RegUtil.item("blood_bottle", new BottleItem(new Item.Settings().group(Groups.STYLISH_OCCULT).recipeRemainder(Items.GLASS_BOTTLE).food(ModFoodComponents.BLOOD).maxCount(16)) );
+    public static final Item SPARK_VENT = RegUtil.item("spark_vent", ModBlocks.SPARK_VENT, Groups.STYLISH_OCCULT );
 
     // decorative
     public static final Item FLESH_BLOCK = RegUtil.item( "flesh_block", ModBlocks.FLESH_BLOCK, Groups.STYLISH_OCCULT );

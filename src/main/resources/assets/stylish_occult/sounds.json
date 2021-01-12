@@ -21,5 +21,11 @@
             "stylish_occult:urn_3",
             "stylish_occult:urn_4"
         ]   
+    },
+    "vent": {
+        "subtitle": "sound.stylish_occult.vent",
+        "sounds": [
+            "stylish_occult:vent"
+        ]   
     }
 }

@@ -42,7 +42,8 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
     public LavaDemonBlock() {
         super(RegUtil.settings( Material.STONE, Sounds.LAVA_DEMON, 4.0F, 16.0F, false )
                 .luminance( state -> state.get(ANGER) > 0 ? 3 : 0 )
-                .ticksRandomly());
+                .ticksRandomly()
+                .requiresTool());
 
         this.setDefaultState(this.stateManager.getDefaultState()
                 .with(ANGER, 0)

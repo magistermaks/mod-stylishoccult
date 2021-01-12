@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "stylish_occult:block/spark_vent",
+        "down": "minecraft:block/netherrack",
+        "up": "stylish_occult:block/spark_vent",
+        "north": "minecraft:block/netherrack",
+        "east": "minecraft:block/netherrack",
+        "south": "minecraft:block/netherrack",
+        "west": "minecraft:block/netherrack"
+    }
+}
