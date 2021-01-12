@@ -6,10 +6,9 @@
   "mixins": [
     "HardnessAccessor",
     "HardnessMixin",
-    "LivingEntityMixin",
+    "HungerManagerMixin",
     "ServerPlayerInteractionManagerMixin",
-    "StatusEffectInstanceAccessor",
-    "StatusEffectInstanceMixin"
+    "StatusEffectInstanceAccessor"
   ],
   "client": [
     "ClientPlayerInteractionManagerMixin",

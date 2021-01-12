@@ -7,7 +7,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectType;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class SimpleStatusEffect extends StatusEffect implements InstanceAwareStatusEffect {
+public abstract class SimpleStatusEffect extends StatusEffect {
 
     private final boolean instant;
 

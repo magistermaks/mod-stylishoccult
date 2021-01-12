@@ -8,19 +8,10 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 public interface StatusEffectInstanceAccessor {
 
     @Accessor("duration")
-    int getStoredDuration();
-
-    @Accessor("duration")
     void setStoredDuration( int value );
 
     @Accessor("showParticles")
-    boolean getStoredParticlesFlag();
-
-    @Accessor("showParticles")
     void setStoredParticlesFlag( boolean value );
-
-    @Accessor("showIcon")
-    boolean getStoredIconFlag();
 
     @Accessor("showIcon")
     void setStoredIconFlag( boolean value );

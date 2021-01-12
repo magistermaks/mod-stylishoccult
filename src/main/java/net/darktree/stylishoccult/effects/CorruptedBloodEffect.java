@@ -1,12 +1,14 @@
 package net.darktree.stylishoccult.effects;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.mixin.StatusEffectInstanceAccessor;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.List;
 
@@ -17,65 +19,56 @@ public class CorruptedBloodEffect extends SimpleStatusEffect {
     }
 
     public void onUpdate(LivingEntity entity, int amplifier) {
-        if( !entity.world.isClient && amplifier > 0 ) {
-            entity.damage(DamageSource.MAGIC, amplifier / 3.0f);
+        if( entity.world.isClient ) {
+            return;
+        }
+
+        int a = Math.abs( amplifier );
+
+        if( entity.world.random.nextInt(20) == 0 ) {
+            BlockPos pos = entity.getBlockPos();
+            float r = 4 + a / 2.0f;
+
+            Box box = new Box(
+                    pos.getX() - r,
+                    pos.getY() - r + 1,
+                    pos.getZ() - r,
+                    pos.getX() + r,
+                    pos.getY() + r - 1,
+                    pos.getZ() + r
+            );
+
+            List<LivingEntity> list = entity.world.getNonSpectatingEntities(LivingEntity.class, box);
+            int target = MathHelper.clamp( (entity.getHealth() <= 1.0f || entity.world.random.nextInt( 80 ) == 0) ? a + 1 : a, 0, 6 );
+            int time = target * 160;
+
+            for (LivingEntity livingEntity : list) {
+                applyToEntity( livingEntity, target, time );
+            }
+
+        }
+
+        StatusEffectInstanceAccessor accessor = (StatusEffectInstanceAccessor) entity.getStatusEffect(this);
+        if( accessor != null ) {
+            accessor.setStoredParticlesFlag( amplifier > 0 );
+        }
+
+        if( amplifier > 0 && entity.world.getTime() % 4 == 0 ) {
+            if( entity.getHealth() > a / 3.0f || a >= 6 ) {
+                entity.damage(DamageSource.WITHER, a / 4.0f);
+            }
         }
     }
 
-    private void applyToEntity( LivingEntity entity, int infectionAmplifier ) {
+    private void applyToEntity( LivingEntity entity, int amplifier, int bonusTime ) {
         if( entity.world.random.nextInt(20) == 0 ) {
-            if( !entity.hasStatusEffect( this ) ) {
-                entity.applyStatusEffect( new CorruptedBloodEffectInstance(
+            if( !entity.hasStatusEffect( this ) || (entity.world.random.nextInt( 20 ) == 0) ) {
+                entity.applyStatusEffect(new StatusEffectInstance(
                         this,
-                        500 + entity.world.random.nextInt(200),
-                        infectionAmplifier)
+                        800 + entity.world.random.nextInt(300) + bonusTime,
+                        amplifier)
                 );
             }
-        }
-    }
-
-    @Override
-    public void instanceUpdate(LivingEntity entity, StatusEffectInstance instance) {
-        if( !entity.world.isClient && getStoredDuration(instance) > 0 ) {
-
-            if( instance instanceof CorruptedBloodEffectInstance ) {
-                CorruptedBloodEffectInstance inst = (CorruptedBloodEffectInstance) instance;
-
-                if( entity.world.random.nextInt(20) == 0 ) {
-                    BlockPos pos = entity.getBlockPos();
-                    float r = 4 + instance.getAmplifier() / 4.0f;
-
-                    Box box = new Box(
-                            pos.getX() - r,
-                            pos.getY() - r + 1,
-                            pos.getZ() - r,
-                            pos.getX() + r,
-                            pos.getY() + r - 1,
-                            pos.getZ() + r
-                    );
-
-                    List<LivingEntity> list = entity.world.getNonSpectatingEntities(LivingEntity.class, box);
-                    int infectionAmplifier = inst.getInfectionAmplifier();
-
-                    for (LivingEntity livingEntity : list) {
-                        applyToEntity(livingEntity, infectionAmplifier);
-                    }
-                }
-
-            }else{
-                StylishOccult.LOGGER.error( "CorruptedBloodEffectInstance object expected!" );
-            }
-
-        }
-    }
-
-    public void instanceOnAdded(LivingEntity entity, StatusEffectInstance instance) {
-        if( instance instanceof CorruptedBloodEffectInstance ) {
-            CorruptedBloodEffectInstance inst = (CorruptedBloodEffectInstance) instance;
-            int amplifier = Math.max(0, instance.getAmplifier());
-            inst.setInfectionAmplifier( amplifier );
-        }else{
-            StylishOccult.LOGGER.error( "CorruptedBloodEffectInstance object expected!" );
         }
     }
 

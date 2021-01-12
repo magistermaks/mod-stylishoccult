@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.items;
 
-import net.darktree.stylishoccult.effects.CorruptedBloodEffectInstance;
 import net.darktree.stylishoccult.effects.ModEffects;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -17,7 +16,8 @@ public class ModFoodComponents {
             .build();
 
     public static final FoodComponent BLOOD = new FoodComponent.Builder()
-            .statusEffect(new CorruptedBloodEffectInstance(ModEffects.CORRUPTED_BLOOD, 600, 0), 1)
+            .statusEffect(new StatusEffectInstance(ModEffects.CORRUPTED_BLOOD, 600, 0), 0.9f)
+            .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 1200, 0), 1)
             .build();
 
 }

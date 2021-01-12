@@ -10,10 +10,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
+import net.minecraft.world.gen.feature.*;
 
 public class ModFeatures {
 
@@ -28,7 +25,7 @@ public class ModFeatures {
     }
 
     private static RegistryKey<ConfiguredFeature<?, ?>> register( String str, SimpleFeature feature ) {
-        registerFeature( str, feature );
+        registerFeature( str, (Feature<?>) feature);
         return registerConfiguredFeature( str, feature.configure() );
     }
 
@@ -41,6 +38,12 @@ public class ModFeatures {
                 register( "lava_demon_feature", new LavaDemonFeature( DefaultFeatureConfig.CODEC ) )
         );
 
+        // Flesh Patch Feature
+        BiomeModifications.addFeature(
+                BiomeSelectors.foundInTheNether(),
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                register( "flesh_patch_feature", new FleshPatchFeature( OreFeatureConfig.CODEC ) )
+        );
     }
 
 }

@@ -1,7 +1,5 @@
 package net.darktree.stylishoccult.blocks;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.items.BottleItem;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.BakedLootTable;
