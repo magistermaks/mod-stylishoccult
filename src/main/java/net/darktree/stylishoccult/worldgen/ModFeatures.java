@@ -4,6 +4,7 @@ import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
@@ -11,6 +12,9 @@ import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.placer.SimpleBlockPlacer;
+import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 
 public class ModFeatures {
 
@@ -44,6 +48,21 @@ public class ModFeatures {
                 GenerationStep.Feature.UNDERGROUND_ORES,
                 register( "flesh_patch_feature", new FleshPatchFeature( OreFeatureConfig.CODEC ) )
         );
+
+        // Nether Grass/Fern Feature
+        BiomeModifications.addFeature(
+                BiomeSelectors.foundInTheNether(),
+                GenerationStep.Feature.RAW_GENERATION,
+                register( "nether_grass_patch_feature", new NetherGrassFeature( DefaultFeatureConfig.CODEC ) )
+        );
+
+        // Nether Grass/Fern Feature
+        BiomeModifications.addFeature(
+                BiomeSelectors.foundInTheNether(),
+                GenerationStep.Feature.RAW_GENERATION,
+                register( "spark_vent_feature", new SparkVentFeature( DefaultFeatureConfig.CODEC ) )
+        );
+
     }
 
 }

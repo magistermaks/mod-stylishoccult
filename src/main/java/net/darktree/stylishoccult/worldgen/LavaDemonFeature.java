@@ -41,6 +41,7 @@ public class LavaDemonFeature extends Feature<DefaultFeatureConfig> implements S
 
             StylishOccult.debug( "Lava Demon generated at: " + BlockUtils.posToString( pos2 ) + " (offset: " + direction.toString() + ")" );
         }
+
         return true;
     }
 

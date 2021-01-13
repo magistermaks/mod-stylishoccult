@@ -20,7 +20,7 @@ public class BlockUtils {
 
     public static String posToString( BlockPos pos ) {
         if( pos == null ) return "null";
-        return ( pos.getX() + ", " + pos.getY() + ", " + pos.getZ() );
+        return ( pos.getX() + " " + pos.getY() + " " + pos.getZ() );
     }
 
     public static <T extends BlockEntity, Y extends BlockView> T getEntity(Class<T> clazz, Y world, BlockPos pos){
@@ -39,7 +39,7 @@ public class BlockUtils {
         return (x + y + z) == 1;
     }
 
-    public static boolean touchesAir(World world, BlockPos origin) {
+    public static boolean touchesAir(BlockView world, BlockPos origin) {
         for( Direction direction : Direction.values() ){
             BlockState state = world.getBlockState( origin.offset( direction ) );
             if( state.isAir() ) return true;

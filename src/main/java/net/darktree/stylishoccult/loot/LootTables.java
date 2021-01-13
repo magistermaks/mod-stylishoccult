@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.loot;
 
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.AbstractCandleHolderBlock;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.CandleBlock;
@@ -15,6 +16,7 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
+import javax.swing.text.Style;
 import java.util.ArrayList;
 
 @SuppressWarnings("unchecked")
@@ -148,6 +150,18 @@ public class LootTables {
                 .addItem( Items.NETHERRACK )
                 .pop()
             .build("stylish_occult:spark_vent");
+
+    public static final BakedLootTable PLANT = LootManager.create()
+            .addGenerator( (rng, ctx) -> {
+                ArrayList<ItemStack> stacks = new ArrayList<>();
+
+                if( ctx.getTool().getItem() == Items.SHEARS ) {
+                    stacks.add(ctx.getBlockItem());
+                }
+
+                return stacks;
+            } )
+            .build("stylish_occult:plant");
 
     public static void init() {
         // load class

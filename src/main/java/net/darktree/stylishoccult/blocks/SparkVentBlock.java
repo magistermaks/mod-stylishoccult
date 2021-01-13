@@ -34,7 +34,7 @@ public class SparkVentBlock extends SimpleBlock {
     public SparkVentBlock() {
         super(RegUtil.settings( Material.STONE, BlockSoundGroup.NETHERRACK, 4.0F, 16.0F, false )
                 .ticksRandomly()
-                .requiresTool());
+                .requiresTool() );
 
         setDefaultState( getDefaultState().with( ACTIVE, false ) );
     }

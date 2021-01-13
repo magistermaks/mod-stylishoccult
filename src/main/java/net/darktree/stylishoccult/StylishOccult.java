@@ -18,6 +18,7 @@ import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.DropperBlock;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
