@@ -1,22 +1,19 @@
 package net.darktree.stylishoccult.loot;
 
-import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.AbstractCandleHolderBlock;
-import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.CandleBlock;
 import net.darktree.stylishoccult.blocks.LavaDemonBlock;
+import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.entities.AbstractCandleHolderBlockEntity;
 import net.darktree.stylishoccult.blocks.entities.PedestalBlockEntity;
 import net.darktree.stylishoccult.enums.LavaDemonPart;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.entry.ValveEntry;
-import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.Tag;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
-import javax.swing.text.Style;
 import java.util.ArrayList;
 
 @SuppressWarnings("unchecked")

@@ -2,12 +2,9 @@ package net.darktree.stylishoccult.items;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.enums.CandleHolderMaterial;
-import net.darktree.stylishoccult.enums.PedestalMaterial;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.util.Rarity;
 

@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.effects;
 
-import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.mixin.StatusEffectInstanceAccessor;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;

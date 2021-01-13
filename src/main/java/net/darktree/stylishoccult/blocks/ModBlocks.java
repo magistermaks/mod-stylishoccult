@@ -4,7 +4,10 @@ import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.BuildingBlock;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.Material;
+import net.minecraft.block.MaterialColor;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.sound.BlockSoundGroup;
 

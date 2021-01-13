@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.blocks;
 
-import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.SimpleBlock;

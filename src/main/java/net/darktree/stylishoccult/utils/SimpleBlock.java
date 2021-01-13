@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.utils;
 
-import net.darktree.stylishoccult.loot.LootManager;
 import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootManager;
 import net.darktree.stylishoccult.mixin.HardnessAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,7 +11,6 @@ import net.minecraft.loot.LootTables;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
 import java.util.List;

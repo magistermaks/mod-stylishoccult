@@ -3,17 +3,13 @@ package net.darktree.stylishoccult.blocks.entities;
 import net.darktree.stylishoccult.utils.SimpleBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.hud.DebugHud;
-import net.minecraft.client.gui.screen.Overlay;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.debug.DebugRenderer;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.command.MessageCommand;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 

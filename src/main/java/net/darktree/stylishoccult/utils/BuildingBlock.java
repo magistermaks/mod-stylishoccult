@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.utils;
 
-import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTables;
 
 public class BuildingBlock extends SimpleBlock {
 

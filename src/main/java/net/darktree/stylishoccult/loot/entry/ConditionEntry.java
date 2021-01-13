@@ -1,7 +1,6 @@
 package net.darktree.stylishoccult.loot.entry;
 
 import net.darktree.stylishoccult.loot.LootContext;
-import net.darktree.stylishoccult.loot.LootManager;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.minecraft.item.ItemStack;
 

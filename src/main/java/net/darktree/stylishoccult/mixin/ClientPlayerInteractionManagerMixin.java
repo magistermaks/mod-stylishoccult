@@ -1,21 +1,16 @@
 package net.darktree.stylishoccult.mixin;
 
-import net.darktree.stylishoccult.blocks.AbstractCandleHolderBlock;
-import net.darktree.stylishoccult.items.CandleItem;
 import net.darktree.stylishoccult.utils.ShiftUsable;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameMode;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

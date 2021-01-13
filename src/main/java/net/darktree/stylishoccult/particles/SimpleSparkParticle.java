@@ -8,7 +8,9 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;;
+import net.minecraft.particle.DefaultParticleType;
+
+;
 
 @Environment(EnvType.CLIENT)
 public class SimpleSparkParticle extends AnimatedParticle {

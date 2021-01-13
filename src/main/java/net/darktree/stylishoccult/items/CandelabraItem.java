@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.items;
 
-import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.CandelabraBlock;
+import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.enums.CandelabraType;
 import net.darktree.stylishoccult.enums.CandleHolderMaterial;
 import net.darktree.stylishoccult.utils.Pair;

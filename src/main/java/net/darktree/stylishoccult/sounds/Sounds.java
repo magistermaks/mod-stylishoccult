@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.sounds;
 
-import net.minecraft.server.command.PlaySoundCommand;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;

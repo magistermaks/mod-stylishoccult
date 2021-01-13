@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.loot;
 
+import net.darktree.stylishoccult.StylishOccult;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -10,7 +11,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.darktree.stylishoccult.StylishOccult;
 
 import java.util.ArrayList;
 import java.util.HashMap;

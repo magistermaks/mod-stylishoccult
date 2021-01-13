@@ -2,8 +2,8 @@ package net.darktree.stylishoccult.blocks;
 
 import net.darktree.stylishoccult.blocks.entities.AbstractCandleHolderBlockEntity;
 import net.darktree.stylishoccult.enums.CandleHolderMaterial;
-import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.ShiftUsable;
 import net.darktree.stylishoccult.utils.SimpleBlockWithEntity;
@@ -13,7 +13,6 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
