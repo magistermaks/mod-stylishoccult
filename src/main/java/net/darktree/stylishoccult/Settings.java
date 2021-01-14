@@ -26,10 +26,13 @@ public class Settings {
     public final float sparkEntityHealth = 1.0f;
     public final float sparkEntityDamage = 3.0f;
     public final float featureFleshBloodChance = 10.5f;
+    public final short fernPoisonTimeMinBase = 40;
+
     public final DifficultyBased<Integer> lavaDemonSparkSpawnRarity = new DifficultyBased<>(200, 190, 180);
     public final DifficultyBased<Integer> lavaDemonSpreadAngerRarity = new DifficultyBased<>(6, 5, 4, 3);
     public final DifficultyBased<Integer> sparkEntityBaseLiveTime = new DifficultyBased<>(5, 10, 13);
     public final DifficultyBased<Integer> sparkVentSleepTimeBase = new DifficultyBased<>(400, 300, 200);
+    public final DifficultyBased<Integer> fernPoisonTimeDelta = new DifficultyBased<>(80, 60, 40);
 
     public Settings() {
 

@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.blocks;
 
+import net.darktree.stylishoccult.StylishOccult;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -28,7 +29,7 @@ public class NetherFernBlock extends NetherGrassBlock {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             if (!world.isClient && !((LivingEntity) entity).hasStatusEffect(StatusEffects.POISON) ) {
-                int duration = 100 + world.random.nextInt(100);
+                int duration = StylishOccult.SETTINGS.fernPoisonTimeMinBase + world.random.nextInt( StylishOccult.SETTINGS.fernPoisonTimeDelta.get( world.getDifficulty() ) );
                 ((LivingEntity) entity).applyStatusEffect( new StatusEffectInstance(StatusEffects.POISON, duration, 0) );
             }
 
