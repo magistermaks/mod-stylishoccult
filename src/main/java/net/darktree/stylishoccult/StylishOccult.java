@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class StylishOccult implements ModInitializer, ClientModInitializer {
 
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger("Stylish Occult");
     public static final String NAMESPACE = "stylish_occult";
     public static final Settings SETTINGS = new Settings();
 

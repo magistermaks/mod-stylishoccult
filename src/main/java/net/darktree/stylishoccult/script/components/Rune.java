@@ -22,7 +22,8 @@ public abstract class Rune {
     }
 
     public Direction[] directions( RunicScript script ) {
-        return new Direction[] { script.getDirection() };
+        Direction dir = script.getDirection();
+        return  dir == null ? new Direction[] {} : new Direction[] { dir };
     }
 
     public RuneInstance getInstance() {

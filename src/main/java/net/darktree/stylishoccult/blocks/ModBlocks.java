@@ -8,6 +8,7 @@ import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.BuildingBlock;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
@@ -15,7 +16,11 @@ import net.minecraft.block.MaterialColor;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.sound.BlockSoundGroup;
 
+import java.util.ArrayList;
+
 public class ModBlocks {
+
+    public static final ArrayList<Block> RUNESTONES = new ArrayList<>();
 
     public static final Block CHANDELIER = RegUtil.block( "chandelier", new ChandelierBlock() );
     public static final Block CANDELABRA = RegUtil.block( "candelabra", new CandelabraBlock() );
@@ -46,10 +51,10 @@ public class ModBlocks {
     public static final Block ANDESITE_SLIM_PILLAR = RegUtil.block( "andesite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
     public static final Block DIORITE_SLIM_PILLAR = RegUtil.block( "diorite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
 
-    // runes and stuff
-    public static final Block CLICK_RUNE_BLOCK = RegUtil.rune( "click_runestone", new ClickRuneBlock( Runes.SCATTER_RUNE ) );
-    public static final Block NOOP_RUNE_BLOCK = RegUtil.rune( "noop_runestone", new RuneBlock( Runes.NOOP_RUNE ) );
-    public static final Block REDSTONE_RUNE_BLOCK = RegUtil.rune( "redstone_runestone", new RedstoneRuneBlock( Runes.NOOP_RUNE ) );
+    // runes ("latin" names) Do you have a better name? I'm open for suggestions.
+    public static final Block CLICK_RUNE_BLOCK = RegUtil.rune( "urgeo", new ClickRuneBlock( Runes.NOOP_RUNE ) );
+    public static final Block NOOP_RUNE_BLOCK = RegUtil.rune( "vanus", new RuneBlock( Runes.NOOP_RUNE ) );
+    public static final Block REDSTONE_RUNE_BLOCK = RegUtil.rune( "exitus", new RedstoneRuneBlock( Runes.NOOP_RUNE ) );
 
     public static void init() {
         // load class
@@ -63,6 +68,11 @@ public class ModBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(NETHER_GRASS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(NETHER_FERN, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GROWTH, RenderLayer.getCutout());
+
+        ColorProviderRegistry.BLOCK.register(
+                (state, world, pos, tintIndex) -> ((RuneBlock) state.getBlock()).getTint(state),
+                ModBlocks.RUNESTONES.toArray( new Block[0] )
+        );
     }
 
 }

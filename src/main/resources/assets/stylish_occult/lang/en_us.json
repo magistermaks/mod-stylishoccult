@@ -32,7 +32,8 @@
   "sound.stylish_occult.lava_demon.wakeup": "Lava Demon Wakes Up",
   "sound.stylish_occult.lava_demon.die": "Lava Demon Dies",
   "sound.stylish_occult.vent": "Fire Vents",
-  "itemGroup.stylish_occult.stylish_occult": "Stylish Occult",
+  "itemGroup.stylish_occult.stylish_occult_main": "Stylish Occult: General",
+  "itemGroup.stylish_occult.stylish_occult_runes": "Stylish Occult: Runes",
   "effect.stylish_occult.corrupted_blood": "Corrupted Blood"
 }
 

@@ -20,8 +20,7 @@ public class RunicScript {
     }
 
     public RunicScript() {
-        // Pass dummy direction
-        this(Direction.UP);
+        this(null);
     }
 
     private CompoundTag varsToTag( CompoundTag tag ) {
@@ -40,31 +39,31 @@ public class RunicScript {
     }
 
     private void instanceFromTag( CompoundTag tag ) {
-        if( tag != null ) {
-            String name = tag.getString("rune");
-            Rune rune = RuneRegistry.get(name);
-            if( rune != null ) {
-                instance = rune.getInstance();
-                if( instance != null ) {
-                    instance.fromTag(tag);
-                }
+        String name = tag.getString("rune");
+        Rune rune = RuneRegistry.get(name);
+        if( rune != null ) {
+            instance = rune.getInstance();
+            if( instance != null ) {
+                instance.fromTag(tag);
             }
         }
     }
 
     public static RunicScript fromTag( CompoundTag tag ) {
-        Direction direction = Direction.byId( tag.getInt("direction") );
-        RunicScript script = new RunicScript(direction);
+        RunicScript script = new RunicScript();
+
+        if( tag.contains("direction") ) script.setDirection( Direction.byId( tag.getInt("direction") ) );
+        if( tag.contains("instance") ) script.instanceFromTag( tag.getCompound("instance") );
         script.varsFromTag( tag.getCompound("vars") );
-        script.instanceFromTag( tag.getCompound("instance") );
+
         return script;
     }
 
     public CompoundTag toTag() {
         CompoundTag tag = new CompoundTag();
-        tag.putInt("direction", direction.getId());
+        if( direction != null) tag.putInt("direction", direction.getId());
+        if( instance != null ) tag.put("instance", instance.toTag());
         tag.put("vars", varsToTag( new CompoundTag() ));
-        tag.put("instance", instance == null ? null : instance.toTag());
         return tag;
     }
 

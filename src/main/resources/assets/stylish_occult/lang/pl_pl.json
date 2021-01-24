@@ -32,7 +32,8 @@
   "sound.stylish_occult.lava_demon.wakeup": "Magmowy demon budzi się",
   "sound.stylish_occult.lava_demon.die": "Magmowy demon umiera",
   "sound.stylish_occult.vent": "Ogień ulatnia się",
-  "itemGroup.stylish_occult.stylish_occult": "Stylish Occult",
+  "itemGroup.stylish_occult.stylish_occult_main": "Stylish Occult: Ogólne",
+  "itemGroup.stylish_occult.stylish_occult_runes": "Stylish Occult: Runy",
   "effect.stylish_occult.corrupted_blood": "Zepsuta krew"
 }
 

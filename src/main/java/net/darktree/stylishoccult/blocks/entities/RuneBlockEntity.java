@@ -56,4 +56,8 @@ public class RuneBlockEntity extends SimpleBlockEntity {
         return script;
     }
 
+    public boolean hasScript() {
+        return script != null;
+    }
+
 }

@@ -62,15 +62,15 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
     protected void executeStoredScript( World world, BlockPos pos ) {
         RuneBlockEntity entity = getEntity(world, pos);
 
-        if( entity != null ) {
+        if( entity != null && entity.hasScript() ) {
             entity.execute(rune);
 
-            Direction[] dirs = entity.directions(rune);
+            Direction[] dirs = getDirections(entity, rune);
 
             if( dirs.length == 1 ) {
                 propagateTo( world, pos, dirs[0], entity.getScript() );
-            }else {
-                for (Direction dir : dirs) {
+            }else{
+                for(Direction dir : dirs) {
                     propagateTo( world, pos, dir, entity.copyScript(dir) );
                 }
             }
@@ -84,7 +84,10 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
         BlockState state = world.getBlockState(target);
 
         if (state.getBlock() instanceof RuneBlock) {
-            execute(world, target, state, script);
+            RuneBlock runeBlock = (RuneBlock) state.getBlock();
+            if( runeBlock.canAcceptSignal() ) {
+                runeBlock.execute(world, target, state, script);
+            }
         }
     }
 
@@ -107,6 +110,7 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
         if( entity == null ) {
             StylishOccult.LOGGER.error("Missing block entity for RuneBlock!");
         }
+
         return entity;
     }
 
@@ -116,6 +120,25 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
     protected void onTriggered( World world, BlockPos pos, BlockState state ) {
 
+    }
+
+    protected Direction[] getDirections(RuneBlockEntity entity, Rune rune) {
+        return entity.directions(rune);
+    }
+
+    protected boolean canAcceptSignal() {
+        return true;
+    }
+
+    public int getTint( BlockState state ) {
+        switch( state.get(COOLDOWN) ) {
+            case 0: return 0x4d0000;
+            case 1: return 0x660000;
+            case 2: return 0x800000;
+            case 3: return 0x990000;
+        }
+
+        return 0;
     }
 
 }
