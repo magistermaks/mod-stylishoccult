@@ -1,5 +1,9 @@
 package net.darktree.stylishoccult.blocks;
 
+import net.darktree.stylishoccult.blocks.runes.ClickRuneBlock;
+import net.darktree.stylishoccult.blocks.runes.RedstoneRuneBlock;
+import net.darktree.stylishoccult.blocks.runes.RuneBlock;
+import net.darktree.stylishoccult.script.runes.Runes;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.BuildingBlock;
 import net.darktree.stylishoccult.utils.RegUtil;
@@ -25,6 +29,7 @@ public class ModBlocks {
     public static final Block DIORITE_PEDESTAL = RegUtil.block( "diorite_pedestal", new PedestalBlock() );
     public static final Block FIERY_LANTERN = RegUtil.block( "fiery_lantern", new FieryLanternBlock() );
     public static final Block SPARK_VENT = RegUtil.block( "spark_vent", new SparkVentBlock() );
+    public static final Block GROWTH = RegUtil.block( "growth", new ThinFleshBlock() );
     public static final Block NETHER_GRASS = RegUtil.block( "nether_grass", new NetherGrassBlock( AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
     public static final Block NETHER_FERN = RegUtil.block( "nether_fern", new NetherFernBlock( AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
 
@@ -41,6 +46,15 @@ public class ModBlocks {
     public static final Block ANDESITE_SLIM_PILLAR = RegUtil.block( "andesite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
     public static final Block DIORITE_SLIM_PILLAR = RegUtil.block( "diorite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
 
+    // runes and stuff
+    public static final Block CLICK_RUNE_BLOCK = RegUtil.rune( "click_runestone", new ClickRuneBlock( Runes.SCATTER_RUNE ) );
+    public static final Block NOOP_RUNE_BLOCK = RegUtil.rune( "noop_runestone", new RuneBlock( Runes.NOOP_RUNE ) );
+    public static final Block REDSTONE_RUNE_BLOCK = RegUtil.rune( "redstone_runestone", new RedstoneRuneBlock( Runes.NOOP_RUNE ) );
+
+    public static void init() {
+        // load class
+    }
+
     public static void clientInit() {
         BlockRenderLayerMap.INSTANCE.putBlock(CHANDELIER, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(LAVA_STONE, RenderLayer.getCutout());
@@ -48,6 +62,7 @@ public class ModBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(FIERY_LANTERN, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(NETHER_GRASS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(NETHER_FERN, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GROWTH, RenderLayer.getCutout());
     }
 
 }

@@ -8,6 +8,10 @@ public class RandUtils {
     private static final Random random = new Random();
 
     public static <T extends Enum<?>> T getEnum(Class<T> clazz){
+        return getEnum( clazz, random );
+    }
+
+    public static <T extends Enum<?>> T getEnum(Class<T> clazz, Random rand){
         final T[] values = clazz.getEnumConstants();
         return values[ random.nextInt( values.length ) ];
     }
@@ -30,6 +34,10 @@ public class RandUtils {
 
     public static <E> E getListEntry( ArrayList<E> list ) {
         return list.get( random.nextInt( list.size() ) );
+    }
+
+    public static <E> E getArrayEntry( E[] array, Random random ) {
+        return array[ random.nextInt( array.length ) ];
     }
 
 }

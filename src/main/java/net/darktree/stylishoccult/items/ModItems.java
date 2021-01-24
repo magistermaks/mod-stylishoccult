@@ -15,6 +15,11 @@ public class ModItems {
                 new ModIdentifier("stylish_occult"))
                 .icon(() -> new ItemStack( ModItems.CANDLE ))
                 .build();
+
+//        public static final ItemGroup RUNES = FabricItemGroupBuilder.create(
+//                new ModIdentifier("stylish_occult"))
+//                .icon(() -> new ItemStack( ModItems.CANDLE ))
+//                .build();
     }
 
     public static final Item LAVA_STONE = RegUtil.item( "lava_stone", ModBlocks.LAVA_STONE, Groups.STYLISH_OCCULT );

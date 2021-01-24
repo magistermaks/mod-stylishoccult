@@ -16,20 +16,23 @@ public abstract class SimpleBlockEntity extends BlockEntity implements BlockEnti
         super(type);
     }
 
+    @Override
     public void fromClientTag(CompoundTag tag) {
         fromTag( tag );
     }
 
+    @Override
     public void fromTag( BlockState state, CompoundTag tag ) {
         fromTag( tag );
     }
 
-    public void fromTag( CompoundTag tag ) {
-        super.fromTag( null, tag );
-    }
-
+    @Override
     public CompoundTag toClientTag(CompoundTag tag) {
         return toTag( tag );
+    }
+
+    public void fromTag( CompoundTag tag ) {
+        super.fromTag( null, tag );
     }
 
     public void safeSync() {

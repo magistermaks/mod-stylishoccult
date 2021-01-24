@@ -35,6 +35,7 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
 
     @Override
     public void onInitialize() {
+        ModBlocks.init();
         Network.init();
         Sounds.init();
         ModItems.init();

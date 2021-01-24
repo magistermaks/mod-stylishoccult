@@ -1,0 +1,6 @@
+{
+    "parent": "stylish_occult:block/growth/base",
+	"textures": {
+		"growth": "stylish_occult:block/growth_2"
+	}
+}
