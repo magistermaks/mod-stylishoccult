@@ -4,35 +4,58 @@ import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.entities.RuneBlockEntity;
 import net.darktree.stylishoccult.script.RunicScript;
 import net.darktree.stylishoccult.script.components.Rune;
+import net.darktree.stylishoccult.script.components.RuneType;
+import net.darktree.stylishoccult.script.runes.Runes;
 import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.SimpleBlock;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Random;
 
 public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
     public static final IntProperty COOLDOWN = IntProperty.of("cooldown", 0, 3);
     public final Rune rune;
+    public final RuneType type;
 
-    public RuneBlock(Rune rune) {
+    public RuneBlock( RuneType type, Rune rune ) {
         super( FabricBlockSettings.of(Material.STONE)
                 .materialColor(MaterialColor.BLACK)
                 .breakByTool(FabricToolTags.PICKAXES)
                 .requiresTool() );
 
         this.rune = rune;
+        this.type = type;
         setDefaultState( getDefaultState().with(COOLDOWN, 0) );
+    }
+
+    public String getTranslationKey() {
+        return "block." + StylishOccult.NAMESPACE + ".engraved_runestone";
+    }
+
+    @Environment(EnvType.CLIENT)
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+        tooltip.add( new TranslatableText( "rune.stylish_occult.name", new TranslatableText( "rune." + super.getTranslationKey() ) )
+                .formatted( Formatting.GRAY ) );
     }
 
     @Override
@@ -132,10 +155,10 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
     public int getTint( BlockState state ) {
         switch( state.get(COOLDOWN) ) {
-            case 0: return 0x4d0000;
-            case 1: return 0x660000;
-            case 2: return 0x800000;
-            case 3: return 0x990000;
+            case 0: return Runes.COLOR_0;
+            case 1: return Runes.COLOR_1;
+            case 2: return Runes.COLOR_2;
+            case 3: return Runes.COLOR_3;
         }
 
         return 0;

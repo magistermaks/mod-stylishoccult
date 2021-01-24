@@ -2,7 +2,6 @@ package net.darktree.stylishoccult.utils;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.runes.RuneBlock;
-import net.darktree.stylishoccult.blocks.entities.BlockEntities;
 import net.darktree.stylishoccult.items.ModItems;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -42,8 +41,10 @@ public class RegUtil {
 
     public static Block rune( String name, RuneBlock block ) {
         name = "rune_" + name;
+        Item item = item( name, new BlockItem( block, new FabricItemSettings().group(ModItems.Groups.RUNES) ) );
+
         ModBlocks.RUNESTONES.add(block);
-        item( name, new BlockItem( block, new FabricItemSettings().group(ModItems.Groups.RUNES) ) );
+        ModItems.RUNESTONES.add(item);
         return block( name, block );
     }
 

@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 
-public class RedstoneRuneBlock extends RuneBlock {
+public class RedstoneRuneBlock extends ExitRuneBlock {
 
     public RedstoneRuneBlock(Rune rune) {
         super(rune);

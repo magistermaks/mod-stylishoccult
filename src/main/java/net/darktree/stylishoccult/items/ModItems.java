@@ -1,14 +1,24 @@
 package net.darktree.stylishoccult.items;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.blocks.runes.RuneBlock;
 import net.darktree.stylishoccult.enums.CandleHolderMaterial;
+import net.darktree.stylishoccult.script.runes.Runes;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.darktree.stylishoccult.utils.RegUtil;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.*;
 import net.minecraft.util.Rarity;
 
+import java.util.ArrayList;
+
 public class ModItems {
+
+    public static final ArrayList<Item> RUNESTONES = new ArrayList<>();
 
     static public class Groups {
         public static final ItemGroup STYLISH_OCCULT = FabricItemGroupBuilder.create(
@@ -36,6 +46,7 @@ public class ModItems {
     public static final Item FLESH = RegUtil.item( "flesh", new Item.Settings().group( Groups.STYLISH_OCCULT ).food( ModFoodComponents.FLESH_FOOD ) );
     public static final Item BLOOD_BOTTLE = RegUtil.item("blood_bottle", new BottleItem(new Item.Settings().group(Groups.STYLISH_OCCULT).recipeRemainder(Items.GLASS_BOTTLE).food(ModFoodComponents.BLOOD).maxCount(16)) );
     public static final Item SPARK_VENT = RegUtil.item("spark_vent", ModBlocks.SPARK_VENT, Groups.STYLISH_OCCULT );
+    public static final Item RUNESTONE = RegUtil.item( "runestone", ModBlocks.RUNESTONE, Groups.STYLISH_OCCULT );
 
     // decorative
     public static final Item FLESH_BLOCK = RegUtil.item( "flesh_block", ModBlocks.FLESH_BLOCK, Groups.STYLISH_OCCULT );
@@ -49,7 +60,6 @@ public class ModItems {
     public static final Item DIORITE_SLIM_PILLAR = RegUtil.item( "diorite_slim_pillar", ModBlocks.DIORITE_SLIM_PILLAR, Groups.STYLISH_OCCULT );
     public static final Item NETHER_GRASS = RegUtil.item( "nether_grass", ModBlocks.NETHER_GRASS, Groups.STYLISH_OCCULT );
     public static final Item NETHER_FERN = RegUtil.item( "nether_fern", ModBlocks.NETHER_FERN, Groups.STYLISH_OCCULT );
-
 
     // candle holding madness
     public static final Item OAK_CANDELABRA_5 = CandelabraItem.register( CandleHolderMaterial.OAK, 5 );
@@ -97,6 +107,13 @@ public class ModItems {
 
     public static void init() {
         // Load this class
+    }
+
+    public static void clientInit() {
+        ColorProviderRegistry.ITEM.register(
+                (stack, tintIndex) -> Runes.COLOR_0,
+                ModItems.RUNESTONES.toArray( new Item[0] )
+        );
     }
 
 }

@@ -24,16 +24,28 @@
   "block.stylish_occult.spark_vent": "Ujście magmy",
   "block.stylish_occult.nether_grass": "Piekielna trawa",
   "block.stylish_occult.nether_fern": "Piekielna paproć",
+  "block.stylish_occult.engraved_runestone": "Kamień runiczny",
+  "block.stylish_occult.runestone": "Gładki kamień runiczny",
+
   "item.stylish_occult.flesh": "Ciało",
   "item.stylish_occult.wax": "Wosk",
   "item.stylish_occult.lava_heart": "Magmowa kula",
   "item.stylish_occult.blood_bottle": "Butelka z zepsutą krwią",
   "item.stylish_occult.candle.tooltip": "Długość:",
+
+  "rune.stylish_occult.name": "Runa %s",
+  "rune.block.stylish_occult.rune_tactus": "Tactus",
+  "rune.block.stylish_occult.rune_vanitas": "Vanitas",
+  "rune.block.stylish_occult.rune_exitus": "Exitus",
+  "rune.block.stylish_occult.rune_dispergat": "Dispergat",
+
   "sound.stylish_occult.lava_demon.wakeup": "Magmowy demon budzi się",
   "sound.stylish_occult.lava_demon.die": "Magmowy demon umiera",
   "sound.stylish_occult.vent": "Ogień ulatnia się",
+
   "itemGroup.stylish_occult.stylish_occult_main": "Stylish Occult: Ogólne",
   "itemGroup.stylish_occult.stylish_occult_runes": "Stylish Occult: Runy",
+
   "effect.stylish_occult.corrupted_blood": "Zepsuta krew"
 }
 

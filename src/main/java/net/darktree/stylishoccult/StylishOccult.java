@@ -35,9 +35,9 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
 
     @Override
     public void onInitialize() {
+        Sounds.init();
         ModBlocks.init();
         Network.init();
-        Sounds.init();
         ModItems.init();
         LootTables.init();
         Particles.init();
@@ -50,6 +50,7 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ModBlocks.clientInit();
+        ModItems.clientInit();
         Particles.clientInit();
         BlockEntities.clientInit();
         ModEntities.clientInit();

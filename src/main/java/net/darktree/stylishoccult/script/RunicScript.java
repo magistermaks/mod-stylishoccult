@@ -111,6 +111,8 @@ public class RunicScript {
     }
 
     public RunicScript copyFor(Direction direction) {
+        // This is performance nightmare, too bad!
+        // TODO: make it not copy NBT around all the time
         RunicScript script = fromTag( toTag() );
         script.setDirection( direction );
         return script;

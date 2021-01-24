@@ -1,6 +1,6 @@
     {
       "variants": {
-        "": { "model": "stylish_occult:block/bricks/old" }
+        "": { "model": "stylish_occult:block/brick/old" }
       }
     }
 

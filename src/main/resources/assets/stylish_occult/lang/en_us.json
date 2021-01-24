@@ -24,16 +24,28 @@
   "block.stylish_occult.spark_vent": "Lava Vent",
   "block.stylish_occult.nether_grass": "Nether Grass",
   "block.stylish_occult.nether_fern": "Nether Fern",
+  "block.stylish_occult.engraved_runestone": "Runestone",
+  "block.stylish_occult.runestone": "Blank Runestone",
+
   "item.stylish_occult.flesh": "Flesh",
   "item.stylish_occult.wax": "Wax",
   "item.stylish_occult.lava_heart": "Lava Orb",
   "item.stylish_occult.blood_bottle": "Corrupted Blood Bottle",
   "item.stylish_occult.candle.tooltip": "Length:",
+
+  "rune.stylish_occult.name": "%s rune",
+  "rune.block.stylish_occult.rune_tactus": "Tactus",
+  "rune.block.stylish_occult.rune_vanitas": "Vanitas",
+  "rune.block.stylish_occult.rune_exitus": "Exitus",
+  "rune.block.stylish_occult.rune_dispergat": "Dispergat",
+
   "sound.stylish_occult.lava_demon.wakeup": "Lava Demon Wakes Up",
   "sound.stylish_occult.lava_demon.die": "Lava Demon Dies",
   "sound.stylish_occult.vent": "Fire Vents",
+
   "itemGroup.stylish_occult.stylish_occult_main": "Stylish Occult: General",
   "itemGroup.stylish_occult.stylish_occult_runes": "Stylish Occult: Runes",
+
   "effect.stylish_occult.corrupted_blood": "Corrupted Blood"
 }
 

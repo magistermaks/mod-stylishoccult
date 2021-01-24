@@ -1,6 +1,6 @@
     {
       "variants": {
-        "": { "model": "stylish_occult:block/bricks/cracked" }
+        "": { "model": "stylish_occult:block/brick/cracked" }
       }
     }
 
