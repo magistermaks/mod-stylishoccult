@@ -1,0 +1,11 @@
+{
+    "parent": "stylish_occult:block/rune/common/rune",
+	"textures": {
+        "north": "stylish_occult:rune/furca",
+		"east": "stylish_occult:rune/furca",
+		"south": "stylish_occult:rune/furca",
+		"west": "stylish_occult:rune/furca",
+		"up": "stylish_occult:rune/generic/dot",
+		"down": "stylish_occult:rune/generic/dot"
+	}
+}

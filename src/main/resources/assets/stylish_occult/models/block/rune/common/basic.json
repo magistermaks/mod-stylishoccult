@@ -1,0 +1,12 @@
+{
+	"credit": "Made with Blockbench by magistermaks",
+    "parent": "stylish_occult:block/rune/common/base",
+	"textures": {
+        "north": "#rune",
+		"east": "#rune",
+		"south": "#rune",
+		"west": "#rune",
+		"up": "#rune",
+		"down": "#rune"
+	}
+}

@@ -52,6 +52,10 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
         return "block." + StylishOccult.NAMESPACE + ".engraved_runestone";
     }
 
+    public String getTypeString() {
+        return type.getName();
+    }
+
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         tooltip.add( new TranslatableText( "rune.stylish_occult.name", new TranslatableText( "rune." + super.getTranslationKey() ) )
@@ -88,9 +92,9 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
         if( entity != null && entity.hasScript() ) {
             entity.execute(rune);
 
-            Direction[] dirs = getDirections(entity, rune);
+            Direction[] dirs = getDirections(world, pos, entity, rune);
 
-            if( dirs.length == 1 ) {
+            if( dirs.length == 1 && dirs[0] == entity.getScript().getDirection() ) {
                 propagateTo( world, pos, dirs[0], entity.getScript() );
             }else{
                 for(Direction dir : dirs) {
@@ -145,8 +149,8 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
     }
 
-    protected Direction[] getDirections(RuneBlockEntity entity, Rune rune) {
-        return entity.directions(rune);
+    protected Direction[] getDirections(World world, BlockPos pos, RuneBlockEntity entity, Rune rune) {
+        return entity.directions(world, pos, rune);
     }
 
     protected boolean canAcceptSignal() {

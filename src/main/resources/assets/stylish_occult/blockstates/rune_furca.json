@@ -1,0 +1,31 @@
+{
+    "multipart": [
+        {
+            "apply": { "model": "stylish_occult:block/rune/common/block" }
+        },
+        {
+            "when": { "facing": "up" },
+            "apply": { "model": "stylish_occult:block/rune/furca" }
+        },
+        {
+            "when": { "facing": "down" },
+            "apply": { "model": "stylish_occult:block/rune/furca", "x": 180 }
+        },
+        {
+            "when": { "facing": "north" },
+            "apply": { "model": "stylish_occult:block/rune/furca", "x": 90 }
+        },
+        {
+            "when": { "facing": "south" },
+            "apply": { "model": "stylish_occult:block/rune/furca", "x": 270 }
+        },
+        {
+            "when": { "facing": "east" },
+            "apply": { "model": "stylish_occult:block/rune/furca", "x": 90, "y": 90 }
+        },
+        {
+            "when": { "facing": "west" },
+            "apply": { "model": "stylish_occult:block/rune/furca", "x": 90, "y": 270 }
+        }
+    ]
+}

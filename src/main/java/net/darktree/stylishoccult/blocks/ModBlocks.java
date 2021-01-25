@@ -1,8 +1,6 @@
 package net.darktree.stylishoccult.blocks;
 
-import net.darktree.stylishoccult.blocks.runes.ClickRuneBlock;
-import net.darktree.stylishoccult.blocks.runes.RedstoneRuneBlock;
-import net.darktree.stylishoccult.blocks.runes.RuneBlock;
+import net.darktree.stylishoccult.blocks.runes.*;
 import net.darktree.stylishoccult.script.components.RuneType;
 import net.darktree.stylishoccult.script.runes.Runes;
 import net.darktree.stylishoccult.sounds.Sounds;
@@ -55,10 +53,13 @@ public class ModBlocks {
 
     // runes - 'latin' names, do you have a better name? I'm open for suggestions.
     public static final Block CLICK_RUNE_BLOCK = RegUtil.rune( "tactus", new ClickRuneBlock( Runes.NOOP_RUNE ) ); // noun
-    public static final Block NOOP_RUNE_BLOCK = RegUtil.rune( "vanitas", new RuneBlock( RuneType.TRANSFER, Runes.NOOP_RUNE ) ); // noun
+    public static final Block NOOP_RUNE_BLOCK = RegUtil.rune( "vanitas", new TransferRuneBlock( Runes.NOOP_RUNE ) ); // noun
     public static final Block REDSTONE_RUNE_BLOCK = RegUtil.rune( "exitus", new RedstoneRuneBlock( Runes.NOOP_RUNE ) ); // noun
-    public static final Block SCATTER_RUNE_BLOCK = RegUtil.rune( "dispergat", new RuneBlock( RuneType.TRANSFER, Runes.SCATTER_RUNE ) ); // verb
-    // stop - prohibere (verb)
+    public static final Block SCATTER_RUNE_BLOCK = RegUtil.rune( "dispergat", new TransferRuneBlock( Runes.SCATTER_RUNE ) ); // verb
+    public static final Block DIRECTION_RUNE_BLOCK = RegUtil.rune( "directio", new DirectionalRuneBlock( Runes.REDIRECT_RUNE ) ); // noun
+    public static final Block RANDOM_RUNE_BLOCK = RegUtil.rune( "temere", new RandomRuneBlock( Runes.NOOP_RUNE ) ); // noun
+    public static final Block FORK_RUNE_BLOCK = RegUtil.rune( "furca", new DirectionalRuneBlock( Runes.FORK_RUNE ) ); // noun
+    // stop - prohibere (verb), reverse - contrarium
 
     public static void init() {
         // load class

@@ -21,7 +21,7 @@ public abstract class Rune {
 
     }
 
-    public Direction[] directions( RunicScript script ) {
+    public Direction[] directions( World world, BlockPos pos, RunicScript script ) {
         Direction dir = script.getDirection();
         return  dir == null ? new Direction[] {} : new Direction[] { dir };
     }

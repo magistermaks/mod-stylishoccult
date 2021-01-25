@@ -11,6 +11,8 @@ public class Runes {
 
     public static final Rune NOOP_RUNE = new EmptyRune("noop");
     public static final Rune SCATTER_RUNE = new ScatterRune("scatter");
+    public static final Rune REDIRECT_RUNE = new RedirectRune("redirect");
+    public static final Rune FORK_RUNE = new ForkRune("fork");
 
     public static void init() {
         // load class

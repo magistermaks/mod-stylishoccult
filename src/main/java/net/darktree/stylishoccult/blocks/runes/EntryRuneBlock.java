@@ -19,7 +19,7 @@ public class EntryRuneBlock extends RuneBlock {
     }
 
     @Override
-    protected Direction[] getDirections(RuneBlockEntity entity, Rune rune) {
+    protected Direction[] getDirections( World world, BlockPos pos, RuneBlockEntity entity, Rune rune ) {
         return Direction.values();
     }
 
