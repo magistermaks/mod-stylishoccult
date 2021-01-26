@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.blocks.runes;
 
-import net.darktree.stylishoccult.script.components.Rune;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -8,8 +7,8 @@ import net.minecraft.world.BlockView;
 
 public class RedstoneRuneBlock extends ExitRuneBlock {
 
-    public RedstoneRuneBlock(Rune rune) {
-        super(rune);
+    public RedstoneRuneBlock(String name) {
+        super(name);
     }
 
     @Override

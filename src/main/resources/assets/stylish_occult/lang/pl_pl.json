@@ -31,9 +31,16 @@
   "item.stylish_occult.wax": "Wosk",
   "item.stylish_occult.lava_heart": "Magmowa kula",
   "item.stylish_occult.blood_bottle": "Butelka z zepsutą krwią",
-  "item.stylish_occult.candle.tooltip": "Długość:",
+  "item.stylish_occult.error_tablet": "Runiczna płyta z błędami",
 
-  "rune.stylish_occult.name": "Runa %s",
+  "tooltip.stylish_occult.candle": "Długość: %s",
+  "tooltip.stylish_occult.rune": "Runa: %s",
+  "tooltip.stylish_occult.error_tablet.location": "Na: %s, %s, %s",
+  "tooltip.stylish_occult.error_tablet.success": "Brak wydarzeń.",
+  "tooltip.stylish_occult.error_tablet.error.stack_too_big": "Zbyt durzy stos!",
+  "tooltip.stylish_occult.error_tablet.error.number_too_long": "Zbyt długa liczba!",
+  "tooltip.stylish_occult.error_tablet.error.invalid_state": "Nieprawidłowy stan bloku!",
+
   "rune.block.stylish_occult.rune_tactus": "Tactus",
   "rune.block.stylish_occult.rune_vanitas": "Vanitas",
   "rune.block.stylish_occult.rune_exitus": "Exitus",

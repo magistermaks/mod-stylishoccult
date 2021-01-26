@@ -1,8 +1,6 @@
 package net.darktree.stylishoccult.blocks;
 
 import net.darktree.stylishoccult.blocks.runes.*;
-import net.darktree.stylishoccult.script.components.RuneType;
-import net.darktree.stylishoccult.script.runes.Runes;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.BuildingBlock;
 import net.darktree.stylishoccult.utils.RegUtil;
@@ -52,13 +50,36 @@ public class ModBlocks {
     public static final Block RUNESTONE = RegUtil.block( "runestone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK).requiresTool() ) );
 
     // runes - 'latin' names, do you have a better name? I'm open for suggestions.
-    public static final Block CLICK_RUNE_BLOCK = RegUtil.rune( "tactus", new ClickRuneBlock( Runes.NOOP_RUNE ) ); // noun
-    public static final Block NOOP_RUNE_BLOCK = RegUtil.rune( "vanitas", new TransferRuneBlock( Runes.NOOP_RUNE ) ); // noun
-    public static final Block REDSTONE_RUNE_BLOCK = RegUtil.rune( "exitus", new RedstoneRuneBlock( Runes.NOOP_RUNE ) ); // noun
-    public static final Block SCATTER_RUNE_BLOCK = RegUtil.rune( "dispergat", new TransferRuneBlock( Runes.SCATTER_RUNE ) ); // verb
-    public static final Block DIRECTION_RUNE_BLOCK = RegUtil.rune( "directio", new DirectionalRuneBlock( Runes.REDIRECT_RUNE ) ); // noun
-    public static final Block RANDOM_RUNE_BLOCK = RegUtil.rune( "temere", new RandomRuneBlock( Runes.NOOP_RUNE ) ); // noun
-    public static final Block FORK_RUNE_BLOCK = RegUtil.rune( "furca", new DirectionalRuneBlock( Runes.FORK_RUNE ) ); // noun
+    public static final Block DEBUG_RUNE_BLOCK = RegUtil.rune( new DebugRuneBlock( "debug" ) );
+    public static final Block CLICK_RUNE_BLOCK = RegUtil.rune( new ClickRuneBlock( "tactus" ) );
+    public static final Block NOOP_RUNE_BLOCK = RegUtil.rune( new TransferRuneBlock( "vanitas" ) );
+    public static final Block REDSTONE_RUNE_BLOCK = RegUtil.rune( new RedstoneRuneBlock( "exitus" ) );
+    public static final Block SCATTER_RUNE_BLOCK = RegUtil.rune( new ScatterRuneBlock( "dispergat" ) );
+    public static final Block DIRECTION_RUNE_BLOCK = RegUtil.rune( new RedirectRuneBlock( "directio" ) );
+    public static final Block RANDOM_RUNE_BLOCK = RegUtil.rune( new RandomRuneBlock( "temere" ) );
+    public static final Block FORK_RUNE_BLOCK = RegUtil.rune( new ForkRuneBlock( "furca" ) );
+    public static final Block ZERO_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_nihil", '0' ) );
+    public static final Block ONE_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_unus", '1' ) );
+    public static final Block TWO_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_duo", '2' ) );
+    public static final Block THREE_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_tres", '3' ) );
+    public static final Block FOUR_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_quattuor", '4' ) );
+    public static final Block FIVE_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_quinque", '5' ) );
+    public static final Block SIX_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_sex", '6' ) );
+    public static final Block PUSH_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("push", LogicRuneBlock.Functions.PUSH ) );
+    public static final Block PULL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("pull", LogicRuneBlock.Functions.PULL ) );
+    public static final Block EXCHANGE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("exchange", LogicRuneBlock.Functions.EXCHANGE ) );
+    public static final Block DUPLICATE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("duplicate", LogicRuneBlock.Functions.DUPLICATE ) );
+    public static final Block OR_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("or", LogicRuneBlock.Functions.OR ) );
+    public static final Block NOT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("not", LogicRuneBlock.Functions.NOT ) );
+    public static final Block ADD_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("add", LogicRuneBlock.Functions.ADD ) );
+    public static final Block MULTIPLY_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("multiply", LogicRuneBlock.Functions.MULTIPLY ) );
+    public static final Block EQUALS_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("equals", LogicRuneBlock.Functions.EQUALS ) );
+    public static final Block LESS_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("less", LogicRuneBlock.Functions.LESS ) );
+    public static final Block MORE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("more", LogicRuneBlock.Functions.MORE ) );
+    public static final Block LESS_OR_EQUAL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("less_or_equal", LogicRuneBlock.Functions.LESS_OR_EQUAL ) );
+    public static final Block MORE_OR_EQUAL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("more_or_equal", LogicRuneBlock.Functions.MORE_OR_EQUAL ) );
+    public static final Block NEGATIVE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("negative", LogicRuneBlock.Functions.NEGATIVE ) );
+    public static final Block POSITIVE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("positive", LogicRuneBlock.Functions.POSITIVE ) );
     // stop - prohibere (verb), reverse - contrarium
 
     public static void init() {

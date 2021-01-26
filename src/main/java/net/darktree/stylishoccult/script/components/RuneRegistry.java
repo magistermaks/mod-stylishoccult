@@ -1,16 +1,18 @@
 package net.darktree.stylishoccult.script.components;
 
+import net.darktree.stylishoccult.blocks.runes.RuneBlock;
+
 import java.util.HashMap;
 
 public class RuneRegistry {
 
-    private static final HashMap<String, Rune> runes = new HashMap<>();
+    private static final HashMap<String, RuneBlock> runes = new HashMap<>();
 
-    public static Rune put( String name, Rune rune ) {
+    public static RuneBlock put(String name, RuneBlock rune ) {
         return runes.put( name, rune );
     }
 
-    public static Rune get( String name ) {
+    public static RuneBlock get( String name ) {
         return runes.get( name );
     }
 

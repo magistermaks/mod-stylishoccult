@@ -31,9 +31,16 @@
   "item.stylish_occult.wax": "Wax",
   "item.stylish_occult.lava_heart": "Lava Orb",
   "item.stylish_occult.blood_bottle": "Corrupted Blood Bottle",
-  "item.stylish_occult.candle.tooltip": "Length:",
+  "item.stylish_occult.error_tablet": "Runic Error Tablet",
 
-  "rune.stylish_occult.name": "%s rune",
+  "tooltip.stylish_occult.candle": "Length: %s",
+  "tooltip.stylish_occult.rune": "Rune: %s",
+  "tooltip.stylish_occult.error_tablet.location": "At: %s, %s, %s",
+  "tooltip.stylish_occult.error_tablet.success": "Nothing to report.",
+  "tooltip.stylish_occult.error_tablet.error.stack_too_big": "Stack too big!",
+  "tooltip.stylish_occult.error_tablet.error.number_too_long": "Number too long!",
+  "tooltip.stylish_occult.error_tablet.error.invalid_state": "Invalid block state!",
+
   "rune.block.stylish_occult.rune_tactus": "Tactus",
   "rune.block.stylish_occult.rune_vanitas": "Vanitas",
   "rune.block.stylish_occult.rune_exitus": "Exitus",

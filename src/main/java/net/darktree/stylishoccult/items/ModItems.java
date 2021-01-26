@@ -1,16 +1,12 @@
 package net.darktree.stylishoccult.items;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.runes.RuneBlock;
 import net.darktree.stylishoccult.enums.CandleHolderMaterial;
-import net.darktree.stylishoccult.script.runes.Runes;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.darktree.stylishoccult.utils.RegUtil;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.darktree.stylishoccult.utils.RuneUtils;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.*;
 import net.minecraft.util.Rarity;
 
@@ -47,6 +43,7 @@ public class ModItems {
     public static final Item BLOOD_BOTTLE = RegUtil.item("blood_bottle", new BottleItem(new Item.Settings().group(Groups.STYLISH_OCCULT).recipeRemainder(Items.GLASS_BOTTLE).food(ModFoodComponents.BLOOD).maxCount(16)) );
     public static final Item SPARK_VENT = RegUtil.item("spark_vent", ModBlocks.SPARK_VENT, Groups.STYLISH_OCCULT );
     public static final Item RUNESTONE = RegUtil.item( "runestone", ModBlocks.RUNESTONE, Groups.STYLISH_OCCULT );
+    public static final Item RUNE_ERROR_REPORT = RegUtil.item( "error_tablet", new ErrorReportItem( new Item.Settings().group( Groups.STYLISH_OCCULT ).maxCount(1) ) );
 
     // decorative
     public static final Item FLESH_BLOCK = RegUtil.item( "flesh_block", ModBlocks.FLESH_BLOCK, Groups.STYLISH_OCCULT );
@@ -111,7 +108,7 @@ public class ModItems {
 
     public static void clientInit() {
         ColorProviderRegistry.ITEM.register(
-                (stack, tintIndex) -> Runes.COLOR_0,
+                (stack, tintIndex) -> RuneUtils.COLOR_0,
                 ModItems.RUNESTONES.toArray( new Item[0] )
         );
     }

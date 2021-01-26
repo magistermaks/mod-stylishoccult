@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.blocks.runes;
 
-import net.darktree.stylishoccult.script.components.Rune;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -13,8 +12,8 @@ import net.minecraft.world.World;
 
 public class ClickRuneBlock extends EntryRuneBlock {
 
-    public ClickRuneBlock(Rune rune) {
-        super(rune);
+    public ClickRuneBlock(String name) {
+        super(name);
     }
 
     @Override

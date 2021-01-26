@@ -3,11 +3,12 @@ package net.darktree.stylishoccult.blocks.runes;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.entities.RuneBlockEntity;
 import net.darktree.stylishoccult.script.RunicScript;
-import net.darktree.stylishoccult.script.components.Rune;
+import net.darktree.stylishoccult.script.components.RuneInstance;
 import net.darktree.stylishoccult.script.components.RuneType;
-import net.darktree.stylishoccult.script.runes.Runes;
 import net.darktree.stylishoccult.utils.BlockUtils;
+import net.darktree.stylishoccult.utils.RuneUtils;
 import net.darktree.stylishoccult.utils.SimpleBlock;
+import net.darktree.stylishoccult.utils.Utils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -21,7 +22,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -34,32 +34,33 @@ import java.util.Random;
 public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
     public static final IntProperty COOLDOWN = IntProperty.of("cooldown", 0, 3);
-    public final Rune rune;
     public final RuneType type;
+    public final String name;
 
-    public RuneBlock( RuneType type, Rune rune ) {
+    public RuneBlock( RuneType type, String name ) {
         super( FabricBlockSettings.of(Material.STONE)
                 .materialColor(MaterialColor.BLACK)
                 .breakByTool(FabricToolTags.PICKAXES)
                 .requiresTool() );
 
-        this.rune = rune;
         this.type = type;
+        this.name = name;
         setDefaultState( getDefaultState().with(COOLDOWN, 0) );
-    }
-
-    public String getTranslationKey() {
-        return "block." + StylishOccult.NAMESPACE + ".engraved_runestone";
     }
 
     public String getTypeString() {
         return type.getName();
     }
 
+    @Override
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add( new TranslatableText( "rune.stylish_occult.name", new TranslatableText( "rune." + super.getTranslationKey() ) )
-                .formatted( Formatting.GRAY ) );
+        tooltip.add( Utils.tooltip( "rune", new TranslatableText( "rune." + super.getTranslationKey() ) ) );
+    }
+
+    @Override
+    public String getTranslationKey() {
+        return "block." + StylishOccult.NAMESPACE + ".engraved_runestone";
     }
 
     @Override
@@ -90,15 +91,16 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
         RuneBlockEntity entity = getEntity(world, pos);
 
         if( entity != null && entity.hasScript() ) {
-            entity.execute(rune);
+            RunicScript state = entity.getScript();
+            state.apply( this, world, pos );
+            Direction[] dirs = getDirections( world, pos, state );
 
-            Direction[] dirs = getDirections(world, pos, entity, rune);
+            if( dirs.length >= 1 ) {
+                state.setDirection( dirs[0] );
+                propagateTo( world, pos, dirs[0], state );
 
-            if( dirs.length == 1 && dirs[0] == entity.getScript().getDirection() ) {
-                propagateTo( world, pos, dirs[0], entity.getScript() );
-            }else{
-                for(Direction dir : dirs) {
-                    propagateTo( world, pos, dir, entity.copyScript(dir) );
+                for( int i = 1; i < dirs.length; i ++ ) {
+                    propagateTo( world, pos, dirs[i], entity.copyScript(dirs[i]) );
                 }
             }
 
@@ -145,27 +147,33 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
         return 1;
     }
 
-    protected void onTriggered( World world, BlockPos pos, BlockState state ) {
-
+    public int getTint( BlockState state ) {
+        return RuneUtils.getTint( state.get(COOLDOWN) );
     }
 
-    protected Direction[] getDirections(World world, BlockPos pos, RuneBlockEntity entity, Rune rune) {
-        return entity.directions(world, pos, rune);
+    public Direction[] getDirections( World world, BlockPos pos, RunicScript script ) {
+        Direction dir = script.getDirection();
+        return  dir == null ? new Direction[] {} : new Direction[] { dir };
     }
 
-    protected boolean canAcceptSignal() {
+    public boolean canAcceptSignal() {
         return true;
     }
 
-    public int getTint( BlockState state ) {
-        switch( state.get(COOLDOWN) ) {
-            case 0: return Runes.COLOR_0;
-            case 1: return Runes.COLOR_1;
-            case 2: return Runes.COLOR_2;
-            case 3: return Runes.COLOR_3;
-        }
+    public RuneInstance getInstance() {
+        return null;
+    }
 
-        return 0;
+    public void apply(RunicScript script, World world, BlockPos pos) {
+        apply(script);
+    }
+
+    public void apply(RunicScript script) {
+
+    }
+
+    protected void onTriggered( World world, BlockPos pos, BlockState state ) {
+
     }
 
 }

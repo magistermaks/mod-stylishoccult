@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.blocks.runes;
 
-import net.darktree.stylishoccult.script.components.Rune;
 import net.minecraft.block.BlockState;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -9,8 +8,8 @@ import java.util.Random;
 
 public class RandomRuneBlock extends EntryRuneBlock {
 
-    public RandomRuneBlock(Rune rune) {
-        super(rune);
+    public RandomRuneBlock(String name) {
+        super(name);
     }
 
     @Override

@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.utils;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.runes.RuneBlock;
 import net.darktree.stylishoccult.items.ModItems;
+import net.darktree.stylishoccult.script.components.RuneRegistry;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -39,12 +40,17 @@ public class RegUtil {
         return Registry.register( Registry.ITEM, new ModIdentifier( name ), item );
     }
 
-    public static Block rune( String name, RuneBlock block ) {
-        name = "rune_" + name;
+    public static Block rune( RuneBlock block ) {
+        String name = "rune_" + block.name;
         Item item = item( name, new BlockItem( block, new FabricItemSettings().group(ModItems.Groups.RUNES) ) );
 
         ModBlocks.RUNESTONES.add(block);
         ModItems.RUNESTONES.add(item);
+
+        if( block.getInstance() != null ) {
+            RuneRegistry.put(block.name, block);
+        }
+
         return block( name, block );
     }
 

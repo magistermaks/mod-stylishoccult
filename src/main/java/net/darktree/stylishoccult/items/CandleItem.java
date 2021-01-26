@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.items;
 
 import net.darktree.stylishoccult.utils.Tag;
+import net.darktree.stylishoccult.utils.Utils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -59,7 +60,7 @@ public class CandleItem extends BlockItem {
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
         String layers = String.valueOf( getLayers( stack ) - 1 );
-        tooltip.add((new TranslatableText("item.stylish_occult.candle.tooltip", new Object[0])).append(" ").append( layers ).formatted(Formatting.GRAY));
+        tooltip.add( Utils.tooltip( "candle", layers ) );
     }
 
     public static short getLayers( ItemStack stack ) {

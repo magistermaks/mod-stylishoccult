@@ -1,7 +1,10 @@
 package net.darktree.stylishoccult.script.components;
 
+import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.utils.RuneUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.explosion.Explosion;
 
 public class RuneException extends RuntimeException {
 
@@ -10,8 +13,10 @@ public class RuneException extends RuntimeException {
     }
 
     public void apply(World world, BlockPos pos) {
-        System.out.println("Oh no! Exception in script at BlockPos: " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + " " + getMessage() );
-        // world.createExplosion( null, pos.getX(), pos.getY(), pos.getZ(), 1.0f, Explosion.DestructionType.BREAK );
+        StylishOccult.debug( "Exception in script at: " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + " " + getMessage() );
+        float size = StylishOccult.SETTINGS.runicErrorExplosionSize.get( world.getDifficulty() );
+        world.createExplosion( null, pos.getX(), pos.getY(), pos.getZ(), size, Explosion.DestructionType.BREAK );
+        RuneUtils.createErrorReport( this, world, pos );
     }
 
 }

@@ -1,7 +1,12 @@
 package net.darktree.stylishoccult.utils;
 
+import net.darktree.stylishoccult.StylishOccult;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.shape.VoxelShape;
@@ -23,6 +28,14 @@ public class Utils {
             finalShape = VoxelShapes.combine( finalShape, shape, function );
         }
         return finalShape;
+    }
+
+    public static MutableText tooltip( String text, Object... args ) {
+        return new TranslatableText( "tooltip." + StylishOccult.NAMESPACE + "." + text, args ).formatted( Formatting.GRAY );
+    }
+
+    public static MutableText tooltip( String text ) {
+        return new TranslatableText( "tooltip." + StylishOccult.NAMESPACE + "." + text ).formatted( Formatting.GRAY );
     }
 
 }

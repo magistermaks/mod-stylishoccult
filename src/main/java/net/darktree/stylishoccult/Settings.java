@@ -32,7 +32,8 @@ public class Settings {
     public final DifficultyBased<Integer> lavaDemonSpreadAngerRarity = new DifficultyBased<>(6, 5, 4, 3);
     public final DifficultyBased<Integer> sparkEntityBaseLiveTime = new DifficultyBased<>(5, 10, 13);
     public final DifficultyBased<Integer> sparkVentSleepTimeBase = new DifficultyBased<>(400, 300, 200);
-    public final DifficultyBased<Integer> fernPoisonTimeDelta = new DifficultyBased<>(80, 60, 40);
+    public final DifficultyBased<Integer> fernPoisonTimeDelta = new DifficultyBased<>(40, 60, 80);
+    public final DifficultyBased<Float> runicErrorExplosionSize = new DifficultyBased<>(1.0f, 1.2f, 1.5f);
 
     public Settings() {
 
