@@ -48,6 +48,13 @@
   "rune.block.stylish_occult.rune_directio": "Directio",
   "rune.block.stylish_occult.rune_temere": "Temere",
   "rune.block.stylish_occult.rune_furca": "Furca",
+  "rune.block.stylish_occult.rune_numerus_nihil": "Numerus Nihili",
+  "rune.block.stylish_occult.rune_numerus_unus": "Numerus Unus",
+  "rune.block.stylish_occult.rune_numerus_duo": "Numerus Duo",
+  "rune.block.stylish_occult.rune_numerus_tres": "Numerus Tres",
+  "rune.block.stylish_occult.rune_numerus_quattuor": "Numerus Quattuor",
+  "rune.block.stylish_occult.rune_numerus_quinque": "Numerus Quinque",
+  "rune.block.stylish_occult.rune_numerus_sex": "Numerus Sex",
 
   "sound.stylish_occult.lava_demon.wakeup": "Lava Demon Wakes Up",
   "sound.stylish_occult.lava_demon.die": "Lava Demon Dies",

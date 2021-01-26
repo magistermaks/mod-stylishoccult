@@ -65,20 +65,20 @@ public class ModBlocks {
     public static final Block FOUR_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_quattuor", '4' ) );
     public static final Block FIVE_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_quinque", '5' ) );
     public static final Block SIX_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_sex", '6' ) );
-    public static final Block PUSH_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("push", LogicRuneBlock.Functions.PUSH ) );
-    public static final Block PULL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("pull", LogicRuneBlock.Functions.PULL ) );
-    public static final Block EXCHANGE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("exchange", LogicRuneBlock.Functions.EXCHANGE ) );
-    public static final Block DUPLICATE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("duplicate", LogicRuneBlock.Functions.DUPLICATE ) );
-    public static final Block OR_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("or", LogicRuneBlock.Functions.OR ) );
-    public static final Block NOT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("not", LogicRuneBlock.Functions.NOT ) );
-    public static final Block ADD_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("add", LogicRuneBlock.Functions.ADD ) );
-    public static final Block MULTIPLY_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("multiply", LogicRuneBlock.Functions.MULTIPLY ) );
-    public static final Block EQUALS_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("equals", LogicRuneBlock.Functions.EQUALS ) );
-    public static final Block LESS_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("less", LogicRuneBlock.Functions.LESS ) );
-    public static final Block MORE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("more", LogicRuneBlock.Functions.MORE ) );
-    public static final Block LESS_OR_EQUAL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("less_or_equal", LogicRuneBlock.Functions.LESS_OR_EQUAL ) );
-    public static final Block MORE_OR_EQUAL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("more_or_equal", LogicRuneBlock.Functions.MORE_OR_EQUAL ) );
-    public static final Block NEGATIVE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("negative", LogicRuneBlock.Functions.NEGATIVE ) );
+    public static final Block PUSH_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("paello", LogicRuneBlock.Functions.PUSH ) );
+    public static final Block PULL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("divexo", LogicRuneBlock.Functions.PULL ) );
+    public static final Block EXCHANGE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("cambitas", LogicRuneBlock.Functions.EXCHANGE ) );
+    public static final Block DUPLICATE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("effingo", LogicRuneBlock.Functions.DUPLICATE ) );
+    public static final Block OR_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("vel", LogicRuneBlock.Functions.OR ) );
+    public static final Block NOT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("non", LogicRuneBlock.Functions.NOT ) );
+    public static final Block ADD_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("adaugeo", LogicRuneBlock.Functions.ADD ) );
+    public static final Block MULTIPLY_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("multiplico", LogicRuneBlock.Functions.MULTIPLY ) );
+    public static final Block EQUALS_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("pares", LogicRuneBlock.Functions.EQUALS ) );
+    public static final Block LESS_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("minus", LogicRuneBlock.Functions.LESS ) );
+    public static final Block MORE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("magis", LogicRuneBlock.Functions.MORE ) );
+    public static final Block LESS_OR_EQUAL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("minus_aut_pares", LogicRuneBlock.Functions.LESS_OR_EQUAL ) );
+    public static final Block MORE_OR_EQUAL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("magis_aut_pares", LogicRuneBlock.Functions.MORE_OR_EQUAL ) );
+    public static final Block NEGATIVE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("negans", LogicRuneBlock.Functions.NEGATIVE ) );
     public static final Block POSITIVE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("positive", LogicRuneBlock.Functions.POSITIVE ) );
     // stop - prohibere (verb), reverse - contrarium
 
