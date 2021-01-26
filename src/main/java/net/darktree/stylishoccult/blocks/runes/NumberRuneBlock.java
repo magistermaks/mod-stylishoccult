@@ -50,7 +50,12 @@ public class NumberRuneBlock extends TransferRuneBlock {
                 return true;
             }
 
-            script.value = Integer.parseInt( raw, 6 );
+            try {
+                script.value = Integer.parseInt(raw, 6);
+            }catch (Exception e){
+                throw new RuneException("invalid_number");
+            }
+
             return false;
         }
 

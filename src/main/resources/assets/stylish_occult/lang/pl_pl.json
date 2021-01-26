@@ -40,6 +40,7 @@
   "tooltip.stylish_occult.error_tablet.error.stack_too_big": "Zbyt durzy stos!",
   "tooltip.stylish_occult.error_tablet.error.number_too_long": "Zbyt długa liczba!",
   "tooltip.stylish_occult.error_tablet.error.invalid_state": "Nieprawidłowy stan bloku!",
+  "tooltip.stylish_occult.error_tablet.error.invalid_number": "Zła składnia liczby!",
 
   "rune.block.stylish_occult.rune_tactus": "Tactus",
   "rune.block.stylish_occult.rune_vanitas": "Vanitas",
@@ -55,6 +56,11 @@
   "rune.block.stylish_occult.rune_numerus_quattuor": "Numerus Quattuor",
   "rune.block.stylish_occult.rune_numerus_quinque": "Numerus Quinque",
   "rune.block.stylish_occult.rune_numerus_sex": "Numerus Sex",
+  "rune.block.stylish_occult.rune_numerus_minus": "Numerus Minus",
+  "rune.block.stylish_occult.rune_paello": "Paello",
+  "rune.block.stylish_occult.rune_divexo": "Divexo",
+  "rune.block.stylish_occult.rune_cambitas": "Cambitas",
+  "rune.block.stylish_occult.rune_effingo": "Effingo",
 
   "sound.stylish_occult.lava_demon.wakeup": "Magmowy demon budzi się",
   "sound.stylish_occult.lava_demon.die": "Magmowy demon umiera",
