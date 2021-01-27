@@ -6,6 +6,10 @@ public class DebugRuneBlockEntity extends RuneBlockEntity {
 
     public RunicScript scriptCopy = null;
 
+    public DebugRuneBlockEntity() {
+        super(BlockEntities.DEBUG_RUNESTONE);
+    }
+
     @Override
     public void store( RunicScript script ) {
         super.store( script );

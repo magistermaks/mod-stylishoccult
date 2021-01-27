@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.blocks.entities;
 
 import net.darktree.stylishoccult.script.RunicScript;
 import net.darktree.stylishoccult.utils.SimpleBlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.math.Direction;
 
@@ -10,7 +11,11 @@ public class RuneBlockEntity extends SimpleBlockEntity {
     private RunicScript script;
 
     public RuneBlockEntity() {
-        super(BlockEntities.RUNESTONE);
+        this(BlockEntities.RUNESTONE);
+    }
+
+    public RuneBlockEntity(BlockEntityType entity) {
+        super(entity);
     }
 
     @Override
