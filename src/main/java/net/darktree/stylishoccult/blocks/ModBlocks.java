@@ -50,7 +50,7 @@ public class ModBlocks {
     public static final Block RUNESTONE = RegUtil.block( "runestone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK).requiresTool() ) );
 
     // runes - 'latin' names, do you have a better name? I'm open for suggestions.
-    public static final Block DEBUG_RUNE_BLOCK = RegUtil.rune( new DebugRuneBlock( "debug" ) );
+    public static final Block DEBUG_RUNE_BLOCK = RegUtil.registerRunePair( new DebugRuneBlock( "debug" ) );
     public static final Block CLICK_RUNE_BLOCK = RegUtil.rune( new ClickRuneBlock( "tactus" ) );
     public static final Block NOOP_RUNE_BLOCK = RegUtil.rune( new TransferRuneBlock( "vanitas" ) );
     public static final Block REDSTONE_RUNE_BLOCK = RegUtil.rune( new RedstoneRuneBlock( "exitus" ) );
@@ -66,21 +66,21 @@ public class ModBlocks {
     public static final Block FOUR_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_quattuor", '4' ) );
     public static final Block FIVE_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_quinque", '5' ) );
     public static final Block SIX_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_sex", '6' ) );
-    public static final Block PUSH_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("paello", LogicRuneBlock.Functions.PUSH ) );
-    public static final Block PULL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("divexo", LogicRuneBlock.Functions.PULL ) );
-    public static final Block EXCHANGE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("cambitas", LogicRuneBlock.Functions.EXCHANGE ) );
-    public static final Block DUPLICATE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("effingo", LogicRuneBlock.Functions.DUPLICATE ) );
-    public static final Block OR_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("vel", LogicRuneBlock.Functions.OR ) );
-    public static final Block NOT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("inverto", LogicRuneBlock.Functions.NOT ) );
-    public static final Block ADD_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("adaugeo", LogicRuneBlock.Functions.ADD ) );
-    public static final Block MULTIPLY_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("multiplico", LogicRuneBlock.Functions.MULTIPLY ) );
-    public static final Block EQUALS_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("pares", LogicRuneBlock.Functions.EQUALS ) );
-    public static final Block LESS_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("minus", LogicRuneBlock.Functions.LESS ) );
-    public static final Block MORE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("magis", LogicRuneBlock.Functions.MORE ) );
-//    public static final Block LESS_OR_EQUAL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("minus_aut_pares", LogicRuneBlock.Functions.LESS_OR_EQUAL ) );
-//    public static final Block MORE_OR_EQUAL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("magis_aut_pares", LogicRuneBlock.Functions.MORE_OR_EQUAL ) );
-//    public static final Block NEGATIVE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("negans", LogicRuneBlock.Functions.NEGATIVE ) );
-//    public static final Block POSITIVE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("positive", LogicRuneBlock.Functions.POSITIVE ) );
+    public static final Block PUSH_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "paello", LogicRuneBlock.Functions.PUSH ) );
+    public static final Block PULL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "divexo", LogicRuneBlock.Functions.PULL ) );
+    public static final Block EXCHANGE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "cambitas", LogicRuneBlock.Functions.EXCHANGE ) );
+    public static final Block DUPLICATE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "effingo", LogicRuneBlock.Functions.DUPLICATE ) );
+    public static final Block OR_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "vel", LogicRuneBlock.Functions.OR ) );
+    public static final Block ADD_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "adaugeo", LogicRuneBlock.Functions.ADD ) );
+    public static final Block NOT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "ni", LogicRuneBlock.Functions.NOT ) );
+    public static final Block MULTIPLY_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "multiplico", LogicRuneBlock.Functions.MULTIPLY ) );
+    public static final Block INVERT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "inverto", LogicRuneBlock.Functions.INVERT ) );
+    public static final Block RECIPROCAL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "mutuus", LogicRuneBlock.Functions.RECIPROCAL ) );
+    public static final Block EQUALS_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "pares", LogicRuneBlock.Functions.EQUALS ) );
+    public static final Block LESS_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "minus", LogicRuneBlock.Functions.LESS ) );
+    public static final Block MORE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "magis", LogicRuneBlock.Functions.MORE ) );
+    public static final Block IF_RUNE_BLOCK = RegUtil.rune( new IfRuneBlock( "si" ) );
+    //public static final Block IF_FORK_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "si_furka", LogicRuneBlock.Functions.MORE ) );
     // stop - prohibere (verb), reverse - contrarium
 
     public static void init() {
@@ -97,12 +97,11 @@ public class ModBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(NETHER_GRASS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(NETHER_FERN, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GROWTH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DEBUG_RUNE_BLOCK, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), runestones);
 
-        ColorProviderRegistry.BLOCK.register(
-                (state, world, pos, tintIndex) -> ((RuneBlock) state.getBlock()).getTint(state),
-                runestones
-        );
+        ColorProviderRegistry.BLOCK.register( RuneBlock.COLOR_PROVIDER, runestones );
+        ColorProviderRegistry.BLOCK.register( RuneBlock.COLOR_PROVIDER, DEBUG_RUNE_BLOCK );
     }
 
 }

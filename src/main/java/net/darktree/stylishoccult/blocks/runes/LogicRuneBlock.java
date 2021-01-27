@@ -29,6 +29,8 @@ public class LogicRuneBlock extends RuneBlock {
         public static final LogicFunction DUPLICATE = script -> script.getStack().duplicate();
         public static final LogicFunction OR = script -> script.getStack().or();
         public static final LogicFunction NOT = script -> script.getStack().not();
+        public static final LogicFunction INVERT = script -> script.getStack().invert();
+        public static final LogicFunction RECIPROCAL = script -> script.getStack().reciprocal();
         public static final LogicFunction ADD = script -> script.getStack().add(script.value );
         public static final LogicFunction MULTIPLY = script -> script.getStack().multiply(script.value);
         public static final LogicFunction EQUALS = script -> script.getStack().equal(script.value);

@@ -75,6 +75,14 @@ public class StackManager {
         replace( 1, (get(0) != 0) ? 0 : 1 );
     }
 
+    public void invert() {
+        replace( 1, -get(0) );
+    }
+
+    public void reciprocal() {
+        replace( 1, 1.0d/get(0) );
+    }
+
     public void and() {
         replace( 2, (get(0) != 0 && get(1) != 0) ? 1 : 0 );
     }
@@ -116,4 +124,19 @@ public class StackManager {
     public void reset() {
         stack = new ArrayList<>();
     }
+
+    public int size() {
+        return stack.size();
+    }
+
+    public String print() {
+        StringBuilder str = new StringBuilder();
+
+        for( double value : stack ) {
+            str.append("  ").append(value).append("\n");
+        }
+
+        return str.toString();
+    }
+
 }

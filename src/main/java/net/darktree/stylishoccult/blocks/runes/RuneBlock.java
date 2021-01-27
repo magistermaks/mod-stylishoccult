@@ -15,6 +15,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -32,6 +33,9 @@ import java.util.List;
 import java.util.Random;
 
 public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
+
+    @Environment(EnvType.CLIENT)
+    public static final BlockColorProvider COLOR_PROVIDER = (state, world, pos, tintIndex) -> ((RuneBlock) state.getBlock()).getTint(state);
 
     public static final IntProperty COOLDOWN = IntProperty.of("cooldown", 0, 3);
     public final RuneType type;
