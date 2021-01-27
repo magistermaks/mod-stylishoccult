@@ -48,6 +48,7 @@ public class ModBlocks {
     public static final Block ANDESITE_SLIM_PILLAR = RegUtil.block( "andesite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
     public static final Block DIORITE_SLIM_PILLAR = RegUtil.block( "diorite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
     public static final Block RUNESTONE = RegUtil.block( "runestone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK).requiresTool() ) );
+    public static final Block ARCANE_ASH_ALPHA = RegUtil.block( "arcane_ash_alpha", new ArcaneAshBlock( 100, 200, RegUtil.settings( Material.SOIL, BlockSoundGroup.SAND, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK) ) );
 
     // runes - 'latin' names, do you have a better name? I'm open for suggestions.
     public static final Block DEBUG_RUNE_BLOCK = RegUtil.registerRunePair( new DebugRuneBlock( "debug" ) );
@@ -80,6 +81,9 @@ public class ModBlocks {
     public static final Block LESS_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "minus", LogicRuneBlock.Functions.LESS ) );
     public static final Block MORE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "magis", LogicRuneBlock.Functions.MORE ) );
     public static final Block IF_RUNE_BLOCK = RegUtil.rune( new IfRuneBlock( "si" ) );
+    public static final Block PLACE_ALPHA_RUNE_BLOCK = RegUtil.rune( new PlaceRuneBlock( "locus_alpha", ARCANE_ASH_ALPHA ) );
+    //public static final Block PLACE_BETA_RUNE_BLOCK = RegUtil.rune( new PlaceRuneBlock( "locus_beta", ARCANE_ASH_BETA ) );
+    //public static final Block PLACE_GAMMA_RUNE_BLOCK = RegUtil.rune( new PlaceRuneBlock( "locus_gamma", ARCANE_ASH_GAMMA ) );
     //public static final Block IF_FORK_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "si_furka", LogicRuneBlock.Functions.MORE ) );
     // stop - prohibere (verb), reverse - contrarium
 

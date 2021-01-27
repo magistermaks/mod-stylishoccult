@@ -75,7 +75,7 @@ public class RunicScript {
     public void apply(RuneBlock rune, World world, BlockPos pos ) {
         try {
             push(rune);
-            rune.apply( this, world, pos );
+            rune.apply(this, world, pos);
             stack.validate();
         } catch (RuneException exception) {
             exception.apply( world, pos );
