@@ -18,4 +18,8 @@ public class GeneratorEntry extends AbstractEntry {
     public ArrayList<ItemStack> getLoot(Random random, LootContext context) {
         return generator.call(random, context);
     }
+
+    public interface Generator {
+        ArrayList<ItemStack> call(Random random, LootContext context);
+    }
 }

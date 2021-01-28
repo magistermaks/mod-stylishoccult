@@ -2,13 +2,13 @@ package net.darktree.stylishoccult.blocks.runes;
 
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.entities.RuneBlockEntity;
+import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.script.RunicScript;
+import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneInstance;
 import net.darktree.stylishoccult.script.components.RuneType;
-import net.darktree.stylishoccult.utils.BlockUtils;
-import net.darktree.stylishoccult.utils.RuneUtils;
-import net.darktree.stylishoccult.utils.SimpleBlock;
-import net.darktree.stylishoccult.utils.Utils;
+import net.darktree.stylishoccult.utils.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -45,7 +45,8 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
         super( FabricBlockSettings.of(Material.STONE)
                 .materialColor(MaterialColor.BLACK)
                 .breakByTool(FabricToolTags.PICKAXES)
-                .requiresTool() );
+                .requiresTool()
+                .strength(2.5f, 6.0f));
 
         this.type = type;
         this.name = name;
@@ -54,6 +55,11 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
     public String getTypeString() {
         return type.getName();
+    }
+
+    @Override
+    public BakedLootTable getInternalLootTableId() {
+        return LootTables.SIMPLE_RESISTANT;
     }
 
     @Override
@@ -81,12 +87,16 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int cooldown = state.get(COOLDOWN);
 
-        if( cooldown != 0 ) {
-            world.setBlockState(pos, state.with(COOLDOWN, cooldown - 1));
-            world.getBlockTickScheduler().schedule( pos, state.getBlock(), getDelayLength() );
-            if( cooldown == 3 ) {
-                executeStoredScript(world, pos);
+        try {
+            if (cooldown != 0) {
+                world.setBlockState(pos, state.with(COOLDOWN, cooldown - 1));
+                world.getBlockTickScheduler().schedule(pos, state.getBlock(), getDelayLength());
+                if (cooldown == 3) {
+                    executeStoredScript(world, pos);
+                }
             }
+        }catch(RuneException exception) {
+            exception.apply(world, pos);
         }
         super.scheduledTick(state, world, pos, random);
     }

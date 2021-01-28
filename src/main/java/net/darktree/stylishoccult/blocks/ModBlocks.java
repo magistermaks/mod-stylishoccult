@@ -6,6 +6,7 @@ import net.darktree.stylishoccult.utils.BuildingBlock;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.sound.BlockSoundGroup;
@@ -45,7 +46,7 @@ public class ModBlocks {
     public static final Block ANDESITE_SLIM_PILLAR = RegUtil.block( "andesite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
     public static final Block DIORITE_SLIM_PILLAR = RegUtil.block( "diorite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
     public static final Block RUNESTONE = RegUtil.block( "runestone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK).requiresTool() ) );
-    public static final Block ARCANE_ASH = RegUtil.block( "arcane_ash", new ArcaneAshBlock( 100, 500, 0.8f, RegUtil.settings( Material.SOIL, BlockSoundGroup.SAND, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK) ) );
+    public static final Block ARCANE_ASH = RegUtil.block( "arcane_ash", new ArcaneAshBlock( 100, 500, 0.8f, RegUtil.settings( Material.SOIL, BlockSoundGroup.SAND, 2.0f, 6.0f, true ).requiresTool().breakByTool(FabricToolTags.SHOVELS).materialColor(MaterialColor.BLACK) ) );
 
     // runes - 'latin' names, do you have a better name? I'm open for suggestions.
     public static final Block DEBUG_RUNE_BLOCK = RegUtil.registerRunePair( new DebugRuneBlock( "debug" ) );

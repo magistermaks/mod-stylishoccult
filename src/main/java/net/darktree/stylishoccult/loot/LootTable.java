@@ -3,7 +3,6 @@ package net.darktree.stylishoccult.loot;
 import net.darktree.stylishoccult.loot.entry.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ public class LootTable {
     private final ArrayList<AbstractEntry> entries = new ArrayList<>();
     private int amountMin = 0;
     private boolean dropForCreative = false;
+    private boolean ignoreExplosion = false;
 
     public void push( LootTable context ) {
         this.context = context;
@@ -53,29 +53,29 @@ public class LootTable {
         return this;
     }
 
-    public LootTable addExperience( int min, int max ) {
-        return addExperience( 100.0f, min, max );
+    public LootTable dropExperience(int min, int max ) {
+        return dropExperience( 100.0f, min, max );
     }
 
-    public LootTable addExperience( float chance, int min, int max ) {
+    public LootTable dropExperience(float chance, int min, int max ) {
         entries.add( new ExperienceEntry( chance, min, max ) );
         return this;
     }
 
-    public LootTable addValve( Valve valve ) {
+    public LootTable addValve( ValveEntry.Valve valve ) {
         ValveEntry entry = new ValveEntry( valve );
         entries.add( entry );
         entry.getTable().push( this );
         return entry.getTable();
     }
 
-    public LootTable addGenerator( Generator generator ) {
+    public LootTable addGenerator( GeneratorEntry.Generator generator ) {
         GeneratorEntry entry = new GeneratorEntry( generator );
         entries.add( entry );
         return this;
     }
 
-    public LootTable addCondition( Condition condition ) {
+    public LootTable addCondition( ConditionEntry.Condition condition ) {
         ConditionEntry entry = new ConditionEntry( condition );
         entries.add( entry );
         entry.getTable().push( this );
@@ -117,12 +117,13 @@ public class LootTable {
         return this;
     }
 
-    public BakedLootTable build( Identifier id ) {
-        return BakedLootTable.bake( id, this );
+    public LootTable ignoreExplosions() {
+        ignoreExplosion = true;
+        return this;
     }
 
-    public BakedLootTable build( String name ) {
-        return build( new Identifier( name ) );
+    public BakedLootTable build() {
+        return BakedLootTable.bake( this );
     }
 
     private int countItems( ArrayList<ItemStack> stacks ) {
@@ -134,8 +135,13 @@ public class LootTable {
     }
 
     public ArrayList<ItemStack> getLoot( Random random, LootContext context ) {
-        if( context.getPlayer() != null && context.getPlayer().isCreative() && !dropForCreative ) {
+
+        if( !dropForCreative && context.getPlayer() != null && context.getPlayer().isCreative() ) {
             return LootManager.getEmpty();
+        }
+
+        if( !ignoreExplosion && context.getExplosionPower() != 0 ) {
+            if( random.nextFloat() > 1.0f / context.getExplosionPower() ) return LootManager.getEmpty();
         }
 
         int count = 0;

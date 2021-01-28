@@ -19,14 +19,20 @@ public class LootContext {
     final private ItemStack tool;
     final private BlockState blockState;
     final private BlockEntity blockEntity;
+    final private float power;
 
-    private LootContext( World world, BlockPos pos, BlockState blockState, BlockEntity blockEntity, Entity entity, ItemStack tool ) {
+    private LootContext( World world, BlockPos pos, BlockState blockState, BlockEntity blockEntity, Entity entity, ItemStack tool, float power ) {
         this.world = world;
         this.pos = pos;
         this.entity = entity;
         this.tool = tool;
         this.blockState = blockState;
         this.blockEntity = blockEntity;
+        this.power = power;
+    }
+
+    public float getExplosionPower() {
+        return power;
     }
 
     public World getWorld() {
@@ -98,6 +104,7 @@ public class LootContext {
         private BlockEntity blockEntity;
         private Entity entity;
         private ItemStack tool;
+        private float power;
 
         public Builder( World world, BlockPos pos ) {
             if( world == null || pos == null ) {
@@ -110,6 +117,7 @@ public class LootContext {
             this.blockEntity = null;
             this.entity = null;
             this.tool = ItemStack.EMPTY;
+            this.power = 0.0f;
         }
 
         public Builder setBlockState( BlockState blockState ) {
@@ -132,8 +140,13 @@ public class LootContext {
             return this;
         }
 
+        public Builder setExplosionPower( float power ) {
+            this.power = power;
+            return this;
+        }
+
         public LootContext build() {
-            return new LootContext( world, pos, blockState, blockEntity, entity, tool );
+            return new LootContext( world, pos, blockState, blockEntity, entity, tool, power );
         }
 
     }

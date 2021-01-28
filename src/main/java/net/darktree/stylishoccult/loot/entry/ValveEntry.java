@@ -61,4 +61,8 @@ public class ValveEntry extends AbstractEntry {
     public ArrayList<ItemStack> getLoot(Random random, LootContext context) {
         return valve.call( table.getLoot(random, context), random, context );
     }
+
+    public interface Valve {
+        ArrayList<ItemStack> call(ArrayList<ItemStack> stacks, Random random, LootContext context);
+    }
 }

@@ -7,7 +7,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootTables;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.loot.context.LootContextTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -19,7 +23,6 @@ public abstract class SimpleBlock extends Block implements MutableHardness {
 
     public SimpleBlock(Settings settings) {
         super(settings);
-        this.lootTableId = LootTables.EMPTY;
     }
 
     @Override
@@ -45,6 +48,15 @@ public abstract class SimpleBlock extends Block implements MutableHardness {
 
     @Override
     final public List<ItemStack> getDroppedStacks(BlockState state, net.minecraft.loot.context.LootContext.Builder builder) {
-        return LootManager.dispatch(state, builder, getLootTableId(), getInternalLootTableId());
+
+        LootContext lootContext = builder.parameter(LootContextParameters.BLOCK_STATE, state).build(LootContextTypes.BLOCK);
+        ServerWorld serverWorld = lootContext.getWorld();
+        LootTable lootTable = serverWorld.getServer().getLootManager().getTable(lootTableId);
+
+        if( lootTable == LootTable.EMPTY ) {
+            return LootManager.dispatch(state, builder, this.lootTableId, getInternalLootTableId());
+        }
+
+        return super.getDroppedStacks(state, builder);
     }
 }

@@ -20,12 +20,13 @@ import java.util.ArrayList;
 public class LootTables {
 
     public static final BakedLootTable SIMPLE = LootManager.create()
-            .addGenerator( (rng, ctx) -> {
-                ArrayList<ItemStack> stacks = new ArrayList<>();
-                stacks.add( ctx.getBlockItem() );
-                return stacks;
-            } )
-            .build("stylish_occult:simple");
+            .addGenerator( (rng, ctx) -> LootManager.getAsArray( ctx.getBlockItem() ) )
+            .build();
+
+    public static final BakedLootTable SIMPLE_RESISTANT = LootManager.create()
+            .ignoreExplosions()
+            .addTable( SIMPLE.table() )
+            .build();
 
     public static final BakedLootTable PEDESTAL = LootManager.create()
             .applyForCreative()
@@ -39,7 +40,7 @@ public class LootTables {
                 stacks.add( ctx.getBlockEntity(PedestalBlockEntity.class).drop() );
                 return stacks;
             } )
-            .build("stylish_occult:pedestal");
+            .build();
 
     public static final BakedLootTable URN = LootManager.create()
             .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
@@ -57,10 +58,10 @@ public class LootTables {
                 .addItem( Items.STRING, 3.2f )
                 .addItem( Items.ROTTEN_FLESH, 3.2f )
                 .addItem( ModItems.WAX, 3.2f )
-                .addExperience(2, 10)
+                .dropExperience(2, 10)
                 .pop()
             .minimum(1)
-            .build("stylish_occult:urn");
+            .build();
 
     public static final BakedLootTable LAVA_DEMON = LootManager.create()
             .addCondition( (rng, ctx) -> ctx.getBlock() == ModBlocks.LAVA_DEMON && ctx.getState().get(LavaDemonBlock.PART) == LavaDemonPart.HEAD )
@@ -82,7 +83,7 @@ public class LootTables {
                         .pop()
                     .pop()
                 .pop()
-            .build("stylish_occult:lava_demon");
+            .build();
 
     public static final BakedLootTable CANDLE_CONTAINER = LootManager.create()
             .applyForCreative()
@@ -103,7 +104,7 @@ public class LootTables {
 
                 return stacks;
             } )
-            .build("stylish_occult:candle_container");
+            .build();
 
     public static final BakedLootTable CANDLE = LootManager.create()
             .addGenerator( (rng, ctx) -> {
@@ -128,7 +129,7 @@ public class LootTables {
 
                 return stacks;
             } )
-            .build("stylish_occult:candle");
+            .build();
 
     public static final BakedLootTable PASSIVE_FLESH = LootManager.create()
             .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
@@ -137,7 +138,7 @@ public class LootTables {
             .addElse()
                 .addItem( new ItemStack( ModItems.FLESH ), 100.0f, 1, 4 )
                 .pop()
-            .build("stylish_occult:passive_flesh");
+            .build();
 
     public static final BakedLootTable SPARK_VENT = LootManager.create()
             .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
@@ -146,7 +147,7 @@ public class LootTables {
             .addElse()
                 .addItem( Items.NETHERRACK )
                 .pop()
-            .build("stylish_occult:spark_vent");
+            .build();
 
     public static final BakedLootTable PLANT = LootManager.create()
             .addGenerator( (rng, ctx) -> {
@@ -158,7 +159,7 @@ public class LootTables {
 
                 return stacks;
             } )
-            .build("stylish_occult:plant");
+            .build();
 
     public static void init() {
         // load class

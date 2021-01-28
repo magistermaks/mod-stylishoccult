@@ -24,7 +24,7 @@ public class NetherGrassBlock extends SproutsBlock {
 
     @Override
     final public List<ItemStack> getDroppedStacks(BlockState state, net.minecraft.loot.context.LootContext.Builder builder) {
-        return LootManager.dispatch(state, builder, getLootTableId(), LootTables.PLANT);
+        return LootManager.dispatch(state, builder, this.lootTableId, LootTables.PLANT);
     }
 
 }

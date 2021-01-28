@@ -34,4 +34,8 @@ public class ConditionEntry extends AbstractEntry {
             return this.elseTable.getLoot(random, context);
         }
     }
+
+    public interface Condition {
+        boolean call(Random random, LootContext context);
+    }
 }

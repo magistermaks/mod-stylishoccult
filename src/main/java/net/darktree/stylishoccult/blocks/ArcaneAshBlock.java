@@ -50,7 +50,7 @@ public class ArcaneAshBlock extends SimpleBlock {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(AGE);
+        builder.add(AGE, PERSISTENT);
     }
 
     @Override
