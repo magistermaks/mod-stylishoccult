@@ -139,4 +139,13 @@ public class StackManager {
         return str.toString();
     }
 
+    public void increment() {
+        write( get(0) + 1.0d, 0 );
+    }
+
+    public void decrement() {
+        write( get(0) - 1.0d, 0 );
+    }
+
+
 }

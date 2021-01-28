@@ -2,7 +2,7 @@ package net.darktree.stylishoccult.script.components;
 
 public enum RuneType {
     INPUT("input"),
-    OUTPUT("output"),
+    ACTOR("output"),
     TRANSFER("transfer"),
     LOGIC("logic");
 

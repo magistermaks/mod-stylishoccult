@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.blocks.runes;
 
 import net.darktree.stylishoccult.script.RunicScript;
+import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneType;
 
 public class LogicRuneBlock extends RuneBlock {
@@ -18,7 +19,11 @@ public class LogicRuneBlock extends RuneBlock {
 
     @Override
     public void apply(RunicScript script) {
-        function.apply(script);
+        try {
+            function.apply(script);
+        }catch(Exception exception) {
+            throw new RuneException("invalid_argument");
+        }
     }
 
     public static class Functions {
@@ -40,6 +45,8 @@ public class LogicRuneBlock extends RuneBlock {
         public static final LogicFunction MORE_OR_EQUAL = script -> script.getStack().moreOrEqual(script.value);
         public static final LogicFunction NEGATIVE = script -> script.getStack().less(0);
         public static final LogicFunction POSITIVE = script -> script.getStack().more(0);
+        public static final LogicFunction INCREMENT = script -> script.getStack().increment();
+        public static final LogicFunction DECREMENT = script -> script.getStack().decrement();
 
     }
 

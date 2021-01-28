@@ -6,10 +6,7 @@ import net.darktree.stylishoccult.utils.BuildingBlock;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Material;
-import net.minecraft.block.MaterialColor;
+import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.sound.BlockSoundGroup;
 
@@ -48,7 +45,7 @@ public class ModBlocks {
     public static final Block ANDESITE_SLIM_PILLAR = RegUtil.block( "andesite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
     public static final Block DIORITE_SLIM_PILLAR = RegUtil.block( "diorite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
     public static final Block RUNESTONE = RegUtil.block( "runestone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK).requiresTool() ) );
-    public static final Block ARCANE_ASH_ALPHA = RegUtil.block( "arcane_ash_alpha", new ArcaneAshBlock( 100, 200, RegUtil.settings( Material.SOIL, BlockSoundGroup.SAND, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK) ) );
+    public static final Block ARCANE_ASH = RegUtil.block( "arcane_ash", new ArcaneAshBlock( 100, 500, 0.8f, RegUtil.settings( Material.SOIL, BlockSoundGroup.SAND, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK) ) );
 
     // runes - 'latin' names, do you have a better name? I'm open for suggestions.
     public static final Block DEBUG_RUNE_BLOCK = RegUtil.registerRunePair( new DebugRuneBlock( "debug" ) );
@@ -66,7 +63,6 @@ public class ModBlocks {
     public static final Block THREE_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_tres", '3' ) );
     public static final Block FOUR_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_quattuor", '4' ) );
     public static final Block FIVE_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_quinque", '5' ) );
-    public static final Block SIX_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_sex", '6' ) );
     public static final Block PUSH_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "paello", LogicRuneBlock.Functions.PUSH ) );
     public static final Block PULL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "divexo", LogicRuneBlock.Functions.PULL ) );
     public static final Block EXCHANGE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "cambitas", LogicRuneBlock.Functions.EXCHANGE ) );
@@ -81,10 +77,9 @@ public class ModBlocks {
     public static final Block LESS_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "minus", LogicRuneBlock.Functions.LESS ) );
     public static final Block MORE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "magis", LogicRuneBlock.Functions.MORE ) );
     public static final Block IF_RUNE_BLOCK = RegUtil.rune( new IfRuneBlock( "si" ) );
-    public static final Block PLACE_ALPHA_RUNE_BLOCK = RegUtil.rune( new PlaceRuneBlock( "locus_alpha", ARCANE_ASH_ALPHA ) );
-    //public static final Block PLACE_BETA_RUNE_BLOCK = RegUtil.rune( new PlaceRuneBlock( "locus_beta", ARCANE_ASH_BETA ) );
-    //public static final Block PLACE_GAMMA_RUNE_BLOCK = RegUtil.rune( new PlaceRuneBlock( "locus_gamma", ARCANE_ASH_GAMMA ) );
-    //public static final Block IF_FORK_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "si_furka", LogicRuneBlock.Functions.MORE ) );
+    public static final Block PLACE_RUNE_BLOCK = RegUtil.rune( new PlaceRuneBlock( "locus", ARCANE_ASH.getDefaultState().with(ArcaneAshBlock.PERSISTENT, false), 256 ) );
+    public static final Block INCREMENT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "incrementum", LogicRuneBlock.Functions.INCREMENT ) );
+    public static final Block DECREMENT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "decrementum", LogicRuneBlock.Functions.DECREMENT ) );
     // stop - prohibere (verb), reverse - contrarium
 
     public static void init() {

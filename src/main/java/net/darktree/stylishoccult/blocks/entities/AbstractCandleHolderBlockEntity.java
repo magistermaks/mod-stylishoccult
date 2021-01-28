@@ -1,9 +1,9 @@
 package net.darktree.stylishoccult.blocks.entities;
 
-import net.darktree.stylishoccult.Network;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.CandelabraBlock;
 import net.darktree.stylishoccult.items.ModItems;
+import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.parts.AbstractCandleHolder;
 import net.darktree.stylishoccult.parts.CandleStateInfo;
@@ -45,7 +45,7 @@ public abstract class AbstractCandleHolderBlockEntity<T extends AbstractCandleHo
         if( !isSneaking && stack.isEmpty() ) {
             CandleStateInfo candle = state.rayTrace( pos, player, 1, 8 );
             if( apply && candle != null && candle.lit ) {
-                Network.send(pos, candle.id, 1, hand);
+                Network.CANDLE_PACKET.send(pos, candle.id, 1, hand);
             }
             return true;
         }
@@ -55,7 +55,7 @@ public abstract class AbstractCandleHolderBlockEntity<T extends AbstractCandleHo
             CandleStateInfo candle = state.rayTrace( pos, player, 2, 8 );
             if( apply && candle != null && !candle.lit ) {
                 toNextParticle = 0;
-                Network.send(pos, candle.id, 2, hand);
+                Network.CANDLE_PACKET.send(pos, candle.id, 2, hand);
             }
             return true;
         }
@@ -64,7 +64,7 @@ public abstract class AbstractCandleHolderBlockEntity<T extends AbstractCandleHo
         if( isSneaking && stack.isEmpty() ) {
             CandleStateInfo candle = state.rayTrace( pos, player, 1, 8 );
             if( apply && candle != null ) {
-                Network.send(pos, candle.id, 4, hand);
+                Network.CANDLE_PACKET.send(pos, candle.id, 4, hand);
             }
             return true;
         }
@@ -77,7 +77,7 @@ public abstract class AbstractCandleHolderBlockEntity<T extends AbstractCandleHo
                     toNextParticle = 0;
                 }
 
-                Network.send(pos, candle.id, 3, hand);
+                Network.CANDLE_PACKET.send(pos, candle.id, 3, hand);
             }
             return true;
         }

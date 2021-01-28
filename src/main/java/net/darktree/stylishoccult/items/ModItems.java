@@ -57,6 +57,7 @@ public class ModItems {
     public static final Item DIORITE_SLIM_PILLAR = RegUtil.item( "diorite_slim_pillar", ModBlocks.DIORITE_SLIM_PILLAR, Groups.STYLISH_OCCULT );
     public static final Item NETHER_GRASS = RegUtil.item( "nether_grass", ModBlocks.NETHER_GRASS, Groups.STYLISH_OCCULT );
     public static final Item NETHER_FERN = RegUtil.item( "nether_fern", ModBlocks.NETHER_FERN, Groups.STYLISH_OCCULT );
+    public static final Item ARCANE_ASH = RegUtil.item( "arcane_ash", ModBlocks.ARCANE_ASH, Groups.STYLISH_OCCULT );
 
     // candle holding madness
     public static final Item OAK_CANDELABRA_5 = CandelabraItem.register( CandleHolderMaterial.OAK, 5 );

@@ -1,5 +1,7 @@
 package net.darktree.stylishoccult.utils;
 
+import com.mojang.serialization.Dynamic;
+import com.mojang.serialization.DynamicOps;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -70,14 +72,6 @@ public class BlockUtils {
         }
 
         return null;
-    }
-
-    public static BlockPos offsetPos( BlockPos pos, Direction.Axis axis, int distance ) {
-        switch( axis ) {
-            case X: return pos.east( distance );
-            case Z: return pos.south( distance );
-        }
-        return pos.up( distance );
     }
 
     public static Direction getOffsetDirection( BlockPos origin, BlockPos target ) {

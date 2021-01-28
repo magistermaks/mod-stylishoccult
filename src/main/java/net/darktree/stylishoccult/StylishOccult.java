@@ -6,6 +6,7 @@ import net.darktree.stylishoccult.effects.ModEffects;
 import net.darktree.stylishoccult.entities.ModEntities;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.LootTables;
+import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.worldgen.ModFeatures;
@@ -50,6 +51,7 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ModBlocks.clientInit();
+        Network.clientInit();
         ModItems.clientInit();
         Particles.clientInit();
         BlockEntities.clientInit();

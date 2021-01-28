@@ -3,14 +3,15 @@ package net.darktree.stylishoccult.blocks.runes;
 import net.darktree.stylishoccult.script.RunicScript;
 import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneInstance;
+import net.darktree.stylishoccult.script.components.RuneType;
 import net.minecraft.nbt.CompoundTag;
 
-public class NumberRuneBlock extends TransferRuneBlock {
+public class NumberRuneBlock extends RuneBlock {
 
     public final char value;
 
     public NumberRuneBlock(String name, char value) {
-        super(name);
+        super(RuneType.LOGIC, name);
         this.value = value;
     }
 

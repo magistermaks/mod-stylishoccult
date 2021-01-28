@@ -26,6 +26,7 @@
   "block.stylish_occult.nether_fern": "Piekielna paproć",
   "block.stylish_occult.engraved_runestone": "Kamień runiczny",
   "block.stylish_occult.runestone": "Gładki kamień runiczny",
+  "block.stylish_occult.arcane_ash": "Przedwieczny popiół",
 
   "item.stylish_occult.flesh": "Ciało",
   "item.stylish_occult.wax": "Wosk",
@@ -41,6 +42,8 @@
   "tooltip.stylish_occult.error_tablet.error.number_too_long": "Zbyt długa liczba!",
   "tooltip.stylish_occult.error_tablet.error.invalid_state": "Nieprawidłowy stan bloku!",
   "tooltip.stylish_occult.error_tablet.error.invalid_number": "Zła składnia liczby!",
+  "tooltip.stylish_occult.error_tablet.error.invalid_argument": "Nieprawidłowe argumenty!",
+  "tooltip.stylish_occult.error_tablet.error.invalid_argument_count": "Nieprawidłowa ilość argumentów!",
 
   "rune.block.stylish_occult.rune_debug": "Inveniet",
   "rune.block.stylish_occult.rune_tactus": "Tactus",
@@ -56,7 +59,6 @@
   "rune.block.stylish_occult.rune_numerus_tres": "Numerus Tres",
   "rune.block.stylish_occult.rune_numerus_quattuor": "Numerus Quattuor",
   "rune.block.stylish_occult.rune_numerus_quinque": "Numerus Quinque",
-  "rune.block.stylish_occult.rune_numerus_sex": "Numerus Sex",
   "rune.block.stylish_occult.rune_numerus_minus": "Numerus Minus",
   "rune.block.stylish_occult.rune_paello": "Paello",
   "rune.block.stylish_occult.rune_divexo": "Divexo",
@@ -72,7 +74,9 @@
   "rune.block.stylish_occult.rune_ni": "Ni",
   "rune.block.stylish_occult.rune_mutuus": "Mutuus",
   "rune.block.stylish_occult.rune_si": "Si",
-  "rune.block.stylish_occult.rune_locus_alpha": "Locus Alpha",
+  "rune.block.stylish_occult.rune_locus": "Locus",
+  "rune.block.stylish_occult.rune_incrementum": "Incrementum",
+  "rune.block.stylish_occult.rune_decrementum": "Decrementum",
 
   "sound.stylish_occult.lava_demon.wakeup": "Magmowy demon budzi się",
   "sound.stylish_occult.lava_demon.die": "Magmowy demon umiera",

@@ -24,14 +24,12 @@ public class DebugRuneBlock extends RuneBlock {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if( player.getStackInHand(hand).isEmpty() ) {
-            DebugRuneBlockEntity entity = BlockUtils.getEntity(DebugRuneBlockEntity.class, world, pos);
-            if( entity != null && entity.scriptCopy != null && !world.isClient ) {
-                player.sendMessage( new LiteralText("Snapshot of previous rune activation:"), false );
-                player.sendMessage( new LiteralText(" Local: " + entity.scriptCopy.value), false );
-                player.sendMessage( new LiteralText(" Stack: (size " + entity.scriptCopy.getStack().size() + ")"), false );
-                player.sendMessage( new LiteralText(entity.scriptCopy.getStack().print()), false );
-            }
+        DebugRuneBlockEntity entity = BlockUtils.getEntity(DebugRuneBlockEntity.class, world, pos);
+        if( entity != null && entity.scriptCopy != null && !world.isClient ) {
+            player.sendMessage( new LiteralText("Snapshot of previous rune activation:"), false );
+            player.sendMessage( new LiteralText(" Local: " + entity.scriptCopy.value), false );
+            player.sendMessage( new LiteralText(" Stack: (size " + entity.scriptCopy.getStack().size() + ")"), false );
+            player.sendMessage( new LiteralText(entity.scriptCopy.getStack().print()), false );
         }
 
         return ActionResult.SUCCESS;
