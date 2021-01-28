@@ -47,6 +47,7 @@ public class ModBlocks {
     public static final Block DIORITE_SLIM_PILLAR = RegUtil.block( "diorite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
     public static final Block RUNESTONE = RegUtil.block( "runestone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK).requiresTool() ) );
     public static final Block ARCANE_ASH = RegUtil.block( "arcane_ash", new ArcaneAshBlock( 100, 500, 0.8f, RegUtil.settings( Material.SOIL, BlockSoundGroup.SAND, 2.0f, 6.0f, true ).requiresTool().breakByTool(FabricToolTags.SHOVELS).materialColor(MaterialColor.BLACK) ) );
+    public static final Block CRYSTALLINE_BLACKSTONE = RegUtil.block( "crystalline_blackstone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.GILDED_BLACKSTONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK).requiresTool() ) );
 
     // runes - 'latin' names, do you have a better name? I'm open for suggestions.
     public static final Block DEBUG_RUNE_BLOCK = RegUtil.registerRunePair( new DebugRuneBlock( "debug" ) );

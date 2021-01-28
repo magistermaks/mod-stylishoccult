@@ -9,15 +9,15 @@ public class DifficultyBased<T> {
     private final T normal;
     private final T hard;
 
-    public DifficultyBased( T peaceful, T easy, T normal, T hard ) {
-        this.peaceful = peaceful;
-        this.easy = easy;
-        this.normal = normal;
+    public DifficultyBased( T hard, T normal, T easy, T peaceful ) {
         this.hard = hard;
+        this.normal = normal;
+        this.easy = easy;
+        this.peaceful = peaceful;
     }
 
-    public DifficultyBased( T easy, T normal, T hard ) {
-        this( null, easy, normal, hard );
+    public DifficultyBased( T hard, T normal, T easy ) {
+        this( hard, normal, easy, null );
     }
 
     public T get( Difficulty difficulty ) {

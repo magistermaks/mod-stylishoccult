@@ -27,7 +27,7 @@ public class ArcaneAshBlock extends SimpleBlock {
     private final int max;
 
     public ArcaneAshBlock(int min, int max, float hardness, Settings settings) {
-        super(settings.ticksRandomly().dropsNothing().strength(hardness, 3 * hardness));
+        super(settings.ticksRandomly().dropsNothing().strength(hardness, hardness));
         setDefaultState( getDefaultState().with(PERSISTENT, true).with(AGE, 0) );
 
         this.min = min;

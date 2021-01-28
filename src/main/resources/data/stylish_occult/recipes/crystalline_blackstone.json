@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+      "12",
+      "21"
+  ],
+  "key": {
+      "1": {
+          "item": "minecraft:blackstone"
+      },
+      "2": {
+          "item": "minecraft:quartz"
+      }
+  },
+  "result": {
+      "item": "stylish_occult:crystalline_blackstone",
+      "count": 2
+  }
+}
