@@ -50,13 +50,13 @@ public class ModBlocks {
     public static final Block CRYSTALLINE_BLACKSTONE = RegUtil.block( "crystalline_blackstone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.GILDED_BLACKSTONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK).requiresTool() ) );
 
     // runes - 'latin' names, do you have a better name? I'm open for suggestions.
-    public static final Block DEBUG_RUNE_BLOCK = RegUtil.registerRunePair( new DebugRuneBlock( "debug" ) );
+    public static final Block DEBUG_RUNE_BLOCK = RegUtil.rune( new DebugRuneBlock( "debug" ) );
     public static final Block CLICK_RUNE_BLOCK = RegUtil.rune( new ClickRuneBlock( "tactus" ) );
     public static final Block NOOP_RUNE_BLOCK = RegUtil.rune( new TransferRuneBlock( "vanitas" ) );
-    public static final Block REDSTONE_DIGITAL_RUNE_BLOCK = RegUtil.rune( new RedstoneDigitalOutputRuneBlock( "exitus" ) );
+    public static final Block REDSTONE_DIGITAL_OUT_RUNE_BLOCK = RegUtil.rune( new RedstoneDigitalOutputRuneBlock( "exitus" ) );
     public static final Block SCATTER_RUNE_BLOCK = RegUtil.rune( new ScatterRuneBlock( "dispergat" ) );
     public static final Block DIRECTION_RUNE_BLOCK = RegUtil.rune( new RedirectRuneBlock( "directio" ) );
-    public static final Block RANDOM_RUNE_BLOCK = RegUtil.rune( new RandomRuneBlock( "temere" ) );
+    public static final Block RANDOM_UPDATE_RUNE_BLOCK = RegUtil.rune( new RandomRuneBlock( "temere" ) );
     public static final Block FORK_RUNE_BLOCK = RegUtil.rune( new ForkRuneBlock( "furca" ) );
     public static final Block MINUS_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_minus", '-' ) );
     public static final Block ZERO_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_nihil", '0' ) );
@@ -82,10 +82,13 @@ public class ModBlocks {
     public static final Block PLACE_RUNE_BLOCK = RegUtil.rune( new PlaceRuneBlock( "locus", ARCANE_ASH.getDefaultState().with(ArcaneAshBlock.PERSISTENT, false), 256 ) );
     public static final Block INCREMENT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "incrementum", LogicRuneBlock.Functions.INCREMENT ) );
     public static final Block DECREMENT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "decrementum", LogicRuneBlock.Functions.DECREMENT ) );
-    public static final Block UPDATE_RUNE_BLOCK = RegUtil.rune( new BlockUpdateRuneBLock( "evigilo" ) );
-    public static final Block REDSTONE_ANALOG_RUNE_BLOCK = RegUtil.rune( new RedstoneAnalogOutputRuneBlock( "scribo" ) );
+//    public static final Block UPDATE_RUNE_BLOCK = RegUtil.rune( new BlockUpdateRuneBLock( "evigilo" ) );
+    public static final Block REDSTONE_ANALOG_OUT_RUNE_BLOCK = RegUtil.rune( new RedstoneAnalogOutputRuneBlock( "scribo" ) );
     public static final Block PROXIMITY_SENSOR_RUNE_BLOCK = RegUtil.rune( new PlayerRuneBlock( "propinquitas", 8 ) );
-    // stop - prohibere (verb), reverse - contrarium
+    public static final Block SINE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "sine", LogicRuneBlock.Functions.SINE ) );
+    public static final Block SPLIT_RUNE_BLOCK = RegUtil.rune( new SplitRuneBlock( "scindo" ) );
+    public static final Block REDSTONE_DIGITAL_IN_RUNE_BLOCK = RegUtil.rune( new RedstoneDigitalInputRuneBlock( "evigilo" ) );
+    // stop - prohibere, reverse - contrarium
 
     public static void init() {
         // load class
@@ -101,11 +104,9 @@ public class ModBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(NETHER_GRASS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(NETHER_FERN, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GROWTH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(DEBUG_RUNE_BLOCK, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), runestones);
 
         ColorProviderRegistry.BLOCK.register( RuneBlock.COLOR_PROVIDER, runestones );
-        ColorProviderRegistry.BLOCK.register( RuneBlock.COLOR_PROVIDER, DEBUG_RUNE_BLOCK );
     }
 
 }

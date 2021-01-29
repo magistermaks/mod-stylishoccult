@@ -9,9 +9,13 @@ import net.minecraft.util.math.Direction;
 public class RuneBlockEntity extends SimpleBlockEntity {
 
     private RunicScript script;
+    private CompoundTag meta;
 
     public RuneBlockEntity() {
         this(BlockEntities.RUNESTONE);
+
+        script = null;
+        meta = null;
     }
 
     public RuneBlockEntity(BlockEntityType entity) {
@@ -21,16 +25,20 @@ public class RuneBlockEntity extends SimpleBlockEntity {
     @Override
     public CompoundTag toTag(CompoundTag tag) {
         if( script != null ) tag.put( "state", script.toTag() );
+        if( meta != null ) tag.put( "meta", meta );
         return super.toTag( tag );
     }
 
     @Override
     public void fromTag(CompoundTag tag) {
         try {
-            script = RunicScript.fromTag( tag.getCompound("state") );
-        } catch (Exception ignored) {
-            script = null;
-        }
+            if( tag.contains("state") ) {
+                script = RunicScript.fromTag( tag.getCompound("state") );
+            }
+            if( tag.contains("meta") ) {
+                meta = tag.getCompound("meta");
+            }
+        } catch (Exception ignored) {}
         super.fromTag(tag);
     }
 
@@ -54,6 +62,18 @@ public class RuneBlockEntity extends SimpleBlockEntity {
 
     public boolean hasScript() {
         return script != null;
+    }
+
+    public boolean hasMeta() {
+        return meta != null;
+    }
+
+    public CompoundTag getMeta() {
+        return meta;
+    }
+
+    public void setMeta( CompoundTag tag ) {
+        meta = tag;
     }
 
 }

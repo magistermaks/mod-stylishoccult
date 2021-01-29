@@ -36,7 +36,7 @@ public class LogicRuneBlock extends RuneBlock {
         public static final LogicFunction NOT = script -> script.getStack().not();
         public static final LogicFunction INVERT = script -> script.getStack().invert();
         public static final LogicFunction RECIPROCAL = script -> script.getStack().reciprocal();
-        public static final LogicFunction ADD = script -> script.getStack().add(script.value );
+        public static final LogicFunction ADD = script -> script.getStack().add(script.value);
         public static final LogicFunction MULTIPLY = script -> script.getStack().multiply(script.value);
         public static final LogicFunction EQUALS = script -> script.getStack().equal(script.value);
         public static final LogicFunction LESS = script -> script.getStack().less(script.value);
@@ -47,6 +47,7 @@ public class LogicRuneBlock extends RuneBlock {
         public static final LogicFunction POSITIVE = script -> script.getStack().more(0);
         public static final LogicFunction INCREMENT = script -> script.getStack().increment();
         public static final LogicFunction DECREMENT = script -> script.getStack().decrement();
+        public static final LogicFunction SINE = script -> script.getStack().sine();
 
     }
 

@@ -41,14 +41,11 @@ public class RegUtil {
     }
 
     public static Block rune( RuneBlock block ) {
-        ModBlocks.RUNESTONES.add( registerRunePair( block ) );
-        return block;
-    }
 
-    public static Block registerRunePair( RuneBlock block ) {
         String name = "rune_" + block.name;
         Item item = item( name, new BlockItem( block, new FabricItemSettings().group(ModItems.Groups.RUNES) ) );
         ModItems.RUNESTONES.add(item);
+        ModBlocks.RUNESTONES.add(block);
 
         if( block.getInstance() != null ) {
             RuneRegistry.put(block.name, block);

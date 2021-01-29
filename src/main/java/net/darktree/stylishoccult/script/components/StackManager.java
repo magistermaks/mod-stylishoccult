@@ -147,5 +147,8 @@ public class StackManager {
         write( get(0) - 1.0d, 0 );
     }
 
+    public void sine() {
+        write( Math.sin(get(0)), 0 );
+    }
 
 }
