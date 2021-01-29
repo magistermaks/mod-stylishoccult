@@ -94,6 +94,8 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
                 if (cooldown == 3) {
                     executeStoredScript(world, pos);
                 }
+            }else{
+                onDelayEnd(world, pos);
             }
         }catch(RuneException exception) {
             exception.apply(world, pos);

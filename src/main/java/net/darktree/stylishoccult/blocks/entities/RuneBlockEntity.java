@@ -74,6 +74,7 @@ public class RuneBlockEntity extends SimpleBlockEntity {
 
     public void setMeta( CompoundTag tag ) {
         meta = tag;
+        markDirty();
     }
 
 }

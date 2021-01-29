@@ -35,10 +35,9 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 
             BlockState targetState = world.getBlockState(target);
 
-            if( (targetState.isAir() || targetState.getMaterial().isReplaceable()) && targetState.getBlock() != state.getBlock() ) {
+            if( (targetState.isAir() || targetState.getMaterial().isReplaceable()) && targetState != state) {
                 world.setBlockState( target, state );
                 world.playSound(null, target, state.getBlock().getSoundGroup(state).getPlaceSound(), SoundCategory.BLOCKS, 0.9f, 1.0f);
-                Network.ASH_PACKET.send( target, (ServerWorld) world );
 
                 if( !targetState.isAir() ) {
                     world.playSound(null, target, targetState.getBlock().getSoundGroup(targetState).getBreakSound(), SoundCategory.BLOCKS, 0.9f, 1.0f);

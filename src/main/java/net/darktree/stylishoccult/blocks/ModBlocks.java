@@ -56,7 +56,7 @@ public class ModBlocks {
     public static final Block REDSTONE_DIGITAL_OUT_RUNE_BLOCK = RegUtil.rune( new RedstoneDigitalOutputRuneBlock( "exitus" ) );
     public static final Block SCATTER_RUNE_BLOCK = RegUtil.rune( new ScatterRuneBlock( "dispergat" ) );
     public static final Block DIRECTION_RUNE_BLOCK = RegUtil.rune( new RedirectRuneBlock( "directio" ) );
-    public static final Block RANDOM_UPDATE_RUNE_BLOCK = RegUtil.rune( new RandomRuneBlock( "temere" ) );
+    public static final Block RANDOM_UPDATE_RUNE_BLOCK = RegUtil.rune( new RandomRuneBlock( "fortuitus" ) );
     public static final Block FORK_RUNE_BLOCK = RegUtil.rune( new ForkRuneBlock( "furca" ) );
     public static final Block MINUS_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_minus", '-' ) );
     public static final Block ZERO_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_nihil", '0' ) );
@@ -88,6 +88,9 @@ public class ModBlocks {
     public static final Block SINE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "sine", LogicRuneBlock.Functions.SINE ) );
     public static final Block SPLIT_RUNE_BLOCK = RegUtil.rune( new SplitRuneBlock( "scindo" ) );
     public static final Block REDSTONE_DIGITAL_IN_RUNE_BLOCK = RegUtil.rune( new RedstoneDigitalInputRuneBlock( "evigilo" ) );
+    public static final Block CLOCK_RUNE_BLOCK = RegUtil.rune( new ClockRuneBlock( "horologium", 5 ) );
+    public static final Block RANDOM_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "temere", LogicRuneBlock.Functions.RANDOM ) );
+    public static final Block GATEWAY_RUNE_BLOCK = RegUtil.rune( new RedstoneGateRuneBlock( "porta" ) );
     // stop - prohibere, reverse - contrarium
 
     public static void init() {

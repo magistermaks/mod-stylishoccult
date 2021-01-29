@@ -58,6 +58,9 @@ public class ArcaneAshBlock extends SimpleBlock {
         if( !state.get(PERSISTENT) ) {
             int age = 4 - state.get(AGE);
             world.getBlockTickScheduler().schedule(pos, this, MathHelper.nextInt(world.random, age * min, age * max));
+            if( !world.isClient ) {
+                Network.ASH_PACKET.send(pos, (ServerWorld) world);
+            }
         }
     }
 

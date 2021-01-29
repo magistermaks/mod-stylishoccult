@@ -4,6 +4,8 @@ import net.darktree.stylishoccult.script.RunicScript;
 import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneType;
 
+import java.util.Random;
+
 public class LogicRuneBlock extends RuneBlock {
 
     interface LogicFunction {
@@ -28,6 +30,8 @@ public class LogicRuneBlock extends RuneBlock {
 
     public static class Functions {
 
+        private static final Random RNG = new Random();
+
         public static final LogicFunction PUSH = script -> script.getStack().put( script.value );
         public static final LogicFunction PULL = script -> script.value = script.getStack().pull();
         public static final LogicFunction EXCHANGE = script -> script.getStack().exchange();
@@ -48,6 +52,7 @@ public class LogicRuneBlock extends RuneBlock {
         public static final LogicFunction INCREMENT = script -> script.getStack().increment();
         public static final LogicFunction DECREMENT = script -> script.getStack().decrement();
         public static final LogicFunction SINE = script -> script.getStack().sine();
+        public static final LogicFunction RANDOM = script -> script.getStack().put(RNG.nextDouble());
 
     }
 
