@@ -98,6 +98,7 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
         }catch(RuneException exception) {
             exception.apply(world, pos);
         }
+
         super.scheduledTick(state, world, pos, random);
     }
 
@@ -141,8 +142,8 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
             if( entity != null ) {
                 entity.store(script);
                 world.setBlockState(pos, state.with(COOLDOWN, 3));
+                onTriggered( script, world, pos, state );
                 world.getBlockTickScheduler().schedule( pos, state.getBlock(), getDelayLength() );
-                onTriggered( world, pos, state );
             }
         }
     }
@@ -186,7 +187,11 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
     }
 
-    protected void onTriggered( World world, BlockPos pos, BlockState state ) {
+    protected void onTriggered( RunicScript script, World world, BlockPos pos, BlockState state ) {
+
+    }
+
+    protected void onDelayEnd( World world, BlockPos pos ) {
 
     }
 

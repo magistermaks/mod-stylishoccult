@@ -11,7 +11,7 @@ public class NumberRuneBlock extends RuneBlock {
     public final char value;
 
     public NumberRuneBlock(String name, char value) {
-        super(RuneType.LOGIC, name);
+        super(RuneType.INPUT, name);
         this.value = value;
     }
 
@@ -48,6 +48,13 @@ public class NumberRuneBlock extends RuneBlock {
 
             if( instance instanceof NumberRuneInstance ) {
                 raw += ((NumberRuneBlock) instance.rune).value;
+
+                try {
+                    Integer.parseInt(raw, 6);
+                }catch (Exception e){
+                    throw new RuneException("invalid_number");
+                }
+
                 return true;
             }
 
