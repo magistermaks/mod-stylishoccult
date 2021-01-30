@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.loot;
 
+@Deprecated
 public class BakedLootTable {
 
     private final LootTable table;

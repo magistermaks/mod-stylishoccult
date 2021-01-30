@@ -28,6 +28,7 @@ public class LootTables {
             .addTable( SIMPLE.table() )
             .build();
 
+    // TODO INVALID LOTUS LIB USAGE - PURGE
     public static final BakedLootTable PEDESTAL = LootManager.create()
             .applyForCreative()
             .addGenerator( (rng, ctx) -> {
@@ -85,6 +86,7 @@ public class LootTables {
                 .pop()
             .build();
 
+    // TODO INVALID LOTUS LIB USAGE - PURGE
     public static final BakedLootTable CANDLE_CONTAINER = LootManager.create()
             .applyForCreative()
             .addGenerator( (rng, ctx) -> {

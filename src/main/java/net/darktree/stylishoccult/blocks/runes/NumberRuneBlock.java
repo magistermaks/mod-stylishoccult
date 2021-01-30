@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.blocks.runes;
 
 import net.darktree.stylishoccult.script.RunicScript;
 import net.darktree.stylishoccult.script.components.RuneException;
+import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneInstance;
 import net.darktree.stylishoccult.script.components.RuneType;
 import net.minecraft.nbt.CompoundTag;
@@ -43,7 +44,7 @@ public class NumberRuneBlock extends RuneBlock {
         public boolean push(RunicScript script, RuneInstance instance ) {
 
             if( raw.length() > 16 ) {
-                throw new RuneException("number_too_long");
+                throw RuneExceptionType.NUMBER_TOO_LONG.get();
             }
 
             if( instance instanceof NumberRuneInstance ) {
@@ -52,7 +53,7 @@ public class NumberRuneBlock extends RuneBlock {
                 try {
                     Integer.parseInt(raw, 6);
                 }catch (Exception e){
-                    throw new RuneException("invalid_number");
+                    throw RuneExceptionType.INVALID_NUMBER.get();
                 }
 
                 return true;
@@ -61,7 +62,7 @@ public class NumberRuneBlock extends RuneBlock {
             try {
                 script.value = Integer.parseInt(raw, 6);
             }catch (Exception e){
-                throw new RuneException("invalid_number");
+                throw RuneExceptionType.INVALID_NUMBER.get();
             }
 
             return false;

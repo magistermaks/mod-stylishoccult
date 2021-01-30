@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.blocks.runes;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.script.RunicScript;
 import net.darktree.stylishoccult.script.components.RuneException;
+import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.minecraft.block.BlockState;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -30,7 +31,7 @@ public class PlaceRuneBlock extends ActorRuneBlock {
             BlockPos target = pos.add(x, y, z);
 
             if( !target.isWithinDistance( pos, range ) ) {
-                throw new RuneException("invalid_argument");
+                throw RuneExceptionType.INVALID_ARGUMENT.get();
             }
 
             BlockState targetState = world.getBlockState(target);
@@ -44,7 +45,7 @@ public class PlaceRuneBlock extends ActorRuneBlock {
                 }
             }
         }catch (Exception exception) {
-            throw new RuneException("invalid_argument_count");
+            throw RuneExceptionType.INVALID_ARGUMENT_COUNT.get();
         }
 
         super.apply(script);

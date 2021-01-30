@@ -117,7 +117,7 @@ public class StackManager {
 
     public void validate() {
         if( stack.size() > 32 ) {
-            throw new RuneException("stack_too_big");
+            throw RuneExceptionType.STACK_TOO_BIG.get();
         }
     }
 

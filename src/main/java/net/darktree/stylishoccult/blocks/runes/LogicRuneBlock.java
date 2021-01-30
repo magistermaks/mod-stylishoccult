@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.blocks.runes;
 
 import net.darktree.stylishoccult.script.RunicScript;
 import net.darktree.stylishoccult.script.components.RuneException;
+import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneType;
 
 import java.util.Random;
@@ -24,7 +25,7 @@ public class LogicRuneBlock extends RuneBlock {
         try {
             function.apply(script);
         }catch(Exception exception) {
-            throw new RuneException("invalid_argument");
+            throw RuneExceptionType.INVALID_ARGUMENT.get();
         }
     }
 

@@ -42,6 +42,7 @@
   "tooltip.stylish_occult.error_tablet.error.stack_too_big": "Stack too big!",
   "tooltip.stylish_occult.error_tablet.error.number_too_long": "Number too long!",
   "tooltip.stylish_occult.error_tablet.error.invalid_state": "Invalid block state!",
+  "tooltip.stylish_occult.error_tablet.error.invalid_metadata": "Invalid block metadata!",
   "tooltip.stylish_occult.error_tablet.error.invalid_number": "Invalid number syntax!",
   "tooltip.stylish_occult.error_tablet.error.invalid_argument": "Invalid arguments!",
   "tooltip.stylish_occult.error_tablet.error.invalid_argument_count": "Invalid argument count!",

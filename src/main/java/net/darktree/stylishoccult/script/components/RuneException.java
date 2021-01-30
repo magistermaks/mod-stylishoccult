@@ -8,7 +8,11 @@ import net.minecraft.world.explosion.Explosion;
 
 public class RuneException extends RuntimeException {
 
-    public RuneException( String message ) {
+    public static RuneException of(RuneExceptionType type) {
+        return new RuneException( type.getName() );
+    }
+
+    private RuneException( String message ) {
         super(message);
     }
 

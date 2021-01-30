@@ -82,7 +82,6 @@ public class ModBlocks {
     public static final Block PLACE_RUNE_BLOCK = RegUtil.rune( new PlaceRuneBlock( "locus", ARCANE_ASH.getDefaultState().with(ArcaneAshBlock.PERSISTENT, false), 256 ) );
     public static final Block INCREMENT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "incrementum", LogicRuneBlock.Functions.INCREMENT ) );
     public static final Block DECREMENT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "decrementum", LogicRuneBlock.Functions.DECREMENT ) );
-//    public static final Block UPDATE_RUNE_BLOCK = RegUtil.rune( new BlockUpdateRuneBLock( "evigilo" ) );
     public static final Block REDSTONE_ANALOG_OUT_RUNE_BLOCK = RegUtil.rune( new RedstoneAnalogOutputRuneBlock( "scribo" ) );
     public static final Block PROXIMITY_SENSOR_RUNE_BLOCK = RegUtil.rune( new PlayerRuneBlock( "propinquitas", 8 ) );
     public static final Block SINE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "sine", LogicRuneBlock.Functions.SINE ) );
@@ -91,6 +90,7 @@ public class ModBlocks {
     public static final Block CLOCK_RUNE_BLOCK = RegUtil.rune( new ClockRuneBlock( "horologium", 5 ) );
     public static final Block RANDOM_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "temere", LogicRuneBlock.Functions.RANDOM ) );
     public static final Block GATEWAY_RUNE_BLOCK = RegUtil.rune( new RedstoneGateRuneBlock( "porta" ) );
+    // TODO ADD REDSTONE ANALOG INPUT
     // stop - prohibere, reverse - contrarium
 
     public static void init() {
