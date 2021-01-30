@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.script.components;
 
 public enum RuneType {
+    ENTRY("entry"),
     INPUT("input"),
     ACTOR("output"),
     TRANSFER("transfer"),

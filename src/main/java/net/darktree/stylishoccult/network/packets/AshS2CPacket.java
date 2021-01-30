@@ -11,6 +11,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.Random;
 
@@ -50,7 +51,9 @@ public class AshS2CPacket extends S2CPacket {
 
     public void send(BlockPos pos, ServerWorld world) {
         for(ServerPlayerEntity player : PlayerLookup.tracking(world, pos)) {
-            send( player, pos );
+            if( player.getBlockPos().isWithinDistance(pos, 32.0D) ) {
+                send(player, pos);
+            }
         }
     }
 

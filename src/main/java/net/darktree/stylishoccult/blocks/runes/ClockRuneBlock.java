@@ -1,7 +1,6 @@
 package net.darktree.stylishoccult.blocks.runes;
 
 import net.darktree.stylishoccult.blocks.entities.RuneBlockEntity;
-import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundTag;

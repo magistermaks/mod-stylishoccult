@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 public class EntryRuneBlock extends RuneBlock {
 
     public EntryRuneBlock( String name ) {
-        super( RuneType.INPUT, name );
+        super( RuneType.ENTRY, name );
     }
 
     protected void emit(World world, BlockPos pos) {

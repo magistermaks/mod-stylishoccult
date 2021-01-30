@@ -86,11 +86,12 @@ public class ModBlocks {
     public static final Block PROXIMITY_SENSOR_RUNE_BLOCK = RegUtil.rune( new PlayerRuneBlock( "propinquitas", 8 ) );
     public static final Block SINE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "sine", LogicRuneBlock.Functions.SINE ) );
     public static final Block SPLIT_RUNE_BLOCK = RegUtil.rune( new SplitRuneBlock( "scindo" ) );
-    public static final Block REDSTONE_DIGITAL_IN_RUNE_BLOCK = RegUtil.rune( new RedstoneDigitalInputRuneBlock( "evigilo" ) );
+    public static final Block REDSTONE_DIGITAL_IN_RUNE_BLOCK = RegUtil.rune( new RedstoneEntryRuneBlock( "evigilo" ) );
+    public static final Block REDSTONE_ANALOG_IN_RUNE_BLOCK = RegUtil.rune( new RedstoneAnalogInputRuneBlock( "sensum" ) );
     public static final Block CLOCK_RUNE_BLOCK = RegUtil.rune( new ClockRuneBlock( "horologium", 5 ) );
     public static final Block RANDOM_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "temere", LogicRuneBlock.Functions.RANDOM ) );
     public static final Block GATEWAY_RUNE_BLOCK = RegUtil.rune( new RedstoneGateRuneBlock( "porta" ) );
-    // TODO ADD REDSTONE ANALOG INPUT
+    public static final Block POP_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "absumo", LogicRuneBlock.Functions.POP ) );
     // stop - prohibere, reverse - contrarium
 
     public static void init() {

@@ -1,18 +1,17 @@
 package net.darktree.stylishoccult.blocks.runes;
 
 import net.darktree.stylishoccult.script.RunicScript;
-import net.darktree.stylishoccult.script.components.RuneType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
-public class PlayerRuneBlock extends RuneBlock {
+public class PlayerRuneBlock extends InputRuneBlock {
 
     private final Box box;
 
     public PlayerRuneBlock(String name, double distance) {
-        super(RuneType.INPUT, name);
+        super(name);
         this.box = new Box(distance, distance, distance, -distance, -distance, -distance);
     }
 

@@ -8,11 +8,11 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class RedstoneDigitalInputRuneBlock extends EntryRuneBlock {
+public class RedstoneEntryRuneBlock extends EntryRuneBlock {
 
     private static final BooleanProperty POWERED = Properties.POWERED;
 
-    public RedstoneDigitalInputRuneBlock(String name) {
+    public RedstoneEntryRuneBlock(String name) {
         super(name);
     }
 

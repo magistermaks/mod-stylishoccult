@@ -1,11 +1,8 @@
 package net.darktree.stylishoccult.blocks.runes;
 
-import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.script.RunicScript;
-import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.minecraft.block.BlockState;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

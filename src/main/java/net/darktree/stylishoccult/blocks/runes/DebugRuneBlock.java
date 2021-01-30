@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 public class DebugRuneBlock extends RuneBlock {
 
     public DebugRuneBlock( String name ) {
-        super(RuneType.TRANSFER, name);
+        super(RuneType.ACTOR, name);
     }
 
     @Override

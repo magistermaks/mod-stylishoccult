@@ -1,7 +1,6 @@
 package net.darktree.stylishoccult.blocks.runes;
 
 import net.darktree.stylishoccult.script.RunicScript;
-import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneType;
 
@@ -46,14 +45,15 @@ public class LogicRuneBlock extends RuneBlock {
         public static final LogicFunction EQUALS = script -> script.getStack().equal(script.value);
         public static final LogicFunction LESS = script -> script.getStack().less(script.value);
         public static final LogicFunction MORE = script -> script.getStack().more(script.value);
-        public static final LogicFunction LESS_OR_EQUAL = script -> script.getStack().lessOrEqual(script.value);
-        public static final LogicFunction MORE_OR_EQUAL = script -> script.getStack().moreOrEqual(script.value);
-        public static final LogicFunction NEGATIVE = script -> script.getStack().less(0);
-        public static final LogicFunction POSITIVE = script -> script.getStack().more(0);
+        //public static final LogicFunction LESS_OR_EQUAL = script -> script.getStack().lessOrEqual(script.value);
+        //public static final LogicFunction MORE_OR_EQUAL = script -> script.getStack().moreOrEqual(script.value);
+        //public static final LogicFunction NEGATIVE = script -> script.getStack().less(0);
+        //public static final LogicFunction POSITIVE = script -> script.getStack().more(0);
         public static final LogicFunction INCREMENT = script -> script.getStack().increment();
         public static final LogicFunction DECREMENT = script -> script.getStack().decrement();
         public static final LogicFunction SINE = script -> script.getStack().sine();
         public static final LogicFunction RANDOM = script -> script.getStack().put(RNG.nextDouble());
+        public static final LogicFunction POP = script -> script.getStack().pull();
 
     }
 

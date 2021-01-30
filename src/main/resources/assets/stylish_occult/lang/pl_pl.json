@@ -42,7 +42,7 @@
   "tooltip.stylish_occult.error_tablet.error.stack_too_big": "Zbyt durzy stos!",
   "tooltip.stylish_occult.error_tablet.error.number_too_long": "Zbyt długa liczba!",
   "tooltip.stylish_occult.error_tablet.error.invalid_state": "Nieprawidłowy stan bloku!",
-  "tooltip.stylish_occult.error_tablet.error.invalid_metadata": "Nieprawidłowy metadane bloku!",
+  "tooltip.stylish_occult.error_tablet.error.invalid_metadata": "Nieprawidłowe metadane bloku!",
   "tooltip.stylish_occult.error_tablet.error.invalid_number": "Zła składnia liczby!",
   "tooltip.stylish_occult.error_tablet.error.invalid_argument": "Nieprawidłowe argumenty!",
   "tooltip.stylish_occult.error_tablet.error.invalid_argument_count": "Nieprawidłowa ilość argumentów!",
@@ -87,6 +87,8 @@
   "rune.block.stylish_occult.rune_horologium": "Horologium",
   "rune.block.stylish_occult.rune_fortuitus": "Fortuitus",
   "rune.block.stylish_occult.rune_porta": "Porta",
+  "rune.block.stylish_occult.rune_sensum": "Sensum",
+  "rune.block.stylish_occult.rune_absumo": "Absumo",
 
   "sound.stylish_occult.lava_demon.wakeup": "Magmowy demon budzi się",
   "sound.stylish_occult.lava_demon.die": "Magmowy demon umiera",
