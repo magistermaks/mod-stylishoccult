@@ -157,7 +157,7 @@ public abstract class AbstractCandleHolder {
             if( candle.layers >= layersMin && candle.layers <= layersMax ) {
                 Box box = candle.outline.getBoundingBox();
                 if( ray.intersects( box ) ) {
-                    double distance2 = box.getCenter().distanceTo( ray.origin );
+                    double distance2 = box.getCenter().distanceTo( ray.getOffset() );
                     if( distance2 < distance[0]) {
                         distance[0] = distance2;
                         closestCandle[0] = candle;

@@ -6,25 +6,65 @@ import net.minecraft.util.math.Vec3d;
 
 public class Ray {
 
-    public Vec3d origin, dir;
-    public Vec3d invDir;
-    public int[] sign = new int[3];
+    private Vec3d origin;
+    private final Vec3d reciDir;
+    private final int signX;
+    private final int signY;
+    private final int signZ;
 
+    /**
+     * Creates new ray. example usage:
+     * Ray ray = new Ray( player.getCameraPosVec(1.0F), player.getRotationVec(1.0F) );
+     *
+     * @param origin - Camera position
+     * @param dir - Camera facing direction
+     */
     public Ray( Vec3d origin, Vec3d dir ) {
         this.origin = origin;
-        this.dir = dir;
 
-        invDir = new Vec3d( 1 / dir.x, 1 / dir.y, 1 / dir.z );
-
-        sign[0] = (invDir.x < 0) ? 1 : 0;
-        sign[1] = (invDir.y < 0) ? 1 : 0;
-        sign[2] = (invDir.z < 0) ? 1 : 0;
+        this.reciDir = new Vec3d( 1.0 / dir.x, 1.0 / dir.y, 1.0 / dir.z );
+        this.signX = (reciDir.x < 0.0) ? 1 : 0;
+        this.signY = (reciDir.y < 0.0) ? 1 : 0;
+        this.signZ = (reciDir.z < 0.0) ? 1 : 0;
     }
 
+    /**
+     * Offsets the ray in 3D space by the inverse of the given position (of the box),
+     * so that the Ray can intersect with a Box (which is always at word origin). Example usage:
+     * ray.offset( blockPosOfTheBox );
+     *
+     * @param pos - Offset position
+     */
     public void offset( BlockPos pos ) {
-        this.origin = this.origin.subtract( new Vec3d( pos.getX(), pos.getY(), pos.getZ() ) );
+        offset( new Vec3d( pos.getX(), pos.getY(), pos.getZ() ) );
     }
 
+    /**
+     * Same as <code>Ray#offset(BlockPos)</code> but uses a Vec3d not BlockPos
+     *
+     * @param vector - Offset vector
+     * @see Ray#offset(BlockPos)
+     */
+    public void offset( Vec3d vector ) {
+        origin = origin.subtract( vector );
+    }
+
+    /**
+     * Returns current offset position. Example usage:
+     * BlockPos pos = ray.getOffset();
+     */
+    public Vec3d getOffset() {
+        return origin;
+    }
+
+    /**
+     * Checks is the ray intersects with a given Box,
+     * remember to specify box's position in the world using `offset()`. Example usage:
+     * boolean flag = ray.intersects( BOX );
+     *
+     * @param box - box to check intersection with
+     * @see Ray#offset(BlockPos)
+     */
     public boolean intersects( Box box ) {
         Vec3d[] bounds = new Vec3d[2];
         bounds[0] = new Vec3d( box.minX, box.minY, box.minZ );
@@ -32,17 +72,18 @@ public class Ray {
 
         double txMin, txMax, tyMin, tyMax, tzMin, tzMax;
 
-        txMin = (bounds[this.sign[0]].x - origin.x) * invDir.x;
-        txMax = (bounds[1-this.sign[0]].x - origin.x) * invDir.x;
-        tyMin = (bounds[this.sign[1]].y - origin.y) * invDir.y;
-        tyMax = (bounds[1-this.sign[1]].y - origin.y) * invDir.y;
+        txMin = ( bounds[    signX].x - origin.x ) * reciDir.x;
+        txMax = ( bounds[1 - signX].x - origin.x ) * reciDir.x;
+        tyMin = ( bounds[    signY].y - origin.y ) * reciDir.y;
+        tyMax = ( bounds[1 - signY].y - origin.y ) * reciDir.y;
 
-        if ((txMin > tyMax) || (tyMin > txMax)) return false;
-        if (tyMin > txMin) txMin = tyMin;
-        if (tyMax < txMax) txMax = tyMax;
+        if( (txMin > tyMax) || (tyMin > txMax) ) return false;
 
-        tzMin = (bounds[this.sign[2]].z - origin.z) * invDir.z;
-        tzMax = (bounds[1-this.sign[2]].z - origin.z) * invDir.z;
+        txMin = Math.max( txMin, tyMin );
+        txMax = Math.min( txMax, tyMax );
+
+        tzMin = ( bounds[    signZ].z - origin.z ) * reciDir.z;
+        tzMax = ( bounds[1 - signZ].z - origin.z ) * reciDir.z;
 
         return (txMin <= tzMax) && (tzMin <= txMax);
     }
