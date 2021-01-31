@@ -1,5 +1,6 @@
-package net.darktree.stylishoccult.blocks;
+package net.darktree.stylishoccult.blocks.occult;
 
+import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.items.BottleItem;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.BakedLootTable;
@@ -14,6 +15,7 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
@@ -24,7 +26,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class PassiveFleshBlock extends SimpleBlock {
+public class PassiveFleshBlock extends SimpleBlock implements ImpureBlock {
 
     public static final BooleanProperty BLOODY = BooleanProperty.of("bloody");
     public static final VoxelShape SMALL_CUBE = Utils.box(1, 1, 1, 15, 15, 15);
@@ -62,4 +64,22 @@ public class PassiveFleshBlock extends SimpleBlock {
 
         return super.onUse(state, world, pos, player, hand, hit);
     }
+
+    @Override
+    public void cleanse(World world, BlockPos pos, BlockState state) {
+        world.playSound(null, pos, soundGroup.getBreakSound(), SoundCategory.BLOCKS, 1, 1);
+
+        if( state.get(BLOODY) ) {
+            world.setBlockState(pos, state.with(BLOODY, false));
+        }else{
+            // TODO REPLACE WITH REAL DEAD FLESH
+            world.setBlockState(pos, ModBlocks.ARCANE_ASH.getDefaultState());
+        }
+    }
+
+    @Override
+    public int impurityLevel(BlockState state) {
+        return 5 + (state.get(BLOODY) ? 4 : 0);
+    }
+
 }

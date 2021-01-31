@@ -28,12 +28,14 @@
   "block.stylish_occult.runestone": "Gładki kamień runiczny",
   "block.stylish_occult.arcane_ash": "Przedwieczny popiół",
   "block.stylish_occult.crystalline_blackstone": "Krystaliczny czarnogłaz",
+  "block.stylish_occult.growth": "Narośl",
 
   "item.stylish_occult.flesh": "Ciało",
   "item.stylish_occult.wax": "Wosk",
   "item.stylish_occult.lava_heart": "Magmowa kula",
   "item.stylish_occult.blood_bottle": "Butelka z zepsutą krwią",
   "item.stylish_occult.error_tablet": "Runiczna płyta z błędami",
+  "item.stylish_occult.veins": "Żyły",
 
   "tooltip.stylish_occult.candle": "Długość: %s",
   "tooltip.stylish_occult.rune": "Runa: %s",

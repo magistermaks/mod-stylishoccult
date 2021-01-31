@@ -1,11 +1,9 @@
 package net.darktree.stylishoccult.loot;
 
-import net.darktree.stylishoccult.blocks.AbstractCandleHolderBlock;
-import net.darktree.stylishoccult.blocks.CandleBlock;
-import net.darktree.stylishoccult.blocks.LavaDemonBlock;
-import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.blocks.*;
 import net.darktree.stylishoccult.blocks.entities.AbstractCandleHolderBlockEntity;
 import net.darktree.stylishoccult.blocks.entities.PedestalBlockEntity;
+import net.darktree.stylishoccult.blocks.occult.ThinFleshBlock;
 import net.darktree.stylishoccult.enums.LavaDemonPart;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.entry.ValveEntry;
@@ -62,6 +60,19 @@ public class LootTables {
                 .dropExperience(2, 10)
                 .pop()
             .minimum(1)
+            .build();
+
+    public static final BakedLootTable GROWTH = LootManager.create()
+            .addValve( (arr, rng, ctx) -> {
+                int size = ctx.getState().get(ThinFleshBlock.SIZE);
+                int sides = Integer.bitCount( ThinFleshBlock.getBitfield(ctx.getState()) );
+                int multiplier = Math.min( rng.nextInt( size + sides ), sides );
+
+                for( ItemStack stack : arr ) stack.setCount( multiplier );
+                return arr;
+            } )
+                .addItem( ModItems.VEINS, 77.7f )
+                .pop()
             .build();
 
     public static final BakedLootTable LAVA_DEMON = LootManager.create()

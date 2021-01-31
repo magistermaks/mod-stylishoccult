@@ -136,6 +136,10 @@ public class LootTable {
 
     public ArrayList<ItemStack> getLoot( Random random, LootContext context ) {
 
+        if( context.getWorld().isClient ) {
+            return LootManager.getEmpty();
+        }
+
         if( !dropForCreative && context.getPlayer() != null && context.getPlayer().isCreative() ) {
             return LootManager.getEmpty();
         }

@@ -3,7 +3,7 @@ package net.darktree.stylishoccult.worldgen;
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.PassiveFleshBlock;
+import net.darktree.stylishoccult.blocks.occult.PassiveFleshBlock;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.util.math.BlockPos;

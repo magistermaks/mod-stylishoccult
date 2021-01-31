@@ -1,6 +1,8 @@
-package net.darktree.stylishoccult.blocks;
+package net.darktree.stylishoccult.blocks.occult;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.SimpleBlock;
@@ -9,6 +11,7 @@ import net.minecraft.block.*;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
@@ -18,11 +21,14 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Properties;
 import java.util.Random;
 
-public class ThinFleshBlock extends SimpleBlock {
+public class ThinFleshBlock extends SimpleBlock implements ImpureBlock {
 
     public static final BooleanProperty UP = BooleanProperty.of("up");
     public static final BooleanProperty DOWN = BooleanProperty.of("down");
@@ -40,6 +46,11 @@ public class ThinFleshBlock extends SimpleBlock {
             Utils.box(  0,  0,  0,  1, 16, 16 ), // WEST
             Utils.box( 15,  0,  0, 16, 16, 16 )  // EAST
     };
+
+    @Override
+    public BakedLootTable getInternalLootTableId() {
+        return LootTables.GROWTH;
+    }
 
     public ThinFleshBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).slipperiness(0.7f).ticksRandomly() );
@@ -67,8 +78,39 @@ public class ThinFleshBlock extends SimpleBlock {
     }
 
     @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
+        BooleanProperty property = fromDirection(direction);
+        if( state.get( property ) && !canSupport((World) world, pos, direction) ) {
+            state = state.with(property, false);
+            world.playSound(null, pos, soundGroup.getBreakSound(), SoundCategory.BLOCKS, 1, 1);
+        }
+
+        if( getBitfield(state) == 0b000000 ) {
+            return Blocks.AIR.getDefaultState();
+        }else{
+            return state;
+        }
+    }
+
+    @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.empty();
+    }
+
+    @Nullable
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        BlockState state = getDefaultState();
+        boolean flag = false;
+
+        for( Direction side : Direction.values() ) {
+            if( canSupport( ctx.getWorld(), ctx.getBlockPos(), side ) ) {
+                state = state.with(fromDirection(side), true);
+                flag = true;
+            }
+        }
+
+        return flag ? state : null;
     }
 
     @Override
@@ -82,35 +124,31 @@ public class ThinFleshBlock extends SimpleBlock {
         }
 
         if( count != 6 ) {
-
-            if( random.nextInt( count + 2 ) == 0 ) {
+            if( random.nextInt( count + 1 ) == 0 ) {
                 applyRandom( state, pos, world, random );
                 return;
             }
 
-            if( random.nextInt( count + 1 ) == 0 ) {
+            BlockPos target = pos.offset( RandUtils.getEnum(Direction.class, random) );
 
-                BlockPos target = pos.offset( RandUtils.getEnum(Direction.class, random) );
-
-                if( random.nextInt( 8 ) == 0 ) {
-                    target = target.offset( RandUtils.getEnum(Direction.class, random) );
-                }
-
-                BlockState targetState = world.getBlockState( target );
-
-                try {
-                    if( targetState.getBlock() != this ) {
-                        if (targetState.isAir() || targetState.getMaterial().isReplaceable() || targetState.canReplace(null)) {
-                            applyRandom(getDefaultState(), target, world, random);
-                            return;
-                        }
-                    }
-                } catch(Exception ignore) {}
+            if( random.nextInt( 8 ) == 0 ) {
+                target = target.offset( RandUtils.getEnum(Direction.class, random) );
             }
+
+            BlockState targetState = world.getBlockState( target );
+
+            try {
+                if( targetState.getBlock() != this ) {
+                    if (targetState.isAir() || targetState.getMaterial().isReplaceable() || targetState.canReplace(null)) {
+                        applyRandom(getDefaultState(), target, world, random);
+                        return;
+                    }
+                }
+            } catch(Exception ignore) {}
         }
 
         int size = state.get(SIZE);
-        if( size < 3 && random.nextInt( 128 - count * 4 ) == 0 ) {
+        if( size < 3 && random.nextInt( 64 - count * 4 ) == 0 ) {
             world.setBlockState(pos, state.with(SIZE, size + 1));
 //            return;
         }
@@ -124,14 +162,13 @@ public class ThinFleshBlock extends SimpleBlock {
     private void applyRandom( BlockState state, BlockPos pos, ServerWorld world, Random random ) {
         Direction side = RandUtils.getEnum(Direction.class, random);
         BlockState target = state.with(fromDirection(side), true);
-        BlockPos support = pos.offset(side);
 
-        if( world.getBlockState( support ).isSideSolidFullSquare(world, support, side.getOpposite()) ) {
+        if( canSupport( world, pos, side ) ) {
             world.setBlockState( pos, target );
         }
     }
 
-    private int getBitfield(BlockState state) {
+    public static int getBitfield(BlockState state) {
         int map = 0b000000;
 
         if( state.get(UP)    ) map |= 0b100000;
@@ -160,5 +197,34 @@ public class ThinFleshBlock extends SimpleBlock {
     @Override
     public boolean canReplace(BlockState state, ItemPlacementContext context) {
         return context.getStack().isEmpty() || context.getStack().getItem() != this.asItem();
+    }
+
+    private boolean canSupport(World world, BlockPos pos, Direction direction ) {
+        BlockPos support = pos.offset(direction);
+        BlockState state = world.getBlockState( support );
+        return state.isFullCube(world, support) || isShapeFullCube(state.getOutlineShape(world, support)) || state.isSideSolidFullSquare( world, support, direction.getOpposite() );
+    }
+
+    @Override
+    public void cleanse(World world, BlockPos pos, BlockState state) {
+        int count = Integer.bitCount(getBitfield(state));
+        world.playSound(null, pos, soundGroup.getBreakSound(), SoundCategory.BLOCKS, 1, 1);
+
+        if( count <= 1 ) {
+            world.setBlockState(pos, Blocks.AIR.getDefaultState());
+        }else{
+            for( Direction side : Direction.values() ) {
+                BooleanProperty property = fromDirection(side);
+                if( state.get(property) ) {
+                    world.setBlockState(pos, state.with(property, false));
+                    return;
+                }
+            }
+        }
+    }
+
+    @Override
+    public int impurityLevel(BlockState state) {
+        return (Integer.bitCount(getBitfield(state)) + state.get(SIZE)) * 3;
     }
 }

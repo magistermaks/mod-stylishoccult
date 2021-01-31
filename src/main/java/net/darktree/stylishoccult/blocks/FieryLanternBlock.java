@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.blocks;
 import net.darktree.stylishoccult.loot.BakedLootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.particles.Particles;
+import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.fabricmc.api.EnvType;
@@ -13,6 +14,7 @@ import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -40,8 +42,29 @@ public class FieryLanternBlock extends SimpleBlock implements Waterloggable {
             Block.createCuboidShape(6.0D, 8.0D, 6.0D, 10.0D, 10.0D, 10.0D));
 
     public FieryLanternBlock() {
-        super( AbstractBlock.Settings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.LANTERN).luminance((state) -> 15).nonOpaque() );
+        super( AbstractBlock.Settings.of(Material.METAL).ticksRandomly().requiresTool().strength(3.5F).sounds(BlockSoundGroup.LANTERN).luminance((state) -> 15).nonOpaque() );
         this.setDefaultState(this.stateManager.getDefaultState().with(HANGING, false).with(WATERLOGGED, false));
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        OccultHelper.cleanseAround(world, pos, 10, 1, 6);
+    }
+
+    @Override
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        world.getBlockTickScheduler().schedule(pos, this, 20);
+    }
+
+    @Override
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if( !OccultHelper.cleanseAround(world, pos, 1, 1, 6) ) {
+            if( !OccultHelper.cleanseAround(world, pos, 2, 1, 6) ) {
+                OccultHelper.cleanseAround(world, pos, 5, 1, 6);
+            }
+        }
+
+        world.getBlockTickScheduler().schedule(pos, this, 20);
     }
 
     @Override

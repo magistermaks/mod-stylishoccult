@@ -15,6 +15,13 @@ public class ModFoodComponents {
             .meat()
             .build();
 
+    public static final FoodComponent VEINS = new FoodComponent.Builder()
+            .hunger(1)
+            .saturationModifier(0.2F)
+            .meat()
+            .snack()
+            .build();
+
     public static final FoodComponent BLOOD = new FoodComponent.Builder()
             .statusEffect(new StatusEffectInstance(ModEffects.CORRUPTED_BLOOD, 600, 0), 0.9f)
             .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 1200, 0), 1)
