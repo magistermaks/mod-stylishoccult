@@ -3,10 +3,8 @@ package net.darktree.stylishoccult.blocks.occult;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.loot.BakedLootTable;
 import net.darktree.stylishoccult.loot.LootTables;
-import net.darktree.stylishoccult.utils.RandUtils;
-import net.darktree.stylishoccult.utils.RegUtil;
-import net.darktree.stylishoccult.utils.SimpleBlock;
-import net.darktree.stylishoccult.utils.Utils;
+import net.darktree.stylishoccult.tags.ModTags;
+import net.darktree.stylishoccult.utils.*;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
@@ -150,12 +148,14 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock {
         int size = state.get(SIZE);
         if( size < 3 && random.nextInt( 64 - count * 4 ) == 0 ) {
             world.setBlockState(pos, state.with(SIZE, size + 1));
-//            return;
+            return;
         }
 
-//        if( size == 3 && random.nextInt( 128 - count * 4 ) == 0 ) {
-//            //TODO
-//        }
+        if( size == 3 && random.nextInt( 128 - count * 4 ) == 0 ) {
+            Direction dir = RandUtils.getEnum(Direction.class);
+            BlockPos target = pos.offset(dir);
+            OccultHelper.corrupt( world, target );
+        }
 
     }
 

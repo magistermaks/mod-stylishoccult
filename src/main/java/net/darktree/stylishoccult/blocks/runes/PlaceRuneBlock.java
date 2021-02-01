@@ -1,21 +1,32 @@
 package net.darktree.stylishoccult.blocks.runes;
 
+import net.darktree.stylishoccult.blocks.ArcaneAshBlock;
+import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.script.RunicScript;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.minecraft.block.BlockState;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class PlaceRuneBlock extends ActorRuneBlock {
 
-    private final BlockState state;
-    private final int range;
+    public interface PlaceFunction {
+        void place( World world, BlockPos pos, BlockState state );
+    }
 
-    public PlaceRuneBlock(String name, BlockState state, int range) {
+    public static final PlaceFunction ARCANE_ASH_PLACER = (world, pos, state) -> {
+        if( (state.isAir() || state.getMaterial().isReplaceable()) && (state.getBlock() != ModBlocks.ARCANE_ASH || state.get(ArcaneAshBlock.AGE) != 0) ) {
+            world.setBlockState(pos, ModBlocks.ARCANE_ASH.getDefaultState().with(ArcaneAshBlock.PERSISTENT, false));
+        }
+    };
+
+    private final int range;
+    private final PlaceFunction placeFunction;
+
+    public PlaceRuneBlock(String name, int range, PlaceFunction placeFunction) {
         super(name);
-        this.state = state;
         this.range = range;
+        this.placeFunction = placeFunction;
     }
 
     @Override
@@ -31,16 +42,7 @@ public class PlaceRuneBlock extends ActorRuneBlock {
                 throw RuneExceptionType.INVALID_ARGUMENT.get();
             }
 
-            BlockState targetState = world.getBlockState(target);
-
-            if( (targetState.isAir() || targetState.getMaterial().isReplaceable()) && targetState != state) {
-                world.setBlockState( target, state );
-                world.playSound(null, target, state.getBlock().getSoundGroup(state).getPlaceSound(), SoundCategory.BLOCKS, 0.9f, 1.0f);
-
-                if( !targetState.isAir() ) {
-                    world.playSound(null, target, targetState.getBlock().getSoundGroup(targetState).getBreakSound(), SoundCategory.BLOCKS, 0.9f, 1.0f);
-                }
-            }
+            placeFunction.place(world, target, world.getBlockState(target));
         }catch (Exception exception) {
             throw RuneExceptionType.INVALID_ARGUMENT_COUNT.get();
         }

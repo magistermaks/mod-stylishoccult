@@ -7,11 +7,12 @@ public enum RuneExceptionType {
     INVALID_NUMBER("invalid_number"),
     INVALID_ARGUMENT("invalid_argument"),
     INVALID_ARGUMENT_COUNT("invalid_argument_count"),
-    STACK_TOO_BIG("stack_too_big");
+    STACK_TOO_BIG("stack_too_big"),
+    BROKEN("broken");
 
     private final String name;
 
-    RuneExceptionType(String name ) {
+    RuneExceptionType( String name ) {
         this.name = name;
     }
 

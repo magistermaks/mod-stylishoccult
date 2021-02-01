@@ -1,8 +1,10 @@
 package net.darktree.stylishoccult.utils;
 
 import net.darktree.stylishoccult.blocks.occult.ImpureBlock;
+import net.darktree.stylishoccult.tags.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -29,6 +31,34 @@ public class OccultHelper {
         }
 
         return false;
+    }
+
+    public static void corrupt(World world, BlockPos target) {
+        BlockState state = world.getBlockState(target);
+        Block block = state.getBlock();
+        float hardness = state.getHardness(world, target);
+
+        if( hardnessCheck(hardness) && !block.isIn(ModTags.INCORRUPTIBLE) && (block.isIn(ModTags.CORRUPTIBLE) || canCorrupt(state)) ) {
+            spawnCorruption(world, target);
+        }
+    }
+
+    public static boolean canCorrupt(BlockState state) {
+        Material material = state.getMaterial();
+        return material.isBurnable() || material.isReplaceable() || material == Material.ORGANIC_PRODUCT || material == Material.SOLID_ORGANIC || RandUtils.getBool(30.0f);
+    }
+
+    public static boolean hardnessCheck( float hardness ) {
+        if( hardness < 0 || hardness > 1000 ) return false;
+        if( hardness < 1.0 ) return RandUtils.getBool(93.0f);
+        if( hardness < 1.5 ) return RandUtils.getBool(50.0f);
+        if( hardness < 2.0 ) return RandUtils.getBool(5.5f);
+        if( hardness < 2.5 ) return RandUtils.getBool(0.1f);
+        return RandUtils.getBool(0.06f);
+    }
+
+    private static void spawnCorruption(World world, BlockPos target) {
+        // TODO SPAWN FLESH BLOCK
     }
 
 }

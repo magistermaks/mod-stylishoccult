@@ -26,6 +26,7 @@
   "block.stylish_occult.nether_fern": "Nether Fern",
   "block.stylish_occult.engraved_runestone": "Runestone",
   "block.stylish_occult.runestone": "Blank Runestone",
+  "block.stylish_occult.damaged_runestone": "Damaged Runestone",
   "block.stylish_occult.arcane_ash": "Arcane Ash",
   "block.stylish_occult.crystalline_blackstone": "Crystalline Blackstone",
   "block.stylish_occult.growth": "Growth",
@@ -39,6 +40,7 @@
 
   "tooltip.stylish_occult.candle": "Length: %s",
   "tooltip.stylish_occult.rune": "Rune: %s",
+  "tooltip.stylish_occult.damaged_rune": "This rune is damaged",
   "tooltip.stylish_occult.error_tablet.location": "At: %s, %s, %s",
   "tooltip.stylish_occult.error_tablet.success": "Nothing to report.",
   "tooltip.stylish_occult.error_tablet.error.stack_too_big": "Stack too big!",
@@ -48,6 +50,7 @@
   "tooltip.stylish_occult.error_tablet.error.invalid_number": "Invalid number syntax!",
   "tooltip.stylish_occult.error_tablet.error.invalid_argument": "Invalid arguments!",
   "tooltip.stylish_occult.error_tablet.error.invalid_argument_count": "Invalid argument count!",
+  "tooltip.stylish_occult.error_tablet.error.broken": "Damaged inscription!",
 
   "rune.block.stylish_occult.rune_debug": "Inveniet",
   "rune.block.stylish_occult.rune_tactus": "Tactus",

@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+            { "model": "stylish_occult:block/rune/damaged/1" },
+            { "model": "stylish_occult:block/rune/damaged/2" },
+            { "model": "stylish_occult:block/rune/damaged/3" },
+            { "model": "stylish_occult:block/rune/damaged/4" }
+        ]
+    }
+}
