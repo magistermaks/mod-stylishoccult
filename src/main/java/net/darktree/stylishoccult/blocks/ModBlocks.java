@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.blocks;
 
+import net.darktree.stylishoccult.blocks.occult.FleshBlock;
 import net.darktree.stylishoccult.blocks.occult.PassiveFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.ThinFleshBlock;
 import net.darktree.stylishoccult.blocks.runes.*;
@@ -34,11 +35,12 @@ public class ModBlocks {
     public static final Block GROWTH = RegUtil.block( "growth", new ThinFleshBlock() );
     public static final Block NETHER_GRASS = RegUtil.block( "nether_grass", new NetherGrassBlock( AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
     public static final Block NETHER_FERN = RegUtil.block( "nether_fern", new NetherFernBlock( AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
+    public static final Block FLESH = RegUtil.block( "flesh", new FleshBlock() );
 
     // simple building blocks
     public static final Block LAVA_STONE = RegUtil.block( "lava_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).requiresTool() ) );
     public static final Block WAX_BLOCK = RegUtil.block( "wax_block", new BuildingBlock( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.CANDLE, 0.8F, 0.8F, true ) ) );
-    public static final Block FLESH_BLOCK = RegUtil.block( "flesh_block", new PassiveFleshBlock() );
+    public static final Block FLESH_BLOCK = RegUtil.block( "passive_flesh_block", new PassiveFleshBlock() );
     public static final Block CRACKED_BRICKS = RegUtil.block( "cracked_bricks", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.RED).requiresTool() ) );
     public static final Block OLD_BRICKS = RegUtil.block( "old_bricks", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 4.0f, true ).materialColor(MaterialColor.RED).requiresTool() ) );
     public static final Block SMALL_STONE_BRICKS_1 = RegUtil.block( "small_stone_bricks_1", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).requiresTool() ) );

@@ -3,7 +3,6 @@ package net.darktree.stylishoccult.blocks.occult;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.loot.BakedLootTable;
 import net.darktree.stylishoccult.loot.LootTables;
-import net.darktree.stylishoccult.tags.ModTags;
 import net.darktree.stylishoccult.utils.*;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemPlacementContext;
@@ -23,7 +22,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Properties;
 import java.util.Random;
 
 public class ThinFleshBlock extends SimpleBlock implements ImpureBlock {

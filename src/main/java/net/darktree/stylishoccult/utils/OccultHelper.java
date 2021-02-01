@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.utils;
 
+import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.ImpureBlock;
 import net.darktree.stylishoccult.tags.ModTags;
 import net.minecraft.block.Block;
@@ -38,8 +39,8 @@ public class OccultHelper {
         Block block = state.getBlock();
         float hardness = state.getHardness(world, target);
 
-        if( hardnessCheck(hardness) && !block.isIn(ModTags.INCORRUPTIBLE) && (block.isIn(ModTags.CORRUPTIBLE) || canCorrupt(state)) ) {
-            spawnCorruption(world, target);
+        if( !state.isAir() && hardnessCheck(hardness) && requiredCheck(block) && (block.isIn(ModTags.CORRUPTIBLE) || canCorrupt(state)) ) {
+            spawnCorruption(world, target, state);
         }
     }
 
@@ -57,8 +58,13 @@ public class OccultHelper {
         return RandUtils.getBool(0.06f);
     }
 
-    private static void spawnCorruption(World world, BlockPos target) {
-        // TODO SPAWN FLESH BLOCK
+    public static boolean requiredCheck( Block block ) {
+        return !(block instanceof ImpureBlock) && !block.isIn(ModTags.INCORRUPTIBLE);
+    }
+
+    private static void spawnCorruption(World world, BlockPos target, BlockState state) {
+        world.setBlockState(target, ModBlocks.FLESH.getDefaultState());
+        // TODO: USE STATE TO SELECT BETWEEN DIFFERENT FLESH TYPES (USING BLOCK TAGS)
     }
 
 }

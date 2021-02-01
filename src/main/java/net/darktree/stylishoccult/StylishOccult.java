@@ -9,6 +9,7 @@ import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.sounds.Sounds;
+import net.darktree.stylishoccult.tags.ModTags;
 import net.darktree.stylishoccult.worldgen.ModFeatures;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -48,6 +49,7 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
         ModEntities.init();
         ModFeatures.init();
         ModEffects.init();
+        ModTags.init();
     }
 
     @Override

@@ -12,7 +12,7 @@ public class ModTags {
     public static Tag<Block> CORRUPTIBLE;
     public static Tag<Block> INCORRUPTIBLE;
 
-    public void init() {
+    public static void init() {
         RUNES = TagRegistry.block( new ModIdentifier("runes") );
         FLESH = TagRegistry.block( new ModIdentifier("flesh") );
         CORRUPTIBLE = TagRegistry.block( new ModIdentifier("corruptible") );
