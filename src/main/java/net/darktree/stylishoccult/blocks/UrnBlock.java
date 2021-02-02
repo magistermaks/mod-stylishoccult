@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.blocks;
 
-import net.darktree.stylishoccult.loot.BakedLootTable;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.sounds.Sounds;

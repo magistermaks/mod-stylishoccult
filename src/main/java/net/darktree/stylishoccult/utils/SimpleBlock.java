@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.utils;
 
-import net.darktree.stylishoccult.loot.BakedLootTable;
 import net.darktree.stylishoccult.loot.LootManager;
 import net.darktree.stylishoccult.mixin.HardnessAccessor;
 import net.minecraft.block.Block;

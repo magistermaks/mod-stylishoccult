@@ -2,7 +2,6 @@ package net.darktree.stylishoccult.blocks.runes;
 
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.entities.RuneBlockEntity;
-import net.darktree.stylishoccult.loot.BakedLootTable;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.script.RunicScript;

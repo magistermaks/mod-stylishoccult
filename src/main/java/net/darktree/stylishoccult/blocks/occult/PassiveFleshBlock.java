@@ -3,7 +3,6 @@ package net.darktree.stylishoccult.blocks.occult;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.items.BottleItem;
 import net.darktree.stylishoccult.items.ModItems;
-import net.darktree.stylishoccult.loot.BakedLootTable;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.RegUtil;
