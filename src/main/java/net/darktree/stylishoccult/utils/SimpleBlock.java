@@ -46,7 +46,7 @@ public abstract class SimpleBlock extends Block implements MutableHardness {
     }
 
     @Override
-    final public List<ItemStack> getDroppedStacks(BlockState state, net.minecraft.loot.context.LootContext.Builder builder) {
+    public List<ItemStack> getDroppedStacks(BlockState state, net.minecraft.loot.context.LootContext.Builder builder) {
         LootContext lootContext = builder.parameter(LootContextParameters.BLOCK_STATE, state).build(LootContextTypes.BLOCK);
         ServerWorld serverWorld = lootContext.getWorld();
         LootTable lootTable = serverWorld.getServer().getLootManager().getTable(lootTableId);

@@ -7,14 +7,14 @@ import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.darktree.stylishoccult.utils.Utils;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -25,6 +25,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class PedestalBlock extends SimpleBlock implements BlockEntityProvider {
 
@@ -68,7 +70,19 @@ public class PedestalBlock extends SimpleBlock implements BlockEntityProvider {
 
     @Override
     public LootTable getInternalLootTableId() {
-        return LootTables.PEDESTAL;
+        return LootTables.SIMPLE;
+    }
+
+    @Override
+    public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> stacks = super.getDroppedStacks(state, builder);
+        PedestalBlockEntity entity = BlockUtils.getEntity( PedestalBlockEntity.class, builder.getWorld(), new BlockPos(builder.get(LootContextParameters.ORIGIN)) );
+
+        if( entity != null ) {
+            stacks.add( entity.drop() );
+        }
+
+        return stacks;
     }
 
     @Override

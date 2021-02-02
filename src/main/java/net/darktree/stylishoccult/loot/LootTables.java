@@ -29,21 +29,6 @@ public class LootTables {
             .addTable(SIMPLE)
             .build();
 
-    // TODO INVALID LOTUS LIB USAGE - PURGE
-    public static final LootTable PEDESTAL = LootManager.create()
-            .applyForCreative()
-            .addGenerator( (rng, ctx) -> {
-                ArrayList<ItemStack> stacks = new ArrayList<>();
-
-                if( ctx.shouldDrop() ) {
-                    stacks.add(ctx.getBlockItem());
-                }
-
-                stacks.add( ctx.getBlockEntity(PedestalBlockEntity.class).drop() );
-                return stacks;
-            } )
-            .build();
-
     public static final LootTable URN = LootManager.create()
             .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
                 .addItem( ModItems.URN )
@@ -100,7 +85,6 @@ public class LootTables {
                 .pop()
             .build();
 
-    // TODO INVALID LOTUS LIB USAGE - PURGE
     public static final LootTable CANDLE_CONTAINER = LootManager.create()
             .applyForCreative()
             .addGenerator( (rng, ctx) -> {
