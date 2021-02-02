@@ -24,11 +24,11 @@ public class LootManager {
         return new ArrayList<>();
     }
 
-    public static ArrayList<ItemStack> getLoot(BakedLootTable table, LootContext context) {
-        return table == null ? getEmpty() : table.table().getLoot( random, context );
+    public static ArrayList<ItemStack> getLoot(LootTable table, LootContext context) {
+        return table == null ? getEmpty() : table.getLoot( random, context );
     }
 
-    public static List<ItemStack> dispatch(BlockState state, net.minecraft.loot.context.LootContext.Builder builder, Identifier vanilla, BakedLootTable custom) {
+    public static List<ItemStack> dispatch(BlockState state, net.minecraft.loot.context.LootContext.Builder builder, Identifier vanilla, LootTable custom) {
 
         net.minecraft.loot.context.LootContext lootContext = builder.parameter(LootContextParameters.BLOCK_STATE, state).build(LootContextTypes.BLOCK);
         ServerWorld serverWorld = lootContext.getWorld();

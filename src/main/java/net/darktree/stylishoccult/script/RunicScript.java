@@ -104,4 +104,8 @@ public class RunicScript {
         instance = null;
     }
 
+    public void combine( RunicScript script ) {
+        this.getStack().combine( script.getStack() );
+    }
+
 }

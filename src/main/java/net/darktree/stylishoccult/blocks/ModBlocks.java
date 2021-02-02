@@ -1,11 +1,11 @@
 package net.darktree.stylishoccult.blocks;
 
 import net.darktree.stylishoccult.blocks.occult.FleshBlock;
+import net.darktree.stylishoccult.blocks.occult.LeavesFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.PassiveFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.ThinFleshBlock;
 import net.darktree.stylishoccult.blocks.runes.*;
 import net.darktree.stylishoccult.sounds.Sounds;
-import net.darktree.stylishoccult.utils.BuildingBlock;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -35,7 +35,8 @@ public class ModBlocks {
     public static final Block GROWTH = RegUtil.block( "growth", new ThinFleshBlock() );
     public static final Block NETHER_GRASS = RegUtil.block( "nether_grass", new NetherGrassBlock( AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
     public static final Block NETHER_FERN = RegUtil.block( "nether_fern", new NetherFernBlock( AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
-    public static final Block FLESH = RegUtil.block( "flesh", new FleshBlock() );
+    public static final Block DEFAULT_FLESH = RegUtil.block( "default_flesh", new FleshBlock() );
+    public static final Block LEAVES_FLESH = RegUtil.block( "leaves_flesh", new LeavesFleshBlock() );
 
     // simple building blocks
     public static final Block LAVA_STONE = RegUtil.block( "lava_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).requiresTool() ) );
@@ -97,6 +98,7 @@ public class ModBlocks {
     public static final Block RANDOM_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "temere", LogicRuneBlock.Functions.RANDOM ) );
     public static final Block GATEWAY_RUNE_BLOCK = RegUtil.rune( new RedstoneGateRuneBlock( "porta" ) );
     public static final Block POP_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "absumo", LogicRuneBlock.Functions.POP ) );
+    public static final Block JOIN_RUNE_BLOCK = RegUtil.rune( new JoinRuneBlock( "adiungo" ) );
 
     public static void init() {
         // load class

@@ -4,6 +4,7 @@ import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.entities.ModEntities;
 import net.darktree.stylishoccult.entities.SparkEntity;
 import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.sounds.SoundManager;
 import net.darktree.stylishoccult.utils.RegUtil;
@@ -44,7 +45,7 @@ public class SparkVentBlock extends SimpleBlock {
     }
 
     @Override
-    public BakedLootTable getInternalLootTableId() {
+    public LootTable getInternalLootTableId() {
         return LootTables.SPARK_VENT;
     }
 

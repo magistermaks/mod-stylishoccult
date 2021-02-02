@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.blocks.occult;
 
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.*;
 import net.minecraft.block.*;
@@ -44,7 +45,7 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock {
     };
 
     @Override
-    public BakedLootTable getInternalLootTableId() {
+    public LootTable getInternalLootTableId() {
         return LootTables.GROWTH;
     }
 

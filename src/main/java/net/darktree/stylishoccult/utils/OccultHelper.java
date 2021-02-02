@@ -3,13 +3,30 @@ package net.darktree.stylishoccult.utils;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.ImpureBlock;
 import net.darktree.stylishoccult.tags.ModTags;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
+import net.minecraft.block.*;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class OccultHelper {
+
+    public static void corruptAround(ServerWorld world, BlockPos pos, Random random) {
+        BlockPos target = pos.offset( RandUtils.getEnum(Direction.class, random) );
+
+        if( random.nextInt( 6 ) == 0 ) {
+            target = target.offset( RandUtils.getEnum(Direction.class, random) );
+        }
+
+        if( random.nextInt( 32 ) == 0 ) {
+            target = target.offset( RandUtils.getEnum(Direction.class, random) );
+        }
+
+        OccultHelper.corrupt(world, target);
+    }
 
     public static boolean cleanseAround(World world, BlockPos pos, int ra, int rb, int power) {
         int x = RandUtils.rangeInt(-ra, ra);
@@ -39,18 +56,17 @@ public class OccultHelper {
         Block block = state.getBlock();
         float hardness = state.getHardness(world, target);
 
-        if( !state.isAir() && hardnessCheck(hardness) && requiredCheck(block) && (block.isIn(ModTags.CORRUPTIBLE) || canCorrupt(state)) ) {
+        if( !state.isAir() && (block.isIn(ModTags.CORRUPTIBLE) || canCorrupt(state, hardness)) && requiredCheck(block, hardness) && RandUtils.getBool(30.0f) ) {
             spawnCorruption(world, target, state);
         }
     }
 
-    public static boolean canCorrupt(BlockState state) {
+    public static boolean canCorrupt(BlockState state, float hardness) {
         Material material = state.getMaterial();
-        return material.isBurnable() || material.isReplaceable() || material == Material.ORGANIC_PRODUCT || material == Material.SOLID_ORGANIC || RandUtils.getBool(30.0f);
+        return hardnessCheck(hardness) || ((material.isBurnable() || material.isReplaceable() || material == Material.ORGANIC_PRODUCT || material == Material.SOLID_ORGANIC) && RandUtils.getBool(30.0f));
     }
 
     public static boolean hardnessCheck( float hardness ) {
-        if( hardness < 0 || hardness > 1000 ) return false;
         if( hardness < 1.0 ) return RandUtils.getBool(93.0f);
         if( hardness < 1.5 ) return RandUtils.getBool(50.0f);
         if( hardness < 2.0 ) return RandUtils.getBool(5.5f);
@@ -58,13 +74,21 @@ public class OccultHelper {
         return RandUtils.getBool(0.06f);
     }
 
-    public static boolean requiredCheck( Block block ) {
-        return !(block instanceof ImpureBlock) && !block.isIn(ModTags.INCORRUPTIBLE);
+    public static boolean requiredCheck( Block block, float hardness ) {
+        return !(block instanceof ImpureBlock) && !block.isIn(ModTags.INCORRUPTIBLE) && hardness >= 0 && hardness <= 1000;
     }
 
     private static void spawnCorruption(World world, BlockPos target, BlockState state) {
-        world.setBlockState(target, ModBlocks.FLESH.getDefaultState());
-        // TODO: USE STATE TO SELECT BETWEEN DIFFERENT FLESH TYPES (USING BLOCK TAGS)
+        world.setBlockState(target, getCorruptionForBlock(state.getBlock()));
+    }
+
+    private static BlockState getCorruptionForBlock( Block block ) {
+        if( block instanceof LeavesBlock || block.isIn(BlockTags.LEAVES) ) return ModBlocks.LEAVES_FLESH.getDefaultState();
+//        if( block.isIn(BlockTags.LOGS) ) return ModBlocks.FLESH.getDefaultState();
+//        if( (block instanceof GrassBlock || block instanceof MyceliumBlock || block instanceof NyliumBlock) && RandUtils.getBool(80) ) return ModBlocks.FLESH.getDefaultState();
+
+        // TODO: add more types
+        return ModBlocks.DEFAULT_FLESH.getDefaultState();
     }
 
 }

@@ -1,0 +1,11 @@
+{
+    "parent": "stylish_occult:block/rune/common/rune",
+	"textures": {
+        "north": "stylish_occult:rune/adiungo",
+		"east": "stylish_occult:rune/adiungo",
+		"south": "stylish_occult:rune/adiungo",
+		"west": "stylish_occult:rune/adiungo",
+		"up": "stylish_occult:rune/generic/dot",
+		"down": "stylish_occult:rune/generic/dot"
+	}
+}

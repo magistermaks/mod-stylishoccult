@@ -48,7 +48,7 @@ public class ModItems {
     public static final Item RUNE_ERROR_REPORT = RegUtil.item( "error_tablet", new ErrorReportItem( new Item.Settings().group( Groups.STYLISH_OCCULT ).maxCount(1) ) );
 
     // decorative
-    public static final Item FLESH_BLOCK = RegUtil.item( "flesh_block", ModBlocks.FLESH, Groups.STYLISH_OCCULT );
+    public static final Item FLESH_BLOCK = RegUtil.item( "flesh_block", ModBlocks.DEFAULT_FLESH, Groups.STYLISH_OCCULT );
     public static final Item PASSIVE_FLESH_BLOCK = RegUtil.item( "passive_flesh_block", ModBlocks.FLESH_BLOCK, Groups.STYLISH_OCCULT );
     public static final Item OLD_BRICKS = RegUtil.item( "old_bricks", ModBlocks.OLD_BRICKS, Groups.STYLISH_OCCULT );
     public static final Item CRACKED_BRICKS = RegUtil.item( "cracked_bricks", ModBlocks.CRACKED_BRICKS, Groups.STYLISH_OCCULT );

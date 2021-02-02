@@ -1,7 +1,8 @@
-package net.darktree.stylishoccult.utils;
+package net.darktree.stylishoccult.blocks;
 
-import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
+import net.darktree.stylishoccult.utils.SimpleBlock;
 
 public class BuildingBlock extends SimpleBlock {
 
@@ -10,7 +11,8 @@ public class BuildingBlock extends SimpleBlock {
     }
 
     @Override
-    public BakedLootTable getInternalLootTableId() {
+    public LootTable getInternalLootTableId() {
         return LootTables.SIMPLE;
     }
+
 }

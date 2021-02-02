@@ -122,8 +122,8 @@ public class LootTable {
         return this;
     }
 
-    public BakedLootTable build() {
-        return BakedLootTable.bake( this );
+    public LootTable build() {
+        return this;
     }
 
     private int countItems( ArrayList<ItemStack> stacks ) {

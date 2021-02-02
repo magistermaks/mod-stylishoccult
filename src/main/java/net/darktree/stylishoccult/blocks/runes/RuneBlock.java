@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.blocks.runes;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.entities.RuneBlockEntity;
 import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.script.RunicScript;
 import net.darktree.stylishoccult.script.components.RuneException;
@@ -58,7 +59,7 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
     }
 
     @Override
-    public BakedLootTable getInternalLootTableId() {
+    public LootTable getInternalLootTableId() {
         return LootTables.SIMPLE_RESISTANT;
     }
 
@@ -170,7 +171,7 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
     public Direction[] getDirections( World world, BlockPos pos, RunicScript script ) {
         Direction dir = script.getDirection();
-        return  dir == null ? new Direction[] {} : new Direction[] { dir };
+        return dir == null ? new Direction[] {} : new Direction[] { dir };
     }
 
     public boolean canAcceptSignal() {

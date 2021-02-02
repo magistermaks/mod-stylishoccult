@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.blocks;
 
 import net.darktree.stylishoccult.blocks.entities.PedestalBlockEntity;
 import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.RegUtil;
@@ -67,7 +68,7 @@ public class PedestalBlock extends SimpleBlock implements BlockEntityProvider {
     }
 
     @Override
-    public BakedLootTable getInternalLootTableId() {
+    public LootTable getInternalLootTableId() {
         return LootTables.PEDESTAL;
     }
 

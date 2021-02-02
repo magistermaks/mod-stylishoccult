@@ -25,6 +25,10 @@ public class StackManager {
         } catch (Exception ignore) {}
     }
 
+    public void combine( StackManager manager ) {
+        stack.addAll( manager.stack );
+    }
+
     public void copy( StackManager stackManager ) {
         stack = new ArrayList<>(stackManager.stack);
     }

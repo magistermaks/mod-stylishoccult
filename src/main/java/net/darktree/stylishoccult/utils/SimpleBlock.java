@@ -42,13 +42,12 @@ public abstract class SimpleBlock extends Block implements MutableHardness {
         }
     }
 
-    public BakedLootTable getInternalLootTableId() {
+    public net.darktree.stylishoccult.loot.LootTable getInternalLootTableId() {
         return null;
     }
 
     @Override
     final public List<ItemStack> getDroppedStacks(BlockState state, net.minecraft.loot.context.LootContext.Builder builder) {
-
         LootContext lootContext = builder.parameter(LootContextParameters.BLOCK_STATE, state).build(LootContextTypes.BLOCK);
         ServerWorld serverWorld = lootContext.getWorld();
         LootTable lootTable = serverWorld.getServer().getLootManager().getTable(lootTableId);
@@ -59,4 +58,5 @@ public abstract class SimpleBlock extends Block implements MutableHardness {
 
         return super.getDroppedStacks(state, builder);
     }
+
 }

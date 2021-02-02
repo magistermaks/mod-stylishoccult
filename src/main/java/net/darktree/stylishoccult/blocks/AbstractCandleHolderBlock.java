@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.blocks;
 import net.darktree.stylishoccult.blocks.entities.AbstractCandleHolderBlockEntity;
 import net.darktree.stylishoccult.enums.CandleHolderMaterial;
 import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.ShiftUsable;
@@ -95,7 +96,7 @@ public abstract class AbstractCandleHolderBlock extends SimpleBlockWithEntity im
     }
 
     @Override
-    public BakedLootTable getInternalLootTableId() {
+    public LootTable getInternalLootTableId() {
         return LootTables.CANDLE_CONTAINER;
     }
 

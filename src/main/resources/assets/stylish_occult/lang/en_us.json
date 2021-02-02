@@ -20,7 +20,7 @@
   "block.stylish_occult.andesite_slim_pillar": "Andesite Slim Pillar",
   "block.stylish_occult.diorite_slim_pillar": "Diorite Slim Pillar",
   "block.stylish_occult.fiery_lantern": "Fiery Lantern",
-  "block.stylish_occult.flesh_block": "Flesh Block",
+  "block.stylish_occult.passive_flesh_block": "Flesh Block",
   "block.stylish_occult.spark_vent": "Lava Vent",
   "block.stylish_occult.nether_grass": "Nether Grass",
   "block.stylish_occult.nether_fern": "Nether Fern",
@@ -94,6 +94,7 @@
   "rune.block.stylish_occult.rune_porta": "Porta",
   "rune.block.stylish_occult.rune_sensum": "Sensum",
   "rune.block.stylish_occult.rune_absumo": "Absumo",
+  "rune.block.stylish_occult.rune_adiungo": "Adiungo",
 
   "sound.stylish_occult.lava_demon.wakeup": "Lava Demon Wakes Up",
   "sound.stylish_occult.lava_demon.die": "Lava Demon Dies",

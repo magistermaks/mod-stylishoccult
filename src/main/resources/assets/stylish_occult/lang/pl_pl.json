@@ -20,7 +20,7 @@
   "block.stylish_occult.andesite_slim_pillar": "Andezytowy filar",
   "block.stylish_occult.diorite_slim_pillar": "Diorytowy filar",
   "block.stylish_occult.fiery_lantern": "Ognista latarnia",
-  "block.stylish_occult.flesh_block": "Blok ciała",
+  "block.stylish_occult.passive_flesh_block": "Blok ciała",
   "block.stylish_occult.spark_vent": "Ujście magmy",
   "block.stylish_occult.nether_grass": "Piekielna trawa",
   "block.stylish_occult.nether_fern": "Piekielna paproć",
@@ -94,6 +94,7 @@
   "rune.block.stylish_occult.rune_porta": "Porta",
   "rune.block.stylish_occult.rune_sensum": "Sensum",
   "rune.block.stylish_occult.rune_absumo": "Absumo",
+  "rune.block.stylish_occult.rune_adiungo": "Adiungo",
 
   "sound.stylish_occult.lava_demon.wakeup": "Magmowy demon budzi się",
   "sound.stylish_occult.lava_demon.die": "Magmowy demon umiera",

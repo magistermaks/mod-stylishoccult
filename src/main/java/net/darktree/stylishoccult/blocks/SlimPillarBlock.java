@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.blocks;
 
-import net.darktree.stylishoccult.utils.BuildingBlock;
 import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

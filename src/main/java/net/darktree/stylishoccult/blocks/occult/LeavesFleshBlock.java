@@ -1,12 +1,8 @@
 package net.darktree.stylishoccult.blocks.occult;
 
-import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.utils.OccultHelper;
-import net.darktree.stylishoccult.utils.RegUtil;
-import net.darktree.stylishoccult.utils.SimpleBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
+import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
@@ -15,24 +11,24 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class FleshBlock extends SimpleBlock implements ImpureBlock {
+public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock {
 
-    public FleshBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.8f).ticksRandomly() );
+    public LeavesFleshBlock() {
+        super(AbstractBlock.Settings.of(Material.LEAVES)
+                .strength(0.2F)
+                .ticksRandomly()
+                .sounds(BlockSoundGroup.HONEY)
+                .nonOpaque()
+                .allowsSpawning((a, b, c, d) -> false)
+                .suffocates((a, b, c) -> false)
+                .blockVision((a, b, c) -> false)
+        );
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         OccultHelper.corruptAround(world, pos, random);
-
-        if( random.nextInt( 256 ) == 0 ) {
-            progress(world, pos);
-        }
-    }
-
-    public void progress(World world, BlockPos pos) {
-        StylishOccult.LOGGER.warn("Scary!");
-        // TODO SPAWN OTHER FORMS
+        super.randomTick(state, world, pos, random);
     }
 
     @Override
@@ -43,7 +39,7 @@ public class FleshBlock extends SimpleBlock implements ImpureBlock {
 
     @Override
     public int impurityLevel(BlockState state) {
-        return 30;
+        return 20;
     }
 
 }

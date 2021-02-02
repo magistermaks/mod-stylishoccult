@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.utils;
 
 import net.minecraft.nbt.CompoundTag;
 
+@Deprecated
 public class Tag {
 
     private Tag context;

@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.blocks;
 
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.sounds.Sounds;
@@ -114,7 +115,7 @@ public class CandleBlock extends SimpleBlock {
     }
 
     @Override
-    public BakedLootTable getInternalLootTableId() {
+    public LootTable getInternalLootTableId() {
         return LootTables.CANDLE;
     }
 

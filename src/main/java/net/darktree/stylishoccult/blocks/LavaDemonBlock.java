@@ -5,6 +5,7 @@ import net.darktree.stylishoccult.blocks.entities.LavaDemonBlockEntity;
 import net.darktree.stylishoccult.enums.LavaDemonMaterial;
 import net.darktree.stylishoccult.enums.LavaDemonPart;
 import net.darktree.stylishoccult.loot.BakedLootTable;
+import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.BlockUtils;
@@ -56,7 +57,7 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
     }
 
     @Override
-    public BakedLootTable getInternalLootTableId() {
+    public LootTable getInternalLootTableId() {
         return LootTables.LAVA_DEMON;
     }
 

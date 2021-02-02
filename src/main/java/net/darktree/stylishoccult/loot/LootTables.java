@@ -17,17 +17,17 @@ import java.util.ArrayList;
 @SuppressWarnings("unchecked")
 public class LootTables {
 
-    public static final BakedLootTable SIMPLE = LootManager.create()
+    public static final LootTable SIMPLE = LootManager.create()
             .addGenerator( (rng, ctx) -> LootManager.getAsArray( ctx.getBlockItem() ) )
             .build();
 
-    public static final BakedLootTable SIMPLE_RESISTANT = LootManager.create()
+    public static final LootTable SIMPLE_RESISTANT = LootManager.create()
             .ignoreExplosions()
-            .addTable( SIMPLE.table() )
+            .addTable(SIMPLE)
             .build();
 
     // TODO INVALID LOTUS LIB USAGE - PURGE
-    public static final BakedLootTable PEDESTAL = LootManager.create()
+    public static final LootTable PEDESTAL = LootManager.create()
             .applyForCreative()
             .addGenerator( (rng, ctx) -> {
                 ArrayList<ItemStack> stacks = new ArrayList<>();
@@ -41,7 +41,7 @@ public class LootTables {
             } )
             .build();
 
-    public static final BakedLootTable URN = LootManager.create()
+    public static final LootTable URN = LootManager.create()
             .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
                 .addItem( ModItems.URN )
                 .pop()
@@ -62,7 +62,7 @@ public class LootTables {
             .minimum(1)
             .build();
 
-    public static final BakedLootTable GROWTH = LootManager.create()
+    public static final LootTable GROWTH = LootManager.create()
             .addValve( (arr, rng, ctx) -> {
                 int size = ctx.getState().get(ThinFleshBlock.SIZE);
                 int sides = Integer.bitCount( ThinFleshBlock.getBitfield(ctx.getState()) );
@@ -75,7 +75,7 @@ public class LootTables {
                 .pop()
             .build();
 
-    public static final BakedLootTable LAVA_DEMON = LootManager.create()
+    public static final LootTable LAVA_DEMON = LootManager.create()
             .addCondition( (rng, ctx) -> ctx.getBlock() == ModBlocks.LAVA_DEMON && ctx.getState().get(LavaDemonBlock.PART) == LavaDemonPart.HEAD )
                 .addItem( ModItems.LAVA_HEART )
                 .pop()
@@ -98,7 +98,7 @@ public class LootTables {
             .build();
 
     // TODO INVALID LOTUS LIB USAGE - PURGE
-    public static final BakedLootTable CANDLE_CONTAINER = LootManager.create()
+    public static final LootTable CANDLE_CONTAINER = LootManager.create()
             .applyForCreative()
             .addGenerator( (rng, ctx) -> {
                 ArrayList<ItemStack> stacks = new ArrayList<>();
@@ -119,7 +119,7 @@ public class LootTables {
             } )
             .build();
 
-    public static final BakedLootTable CANDLE = LootManager.create()
+    public static final LootTable CANDLE = LootManager.create()
             .addGenerator( (rng, ctx) -> {
                 ArrayList<ItemStack> stacks = new ArrayList<>();
                 Tag tag = new Tag();
@@ -144,7 +144,7 @@ public class LootTables {
             } )
             .build();
 
-    public static final BakedLootTable PASSIVE_FLESH = LootManager.create()
+    public static final LootTable PASSIVE_FLESH = LootManager.create()
             .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
                 .addItem( ModItems.FLESH_BLOCK )
                 .pop()
@@ -153,7 +153,7 @@ public class LootTables {
                 .pop()
             .build();
 
-    public static final BakedLootTable SPARK_VENT = LootManager.create()
+    public static final LootTable SPARK_VENT = LootManager.create()
             .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
                 .addItem( ModItems.SPARK_VENT )
                 .pop()
@@ -162,7 +162,7 @@ public class LootTables {
                 .pop()
             .build();
 
-    public static final BakedLootTable PLANT = LootManager.create()
+    public static final LootTable PLANT = LootManager.create()
             .addGenerator( (rng, ctx) -> {
                 ArrayList<ItemStack> stacks = new ArrayList<>();
 
