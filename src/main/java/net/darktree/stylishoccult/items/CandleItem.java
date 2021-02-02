@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.items;
 
-import net.darktree.stylishoccult.utils.Tag;
 import net.darktree.stylishoccult.utils.Utils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -12,9 +11,8 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -52,7 +50,11 @@ public class CandleItem extends BlockItem {
     public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
         if (this.isIn(group)) {
             ItemStack stack = new ItemStack( this );
-            stack.setTag( (new Tag()).newTag( "BlockStateTag" ).putString( "layers", "8" ).pop().getSimpleTag() );
+            CompoundTag tag1 = new CompoundTag();
+            CompoundTag tag2 = new CompoundTag();
+            tag2.putString( "layers", "8" );
+            tag1.put( "BlockStateTag", tag2 );
+            stack.setTag( tag1 );
             stacks.add( stack );
         }
     }

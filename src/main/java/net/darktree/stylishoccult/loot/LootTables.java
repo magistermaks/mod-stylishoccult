@@ -1,16 +1,19 @@
 package net.darktree.stylishoccult.loot;
 
-import net.darktree.stylishoccult.blocks.*;
+import net.darktree.stylishoccult.blocks.AbstractCandleHolderBlock;
+import net.darktree.stylishoccult.blocks.CandleBlock;
+import net.darktree.stylishoccult.blocks.LavaDemonBlock;
+import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.entities.AbstractCandleHolderBlockEntity;
 import net.darktree.stylishoccult.blocks.entities.PedestalBlockEntity;
 import net.darktree.stylishoccult.blocks.occult.ThinFleshBlock;
 import net.darktree.stylishoccult.enums.LavaDemonPart;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.entry.ValveEntry;
-import net.darktree.stylishoccult.utils.Tag;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.CompoundTag;
 
 import java.util.ArrayList;
 
@@ -122,12 +125,14 @@ public class LootTables {
     public static final LootTable CANDLE = LootManager.create()
             .addGenerator( (rng, ctx) -> {
                 ArrayList<ItemStack> stacks = new ArrayList<>();
-                Tag tag = new Tag();
+                CompoundTag tag1 = new CompoundTag();
+                CompoundTag tag2 = new CompoundTag();
                 int layers = ctx.getState().get(CandleBlock.LAYERS);
 
                 if( layers != 1 ) {
                     String l = String.valueOf( ctx.getState().get(CandleBlock.LAYERS) );
-                    tag.newTag( "BlockStateTag" ).putString( "layers", l ).pop();
+                    tag2.putString( "layers", l );
+                    tag1.put( "BlockStateTag", tag2 );
                     ItemStack stack = ItemStack.EMPTY;
 
                     if( ctx.getBlock() == ModBlocks.CANDLE ) {
@@ -136,7 +141,7 @@ public class LootTables {
                         stack = new ItemStack( ModItems.EXTINGUISHED_CANDLE );
                     }
 
-                    stack.setTag( tag.getSimpleTag() );
+                    stack.setTag( tag1 );
                     stacks.add(stack);
                 }
 
