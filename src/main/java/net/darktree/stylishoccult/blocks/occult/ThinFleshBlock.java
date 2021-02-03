@@ -150,9 +150,7 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock {
         }
 
         if( size == 3 && random.nextInt( 128 - count * 4 ) == 0 ) {
-            Direction dir = RandUtils.getEnum(Direction.class);
-            BlockPos target = pos.offset(dir);
-            OccultHelper.corrupt( world, target );
+            OccultHelper.corruptAround(world, pos, random);
         }
 
     }

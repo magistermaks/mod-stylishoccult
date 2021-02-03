@@ -1,9 +1,9 @@
 package net.darktree.stylishoccult.blocks.occult;
 
 import net.darktree.stylishoccult.utils.OccultHelper;
-import net.minecraft.block.AbstractBlock;
+import net.darktree.stylishoccult.utils.RegUtil;
+import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.Material;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
@@ -12,19 +12,10 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock {
+public class SoilFleshBlock extends SimpleBlock implements ImpureBlock {
 
-    public LeavesFleshBlock() {
-        super(AbstractBlock.Settings.of(Material.LEAVES)
-                .strength(0.2F)
-                .ticksRandomly()
-                .slipperiness(0.8f)
-                .sounds(BlockSoundGroup.HONEY)
-                .nonOpaque()
-                .allowsSpawning((a, b, c, d) -> false)
-                .suffocates((a, b, c) -> false)
-                .blockVision((a, b, c) -> false)
-        );
+    public SoilFleshBlock() {
+        super(RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.8f).ticksRandomly());
     }
 
     @Override
@@ -40,7 +31,7 @@ public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock {
 
     @Override
     public int impurityLevel(BlockState state) {
-        return 20;
+        return 32;
     }
 
 }

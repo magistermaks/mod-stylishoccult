@@ -1,9 +1,6 @@
 package net.darktree.stylishoccult.blocks;
 
-import net.darktree.stylishoccult.blocks.occult.FleshBlock;
-import net.darktree.stylishoccult.blocks.occult.LeavesFleshBlock;
-import net.darktree.stylishoccult.blocks.occult.PassiveFleshBlock;
-import net.darktree.stylishoccult.blocks.occult.ThinFleshBlock;
+import net.darktree.stylishoccult.blocks.occult.*;
 import net.darktree.stylishoccult.blocks.runes.*;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.RegUtil;
@@ -37,6 +34,9 @@ public class ModBlocks {
     public static final Block NETHER_FERN = RegUtil.block( "nether_fern", new NetherFernBlock( AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
     public static final Block DEFAULT_FLESH = RegUtil.block( "default_flesh", new FleshBlock() );
     public static final Block LEAVES_FLESH = RegUtil.block( "leaves_flesh", new LeavesFleshBlock() );
+    public static final Block SOIL_FLESH = RegUtil.block( "soil_flesh", new SoilFleshBlock() );
+    public static final Block BONE_FLESH = RegUtil.block( "bone_flesh", new FossilizedFleshBlock() );
+    public static final Block GOO_FLESH = RegUtil.block( "goo_flesh", new GooFleshBlock() );
 
     // simple building blocks
     public static final Block LAVA_STONE = RegUtil.block( "lava_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).requiresTool() ) );
@@ -114,6 +114,7 @@ public class ModBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(NETHER_GRASS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(NETHER_FERN, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GROWTH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GOO_FLESH, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), runestones);
 
         ColorProviderRegistry.BLOCK.register( RuneBlock.COLOR_PROVIDER, runestones );

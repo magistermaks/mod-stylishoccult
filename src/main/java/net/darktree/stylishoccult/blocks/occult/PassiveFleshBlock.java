@@ -8,10 +8,7 @@ import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.darktree.stylishoccult.utils.Utils;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
@@ -72,8 +69,7 @@ public class PassiveFleshBlock extends SimpleBlock implements ImpureBlock {
         if( state.get(BLOODY) ) {
             world.setBlockState(pos, state.with(BLOODY, false));
         }else{
-            // TODO REPLACE WITH REAL DEAD FLESH
-            world.setBlockState(pos, ModBlocks.ARCANE_ASH.getDefaultState());
+            world.setBlockState(pos, Blocks.AIR.getDefaultState());
         }
     }
 

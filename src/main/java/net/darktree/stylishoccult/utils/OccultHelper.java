@@ -5,6 +5,7 @@ import net.darktree.stylishoccult.blocks.occult.ImpureBlock;
 import net.darktree.stylishoccult.tags.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -79,16 +80,30 @@ public class OccultHelper {
     }
 
     private static void spawnCorruption(World world, BlockPos target, BlockState state) {
-        world.setBlockState(target, getCorruptionForBlock(state.getBlock()));
+        BlockState corruption = getCorruptionForBlock(state.getBlock());
+        if( corruption != null ) {
+            world.setBlockState(target, corruption);
+        }
     }
 
     private static BlockState getCorruptionForBlock( Block block ) {
-        if( block instanceof LeavesBlock || block.isIn(BlockTags.LEAVES) ) return ModBlocks.LEAVES_FLESH.getDefaultState();
-//        if( block.isIn(BlockTags.LOGS) ) return ModBlocks.FLESH.getDefaultState();
-//        if( (block instanceof GrassBlock || block instanceof MyceliumBlock || block instanceof NyliumBlock) && RandUtils.getBool(80) ) return ModBlocks.FLESH.getDefaultState();
+        if( block instanceof FluidBlock ) {
+            if( RandUtils.getBool(20.0f) ) {
+                return ModBlocks.GOO_FLESH.getDefaultState();
+            }
+        }else{
+            if( block instanceof LeavesBlock || block.isIn(BlockTags.LEAVES) ) return ModBlocks.LEAVES_FLESH.getDefaultState();
+            if( (block instanceof GrassBlock || block instanceof MyceliumBlock || block instanceof NyliumBlock) && RandUtils.getBool(80) ) return ModBlocks.SOIL_FLESH.getDefaultState();
+            // TODO: use block tag
+            return ModBlocks.DEFAULT_FLESH.getDefaultState();
+        }
 
-        // TODO: add more types
-        return ModBlocks.DEFAULT_FLESH.getDefaultState();
+        return null;
+    }
+
+    public static void cleanseFlesh(World world, BlockPos pos, BlockState state) {
+        world.playSound(null, pos, state.getSoundGroup().getBreakSound(), SoundCategory.BLOCKS, 1, 1);
+        world.setBlockState( pos, Blocks.AIR.getDefaultState() );
     }
 
 }
