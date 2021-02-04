@@ -1,21 +1,72 @@
 package net.darktree.stylishoccult.blocks.occult;
 
-import net.darktree.stylishoccult.utils.OccultHelper;
-import net.darktree.stylishoccult.utils.RegUtil;
-import net.darktree.stylishoccult.utils.SimpleBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
+import net.darktree.stylishoccult.utils.*;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+
+import java.util.Random;
 
 public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
 
+    public static final BooleanProperty TOP = BooleanProperty.of("top");
+    private static final VoxelShape BOX = Utils.box(0, 0, 0, 16, 15, 16);
+
     public GooFleshBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).noCollision() );
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).noCollision().ticksRandomly().solidBlock((a, b, c) -> false));
+        setDefaultState( getDefaultState().with(TOP, false) );
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return state.get(TOP) ? BOX : VoxelShapes.fullCube();
+    }
+
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        World world = ctx.getWorld();
+        BlockPos pos = ctx.getBlockPos().up();
+        BlockState state = getDefaultState();
+
+        return state.with(TOP, world.getBlockState(pos).isAir());
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(TOP);
+    }
+
+    @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
+        if( direction == Direction.UP ) {
+            return state.with(TOP, newState.isAir());
+        }
+
+        return state;
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        BlockPos target = pos.offset(RandUtils.getEnum(Direction.class));
+        BlockState targetState = world.getBlockState(target);
+
+        if( RandUtils.getBool(5.0f) && targetState.getBlock() instanceof FluidBlock) {
+            world.setBlockState( target, state.with(TOP, world.getBlockState(pos.up()).isAir()) );
+        }
     }
 
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
@@ -30,6 +81,16 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
     @Override
     public int impurityLevel(BlockState state) {
         return 12;
+    }
+
+    @Environment(EnvType.CLIENT)
+    public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+        return stateFrom.isOf(this) && (direction.getAxis() == Direction.Axis.Y || stateFrom.get(TOP) == state.get(TOP));
+    }
+
+    @Override
+    public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
+        return true;
     }
 
 }

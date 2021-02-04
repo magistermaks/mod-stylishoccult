@@ -32,16 +32,16 @@ public class ModBlocks {
     public static final Block GROWTH = RegUtil.block( "growth", new ThinFleshBlock() );
     public static final Block NETHER_GRASS = RegUtil.block( "nether_grass", new NetherGrassBlock( AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
     public static final Block NETHER_FERN = RegUtil.block( "nether_fern", new NetherFernBlock( AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
-    public static final Block DEFAULT_FLESH = RegUtil.block( "default_flesh", new FleshBlock() );
-    public static final Block LEAVES_FLESH = RegUtil.block( "leaves_flesh", new LeavesFleshBlock() );
-    public static final Block SOIL_FLESH = RegUtil.block( "soil_flesh", new SoilFleshBlock() );
-    public static final Block BONE_FLESH = RegUtil.block( "bone_flesh", new FossilizedFleshBlock() );
-    public static final Block GOO_FLESH = RegUtil.block( "goo_flesh", new GooFleshBlock() );
+    public static final Block DEFAULT_FLESH = RegUtil.block( "flesh_default", new FleshBlock() );
+    public static final Block LEAVES_FLESH = RegUtil.block( "flesh_leaves", new LeavesFleshBlock() );
+    public static final Block SOIL_FLESH = RegUtil.block( "flesh_soil", new SoilFleshBlock() );
+    public static final Block BONE_FLESH = RegUtil.block( "flesh_bone", new FossilizedFleshBlock() );
+    public static final Block GOO_FLESH = RegUtil.block( "flesh_goo", new GooFleshBlock() );
 
     // simple building blocks
     public static final Block LAVA_STONE = RegUtil.block( "lava_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).requiresTool() ) );
     public static final Block WAX_BLOCK = RegUtil.block( "wax_block", new BuildingBlock( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.CANDLE, 0.8F, 0.8F, true ) ) );
-    public static final Block FLESH_BLOCK = RegUtil.block( "passive_flesh_block", new PassiveFleshBlock() );
+    public static final Block FLESH_BLOCK = RegUtil.block( "flesh_passive", new PassiveFleshBlock() );
     public static final Block CRACKED_BRICKS = RegUtil.block( "cracked_bricks", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.RED).requiresTool() ) );
     public static final Block OLD_BRICKS = RegUtil.block( "old_bricks", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 4.0f, true ).materialColor(MaterialColor.RED).requiresTool() ) );
     public static final Block SMALL_STONE_BRICKS_1 = RegUtil.block( "small_stone_bricks_1", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).requiresTool() ) );

@@ -48,8 +48,12 @@ public class ModItems {
     public static final Item RUNE_ERROR_REPORT = RegUtil.item( "error_tablet", new ErrorReportItem( new Item.Settings().group( Groups.STYLISH_OCCULT ).maxCount(1) ) );
 
     // decorative
-    public static final Item FLESH_BLOCK = RegUtil.item( "flesh_block", ModBlocks.DEFAULT_FLESH, Groups.STYLISH_OCCULT );
-    public static final Item PASSIVE_FLESH_BLOCK = RegUtil.item( "passive_flesh_block", ModBlocks.FLESH_BLOCK, Groups.STYLISH_OCCULT );
+    public static final Item DEFAULT_FLESH_BLOCK = RegUtil.item( "flesh_default", ModBlocks.DEFAULT_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item LEAVES_FLESH_BLOCK = RegUtil.item( "flesh_leaves", ModBlocks.LEAVES_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item SOIL_FLESH_BLOCK = RegUtil.item( "flesh_soil", ModBlocks.SOIL_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item BONE_FLESH_BLOCK = RegUtil.item( "flesh_bone", ModBlocks.BONE_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item GOO_FLESH_BLOCK = RegUtil.item( "flesh_goo", ModBlocks.GOO_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item PASSIVE_FLESH_BLOCK = RegUtil.item( "flesh_passive", ModBlocks.FLESH_BLOCK, Groups.STYLISH_OCCULT );
     public static final Item OLD_BRICKS = RegUtil.item( "old_bricks", ModBlocks.OLD_BRICKS, Groups.STYLISH_OCCULT );
     public static final Item CRACKED_BRICKS = RegUtil.item( "cracked_bricks", ModBlocks.CRACKED_BRICKS, Groups.STYLISH_OCCULT );
     public static final Item SMALL_STONE_BRICKS_1 = RegUtil.item( "small_stone_bricks_1", ModBlocks.SMALL_STONE_BRICKS_1, Groups.STYLISH_OCCULT );

@@ -135,7 +135,7 @@ public class LootTables {
 
     public static final LootTable PASSIVE_FLESH = LootManager.create()
             .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
-                .addItem( ModItems.FLESH_BLOCK )
+                .addItem( ModItems.PASSIVE_FLESH_BLOCK )
                 .pop()
             .addElse()
                 .addItem( new ItemStack( ModItems.FLESH ), 100.0f, 1, 4 )

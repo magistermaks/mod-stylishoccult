@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.utils;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.blocks.occult.GooFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.ImpureBlock;
 import net.darktree.stylishoccult.tags.ModTags;
 import net.minecraft.block.*;
@@ -80,16 +81,16 @@ public class OccultHelper {
     }
 
     private static void spawnCorruption(World world, BlockPos target, BlockState state) {
-        BlockState corruption = getCorruptionForBlock(state.getBlock());
+        BlockState corruption = getCorruptionForBlock( world, target, state.getBlock() );
         if( corruption != null ) {
             world.setBlockState(target, corruption);
         }
     }
 
-    private static BlockState getCorruptionForBlock( Block block ) {
+    private static BlockState getCorruptionForBlock( World world, BlockPos pos, Block block ) {
         if( block instanceof FluidBlock ) {
-            if( RandUtils.getBool(20.0f) ) {
-                return ModBlocks.GOO_FLESH.getDefaultState();
+            if( RandUtils.getBool(25.0f) ) {
+                return ModBlocks.GOO_FLESH.getDefaultState().with(GooFleshBlock.TOP, world.getBlockState(pos.up()).isAir());
             }
         }else{
             if( block instanceof LeavesBlock || block.isIn(BlockTags.LEAVES) ) return ModBlocks.LEAVES_FLESH.getDefaultState();

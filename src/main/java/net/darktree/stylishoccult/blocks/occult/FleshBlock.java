@@ -1,8 +1,8 @@
 package net.darktree.stylishoccult.blocks.occult;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.OccultHelper;
-import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.minecraft.block.BlockState;
@@ -10,7 +10,6 @@ import net.minecraft.block.Material;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -25,28 +24,10 @@ public class FleshBlock extends SimpleBlock implements ImpureBlock {
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         OccultHelper.corruptAround(world, pos, random);
 
-        if( random.nextInt( 128 ) == 0 ) {
-            progress(world, pos);
-        }
-    }
-
-    public void progress(World world, BlockPos pos) {
-        int boneCount = 0;
-
-        for( Direction direction : Direction.values() ){
-            BlockPos tmp = pos.offset( direction );
-            BlockState state = world.getBlockState( tmp );
-            if( state.getBlock() != ModBlocks.DEFAULT_FLESH ) {
-                return;
-            }else {
-                if( state.getBlock() instanceof FossilizedFleshBlock ) {
-                    boneCount ++;
-                }
+        if( random.nextInt( 256 ) == 0 && (BlockUtils.countInArea(world, pos, ModBlocks.BONE_FLESH, 4) < 3) ) {
+            if( !BlockUtils.touchesAir(world, pos) ) {
+                world.setBlockState(pos, ModBlocks.BONE_FLESH.getDefaultState());
             }
-        }
-
-        if( boneCount == 1 || (boneCount == 0 && RandUtils.getBool(1.0f)) ) {
-            world.setBlockState( pos, ModBlocks.BONE_FLESH.getDefaultState() );
         }
     }
 

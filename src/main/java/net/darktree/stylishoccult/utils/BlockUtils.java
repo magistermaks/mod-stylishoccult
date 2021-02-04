@@ -1,7 +1,5 @@
 package net.darktree.stylishoccult.utils;
 
-import com.mojang.serialization.Dynamic;
-import com.mojang.serialization.DynamicOps;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -47,6 +45,23 @@ public class BlockUtils {
             if( state.isAir() ) return true;
         }
         return false;
+    }
+
+    public static int countInArea(World world, BlockPos origin, Block block, int radius) {
+        int count = 0;
+
+        for( int x = -radius; x <= radius; x ++ ){
+            for( int y = -radius; y <= radius; y ++ ) {
+                for (int z = -radius; z <= radius; z++) {
+                    BlockPos pos = new BlockPos( x + origin.getX(), Math.max( y + origin.getY(), 0 ), z + origin.getZ());
+                    if( world.getBlockState( pos ).getBlock() == block ) {
+                        count ++;
+                    }
+                }
+            }
+        }
+
+        return count;
     }
 
     public static BlockPos find(World world, BlockPos origin, Block block, int radius, BlockUtils.BlockStateComparator comp) {

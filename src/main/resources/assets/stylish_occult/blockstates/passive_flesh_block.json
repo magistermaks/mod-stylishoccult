@@ -1,8 +1,0 @@
-    {
-      "variants": {
-        "bloody=false": { "model": "stylish_occult:block/flesh/passive/simple" },
-        "bloody=true": { "model": "stylish_occult:block/flesh/passive/bloody" }
-      }
-    }
-
-
