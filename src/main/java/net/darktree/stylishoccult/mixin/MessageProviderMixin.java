@@ -27,6 +27,7 @@ abstract public class MessageProviderMixin {
         splashTexts.add("T" + "iny potato!");
         splashTexts.add("S" + "tylish nightmare!");
         splashTexts.add("T" + "he nightmare before breakfast!");
+        splashTexts.add("T" + "he wheels of progress frozen motionless");
     }
 
 }

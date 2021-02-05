@@ -27,6 +27,10 @@ public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock {
         );
     }
 
+    public boolean hasRandomTicks(BlockState state) {
+        return true;
+    }
+
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         OccultHelper.corruptAround(world, pos, random);

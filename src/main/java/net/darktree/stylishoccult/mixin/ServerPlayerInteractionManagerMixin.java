@@ -24,7 +24,6 @@ public abstract class ServerPlayerInteractionManagerMixin {
 
     @Inject(at = @At("HEAD"), method = "interactBlock(Lnet/minecraft/server/network/ServerPlayerEntity;Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;Lnet/minecraft/util/Hand;Lnet/minecraft/util/hit/BlockHitResult;)Lnet/minecraft/util/ActionResult;", cancellable = true)
     public void interactBlock(ServerPlayerEntity player, World world, ItemStack stack, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> info) {
-
         if( gameMode != GameMode.SPECTATOR ) {
 
             BlockState state = world.getBlockState(hit.getBlockPos());
@@ -42,7 +41,6 @@ public abstract class ServerPlayerInteractionManagerMixin {
             }
 
         }
-
     }
 
 }

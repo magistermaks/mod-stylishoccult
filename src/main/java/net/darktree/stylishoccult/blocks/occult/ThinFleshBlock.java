@@ -122,7 +122,6 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock {
         if( count != 6 ) {
             if( random.nextInt( count + 1 ) == 0 ) {
                 applyRandom( state, pos, world, random );
-                return;
             }
 
             BlockPos target = pos.offset( RandUtils.getEnum(Direction.class, random) );
@@ -149,7 +148,7 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock {
             return;
         }
 
-        if( size == 3 && random.nextInt( 128 - count * 4 ) == 0 ) {
+        if( size == 3 && random.nextInt( 128 - count * 5 ) == 0 ) {
             OccultHelper.corruptAround(world, pos, random);
         }
 

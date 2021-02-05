@@ -27,7 +27,7 @@ public class OccultHelper {
             target = target.offset( RandUtils.getEnum(Direction.class, random) );
         }
 
-        OccultHelper.corrupt(world, target);
+        corrupt(world, target);
     }
 
     public static boolean cleanseAround(World world, BlockPos pos, int ra, int rb, int power) {
@@ -57,26 +57,27 @@ public class OccultHelper {
         BlockState state = world.getBlockState(target);
         Block block = state.getBlock();
         float hardness = state.getHardness(world, target);
+        boolean corruptible = block.isIn(ModTags.CORRUPTIBLE);
 
-        if( !state.isAir() && (block.isIn(ModTags.CORRUPTIBLE) || canCorrupt(state, hardness)) && requiredCheck(block, hardness) && RandUtils.getBool(30.0f) ) {
+        if( !state.isAir() && (corruptible || (canCorrupt(state, hardness) && requiredCheck(block, hardness))) && RandUtils.getBool(30.0f) ) {
             spawnCorruption(world, target, state);
         }
     }
 
-    public static boolean canCorrupt(BlockState state, float hardness) {
+    private static boolean canCorrupt(BlockState state, float hardness) {
         Material material = state.getMaterial();
         return hardnessCheck(hardness) || ((material.isBurnable() || material.isReplaceable() || material == Material.ORGANIC_PRODUCT || material == Material.SOLID_ORGANIC) && RandUtils.getBool(30.0f));
     }
 
-    public static boolean hardnessCheck( float hardness ) {
+    private static boolean hardnessCheck( float hardness ) {
         if( hardness < 1.0 ) return RandUtils.getBool(93.0f);
         if( hardness < 1.5 ) return RandUtils.getBool(50.0f);
         if( hardness < 2.0 ) return RandUtils.getBool(5.5f);
-        if( hardness < 2.5 ) return RandUtils.getBool(0.1f);
+        if( hardness < 2.5 ) return RandUtils.getBool(1.0f);
         return RandUtils.getBool(0.06f);
     }
 
-    public static boolean requiredCheck( Block block, float hardness ) {
+    private static boolean requiredCheck( Block block, float hardness ) {
         return !(block instanceof ImpureBlock) && !block.isIn(ModTags.INCORRUPTIBLE) && hardness >= 0 && hardness <= 1000;
     }
 
@@ -93,9 +94,8 @@ public class OccultHelper {
                 return ModBlocks.GOO_FLESH.getDefaultState().with(GooFleshBlock.TOP, world.getBlockState(pos.up()).isAir());
             }
         }else{
-            if( block instanceof LeavesBlock || block.isIn(BlockTags.LEAVES) ) return ModBlocks.LEAVES_FLESH.getDefaultState();
-            if( (block instanceof GrassBlock || block instanceof MyceliumBlock || block instanceof NyliumBlock) && RandUtils.getBool(80) ) return ModBlocks.SOIL_FLESH.getDefaultState();
-            // TODO: use block tag
+            if( block.isIn(BlockTags.LEAVES) ) return ModBlocks.LEAVES_FLESH.getDefaultState().with(LeavesBlock.DISTANCE, 1);
+            if( block.isIn(ModTags.TOP_SOIL) && RandUtils.getBool(80) ) return ModBlocks.SOIL_FLESH.getDefaultState();
             return ModBlocks.DEFAULT_FLESH.getDefaultState();
         }
 

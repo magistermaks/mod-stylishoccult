@@ -27,7 +27,7 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
     private static final VoxelShape BOX = Utils.box(0, 0, 0, 16, 15, 16);
 
     public GooFleshBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).noCollision().ticksRandomly().solidBlock((a, b, c) -> false));
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).noCollision().ticksRandomly());
         setDefaultState( getDefaultState().with(TOP, false) );
     }
 
@@ -57,6 +57,7 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
         }
 
         return state;
+
     }
 
     @Override
@@ -65,12 +66,12 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
         BlockState targetState = world.getBlockState(target);
 
         if( RandUtils.getBool(5.0f) && targetState.getBlock() instanceof FluidBlock) {
-            world.setBlockState( target, state.with(TOP, world.getBlockState(pos.up()).isAir()) );
+            world.setBlockState( target, state.with(TOP, world.getBlockState(target.up()).isAir()) );
         }
     }
 
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        entity.slowMovement(state, new Vec3d(0.9, 0.9, 0.9));
+        entity.slowMovement( state, new Vec3d(0.95, 0.95, 0.95) );
     }
 
     @Override
@@ -85,7 +86,7 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
 
     @Environment(EnvType.CLIENT)
     public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-        return stateFrom.isOf(this) && (direction.getAxis() == Direction.Axis.Y || stateFrom.get(TOP) == state.get(TOP));
+        return stateFrom.isOf(this) && (direction.getAxis() == Direction.Axis.Y || (stateFrom.get(TOP) == state.get(TOP)));
     }
 
     @Override
