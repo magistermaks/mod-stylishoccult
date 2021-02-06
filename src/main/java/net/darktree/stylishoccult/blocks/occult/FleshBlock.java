@@ -1,6 +1,10 @@
 package net.darktree.stylishoccult.blocks.occult;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
+import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.loot.LootTable;
+import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RegUtil;
@@ -14,7 +18,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class FleshBlock extends SimpleBlock implements ImpureBlock {
+public class FleshBlock extends SimpleBlock implements ImpureBlock, FullFleshBlock {
 
     public FleshBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.8f).ticksRandomly() );
@@ -24,10 +28,8 @@ public class FleshBlock extends SimpleBlock implements ImpureBlock {
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         OccultHelper.corruptAround(world, pos, random);
 
-        if( random.nextInt( 256 ) == 0 && (BlockUtils.countInArea(world, pos, ModBlocks.BONE_FLESH, 4) < 3) ) {
-            if( !BlockUtils.touchesAir(world, pos) ) {
-                world.setBlockState(pos, ModBlocks.BONE_FLESH.getDefaultState());
-            }
+        if( random.nextInt( 256 ) == 0 && FossilizedFleshBlock.isPosValid(world, pos) && (BlockUtils.countInArea(world, pos, FossilizedFleshBlock.class, 4) < 3) ) {
+            world.setBlockState(pos, ModBlocks.BONE_FLESH.getDefaultState());
         }
     }
 
@@ -41,4 +43,8 @@ public class FleshBlock extends SimpleBlock implements ImpureBlock {
         return 30;
     }
 
+    @Override
+    public LootTable getInternalLootTableId() {
+        return LootTables.GENERIC_FLESH;
+    }
 }

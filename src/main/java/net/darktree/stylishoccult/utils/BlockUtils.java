@@ -47,14 +47,15 @@ public class BlockUtils {
         return false;
     }
 
-    public static int countInArea(World world, BlockPos origin, Block block, int radius) {
+    public static int countInArea(World world, BlockPos origin, Class<?> clazz, int radius) {
         int count = 0;
+        BlockPos.Mutable pos = new BlockPos.Mutable();
 
         for( int x = -radius; x <= radius; x ++ ){
             for( int y = -radius; y <= radius; y ++ ) {
                 for (int z = -radius; z <= radius; z++) {
-                    BlockPos pos = new BlockPos( x + origin.getX(), Math.max( y + origin.getY(), 0 ), z + origin.getZ());
-                    if( world.getBlockState( pos ).getBlock() == block ) {
+                    pos.set( x + origin.getX(), y + origin.getY(), z + origin.getZ());
+                    if( clazz.isInstance( world.getBlockState( pos ).getBlock() ) ) {
                         count ++;
                     }
                 }

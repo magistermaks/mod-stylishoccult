@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "stylish_occult:block/flesh/worms/2"
+  }
+}

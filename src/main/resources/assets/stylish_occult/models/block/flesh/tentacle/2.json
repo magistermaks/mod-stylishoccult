@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbench by magistermaks",
+	"parent": "block/block",
+	"textures": {
+		"0": "stylish_occult:block/flesh/default",
+		"particle": "stylish_occult:block/flesh/default"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 5],
+			"to": [11, 16, 11],
+			"faces": {
+				"north": {"uv": [0, 0, 6, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 6, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 6, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 6, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 6, 6], "texture": "#0", "cullface": "up"},
+				"down": {"uv": [0, 0, 6, 6], "texture": "#0", "cullface": "down"}
+			}
+		}
+	]
+}

@@ -1,0 +1,9 @@
+    {
+      "variants": {
+        "size=1": { "model": "stylish_occult:block/flesh/eyes/1" },
+        "size=2": { "model": "stylish_occult:block/flesh/eyes/2" },
+        "size=3": { "model": "stylish_occult:block/flesh/eyes/3" }
+      }
+    }
+
+

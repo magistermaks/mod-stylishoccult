@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.blocks.occult;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.*;
@@ -25,6 +26,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public class ThinFleshBlock extends SimpleBlock implements ImpureBlock {
+
+    // TODO: MAKE COMPATIBLE WITH FLESH
 
     public static final BooleanProperty UP = BooleanProperty.of("up");
     public static final BooleanProperty DOWN = BooleanProperty.of("down");

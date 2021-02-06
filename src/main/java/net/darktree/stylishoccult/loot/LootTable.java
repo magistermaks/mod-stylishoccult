@@ -104,7 +104,7 @@ public class LootTable {
         TableEntry entry = new TableEntry( table, chance );
         entries.add( entry );
         entry.getTable().push( this );
-        return entry.getTable();
+        return this;
     }
 
     public LootTable minimum(int min ) {

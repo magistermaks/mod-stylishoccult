@@ -1,8 +1,12 @@
 package net.darktree.stylishoccult.utils;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.blocks.occult.EyesBlock;
+import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
+import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.GooFleshBlock;
-import net.darktree.stylishoccult.blocks.occult.ImpureBlock;
+import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.blocks.occult.TentacleBlock;
 import net.darktree.stylishoccult.tags.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
@@ -59,8 +63,14 @@ public class OccultHelper {
         float hardness = state.getHardness(world, target);
         boolean corruptible = block.isIn(ModTags.CORRUPTIBLE);
 
-        if( !state.isAir() && (corruptible || (canCorrupt(state, hardness) && requiredCheck(block, hardness))) && RandUtils.getBool(30.0f) ) {
-            spawnCorruption(world, target, state);
+        if( !state.isAir() ) {
+            if( (corruptible || (canCorrupt(state, hardness) && requiredCheck(block, hardness))) && RandUtils.getBool(30.0f)) {
+                spawnCorruption(world, target, state);
+            }
+        }else{
+            if( touchesSource(world, target) ) {
+                spawnCorruption(world, target, state);
+            }
         }
     }
 
@@ -74,29 +84,63 @@ public class OccultHelper {
         if( hardness < 1.5 ) return RandUtils.getBool(50.0f);
         if( hardness < 2.0 ) return RandUtils.getBool(5.5f);
         if( hardness < 2.5 ) return RandUtils.getBool(1.0f);
-        return RandUtils.getBool(0.06f);
+        return RandUtils.getBool(0.1f);
     }
 
     private static boolean requiredCheck( Block block, float hardness ) {
         return !(block instanceof ImpureBlock) && !block.isIn(ModTags.INCORRUPTIBLE) && hardness >= 0 && hardness <= 1000;
     }
 
+    private static boolean touchesSource(World world, BlockPos pos) {
+        for( Direction dir : Direction.values() ) {
+            if( world.getBlockState(pos.offset(dir)).getBlock() instanceof FullFleshBlock ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private static void spawnCorruption(World world, BlockPos target, BlockState state) {
-        BlockState corruption = getCorruptionForBlock( world, target, state.getBlock() );
+        BlockState corruption = getCorruptionForBlock( world, target, state );
         if( corruption != null ) {
             world.setBlockState(target, corruption);
         }
     }
 
-    private static BlockState getCorruptionForBlock( World world, BlockPos pos, Block block ) {
-        if( block instanceof FluidBlock ) {
-            if( RandUtils.getBool(25.0f) ) {
-                return ModBlocks.GOO_FLESH.getDefaultState().with(GooFleshBlock.TOP, world.getBlockState(pos.up()).isAir());
+    private static BlockState getCorruptionForBlock( World world, BlockPos pos, BlockState state ) {
+        if( state.isAir() ) {
+            if (RandUtils.getBool(10.0f) && shouldSpawnFoliage(world, pos) ) {
+                int type = RandUtils.rangeInt(0, 5);
+
+                if( type == 0 && validTentacleSpot(world, pos) ) {
+                    return ModBlocks.TENTACLE.getDefaultState().with(TentacleBlock.SIZE, RandUtils.rangeInt(3, 6));
+                }
+
+                if( type == 1 && validDownSpot(world, pos) ) {
+                    return ModBlocks.EYES_FLESH.getDefaultState().with(EyesBlock.SIZE, RandUtils.rangeInt(1, 3));
+                }
+
+                if( type == 2 && validDownSpot(world, pos) ) {
+                    return ModBlocks.WARTS_FLESH.getDefaultState().with(EyesBlock.SIZE, RandUtils.rangeInt(1, 3));
+                }
+
+                if( type >= 3 && validDownSpot(world, pos) ) {
+                    return ModBlocks.WORMS_FLESH.getDefaultState();
+                }
             }
         }else{
-            if( block.isIn(BlockTags.LEAVES) ) return ModBlocks.LEAVES_FLESH.getDefaultState().with(LeavesBlock.DISTANCE, 1);
-            if( block.isIn(ModTags.TOP_SOIL) && RandUtils.getBool(80) ) return ModBlocks.SOIL_FLESH.getDefaultState();
-            return ModBlocks.DEFAULT_FLESH.getDefaultState();
+            Block block = state.getBlock();
+
+            if( block instanceof FluidBlock ) {
+                if( RandUtils.getBool(25.0f) ) {
+                    return ModBlocks.GOO_FLESH.getDefaultState().with(GooFleshBlock.TOP, world.getBlockState(pos.up()).isAir());
+                }
+            }else{
+                if( block.isIn(BlockTags.LEAVES) ) return ModBlocks.LEAVES_FLESH.getDefaultState().with(LeavesBlock.DISTANCE, 1);
+                if( block.isIn(ModTags.TOP_SOIL) && RandUtils.getBool(80) ) return ModBlocks.SOIL_FLESH.getDefaultState();
+                return ModBlocks.DEFAULT_FLESH.getDefaultState();
+            }
         }
 
         return null;
@@ -105,6 +149,18 @@ public class OccultHelper {
     public static void cleanseFlesh(World world, BlockPos pos, BlockState state) {
         world.playSound(null, pos, state.getSoundGroup().getBreakSound(), SoundCategory.BLOCKS, 1, 1);
         world.setBlockState( pos, Blocks.AIR.getDefaultState() );
+    }
+
+    private static boolean shouldSpawnFoliage( World world, BlockPos pos ) {
+        return BlockUtils.countInArea(world, pos, FoliageFleshBlock.class, 4) == 0;
+    }
+
+    private static boolean validTentacleSpot( World world, BlockPos pos ) {
+        return (world.getBlockState(pos.up()).getBlock() instanceof FullFleshBlock) != (world.getBlockState(pos.down()).getBlock() instanceof FullFleshBlock);
+    }
+
+    private static boolean validDownSpot( World world, BlockPos pos ) {
+        return (world.getBlockState(pos.down()).getBlock() instanceof FullFleshBlock);
     }
 
 }

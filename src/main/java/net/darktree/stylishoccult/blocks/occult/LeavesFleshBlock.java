@@ -1,5 +1,7 @@
 package net.darktree.stylishoccult.blocks.occult;
 
+import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
+import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
@@ -12,7 +14,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock {
+public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock, FoliageFleshBlock {
 
     public LeavesFleshBlock() {
         super(AbstractBlock.Settings.of(Material.LEAVES)

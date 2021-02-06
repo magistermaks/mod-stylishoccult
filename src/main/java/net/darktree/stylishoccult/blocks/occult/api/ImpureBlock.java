@@ -1,4 +1,4 @@
-package net.darktree.stylishoccult.blocks.occult;
+package net.darktree.stylishoccult.blocks.occult.api;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;

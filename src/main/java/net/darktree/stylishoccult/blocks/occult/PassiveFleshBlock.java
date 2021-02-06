@@ -1,6 +1,6 @@
 package net.darktree.stylishoccult.blocks.occult;
 
-import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.items.BottleItem;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.LootTable;
@@ -44,7 +44,7 @@ public class PassiveFleshBlock extends SimpleBlock implements ImpureBlock {
 
     @Override
     public LootTable getInternalLootTableId() {
-        return LootTables.PASSIVE_FLESH;
+        return LootTables.GENERIC_FLESH;
     }
 
     @Override

@@ -1,0 +1,9 @@
+    {
+      "variants": {
+        "size=1": { "model": "stylish_occult:block/flesh/warts/1" },
+        "size=2": { "model": "stylish_occult:block/flesh/warts/2" },
+        "size=3": { "model": "stylish_occult:block/flesh/warts/3" }
+      }
+    }
+
+

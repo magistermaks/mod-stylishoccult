@@ -133,13 +133,33 @@ public class LootTables {
             } )
             .build();
 
-    public static final LootTable PASSIVE_FLESH = LootManager.create()
+    public static final LootTable GENERIC_FLESH = LootManager.create()
             .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
-                .addItem( ModItems.PASSIVE_FLESH_BLOCK )
+                .addTable(SIMPLE)
                 .pop()
             .addElse()
                 .addItem( new ItemStack( ModItems.FLESH ), 100.0f, 1, 4 )
                 .pop()
+            .build();
+
+    public static final LootTable BONE_FLESH = LootManager.create()
+            .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
+                .addTable(SIMPLE)
+                .pop()
+            .addElse()
+                .addItem( new ItemStack( ModItems.FLESH ), 75.0f, 1, 2 )
+                .addItem( new ItemStack( ModItems.TWISTED_BONE ), 100.0f, 1, 4 )
+                .dropExperience( 1, 3 )
+                .pop()
+            .build();
+
+    public static final LootTable GOO_FLESH = LootManager.create()
+            .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
+                .addTable(SIMPLE)
+                .pop()
+            .addElse()
+                .addItem( new ItemStack(ModItems.GOO), 100.0f, 1, 3 )
+            .pop()
             .build();
 
     public static final LootTable SPARK_VENT = LootManager.create()

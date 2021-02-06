@@ -29,6 +29,16 @@ public class Utils {
         return finalShape;
     }
 
+    public static VoxelShape join( VoxelShape... shapes ) {
+        VoxelShape finalShape = VoxelShapes.empty();
+
+        for( VoxelShape shape : shapes ) {
+            finalShape = VoxelShapes.combine( finalShape, shape, BooleanBiFunction.OR );
+        }
+
+        return finalShape;
+    }
+
     public static MutableText tooltip( String text, Object... args ) {
         return new TranslatableText( "tooltip." + StylishOccult.NAMESPACE + "." + text, args ).formatted( Formatting.GRAY );
     }

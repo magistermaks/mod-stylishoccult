@@ -37,9 +37,15 @@ public class ModBlocks {
     public static final Block SOIL_FLESH = RegUtil.block( "flesh_soil", new SoilFleshBlock() );
     public static final Block BONE_FLESH = RegUtil.block( "flesh_bone", new FossilizedFleshBlock() );
     public static final Block GOO_FLESH = RegUtil.block( "flesh_goo", new GooFleshBlock() );
+    public static final Block TENTACLE = RegUtil.block( "flesh_tentacle", new TentacleBlock() );
+    public static final Block EYE_FLESH = RegUtil.block( "flesh_eye", new EyeBlock() );
+    public static final Block EYES_FLESH = RegUtil.block( "flesh_eyes", new EyesBlock() );
+    public static final Block WARTS_FLESH = RegUtil.block( "flesh_warts", new EyesBlock() );
+    public static final Block WORMS_FLESH = RegUtil.block( "flesh_worms", new WormsBlock() );
 
     // simple building blocks
-    public static final Block LAVA_STONE = RegUtil.block( "lava_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).requiresTool() ) );
+    public static final Block STONE_FLESH = RegUtil.block( "flesh_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).breakByTool(FabricToolTags.PICKAXES).requiresTool() ) );
+    public static final Block LAVA_STONE = RegUtil.block( "lava_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).breakByTool(FabricToolTags.PICKAXES).requiresTool() ) );
     public static final Block WAX_BLOCK = RegUtil.block( "wax_block", new BuildingBlock( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.CANDLE, 0.8F, 0.8F, true ) ) );
     public static final Block FLESH_BLOCK = RegUtil.block( "flesh_passive", new PassiveFleshBlock() );
     public static final Block CRACKED_BRICKS = RegUtil.block( "cracked_bricks", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.RED).requiresTool() ) );
@@ -114,6 +120,7 @@ public class ModBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(NETHER_GRASS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(NETHER_FERN, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GROWTH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(WORMS_FLESH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GOO_FLESH, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), runestones);
 

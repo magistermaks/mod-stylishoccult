@@ -1,5 +1,8 @@
 package net.darktree.stylishoccult.blocks.occult;
 
+import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.loot.LootTable;
+import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -92,6 +95,11 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
     @Override
     public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
         return true;
+    }
+
+    @Override
+    public LootTable getInternalLootTableId() {
+        return LootTables.GOO_FLESH;
     }
 
 }

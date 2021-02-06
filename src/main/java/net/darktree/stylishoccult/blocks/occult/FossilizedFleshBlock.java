@@ -1,6 +1,10 @@
 package net.darktree.stylishoccult.blocks.occult;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
+import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.loot.LootTable;
+import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -16,7 +20,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class FossilizedFleshBlock extends SimpleBlock implements ImpureBlock {
+public class FossilizedFleshBlock extends SimpleBlock implements ImpureBlock, FullFleshBlock {
 
     public static final BooleanProperty STABLE = BooleanProperty.of("stable");
 
@@ -25,7 +29,7 @@ public class FossilizedFleshBlock extends SimpleBlock implements ImpureBlock {
         setDefaultState( getDefaultState().with(STABLE, false) );
     }
 
-    public boolean isPosValid(BlockView world, BlockPos origin) {
+    public static boolean isPosValid(BlockView world, BlockPos origin) {
         for( Direction direction : Direction.values() ){
             BlockState state = world.getBlockState( origin.offset( direction ) );
             Block block = state.getBlock();
@@ -47,7 +51,7 @@ public class FossilizedFleshBlock extends SimpleBlock implements ImpureBlock {
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if( RandUtils.getBool(33.0f) ) {
-            if( BlockUtils.countInArea(world, pos, ModBlocks.BONE_FLESH, 4) < 5 ) {
+            if( BlockUtils.countInArea(world, pos, FossilizedFleshBlock.class, 4) < 5 ) {
                 BlockPos target = pos.offset( RandUtils.getEnum(Direction.class) );
                 BlockState targetState = world.getBlockState( target );
 
@@ -70,4 +74,8 @@ public class FossilizedFleshBlock extends SimpleBlock implements ImpureBlock {
         return 16;
     }
 
+    @Override
+    public LootTable getInternalLootTableId() {
+        return LootTables.BONE_FLESH;
+    }
 }
