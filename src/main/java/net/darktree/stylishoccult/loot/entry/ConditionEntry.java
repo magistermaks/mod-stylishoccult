@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.loot.entry;
 
 import net.darktree.stylishoccult.loot.LootContext;
 import net.darktree.stylishoccult.loot.LootTable;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -11,6 +12,10 @@ public class ConditionEntry extends AbstractEntry {
 
     private final Condition condition;
     private final LootTable table, elseTable;
+
+    public static boolean hasSilkTouch( Random random, LootContext context ) {
+        return context.toolHasEnchantment( Enchantments.SILK_TOUCH );
+    }
 
     public ConditionEntry( Condition condition ) {
         this.condition = condition;

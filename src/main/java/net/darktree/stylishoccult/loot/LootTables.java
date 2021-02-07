@@ -5,12 +5,12 @@ import net.darktree.stylishoccult.blocks.CandleBlock;
 import net.darktree.stylishoccult.blocks.LavaDemonBlock;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.entities.AbstractCandleHolderBlockEntity;
-import net.darktree.stylishoccult.blocks.entities.PedestalBlockEntity;
+import net.darktree.stylishoccult.blocks.occult.EyesBlock;
 import net.darktree.stylishoccult.blocks.occult.ThinFleshBlock;
 import net.darktree.stylishoccult.enums.LavaDemonPart;
 import net.darktree.stylishoccult.items.ModItems;
+import net.darktree.stylishoccult.loot.entry.ConditionEntry;
 import net.darktree.stylishoccult.loot.entry.ValveEntry;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
@@ -21,16 +21,16 @@ import java.util.ArrayList;
 public class LootTables {
 
     public static final LootTable SIMPLE = LootManager.create()
-            .addGenerator( (rng, ctx) -> LootManager.getAsArray( ctx.getBlockItem() ) )
+            .addBlockItem()
             .build();
 
     public static final LootTable SIMPLE_RESISTANT = LootManager.create()
             .ignoreExplosions()
-            .addTable(SIMPLE)
+            .addBlockItem()
             .build();
 
     public static final LootTable URN = LootManager.create()
-            .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
+            .addCondition( ConditionEntry::hasSilkTouch )
                 .addItem( ModItems.URN )
                 .pop()
             .addElse()
@@ -65,11 +65,11 @@ public class LootTables {
 
     public static final LootTable LAVA_DEMON = LootManager.create()
             .addCondition( (rng, ctx) -> ctx.getBlock() == ModBlocks.LAVA_DEMON && ctx.getState().get(LavaDemonBlock.PART) == LavaDemonPart.HEAD )
-                .addItem( ModItems.LAVA_HEART )
+                .addItem(ModItems.LAVA_HEART)
                 .pop()
             .addElse()
-                .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
-                    .addItem( ModItems.LAVA_STONE)
+                .addCondition( ConditionEntry::hasSilkTouch )
+                    .addItem(ModItems.LAVA_STONE)
                     .pop()
                 .addElse()
                     .addValve( ValveEntry::fortune )
@@ -134,8 +134,8 @@ public class LootTables {
             .build();
 
     public static final LootTable GENERIC_FLESH = LootManager.create()
-            .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
-                .addTable(SIMPLE)
+            .addCondition( ConditionEntry::hasSilkTouch )
+                .addBlockItem()
                 .pop()
             .addElse()
                 .addItem( new ItemStack( ModItems.FLESH ), 100.0f, 1, 4 )
@@ -143,44 +143,42 @@ public class LootTables {
             .build();
 
     public static final LootTable BONE_FLESH = LootManager.create()
-            .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
-                .addTable(SIMPLE)
+            .addCondition( ConditionEntry::hasSilkTouch )
+                .addBlockItem()
                 .pop()
             .addElse()
-                .addItem( new ItemStack( ModItems.FLESH ), 75.0f, 1, 2 )
+                .addItem( ModItems.FLESH )
                 .addItem( new ItemStack( ModItems.TWISTED_BONE ), 100.0f, 1, 4 )
-                .dropExperience( 1, 3 )
+                .dropExperience( 0, 3 )
                 .pop()
             .build();
 
     public static final LootTable GOO_FLESH = LootManager.create()
-            .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
-                .addTable(SIMPLE)
+            .addCondition( ConditionEntry::hasSilkTouch )
+                .addBlockItem()
                 .pop()
             .addElse()
                 .addItem( new ItemStack(ModItems.GOO), 100.0f, 1, 3 )
             .pop()
             .build();
 
+    public static final LootTable EYES_BlOCK = LootManager.create()
+            .addValve( (arr, rng, ctx) -> {
+                int size = ctx.getState().get(EyesBlock.SIZE);
+                for( ItemStack stack : arr ) stack.setCount( size );
+                return arr;
+            } )
+                .addBlockItem()
+                .pop()
+            .build();
+
     public static final LootTable SPARK_VENT = LootManager.create()
-            .addCondition( (rng, ctx) -> ctx.toolHasEnchantment( Enchantments.SILK_TOUCH ) )
+            .addCondition( ConditionEntry::hasSilkTouch )
                 .addItem( ModItems.SPARK_VENT )
                 .pop()
             .addElse()
                 .addItem( Items.NETHERRACK )
                 .pop()
-            .build();
-
-    public static final LootTable PLANT = LootManager.create()
-            .addGenerator( (rng, ctx) -> {
-                ArrayList<ItemStack> stacks = new ArrayList<>();
-
-                if( ctx.getTool().getItem() == Items.SHEARS ) {
-                    stacks.add(ctx.getBlockItem());
-                }
-
-                return stacks;
-            } )
             .build();
 
     public static void init() {

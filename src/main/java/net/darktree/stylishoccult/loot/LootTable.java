@@ -53,6 +53,11 @@ public class LootTable {
         return this;
     }
 
+    public LootTable addBlockItem() {
+        this.addGenerator( (rng, ctx) -> LootManager.getAsArray( ctx.getBlockItem() ) );
+        return this;
+    }
+
     public LootTable dropExperience(int min, int max ) {
         return dropExperience( 100.0f, min, max );
     }

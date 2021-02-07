@@ -11,6 +11,8 @@ import net.minecraft.world.BlockView;
 
 import java.util.List;
 
+// TODO: MAKE LOTUS LIB NOT ANGRY...
+
 public class NetherGrassBlock extends SproutsBlock {
 
     public NetherGrassBlock(Settings settings) {
@@ -24,7 +26,7 @@ public class NetherGrassBlock extends SproutsBlock {
 
     @Override
     final public List<ItemStack> getDroppedStacks(BlockState state, net.minecraft.loot.context.LootContext.Builder builder) {
-        return LootManager.dispatch(state, builder, this.lootTableId, LootTables.PLANT);
+        return LootManager.dispatch(state, builder, this.lootTableId, LootTables.SIMPLE);
     }
 
 }

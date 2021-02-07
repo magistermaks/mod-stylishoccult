@@ -51,6 +51,10 @@ public class ModItems {
     public static final Item RUNE_ERROR_REPORT = RegUtil.item( "error_tablet", new ErrorReportItem( new Item.Settings().group( Groups.STYLISH_OCCULT ).maxCount(1) ) );
 
     // decorative
+    public static final Item EYES_BLOCK = RegUtil.item( "eyes_block", ModBlocks.EYES_BLOCK, Groups.STYLISH_OCCULT );
+    public static final Item WORMS_FLESH_BLOCK = RegUtil.item( "flesh_worms", ModBlocks.WORMS_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item EYES_FLESH_BLOCK = RegUtil.item( "flesh_eyes", ModBlocks.EYES_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item WARTS_FLESH_BLOCK = RegUtil.item( "flesh_warts", ModBlocks.WARTS_FLESH, Groups.STYLISH_OCCULT );
     public static final Item DEFAULT_FLESH_BLOCK = RegUtil.item( "flesh_default", ModBlocks.DEFAULT_FLESH, Groups.STYLISH_OCCULT );
     public static final Item LEAVES_FLESH_BLOCK = RegUtil.item( "flesh_leaves", ModBlocks.LEAVES_FLESH, Groups.STYLISH_OCCULT );
     public static final Item SOIL_FLESH_BLOCK = RegUtil.item( "flesh_soil", ModBlocks.SOIL_FLESH, Groups.STYLISH_OCCULT );

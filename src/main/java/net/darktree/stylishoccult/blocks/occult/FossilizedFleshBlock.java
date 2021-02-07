@@ -25,7 +25,7 @@ public class FossilizedFleshBlock extends SimpleBlock implements ImpureBlock, Fu
     public static final BooleanProperty STABLE = BooleanProperty.of("stable");
 
     public FossilizedFleshBlock() {
-        super(RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.8f).ticksRandomly());
+        super(RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 1.0F, 1.0F, true ).slipperiness(0.7f).ticksRandomly());
         setDefaultState( getDefaultState().with(STABLE, false) );
     }
 

@@ -75,7 +75,7 @@ public class PassiveFleshBlock extends SimpleBlock implements ImpureBlock {
 
     @Override
     public int impurityLevel(BlockState state) {
-        return 5 + (state.get(BLOODY) ? 4 : 0);
+        return 5 + (state.get(BLOODY) ? 5 : 0);
     }
 
 }

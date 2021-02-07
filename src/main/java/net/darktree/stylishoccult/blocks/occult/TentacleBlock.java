@@ -13,11 +13,14 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
 import java.util.Random;
@@ -25,6 +28,7 @@ import java.util.Random;
 public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFleshBlock {
 
     public static final IntProperty SIZE = IntProperty.of("size", 1, 6);
+    public static final BooleanProperty STATIC = BooleanProperty.of("static");
 
     public static final VoxelShape[] SHAPES = {
             Utils.box( 6, 0, 6, 10, 16, 10 ),
@@ -37,13 +41,18 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
     };
 
     public TentacleBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).slipperiness(0.8f).ticksRandomly() );
-        setDefaultState( getDefaultState().with(SIZE, 6) );
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 1.8F, 1.8F, false ).slipperiness(0.8f).ticksRandomly() );
+        setDefaultState( getDefaultState().with(SIZE, 6).with(STATIC, false) );
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPES[ state.get(SIZE) - 1 ];
+    }
+
+    @Override
+    public boolean hasRandomTicks(BlockState state) {
+        return !state.get(STATIC);
     }
 
     @Override
@@ -53,17 +62,19 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
         BlockState down = world.getBlockState(pos.down());
 
         if( up.isAir() || up.getMaterial().isReplaceable() ) {
-            grow(world, pos.up(), size);
-        }
-
-        if( down.isAir() || down.getMaterial().isReplaceable() ) {
-            grow(world, pos.down(), size);
+            if( grow(world, pos.up(), size) ) {
+                world.setBlockState( pos, state.with(STATIC, true) );
+            }
+        } else if( down.isAir() || down.getMaterial().isReplaceable() ) {
+            if( grow(world, pos.down(), size) ) {
+                world.setBlockState( pos, state.with(STATIC, true) );
+            }
         }
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(SIZE);
+        builder.add(SIZE, STATIC);
     }
 
     @Override
@@ -87,6 +98,18 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
     }
 
     @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
+        BlockState state1 = super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
+
+        if( state1.getBlock() instanceof TentacleBlock ) {
+            boolean flag = isStatic( world, pos.up() ) || isStatic( world, pos.down() );
+            return state1.with(STATIC, flag);
+        }
+
+        return state1;
+    }
+
+    @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         int size = state.get(SIZE);
         BlockState up = world.getBlockState(pos.up());
@@ -100,6 +123,11 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
         return 13 + state.get(SIZE);
     }
 
+    public boolean isStatic( WorldAccess world, BlockPos pos ) {
+        BlockState state = world.getBlockState(pos);
+        return (state.getBlock() instanceof TentacleBlock) ? state.get(STATIC) : false;
+    }
+
     public boolean isValid( BlockState state, int size ) {
         return (state.getBlock() instanceof TentacleBlock) ? state.get(SIZE) > size : (state.getBlock() instanceof FullFleshBlock);
     }
@@ -108,11 +136,13 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
         return (state.getBlock() instanceof TentacleBlock) ? state.get(SIZE) : ((state.getBlock() instanceof FullFleshBlock) ? 7 : 0);
     }
 
-    public void grow( World world, BlockPos pos, int size ) {
+    public boolean grow( World world, BlockPos pos, int size ) {
         if( size > 1 ) {
             world.setBlockState( pos, getDefaultState().with(SIZE, size - 1) );
+            return false;
         }else{
             world.setBlockState( pos, ModBlocks.EYE_FLESH.getDefaultState() );
+            return true;
         }
     }
 }

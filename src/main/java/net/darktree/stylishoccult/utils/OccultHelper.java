@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.utils;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.EyesBlock;
+import net.darktree.stylishoccult.blocks.occult.LeavesFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.GooFleshBlock;
@@ -137,7 +138,7 @@ public class OccultHelper {
                     return ModBlocks.GOO_FLESH.getDefaultState().with(GooFleshBlock.TOP, world.getBlockState(pos.up()).isAir());
                 }
             }else{
-                if( block.isIn(BlockTags.LEAVES) ) return ModBlocks.LEAVES_FLESH.getDefaultState().with(LeavesBlock.DISTANCE, 1);
+                if( block.isIn(BlockTags.LEAVES) ) return LeavesFleshBlock.getStateForPosition(world, pos);
                 if( block.isIn(ModTags.TOP_SOIL) && RandUtils.getBool(80) ) return ModBlocks.SOIL_FLESH.getDefaultState();
                 return ModBlocks.DEFAULT_FLESH.getDefaultState();
             }

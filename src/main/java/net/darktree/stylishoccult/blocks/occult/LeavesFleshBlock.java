@@ -1,8 +1,10 @@
 package net.darktree.stylishoccult.blocks.occult;
 
+import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.utils.OccultHelper;
+import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
@@ -47,6 +49,12 @@ public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock, Foliag
     @Override
     public int impurityLevel(BlockState state) {
         return 20;
+    }
+
+    public static BlockState getStateForPosition( World world, BlockPos pos ) {
+        BlockState state = world.getBlockState(pos);
+        int distance = ( state.getBlock() instanceof LeavesBlock ) ? state.get( DISTANCE ) : 7;
+        return state.getBlock().getDefaultState().with(DISTANCE, distance);
     }
 
 }

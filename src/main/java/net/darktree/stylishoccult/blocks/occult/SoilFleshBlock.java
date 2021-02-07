@@ -2,6 +2,8 @@ package net.darktree.stylishoccult.blocks.occult;
 
 import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.loot.LootTable;
+import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.SimpleBlock;
@@ -17,7 +19,7 @@ import java.util.Random;
 public class SoilFleshBlock extends SimpleBlock implements ImpureBlock, FullFleshBlock {
 
     public SoilFleshBlock() {
-        super(RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.8f).ticksRandomly());
+        super(RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.7f).ticksRandomly());
     }
 
     @Override
@@ -36,4 +38,8 @@ public class SoilFleshBlock extends SimpleBlock implements ImpureBlock, FullFles
         return 32;
     }
 
+    @Override
+    public LootTable getInternalLootTableId() {
+        return LootTables.GENERIC_FLESH;
+    }
 }

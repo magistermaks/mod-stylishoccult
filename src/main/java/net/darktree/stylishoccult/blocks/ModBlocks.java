@@ -6,6 +6,7 @@ import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
@@ -14,6 +15,8 @@ import net.minecraft.sound.BlockSoundGroup;
 import java.util.ArrayList;
 
 public class ModBlocks {
+
+    // TODO: MAKE FLESH FOLIAGE REPLACEABLE
 
     public static final ArrayList<Block> RUNESTONES = new ArrayList<>();
 
@@ -30,8 +33,8 @@ public class ModBlocks {
     public static final Block FIERY_LANTERN = RegUtil.block( "fiery_lantern", new FieryLanternBlock() );
     public static final Block SPARK_VENT = RegUtil.block( "spark_vent", new SparkVentBlock() );
     public static final Block GROWTH = RegUtil.block( "growth", new ThinFleshBlock() );
-    public static final Block NETHER_GRASS = RegUtil.block( "nether_grass", new NetherGrassBlock( AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
-    public static final Block NETHER_FERN = RegUtil.block( "nether_fern", new NetherFernBlock( AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
+    public static final Block NETHER_GRASS = RegUtil.block( "nether_grass", new NetherGrassBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().requiresTool().breakByTool(FabricToolTags.SHEARS).sounds(BlockSoundGroup.NETHER_SPROUTS)) );
+    public static final Block NETHER_FERN = RegUtil.block( "nether_fern", new NetherFernBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().requiresTool().breakByTool(FabricToolTags.SHEARS).sounds(BlockSoundGroup.NETHER_SPROUTS)) );
     public static final Block DEFAULT_FLESH = RegUtil.block( "flesh_default", new FleshBlock() );
     public static final Block LEAVES_FLESH = RegUtil.block( "flesh_leaves", new LeavesFleshBlock() );
     public static final Block SOIL_FLESH = RegUtil.block( "flesh_soil", new SoilFleshBlock() );
@@ -44,6 +47,7 @@ public class ModBlocks {
     public static final Block WORMS_FLESH = RegUtil.block( "flesh_worms", new WormsBlock() );
 
     // simple building blocks
+    public static final Block EYES_BLOCK = RegUtil.block( "eyes_block", new BuildingBlock( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ) ) );
     public static final Block STONE_FLESH = RegUtil.block( "flesh_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).breakByTool(FabricToolTags.PICKAXES).requiresTool() ) );
     public static final Block LAVA_STONE = RegUtil.block( "lava_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).breakByTool(FabricToolTags.PICKAXES).requiresTool() ) );
     public static final Block WAX_BLOCK = RegUtil.block( "wax_block", new BuildingBlock( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.CANDLE, 0.8F, 0.8F, true ) ) );

@@ -1,24 +1,36 @@
 package net.darktree.stylishoccult.blocks.occult;
 
+import net.darktree.stylishoccult.blocks.BuildingBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.utils.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
 import java.util.Random;
 
-public class WormsBlock extends SimpleBlock implements ImpureBlock, FoliageFleshBlock {
+public class WormsBlock extends BuildingBlock implements ImpureBlock, FoliageFleshBlock {
+
+    private static final VoxelShape SHAPE = Utils.box(2, 0, 2, 14, 10, 14);
 
     public WormsBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).noCollision().ticksRandomly() );
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).noCollision().breakInstantly().ticksRandomly() );
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
     }
 
     @Override
@@ -41,7 +53,7 @@ public class WormsBlock extends SimpleBlock implements ImpureBlock, FoliageFlesh
 
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return !world.getBlockState(pos.down()).isAir();
+        return world.getBlockState(pos.down()).isSideSolidFullSquare(world, pos.down(), Direction.UP);
     }
 
     @Override
