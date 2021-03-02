@@ -8,7 +8,7 @@ public class Settings {
     // Chance:  bigger => more common (%)
     // Base:    given value is only a base value of some math formula
 
-    public final boolean debug = false;
+    public final boolean debug = true;
     public final short candleLayerBurnoutRarity = 30;
     public final short candleHolderLayerBurnoutRarity = 35;
     public final short lavaDemonEmitterAirRarity = 8;

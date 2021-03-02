@@ -3,17 +3,13 @@ package net.darktree.stylishoccult.utils;
 import net.darktree.stylishoccult.StylishOccult;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.function.BooleanBiFunction;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.World;
 
 public class Utils {
 

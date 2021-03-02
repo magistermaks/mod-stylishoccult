@@ -59,6 +59,27 @@ public class ModFeatures {
                 register( "spark_vent_feature", new SparkVentFeature( DefaultFeatureConfig.CODEC ) )
         );
 
+        // Random Urn Feature
+        BiomeModifications.addFeature(
+                BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.RAW_GENERATION,
+                register( "urn_feature", new UrnFeature( DefaultFeatureConfig.CODEC ) )
+        );
+
+        // Runic Walls Feature
+        BiomeModifications.addFeature(
+                BiomeSelectors.foundInTheNether(),
+                GenerationStep.Feature.RAW_GENERATION,
+                register( "runic_wall_feature", new WallsFeature( DefaultFeatureConfig.CODEC ) )
+        );
+
+        // Flash Altar Feature
+        BiomeModifications.addFeature(
+                BiomeSelectors.foundInTheNether(),
+                GenerationStep.Feature.RAW_GENERATION,
+                register( "flesh_altar_feature", new FleshAltarFeature( DefaultFeatureConfig.CODEC ) )
+        );
+
     }
 
 }

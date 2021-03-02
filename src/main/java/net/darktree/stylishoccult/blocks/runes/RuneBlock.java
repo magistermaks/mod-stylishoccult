@@ -17,6 +17,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;

@@ -32,6 +32,8 @@ public class LogicRuneBlock extends RuneBlock {
 
         private static final Random RNG = new Random();
 
+        // TODO: add sqrt
+
         public static final LogicFunction PUSH = script -> script.getStack().put( script.value );
         public static final LogicFunction PULL = script -> script.value = script.getStack().pull();
         public static final LogicFunction EXCHANGE = script -> script.getStack().exchange();
