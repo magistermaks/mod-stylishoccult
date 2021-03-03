@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "stylish_occult:lava_shard"
+    },
+    {
+      "item": "stylish_occult:blaze_powder"
+    }
+  ],
+  "result": {
+    "item": "stylish_occult:blazing_lava_shard",
+    "count": 3
+  }
+}

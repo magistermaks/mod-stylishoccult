@@ -32,6 +32,8 @@ public class ModItems {
     public static final Item LAVA_STONE = RegUtil.item( "lava_stone", ModBlocks.LAVA_STONE, Groups.STYLISH_OCCULT );
     public static final Item WAX = RegUtil.item( "wax", Groups.STYLISH_OCCULT );
     public static final Item LAVA_HEART = RegUtil.item( "lava_heart", new Item.Settings().group( Groups.STYLISH_OCCULT ).rarity( Rarity.UNCOMMON ).fireproof() );
+    public static final Item LAVA_SHARD = RegUtil.item( "lava_shard", new Item.Settings().group( Groups.STYLISH_OCCULT ).fireproof() );
+    public static final Item BLAZING_LAVA_SHARD = RegUtil.item( "blazing_lava_shard", new Item.Settings().group( Groups.STYLISH_OCCULT ).fireproof() );
     public static final Item EXTINGUISHED_CANDLE = RegUtil.item( "extinguished_candle", new CandleItem( new Item.Settings().group(Groups.STYLISH_OCCULT), ModBlocks.EXTINGUISHED_CANDLE) );
     public static final Item CANDLE = RegUtil.item( "candle", new CandleItem( new Item.Settings().group(Groups.STYLISH_OCCULT), ModBlocks.CANDLE) );
     public static final Item WAX_BLOCK = RegUtil.item( "wax_block", ModBlocks.WAX_BLOCK, Groups.STYLISH_OCCULT );
