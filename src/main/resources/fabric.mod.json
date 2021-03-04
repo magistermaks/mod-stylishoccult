@@ -3,7 +3,7 @@
   "id": "stylish_occult",
   "version": "${version}",
   "name": "Stylish Occult",
-  "description": "Stylish decorations (and more...) straight from the occult!",
+  "description": "Runes (and more...) straight from the occult!",
   "authors": [
     "magistermaks"
   ],
@@ -26,7 +26,7 @@
   ],
   "depends": {
     "fabricloader": ">=0.10.8",
-    "fabric": "*",
-    "minecraft": "1.16.4"
+    "fabric": ">=0.30.0",
+    "minecraft": ">=1.16.2"
   }
 }
