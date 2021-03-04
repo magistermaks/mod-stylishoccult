@@ -35,9 +35,6 @@ import java.util.Random;
 
 public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
-    @Environment(EnvType.CLIENT)
-    public static final BlockColorProvider COLOR_PROVIDER = (state, world, pos, tintIndex) -> ((RuneBlock) state.getBlock()).getTint(state);
-
     public static final IntProperty COOLDOWN = IntProperty.of("cooldown", 0, 3);
     public final RuneType type;
     public final String name;

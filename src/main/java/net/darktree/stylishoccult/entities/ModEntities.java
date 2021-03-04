@@ -1,7 +1,8 @@
 package net.darktree.stylishoccult.entities;
 
 import net.darktree.stylishoccult.utils.ModIdentifier;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
@@ -21,8 +22,10 @@ public class ModEntities {
         FabricDefaultAttributeRegistry.register( LAVA_SPARK, SparkEntity.createSparkAttributes() );
     }
 
+    @Environment(EnvType.CLIENT)
     public static void clientInit() {
-        EntityRendererRegistry.INSTANCE.register( ModEntities.LAVA_SPARK, (dis, ctx) -> new VoidEntityRenderer<SparkEntity>(dis) );
+        // hotfix for some class loader problems
+        ClientModEntities.init();
     }
 
 }

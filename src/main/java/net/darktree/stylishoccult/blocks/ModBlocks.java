@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
+import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.sound.BlockSoundGroup;
 
@@ -116,6 +117,7 @@ public class ModBlocks {
 
     public static void clientInit() {
         Block[] runestones = ModBlocks.RUNESTONES.toArray( new Block[0] );
+        BlockColorProvider runeTintProvider = (state, world, pos, tintIndex) -> ((RuneBlock) state.getBlock()).getTint(state);
 
         BlockRenderLayerMap.INSTANCE.putBlock(CHANDELIER, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(LAVA_STONE, RenderLayer.getCutout());
@@ -128,7 +130,7 @@ public class ModBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(GOO_FLESH, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), runestones);
 
-        ColorProviderRegistry.BLOCK.register( RuneBlock.COLOR_PROVIDER, runestones );
+        ColorProviderRegistry.BLOCK.register( runeTintProvider, runestones );
     }
 
 }
