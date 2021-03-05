@@ -19,7 +19,11 @@ import java.util.Random;
 public class SoilFleshBlock extends SimpleBlock implements ImpureBlock, FullFleshBlock {
 
     public SoilFleshBlock() {
-        super(RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.7f).ticksRandomly());
+        this(RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.7f).ticksRandomly());
+    }
+
+    public SoilFleshBlock(Settings settings) {
+        super(settings);
     }
 
     @Override

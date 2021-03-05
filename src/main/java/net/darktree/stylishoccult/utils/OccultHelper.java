@@ -1,15 +1,17 @@
 package net.darktree.stylishoccult.utils;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.occult.EyesBlock;
-import net.darktree.stylishoccult.blocks.occult.LeavesFleshBlock;
+import net.darktree.stylishoccult.blocks.occult.*;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
-import net.darktree.stylishoccult.blocks.occult.GooFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
-import net.darktree.stylishoccult.blocks.occult.TentacleBlock;
 import net.darktree.stylishoccult.tags.ModTags;
 import net.minecraft.block.*;
+import net.minecraft.entity.AreaEffectCloudEntity;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.tag.BlockTags;
@@ -17,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
+import java.util.Iterator;
 import java.util.Random;
 
 public class OccultHelper {
@@ -92,7 +95,7 @@ public class OccultHelper {
         return !(block instanceof ImpureBlock) && !block.isIn(ModTags.INCORRUPTIBLE) && hardness >= 0 && hardness <= 1000;
     }
 
-    private static boolean touchesSource(World world, BlockPos pos) {
+    public static boolean touchesSource(World world, BlockPos pos) {
         for( Direction dir : Direction.values() ) {
             if( world.getBlockState(pos.offset(dir)).getBlock() instanceof FullFleshBlock ) {
                 return true;
@@ -112,7 +115,7 @@ public class OccultHelper {
     private static BlockState getCorruptionForBlock( World world, BlockPos pos, BlockState state ) {
         if( state.isAir() ) {
             if (RandUtils.getBool(10.0f) && shouldSpawnFoliage(world, pos) ) {
-                int type = RandUtils.rangeInt(0, 5);
+                int type = RandUtils.rangeInt(0, 6);
 
                 if( type == 0 && validTentacleSpot(world, pos) ) {
                     return ModBlocks.TENTACLE.getDefaultState().with(TentacleBlock.SIZE, RandUtils.rangeInt(3, 6));
@@ -126,7 +129,11 @@ public class OccultHelper {
                     return ModBlocks.WARTS_FLESH.getDefaultState().with(EyesBlock.SIZE, RandUtils.rangeInt(1, 3));
                 }
 
-                if( type >= 3 && validDownSpot(world, pos) ) {
+                if( type == 3 ) {
+                    return ((ThinFleshBlock) ModBlocks.GROWTH).getStateToFit(world, pos);
+                }
+
+                if( type >= 4 && validDownSpot(world, pos) ) {
                     return ModBlocks.WORMS_FLESH.getDefaultState();
                 }
             }
@@ -138,6 +145,7 @@ public class OccultHelper {
                     return ModBlocks.GOO_FLESH.getDefaultState().with(GooFleshBlock.TOP, world.getBlockState(pos.up()).isAir());
                 }
             }else{
+                if( state.getLuminance() > 3 && state.isFullCube(world, pos) ) return ModBlocks.GLOW_FLESH.getDefaultState();
                 if( block.isIn(BlockTags.LEAVES) ) return LeavesFleshBlock.getStateForPosition(world, pos);
                 if( block.isIn(ModTags.TOP_SOIL) && RandUtils.getBool(80) ) return ModBlocks.SOIL_FLESH.getDefaultState();
                 return ModBlocks.DEFAULT_FLESH.getDefaultState();
@@ -162,6 +170,24 @@ public class OccultHelper {
 
     private static boolean validDownSpot( World world, BlockPos pos ) {
         return (world.getBlockState(pos.down()).getBlock() instanceof FullFleshBlock);
+    }
+
+    public static void spawnEffectAsCloud(World world, BlockPos pos, StatusEffect... effects) {
+        AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(world, pos.getX() + 0.5f, pos.getY(), pos.getZ() + 0.5f);
+
+        // init
+        areaEffectCloudEntity.setRadius(0.6f);
+        areaEffectCloudEntity.setRadiusOnUse(-0.5F);
+        areaEffectCloudEntity.setWaitTime(8);
+        areaEffectCloudEntity.setDuration(areaEffectCloudEntity.getDuration() / 4);
+        areaEffectCloudEntity.setRadiusGrowth(-areaEffectCloudEntity.getRadius() / (float)areaEffectCloudEntity.getDuration());
+
+        for( StatusEffect effect : effects ) {
+            areaEffectCloudEntity.addEffect(new StatusEffectInstance(effect));
+        }
+
+        // summon
+        world.spawnEntity(areaEffectCloudEntity);
     }
 
 }

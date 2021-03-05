@@ -41,6 +41,7 @@
   "block.stylish_occult.arcane_ash": "Arcane Ash",
   "block.stylish_occult.crystalline_blackstone": "Crystalline Blackstone",
   "block.stylish_occult.growth": "Growth",
+  "block.stylish_occult.eyes_block": "Eyes Block",
 
   "item.stylish_occult.flesh": "Flesh",
   "item.stylish_occult.wax": "Wax",
@@ -48,6 +49,9 @@
   "item.stylish_occult.blood_bottle": "Corrupted Blood Bottle",
   "item.stylish_occult.error_tablet": "Runic Error Tablet",
   "item.stylish_occult.veins": "Veins",
+  "item.stylish_occult.lava_shard": "Lava Shard",
+  "item.stylish_occult.blazing_lava_shard": "Blazing Lava Shard",
+  "item.stylish_occult.twisted_bone": "Twisted Bone",
 
   "tooltip.stylish_occult.candle": "Length: %s",
   "tooltip.stylish_occult.rune": "Rune: %s",

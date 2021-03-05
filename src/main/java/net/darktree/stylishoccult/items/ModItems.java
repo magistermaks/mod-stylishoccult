@@ -45,7 +45,7 @@ public class ModItems {
     public static final Item FLESH = RegUtil.item( "flesh", new Item.Settings().group( Groups.STYLISH_OCCULT ).food( ModFoodComponents.FLESH_FOOD ) );
     public static final Item VEINS = RegUtil.item( "veins", new Item.Settings().group( Groups.STYLISH_OCCULT ).food( ModFoodComponents.VEINS ) );
     public static final Item TWISTED_BONE = RegUtil.item( "twisted_bone", new Item.Settings().group( Groups.STYLISH_OCCULT ) );
-    public static final Item GOO = RegUtil.item( "goo", new Item.Settings().group( Groups.STYLISH_OCCULT ) );
+//    public static final Item GOO = RegUtil.item( "goo", new Item.Settings().group( Groups.STYLISH_OCCULT ) );
     public static final Item GROWTH = RegUtil.item( "growth", ModBlocks.GROWTH, Groups.STYLISH_OCCULT );
     public static final Item BLOOD_BOTTLE = RegUtil.item("blood_bottle", new BottleItem(new Item.Settings().group(Groups.STYLISH_OCCULT).recipeRemainder(Items.GLASS_BOTTLE).food(ModFoodComponents.BLOOD).maxCount(16)) );
     public static final Item SPARK_VENT = RegUtil.item("spark_vent", ModBlocks.SPARK_VENT, Groups.STYLISH_OCCULT );

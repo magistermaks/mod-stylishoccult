@@ -1,11 +1,13 @@
 package net.darktree.stylishoccult.blocks.occult;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.*;
 import net.minecraft.block.*;
+import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
@@ -25,9 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class ThinFleshBlock extends SimpleBlock implements ImpureBlock {
-
-    // TODO: MAKE COMPATIBLE WITH FLESH
+public class ThinFleshBlock extends SimpleBlock implements ImpureBlock, FluidReplaceable {
 
     public static final BooleanProperty UP = BooleanProperty.of("up");
     public static final BooleanProperty DOWN = BooleanProperty.of("down");
@@ -99,11 +99,15 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return getStateToFit( ctx.getWorld(), ctx.getBlockPos() );
+    }
+
+    public BlockState getStateToFit( World world, BlockPos pos ) {
         BlockState state = getDefaultState();
         boolean flag = false;
 
         for( Direction side : Direction.values() ) {
-            if( canSupport( ctx.getWorld(), ctx.getBlockPos(), side ) ) {
+            if( canSupport( world, pos, side ) ) {
                 state = state.with(fromDirection(side), true);
                 flag = true;
             }
@@ -120,6 +124,16 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock {
             StylishOccult.LOGGER.warn("Empty growth block was found and removed!");
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             return;
+        }
+
+        if( OccultHelper.touchesSource( world, pos ) ) {
+            if( BlockUtils.countInArea(world, pos, FoliageFleshBlock.class, 3) != 0 ) {
+                return;
+            }else{
+                if( RandUtils.getBool(10) ) {
+                    return;
+                }
+            }
         }
 
         if( count != 6 ) {
@@ -225,4 +239,5 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock {
     public int impurityLevel(BlockState state) {
         return (Integer.bitCount(getBitfield(state)) + state.get(SIZE)) * 3;
     }
+
 }

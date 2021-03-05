@@ -4,14 +4,16 @@ import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.effects.ModEffects;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
+import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -26,12 +28,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
 import java.util.Random;
 
-public class EyesBlock extends SimpleBlock implements ImpureBlock, FoliageFleshBlock {
+public class EyesBlock extends SimpleBlock implements ImpureBlock, FoliageFleshBlock, FluidReplaceable {
 
     public static final IntProperty SIZE = IntProperty.of("size", 1, 3);
     private static final VoxelShape SHAPE = Utils.box(1, 0, 1, 15, 2, 15);
@@ -48,16 +51,28 @@ public class EyesBlock extends SimpleBlock implements ImpureBlock, FoliageFleshB
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if( state.getBlock() == ModBlocks.WARTS_FLESH ) {
-            // TODO: MAKE IT POP
-        }
+        // TODO: fix this
+//        double velocity = entity.getVelocity().y;
+//
+//        if( !world.isClient && state.getBlock() == ModBlocks.WARTS_FLESH && world.random.nextFloat() / 7 < velocity && entity instanceof LivingEntity && (entity instanceof PlayerEntity || world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) && entity.getWidth() * entity.getWidth() * entity.getHeight() > 0.512F) {
+//            OccultHelper.spawnEffectAsCloud(world, pos, StatusEffects.POISON);
+//
+//            int size = state.get(SIZE);
+//            if( size > 1 ) {
+//                world.setBlockState( pos, state.with(SIZE, size - 1) );
+//            }else{
+//                world.setBlockState( pos, Blocks.AIR.getDefaultState() );
+//            }
+//
+//            world.playSound(null, pos, state.getSoundGroup().getBreakSound(), SoundCategory.BLOCKS, 1, 1);
+//        }
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int size = state.get(SIZE);
 
-        if( size == 3 && RandUtils.getBool(40) && BlockUtils.countInArea(world, pos, EyesBlock.class, 3) <= getMaxGroupSize()) {
+        if( (size == 3 || RandUtils.getBool(40)) && BlockUtils.countInArea(world, pos, EyesBlock.class, 3) <= getMaxGroupSize()) {
             BlockPos target = pos.offset( RandUtils.getEnum( Direction.class ) );
 
             if( RandUtils.getBool(75) ) {
@@ -94,7 +109,7 @@ public class EyesBlock extends SimpleBlock implements ImpureBlock, FoliageFleshB
 
         if( size < 3 && stack.getItem() == asItem() ) {
             world.setBlockState( pos, state.with(SIZE, size + 1) );
-            stack.decrement(1);
+            Utils.decrement(player, stack);
             world.playSound( null, pos, soundGroup.getPlaceSound(), SoundCategory.BLOCKS, 1, 1 );
             return ActionResult.SUCCESS;
         }

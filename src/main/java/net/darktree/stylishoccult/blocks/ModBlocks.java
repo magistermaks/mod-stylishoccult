@@ -17,8 +17,6 @@ import java.util.ArrayList;
 
 public class ModBlocks {
 
-    // TODO: MAKE FLESH FOLIAGE REPLACEABLE
-
     public static final ArrayList<Block> RUNESTONES = new ArrayList<>();
 
     public static final Block CHANDELIER = RegUtil.block( "chandelier", new ChandelierBlock() );
@@ -36,11 +34,14 @@ public class ModBlocks {
     public static final Block GROWTH = RegUtil.block( "growth", new ThinFleshBlock() );
     public static final Block NETHER_GRASS = RegUtil.block( "nether_grass", new NetherGrassBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().requiresTool().breakByTool(FabricToolTags.SHEARS).sounds(BlockSoundGroup.NETHER_SPROUTS)) );
     public static final Block NETHER_FERN = RegUtil.block( "nether_fern", new NetherFernBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().requiresTool().breakByTool(FabricToolTags.SHEARS).sounds(BlockSoundGroup.NETHER_SPROUTS)) );
+
+    // flesh
     public static final Block DEFAULT_FLESH = RegUtil.block( "flesh_default", new FleshBlock() );
     public static final Block LEAVES_FLESH = RegUtil.block( "flesh_leaves", new LeavesFleshBlock() );
     public static final Block SOIL_FLESH = RegUtil.block( "flesh_soil", new SoilFleshBlock() );
     public static final Block BONE_FLESH = RegUtil.block( "flesh_bone", new FossilizedFleshBlock() );
     public static final Block GOO_FLESH = RegUtil.block( "flesh_goo", new GooFleshBlock() );
+    public static final Block GLOW_FLESH = RegUtil.block( "flesh_glow", new GlowFleshBlock() );
     public static final Block TENTACLE = RegUtil.block( "flesh_tentacle", new TentacleBlock() );
     public static final Block EYE_FLESH = RegUtil.block( "flesh_eye", new EyeBlock() );
     public static final Block EYES_FLESH = RegUtil.block( "flesh_eyes", new EyesBlock() );
@@ -65,7 +66,7 @@ public class ModBlocks {
     public static final Block ARCANE_ASH = RegUtil.block( "arcane_ash", new ArcaneAshBlock( 100, 500, 0.8f, RegUtil.settings( Material.SOIL, BlockSoundGroup.SAND, 2.0f, 6.0f, true ).requiresTool().breakByTool(FabricToolTags.SHOVELS).materialColor(MaterialColor.BLACK) ) );
     public static final Block CRYSTALLINE_BLACKSTONE = RegUtil.block( "crystalline_blackstone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.GILDED_BLACKSTONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK).requiresTool() ) );
 
-    // runes - 'latin' names, do you have a better name? I'm open for suggestions.
+    // runes
     public static final Block BROKEN_RUNE_BLOCK = RegUtil.rune( new BrokenRuneBlock( "damaged" ) );
     public static final Block DEBUG_RUNE_BLOCK = RegUtil.rune( new DebugRuneBlock( "debug" ) );
     public static final Block CLICK_RUNE_BLOCK = RegUtil.rune( new ClickRuneBlock( "tactus" ) );

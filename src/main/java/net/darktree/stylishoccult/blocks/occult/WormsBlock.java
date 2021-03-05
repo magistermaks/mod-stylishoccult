@@ -20,7 +20,7 @@ import net.minecraft.world.WorldView;
 
 import java.util.Random;
 
-public class WormsBlock extends BuildingBlock implements ImpureBlock, FoliageFleshBlock {
+public class WormsBlock extends BuildingBlock implements ImpureBlock, FoliageFleshBlock, FluidReplaceable {
 
     private static final VoxelShape SHAPE = Utils.box(2, 0, 2, 14, 10, 14);
 

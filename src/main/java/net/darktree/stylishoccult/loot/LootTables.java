@@ -158,7 +158,7 @@ public class LootTables {
                 .addBlockItem()
                 .pop()
             .addElse()
-                .addItem( new ItemStack(ModItems.GOO), 100.0f, 1, 3 )
+                .addItem( new ItemStack(ModItems.FLESH), 100.0f, 1, 3 )
             .pop()
             .build();
 

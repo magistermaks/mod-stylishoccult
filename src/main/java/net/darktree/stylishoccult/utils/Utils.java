@@ -3,6 +3,8 @@ package net.darktree.stylishoccult.utils;
 import net.darktree.stylishoccult.StylishOccult;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -45,6 +47,12 @@ public class Utils {
 
     public static MutableText tooltip( String text ) {
         return new TranslatableText( "tooltip." + StylishOccult.NAMESPACE + "." + text ).formatted( Formatting.GRAY );
+    }
+
+    public static void decrement( PlayerEntity entity, ItemStack stack ) {
+        if( !entity.isCreative() ) {
+            stack.decrement(1);
+        }
     }
 
 }

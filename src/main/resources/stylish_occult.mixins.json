@@ -8,7 +8,8 @@
     "HardnessMixin",
     "HungerManagerMixin",
     "ServerPlayerInteractionManagerMixin",
-    "StatusEffectInstanceAccessor"
+    "StatusEffectInstanceAccessor",
+    "FlowableFluidMixin"
   ],
   "client": [
     "ClientPlayerInteractionManagerMixin",
