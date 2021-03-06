@@ -1,10 +1,8 @@
 package net.darktree.stylishoccult.blocks.occult;
 
-import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.utils.OccultHelper;
-import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;

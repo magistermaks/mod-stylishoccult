@@ -7,7 +7,6 @@ import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.RuneUtils;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.fabric.impl.item.FabricItemInternals;
 import net.minecraft.item.*;
 import net.minecraft.util.Rarity;
 
@@ -32,8 +31,8 @@ public class ModItems {
     public static final Item LAVA_STONE = RegUtil.item( "lava_stone", ModBlocks.LAVA_STONE, Groups.STYLISH_OCCULT );
     public static final Item WAX = RegUtil.item( "wax", Groups.STYLISH_OCCULT );
     public static final Item LAVA_HEART = RegUtil.item( "lava_heart", new Item.Settings().group( Groups.STYLISH_OCCULT ).rarity( Rarity.UNCOMMON ).fireproof() );
-    public static final Item LAVA_SHARD = RegUtil.item( "lava_shard", new Item.Settings().group( Groups.STYLISH_OCCULT ).fireproof() );
-    public static final Item BLAZING_LAVA_SHARD = RegUtil.item( "blazing_lava_shard", new Item.Settings().group( Groups.STYLISH_OCCULT ).fireproof() );
+    public static final Item LAVA_SHARD = RegUtil.item( "lava_shard", new Item.Settings().group( Groups.STYLISH_OCCULT ).rarity( Rarity.UNCOMMON ).fireproof() );
+    public static final Item BLAZING_LAVA_SHARD = RegUtil.item( "blazing_lava_shard", new Item.Settings().group( Groups.STYLISH_OCCULT ).rarity( Rarity.UNCOMMON ).fireproof() );
     public static final Item EXTINGUISHED_CANDLE = RegUtil.item( "extinguished_candle", new CandleItem( new Item.Settings().group(Groups.STYLISH_OCCULT), ModBlocks.EXTINGUISHED_CANDLE) );
     public static final Item CANDLE = RegUtil.item( "candle", new CandleItem( new Item.Settings().group(Groups.STYLISH_OCCULT), ModBlocks.CANDLE) );
     public static final Item WAX_BLOCK = RegUtil.item( "wax_block", ModBlocks.WAX_BLOCK, Groups.STYLISH_OCCULT );
@@ -45,14 +44,14 @@ public class ModItems {
     public static final Item FLESH = RegUtil.item( "flesh", new Item.Settings().group( Groups.STYLISH_OCCULT ).food( ModFoodComponents.FLESH_FOOD ) );
     public static final Item VEINS = RegUtil.item( "veins", new Item.Settings().group( Groups.STYLISH_OCCULT ).food( ModFoodComponents.VEINS ) );
     public static final Item TWISTED_BONE = RegUtil.item( "twisted_bone", new Item.Settings().group( Groups.STYLISH_OCCULT ) );
-//    public static final Item GOO = RegUtil.item( "goo", new Item.Settings().group( Groups.STYLISH_OCCULT ) );
+    public static final Item GLOWGROWTH_SHARD = RegUtil.item( "glowgrowth_shard", new Item.Settings().group( Groups.STYLISH_OCCULT ) );
     public static final Item GROWTH = RegUtil.item( "growth", ModBlocks.GROWTH, Groups.STYLISH_OCCULT );
     public static final Item BLOOD_BOTTLE = RegUtil.item("blood_bottle", new BottleItem(new Item.Settings().group(Groups.STYLISH_OCCULT).recipeRemainder(Items.GLASS_BOTTLE).food(ModFoodComponents.BLOOD).maxCount(16)) );
     public static final Item SPARK_VENT = RegUtil.item("spark_vent", ModBlocks.SPARK_VENT, Groups.STYLISH_OCCULT );
     public static final Item RUNESTONE = RegUtil.item( "runestone", ModBlocks.RUNESTONE, Groups.STYLISH_OCCULT );
     public static final Item RUNE_ERROR_REPORT = RegUtil.item( "error_tablet", new ErrorReportItem( new Item.Settings().group( Groups.STYLISH_OCCULT ).maxCount(1) ) );
 
-    // decorative
+    // "decorative"
     public static final Item EYES_BLOCK = RegUtil.item( "eyes_block", ModBlocks.EYES_BLOCK, Groups.STYLISH_OCCULT );
     public static final Item WORMS_FLESH_BLOCK = RegUtil.item( "flesh_worms", ModBlocks.WORMS_FLESH, Groups.STYLISH_OCCULT );
     public static final Item EYES_FLESH_BLOCK = RegUtil.item( "flesh_eyes", ModBlocks.EYES_FLESH, Groups.STYLISH_OCCULT );
@@ -62,6 +61,7 @@ public class ModItems {
     public static final Item SOIL_FLESH_BLOCK = RegUtil.item( "flesh_soil", ModBlocks.SOIL_FLESH, Groups.STYLISH_OCCULT );
     public static final Item BONE_FLESH_BLOCK = RegUtil.item( "flesh_bone", ModBlocks.BONE_FLESH, Groups.STYLISH_OCCULT );
     public static final Item GOO_FLESH_BLOCK = RegUtil.item( "flesh_goo", ModBlocks.GOO_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item GLOW_FLESH_BLOCK = RegUtil.item( "flesh_glow", ModBlocks.GLOW_FLESH, Groups.STYLISH_OCCULT );
     public static final Item STONE_FLESH_BLOCK = RegUtil.item( "flesh_stone", ModBlocks.STONE_FLESH, Groups.STYLISH_OCCULT );
     public static final Item TENTACLE_FLESH_BLOCK = RegUtil.item( "flesh_tentacle", ModBlocks.TENTACLE, Groups.STYLISH_OCCULT );
     public static final Item EYE_FLESH_BLOCK = RegUtil.item( "flesh_eye", ModBlocks.EYE_FLESH, Groups.STYLISH_OCCULT );

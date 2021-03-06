@@ -153,12 +153,12 @@ public class LootTables {
                 .pop()
             .build();
 
-    public static final LootTable GOO_FLESH = LootManager.create()
+    public static final LootTable GLOW_FLESH = LootManager.create()
             .addCondition( ConditionEntry::hasSilkTouch )
                 .addBlockItem()
                 .pop()
             .addElse()
-                .addItem( new ItemStack(ModItems.FLESH), 100.0f, 1, 3 )
+                .addItem( new ItemStack(ModItems.GLOWGROWTH_SHARD), 100.0f, 1, 2 )
             .pop()
             .build();
 

@@ -4,8 +4,6 @@ import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.entities.BlockEntities;
 import net.darktree.stylishoccult.effects.ModEffects;
 import net.darktree.stylishoccult.entities.ModEntities;
-import net.darktree.stylishoccult.entities.SparkEntity;
-import net.darktree.stylishoccult.entities.VoidEntityRenderer;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.network.Network;
@@ -17,7 +15,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

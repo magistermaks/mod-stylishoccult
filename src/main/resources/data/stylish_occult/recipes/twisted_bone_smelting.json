@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "stylish_occult:twisted_bone"
+  },
+  "result": "minecraft:iron_nugget",
+  "experience": 0.5,
+  "cookingtime": 200
+}

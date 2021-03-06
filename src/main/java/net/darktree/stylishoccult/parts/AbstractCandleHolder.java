@@ -2,7 +2,7 @@ package net.darktree.stylishoccult.parts;
 
 import net.darktree.stylishoccult.items.CandleItem;
 import net.darktree.stylishoccult.items.ModItems;
-import net.darktree.stylishoccult.utils.Ray;
+import net.darktree.stylishoccult.utils.SimpleRay;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -147,7 +147,7 @@ public abstract class AbstractCandleHolder {
     }
 
     public CandleStateInfo rayTrace(BlockPos pos, PlayerEntity player, int layersMin, int layersMax ) {
-        Ray ray = new Ray( player.getCameraPosVec(1.0F), player.getRotationVec(1.0F) );
+        SimpleRay ray = new SimpleRay( player.getCameraPosVec(1.0F), player.getRotationVec(1.0F) );
         ray.offset( pos );
 
         final double[] distance = {Double.MAX_VALUE};

@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.utils;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.*;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
@@ -11,7 +10,6 @@ import net.minecraft.block.*;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.tag.BlockTags;
@@ -19,7 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-import java.util.Iterator;
 import java.util.Random;
 
 public class OccultHelper {

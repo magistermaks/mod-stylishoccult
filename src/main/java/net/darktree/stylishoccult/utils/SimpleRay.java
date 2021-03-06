@@ -4,7 +4,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 
-public class Ray {
+public class SimpleRay {
 
     private Vec3d origin;
     private final Vec3d reciDir;
@@ -19,7 +19,7 @@ public class Ray {
      * @param origin - Camera position
      * @param dir - Camera facing direction
      */
-    public Ray( Vec3d origin, Vec3d dir ) {
+    public SimpleRay(Vec3d origin, Vec3d dir ) {
         this.origin = origin;
 
         this.reciDir = new Vec3d( 1.0 / dir.x, 1.0 / dir.y, 1.0 / dir.z );
@@ -43,7 +43,7 @@ public class Ray {
      * Same as <code>Ray#offset(BlockPos)</code> but uses a Vec3d not BlockPos
      *
      * @param vector - Offset vector
-     * @see Ray#offset(BlockPos)
+     * @see SimpleRay#offset(BlockPos)
      */
     public void offset( Vec3d vector ) {
         origin = origin.subtract( vector );
@@ -63,7 +63,7 @@ public class Ray {
      * boolean flag = ray.intersects( BOX );
      *
      * @param box - box to check intersection with
-     * @see Ray#offset(BlockPos)
+     * @see SimpleRay#offset(BlockPos)
      */
     public boolean intersects( Box box ) {
         Vec3d[] bounds = new Vec3d[2];

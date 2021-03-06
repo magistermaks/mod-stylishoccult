@@ -7,7 +7,6 @@ import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.*;
 import net.minecraft.block.*;
-import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;

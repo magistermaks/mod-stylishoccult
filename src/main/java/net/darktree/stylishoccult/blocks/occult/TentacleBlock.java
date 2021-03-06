@@ -8,7 +8,10 @@ import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.darktree.stylishoccult.utils.Utils;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Material;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
@@ -41,7 +44,7 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
     };
 
     public TentacleBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 1.8F, 1.8F, false ).slipperiness(0.8f).ticksRandomly() );
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.STONE, 1.8F, 1.8F, false ).slipperiness(0.8f).ticksRandomly() );
         setDefaultState( getDefaultState().with(SIZE, 6).with(STATIC, false) );
     }
 

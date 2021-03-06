@@ -8,7 +8,6 @@ import net.darktree.stylishoccult.utils.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;

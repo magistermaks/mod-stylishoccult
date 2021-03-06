@@ -1,7 +1,6 @@
 package net.darktree.stylishoccult.blocks.runes;
 
 import net.darktree.stylishoccult.script.RunicScript;
-import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneInstance;
 import net.darktree.stylishoccult.script.components.RuneType;

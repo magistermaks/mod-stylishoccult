@@ -9,13 +9,12 @@ import net.minecraft.sound.BlockSoundGroup;
 public class GlowFleshBlock extends SoilFleshBlock {
 
     public GlowFleshBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.7f).ticksRandomly().luminance(14) );
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.GLASS, 0.8F, 0.8F, true ).slipperiness(0.7f).ticksRandomly().luminance(14) );
     }
 
     @Override
     public LootTable getInternalLootTableId() {
-        // TODO: replace
-        return LootTables.GENERIC_FLESH;
+        return LootTables.GLOW_FLESH;
     }
 
 }

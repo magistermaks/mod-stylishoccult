@@ -9,7 +9,6 @@ import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.StructureWorldAccess;

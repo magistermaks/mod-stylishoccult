@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.utils;
 
+@Deprecated
 public class Pair<A, B> {
     private final A first;
     private final B second;
