@@ -7,10 +7,7 @@ import net.darktree.stylishoccult.enums.LavaDemonPart;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.sounds.Sounds;
-import net.darktree.stylishoccult.utils.BlockUtils;
-import net.darktree.stylishoccult.utils.RandUtils;
-import net.darktree.stylishoccult.utils.RegUtil;
-import net.darktree.stylishoccult.utils.SimpleBlockWithEntity;
+import net.darktree.stylishoccult.utils.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -157,6 +154,9 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
         if( world.isClient ) {
             return;
         }
+
+        // Cleansing
+        OccultHelper.cleanseAround(world, pos, 4, 4, 20);
 
         // Spreading
         if( state.get(CAN_SPREAD) ) {

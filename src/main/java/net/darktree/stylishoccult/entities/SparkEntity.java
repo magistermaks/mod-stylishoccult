@@ -65,14 +65,14 @@ public class SparkEntity extends HostileEntity {
 
     public void readCustomDataFromTag(CompoundTag tag) {
         super.readCustomDataFromTag(tag);
-        this.age = tag.getInt("Age");
-        this.maxAge = tag.getInt("MaxAge");
+        this.age = tag.getInt("age");
+        this.maxAge = tag.getInt("maxAge");
     }
 
     public void writeCustomDataToTag(CompoundTag tag) {
         super.writeCustomDataToTag(tag);
-        tag.putInt("Age", this.age);
-        tag.putInt("MaxAge", this.maxAge);
+        tag.putInt("age", this.age);
+        tag.putInt("maxAge", this.maxAge);
     }
 
     protected void initGoals() {
@@ -90,7 +90,7 @@ public class SparkEntity extends HostileEntity {
     public void tick() {
         if( world.isClient ){
             Vec3d vec = this.getPos();
-            this.world.addParticle(Particles.LAVA_SPARK, vec.x, vec.y + 0.15f, vec.z, 0, 0, 0);
+            //this.world.addParticle(Particles.LAVA_SPARK, vec.x, vec.y + 0.15f, vec.z, 0, 0, 0);
         }
 
         if( this.getFireTicks() > 0 ) {

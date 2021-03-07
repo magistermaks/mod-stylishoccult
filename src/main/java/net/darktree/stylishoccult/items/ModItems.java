@@ -65,7 +65,7 @@ public class ModItems {
     public static final Item STONE_FLESH_BLOCK = RegUtil.item( "flesh_stone", ModBlocks.STONE_FLESH, Groups.STYLISH_OCCULT );
     public static final Item TENTACLE_FLESH_BLOCK = RegUtil.item( "flesh_tentacle", ModBlocks.TENTACLE, Groups.STYLISH_OCCULT );
     public static final Item EYE_FLESH_BLOCK = RegUtil.item( "flesh_eye", ModBlocks.EYE_FLESH, Groups.STYLISH_OCCULT );
-    public static final Item PASSIVE_FLESH_BLOCK = RegUtil.item( "flesh_passive", ModBlocks.FLESH_BLOCK, Groups.STYLISH_OCCULT );
+    public static final Item PASSIVE_FLESH_BLOCK = RegUtil.item( "flesh_passive", ModBlocks.FLESH_PASSIVE, Groups.STYLISH_OCCULT );
     public static final Item OLD_BRICKS = RegUtil.item( "old_bricks", ModBlocks.OLD_BRICKS, Groups.STYLISH_OCCULT );
     public static final Item CRACKED_BRICKS = RegUtil.item( "cracked_bricks", ModBlocks.CRACKED_BRICKS, Groups.STYLISH_OCCULT );
     public static final Item SMALL_STONE_BRICKS_1 = RegUtil.item( "small_stone_bricks_1", ModBlocks.SMALL_STONE_BRICKS_1, Groups.STYLISH_OCCULT );

@@ -124,7 +124,7 @@ public class FleshPatchFeature extends OreFeature implements SimpleFeature {
     public ConfiguredFeature<?, ?> configure() {
         return configure( new OreFeatureConfig(
                         OreFeatureConfig.Rules.NETHERRACK,
-                        ModBlocks.FLESH_BLOCK.getDefaultState(),
+                        ModBlocks.FLESH_PASSIVE.getDefaultState(),
                         16 ))   // vein size
                 .decorate(Decorator.RANGE.configure( new RangeDecoratorConfig(
                         0,      // bottom offset

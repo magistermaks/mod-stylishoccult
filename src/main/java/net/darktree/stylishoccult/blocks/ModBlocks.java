@@ -37,7 +37,7 @@ public class ModBlocks {
     public static final Block NETHER_GRASS = RegUtil.block( "nether_grass", new NetherGrassBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().requiresTool().breakByTool(FabricToolTags.SHEARS).sounds(BlockSoundGroup.NETHER_SPROUTS)) );
     public static final Block NETHER_FERN = RegUtil.block( "nether_fern", new NetherFernBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MaterialColor.RED).noCollision().breakInstantly().requiresTool().breakByTool(FabricToolTags.SHEARS).sounds(BlockSoundGroup.NETHER_SPROUTS)) );
 
-    // flesh
+    // flesh and friends
     public static final Block DEFAULT_FLESH = RegUtil.block( "flesh_default", new FleshBlock() );
     public static final Block LEAVES_FLESH = RegUtil.block( "flesh_leaves", new LeavesFleshBlock() );
     public static final Block SOIL_FLESH = RegUtil.block( "flesh_soil", new SoilFleshBlock() );
@@ -49,13 +49,13 @@ public class ModBlocks {
     public static final Block EYES_FLESH = RegUtil.block( "flesh_eyes", new EyesBlock() );
     public static final Block WARTS_FLESH = RegUtil.block( "flesh_warts", new EyesBlock() );
     public static final Block WORMS_FLESH = RegUtil.block( "flesh_worms", new WormsBlock() );
+    public static final Block EYES_BLOCK = RegUtil.block( "eyes_block", new BuildingBlock( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ) ) );
+    public static final Block FLESH_PASSIVE = RegUtil.block( "flesh_passive", new PassiveFleshBlock() );
 
     // simple building blocks
-    public static final Block EYES_BLOCK = RegUtil.block( "eyes_block", new BuildingBlock( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ) ) );
     public static final Block STONE_FLESH = RegUtil.block( "flesh_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).breakByTool(FabricToolTags.PICKAXES).requiresTool() ) );
-    public static final Block LAVA_STONE = RegUtil.block( "lava_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).breakByTool(FabricToolTags.PICKAXES).requiresTool() ) );
+    public static final Block LAVA_STONE = RegUtil.block( "lava_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).luminance(3).breakByTool(FabricToolTags.PICKAXES).requiresTool() ) );
     public static final Block WAX_BLOCK = RegUtil.block( "wax_block", new BuildingBlock( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.CANDLE, 0.8F, 0.8F, true ) ) );
-    public static final Block FLESH_BLOCK = RegUtil.block( "flesh_passive", new PassiveFleshBlock() );
     public static final Block CRACKED_BRICKS = RegUtil.block( "cracked_bricks", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.RED).requiresTool() ) );
     public static final Block OLD_BRICKS = RegUtil.block( "old_bricks", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 4.0f, true ).materialColor(MaterialColor.RED).requiresTool() ) );
     public static final Block SMALL_STONE_BRICKS_1 = RegUtil.block( "small_stone_bricks_1", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).requiresTool() ) );

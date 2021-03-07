@@ -112,7 +112,7 @@ public class OccultHelper {
     private static BlockState getCorruptionForBlock( World world, BlockPos pos, BlockState state ) {
         if( state.isAir() ) {
             if (RandUtils.getBool(10.0f) && shouldSpawnFoliage(world, pos) ) {
-                int type = RandUtils.rangeInt(0, 6);
+                int type = RandUtils.rangeInt(0, 7);
 
                 if( type == 0 && validTentacleSpot(world, pos) ) {
                     return ModBlocks.TENTACLE.getDefaultState().with(TentacleBlock.SIZE, RandUtils.rangeInt(3, 6));
@@ -126,11 +126,11 @@ public class OccultHelper {
                     return ModBlocks.WARTS_FLESH.getDefaultState().with(EyesBlock.SIZE, RandUtils.rangeInt(1, 3));
                 }
 
-                if( type == 3 ) {
+                if( type == 3 || type == 4 ) {
                     return ((ThinFleshBlock) ModBlocks.GROWTH).getStateToFit(world, pos);
                 }
 
-                if( type >= 4 && validDownSpot(world, pos) ) {
+                if( type >= 5 && validDownSpot(world, pos) ) {
                     return ModBlocks.WORMS_FLESH.getDefaultState();
                 }
             }
@@ -158,11 +158,11 @@ public class OccultHelper {
     }
 
     private static boolean shouldSpawnFoliage( World world, BlockPos pos ) {
-        return BlockUtils.countInArea(world, pos, FoliageFleshBlock.class, 4) == 0;
+        return BlockUtils.countInArea(world, pos, FoliageFleshBlock.class, 3) == 0;
     }
 
     private static boolean validTentacleSpot( World world, BlockPos pos ) {
-        return (world.getBlockState(pos.up()).getBlock() instanceof FullFleshBlock) != (world.getBlockState(pos.down()).getBlock() instanceof FullFleshBlock);
+        return (world.getBlockState(pos.up()).getBlock() instanceof FullFleshBlock) || (world.getBlockState(pos.down()).getBlock() instanceof FullFleshBlock);
     }
 
     private static boolean validDownSpot( World world, BlockPos pos ) {

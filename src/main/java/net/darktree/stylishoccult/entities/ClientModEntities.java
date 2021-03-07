@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 public class ClientModEntities {
 
     public static void init() {
-        EntityRendererRegistry.INSTANCE.register( ModEntities.LAVA_SPARK, (dis, ctx) -> new VoidEntityRenderer<SparkEntity>(dis) );
+        EntityRendererRegistry.INSTANCE.register( ModEntities.LAVA_SPARK, (dis, ctx) -> new SparkEntityRenderer(dis) );
     }
 
 }

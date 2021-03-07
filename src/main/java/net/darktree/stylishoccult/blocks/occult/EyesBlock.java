@@ -11,7 +11,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -34,35 +33,16 @@ import java.util.Random;
 public class EyesBlock extends SimpleBlock implements ImpureBlock, FoliageFleshBlock, FluidReplaceable {
 
     public static final IntProperty SIZE = IntProperty.of("size", 1, 3);
-    private static final VoxelShape SHAPE = Utils.box(1, 0, 1, 15, 2, 15);
+    private static final VoxelShape OUTLINE_SHAPE = Utils.box(1, 0, 1, 15, 2, 15);
 
     public EyesBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).noCollision().ticksRandomly() );
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).ticksRandomly() );
         setDefaultState( getDefaultState().with(SIZE, 1) );
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
-    }
-
-    @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        // TODO: fix this
-//        double velocity = entity.getVelocity().y;
-//
-//        if( !world.isClient && state.getBlock() == ModBlocks.WARTS_FLESH && world.random.nextFloat() / 7 < velocity && entity instanceof LivingEntity && (entity instanceof PlayerEntity || world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) && entity.getWidth() * entity.getWidth() * entity.getHeight() > 0.512F) {
-//            OccultHelper.spawnEffectAsCloud(world, pos, StatusEffects.POISON);
-//
-//            int size = state.get(SIZE);
-//            if( size > 1 ) {
-//                world.setBlockState( pos, state.with(SIZE, size - 1) );
-//            }else{
-//                world.setBlockState( pos, Blocks.AIR.getDefaultState() );
-//            }
-//
-//            world.playSound(null, pos, state.getSoundGroup().getBreakSound(), SoundCategory.BLOCKS, 1, 1);
-//        }
+        return OUTLINE_SHAPE;
     }
 
     @Override

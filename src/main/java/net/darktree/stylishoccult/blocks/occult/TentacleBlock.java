@@ -118,7 +118,7 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
         BlockState up = world.getBlockState(pos.up());
         BlockState down = world.getBlockState(pos.down());
 
-        return isValid( up, size ) != isValid( down, size );
+        return isValid( up, size ) || isValid( down, size );
     }
 
     @Override
