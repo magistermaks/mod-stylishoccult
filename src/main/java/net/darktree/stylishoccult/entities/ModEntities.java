@@ -14,7 +14,7 @@ public class ModEntities {
 
     public static final EntityType<SparkEntity> LAVA_SPARK = FabricEntityTypeBuilder
             .create(SpawnGroup.MONSTER, SparkEntity::new)
-            .dimensions(EntityDimensions.fixed(0.125f, 0.125f))
+            .dimensions(EntityDimensions.fixed(0.25f, 0.3f))
             .build();
 
     public static void init() {

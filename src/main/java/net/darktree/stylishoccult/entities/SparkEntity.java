@@ -88,11 +88,6 @@ public class SparkEntity extends HostileEntity {
     }
 
     public void tick() {
-        if( world.isClient ){
-            Vec3d vec = this.getPos();
-            //this.world.addParticle(Particles.LAVA_SPARK, vec.x, vec.y + 0.15f, vec.z, 0, 0, 0);
-        }
-
         if( this.getFireTicks() > 0 ) {
             this.setFireTicks(-1);
         }
