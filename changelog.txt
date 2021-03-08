@@ -1,7 +1,8 @@
-0.1.1 alpha
+0.2.0 alpha
 - Added Glowgrowth block
 - Fixed many bugs
 - Added missing recipes, loot tables and translations
+- Sparks no longer exercise particle spam
 - Other minor changes
 
 0.1.0 alpha <2021/03/04>

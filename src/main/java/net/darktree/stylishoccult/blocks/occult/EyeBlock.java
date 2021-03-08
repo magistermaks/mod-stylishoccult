@@ -7,7 +7,11 @@ import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.*;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -32,6 +36,12 @@ public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFlesh
     public EyeBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 1.0F, 1.0F, true ).luminance(4) );
         setDefaultState( getDefaultState().with(PERSISTENT, false) );
+    }
+
+    public void seenBy(BlockState state, ServerPlayerEntity player) {
+        if( !state.get(PERSISTENT) ) {
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 200));
+        }
     }
 
     @Override

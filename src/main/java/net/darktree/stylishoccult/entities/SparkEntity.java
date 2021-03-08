@@ -21,6 +21,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public class SparkEntity extends HostileEntity {
 
@@ -33,16 +34,13 @@ public class SparkEntity extends HostileEntity {
         this.experiencePoints = 1;
     }
 
-    protected float getSoundVolume() {
-        return 0.05F;
-    }
-
-    protected float getSoundPitch() {
-        return super.getSoundPitch();
-    }
-
     public SoundEvent getAmbientSound() {
-        return this.random.nextInt(4) == 0 ? null : SoundEvents.BLOCK_CAMPFIRE_CRACKLE;
+        return SoundEvents.BLOCK_CAMPFIRE_CRACKLE;
+    }
+
+    @Override
+    protected float getSoundVolume() {
+        return 0.01f;
     }
 
     protected SoundEvent getHurtSound(DamageSource source) {
@@ -51,16 +49,6 @@ public class SparkEntity extends HostileEntity {
 
     protected SoundEvent getDeathSound() {
         return SoundEvents.BLOCK_FIRE_EXTINGUISH;
-    }
-
-    public boolean isPushable() {
-        return false;
-    }
-
-    protected void pushAway(Entity entity) {
-    }
-
-    protected void tickCramming() {
     }
 
     public void readCustomDataFromTag(CompoundTag tag) {
@@ -109,7 +97,7 @@ public class SparkEntity extends HostileEntity {
         if (target != null) {
             if (this.getBoundingBox().intersects(target.getBoundingBox())) {
                 if (this.tryAttack(target)) {
-                    this.damage(DamageSource.STARVE, 4.0F);
+                    this.damage(DamageSource.ON_FIRE, StylishOccult.SETTINGS.sparkEntityDamage);
                 }
             }
 

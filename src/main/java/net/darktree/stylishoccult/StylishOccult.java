@@ -4,6 +4,7 @@ import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.entities.BlockEntities;
 import net.darktree.stylishoccult.effects.ModEffects;
 import net.darktree.stylishoccult.entities.ModEntities;
+import net.darktree.stylishoccult.event.LookAtEvent;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.network.Network;
@@ -48,6 +49,7 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
         ModFeatures.init();
         ModEffects.init();
         ModTags.init();
+        LookAtEvent.init();
     }
 
     @Override

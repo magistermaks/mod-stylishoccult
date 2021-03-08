@@ -113,6 +113,8 @@
   "rune.block.stylish_occult.rune_absumo": "Absumo",
   "rune.block.stylish_occult.rune_adiungo": "Adiungo",
 
+  "entity.stylish_occult.lava_spark": "Lava Spark",
+
   "sound.stylish_occult.lava_demon.wakeup": "Lava Demon Wakes Up",
   "sound.stylish_occult.lava_demon.die": "Lava Demon Dies",
   "sound.stylish_occult.vent": "Fire Vents",
@@ -122,4 +124,3 @@
 
   "effect.stylish_occult.corrupted_blood": "Corrupted Blood"
 }
-

@@ -38,11 +38,4 @@ public class Pair<A, B> {
         return "(" + first + ", " + second + ")";
     }
 
-    public A getFirst() {
-        return first;
-    }
-
-    public B getSecond() {
-        return second;
-    }
 }

@@ -57,7 +57,7 @@ public class PedestalBlockEntity extends SimpleBlockEntity {
         if( stackInHand.isEmpty() ) {
             if( !itemStack.isEmpty() ) {
                 player.setStackInHand( hand, itemStack.copy() );
-                itemStack.setCount(0);
+                if( player.isCreative() ) itemStack.setCount(0);
                 result = ActionResult.SUCCESS;
             }
         }else{

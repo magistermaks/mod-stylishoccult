@@ -6,6 +6,8 @@ import net.minecraft.sound.SoundEvents;
 
 public class Sounds {
 
+    // TODO: simplify this mess
+
     public static BlockSoundGroup FLESH;
     public static BlockSoundGroup LAVA_DEMON;
     public static BlockSoundGroup CANDLE;

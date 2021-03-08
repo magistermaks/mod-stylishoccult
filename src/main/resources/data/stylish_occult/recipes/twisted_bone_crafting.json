@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "stylish_occult:twisted_bone"
+    }
+  ],
+  "result": {
+    "item": "minecraft:bone",
+    "count": 2
+  }
+}
