@@ -1,7 +1,6 @@
 package net.darktree.stylishoccult.entities;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.particles.Particles;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.FollowTargetGoal;
@@ -21,7 +20,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 public class SparkEntity extends HostileEntity {
 

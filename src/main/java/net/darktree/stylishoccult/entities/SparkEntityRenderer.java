@@ -1,24 +1,17 @@
 package net.darktree.stylishoccult.entities;
 
 import net.darktree.stylishoccult.utils.ModIdentifier;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.*;
+import net.minecraft.client.render.OverlayTexture;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.render.entity.FishingBobberEntityRenderer;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.client.render.entity.model.LeashKnotEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.util.math.Vector3f;
-import net.minecraft.entity.decoration.LeashKnotEntity;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.FishingBobberEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.Matrix3f;
+import net.minecraft.util.math.Matrix4f;
 
 public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
 
@@ -29,8 +22,8 @@ public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
         super(entityRenderDispatcher);
     }
 
-    public void render(SparkEntity entity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-        float w = (float) Math.sin( entity.age / 10.0f ) * 0.1f + 0.4f;
+    public void render(SparkEntity sparkEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
+        float w = (float) Math.sin( sparkEntity.age / 10.0f ) * 0.1f + 0.4f;
 
         matrixStack.push();
         matrixStack.scale(w, w, w);
@@ -49,7 +42,7 @@ public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
         vertex(vertexConsumer, matrix4f, matrix3f, 0.0F, 1, 0, 0);
 
         matrixStack.pop();
-        super.render(entity, f, g, matrixStack, vertexConsumerProvider, i);
+        super.render(sparkEntity, f, g, matrixStack, vertexConsumerProvider, i);
     }
 
     /**
@@ -66,7 +59,7 @@ public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
                 .next();
     }
 
-    public Identifier getTexture(SparkEntity leashKnotEntity) {
+    public Identifier getTexture(SparkEntity sparkEntity) {
         return TEXTURE;
     }
 
