@@ -47,6 +47,7 @@ public class ModBlocks {
     public static final Block TENTACLE = RegUtil.block( "flesh_tentacle", new TentacleBlock() );
     public static final Block EYE_FLESH = RegUtil.block( "flesh_eye", new EyeBlock() );
     public static final Block EYES_FLESH = RegUtil.block( "flesh_eyes", new EyesBlock() );
+    public static final Block SPORE_VENT = RegUtil.block( "flesh_vent", new VentBlock() );
     public static final Block WARTS_FLESH = RegUtil.block( "flesh_warts", new EyesBlock() );
     public static final Block WORMS_FLESH = RegUtil.block( "flesh_worms", new WormsBlock() );
     public static final Block EYES_BLOCK = RegUtil.block( "eyes_block", new BuildingBlock( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ) ) );

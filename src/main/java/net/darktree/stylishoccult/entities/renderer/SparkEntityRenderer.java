@@ -1,5 +1,6 @@
-package net.darktree.stylishoccult.entities;
+package net.darktree.stylishoccult.entities.renderer;
 
+import net.darktree.stylishoccult.entities.SparkEntity;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;

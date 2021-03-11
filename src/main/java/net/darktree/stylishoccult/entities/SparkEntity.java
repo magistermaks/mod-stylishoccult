@@ -130,9 +130,12 @@ public class SparkEntity extends HostileEntity {
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, CompoundTag entityTag) {
-        Difficulty d = difficulty.getGlobalDifficulty();
-        this.maxAge = world.getRandom().nextInt(10 * 20) + (20 * StylishOccult.SETTINGS.sparkEntityBaseLiveTime.get(d));
+        this.maxAge = getMaxAge( difficulty.getGlobalDifficulty() );
         return super.initialize(world, difficulty, spawnReason, entityData, entityTag);
+    }
+
+    public int getMaxAge(Difficulty d) {
+        return world.getRandom().nextInt(10 * 20) + (20 * StylishOccult.SETTINGS.sparkEntityBaseLiveTime.get(d));
     }
 
     @Override

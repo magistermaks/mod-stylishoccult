@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.blocks.occult;
 
+import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.items.BottleItem;
 import net.darktree.stylishoccult.items.ModItems;
@@ -23,7 +24,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class PassiveFleshBlock extends SimpleBlock implements ImpureBlock {
+public class PassiveFleshBlock extends SimpleBlock implements ImpureBlock, FullFleshBlock {
 
     public static final BooleanProperty BLOODY = BooleanProperty.of("bloody");
     public static final VoxelShape SMALL_CUBE = Utils.box(1, 1, 1, 15, 15, 15);
@@ -75,7 +76,7 @@ public class PassiveFleshBlock extends SimpleBlock implements ImpureBlock {
 
     @Override
     public int impurityLevel(BlockState state) {
-        return 5 + (state.get(BLOODY) ? 5 : 0);
+        return 5 + (state.get(BLOODY) ? 3 : 0);
     }
 
 }

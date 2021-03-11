@@ -35,6 +35,11 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
     }
 
     @Override
+    public boolean canMobSpawnInside() {
+        return false;
+    }
+
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return state.get(TOP) ? BOX : VoxelShapes.fullCube();
     }

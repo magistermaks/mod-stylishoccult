@@ -3,17 +3,18 @@
 	"parent": "block/block",
 	"textures": {
 		"0": "stylish_occult:block/flesh/default",
-		"particle": "stylish_occult:block/flesh/default"
+		"particle": "stylish_occult:block/flesh/default",
+        "1": "stylish_occult:block/flesh/tentacle"
 	},
 	"elements": [
 		{
 			"from": [1, 0, 1],
 			"to": [15, 16, 15],
 			"faces": {
-				"north": {"uv": [0, 0, 14, 16], "texture": "#0"},
-				"east": {"uv": [0, 0, 14, 16], "texture": "#0"},
-				"south": {"uv": [0, 0, 14, 16], "texture": "#0"},
-				"west": {"uv": [0, 0, 14, 16], "texture": "#0"},
+				"north": {"uv": [1, 0, 15, 16], "texture": "#1"},
+				"east": {"uv": [1, 0, 15, 16], "texture": "#1"},
+				"south": {"uv": [1, 0, 15, 16], "texture": "#1"},
+				"west": {"uv": [1, 0, 15, 16], "texture": "#1"},
 				"up": {"uv": [0, 0, 14, 14], "texture": "#0", "cullface": "up"},
 				"down": {"uv": [0, 0, 14, 14], "texture": "#0", "cullface": "down"}
 			}

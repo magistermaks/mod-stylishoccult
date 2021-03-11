@@ -33,7 +33,7 @@ public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFlesh
     );
 
     public EyeBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 1.0F, 1.0F, true ).luminance(4) );
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 1.0F, 1.0F, true ).luminance(6) );
         setDefaultState( getDefaultState().with(PERSISTENT, false) );
     }
 

@@ -4,10 +4,7 @@ import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
-import net.darktree.stylishoccult.utils.OccultHelper;
-import net.darktree.stylishoccult.utils.RegUtil;
-import net.darktree.stylishoccult.utils.SimpleBlock;
-import net.darktree.stylishoccult.utils.Utils;
+import net.darktree.stylishoccult.utils.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -40,7 +37,6 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
             Utils.box( 3, 0, 3, 13, 16, 13 ),
             Utils.box( 2, 0, 2, 14, 16, 14 ),
             Utils.box( 1, 0, 1, 15, 16, 15 )
-
     };
 
     public TentacleBlock() {
@@ -144,7 +140,9 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
             world.setBlockState( pos, getDefaultState().with(SIZE, size - 1) );
             return false;
         }else{
-            world.setBlockState( pos, ModBlocks.EYE_FLESH.getDefaultState() );
+            if( RandUtils.getBool(80) ) {
+                world.setBlockState(pos, ModBlocks.EYE_FLESH.getDefaultState());
+            }
             return true;
         }
     }

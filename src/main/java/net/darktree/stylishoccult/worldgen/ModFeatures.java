@@ -1,9 +1,11 @@
 package net.darktree.stylishoccult.worldgen;
 
+import net.darktree.stylishoccult.entities.ModEntities;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
@@ -14,8 +16,8 @@ import net.minecraft.world.gen.feature.*;
 
 public class ModFeatures {
 
-    private static <F extends Feature<? extends FeatureConfig>> F registerFeature(String name, F feature) {
-        return Registry.register(Registry.FEATURE, new ModIdentifier(name), feature);
+    private static <F extends Feature<? extends FeatureConfig>> void registerFeature(String name, F feature) {
+        Registry.register(Registry.FEATURE, new ModIdentifier(name), feature);
     }
 
     private static RegistryKey<ConfiguredFeature<?, ?>> registerConfiguredFeature(String name, ConfiguredFeature<?, ?> configuredFeature) {
@@ -30,6 +32,13 @@ public class ModFeatures {
     }
 
     public static void init() {
+
+        // Add brain entity natural spawning
+        BiomeModifications.addSpawn(
+                BiomeSelectors.all(),
+                SpawnGroup.MONSTER,
+                ModEntities.BRAIN, 200, 1, 2
+        );
 
         // Lava Demon Feature
         BiomeModifications.addFeature(
