@@ -22,6 +22,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
@@ -119,6 +120,7 @@ public class SparkVentBlock extends SimpleBlock {
                         throw new RuntimeException( "Unable to summon Spark!" );
                     }
 
+                    sparkEntity.setVentDirection( Direction.UP, 0.5f );
                     sparkEntity.refreshPositionAndAngles(up, 0.0F, 0.0F);
                     sparkEntity.initialize(world, world.getLocalDifficulty(up), SpawnReason.REINFORCEMENT, null, null);
                     world.spawnEntity(sparkEntity);

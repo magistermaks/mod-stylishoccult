@@ -43,6 +43,7 @@
   "block.stylish_occult.growth": "Narośl",
   "block.stylish_occult.eyes_block": "Blok oczu",
   "block.stylish_occult.flesh_glow": "Jasnonarośl",
+  "block.stylish_occult.spore_vent": "Zarodnia",
 
   "item.stylish_occult.flesh": "Ciało",
   "item.stylish_occult.wax": "Wosk",
@@ -114,6 +115,8 @@
   "rune.block.stylish_occult.rune_adiungo": "Adiungo",
 
   "entity.stylish_occult.lava_spark": "Iskra",
+  "entity.stylish_occult.spore": "Zarodnik",
+  "entity.stylish_occult.brain": "Zepsuty umysł",
 
   "sound.stylish_occult.lava_demon.wakeup": "Magmowy demon budzi się",
   "sound.stylish_occult.lava_demon.die": "Magmowy demon umiera",

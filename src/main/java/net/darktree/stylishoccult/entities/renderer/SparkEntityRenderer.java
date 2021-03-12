@@ -23,6 +23,7 @@ public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
         super(entityRenderDispatcher);
     }
 
+    @Override
     public void render(SparkEntity sparkEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
         float w = (float) Math.sin( sparkEntity.age / 10.0f ) * 0.1f + 0.4f;
 
@@ -35,31 +36,42 @@ public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
         MatrixStack.Entry entry = matrixStack.peek();
         Matrix4f matrix4f = entry.getModel();
         Matrix3f matrix3f = entry.getNormal();
-        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(LAYER);
+        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(getLayer());
 
-        vertex(vertexConsumer, matrix4f, matrix3f, 0.0F, 0, 0, 1);
-        vertex(vertexConsumer, matrix4f, matrix3f, 1.0F, 0, 1, 1);
-        vertex(vertexConsumer, matrix4f, matrix3f, 1.0F, 1, 1, 0);
-        vertex(vertexConsumer, matrix4f, matrix3f, 0.0F, 1, 0, 0);
+        int j = getLight(i);
+
+        vertex(vertexConsumer, matrix4f, matrix3f, j, 0.0F, 0, 0, 1);
+        vertex(vertexConsumer, matrix4f, matrix3f, j, 1.0F, 0, 1, 1);
+        vertex(vertexConsumer, matrix4f, matrix3f, j, 1.0F, 1, 1, 0);
+        vertex(vertexConsumer, matrix4f, matrix3f, j, 0.0F, 1, 0, 0);
 
         matrixStack.pop();
         super.render(sparkEntity, f, g, matrixStack, vertexConsumerProvider, i);
     }
 
-    /**
-     * @see EntityRenderDispatcher drawFireVertex, for the origin of the '240' magic light value.
-     */
-    private static void vertex(VertexConsumer vertexConsumer, Matrix4f matrix4f, Matrix3f matrix3f, float f, int j, int k, int l) {
+    private static void vertex(VertexConsumer vertexConsumer, Matrix4f matrix4f, Matrix3f matrix3f, int i, float f, int j, int k, int l) {
         vertexConsumer
                 .vertex(matrix4f, f - 0.5F, j - 0.5F, 0.0F)
                 .color(255, 255, 255, 255)
                 .texture(k, l)
                 .overlay(OverlayTexture.DEFAULT_UV)
-                .light(240)
+                .light(i)
                 .normal(matrix3f, 0.0F, 1.0F, 0.0F)
                 .next();
     }
 
+    /**
+     * @see EntityRenderDispatcher drawFireVertex, for the origin of the '240' magic light value.
+     */
+    protected int getLight( int i ) {
+        return 240;
+    }
+
+    public RenderLayer getLayer() {
+        return LAYER;
+    }
+
+    @Override
     public Identifier getTexture(SparkEntity sparkEntity) {
         return TEXTURE;
     }

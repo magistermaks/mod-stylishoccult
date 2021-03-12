@@ -43,6 +43,7 @@
   "block.stylish_occult.growth": "Growth",
   "block.stylish_occult.eyes_block": "Eyes Block",
   "block.stylish_occult.flesh_glow": "Glowgrowth",
+  "block.stylish_occult.spore_vent": "Sporangium",
 
   "item.stylish_occult.flesh": "Flesh",
   "item.stylish_occult.wax": "Wax",
@@ -114,6 +115,8 @@
   "rune.block.stylish_occult.rune_adiungo": "Adiungo",
 
   "entity.stylish_occult.lava_spark": "Lava Spark",
+  "entity.stylish_occult.spore": "Spore",
+  "entity.stylish_occult.brain": "Corrupted Mind",
 
   "sound.stylish_occult.lava_demon.wakeup": "Lava Demon Wakes Up",
   "sound.stylish_occult.lava_demon.die": "Lava Demon Dies",

@@ -14,6 +14,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
@@ -25,11 +26,16 @@ public class SparkEntity extends HostileEntity {
 
     private BlockPos wanderTargetPoint;
     private int maxAge;
+    private Vec3d direction;
 
     public SparkEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
 
         this.experiencePoints = 1;
+    }
+
+    public void setVentDirection( Direction direction, float power ) {
+        this.direction = new Vec3d( direction.getOffsetX(), direction.getOffsetY(), direction.getOffsetZ() ).multiply(power);
     }
 
     public SoundEvent getAmbientSound() {
@@ -53,12 +59,19 @@ public class SparkEntity extends HostileEntity {
         super.readCustomDataFromTag(tag);
         this.age = tag.getInt("age");
         this.maxAge = tag.getInt("maxAge");
+        double x = tag.getDouble("dirX");
+        double y = tag.getDouble("dirY");
+        double z = tag.getDouble("dirZ");
+        direction = new Vec3d(x, y, z);
     }
 
     public void writeCustomDataToTag(CompoundTag tag) {
         super.writeCustomDataToTag(tag);
         tag.putInt("age", this.age);
         tag.putInt("maxAge", this.maxAge);
+        tag.putDouble("dirX", direction.x);
+        tag.putDouble("dirY", direction.y);
+        tag.putDouble("dirZ", direction.z);
     }
 
     protected void initGoals() {
@@ -86,16 +99,21 @@ public class SparkEntity extends HostileEntity {
         }
     }
 
+    protected void dealDamage() {
+        damage(DamageSource.ON_FIRE, StylishOccult.SETTINGS.sparkEntityDamage);
+    }
+
     protected void mobTick() {
         super.mobTick();
 
+        direction = direction.multiply( 0.9 );
         LivingEntity target = this.getTarget();
         double d, e, f, s;
 
         if (target != null) {
             if (this.getBoundingBox().intersects(target.getBoundingBox())) {
                 if (this.tryAttack(target)) {
-                    this.damage(DamageSource.ON_FIRE, StylishOccult.SETTINGS.sparkEntityDamage);
+                    dealDamage();
                 }
             }
 
@@ -115,15 +133,15 @@ public class SparkEntity extends HostileEntity {
                 this.wanderTargetPoint = new BlockPos(this.getX() + (double) this.random.nextInt(7) - (double) this.random.nextInt(7), this.getY() + (double) this.random.nextInt(6) - 2.0D, this.getZ() + (double) this.random.nextInt(7) - (double) this.random.nextInt(7));
             }
 
-            d = (double) wanderTargetPoint.getX() + 0.5D - this.getX() + this.random.nextFloat() - this.random.nextFloat();
-            e = (double) wanderTargetPoint.getY() + 0.5D - this.getY() + this.random.nextFloat() - this.random.nextFloat();
-            f = (double) wanderTargetPoint.getZ() + 0.5D - this.getZ() + this.random.nextFloat() - this.random.nextFloat();
+            d = (double) wanderTargetPoint.getX() + 0.5 - this.getX() + this.random.nextFloat() - this.random.nextFloat();
+            e = (double) wanderTargetPoint.getY() + 0.5 - this.getY() + this.random.nextFloat() - this.random.nextFloat();
+            f = (double) wanderTargetPoint.getZ() + 0.5 - this.getZ() + this.random.nextFloat() - this.random.nextFloat();
         }
 
-        Vec3d vec3d = this.getVelocity();
-        Vec3d vec3d2 = vec3d.add((Math.signum(d) * 0.5D - vec3d.x) * 0.10000000149011612D, (Math.signum(e) * 0.699999988079071D - vec3d.y) * 0.10000000149011612D, (Math.signum(f) * 0.5D - vec3d.z) * 0.10000000149011612D);
+        Vec3d vec3d = this.getVelocity().add(direction);
+        Vec3d vec3d2 = vec3d.add((Math.signum(d) * 0.5 - vec3d.x) * 0.1, (Math.signum(e) * 0.7 - vec3d.y) * 0.1, (Math.signum(f) * 0.5 - vec3d.z) * 0.1);
         this.setVelocity(vec3d2.multiply(s));
-        float g = (float) (MathHelper.atan2(vec3d2.z, vec3d2.x) * 57.2957763671875D) - 90.0F;
+        float g = (float) (MathHelper.atan2(vec3d2.z, vec3d2.x) * 57.3) - 90;
         float h = MathHelper.wrapDegrees(g - this.yaw);
         this.yaw += h;
     }

@@ -1,32 +1,41 @@
 package net.darktree.stylishoccult.blocks.occult;
 
+import net.darktree.stylishoccult.blocks.SparkVentBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
+import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.entities.ModEntities;
+import net.darktree.stylishoccult.entities.SparkEntity;
+import net.darktree.stylishoccult.entities.SporeEntity;
 import net.darktree.stylishoccult.utils.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.client.util.math.Vector3f;
-import net.minecraft.particle.DustParticleEffect;
-import net.minecraft.particle.ParticleEffect;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
 public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureBlock {
 
     public static DirectionProperty FACING = Properties.FACING;
+    public static BooleanProperty ACTIVE = SparkVentBlock.ACTIVE;
 
     public static VoxelShape[] SHAPES = {
             Voxels.box(3, 16, 3, 13, 15, 13).box(4, 15, 4, 12, 14, 12).build(),
@@ -48,7 +57,82 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
 
     public VentBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.STONE, 2, 2, false ).ticksRandomly() );
-        setDefaultState( getDefaultState().with(FACING, Direction.UP) );
+        setDefaultState( getDefaultState().with(FACING, Direction.UP).with(ACTIVE, false) );
+    }
+
+    public BlockState getStateToFit( World world, BlockPos pos ) {
+        for( Direction direction : Direction.values() ) {
+            if( world.getBlockState( pos.offset(direction) ).getBlock() instanceof FullFleshBlock ) {
+                return getDefaultState().with(FACING, direction.getOpposite());
+            }
+        }
+
+        throw new RuntimeException("Unable to fit the block!");
+    }
+
+    @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
+        if( state.get(FACING).getOpposite() == direction ) {
+            if( !(world.getBlockState(pos.offset(direction)).getBlock() instanceof FullFleshBlock) ) {
+                return Blocks.AIR.getDefaultState();
+            }
+        }
+
+        return state;
+    }
+
+    private void summon(BlockState state, World world, BlockPos pos ) {
+
+        // TODO: add custom sound
+        world.playSound(null, pos, SoundEvents.ENTITY_ITEM_FRAME_ROTATE_ITEM, SoundCategory.BLOCKS, 1, 1);
+
+        SporeEntity sporeEntity = ModEntities.SPORE.create(world);
+
+        if( sporeEntity == null ){
+            throw new RuntimeException( "Unable to summon Spore!" );
+        }
+
+        sporeEntity.setVentDirection( state.get(FACING), 0.9f );
+        sporeEntity.refreshPositionAndAngles(pos, 0.0F, 0.0F);
+        sporeEntity.initialize((ServerWorldAccess) world, world.getLocalDifficulty(pos), SpawnReason.REINFORCEMENT, null, null);
+        world.spawnEntity(sporeEntity);
+    }
+
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+
+        Direction facing = ctx.getPlacementDirections()[0];
+
+        if( ctx.getWorld().getBlockState(ctx.getBlockPos().offset(facing)).getBlock() instanceof FullFleshBlock ) {
+            return getDefaultState().with(FACING, facing.getOpposite());
+        }
+
+        try {
+            return getStateToFit(ctx.getWorld(), ctx.getBlockPos());
+        }catch (RuntimeException ignored) {
+            return null;
+        }
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if( !world.getBlockTickScheduler().isScheduled(pos, this) ) {
+            world.getBlockTickScheduler().schedule(pos, this, 100);
+        }
+    }
+
+    @Override
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        world.setBlockState(pos, state.with(ACTIVE, true));
+
+        summon(state, world, pos);
+
+        if( random.nextInt( 5 ) == 0 ) {
+            world.setBlockState(pos, state.with(ACTIVE, false));
+            world.getBlockTickScheduler().schedule(pos, this, random.nextInt(450) + 250);
+        }else{
+            world.getBlockTickScheduler().schedule(pos, this, 20);
+        }
     }
 
     @Override
@@ -69,7 +153,7 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING, ACTIVE);
     }
 
     @Override
@@ -79,6 +163,7 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
 
     @Override
     public int impurityLevel(BlockState state) {
-        return 10;
+        return 10 * (state.get(ACTIVE) ? 2 : 1);
     }
+
 }

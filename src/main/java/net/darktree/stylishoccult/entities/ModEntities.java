@@ -21,6 +21,11 @@ public class ModEntities {
             .dimensions(EntityDimensions.fixed(0.25f, 0.3f))
             .build();
 
+    public static final EntityType<SporeEntity> SPORE = FabricEntityTypeBuilder
+            .create(SpawnGroup.MONSTER, SporeEntity::new)
+            .dimensions(EntityDimensions.fixed(0.3f, 0.3f))
+            .build();
+
     public static final EntityType<BrainEntity> BRAIN = FabricEntityTypeBuilder
             .createMob()
             .spawnGroup(SpawnGroup.MONSTER)
@@ -32,6 +37,9 @@ public class ModEntities {
     public static void init() {
         Registry.register( Registry.ENTITY_TYPE, new ModIdentifier("lava_spark"), LAVA_SPARK );
         FabricDefaultAttributeRegistry.register( LAVA_SPARK, SparkEntity.createSparkAttributes() );
+
+        Registry.register( Registry.ENTITY_TYPE, new ModIdentifier("spore"), SPORE );
+        FabricDefaultAttributeRegistry.register( SPORE, SporeEntity.createSporeAttributes() );
 
         Registry.register( Registry.ENTITY_TYPE, new ModIdentifier("brain"), BRAIN );
         FabricDefaultAttributeRegistry.register( BRAIN, BrainEntity.createBrainAttributes() );
