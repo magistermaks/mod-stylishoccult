@@ -3,11 +3,17 @@ package net.darktree.stylishoccult.items;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.entities.ModEntities;
 import net.darktree.stylishoccult.enums.CandleHolderMaterial;
+import net.darktree.stylishoccult.items.material.TwistedBoneArmorMaterial;
+import net.darktree.stylishoccult.items.material.TwistedBoneToolMaterial;
+import net.darktree.stylishoccult.items.tools.AxeItem;
+import net.darktree.stylishoccult.items.tools.HoeItem;
+import net.darktree.stylishoccult.items.tools.PickaxeItem;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.RuneUtils;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.Rarity;
 
@@ -28,6 +34,17 @@ public class ModItems {
                 .icon(() -> new ItemStack( ModBlocks.CLICK_RUNE_BLOCK.asItem() ))
                 .build();
     }
+
+    // tools and armors
+    public static final Item TWISTED_SWORD = RegUtil.item( "twisted_sword", new SwordItem(TwistedBoneToolMaterial.INSTANCE, 3, -2.4F, new Item.Settings().group(ItemGroup.COMBAT)));
+    public static final Item TWISTED_SHOVEL = RegUtil.item( "twisted_shovel", new ShovelItem(TwistedBoneToolMaterial.INSTANCE, 1.5F, -3.0F, new Item.Settings().group(ItemGroup.TOOLS)));
+    public static final Item TWISTED_PICKAXE = RegUtil.item( "twisted_pickaxe", new PickaxeItem(TwistedBoneToolMaterial.INSTANCE, 1, -2.8F, new Item.Settings().group(ItemGroup.TOOLS)));
+    public static final Item TWISTED_AXE = RegUtil.item( "twisted_axe", new AxeItem(TwistedBoneToolMaterial.INSTANCE, 7.0F, -3.2F, new Item.Settings().group(ItemGroup.TOOLS)));
+    public static final Item TWISTED_HOE = RegUtil.item( "twisted_hoe", new HoeItem(TwistedBoneToolMaterial.INSTANCE, -1, -2.0F, new Item.Settings().group(ItemGroup.TOOLS)));
+    public static final Item TWISTED_HELMET = RegUtil.item( "twisted_helmet", new ArmorItem(TwistedBoneArmorMaterial.INSTANCE, EquipmentSlot.HEAD, new Item.Settings().group(ItemGroup.COMBAT)));
+    public static final Item TWISTED_CHESTPLATE = RegUtil.item( "twisted_chestplate", new ArmorItem(TwistedBoneArmorMaterial.INSTANCE, EquipmentSlot.CHEST, new Item.Settings().group(ItemGroup.COMBAT)));
+    public static final Item TWISTED_LEGGINGS = RegUtil.item( "twisted_leggings", new ArmorItem(TwistedBoneArmorMaterial.INSTANCE, EquipmentSlot.LEGS, new Item.Settings().group(ItemGroup.COMBAT)));
+    public static final Item TWISTED_BOOTS = RegUtil.item( "twisted_boots", new ArmorItem(TwistedBoneArmorMaterial.INSTANCE, EquipmentSlot.FEET, new Item.Settings().group(ItemGroup.COMBAT)));
 
     public static final Item LAVA_STONE = RegUtil.item( "lava_stone", ModBlocks.LAVA_STONE, Groups.STYLISH_OCCULT );
     public static final Item WAX = RegUtil.item( "wax", Groups.STYLISH_OCCULT );

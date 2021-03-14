@@ -58,6 +58,11 @@
   "item.stylish_occult.spark_spawn_egg": "Spark Spawn Egg",
   "item.stylish_occult.spore_spawn_egg": "Spore Spawn Egg",
   "item.stylish_occult.brain_spawn_egg": "Brain Spawn Egg",
+  "item.stylish_occult.twisted_sword": "Twisted Sword",
+  "item.stylish_occult.twisted_shovel": "Twisted Shovel",
+  "item.stylish_occult.twisted_pickaxe": "Twisted Pickaxe",
+  "item.stylish_occult.twisted_axe": "Twisted Axe",
+  "item.stylish_occult.twisted_hoe": "Twisted Hoe",
 
   "tooltip.stylish_occult.candle": "Length: %s",
   "tooltip.stylish_occult.rune": "Rune: %s",
