@@ -63,6 +63,10 @@
   "item.stylish_occult.twisted_pickaxe": "Skręcony kilof",
   "item.stylish_occult.twisted_axe": "Skręcona siekiera",
   "item.stylish_occult.twisted_hoe": "Skręcona motyka",
+  "item.stylish_occult.twisted_helmet": "Skręcony hełm",
+  "item.stylish_occult.twisted_chestplate": "Skręcony napierśnik",
+  "item.stylish_occult.twisted_leggings": "Skręcone leginsy",
+  "item.stylish_occult.twisted_boots": "Skręcone buty",
 
   "tooltip.stylish_occult.candle": "Długość: %s",
   "tooltip.stylish_occult.rune": "Runa: %s",

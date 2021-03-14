@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "111",
+    "1 1"
+  ],
+  "key": {
+    "1": {
+      "item": "stylish_occult:twisted_bone"
+    }
+  },
+  "result": {
+    "item": "stylish_occult:twisted_helmet"
+  }
+}
