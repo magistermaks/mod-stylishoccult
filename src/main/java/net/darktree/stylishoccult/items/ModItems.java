@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.items;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.entities.ModEntities;
 import net.darktree.stylishoccult.enums.CandleHolderMaterial;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.darktree.stylishoccult.utils.RegUtil;
@@ -123,6 +124,12 @@ public class ModItems {
     public static final Item BIRCH_WALL_CANDELABRA = WallCandelabraItem.register( CandleHolderMaterial.BIRCH );
     public static final Item JUNGLE_WALL_CANDELABRA = WallCandelabraItem.register( CandleHolderMaterial.JUNGLE );
     public static final Item SPRUCE_WALL_CANDELABRA = WallCandelabraItem.register( CandleHolderMaterial.SPRUCE );
+
+    // spawn eggs
+    public static final Item SPARK_SPAWN_EGG = RegUtil.item("spark_spawn_egg", new SpawnEggItem(ModEntities.SPARK, 0xff5454, 0xff0000, new Item.Settings().group(ItemGroup.MISC)));
+    public static final Item SPORE_SPAWN_EGG = RegUtil.item("spore_spawn_egg", new SpawnEggItem(ModEntities.SPORE, 0x620d0d, 0x4e0909, new Item.Settings().group(ItemGroup.MISC)));
+    public static final Item BRAIN_SPAWN_EGG = RegUtil.item("brain_spawn_egg", new SpawnEggItem(ModEntities.BRAIN, 0x821c09, 0x934430, new Item.Settings().group(ItemGroup.MISC)));
+
 
     public static void init() {
         // Load this class

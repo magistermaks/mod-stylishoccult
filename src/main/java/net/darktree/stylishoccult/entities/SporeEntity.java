@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.entities;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.entities.goal.FollowNonCorruptedGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.damage.DamageSource;
@@ -9,7 +10,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
-public class SporeEntity extends SparkEntity {
+public class SporeEntity extends SparkEntity implements CorruptedEntity {
 
     public SporeEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -17,6 +18,10 @@ public class SporeEntity extends SparkEntity {
 
     public static DefaultAttributeContainer.Builder createSporeAttributes() {
         return SparkEntity.createSparkAttributes();
+    }
+
+    protected void addSpecificGoals() {
+        this.targetSelector.add(0, new FollowNonCorruptedGoal(this, true));
     }
 
     protected void dealDamage() {

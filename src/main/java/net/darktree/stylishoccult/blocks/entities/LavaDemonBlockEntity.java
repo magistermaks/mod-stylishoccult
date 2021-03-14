@@ -125,7 +125,7 @@ public class LavaDemonBlockEntity extends BlockEntity implements Tickable {
                             continue;
                         }
 
-                        SparkEntity sparkEntity = ModEntities.LAVA_SPARK.create(this.world);
+                        SparkEntity sparkEntity = ModEntities.SPARK.create(this.world);
 
                         if( sparkEntity == null ){
                             throw new RuntimeException( "Unable to summon Spark!" );

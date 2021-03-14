@@ -55,6 +55,9 @@
   "item.stylish_occult.blazing_lava_shard": "Ogniste magmowe odłamki",
   "item.stylish_occult.twisted_bone": "Skręcona kość",
   "item.stylish_occult.glowgrowth_shard": "Odłamek jasnonarośli",
+  "item.stylish_occult.spark_spawn_egg": "Jajko przyzywające iskrę",
+  "item.stylish_occult.spore_spawn_egg": "Jajko przyzywające zarodnika",
+  "item.stylish_occult.brain_spawn_egg": "Jajko przyzywające zepsuty umysł",
 
   "tooltip.stylish_occult.candle": "Długość: %s",
   "tooltip.stylish_occult.rune": "Runa: %s",

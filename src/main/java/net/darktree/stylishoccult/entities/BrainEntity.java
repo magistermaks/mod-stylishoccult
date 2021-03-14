@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.entities;
 
 import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
+import net.darktree.stylishoccult.entities.goal.FollowNonCorruptedGoal;
 import net.darktree.stylishoccult.particles.Particles;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -21,7 +22,7 @@ import net.minecraft.world.WorldView;
 
 import java.util.Random;
 
-public class BrainEntity extends SlimeEntity {
+public class BrainEntity extends SlimeEntity implements CorruptedEntity {
 
     public BrainEntity(EntityType<BrainEntity> entityType, World world) {
         super(entityType, world);
@@ -37,6 +38,12 @@ public class BrainEntity extends SlimeEntity {
 
     public static DefaultAttributeContainer.Builder createBrainAttributes() {
         return MagmaCubeEntity.createMagmaCubeAttributes();
+    }
+
+    @Override
+    protected void initGoals() {
+        super.initGoals();
+        this.targetSelector.add(2, new FollowNonCorruptedGoal(this, true));
     }
 
     @Override

@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.entities;
 
-import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.entities.renderer.ClientModEntities;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.fabricmc.api.EnvType;
@@ -16,7 +15,7 @@ import net.minecraft.world.Heightmap;
 
 public class ModEntities {
 
-    public static final EntityType<SparkEntity> LAVA_SPARK = FabricEntityTypeBuilder
+    public static final EntityType<SparkEntity> SPARK = FabricEntityTypeBuilder
             .create(SpawnGroup.MONSTER, SparkEntity::new)
             .dimensions(EntityDimensions.fixed(0.25f, 0.3f))
             .build();
@@ -35,8 +34,8 @@ public class ModEntities {
             .build();
 
     public static void init() {
-        Registry.register( Registry.ENTITY_TYPE, new ModIdentifier("lava_spark"), LAVA_SPARK );
-        FabricDefaultAttributeRegistry.register( LAVA_SPARK, SparkEntity.createSparkAttributes() );
+        Registry.register( Registry.ENTITY_TYPE, new ModIdentifier("lava_spark"), SPARK);
+        FabricDefaultAttributeRegistry.register(SPARK, SparkEntity.createSparkAttributes() );
 
         Registry.register( Registry.ENTITY_TYPE, new ModIdentifier("spore"), SPORE );
         FabricDefaultAttributeRegistry.register( SPORE, SporeEntity.createSporeAttributes() );

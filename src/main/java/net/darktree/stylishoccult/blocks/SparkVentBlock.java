@@ -114,7 +114,7 @@ public class SparkVentBlock extends SimpleBlock {
 
                 for( int i = 0; i < count; i ++ ) {
 
-                    SparkEntity sparkEntity = ModEntities.LAVA_SPARK.create(world);
+                    SparkEntity sparkEntity = ModEntities.SPARK.create(world);
 
                     if( sparkEntity == null ){
                         throw new RuntimeException( "Unable to summon Spark!" );

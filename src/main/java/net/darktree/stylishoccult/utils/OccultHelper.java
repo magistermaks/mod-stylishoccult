@@ -7,9 +7,6 @@ import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.tags.ModTags;
 import net.minecraft.block.*;
-import net.minecraft.entity.AreaEffectCloudEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.tag.BlockTags;
@@ -126,7 +123,7 @@ public class OccultHelper {
                     return ModBlocks.WARTS_FLESH.getDefaultState().with(EyesBlock.SIZE, RandUtils.rangeInt(1, 3));
                 }
 
-                if( type == 3 && RandUtils.getBool(66.6f) ) {
+                if( type == 3 && RandUtils.getBool(55.6f) ) {
                     if( BlockUtils.countInArea(world, pos, VentBlock.class, 5) == 0 ) {
                         return ((VentBlock) ModBlocks.SPORE_VENT).getStateToFit(world, pos);
                     }

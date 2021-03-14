@@ -5,9 +5,11 @@ import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.entities.ModEntities;
-import net.darktree.stylishoccult.entities.SparkEntity;
 import net.darktree.stylishoccult.entities.SporeEntity;
-import net.darktree.stylishoccult.utils.*;
+import net.darktree.stylishoccult.utils.OccultHelper;
+import net.darktree.stylishoccult.utils.RegUtil;
+import net.darktree.stylishoccult.utils.SimpleBlock;
+import net.darktree.stylishoccult.utils.Voxels;
 import net.minecraft.block.*;
 import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.entity.SpawnReason;
@@ -28,7 +30,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 

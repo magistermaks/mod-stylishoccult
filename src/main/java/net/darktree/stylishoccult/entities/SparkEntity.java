@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.entities;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.entities.goal.FollowCorruptedGoal;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.FollowTargetGoal;
@@ -32,6 +33,7 @@ public class SparkEntity extends HostileEntity {
         super(entityType, world);
 
         this.experiencePoints = 1;
+        this.direction = new Vec3d(0, 0, 0);
     }
 
     public void setVentDirection( Direction direction, float power ) {
@@ -77,7 +79,13 @@ public class SparkEntity extends HostileEntity {
     protected void initGoals() {
         super.initGoals();
         this.goalSelector.add(0, new SwimGoal(this));
-        this.targetSelector.add(0, new FollowTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.add(1, new FollowTargetGoal<>(this, PlayerEntity.class, true));
+
+        addSpecificGoals();
+    }
+
+    protected void addSpecificGoals() {
+        this.targetSelector.add(0, new FollowCorruptedGoal(this, true));
     }
 
     public static DefaultAttributeContainer.Builder createSparkAttributes() {
