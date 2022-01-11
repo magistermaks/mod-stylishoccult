@@ -1,8 +1,0 @@
-{
-    "parent": "stylish_occult:block/chandelier/common",
-	"textures": {
-		"0": "stylish_occult:block/chandelier_chain",
-		"1": "block/acacia_planks",
-		"particle": "block/acacia_planks"
-	}
-}

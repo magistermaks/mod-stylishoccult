@@ -10,12 +10,10 @@ import net.minecraft.util.registry.Registry;
 
 public class Particles {
 
-    public static DefaultParticleType CANDLE_FLAME = FabricParticleTypes.simple();
     public static DefaultParticleType ORBITING_SPARK = FabricParticleTypes.simple();
     public static DefaultParticleType SPORE = FabricParticleTypes.simple();
 
     public static void init(){
-        Registry.register(Registry.PARTICLE_TYPE, new ModIdentifier("candle_flame"), CANDLE_FLAME);
         Registry.register(Registry.PARTICLE_TYPE, new ModIdentifier("orbiting_spark"), ORBITING_SPARK);
         Registry.register(Registry.PARTICLE_TYPE, new ModIdentifier("spore"), SPORE);
     }
@@ -26,7 +24,6 @@ public class Particles {
         Utils.requestParticleTexture( new ModIdentifier( "particle/spore" ) );
 
         ParticleFactoryRegistry.getInstance().register(SPORE, FlameParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(CANDLE_FLAME, SimpleFlameParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ORBITING_SPARK, OrbitingFlameParticle.Factory::new);
     }
 

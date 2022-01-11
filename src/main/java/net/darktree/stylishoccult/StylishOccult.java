@@ -27,12 +27,9 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
     public static final String NAMESPACE = "stylish_occult";
     public static final Settings SETTINGS = new Settings();
 
-    @Environment(EnvType.CLIENT)
-    public static final Random RANDOM = new Random();
-
-    public static void debug( String str ) {
+    public static void debug( String message ) {
         if( SETTINGS.debug ) {
-            LOGGER.info( str );
+            LOGGER.info(message);
         }
     }
 
@@ -58,7 +55,6 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
         Network.clientInit();
         ModItems.clientInit();
         Particles.clientInit();
-        BlockEntities.clientInit();
         ModEntities.clientInit();
         LOGGER.info( "Sound effects for Stylish Occult obtained from https://www.zapsplat.com" );
     }

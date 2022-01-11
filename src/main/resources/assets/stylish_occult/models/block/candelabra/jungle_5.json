@@ -1,7 +1,0 @@
-{
-	"parent": "stylish_occult:block/candelabra/type/5",
-	"textures": {
-		"0": "block/jungle_planks",
-		"particle": "block/jungle_planks"
-	}
-}

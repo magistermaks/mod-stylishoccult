@@ -1,10 +1,7 @@
 package net.darktree.stylishoccult.loot;
 
-import net.darktree.stylishoccult.blocks.AbstractCandleHolderBlock;
-import net.darktree.stylishoccult.blocks.CandleBlock;
 import net.darktree.stylishoccult.blocks.LavaDemonBlock;
 import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.entities.AbstractCandleHolderBlockEntity;
 import net.darktree.stylishoccult.blocks.occult.EyesBlock;
 import net.darktree.stylishoccult.blocks.occult.ThinFleshBlock;
 import net.darktree.stylishoccult.enums.LavaDemonPart;
@@ -44,7 +41,6 @@ public class LootTables {
                 .addItem( Items.IRON_INGOT, 11.0f )
                 .addItem( Items.STRING, 3.2f )
                 .addItem( Items.ROTTEN_FLESH, 3.2f )
-                .addItem( ModItems.WAX, 3.2f )
                 .dropExperience(2, 10)
                 .pop()
             .minimum(1)
@@ -83,54 +79,6 @@ public class LootTables {
                         .pop()
                     .pop()
                 .pop()
-            .build();
-
-    public static final LootTable CANDLE_CONTAINER = LootManager.create()
-            .applyForCreative()
-            .addGenerator( (rng, ctx) -> {
-                ArrayList<ItemStack> stacks = new ArrayList<>();
-
-                AbstractCandleHolderBlockEntity entity = ctx.getBlockEntity(AbstractCandleHolderBlockEntity.class);
-                if( entity != null ) {
-                    stacks = entity.dropAll();
-
-                    if( ctx.shouldDrop() ) {
-                        AbstractCandleHolderBlock block = ctx.getBlock(AbstractCandleHolderBlock.class);
-                        if( block != null ) {
-                            stacks.add( block.getMainStack(ctx.getState()) );
-                        }
-                    }
-                }
-
-                return stacks;
-            } )
-            .build();
-
-    public static final LootTable CANDLE = LootManager.create()
-            .addGenerator( (rng, ctx) -> {
-                ArrayList<ItemStack> stacks = new ArrayList<>();
-                CompoundTag tag1 = new CompoundTag();
-                CompoundTag tag2 = new CompoundTag();
-                int layers = ctx.getState().get(CandleBlock.LAYERS);
-
-                if( layers != 1 ) {
-                    String l = String.valueOf( ctx.getState().get(CandleBlock.LAYERS) );
-                    tag2.putString( "layers", l );
-                    tag1.put( "BlockStateTag", tag2 );
-                    ItemStack stack = ItemStack.EMPTY;
-
-                    if( ctx.getBlock() == ModBlocks.CANDLE ) {
-                        stack = new ItemStack( ModItems.CANDLE );
-                    }else if( ctx.getBlock() == ModBlocks.EXTINGUISHED_CANDLE ) {
-                        stack = new ItemStack( ModItems.EXTINGUISHED_CANDLE );
-                    }
-
-                    stack.setTag( tag1 );
-                    stacks.add(stack);
-                }
-
-                return stacks;
-            } )
             .build();
 
     public static final LootTable GENERIC_FLESH = LootManager.create()

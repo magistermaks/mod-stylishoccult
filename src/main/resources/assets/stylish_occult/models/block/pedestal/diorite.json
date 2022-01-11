@@ -1,8 +1,0 @@
-{
-	"parent": "stylish_occult:block/pedestal/common",
-	"textures": {
-		"0": "stylish_occult:block/diorite_slab",
-		"4": "stylish_occult:block/diorite_pillar",
-		"particle": "stylish_occult:block/diorite_slab"
-	}
-}

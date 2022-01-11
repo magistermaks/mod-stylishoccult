@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "minecraft:bricks"
-  },
-  "result": "stylish_occult:cracked_bricks",
-  "experience": 0.4,
-  "cookingtime": 200
-}

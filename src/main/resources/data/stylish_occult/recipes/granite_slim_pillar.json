@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "minecraft:polished_granite"
-  },
-  "result": "stylish_occult:granite_slim_pillar",
-  "count": 1
-}

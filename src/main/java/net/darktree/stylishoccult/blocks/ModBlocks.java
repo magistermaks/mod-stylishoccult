@@ -21,16 +21,8 @@ public class ModBlocks {
 
     public static final ArrayList<Block> RUNESTONES = new ArrayList<>();
 
-    public static final Block CHANDELIER = RegUtil.block( "chandelier", new ChandelierBlock() );
-    public static final Block CANDELABRA = RegUtil.block( "candelabra", new CandelabraBlock() );
-    public static final Block WALL_CANDELABRA = RegUtil.block( "wall_candelabra", new WallCandelabraBlock() );
-    public static final Block EXTINGUISHED_CANDLE = RegUtil.block( "extinguished_candle", new ExtinguishedCandleBlock() );
-    public static final Block CANDLE = RegUtil.block( "candle", new CandleBlock() );
     public static final Block URN = RegUtil.block( "urn", new UrnBlock() );
     public static final Block LAVA_DEMON = RegUtil.block( "lava_demon", new LavaDemonBlock() );
-    public static final Block GRANITE_PEDESTAL = RegUtil.block( "granite_pedestal", new PedestalBlock() );
-    public static final Block ANDESITE_PEDESTAL = RegUtil.block( "andesite_pedestal", new PedestalBlock() );
-    public static final Block DIORITE_PEDESTAL = RegUtil.block( "diorite_pedestal", new PedestalBlock() );
     public static final Block FIERY_LANTERN = RegUtil.block( "fiery_lantern", new FieryLanternBlock() );
     public static final Block SPARK_VENT = RegUtil.block( "spark_vent", new SparkVentBlock() );
     public static final Block GROWTH = RegUtil.block( "growth", new ThinFleshBlock() );
@@ -56,15 +48,6 @@ public class ModBlocks {
     // simple building blocks
     public static final Block STONE_FLESH = RegUtil.block( "flesh_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).breakByTool(FabricToolTags.PICKAXES).requiresTool() ) );
     public static final Block LAVA_STONE = RegUtil.block( "lava_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).luminance(3).breakByTool(FabricToolTags.PICKAXES).requiresTool() ) );
-    public static final Block WAX_BLOCK = RegUtil.block( "wax_block", new BuildingBlock( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.CANDLE, 0.8F, 0.8F, true ) ) );
-    public static final Block CRACKED_BRICKS = RegUtil.block( "cracked_bricks", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.RED).requiresTool() ) );
-    public static final Block OLD_BRICKS = RegUtil.block( "old_bricks", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 4.0f, true ).materialColor(MaterialColor.RED).requiresTool() ) );
-    public static final Block SMALL_STONE_BRICKS_1 = RegUtil.block( "small_stone_bricks_1", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).requiresTool() ) );
-    public static final Block SMALL_STONE_BRICKS_2 = RegUtil.block( "small_stone_bricks_2", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).requiresTool() ) );
-    public static final Block SMALL_STONE_BRICKS_3 = RegUtil.block( "small_stone_bricks_3", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).requiresTool() ) );
-    public static final Block GRANITE_SLIM_PILLAR = RegUtil.block( "granite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
-    public static final Block ANDESITE_SLIM_PILLAR = RegUtil.block( "andesite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
-    public static final Block DIORITE_SLIM_PILLAR = RegUtil.block( "diorite_slim_pillar", new SlimPillarBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 1.5f, 6.0f, true ).requiresTool() ) );
     public static final Block RUNESTONE = RegUtil.block( "runestone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK).requiresTool() ) );
     public static final Block ARCANE_ASH = RegUtil.block( "arcane_ash", new ArcaneAshBlock( 100, 500, 0.8f, RegUtil.settings( Material.SOIL, BlockSoundGroup.SAND, 2.0f, 6.0f, true ).requiresTool().breakByTool(FabricToolTags.SHOVELS).materialColor(MaterialColor.BLACK) ) );
     public static final Block CRYSTALLINE_BLACKSTONE = RegUtil.block( "crystalline_blackstone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.GILDED_BLACKSTONE, 2.0f, 6.0f, true ).materialColor(MaterialColor.BLACK).requiresTool() ) );
@@ -123,7 +106,6 @@ public class ModBlocks {
         Block[] runestones = ModBlocks.RUNESTONES.toArray( new Block[0] );
         BlockColorProvider runeTintProvider = (state, world, pos, tintIndex) -> ((RuneBlock) state.getBlock()).getTint(state);
 
-        BlockRenderLayerMap.INSTANCE.putBlock(CHANDELIER, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(LAVA_STONE, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(LAVA_DEMON, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(FIERY_LANTERN, RenderLayer.getCutout());
