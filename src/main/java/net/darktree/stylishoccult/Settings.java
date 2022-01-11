@@ -9,8 +9,6 @@ public class Settings {
     // Base:    given value is only a base value of some math formula
 
     public final boolean debug = true;
-    public final short candleLayerBurnoutRarity = 30;
-    public final short candleHolderLayerBurnoutRarity = 35;
     public final short lavaDemonEmitterAirRarity = 8;
     public final float lavaDemonRandomDisguise = 12.0f;
     public final short lavaDemonEmitterDefaultRarity = 15;

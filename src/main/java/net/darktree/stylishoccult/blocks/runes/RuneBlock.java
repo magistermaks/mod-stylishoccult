@@ -22,6 +22,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -37,6 +38,8 @@ import java.util.Random;
 public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
     public static final IntProperty COOLDOWN = IntProperty.of("cooldown", 0, 3);
+    public static final BooleanProperty FROZEN = BooleanProperty.of("frozen");
+
     public final RuneType type;
     public final String name;
 
@@ -49,7 +52,7 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
         this.type = type;
         this.name = name;
-        setDefaultState( getDefaultState().with(COOLDOWN, 0) );
+        setDefaultState( getDefaultState().with(COOLDOWN, 0).with(FROZEN, false) );
     }
 
     public String getTypeString() {
@@ -74,7 +77,7 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(COOLDOWN);
+        builder.add(COOLDOWN, FROZEN);
     }
 
     @Override
@@ -137,7 +140,7 @@ public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
     }
 
     protected void execute( World world, BlockPos pos, BlockState state, RunicScript script ) {
-        if( state.get(COOLDOWN) == 0 ) {
+        if( state.get(COOLDOWN) == 0 && !state.get(FROZEN) ) {
             RuneBlockEntity entity = getEntity(world, pos);
 
             if( entity != null ) {

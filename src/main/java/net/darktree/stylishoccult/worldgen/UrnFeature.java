@@ -52,7 +52,7 @@ public class UrnFeature extends Feature<DefaultFeatureConfig> implements SimpleF
         return configure( new DefaultFeatureConfig() ).decorate( Decorator.CARVING_MASK.configure(
                 new CarvingMaskDecoratorConfig(
                         GenerationStep.Carver.AIR,
-                        0.0009f
+                        0.00092f
                 ) ) );
     }
 

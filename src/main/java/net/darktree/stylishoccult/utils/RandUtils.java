@@ -32,7 +32,7 @@ public class RandUtils {
         return min + rng.nextInt( (max - min) + 1 );
     }
 
-    public static <E> E getListEntry( ArrayList<E> list ) {
+    public static <E> E getListEntry( ArrayList<E> list, Random random ) {
         return list.get( random.nextInt( list.size() ) );
     }
 

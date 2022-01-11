@@ -131,7 +131,7 @@ public class FleshPatchFeature extends OreFeature implements SimpleFeature {
                         0,      // min y level
                         250)))  // max y level
                 .spreadHorizontally()
-                .repeat(10);    // number of veins per chunk
+                .repeat(3);    // number of veins per chunk
     }
 
 }

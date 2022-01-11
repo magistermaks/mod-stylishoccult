@@ -14,7 +14,6 @@ import net.minecraft.nbt.CompoundTag;
 
 import java.util.ArrayList;
 
-@SuppressWarnings("unchecked")
 public class LootTables {
 
     public static final LootTable SIMPLE = LootManager.create()
@@ -41,6 +40,7 @@ public class LootTables {
                 .addItem( Items.IRON_INGOT, 11.0f )
                 .addItem( Items.STRING, 3.2f )
                 .addItem( Items.ROTTEN_FLESH, 3.2f )
+                .addItem( Items.BONE, 4.2f )
                 .dropExperience(2, 10)
                 .pop()
             .minimum(1)
