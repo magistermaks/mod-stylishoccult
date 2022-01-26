@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class FossilizedFleshBlock extends SimpleBlock implements ImpureBlock, FullFleshBlock {
+public class FossilizedFleshBlock extends FullFleshBlock implements ImpureBlock {
 
     public static final BooleanProperty STABLE = BooleanProperty.of("stable");
 

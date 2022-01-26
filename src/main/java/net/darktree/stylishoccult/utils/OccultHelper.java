@@ -91,7 +91,7 @@ public class OccultHelper {
 
     public static boolean touchesSource(World world, BlockPos pos) {
         for( Direction dir : Direction.values() ) {
-            if( world.getBlockState(pos.offset(dir)).getBlock() instanceof FullFleshBlock ) {
+            if( world.getBlockState(pos.offset(dir)).getBlock() instanceof FullFleshBlock) {
                 return true;
             }
         }

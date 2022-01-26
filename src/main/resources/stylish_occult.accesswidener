@@ -1,0 +1,13 @@
+accessWidener   v1   named
+
+# Remove private keyword from subclass net.minecraft.client.particle.BlockLeakParticle$ContinuousFalling
+accessible   class   net/minecraft/client/particle/BlockLeakParticle$ContinuousFalling
+
+# Remove private keyword from subclass net.minecraft.client.particle.BlockLeakParticle$DrippingFactory
+accessible   class   net/minecraft/client/particle/BlockLeakParticle$Dripping
+
+# Remove private keyword from class constructor
+accessible   method   net/minecraft/client/particle/BlockLeakParticle$ContinuousFalling   <init>   (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/fluid/Fluid;Lnet/minecraft/particle/ParticleEffect;)V
+
+# Remove private keyword from class constructor
+accessible   method   net/minecraft/client/particle/BlockLeakParticle$Dripping   <init>   (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/fluid/Fluid;Lnet/minecraft/particle/ParticleEffect;)V

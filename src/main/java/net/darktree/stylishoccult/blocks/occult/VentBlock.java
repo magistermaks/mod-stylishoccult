@@ -63,7 +63,7 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
 
     public BlockState getStateToFit( World world, BlockPos pos ) {
         for( Direction direction : Direction.values() ) {
-            if( world.getBlockState( pos.offset(direction) ).getBlock() instanceof FullFleshBlock ) {
+            if( world.getBlockState( pos.offset(direction) ).getBlock() instanceof FullFleshBlock) {
                 return getDefaultState().with(FACING, direction.getOpposite());
             }
         }

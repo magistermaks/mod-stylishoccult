@@ -4,6 +4,7 @@
   "version": "${version}",
   "name": "Stylish Occult",
   "description": "Runes (and more...) straight from the occult!",
+  "accessWidener": "stylish_occult.accesswidener",
   "authors": [
     "magistermaks"
   ],

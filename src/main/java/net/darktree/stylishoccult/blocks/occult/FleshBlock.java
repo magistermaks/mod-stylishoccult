@@ -8,7 +8,6 @@ import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RegUtil;
-import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.server.world.ServerWorld;
@@ -18,7 +17,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class FleshBlock extends SimpleBlock implements ImpureBlock, FullFleshBlock {
+public class FleshBlock extends FullFleshBlock implements ImpureBlock {
 
     public FleshBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.8f).ticksRandomly() );

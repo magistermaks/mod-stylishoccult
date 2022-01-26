@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "stylish_occult:flesh"
+  },
+  "result": "minecraft:rotten_flesh",
+  "experience": 0.4,
+  "cookingtime": 100
+}

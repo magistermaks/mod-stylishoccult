@@ -7,7 +7,6 @@ import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.RegUtil;
-import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.pathing.NavigationType;
@@ -26,7 +25,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class PassiveFleshBlock extends SimpleBlock implements ImpureBlock, FullFleshBlock {
+public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
 
     public static final BooleanProperty BLOODY = BooleanProperty.of("bloody");
     public static final VoxelShape SMALL_CUBE = Utils.box(1, 1, 1, 15, 15, 15);
