@@ -23,8 +23,8 @@ import java.util.Random;
 
 public class LavaDemonFeature extends Feature<DefaultFeatureConfig> implements SimpleFeature {
 
-    public LavaDemonFeature(Codec<DefaultFeatureConfig> configCodec) {
-        super(configCodec);
+    public LavaDemonFeature(Codec<DefaultFeatureConfig> codec) {
+        super(codec);
     }
 
     @Override

@@ -82,6 +82,13 @@ public class ModFeatures {
                 register( "runic_wall_feature", new WallsFeature( DefaultFeatureConfig.CODEC ) )
         );
 
+        // Runic Walls Feature
+        BiomeModifications.addFeature(
+                BiomeSelectors.foundInTheNether(),
+                GenerationStep.Feature.RAW_GENERATION,
+                register( "boulder_feature", new BoulderFeature( DefaultFeatureConfig.CODEC ) )
+        );
+
     }
 
 }

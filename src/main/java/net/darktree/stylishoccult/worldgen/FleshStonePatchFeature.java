@@ -1,18 +1,30 @@
 package net.darktree.stylishoccult.worldgen;
 
 import com.mojang.serialization.Codec;
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.utils.SimpleFeature;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.OreFeature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 
+import java.util.Random;
+
 public class FleshStonePatchFeature extends OreFeature implements SimpleFeature {
 
 	public FleshStonePatchFeature(Codec<OreFeatureConfig> codec) {
 		super(codec);
+	}
+
+	public boolean generate(StructureWorldAccess structureWorldAccess, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, OreFeatureConfig oreFeatureConfig) {
+		boolean generated = super.generate(structureWorldAccess, chunkGenerator, random, blockPos, oreFeatureConfig);
+		if(generated) StylishOccult.debug("Generated FleshStonePatchFeature at: " + blockPos.toString());
+		return generated;
 	}
 
 	@Override
