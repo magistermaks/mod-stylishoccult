@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.utils;
 
-import net.darktree.stylishoccult.Settings;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.*;
@@ -63,7 +62,7 @@ public class OccultHelper {
         boolean corruptible = block.isIn(ModTags.CORRUPTIBLE);
 
         if( !state.isAir() ) {
-            if( (corruptible || (canCorrupt(state, hardness) && requiredCheck(block, hardness))) && RandUtils.getBool(30.0f)) {
+            if(corruptible || (canCorrupt(state, hardness) && requiredCheck(block, hardness))) {
                 spawnCorruption(world, target, state);
             }
         }else{
@@ -80,7 +79,7 @@ public class OccultHelper {
 
     private static boolean hardnessCheck( float hardness ) {
         if( hardness < 1.0 ) return RandUtils.getBool(93.0f);
-        if( hardness < 1.5 ) return RandUtils.getBool(50.0f);
+        if( hardness < 1.5 ) return RandUtils.getBool(51.0f);
         if( hardness < 2.0 ) return RandUtils.getBool(5.5f);
         if( hardness < 2.5 ) return RandUtils.getBool(1.0f);
         return RandUtils.getBool(0.1f);
@@ -108,8 +107,8 @@ public class OccultHelper {
     }
 
     private static BlockState getCorruptionForBlock( World world, BlockPos pos, BlockState state ) {
-        if( state.isAir() ) {
-            if (RandUtils.getBool(10.0f) && shouldSpawnFoliage(world, pos) ) {
+        if( state.isAir() || state.getBlock() instanceof PlantBlock ) {
+            if (RandUtils.getBool(33.3f) && shouldSpawnFoliage(world, pos) ) {
                 int type = RandUtils.rangeInt(0, 8);
 
                 if( type == 0 && validTentacleSpot(world, pos) ) {
@@ -163,7 +162,7 @@ public class OccultHelper {
     }
 
     private static boolean shouldSpawnFoliage( World world, BlockPos pos ) {
-        return BlockUtils.countInArea(world, pos, FoliageFleshBlock.class, 1) == 0;
+        return BlockUtils.countInArea(world, pos, FoliageFleshBlock.class, 1) <= 1;
     }
 
     private static boolean validTentacleSpot( World world, BlockPos pos ) {

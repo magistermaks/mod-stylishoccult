@@ -7,13 +7,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(StatusEffectInstance.class)
 public interface StatusEffectInstanceAccessor {
 
-    //@Accessor("duration")
-    //void setStoredDuration( int value );
-
     @Accessor("showParticles")
     void setStoredParticlesFlag( boolean value );
-
-    //@Accessor("showIcon")
-    //void setStoredIconFlag( boolean value );
 
 }

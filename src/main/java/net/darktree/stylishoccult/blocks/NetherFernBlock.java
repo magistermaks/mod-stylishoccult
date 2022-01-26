@@ -28,7 +28,7 @@ public class NetherFernBlock extends NetherGrassBlock {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if( entity instanceof LivingEntity ) {
             if( !world.isClient && !((LivingEntity) entity).hasStatusEffect(StatusEffects.POISON) ) {
-                int duration = StylishOccult.SETTINGS.fernPoisonTimeMinBase + world.random.nextInt( StylishOccult.SETTINGS.fernPoisonTimeDelta.get( world.getDifficulty() ) );
+                int duration = StylishOccult.SETTINGS.fernPoisonTimeMinBase + world.random.nextInt( StylishOccult.SETTINGS.fernPoisonTimeDelta.get(world) );
                 ((LivingEntity) entity).addStatusEffect( new StatusEffectInstance(StatusEffects.POISON, duration, 0) );
             }
         }

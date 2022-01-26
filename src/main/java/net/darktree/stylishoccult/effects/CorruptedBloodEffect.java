@@ -60,7 +60,7 @@ public class CorruptedBloodEffect extends SimpleStatusEffect {
     }
 
     private void applyToEntity( LivingEntity entity, int amplifier, int bonusTime ) {
-        if( entity.world.random.nextInt(20) == 0 ) {
+        if( entity.world.random.nextInt(10) == 0 ) {
             if( !entity.hasStatusEffect( this ) || (entity.world.random.nextInt( 20 ) == 0) ) {
                 entity.applyStatusEffect(new StatusEffectInstance(
                         this,

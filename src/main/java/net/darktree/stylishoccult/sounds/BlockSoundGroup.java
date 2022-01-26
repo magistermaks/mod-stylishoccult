@@ -79,6 +79,6 @@ public class BlockSoundGroup {
         if( hitSound == null ) throw new RuntimeException( "HitSound not registered!" );
         if( fallSound == null ) throw new RuntimeException( "FallSound not registered!" );
 
-        return new net.minecraft.sound.BlockSoundGroup( volume, pitch, breakSound, stepSound, placeSound, hitSound, fallSound );
+        return new net.minecraft.sound.BlockSoundGroup(volume, pitch, breakSound, stepSound, placeSound, hitSound, fallSound);
     }
 }

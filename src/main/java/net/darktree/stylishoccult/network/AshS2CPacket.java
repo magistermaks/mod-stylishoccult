@@ -1,8 +1,12 @@
-package net.darktree.stylishoccult.network.packets;
+package net.darktree.stylishoccult.network;
 
 import io.netty.buffer.Unpooled;
-import net.darktree.stylishoccult.network.S2CPacket;
+import net.darktree.stylishoccult.utils.ModIdentifier;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.fabricmc.fabric.api.network.PacketContext;
+import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
@@ -14,13 +18,15 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.Random;
 
-public class AshS2CPacket extends S2CPacket {
+public class AshS2CPacket {
 
-    public AshS2CPacket(Identifier identifier) {
-        super(identifier);
+    private final Identifier identifier = new ModIdentifier("ash_packet");
+
+    @Environment(EnvType.CLIENT)
+    public void register() {
+        ClientSidePacketRegistry.INSTANCE.register(identifier, this::read);
     }
 
-    @Override
     public void read(PacketContext context, PacketByteBuf buffer) {
         BlockPos pos = buffer.readBlockPos();
         context.getTaskQueue().execute(() -> apply( context.getPlayer(), pos ));
@@ -45,7 +51,7 @@ public class AshS2CPacket extends S2CPacket {
     public void send( ServerPlayerEntity entity, BlockPos pos ) {
         PacketByteBuf data = new PacketByteBuf(Unpooled.buffer());
         data.writeBlockPos( pos );
-        write( entity, data );
+        ServerSidePacketRegistry.INSTANCE.sendToPlayer(entity, identifier, data);
     }
 
     public void send(BlockPos pos, ServerWorld world) {
@@ -55,6 +61,5 @@ public class AshS2CPacket extends S2CPacket {
             }
         }
     }
-
 
 }

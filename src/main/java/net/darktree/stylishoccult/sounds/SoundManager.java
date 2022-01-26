@@ -1,11 +1,6 @@
 package net.darktree.stylishoccult.sounds;
 
 import net.darktree.stylishoccult.utils.ModIdentifier;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.sound.PositionedSoundInstance;
-import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
@@ -55,25 +50,11 @@ public class SoundManager {
                     volume,
                     pitch
             );
-        }//else{
-            //playClientSound( effect.soundEvent.getId(), effect.soundCategory, volume, pitch, pos.getX(), pos.getY(), pos.getZ() );
-        //}
+        }
     }
 
     public static void playSound(World world, BlockPos pos, String name) {
         playSound( world, pos, name, -1, -1 );
-    }
-
-    @Environment(EnvType.CLIENT)
-    public static void playClientSound( Identifier identifier, SoundCategory category, float volume, float pitch, float x, float y, float z ) {
-        MinecraftClient.getInstance().getSoundManager()
-                .play( new PositionedSoundInstance( identifier, category, volume, pitch, false, 0, SoundInstance.AttenuationType.LINEAR, x, y, z, false ) );
-    }
-
-    @Environment(EnvType.CLIENT)
-    public static void stopClientSound( Identifier identifier, SoundCategory category ) {
-        MinecraftClient.getInstance().getSoundManager()
-                .stopSounds( identifier, category );
     }
 
 }

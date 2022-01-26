@@ -88,7 +88,7 @@ public class SparkVentBlock extends SimpleBlock {
     }
 
     private void schedule( World world, BlockPos pos ) {
-        int baseTime = StylishOccult.SETTINGS.sparkVentSleepTimeBase.get( world.getDifficulty() );
+        int baseTime = StylishOccult.SETTINGS.sparkVentSleepTimeBase.get(world);
         world.getBlockTickScheduler().schedule(pos, this, baseTime + world.random.nextInt( 100 ));
     }
 

@@ -18,7 +18,7 @@ public class RuneException extends RuntimeException {
 
     public void apply(World world, BlockPos pos) {
         StylishOccult.debug( "Exception in script at: " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + " " + getMessage() );
-        float size = StylishOccult.SETTINGS.runicErrorExplosionSize.get( world.getDifficulty() );
+        float size = StylishOccult.SETTINGS.runicErrorExplosionSize.get(world);
         world.createExplosion( null, pos.getX(), pos.getY(), pos.getZ(), size, Explosion.DestructionType.BREAK );
         RuneUtils.createErrorReport( this, world, pos );
     }

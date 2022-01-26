@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.utils;
 
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.WorldAccess;
 
 public class DifficultyBased<T> {
 
@@ -29,6 +30,10 @@ public class DifficultyBased<T> {
         }
 
         throw new RuntimeException( "Unexpected difficulty!" );
+    }
+
+    public T get(WorldAccess world) {
+        return this.get(world.getDifficulty());
     }
 
 }

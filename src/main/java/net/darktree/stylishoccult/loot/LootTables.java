@@ -10,9 +10,6 @@ import net.darktree.stylishoccult.loot.entry.ConditionEntry;
 import net.darktree.stylishoccult.loot.entry.ValveEntry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundTag;
-
-import java.util.ArrayList;
 
 public class LootTables {
 

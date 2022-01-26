@@ -13,13 +13,9 @@ import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.tags.ModTags;
 import net.darktree.stylishoccult.worldgen.ModFeatures;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Random;
 
 public class StylishOccult implements ModInitializer, ClientModInitializer {
 

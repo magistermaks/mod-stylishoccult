@@ -3,7 +3,6 @@ package net.darktree.stylishoccult.items.material;
 import net.darktree.stylishoccult.items.ModItems;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -11,7 +10,7 @@ import net.minecraft.sound.SoundEvents;
 public class TwistedBoneArmorMaterial implements ArmorMaterial {
 
     public static final TwistedBoneArmorMaterial INSTANCE = new TwistedBoneArmorMaterial();
-    private static final int[] BASE_DURABILITY = new int[] {13, 15, 16, 11};
+    private static final int[] BASE_DURABILITY = new int[] {14, 16, 17, 12};
     private static final int[] PROTECTION_VALUES = new int[] {2, 5, 6, 2};
 
     @Override
@@ -31,7 +30,6 @@ public class TwistedBoneArmorMaterial implements ArmorMaterial {
 
     @Override
     public SoundEvent getEquipSound() {
-        // TODO: add custom sound (?)
         return SoundEvents.ITEM_ARMOR_EQUIP_CHAIN;
     }
 

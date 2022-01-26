@@ -7,15 +7,11 @@
     "HardnessAccessor",
     "HardnessMixin",
     "HungerManagerMixin",
-    "ServerPlayerInteractionManagerMixin",
     "StatusEffectInstanceAccessor",
     "FlowableFluidMixin"
   ],
   "client": [
-    "ClientPlayerInteractionManagerMixin",
     "MessageProviderMixin"
-  ],
-  "server": [
   ],
   "injectors": {
     "defaultRequire": 1

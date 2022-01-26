@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.items.material;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import net.darktree.stylishoccult.items.ModItems;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
@@ -11,7 +10,7 @@ public class TwistedBoneToolMaterial implements ToolMaterial {
 
     @Override
     public int getDurability() {
-        return 200;
+        return 210;
     }
 
     @Override
@@ -21,7 +20,7 @@ public class TwistedBoneToolMaterial implements ToolMaterial {
 
     @Override
     public float getAttackDamage() {
-        return 1.5f;
+        return 1.6f;
     }
 
     @Override

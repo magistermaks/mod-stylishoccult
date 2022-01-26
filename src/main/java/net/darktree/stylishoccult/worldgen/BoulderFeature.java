@@ -69,8 +69,7 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> implements Sim
 				world.setBlockState(pos, Blocks.BLACKSTONE.getDefaultState(), 3);
 			}
 		} else {
-			BlockState state = BLOCKS[random.nextInt(BLOCKS.length)];
-			world.setBlockState(pos, state, 3);
+			world.setBlockState(pos, RandUtils.getArrayEntry(BLOCKS, random), 3);
 		}
 	}
 
