@@ -24,7 +24,7 @@ public class Settings {
     public final float sparkEntityHealth = 1.0f;
     public final float sparkEntityDamage = 2.0f;
     public final float sporeEntityDamage = 0.4f;
-    public final float featureFleshBloodChance = 10.5f;
+    public final float fleshBloodChance = 10.5f;
     public final short fernPoisonTimeMinBase = 40;
 
     public final DifficultyBased<Integer> lavaDemonSparkSpawnRarity = new DifficultyBased<>(180, 190, 200);

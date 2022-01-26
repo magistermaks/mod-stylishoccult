@@ -1,5 +1,7 @@
 package net.darktree.stylishoccult.utils;
 
+import net.darktree.stylishoccult.Settings;
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.*;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
@@ -21,12 +23,11 @@ public class OccultHelper {
     public static void corruptAround(ServerWorld world, BlockPos pos, Random random) {
         BlockPos target = pos.offset( RandUtils.getEnum(Direction.class, random) );
 
-        if( random.nextInt( 6 ) == 0 ) {
-            target = target.offset( RandUtils.getEnum(Direction.class, random) );
-        }
+        int i = 0;
 
-        if( random.nextInt( 32 ) == 0 ) {
+        while( random.nextInt(4) == 0 && (i < 5) ) {
             target = target.offset( RandUtils.getEnum(Direction.class, random) );
+            i ++;
         }
 
         corrupt(world, target);
@@ -86,7 +87,7 @@ public class OccultHelper {
     }
 
     private static boolean requiredCheck( Block block, float hardness ) {
-        return (!(block instanceof ImpureBlock) || block == ModBlocks.FLESH_PASSIVE) && !block.isIn(ModTags.INCORRUPTIBLE) && hardness >= 0 && hardness <= 1000;
+        return !(block instanceof ImpureBlock) && !block.isIn(ModTags.INCORRUPTIBLE) && hardness >= 0 && hardness <= 1000;
     }
 
     public static boolean touchesSource(World world, BlockPos pos) {
@@ -148,7 +149,8 @@ public class OccultHelper {
                 if( state.getLuminance() > 3 && state.isFullCube(world, pos) ) return ModBlocks.GLOW_FLESH.getDefaultState();
                 if( block.isIn(BlockTags.LEAVES) ) return LeavesFleshBlock.getStateForPosition(world, pos);
                 if( block.isIn(ModTags.TOP_SOIL) && RandUtils.getBool(80) ) return ModBlocks.SOIL_FLESH.getDefaultState();
-                return ModBlocks.DEFAULT_FLESH.getDefaultState();
+
+                return ModBlocks.FLESH_PASSIVE.getDefaultState().with(PassiveFleshBlock.BLOODY, RandUtils.getBool(StylishOccult.SETTINGS.fleshBloodChance));
             }
         }
 
@@ -161,7 +163,7 @@ public class OccultHelper {
     }
 
     private static boolean shouldSpawnFoliage( World world, BlockPos pos ) {
-        return BlockUtils.countInArea(world, pos, FoliageFleshBlock.class, 3) == 0;
+        return BlockUtils.countInArea(world, pos, FoliageFleshBlock.class, 1) == 0;
     }
 
     private static boolean validTentacleSpot( World world, BlockPos pos ) {
@@ -171,23 +173,5 @@ public class OccultHelper {
     private static boolean validDownSpot( World world, BlockPos pos ) {
         return (world.getBlockState(pos.down()).getBlock() instanceof FullFleshBlock);
     }
-
-//    public static void spawnEffectAsCloud(World world, BlockPos pos, StatusEffect... effects) {
-//        AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(world, pos.getX() + 0.5f, pos.getY(), pos.getZ() + 0.5f);
-//
-//        // init
-//        areaEffectCloudEntity.setRadius(0.6f);
-//        areaEffectCloudEntity.setRadiusOnUse(-0.5F);
-//        areaEffectCloudEntity.setWaitTime(8);
-//        areaEffectCloudEntity.setDuration(areaEffectCloudEntity.getDuration() / 4);
-//        areaEffectCloudEntity.setRadiusGrowth(-areaEffectCloudEntity.getRadius() / (float)areaEffectCloudEntity.getDuration());
-//
-//        for( StatusEffect effect : effects ) {
-//            areaEffectCloudEntity.addEffect(new StatusEffectInstance(effect));
-//        }
-//
-//        // summon
-//        world.spawnEntity(areaEffectCloudEntity);
-//    }
 
 }

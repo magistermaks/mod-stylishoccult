@@ -2,8 +2,6 @@ package net.darktree.stylishoccult.blocks.entities;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.utils.ModIdentifier;
-import net.darktree.stylishoccult.utils.SimpleBlockEntityRenderer;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.registry.Registry;

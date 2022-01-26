@@ -3,9 +3,11 @@ plugins {
     id 'maven-publish'
 }
 
-//repositories {
-//    maven { url "https://maven.shedaniel.me/" }
-//}
+repositories {
+//    maven {  url "https://maven.shedaniel.me/" }
+
+    maven { url "https://maven.terraformersmc.com" }
+}
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -22,6 +24,10 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // Mod Menu
+    compileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
+    modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 }
 
 processResources {

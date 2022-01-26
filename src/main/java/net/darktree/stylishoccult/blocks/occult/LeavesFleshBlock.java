@@ -19,7 +19,6 @@ public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock, Foliag
     public LeavesFleshBlock() {
         super(AbstractBlock.Settings.of(Material.LEAVES)
                 .strength(0.2F)
-                .ticksRandomly()
                 .slipperiness(0.8f)
                 .sounds(BlockSoundGroup.HONEY)
                 .nonOpaque()
@@ -31,12 +30,6 @@ public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock, Foliag
 
     public boolean hasRandomTicks(BlockState state) {
         return true;
-    }
-
-    @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        OccultHelper.corruptAround(world, pos, random);
-        super.randomTick(state, world, pos, random);
     }
 
     @Override

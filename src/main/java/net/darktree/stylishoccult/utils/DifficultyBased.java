@@ -31,19 +31,4 @@ public class DifficultyBased<T> {
         throw new RuntimeException( "Unexpected difficulty!" );
     }
 
-    public T getPeaceful() {
-        return peaceful;
-    }
-
-    public T getEasy() {
-        return easy;
-    }
-
-    public T getNormal() {
-        return normal;
-    }
-
-    public T getHard() {
-        return hard;
-    }
 }

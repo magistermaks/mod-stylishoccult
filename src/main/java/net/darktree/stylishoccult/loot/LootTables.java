@@ -46,6 +46,18 @@ public class LootTables {
             .minimum(1)
             .build();
 
+    public static final LootTable CRYSTALLINE_BLACKSTONE = LootManager.create()
+            .addCondition( ConditionEntry::hasFortune )
+                .addValve( ValveEntry::fortune )
+                    .addItem(Items.QUARTZ)
+                    .dropExperience(1, 3)
+                    .pop()
+                .pop()
+            .addElse()
+                .addBlockItem()
+                .pop()
+            .build();
+
     public static final LootTable GROWTH = LootManager.create()
             .addValve( (arr, rng, ctx) -> {
                 int size = ctx.getState().get(ThinFleshBlock.SIZE);
@@ -81,6 +93,18 @@ public class LootTables {
                 .pop()
             .build();
 
+    public static final LootTable STONE_FLESH = LootManager.create()
+            .addCondition( ConditionEntry::hasSilkTouch )
+                .addBlockItem()
+                .pop()
+            .addElse()
+                .addItem(Items.COBBLESTONE)
+                .addValve(ValveEntry::fortune)
+                    .addItem(new ItemStack(ModItems.VEINS), 100, 1, 3)
+                    .pop()
+                .pop()
+            .build();
+
     public static final LootTable GENERIC_FLESH = LootManager.create()
             .addCondition( ConditionEntry::hasSilkTouch )
                 .addBlockItem()
@@ -106,6 +130,7 @@ public class LootTables {
                 .addBlockItem()
                 .pop()
             .addElse()
+                .addItem( ModItems.FLESH )
                 .addItem( new ItemStack(ModItems.GLOWGROWTH_SHARD), 100.0f, 1, 2 )
             .pop()
             .build();

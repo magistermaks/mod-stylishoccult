@@ -135,6 +135,10 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock, FluidRep
             }
         }
 
+        if( BlockUtils.countInArea(world, pos, ThinFleshBlock.class, 3) > 9 ) {
+            return;
+        }
+
         if( count != 6 ) {
             if( random.nextInt( count + 1 ) == 0 ) {
                 applyRandom( state, pos, world, random );
@@ -161,11 +165,6 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock, FluidRep
         int size = state.get(SIZE);
         if( size < 3 && random.nextInt( 64 - count * 4 ) == 0 ) {
             world.setBlockState(pos, state.with(SIZE, size + 1));
-            return;
-        }
-
-        if( size == 3 && random.nextInt( 128 - count * 5 ) == 0 ) {
-            OccultHelper.corruptAround(world, pos, random);
         }
 
     }

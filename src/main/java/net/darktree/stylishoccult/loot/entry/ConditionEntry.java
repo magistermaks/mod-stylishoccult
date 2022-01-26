@@ -17,6 +17,10 @@ public class ConditionEntry extends AbstractEntry {
         return context.toolHasEnchantment( Enchantments.SILK_TOUCH );
     }
 
+    public static boolean hasFortune( Random random, LootContext context ) {
+        return context.toolHasEnchantment( Enchantments.FORTUNE );
+    }
+
     public ConditionEntry( Condition condition ) {
         this.condition = condition;
         this.table = new LootTable();
@@ -33,14 +37,14 @@ public class ConditionEntry extends AbstractEntry {
 
     @Override
     public ArrayList<ItemStack> getLoot(Random random, LootContext context) {
-        if( condition.call(random, context) ) {
+        if (condition.call(random, context)) {
             return this.table.getLoot(random, context);
-        }else{
+        } else {
             return this.elseTable.getLoot(random, context);
         }
     }
 
-    public interface Condition {
+	public interface Condition {
         boolean call(Random random, LootContext context);
     }
 }

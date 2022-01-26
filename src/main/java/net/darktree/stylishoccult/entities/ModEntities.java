@@ -25,23 +25,12 @@ public class ModEntities {
             .dimensions(EntityDimensions.fixed(0.3f, 0.3f))
             .build();
 
-    public static final EntityType<BrainEntity> BRAIN = FabricEntityTypeBuilder
-            .createMob()
-            .spawnGroup(SpawnGroup.MONSTER)
-            .entityFactory(BrainEntity::new)
-            .dimensions(EntityDimensions.changing(2.04f, 2.04f))
-            .spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BrainEntity::spawnPredicate)
-            .build();
-
     public static void init() {
         Registry.register( Registry.ENTITY_TYPE, new ModIdentifier("lava_spark"), SPARK);
         FabricDefaultAttributeRegistry.register(SPARK, SparkEntity.createSparkAttributes() );
 
         Registry.register( Registry.ENTITY_TYPE, new ModIdentifier("spore"), SPORE );
         FabricDefaultAttributeRegistry.register( SPORE, SporeEntity.createSporeAttributes() );
-
-        Registry.register( Registry.ENTITY_TYPE, new ModIdentifier("brain"), BRAIN );
-        FabricDefaultAttributeRegistry.register( BRAIN, BrainEntity.createBrainAttributes() );
     }
 
     @Environment(EnvType.CLIENT)

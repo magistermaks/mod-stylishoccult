@@ -19,17 +19,11 @@ import java.util.Random;
 public class SoilFleshBlock extends SimpleBlock implements ImpureBlock, FullFleshBlock {
 
     public SoilFleshBlock() {
-        this(RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.7f).ticksRandomly());
+        this(RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.7f));
     }
 
     public SoilFleshBlock(Settings settings) {
         super(settings);
-    }
-
-    @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        OccultHelper.corruptAround(world, pos, random);
-        super.randomTick(state, world, pos, random);
     }
 
     @Override

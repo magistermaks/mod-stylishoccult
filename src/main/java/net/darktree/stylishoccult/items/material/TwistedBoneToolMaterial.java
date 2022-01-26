@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.items.material;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import net.darktree.stylishoccult.items.ModItems;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
