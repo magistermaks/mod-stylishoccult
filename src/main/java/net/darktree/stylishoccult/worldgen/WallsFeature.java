@@ -57,11 +57,10 @@ public class WallsFeature extends Feature<DefaultFeatureConfig> implements Simpl
 
         BlockPos target = pos.down();
 
-        if( RandUtils.getBool(2, random) && world.getBlockState( target ).isSolidBlock( world, target ) ) {
+        if( RandUtils.getBool(StylishOccult.SETTINGS.featureWallChance, random) && world.getBlockState( target ).isSolidBlock( world, target ) ) {
             generateWall( getAxis(random), world, target, RandUtils.rangeInt(2, 5, random), (float) RandUtils.rangeInt(80, 90, random), random );
             scatterUrns(world, target, random);
-
-            StylishOccult.debug( "Runic wall generated at: " + BlockUtils.posToString( target ) );
+            this.debugWrite(target);
         }
 
         return false;

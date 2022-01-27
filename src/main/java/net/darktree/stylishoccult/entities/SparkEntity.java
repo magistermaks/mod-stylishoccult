@@ -13,6 +13,7 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -91,13 +92,17 @@ public class SparkEntity extends HostileEntity {
 
     public static DefaultAttributeContainer.Builder createSparkAttributes() {
         return createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, StylishOccult.SETTINGS.sparkEntityHealth)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, StylishOccult.SETTINGS.sparkEntityDamage);
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, StylishOccult.SETTINGS.entityHealth)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, StylishOccult.SETTINGS.entityDamage);
     }
 
     protected void playRandomEffect(int c, boolean die) {
         for(int i = 0; i < c; i ++) {
             world.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0, 0.03f, 0);
+        }
+
+        if(die) {
+            world.playSound(null, this.getBlockPos(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.HOSTILE, 0.1f, 1.1f);
         }
     }
 
@@ -118,13 +123,13 @@ public class SparkEntity extends HostileEntity {
         }
 
         if (this.getHealth() <= 0) {
-            playRandomEffect(random.nextInt(3) + 3, true);
+            playRandomEffect(random.nextInt(4) + 3, true);
             this.remove();
         }
     }
 
     protected void dealDamage() {
-        damage(DamageSource.ON_FIRE, StylishOccult.SETTINGS.sparkEntityDamage);
+        damage(DamageSource.ON_FIRE, StylishOccult.SETTINGS.entityDamage);
     }
 
     protected void mobTick() {
@@ -198,14 +203,6 @@ public class SparkEntity extends HostileEntity {
 
     public boolean canAvoidTraps() {
         return true;
-    }
-
-    public boolean damage(DamageSource source, float amount) {
-        if (this.isInvulnerableTo(source)) {
-            return false;
-        } else {
-            return super.damage(source, amount);
-        }
     }
 
     protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {

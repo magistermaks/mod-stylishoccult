@@ -104,7 +104,7 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
 
     @Override
     public LootTable getInternalLootTableId() {
-        return LootTables.GENERIC_FLESH;
+        return LootTables.SIMPLE;
     }
 
 }

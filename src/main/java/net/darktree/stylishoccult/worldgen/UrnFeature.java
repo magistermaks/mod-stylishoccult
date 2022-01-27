@@ -33,13 +33,8 @@ public class UrnFeature extends Feature<DefaultFeatureConfig> implements SimpleF
             BlockPos pos3 = pos.offset( Direction.fromHorizontal( random.nextInt() ) );
 
             if( world.getBlockState( pos2 ).isSolidBlock(world, pos2) && world.getBlockState( pos3 ).isSolidBlock(world, pos3) ) {
-
-                world.setBlockState(
-                        pos,
-                        ModBlocks.URN.getDefaultState(),
-                        3);
-
-                StylishOccult.debug( "Urn generated at: " + BlockUtils.posToString( pos ) );
+                world.setBlockState(pos, ModBlocks.URN.getDefaultState(), 3);
+                this.debugWrite(pos);
             }
 
         }

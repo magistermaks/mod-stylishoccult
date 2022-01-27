@@ -21,18 +21,18 @@ public class FleshPatchFeature extends OreFeature implements SimpleFeature {
 		super(codec);
 	}
 
-	public boolean generate(StructureWorldAccess structureWorldAccess, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, OreFeatureConfig oreFeatureConfig) {
-		boolean generated = super.generate(structureWorldAccess, chunkGenerator, random, blockPos, oreFeatureConfig);
-		if(generated) StylishOccult.debug("Generated FleshPatchFeature at: " + blockPos.toString());
+	public boolean generate(StructureWorldAccess structureWorldAccess, ChunkGenerator chunkGenerator, Random random, BlockPos pos, OreFeatureConfig oreFeatureConfig) {
+		boolean generated = super.generate(structureWorldAccess, chunkGenerator, random, pos, oreFeatureConfig);
+		if(generated) this.debugWrite(pos);
 		return generated;
 	}
 
-		@Override
+	@Override
 	public ConfiguredFeature<?, ?> configure() {
 		return configure( new OreFeatureConfig(
-				OreFeatureConfig.Rules.BASE_STONE_NETHER,
-				ModBlocks.DEFAULT_FLESH.getDefaultState(),
-				30 ))   // vein size
+					OreFeatureConfig.Rules.BASE_STONE_NETHER,
+					ModBlocks.DEFAULT_FLESH.getDefaultState(),
+					StylishOccult.SETTINGS.featureFleshVainSize ))   // vein size
 				.decorate(Decorator.RANGE.configure( new RangeDecoratorConfig(
 						10,     // bottom offset
 						0,      // min y level

@@ -54,8 +54,8 @@ public class SparkVentFeature extends Feature<DefaultFeatureConfig> implements S
 
                     boolean hasSource = generateSource(world, random, source);
                     world.setBlockState(vent, VENT.with(SparkVentBlock.ACTIVE, hasSource), 2);
-                    StylishOccult.debug("Generated Spark Vent at: " + pos.getX() + " " + pos.getY() + " " + pos.getZ());
 
+                    this.debugWrite(pos);
                     return true;
 
                 }
@@ -66,7 +66,7 @@ public class SparkVentFeature extends Feature<DefaultFeatureConfig> implements S
     }
 
     public boolean generateSource(StructureWorldAccess world, Random random, BlockPos pos) {
-        if( RandUtils.getBool(95.0f) ) {
+        if( RandUtils.getBool(95.0f, random) ) {
             world.setBlockState(pos, LAVA, 2);
 
             for( int i = random.nextInt(9); i > 0; i -- ) {
@@ -102,7 +102,7 @@ public class SparkVentFeature extends Feature<DefaultFeatureConfig> implements S
         return configure( new DefaultFeatureConfig() ).decorate( Decorator.CARVING_MASK.configure(
                 new CarvingMaskDecoratorConfig(
                         GenerationStep.Carver.AIR,
-                        0.0008f
+                        0.0009f
                 ) ) );
     }
 

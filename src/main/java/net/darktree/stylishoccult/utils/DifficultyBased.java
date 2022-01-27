@@ -17,10 +17,6 @@ public class DifficultyBased<T> {
         this.peaceful = peaceful;
     }
 
-    public DifficultyBased( T hard, T normal, T easy ) {
-        this( hard, normal, easy, null );
-    }
-
     public T get( Difficulty difficulty ) {
         switch ( difficulty ) {
             case EASY: return easy;

@@ -34,12 +34,8 @@ public class LavaDemonFeature extends Feature<DefaultFeatureConfig> implements S
         BlockPos pos2 = pos.offset( direction );
 
         if( (world.getBlockState( pos2 ).getBlock() == Blocks.STONE) && pos2.getY() > 10 ) {
-            world.setBlockState(
-                    pos2,
-                    ModBlocks.LAVA_DEMON.getDefaultState().with(LavaDemonBlock.PART, LavaDemonPart.HEAD),
-                    3);
-
-            StylishOccult.debug( "Lava Demon generated at: " + BlockUtils.posToString( pos2 ) + " (offset: " + direction.toString() + ")" );
+            world.setBlockState(pos2, ModBlocks.LAVA_DEMON.getDefaultState().with(LavaDemonBlock.PART, LavaDemonPart.HEAD), 3);
+            this.debugWrite(pos2);
         }
 
         return true;

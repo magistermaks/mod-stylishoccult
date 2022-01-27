@@ -1,7 +1,9 @@
 package net.darktree.stylishoccult.worldgen;
 
 import com.mojang.serialization.Codec;
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -38,11 +40,15 @@ public class NetherGrassFeature extends Feature<DefaultFeatureConfig> implements
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 
+        if( !RandUtils.getBool(StylishOccult.SETTINGS.featureGrassChance, random) ) {
+            return false;
+        }
+
         if( world.getBlockState( pos.down() ).getBlock() == Blocks.NETHERRACK ) {
 
             if( pos.getY() > 1 && pos.getY() < 255 ) {
 
-                int count = 0, g = RADIUS * RADIUS;
+                int g = RADIUS * RADIUS;
 
                 for(int m = 0; m < g; m ++) {
 
@@ -53,13 +59,12 @@ public class NetherGrassFeature extends Feature<DefaultFeatureConfig> implements
                     );
 
                     if( world.isAir(target) && target.getY() > 0 && GRASS.canPlaceAt(world, target) ) {
-                        world.setBlockState(target, random.nextInt(16) == 0 ? FERN : GRASS, 2);
-                        count ++;
+                        world.setBlockState(target, RandUtils.getBool(StylishOccult.SETTINGS.featureFernChance, random) ? FERN : GRASS, 2);
                     }
 
                 }
 
-                return count > 0;
+                return true;
             }
 
         }

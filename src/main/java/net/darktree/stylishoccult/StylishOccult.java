@@ -9,11 +9,13 @@ import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.particles.Particles;
+import net.darktree.stylishoccult.config.Settings;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.tags.ModTags;
 import net.darktree.stylishoccult.worldgen.ModFeatures;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,7 +26,7 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
     public static final Settings SETTINGS = new Settings();
 
     public static void debug( String message ) {
-        if( SETTINGS.debug ) {
+        if(FabricLoader.getInstance().isDevelopmentEnvironment()) {
             LOGGER.info(message);
         }
     }

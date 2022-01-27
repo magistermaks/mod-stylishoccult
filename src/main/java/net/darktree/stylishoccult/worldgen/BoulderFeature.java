@@ -41,7 +41,7 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> implements Sim
 		BlockPos.Mutable pos = target.mutableCopy();
 		int extend = MathHelper.ceil(radius);
 
-		if( !RandUtils.getBool(7.5f, random) ) {
+		if( !RandUtils.getBool(StylishOccult.SETTINGS.featureBoulderChance, random) ) {
 			return false;
 		}
 
@@ -59,7 +59,7 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> implements Sim
 			}
 		}
 
-		StylishOccult.debug("Generated BoulderFeature at: " + target);
+		this.debugWrite(target);
 		return false;
 	}
 
