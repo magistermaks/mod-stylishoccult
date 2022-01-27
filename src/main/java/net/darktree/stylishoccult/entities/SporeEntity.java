@@ -2,10 +2,12 @@ package net.darktree.stylishoccult.entities;
 
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.entities.goal.FollowNonCorruptedGoal;
+import net.darktree.stylishoccult.particles.Particles;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -21,6 +23,13 @@ public class SporeEntity extends SparkEntity implements CorruptedEntity {
 
     public static DefaultAttributeContainer.Builder createSporeAttributes() {
         return SparkEntity.createSparkAttributes();
+    }
+
+    @Override
+    protected void playRandomEffect(int c, boolean die) {
+        for(int i = 0; i < c; i ++) {
+            world.addParticle(die ? Particles.BLOOD_SPLASH : Particles.BLOOD_FALLING, this.getX(), this.getY(), this.getZ(), 0, 0.03f, 0);
+        }
     }
 
     protected void addSpecificGoals() {

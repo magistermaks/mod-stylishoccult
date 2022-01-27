@@ -21,7 +21,7 @@ public class SporeEntityRenderer extends SparkEntityRenderer {
     }
 
     @Override
-    public RenderLayer getLayer() {
+    public RenderLayer getLayer(SparkEntity entity) {
         return LAYER;
     }
 

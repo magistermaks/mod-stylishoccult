@@ -16,8 +16,13 @@ import net.minecraft.util.math.Matrix4f;
 
 public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
 
-    private static final Identifier TEXTURE = new ModIdentifier( "textures/particle/lava_spark.png" );
-    private static final RenderLayer LAYER = RenderLayer.getEntityCutout(TEXTURE);
+    private static final Identifier[] TEXTURES = {
+            new ModIdentifier("textures/particle/spark_0.png"),
+            new ModIdentifier("textures/particle/spark_1.png"),
+            new ModIdentifier("textures/particle/spark_2.png"),
+            new ModIdentifier("textures/particle/spark_3.png"),
+            new ModIdentifier("textures/particle/spark_4.png")
+    };
 
     public SparkEntityRenderer(EntityRenderDispatcher entityRenderDispatcher) {
         super(entityRenderDispatcher);
@@ -36,7 +41,7 @@ public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
         MatrixStack.Entry entry = matrixStack.peek();
         Matrix4f matrix4f = entry.getModel();
         Matrix3f matrix3f = entry.getNormal();
-        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(getLayer());
+        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(getLayer(sparkEntity));
 
         int j = getLight(i);
 
@@ -67,13 +72,13 @@ public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
         return 240;
     }
 
-    public RenderLayer getLayer() {
-        return LAYER;
+    public RenderLayer getLayer(SparkEntity sparkEntity) {
+        return RenderLayer.getEntityCutout(getTexture(sparkEntity));
     }
 
     @Override
     public Identifier getTexture(SparkEntity sparkEntity) {
-        return TEXTURE;
+        return TEXTURES[(sparkEntity.age / 2) % TEXTURES.length];
     }
 
 }

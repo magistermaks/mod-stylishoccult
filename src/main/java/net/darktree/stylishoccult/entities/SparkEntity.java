@@ -95,16 +95,19 @@ public class SparkEntity extends HostileEntity {
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, StylishOccult.SETTINGS.sparkEntityDamage);
     }
 
+    protected void playRandomEffect(int c, boolean die) {
+        for(int i = 0; i < c; i ++) {
+            world.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0, 0.03f, 0);
+        }
+    }
+
     public void tick() {
         if( this.getFireTicks() > 0 ) {
             this.setFireTicks(-1);
         }
 
         if(random.nextInt(40) == 0) {
-            int c = random.nextInt(4) + 1;
-            for(int i = 0; i < c; i ++) {
-                world.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0, 0.03f, 0);
-            }
+            playRandomEffect(random.nextInt(4) + 1, false);
         }
 
         super.tick();
@@ -112,6 +115,11 @@ public class SparkEntity extends HostileEntity {
 
         if (this.age > maxAge) {
             this.damage(DamageSource.STARVE, 1.0F);
+        }
+
+        if (this.getHealth() <= 0) {
+            playRandomEffect(random.nextInt(3) + 3, true);
+            this.remove();
         }
     }
 

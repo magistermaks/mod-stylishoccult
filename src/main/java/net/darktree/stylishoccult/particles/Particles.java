@@ -32,6 +32,11 @@ public class Particles {
         Utils.requestParticleTexture( new ModIdentifier( "particle/splash_1" ) );
         Utils.requestParticleTexture( new ModIdentifier( "particle/splash_2" ) );
         Utils.requestParticleTexture( new ModIdentifier( "particle/splash_3" ) );
+        Utils.requestParticleTexture( new ModIdentifier( "particle/spark_0" ) );
+        Utils.requestParticleTexture( new ModIdentifier( "particle/spark_1" ) );
+        Utils.requestParticleTexture( new ModIdentifier( "particle/spark_2" ) );
+        Utils.requestParticleTexture( new ModIdentifier( "particle/spark_3" ) );
+        Utils.requestParticleTexture( new ModIdentifier( "particle/spark_4" ) );
 
         ParticleFactoryRegistry.getInstance().register(SPORE, FlameParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ORBITING_SPARK, OrbitingFlameParticle.Factory::new);
