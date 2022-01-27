@@ -8,6 +8,9 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class SporeEntity extends SparkEntity implements CorruptedEntity {
@@ -35,5 +38,4 @@ public class SporeEntity extends SparkEntity implements CorruptedEntity {
     protected SoundEvent getDeathSound() {
         return SoundEvents.BLOCK_HONEY_BLOCK_BREAK;
     }
-
 }

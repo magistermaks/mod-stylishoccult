@@ -27,5 +27,11 @@
         "sounds": [
             "stylish_occult:vent"
         ]   
-    }
+    },
+	"spore_escapes": {
+		"subtitle": "sound.stylish_occult.spore_escapes",
+		"sounds": [
+			"stylish_occult:spore_escapes"
+		]
+	}
 }

@@ -38,7 +38,7 @@ public class CorruptedBloodEffect extends SimpleStatusEffect {
             );
 
             List<LivingEntity> list = entity.world.getNonSpectatingEntities(LivingEntity.class, box);
-            int target = MathHelper.clamp( (entity.getHealth() <= 1.0f || entity.world.random.nextInt( 80 ) == 0) ? a + 1 : a, 0, 6 );
+            int target = MathHelper.clamp( (entity.getHealth() <= 1.0f || entity.world.random.nextInt(60) == 0) ? a + 1 : a, 0, 6 );
             int time = target * 160;
 
             for (LivingEntity livingEntity : list) {

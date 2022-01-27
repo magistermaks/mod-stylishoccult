@@ -12,6 +12,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -97,6 +98,13 @@ public class SparkEntity extends HostileEntity {
     public void tick() {
         if( this.getFireTicks() > 0 ) {
             this.setFireTicks(-1);
+        }
+
+        if(random.nextInt(40) == 0) {
+            int c = random.nextInt(4) + 1;
+            for(int i = 0; i < c; i ++) {
+                world.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 0, 0.03f, 0);
+            }
         }
 
         super.tick();

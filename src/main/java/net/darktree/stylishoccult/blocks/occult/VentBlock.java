@@ -6,6 +6,8 @@ import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.entities.ModEntities;
 import net.darktree.stylishoccult.entities.SporeEntity;
+import net.darktree.stylishoccult.sounds.SoundManager;
+import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.SimpleBlock;
@@ -83,9 +85,7 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
     }
 
     private void summon(BlockState state, World world, BlockPos pos ) {
-
-        // TODO: add custom sound
-        world.playSound(null, pos, SoundEvents.ENTITY_ITEM_FRAME_ROTATE_ITEM, SoundCategory.BLOCKS, 1, 1);
+        SoundManager.playSound(world, pos, "spore_escapes");
 
         SporeEntity sporeEntity = ModEntities.SPORE.create(world);
 
@@ -93,8 +93,13 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
             throw new RuntimeException( "Unable to summon Spore!" );
         }
 
-        sporeEntity.setVentDirection( state.get(FACING), 0.9f );
-        sporeEntity.refreshPositionAndAngles(pos, 0.0F, 0.0F);
+        Vector3f offset = OFFSETS[state.get(FACING).getId()];
+        double x = (double)pos.getX() + offset.getX() / 16.0f;
+        double y = (double)pos.getY() + offset.getY() / 16.0f;
+        double z = (double)pos.getZ() + offset.getZ() / 16.0f;
+
+        sporeEntity.setVentDirection(state.get(FACING), 0.9f);
+        sporeEntity.refreshPositionAndAngles(x, y - 0.125, z, 0, 0);
         sporeEntity.initialize((ServerWorldAccess) world, world.getLocalDifficulty(pos), SpawnReason.REINFORCEMENT, null, null);
         world.spawnEntity(sporeEntity);
     }
