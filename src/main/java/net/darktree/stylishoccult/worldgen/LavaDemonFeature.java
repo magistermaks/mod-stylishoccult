@@ -42,8 +42,7 @@ public class LavaDemonFeature extends SimpleFeature<DefaultFeatureConfig> {
     public ConfiguredFeature<?, ?> configure() {
         return configure( new DefaultFeatureConfig() ).decorate( Decorator.CARVING_MASK.configure(
                 new CarvingMaskDecoratorConfig(
-                        GenerationStep.Carver.AIR,
-                        0.0005f
+                        GenerationStep.Carver.AIR//, 0.0005f
                 ) ) );
     }
 

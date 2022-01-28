@@ -99,8 +99,7 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
     public ConfiguredFeature<?, ?> configure() {
         return configure( new DefaultFeatureConfig() ).decorate( Decorator.CARVING_MASK.configure(
                 new CarvingMaskDecoratorConfig(
-                        GenerationStep.Carver.AIR,
-                        0.0009f
+                        GenerationStep.Carver.AIR//, 0.0009f
                 ) ) );
     }
 

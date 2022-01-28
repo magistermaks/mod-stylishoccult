@@ -5,10 +5,12 @@ import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.VerticalSurfaceType;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.decorator.CarvingMaskDecoratorConfig;
+import net.minecraft.world.gen.decorator.CaveSurfaceDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -41,10 +43,9 @@ public class UrnFeature extends SimpleFeature<DefaultFeatureConfig> {
 
     @Override
     public ConfiguredFeature<?, ?> configure() {
-        return configure( new DefaultFeatureConfig() ).decorate( Decorator.CARVING_MASK.configure(
-                new CarvingMaskDecoratorConfig(
-                        GenerationStep.Carver.AIR,
-                        0.00092f
+        return configure( new DefaultFeatureConfig() ).decorate( Decorator.CAVE_SURFACE.configure(
+                new CaveSurfaceDecoratorConfig(
+                        VerticalSurfaceType.FLOOR, 1
                 ) ) );
     }
 

@@ -54,6 +54,6 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
         ModItems.clientInit();
         Particles.clientInit();
         ModEntities.clientInit();
-        LOGGER.info( "Additional sound effects from https://www.zapsplat.com" );
+        LOGGER.info("Additional sound effects from https://www.zapsplat.com");
     }
 }
