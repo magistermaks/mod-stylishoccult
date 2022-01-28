@@ -1,5 +1,7 @@
 
-0.4.0 alpha <2022/01/28>
+0.5.0 beta
+
+0.4.0 beta <2022/01/28>
 - Removed all bricks
 - Removed candles
 - Removed wax
