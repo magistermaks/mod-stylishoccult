@@ -66,7 +66,7 @@ public class Voxels {
         }
 
         public VoxelShape asVoxelShape() {
-            return VoxelShapes.cuboid( x1/16.0f, y1/16.0f, z1/16.0f, x2/16.0f, y2/16.0f, z2/16.0f );
+            return Utils.box(x1, y1, z1, x2, y2, z2);
         }
 
     }

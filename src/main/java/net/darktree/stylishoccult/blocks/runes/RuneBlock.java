@@ -45,7 +45,7 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 
     public RuneBlock( RuneType type, String name ) {
         super( FabricBlockSettings.of(Material.STONE)
-                .materialColor(MapColor.BLACK)
+                .mapColor(MapColor.BLACK)
                 .breakByTool(FabricToolTags.PICKAXES)
                 .requiresTool()
                 .strength(2.5f, 6.0f));

@@ -28,7 +28,7 @@ public class FleshStonePatchFeature extends OreFeature implements SimpleFeatureP
 	@Override
 	public ConfiguredFeature<?, ?> configure() {
         return configure( new OreFeatureConfig(
-					OreFeatureConfig.Rules.BASE_STONE_OVERWORLD,
+					OreFeatureConfig.Rules.STONE_ORE_REPLACEABLES,
 					ModBlocks.STONE_FLESH.getDefaultState(),
 					StylishOccult.SETTINGS.featureFleshStoneVainSize ))   // vein size
                 .decorate(Decorator.RANGE.configure( new RangeDecoratorConfig(BiasedToBottomHeightProvider.create(

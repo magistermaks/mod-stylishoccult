@@ -35,7 +35,7 @@ public class ModFeatures {
         // Lava Demon Feature
         BiomeModifications.addFeature(
                 BiomeSelectors.foundInOverworld().and( BiomeSelectors.categories( Biome.Category.OCEAN ).negate() ),
-                GenerationStep.Feature.UNDERGROUND_DECORATION,
+                GenerationStep.Feature.VEGETAL_DECORATION,
                 register( "lava_demon_feature", new LavaDemonFeature( DefaultFeatureConfig.CODEC ) )
         );
 
@@ -70,7 +70,7 @@ public class ModFeatures {
         // Random Urn Feature
         BiomeModifications.addFeature(
                 BiomeSelectors.foundInOverworld(),
-                GenerationStep.Feature.RAW_GENERATION,
+                GenerationStep.Feature.VEGETAL_DECORATION,
                 register( "urn_feature", new UrnFeature( DefaultFeatureConfig.CODEC ) )
         );
 
@@ -81,7 +81,7 @@ public class ModFeatures {
                 register( "runic_wall_feature", new WallsFeature( DefaultFeatureConfig.CODEC ) )
         );
 
-        // Runic Walls Feature
+        // Boulder Feature
         BiomeModifications.addFeature(
                 BiomeSelectors.foundInTheNether(),
                 GenerationStep.Feature.RAW_GENERATION,
