@@ -20,7 +20,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.Nullable;
 
 public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFleshBlock {
 
@@ -59,7 +58,6 @@ public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFlesh
         return state;
     }
 
-    @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return getDefaultState().with(PERSISTENT, true);

@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.worldgen;
 
 import com.mojang.serialization.Codec;
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.SparkVentBlock;
 import net.darktree.stylishoccult.utils.BlockUtils;
@@ -13,9 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.CountConfig;
-import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.decorator.CarvingMaskDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -34,7 +33,11 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 
-        if( !world.getBlockState(pos).isAir() ) {
+        if( !RandUtils.getBool(StylishOccult.SETTINGS.featureSparkVentChance, random) ) {
+            return false;
+        }
+
+        if( !world.getBlockState(pos).isAir() || !world.getBlockState(pos.up()).isAir() ) {
             return false;
         }
 
@@ -64,7 +67,7 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
         return false;
     }
 
-    public boolean generateSource(StructureWorldAccess world, Random random, BlockPos pos) {
+    private boolean generateSource(StructureWorldAccess world, Random random, BlockPos pos) {
         if( RandUtils.getBool(95.0f, random) ) {
             world.setBlockState(pos, LAVA, 2);
 

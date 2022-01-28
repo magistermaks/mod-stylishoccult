@@ -12,7 +12,6 @@ import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.Material;
@@ -31,8 +30,8 @@ public class ModBlocks {
     public static final Block FIERY_LANTERN = RegUtil.block( "fiery_lantern", new FieryLanternBlock() );
     public static final Block SPARK_VENT = RegUtil.block( "spark_vent", new SparkVentBlock() );
     public static final Block GROWTH = RegUtil.block( "growth", new ThinFleshBlock() );
-    public static final Block NETHER_GRASS = RegUtil.block( "nether_grass", new NetherGrassBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MapColor.RED).noCollision().breakInstantly().requiresTool().breakByTool(FabricToolTags.SHEARS).sounds(BlockSoundGroup.NETHER_SPROUTS)) );
-    public static final Block NETHER_FERN = RegUtil.block( "nether_fern", new NetherFernBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MapColor.RED).noCollision().breakInstantly().requiresTool().breakByTool(FabricToolTags.SHEARS).sounds(BlockSoundGroup.NETHER_SPROUTS)) );
+    public static final Block NETHER_GRASS = RegUtil.block( "nether_grass", new NetherGrassBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MapColor.RED).noCollision().breakInstantly().requiresTool().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
+    public static final Block NETHER_FERN = RegUtil.block( "nether_fern", new NetherFernBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MapColor.RED).noCollision().breakInstantly().requiresTool().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
 
     // flesh and friends
     public static final Block DEFAULT_FLESH = RegUtil.block( "flesh_default", new FleshBlock() );
@@ -51,10 +50,10 @@ public class ModBlocks {
     public static final Block FLESH_PASSIVE = RegUtil.block( "flesh_passive", new PassiveFleshBlock() );
 
     // simple building blocks
-    public static final Block STONE_FLESH = RegUtil.block( "flesh_stone", new FleshStone( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.5f, 6.5f, true ).breakByTool(FabricToolTags.PICKAXES).requiresTool() ) );
-    public static final Block LAVA_STONE = RegUtil.block( "lava_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).luminance(3).breakByTool(FabricToolTags.PICKAXES).requiresTool() ) );
+    public static final Block STONE_FLESH = RegUtil.block( "flesh_stone", new FleshStone( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.5f, 6.5f, true ).requiresTool() ) );
+    public static final Block LAVA_STONE = RegUtil.block( "lava_stone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 12.0f, 8.0f, true ).luminance(3).requiresTool() ) );
     public static final Block RUNESTONE = RegUtil.block( "runestone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
-    public static final Block ARCANE_ASH = RegUtil.block( "arcane_ash", new ArcaneAshBlock( 100, 500, 0.8f, RegUtil.settings( Material.SOIL, BlockSoundGroup.SAND, 2.0f, 6.0f, true ).requiresTool().breakByTool(FabricToolTags.SHOVELS).mapColor(MapColor.BLACK) ) );
+    public static final Block ARCANE_ASH = RegUtil.block( "arcane_ash", new ArcaneAshBlock( 100, 500, 0.4f, RegUtil.settings( Material.SOIL, BlockSoundGroup.SAND, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK) ) );
     public static final Block CRYSTALLINE_BLACKSTONE = RegUtil.block( "crystalline_blackstone", new CrystallineBlackstone( RegUtil.settings( Material.STONE, BlockSoundGroup.GILDED_BLACKSTONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
 
     // runes

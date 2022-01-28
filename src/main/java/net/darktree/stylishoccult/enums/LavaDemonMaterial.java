@@ -15,16 +15,16 @@ public enum LavaDemonMaterial implements StringIdentifiable {
     DIAMOND("diamond");
 
     public int getLevel() {
-        switch( this ) {
-            case STONE: return 1;
-            case COAL: return 2;
-            case IRON: return 3;
-            case LAPIS: return 4;
-            case REDSTONE: return 5;
-            case GOLD: return 6;
-            case EMERALD: return 7;
-        }
-        return 8;
+        return switch (this) {
+            case STONE -> 1;
+            case COAL -> 2;
+            case IRON -> 3;
+            case LAPIS -> 4;
+            case REDSTONE -> 5;
+            case GOLD -> 6;
+            case EMERALD -> 7;
+            default -> 8;
+        };
     }
 
     public static LavaDemonMaterial getFrom( Block block ) {
@@ -45,10 +45,12 @@ public enum LavaDemonMaterial implements StringIdentifiable {
         this.name = name;
     }
 
+    @Override
     public String toString() {
         return this.name;
     }
 
+    @Override
     public String asString() {
         return this.name;
     }

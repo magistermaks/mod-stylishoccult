@@ -22,7 +22,6 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
@@ -95,7 +94,6 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock, FluidRep
         return VoxelShapes.empty();
     }
 
-    @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return getStateToFit( ctx.getWorld(), ctx.getBlockPos() );
@@ -192,16 +190,14 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock, FluidRep
     }
 
     private BooleanProperty fromDirection( Direction direction ) {
-        switch( direction ) {
-            case UP: return UP;
-            case DOWN: return DOWN;
-            case NORTH: return NORTH;
-            case SOUTH: return SOUTH;
-            case WEST: return WEST;
-            case EAST: return EAST;
-        }
-
-        return null;
+        return switch (direction) {
+            case UP -> UP;
+            case DOWN -> DOWN;
+            case NORTH -> NORTH;
+            case SOUTH -> SOUTH;
+            case WEST -> WEST;
+            case EAST -> EAST;
+        };
     }
 
     @Override

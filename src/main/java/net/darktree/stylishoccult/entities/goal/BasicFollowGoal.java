@@ -17,6 +17,7 @@ public abstract class BasicFollowGoal extends TrackTargetGoal {
         this.reciprocalChance = reciprocalChance;
     }
 
+    @Override
     public boolean canStart() {
         if( mob.getRandom().nextInt(this.reciprocalChance) != 0 ) {
             return false;
@@ -34,6 +35,7 @@ public abstract class BasicFollowGoal extends TrackTargetGoal {
         targetEntity = mob.world.getClosestEntity(LivingEntity.class, targetPredicate, mob, mob.getX(), mob.getEyeY(), mob.getZ(), getSearchBox(getFollowRange()));
     }
 
+    @Override
     public void start() {
         mob.setTarget(targetEntity);
         super.start();

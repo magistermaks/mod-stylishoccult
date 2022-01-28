@@ -21,10 +21,12 @@ public class NetherFernBlock extends NetherGrassBlock {
         super(settings);
     }
 
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
 
+    @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if( entity instanceof LivingEntity ) {
             if( !world.isClient && !((LivingEntity) entity).hasStatusEffect(StatusEffects.POISON) ) {

@@ -15,6 +15,7 @@ public class NumberRuneBlock extends RuneBlock {
         this.value = value;
     }
 
+    @Override
     public RuneInstance getInstance() {
         NumberRuneInstance instance = new NumberRuneInstance(this);
         instance.raw += value;
@@ -29,12 +30,13 @@ public class NumberRuneBlock extends RuneBlock {
             super(rune);
         }
 
-        public NbtCompound toTag() {
-            NbtCompound tag = new NbtCompound();
+        @Override
+        public NbtCompound toTag(NbtCompound tag) {
             tag.putString("raw", raw);
             return super.toTag( tag );
         }
 
+        @Override
         public void fromTag( NbtCompound tag ) {
             raw = tag.getString("raw");
         }

@@ -25,6 +25,7 @@ public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock, Foliag
         );
     }
 
+    @Override
     public boolean hasRandomTicks(BlockState state) {
         return true;
     }

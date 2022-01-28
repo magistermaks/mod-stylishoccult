@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.blocks;
 
+import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.minecraft.block.Block;
@@ -27,13 +28,14 @@ public class ArcaneAshBlock extends SimpleBlock {
     private final int max;
 
     public ArcaneAshBlock(int min, int max, float hardness, Settings settings) {
-        super(settings.ticksRandomly().dropsNothing().strength(hardness, hardness));
+        super(settings.ticksRandomly().strength(hardness, hardness));
         setDefaultState( getDefaultState().with(PERSISTENT, true).with(AGE, 0) );
 
         this.min = min;
         this.max = max;
     }
 
+    @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if( random.nextInt(20) == 0 && !state.get(PERSISTENT) ) {
             this.scheduledTick(state, world, pos, random);
@@ -64,6 +66,7 @@ public class ArcaneAshBlock extends SimpleBlock {
         }
     }
 
+    @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int age = state.get(AGE);
 
@@ -76,6 +79,11 @@ public class ArcaneAshBlock extends SimpleBlock {
             world.getBlockTickScheduler().schedule(pos, this, MathHelper.nextInt(random, h * min, h * max));
             world.setBlockState(pos, state.with(AGE, age + 1));
         }
+    }
+
+    @Override
+    public net.darktree.stylishoccult.loot.LootTable getInternalLootTableId() {
+        return LootTables.ASH;
     }
 
 }

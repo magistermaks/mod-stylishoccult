@@ -28,14 +28,13 @@ public class RuneUtils {
     }
 
     public static int getTint( int index ) {
-        switch( index ) {
-            case 0: return COLOR_0;
-            case 1: return COLOR_1;
-            case 2: return COLOR_2;
-            case 3: return COLOR_3;
-        }
-
-        return 0;
+        return switch (index) {
+            case 0 -> COLOR_0;
+            case 1 -> COLOR_1;
+            case 2 -> COLOR_2;
+            case 3 -> COLOR_3;
+            default -> 0;
+        };
     }
 
 }

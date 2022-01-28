@@ -27,6 +27,7 @@ public class BottleItem extends Item {
 
     }
 
+    @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         super.finishUsing(stack, world, user);
 
@@ -53,14 +54,17 @@ public class BottleItem extends Item {
         }
     }
 
+    @Override
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.DRINK;
     }
 
+    @Override
     public SoundEvent getEatSound() {
         return getDrinkSound();
     }
 
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         return ItemUsage.consumeHeldItem(world, user, hand);
     }

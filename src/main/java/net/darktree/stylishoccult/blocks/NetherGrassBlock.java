@@ -20,6 +20,7 @@ public class NetherGrassBlock extends SproutsBlock {
         this.lootTableId = net.minecraft.loot.LootTables.EMPTY;
     }
 
+    @Override
     public boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return floor.getBlock() == Blocks.NETHERRACK || super.canPlantOnTop(floor, world, pos);
     }

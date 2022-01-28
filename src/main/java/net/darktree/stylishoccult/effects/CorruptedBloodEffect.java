@@ -8,6 +8,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class CorruptedBloodEffect extends SimpleStatusEffect {
         super(StatusEffectCategory.HARMFUL, false, 0x801a00);
     }
 
+    @Override
     public void onUpdate(LivingEntity entity, int amplifier) {
         if( entity.world.isClient ) {
             return;
@@ -59,7 +61,7 @@ public class CorruptedBloodEffect extends SimpleStatusEffect {
         }
     }
 
-    private void applyToEntity( LivingEntity entity, int amplifier, int bonusTime ) {
+    private void applyToEntity(@NotNull LivingEntity entity, int amplifier, int bonusTime ) {
         if( entity.world.random.nextInt(10) == 0 ) {
             if( !entity.hasStatusEffect( this ) || (entity.world.random.nextInt( 20 ) == 0) ) {
                 entity.addStatusEffect(new StatusEffectInstance(

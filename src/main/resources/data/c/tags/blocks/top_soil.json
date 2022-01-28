@@ -4,7 +4,7 @@
         "minecraft:grass_block",
         "minecraft:mycelium",
         "minecraft:podzol",
-        "minecraft:grass_path",
+        "minecraft:dirt_path",
         "#minecraft:nylium"
     ]
 }

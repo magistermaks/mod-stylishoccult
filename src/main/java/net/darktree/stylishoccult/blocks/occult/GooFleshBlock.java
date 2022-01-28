@@ -81,6 +81,7 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
         }
     }
 
+    @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         entity.slowMovement( state, new Vec3d(0.95, 0.95, 0.95) );
     }
@@ -95,6 +96,7 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
         return 12;
     }
 
+    @Override
     @Environment(EnvType.CLIENT)
     public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
         return stateFrom.isOf(this) && (direction.getAxis() == Direction.Axis.Y || (stateFrom.get(TOP) == state.get(TOP)));

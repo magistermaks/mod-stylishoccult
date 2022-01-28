@@ -29,6 +29,7 @@ public class UrnBlock extends SimpleBlock {
         return COLLISION_SHAPE;
     }
 
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ePos) {
         return OUTLINE_SHAPE;
     }

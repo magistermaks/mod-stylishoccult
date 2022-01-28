@@ -12,7 +12,6 @@ import net.darktree.stylishoccult.utils.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
@@ -76,6 +75,7 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
         this.dropExperience( world, pos, i );
     }
 
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add( ANGER, PART, CAN_SPREAD, MATERIAL );
     }
@@ -94,6 +94,7 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
         world.setBlockState(pos, state.with(ANGER, 2));
     }
 
+    @Override
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         LavaDemonPart part = state.get(PART);
@@ -225,11 +226,6 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
                 }
             }
         }
-    }
-
-    @Deprecated
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
     }
 
     @Override

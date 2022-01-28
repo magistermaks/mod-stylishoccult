@@ -41,9 +41,7 @@ public class OccultHelper {
         BlockState state = world.getBlockState(target);
         Block block = state.getBlock();
 
-        if (block instanceof ImpureBlock) {
-            ImpureBlock impurity = (ImpureBlock) block;
-
+        if (block instanceof ImpureBlock impurity) {
             int level = impurity.impurityLevel(state);
 
             if (world.random.nextInt(level) < world.random.nextInt(power)) {

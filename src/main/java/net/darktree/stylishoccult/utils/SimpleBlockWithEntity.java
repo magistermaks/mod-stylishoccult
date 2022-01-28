@@ -25,7 +25,7 @@ abstract public class SimpleBlockWithEntity extends BlockWithEntity implements M
     }
 
     public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.INVISIBLE;
+        return BlockRenderType.MODEL;
     }
 
     @Override

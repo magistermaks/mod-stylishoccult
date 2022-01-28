@@ -19,6 +19,7 @@ public abstract class SimpleStatusEffect extends StatusEffect {
     /**
      * Called every tick for non-instant effect
      */
+    @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         onUpdate( entity, amplifier );
     }
@@ -26,6 +27,7 @@ public abstract class SimpleStatusEffect extends StatusEffect {
     /**
      * Called only for instant effects
      */
+    @Override
     public void applyInstantEffect(@Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
         onUpdate( target, amplifier );
     }
@@ -37,18 +39,22 @@ public abstract class SimpleStatusEffect extends StatusEffect {
 
     }
 
+    @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return true;
     }
 
+    @Override
     public boolean isInstant() {
         return instant;
     }
 
+    @Override
     public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
         super.onRemoved(entity, attributes, amplifier);
     }
 
+    @Override
     public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
         super.onApplied(entity, attributes, amplifier);
     }

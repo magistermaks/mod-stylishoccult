@@ -13,7 +13,6 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
@@ -45,6 +44,7 @@ public class SparkEntity extends HostileEntity {
         this.direction = new Vec3d( direction.getOffsetX(), direction.getOffsetY(), direction.getOffsetZ() ).multiply(power);
     }
 
+    @Override
     public SoundEvent getAmbientSound() {
         return SoundEvents.BLOCK_CAMPFIRE_CRACKLE;
     }
@@ -54,15 +54,18 @@ public class SparkEntity extends HostileEntity {
         return 0.01f;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource source) {
         return null;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.BLOCK_FIRE_EXTINGUISH;
     }
 
-    public void readCustomDataFromTag(NbtCompound tag) {
+    @Override
+    public void readCustomDataFromNbt(NbtCompound tag) {
         super.readCustomDataFromNbt(tag);
         this.age = tag.getInt("age");
         this.maxAge = tag.getInt("maxAge");
@@ -72,7 +75,8 @@ public class SparkEntity extends HostileEntity {
         direction = new Vec3d(x, y, z);
     }
 
-    public void writeCustomDataToTag(NbtCompound tag) {
+    @Override
+    public void writeCustomDataToNbt(NbtCompound tag) {
         super.writeCustomDataToNbt(tag);
         tag.putInt("age", this.age);
         tag.putInt("maxAge", this.maxAge);
@@ -81,6 +85,7 @@ public class SparkEntity extends HostileEntity {
         tag.putDouble("dirZ", direction.z);
     }
 
+    @Override
     protected void initGoals() {
         super.initGoals();
         this.goalSelector.add(0, new SwimGoal(this));
@@ -109,6 +114,7 @@ public class SparkEntity extends HostileEntity {
         }
     }
 
+    @Override
     public void tick() {
         if( this.getFireTicks() > 0 ) {
             this.setFireTicks(-1);
@@ -135,6 +141,7 @@ public class SparkEntity extends HostileEntity {
         damage(DamageSource.ON_FIRE, StylishOccult.SETTINGS.entityDamage);
     }
 
+    @Override
     protected void mobTick() {
         super.mobTick();
 
@@ -204,10 +211,7 @@ public class SparkEntity extends HostileEntity {
     }
 
     public int getBoneArmorBySlot(LivingEntity entity, EquipmentSlot slot, int bones) {
-        Item item = entity.getEquippedStack(slot).getItem();
-
-        if(item instanceof ArmorItem) {
-            ArmorItem armor = (ArmorItem) item;
+        if(entity.getEquippedStack(slot).getItem() instanceof ArmorItem armor) {
             if(armor.getMaterial() instanceof TwistedBoneArmorMaterial) {
                 return bones;
             }
@@ -221,21 +225,21 @@ public class SparkEntity extends HostileEntity {
         return false;
     }
 
-    protected boolean canClimb() {
+    @Override
+    public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
         return false;
     }
 
-    public boolean handleFallDamage(float fallDistance, float damageMultiplier) {
-        return false;
-    }
-
+    @Override
     protected void fall(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition) {
     }
 
+    @Override
     public boolean canAvoidTraps() {
         return true;
     }
 
+    @Override
     protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
         return dimensions.height / 2.0F;
     }

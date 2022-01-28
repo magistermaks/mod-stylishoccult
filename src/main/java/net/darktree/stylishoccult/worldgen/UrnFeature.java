@@ -3,15 +3,13 @@ package net.darktree.stylishoccult.worldgen;
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.utils.SimpleFeature;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.VerticalSurfaceType;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.CountConfig;
-import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.decorator.CarvingMaskDecoratorConfig;
-import net.minecraft.world.gen.decorator.CaveSurfaceDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -27,12 +25,12 @@ public class UrnFeature extends SimpleFeature<DefaultFeatureConfig> {
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 
-        if( world.getBlockState(pos).isAir() && pos.getY() > 6 ) {
+        if( world.getBlockState(pos).isAir() && pos.getY() > 6 && pos.getY() < 35 ) {
 
             BlockPos pos2 = pos.down();
             BlockPos pos3 = pos.offset( Direction.fromHorizontal( random.nextInt() ) );
 
-            if( world.getBlockState( pos2 ).isSolidBlock(world, pos2) && world.getBlockState( pos3 ).isSolidBlock(world, pos3) ) {
+            if( isFloorAccepted(world.getBlockState(pos2).getBlock()) && world.getBlockState(pos3).isSolidBlock(world, pos3) ) {
                 world.setBlockState(pos, ModBlocks.URN.getDefaultState(), 3);
                 this.debugWrite(pos);
             }
@@ -40,6 +38,11 @@ public class UrnFeature extends SimpleFeature<DefaultFeatureConfig> {
         }
 
         return true;
+    }
+
+    private boolean isFloorAccepted(Block block) {
+        // the last one is for mineshaft
+        return block == Blocks.STONE || block == Blocks.DEEPSLATE || block == Blocks.ANDESITE || block == Blocks.GRANITE || block == Blocks.OAK_PLANKS;
     }
 
     @Override

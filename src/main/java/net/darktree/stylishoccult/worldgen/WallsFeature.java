@@ -155,7 +155,7 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 
     }
 
-    public static boolean touchesRunes(BlockView world, BlockPos origin) {
+    private static boolean touchesRunes(BlockView world, BlockPos origin) {
         for( Direction direction : neighbors ){
             if(world.getBlockState( origin.offset( direction ) ).getBlock() instanceof RuneBlock) return true;
         }

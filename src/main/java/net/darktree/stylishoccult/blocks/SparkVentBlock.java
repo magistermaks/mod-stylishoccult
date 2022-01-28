@@ -40,6 +40,7 @@ public class SparkVentBlock extends SimpleBlock {
         setDefaultState( getDefaultState().with( ACTIVE, false ) );
     }
 
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add( ACTIVE );
     }
@@ -56,6 +57,7 @@ public class SparkVentBlock extends SimpleBlock {
         }
     }
 
+    @Override
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         BlockPos up = pos.up();

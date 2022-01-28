@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.loot;
 
+import net.darktree.stylishoccult.blocks.ArcaneAshBlock;
 import net.darktree.stylishoccult.blocks.LavaDemonBlock;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.EyesBlock;
@@ -40,6 +41,12 @@ public class LootTables {
                 .dropExperience(2, 10)
                 .pop()
             .minimum(1)
+            .build();
+
+    public static final LootTable ASH = LootManager.create()
+            .addCondition( (rng, ctx) -> ctx.getState().get(ArcaneAshBlock.PERSISTENT))
+                .addBlockItem()
+                .pop()
             .build();
 
     public static final LootTable CRYSTALLINE_BLACKSTONE = LootManager.create()

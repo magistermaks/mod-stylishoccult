@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#stylish_occult:runes",
+    "stylish_occult:runestone",
+    "stylish_occult:flesh_stone",
+    "stylish_occult:lava_stone",
+    "stylish_occult:crystalline_blackstone",
+    "stylish_occult:spark_vent"
+  ]
+}

@@ -33,18 +33,22 @@ public class SporeEntity extends SparkEntity implements CorruptedEntity {
         }
     }
 
+    @Override
     protected void addSpecificGoals() {
         this.targetSelector.add(0, new FollowNonCorruptedGoal(this, true));
     }
 
+    @Override
     protected void dealDamage() {
         damage(DamageSource.GENERIC, StylishOccult.SETTINGS.sporeEntityDamage);
     }
 
+    @Override
     public SoundEvent getAmbientSound() {
         return null;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.BLOCK_HONEY_BLOCK_BREAK;
     }

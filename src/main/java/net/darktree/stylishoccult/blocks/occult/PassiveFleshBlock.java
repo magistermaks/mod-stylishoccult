@@ -35,6 +35,7 @@ public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
         setDefaultState( getDefaultState().with(BLOODY, false) );
     }
 
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(BLOODY);
     }
@@ -64,14 +65,17 @@ public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
         return super.onUse(state, world, pos, player, hand, hit);
     }
 
+    @Override
     public VoxelShape getSidesShape(BlockState state, BlockView world, BlockPos pos) {
         return VoxelShapes.fullCube();
     }
 
-    public VoxelShape getVisualShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.fullCube();
     }
 
+    @Override
     public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
         return false;
     }

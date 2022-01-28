@@ -13,10 +13,12 @@ public enum LavaDemonPart implements StringIdentifiable {
         this.name = name;
     }
 
+    @Override
     public String toString() {
         return this.name;
     }
 
+    @Override
     public String asString() {
         return this.name;
     }

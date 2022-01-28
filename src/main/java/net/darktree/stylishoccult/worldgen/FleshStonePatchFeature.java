@@ -19,6 +19,7 @@ public class FleshStonePatchFeature extends OreFeature implements SimpleFeatureP
 		super(codec);
 	}
 
+	@Override
 	public boolean generate(FeatureContext<OreFeatureConfig> context) {
 		boolean generated = super.generate(context);
 		if(generated) this.debugWrite(context.getOrigin());

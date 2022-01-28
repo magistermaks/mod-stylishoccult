@@ -25,15 +25,14 @@ public class ModEntities {
 
     public static void init() {
         Registry.register( Registry.ENTITY_TYPE, new ModIdentifier("lava_spark"), SPARK);
-        FabricDefaultAttributeRegistry.register(SPARK, SparkEntity.createSparkAttributes() );
+        FabricDefaultAttributeRegistry.register(SPARK, SparkEntity.createSparkAttributes());
 
         Registry.register( Registry.ENTITY_TYPE, new ModIdentifier("spore"), SPORE );
-        FabricDefaultAttributeRegistry.register( SPORE, SporeEntity.createSporeAttributes() );
+        FabricDefaultAttributeRegistry.register(SPORE, SporeEntity.createSporeAttributes());
     }
 
     @Environment(EnvType.CLIENT)
     public static void clientInit() {
-        // hotfix for some class loader problems
         ClientModEntities.init();
     }
 

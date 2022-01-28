@@ -9,7 +9,6 @@ import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.RegUtil;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -29,7 +28,7 @@ public class FossilizedFleshBlock extends FullFleshBlock implements ImpureBlock 
     public static final BooleanProperty STABLE = BooleanProperty.of("stable");
 
     public FossilizedFleshBlock() {
-        super(RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.STONE, 1.0F, 1.0F, true ).slipperiness(0.7f).breakByTool(FabricToolTags.PICKAXES).requiresTool().ticksRandomly());
+        super(RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.STONE, 1.0F, 1.0F, true ).slipperiness(0.7f).requiresTool().ticksRandomly());
         setDefaultState( getDefaultState().with(STABLE, false) );
     }
 

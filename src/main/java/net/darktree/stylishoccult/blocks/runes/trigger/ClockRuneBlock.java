@@ -22,6 +22,7 @@ public class ClockRuneBlock extends EntryRuneBlock {
         onDelayEnd(world, pos);
     }
 
+    @Override
     protected void onDelayEnd( World world, BlockPos pos ) {
         world.getBlockTickScheduler().schedule(pos, world.getBlockState(pos).getBlock(), getDelayLength());
         RuneBlockEntity entity = getEntity(world, pos);

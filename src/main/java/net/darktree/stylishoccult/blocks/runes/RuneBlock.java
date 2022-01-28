@@ -15,7 +15,6 @@ import net.darktree.stylishoccult.utils.Utils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
@@ -46,7 +45,6 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
     public RuneBlock( RuneType type, String name ) {
         super( FabricBlockSettings.of(Material.STONE)
                 .mapColor(MapColor.BLACK)
-                .breakByTool(FabricToolTags.PICKAXES)
                 .requiresTool()
                 .strength(2.5f, 6.0f));
 

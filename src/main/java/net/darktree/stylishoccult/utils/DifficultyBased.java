@@ -18,14 +18,12 @@ public class DifficultyBased<T> {
     }
 
     public T get( Difficulty difficulty ) {
-        switch ( difficulty ) {
-            case EASY: return easy;
-            case NORMAL: return normal;
-            case HARD: return hard;
-            case PEACEFUL: return peaceful;
-        }
-
-        throw new RuntimeException( "Unexpected difficulty!" );
+        return switch (difficulty) {
+            case EASY -> easy;
+            case NORMAL -> normal;
+            case HARD -> hard;
+            case PEACEFUL -> peaceful;
+        };
     }
 
     public T get(WorldAccess world) {

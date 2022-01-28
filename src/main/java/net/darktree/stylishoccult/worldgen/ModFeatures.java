@@ -70,7 +70,7 @@ public class ModFeatures {
         // Random Urn Feature
         BiomeModifications.addFeature(
                 BiomeSelectors.foundInOverworld(),
-                GenerationStep.Feature.VEGETAL_DECORATION,
+                GenerationStep.Feature.UNDERGROUND_DECORATION,
                 register( "urn_feature", new UrnFeature( DefaultFeatureConfig.CODEC ) )
         );
 

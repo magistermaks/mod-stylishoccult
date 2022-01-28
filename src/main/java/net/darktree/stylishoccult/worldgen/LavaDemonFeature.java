@@ -1,18 +1,18 @@
 package net.darktree.stylishoccult.worldgen;
 
 import com.mojang.serialization.Codec;
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.LavaDemonBlock;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.enums.LavaDemonPart;
+import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.CountConfig;
-import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.decorator.CarvingMaskDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -27,6 +27,10 @@ public class LavaDemonFeature extends SimpleFeature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+
+        if( !RandUtils.getBool(StylishOccult.SETTINGS.featureDemonChance, random) ) {
+            return false;
+        }
 
         Direction direction = Direction.Type.HORIZONTAL.random( random );
         BlockPos pos2 = pos.offset( direction );
