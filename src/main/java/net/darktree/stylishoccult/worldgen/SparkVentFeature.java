@@ -18,17 +18,16 @@ import net.minecraft.world.gen.decorator.CarvingMaskDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
-public class SparkVentFeature extends Feature<DefaultFeatureConfig> implements SimpleFeature {
+public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
 
     private final static BlockState VENT = ModBlocks.SPARK_VENT.getDefaultState();
     private final static BlockState LAVA = Blocks.LAVA.getDefaultState();
 
-    public SparkVentFeature(Codec<DefaultFeatureConfig> configCodec) {
-        super(configCodec);
+    public SparkVentFeature(Codec<DefaultFeatureConfig> codec) {
+        super(codec);
     }
 
     @Override

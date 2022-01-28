@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.worldgen;
 
 import net.darktree.stylishoccult.utils.ModIdentifier;
-import net.darktree.stylishoccult.utils.SimpleFeature;
+import net.darktree.stylishoccult.utils.SimpleFeatureProvider;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.util.Identifier;
@@ -22,10 +22,10 @@ public class ModFeatures {
     private static RegistryKey<ConfiguredFeature<?, ?>> registerConfiguredFeature(String name, ConfiguredFeature<?, ?> configuredFeature) {
         Identifier id = new ModIdentifier(name);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, id, configuredFeature);
-        return RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, id);
+        return RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, id);
     }
 
-    private static RegistryKey<ConfiguredFeature<?, ?>> register( String str, SimpleFeature feature ) {
+    private static RegistryKey<ConfiguredFeature<?, ?>> register( String str, SimpleFeatureProvider feature ) {
         registerFeature( str, (Feature<?>) feature);
         return registerConfiguredFeature( str, feature.configure() );
     }

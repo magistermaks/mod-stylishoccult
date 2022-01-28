@@ -12,14 +12,13 @@ import net.minecraft.world.gen.decorator.CarvingMaskDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
-public class UrnFeature extends Feature<DefaultFeatureConfig> implements SimpleFeature {
+public class UrnFeature extends SimpleFeature<DefaultFeatureConfig> {
 
-    public UrnFeature(Codec<DefaultFeatureConfig> configCodec) {
-        super(configCodec);
+    public UrnFeature(Codec<DefaultFeatureConfig> codec) {
+        super(codec);
     }
 
     @Override

@@ -8,9 +8,9 @@ import net.minecraft.client.particle.AnimatedParticle;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
-import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.util.math.Vec3f;
 
 @Environment(EnvType.CLIENT)
 public class OrbitingFlameParticle extends AnimatedParticle {
@@ -18,7 +18,7 @@ public class OrbitingFlameParticle extends AnimatedParticle {
     private final float radius;
     private float rad;
     private float bop;
-    private final Vector3f origin;
+    private final Vec3f origin;
 
     protected OrbitingFlameParticle(ClientWorld world, double x, double y, double z, SpriteProvider sprites) {
         super(world, x, y, z, sprites, 1);
@@ -27,7 +27,7 @@ public class OrbitingFlameParticle extends AnimatedParticle {
         maxAge = RandUtils.rangeInt(50, 70);
         velocityZ = world.random.nextFloat() * 6.2830;
         scale = 0.1F * (random.nextFloat() * 0.5F + 0.55F) * 1.3F;
-        origin = new Vector3f((float) x, (float) y, (float) z);
+        origin = new Vec3f((float) x, (float) y, (float) z);
 
         rad = random.nextFloat() * 6.2830f;
         radius = RandUtils.rangeInt(30, 90) * 0.01f;

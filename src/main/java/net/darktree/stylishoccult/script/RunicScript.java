@@ -5,7 +5,7 @@ import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneInstance;
 import net.darktree.stylishoccult.script.components.RuneRegistry;
 import net.darktree.stylishoccult.script.components.StackManager;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -25,7 +25,7 @@ public class RunicScript {
         this(null);
     }
 
-    private void instanceFromTag( CompoundTag tag ) {
+    private void instanceFromTag( NbtCompound tag ) {
         String name = tag.getString("rune");
         RuneBlock rune = RuneRegistry.get(name);
         if( rune != null ) {
@@ -36,7 +36,7 @@ public class RunicScript {
         }
     }
 
-    public static RunicScript fromTag( CompoundTag tag ) {
+    public static RunicScript fromTag( NbtCompound tag ) {
         RunicScript script = new RunicScript();
 
         script.value = tag.getDouble("value");
@@ -47,11 +47,11 @@ public class RunicScript {
         return script;
     }
 
-    public CompoundTag toTag() {
-        CompoundTag tag = new CompoundTag();
+    public NbtCompound toTag() {
+        NbtCompound tag = new NbtCompound();
         if( direction != null) tag.putInt("direction", direction.getId());
-        if( instance != null ) tag.put("instance", instance.toTag(new CompoundTag()));
-        tag.put("stack", stack.stackToTag( new CompoundTag() ));
+        if( instance != null ) tag.put("instance", instance.toTag(new NbtCompound()));
+        tag.put("stack", stack.stackToTag( new NbtCompound() ));
         tag.putDouble("value", value);
         return tag;
     }
@@ -91,7 +91,7 @@ public class RunicScript {
         RunicScript script = new RunicScript(direction);
         script.value = value;
         script.stack.copy( stack );
-        if( instance != null ) script.instanceFromTag( instance.toTag( new CompoundTag() ) );
+        if( instance != null ) script.instanceFromTag( instance.toTag( new NbtCompound() ) );
         return script;
     }
 

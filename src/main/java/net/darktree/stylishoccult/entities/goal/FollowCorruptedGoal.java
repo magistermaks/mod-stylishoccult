@@ -30,6 +30,10 @@ public class FollowCorruptedGoal extends BasicFollowGoal {
 
     public static class CorruptedEntityPredicate extends TargetPredicate {
 
+        public CorruptedEntityPredicate() {
+            super(true);
+        }
+
         @Override
         public boolean test( LivingEntity baseEntity, LivingEntity targetEntity ) {
             return super.test(baseEntity, targetEntity) && targetEntity instanceof CorruptedEntity;

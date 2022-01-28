@@ -1,15 +1,26 @@
 package net.darktree.stylishoccult.utils;
 
-import net.darktree.stylishoccult.StylishOccult;
+import com.mojang.serialization.Codec;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.gen.chunk.ChunkGenerator;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.FeatureConfig;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
-public interface SimpleFeature {
+import java.util.Random;
 
-    ConfiguredFeature<?, ?> configure();
+public abstract class SimpleFeature<T extends FeatureConfig> extends Feature<T> implements SimpleFeatureProvider {
 
-    default void debugWrite(BlockPos pos) {
-        StylishOccult.debug("Generated feature '" + this.getClass().getSimpleName() + "' generated at: " + BlockUtils.posToString(pos));
+    public SimpleFeature(Codec<T> codec) {
+        super(codec);
+    }
+
+    abstract public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos target, T config);
+
+    @Override
+    public boolean generate(FeatureContext<T> context) {
+        return this.generate(context.getWorld(), context.getGenerator(), context.getRandom(), context.getOrigin(), context.getConfig());
     }
 
 }

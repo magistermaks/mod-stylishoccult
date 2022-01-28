@@ -4,7 +4,7 @@ import net.darktree.stylishoccult.blocks.entities.RuneBlockEntity;
 import net.darktree.stylishoccult.blocks.runes.EntryRuneBlock;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.minecraft.block.BlockState;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -39,14 +39,14 @@ public class ClockRuneBlock extends EntryRuneBlock {
     protected void emit(World world, BlockPos pos) {
         RuneBlockEntity entity = getEntity(world, pos);
 
-        CompoundTag tag = new CompoundTag();
+        NbtCompound tag = new NbtCompound();
         tag.putInt("time", timeout);
         entity.setMeta(tag);
         super.emit(world, pos);
     }
 
     private boolean updateTime(RuneBlockEntity entity) {
-        CompoundTag tag = entity.getMeta();
+        NbtCompound tag = entity.getMeta();
         int time = tag.getInt("time");
         if( time <= 0 ) {
             entity.setMeta(null);

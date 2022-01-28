@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.blocks;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.blocks.entities.BlockEntities;
 import net.darktree.stylishoccult.blocks.entities.LavaDemonBlockEntity;
 import net.darktree.stylishoccult.enums.LavaDemonMaterial;
 import net.darktree.stylishoccult.enums.LavaDemonPart;
@@ -15,6 +16,8 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -78,9 +81,9 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
     }
 
     @Override
-    public void onSteppedOn(World world, BlockPos pos, Entity entity) {
+    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
         if( !world.isClient() ){
-            if( world.getBlockState(pos).get(ANGER) > 0 ){
+            if(state.get(ANGER) > 0){
                 entity.setFireTicks( world.getRandom().nextInt(20 * 4) + 20 * 4 );
             }
         }
@@ -230,8 +233,13 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockView blockView) {
-        return new LavaDemonBlockEntity();
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new LavaDemonBlockEntity(pos, state);
+    }
+
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, BlockEntities.LAVA_DEMON, LavaDemonBlockEntity::tick);
     }
 
 }

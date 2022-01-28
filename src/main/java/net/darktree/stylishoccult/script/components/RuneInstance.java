@@ -2,7 +2,7 @@ package net.darktree.stylishoccult.script.components;
 
 import net.darktree.stylishoccult.blocks.runes.RuneBlock;
 import net.darktree.stylishoccult.script.RunicScript;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 
 public class RuneInstance {
 
@@ -16,12 +16,12 @@ public class RuneInstance {
         return false;
     }
 
-    public CompoundTag toTag( CompoundTag tag ) {
+    public NbtCompound toTag( NbtCompound tag ) {
         tag.putString("rune", rune.name);
         return tag;
     }
 
-    public void fromTag( CompoundTag tag ) {
+    public void fromTag( NbtCompound tag ) {
 
     }
 

@@ -4,7 +4,7 @@ import net.darktree.stylishoccult.script.RunicScript;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneInstance;
 import net.darktree.stylishoccult.script.components.RuneType;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 
 public class NumberRuneBlock extends RuneBlock {
 
@@ -29,13 +29,13 @@ public class NumberRuneBlock extends RuneBlock {
             super(rune);
         }
 
-        public CompoundTag toTag() {
-            CompoundTag tag = new CompoundTag();
+        public NbtCompound toTag() {
+            NbtCompound tag = new NbtCompound();
             tag.putString("raw", raw);
             return super.toTag( tag );
         }
 
-        public void fromTag( CompoundTag tag ) {
+        public void fromTag( NbtCompound tag ) {
             raw = tag.getString("raw");
         }
 

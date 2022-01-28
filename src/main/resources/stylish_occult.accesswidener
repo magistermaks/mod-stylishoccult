@@ -11,3 +11,6 @@ accessible   method   net/minecraft/client/particle/BlockLeakParticle$Continuous
 
 # Remove private keyword from class constructor
 accessible   method   net/minecraft/client/particle/BlockLeakParticle$Dripping   <init>   (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/fluid/Fluid;Lnet/minecraft/particle/ParticleEffect;)V
+
+# Needed as of 1.17, TargetPredicate become private
+accessible   method   net/minecraft/entity/ai/TargetPredicate   <init>   (Z)V

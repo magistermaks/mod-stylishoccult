@@ -8,11 +8,12 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.EntityRenderer;
+import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Matrix3f;
 import net.minecraft.util.math.Matrix4f;
+import net.minecraft.util.math.Vec3f;
 
 public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
 
@@ -24,8 +25,8 @@ public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
             new ModIdentifier("textures/particle/spark_4.png")
     };
 
-    public SparkEntityRenderer(EntityRenderDispatcher entityRenderDispatcher) {
-        super(entityRenderDispatcher);
+    public SparkEntityRenderer(EntityRendererFactory.Context context) {
+        super(context);
     }
 
     @Override
@@ -36,7 +37,7 @@ public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
         matrixStack.scale(w, w, w);
         matrixStack.translate(0, 0.3, 0);
         matrixStack.multiply(this.dispatcher.getRotation());
-        matrixStack.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(180.0F));
+        matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F));
 
         MatrixStack.Entry entry = matrixStack.peek();
         Matrix4f matrix4f = entry.getModel();

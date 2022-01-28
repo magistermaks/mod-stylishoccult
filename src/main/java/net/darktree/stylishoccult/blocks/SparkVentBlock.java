@@ -50,8 +50,8 @@ public class SparkVentBlock extends SimpleBlock {
     }
 
     @Override
-    public void onSteppedOn(World world, BlockPos pos, Entity entity) {
-        if( world.getBlockState(pos).get(ACTIVE) ){
+    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+        if(state.get(ACTIVE)){
             entity.setFireTicks( world.getRandom().nextInt(20 * 4) + 20 * 4 );
         }
     }

@@ -4,7 +4,7 @@ import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.script.components.RuneException;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -16,14 +16,14 @@ public class RuneUtils {
     public static final int COLOR_3 = 0x990000;
 
     public static void createErrorReport(RuneException exception, World world, BlockPos pos) {
-        CompoundTag tag = new CompoundTag();
+        NbtCompound tag = new NbtCompound();
         tag.putString("error", exception.getMessage());
         tag.putInt("x", pos.getX());
         tag.putInt("y", pos.getY());
         tag.putInt("z", pos.getZ());
 
         ItemStack stack = new ItemStack(ModItems.RUNE_ERROR_REPORT, 1);
-        stack.setTag(tag);
+        stack.setNbt(tag);
         Block.dropStack(world, pos, stack);
     }
 

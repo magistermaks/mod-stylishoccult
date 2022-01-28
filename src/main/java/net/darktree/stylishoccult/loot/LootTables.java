@@ -3,16 +3,12 @@ package net.darktree.stylishoccult.loot;
 import net.darktree.stylishoccult.blocks.LavaDemonBlock;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.EyesBlock;
-import net.darktree.stylishoccult.blocks.occult.ThinFleshBlock;
 import net.darktree.stylishoccult.enums.LavaDemonPart;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.entry.ConditionEntry;
 import net.darktree.stylishoccult.loot.entry.ValveEntry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class LootTables {
 

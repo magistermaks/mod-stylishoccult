@@ -4,7 +4,7 @@ import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
 
@@ -18,7 +18,7 @@ public class ErrorReportItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        CompoundTag tag = stack.getTag();
+        NbtCompound tag = stack.getNbt();
         try{
             if( tag != null && !tag.isEmpty() ) {
                 String x = String.valueOf( tag.getInt("x") );

@@ -14,11 +14,10 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
-public class NetherGrassFeature extends Feature<DefaultFeatureConfig> implements SimpleFeature {
+public class NetherGrassFeature extends SimpleFeature<DefaultFeatureConfig> {
 
     private final static int RADIUS = 7;
     private final static int HEIGHT = 3;

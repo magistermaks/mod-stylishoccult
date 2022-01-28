@@ -4,28 +4,28 @@ import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.utils.RandUtils;
-import net.darktree.stylishoccult.utils.SimpleFeature;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
+import net.darktree.stylishoccult.utils.SimpleFeatureProvider;
+import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.OreFeature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.world.gen.heightprovider.BiasedToBottomHeightProvider;
+import net.minecraft.world.gen.heightprovider.UniformHeightProvider;
 
-import java.util.Random;
-
-public class FleshPatchFeature extends OreFeature implements SimpleFeature {
+public class FleshPatchFeature extends OreFeature implements SimpleFeatureProvider {
 
 	public FleshPatchFeature(Codec<OreFeatureConfig> codec) {
 		super(codec);
 	}
 
-	public boolean generate(StructureWorldAccess structureWorldAccess, ChunkGenerator chunkGenerator, Random random, BlockPos pos, OreFeatureConfig oreFeatureConfig) {
-		if(RandUtils.getBool(StylishOccult.SETTINGS.featureFleshVainChance, random)) {
-			boolean generated = super.generate(structureWorldAccess, chunkGenerator, random, pos, oreFeatureConfig);
-			if (generated) this.debugWrite(pos);
+	@Override
+	public boolean generate(FeatureContext context) {
+		if(RandUtils.getBool(StylishOccult.SETTINGS.featureFleshVainChance, context.getRandom())) {
+			boolean generated = super.generate(context);
+			if (generated) this.debugWrite(context.getOrigin());
 			return generated;
 		}
 
@@ -38,10 +38,9 @@ public class FleshPatchFeature extends OreFeature implements SimpleFeature {
 					OreFeatureConfig.Rules.BASE_STONE_NETHER,
 					ModBlocks.DEFAULT_FLESH.getDefaultState(),
 					StylishOccult.SETTINGS.featureFleshVainSize ))   // vein size
-				.decorate(Decorator.RANGE.configure( new RangeDecoratorConfig(
-						10,     // bottom offset
-						0,      // min y level
-						240)))  // max y level
+				.decorate(Decorator.RANGE.configure( new RangeDecoratorConfig(UniformHeightProvider.create(
+						YOffset.aboveBottom(14), YOffset.aboveBottom(240)
+				))))
 				.spreadHorizontally()
 				.repeat(1);    // number of veins per chunk
 	}

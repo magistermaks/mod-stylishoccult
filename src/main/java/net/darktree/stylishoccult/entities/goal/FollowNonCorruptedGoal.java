@@ -30,6 +30,10 @@ public class FollowNonCorruptedGoal extends BasicFollowGoal {
 
     public static class NonCorruptedEntityPredicate extends TargetPredicate {
 
+        public NonCorruptedEntityPredicate() {
+            super(true);
+        }
+
         @Override
         public boolean test( LivingEntity baseEntity, LivingEntity targetEntity ) {
 

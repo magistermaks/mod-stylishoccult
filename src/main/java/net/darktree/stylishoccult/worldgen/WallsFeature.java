@@ -19,11 +19,10 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
-public class WallsFeature extends Feature<DefaultFeatureConfig> implements SimpleFeature {
+public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 
     private static final Direction[] neighbors = new Direction[] {
             Direction.EAST, Direction.WEST, Direction.NORTH, Direction.SOUTH

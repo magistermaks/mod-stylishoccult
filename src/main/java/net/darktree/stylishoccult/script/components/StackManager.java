@@ -1,6 +1,6 @@
 package net.darktree.stylishoccult.script.components;
 
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class StackManager {
 
     private ArrayList<Double> stack = new ArrayList<>();
 
-    public CompoundTag stackToTag(CompoundTag tag ) {
+    public NbtCompound stackToTag(NbtCompound tag ) {
         int size = stack.size();
         for( int i = 0; i < size; i ++ ) {
             tag.putDouble(String.valueOf(i), stack.get(i));
@@ -16,7 +16,7 @@ public class StackManager {
         return tag;
     }
 
-    public void stackFromTag( CompoundTag tag ) {
+    public void stackFromTag( NbtCompound tag ) {
         try {
             int size = tag.getSize();
             for( int i = 0; i < size; i ++ ) {

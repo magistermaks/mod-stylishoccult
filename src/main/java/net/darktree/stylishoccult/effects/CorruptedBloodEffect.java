@@ -3,8 +3,8 @@ package net.darktree.stylishoccult.effects;
 import net.darktree.stylishoccult.mixin.StatusEffectInstanceAccessor;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
@@ -14,7 +14,7 @@ import java.util.List;
 public class CorruptedBloodEffect extends SimpleStatusEffect {
 
     protected CorruptedBloodEffect() {
-        super(StatusEffectType.HARMFUL, false, 0x801a00);
+        super(StatusEffectCategory.HARMFUL, false, 0x801a00);
     }
 
     public void onUpdate(LivingEntity entity, int amplifier) {
@@ -62,7 +62,7 @@ public class CorruptedBloodEffect extends SimpleStatusEffect {
     private void applyToEntity( LivingEntity entity, int amplifier, int bonusTime ) {
         if( entity.world.random.nextInt(10) == 0 ) {
             if( !entity.hasStatusEffect( this ) || (entity.world.random.nextInt( 20 ) == 0) ) {
-                entity.applyStatusEffect(new StatusEffectInstance(
+                entity.addStatusEffect(new StatusEffectInstance(
                         this,
                         800 + entity.world.random.nextInt(300) + bonusTime,
                         amplifier)

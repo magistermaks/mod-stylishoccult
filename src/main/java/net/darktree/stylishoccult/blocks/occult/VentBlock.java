@@ -12,7 +12,6 @@ import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.darktree.stylishoccult.utils.Voxels;
 import net.minecraft.block.*;
-import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
@@ -24,6 +23,7 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.ServerWorldAccess;
@@ -46,13 +46,13 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
             Voxels.box(0, 3, 3, 1, 13, 13).box(1, 4, 4, 2, 12, 12).build()
     };
 
-    public static Vector3f[] OFFSETS = {
-            new Vector3f(8, 13, 8),
-            new Vector3f(8, 3, 8),
-            new Vector3f(8, 8, 13),
-            new Vector3f(8, 8, 3),
-            new Vector3f(13, 8, 8),
-            new Vector3f(3, 8, 8)
+    public static Vec3f[] OFFSETS = {
+            new Vec3f(8, 13, 8),
+            new Vec3f(8, 3, 8),
+            new Vec3f(8, 8, 13),
+            new Vec3f(8, 8, 3),
+            new Vec3f(13, 8, 8),
+            new Vec3f(3, 8, 8)
     };
 
     public VentBlock() {
@@ -90,7 +90,7 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
             throw new RuntimeException( "Unable to summon Spore!" );
         }
 
-        Vector3f offset = OFFSETS[state.get(FACING).getId()];
+        Vec3f offset = OFFSETS[state.get(FACING).getId()];
         double x = (double)pos.getX() + offset.getX() / 16.0f;
         double y = (double)pos.getY() + offset.getY() / 16.0f;
         double z = (double)pos.getZ() + offset.getZ() / 16.0f;
@@ -140,7 +140,7 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
 
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        Vector3f offset = OFFSETS[state.get(FACING).getId()];
+        Vec3f offset = OFFSETS[state.get(FACING).getId()];
         double x = offset.getX() / 16.0f, y = offset.getY() / 16.0f, z = offset.getZ() / 16.0f;
 
         double d = (double)pos.getX() + x;

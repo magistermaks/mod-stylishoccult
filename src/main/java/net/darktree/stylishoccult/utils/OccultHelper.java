@@ -59,7 +59,7 @@ public class OccultHelper {
         BlockState state = world.getBlockState(target);
         Block block = state.getBlock();
         float hardness = state.getHardness(world, target);
-        boolean corruptible = block.isIn(ModTags.CORRUPTIBLE);
+        boolean corruptible = ModTags.CORRUPTIBLE.contains(block);
 
         if( !state.isAir() ) {
             if(corruptible || (canCorrupt(state, hardness) && requiredCheck(block, hardness))) {
@@ -86,7 +86,7 @@ public class OccultHelper {
     }
 
     private static boolean requiredCheck( Block block, float hardness ) {
-        return !(block instanceof ImpureBlock) && !block.isIn(ModTags.INCORRUPTIBLE) && hardness >= 0 && hardness <= 1000;
+        return !(block instanceof ImpureBlock) && !ModTags.INCORRUPTIBLE.contains(block) && hardness >= 0 && hardness <= 1000;
     }
 
     public static boolean touchesSource(World world, BlockPos pos) {
@@ -146,8 +146,8 @@ public class OccultHelper {
                 }
             }else{
                 if( state.getLuminance() > 3 && state.isFullCube(world, pos) ) return ModBlocks.GLOW_FLESH.getDefaultState();
-                if( block.isIn(BlockTags.LEAVES) ) return LeavesFleshBlock.getStateForPosition(world, pos);
-                if( block.isIn(ModTags.TOP_SOIL) && RandUtils.getBool(80) ) return ModBlocks.SOIL_FLESH.getDefaultState();
+                if( BlockTags.LEAVES.contains(block) ) return LeavesFleshBlock.getStateForPosition(world, pos);
+                if( ModTags.TOP_SOIL.contains(block) && RandUtils.getBool(80) ) return ModBlocks.SOIL_FLESH.getDefaultState();
 
                 return ModBlocks.FLESH_PASSIVE.getDefaultState().with(PassiveFleshBlock.BLOODY, RandUtils.getBool(StylishOccult.SETTINGS.fleshBloodChance));
             }

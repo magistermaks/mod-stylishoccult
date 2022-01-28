@@ -4,31 +4,31 @@ import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.math.BlockPos;
 
 public abstract class SimpleBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
 
-    public SimpleBlockEntity(BlockEntityType<?> type) {
-        super(type);
+    public SimpleBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
     }
 
     @Override
-    public void fromClientTag(CompoundTag tag) {
-        fromTag( tag );
+    public void fromClientTag(NbtCompound tag) {
+        fromTag(tag);
     }
 
     @Override
-    public void fromTag( BlockState state, CompoundTag tag ) {
-        fromTag( tag );
+    public NbtCompound toClientTag(NbtCompound tag) {
+        return toTag(tag);
     }
 
-    @Override
-    public CompoundTag toClientTag(CompoundTag tag) {
-        return toTag( tag );
+    public void fromTag(NbtCompound tag) {
+        super.readNbt(tag);
     }
 
-    public void fromTag( CompoundTag tag ) {
-        super.fromTag( null, tag );
+    public NbtCompound toTag(NbtCompound tag) {
+        return this.writeNbt(tag);
     }
 
     public void safeSync() {

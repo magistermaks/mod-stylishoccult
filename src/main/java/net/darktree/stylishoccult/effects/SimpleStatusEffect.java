@@ -4,14 +4,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.effect.StatusEffectCategory;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class SimpleStatusEffect extends StatusEffect {
 
     private final boolean instant;
 
-    protected SimpleStatusEffect(StatusEffectType type, boolean instant, int color) {
+    protected SimpleStatusEffect(StatusEffectCategory type, boolean instant, int color) {
         super(type, color);
         this.instant = instant;
     }

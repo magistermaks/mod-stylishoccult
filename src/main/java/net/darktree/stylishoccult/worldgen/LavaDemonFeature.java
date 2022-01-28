@@ -15,11 +15,10 @@ import net.minecraft.world.gen.decorator.CarvingMaskDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
-public class LavaDemonFeature extends Feature<DefaultFeatureConfig> implements SimpleFeature {
+public class LavaDemonFeature extends SimpleFeature<DefaultFeatureConfig> {
 
     public LavaDemonFeature(Codec<DefaultFeatureConfig> codec) {
         super(codec);

@@ -5,7 +5,7 @@ import net.darktree.stylishoccult.entities.goal.FollowCorruptedGoal;
 import net.darktree.stylishoccult.items.material.TwistedBoneArmorMaterial;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.FollowTargetGoal;
+import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -14,12 +14,11 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Arm;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
@@ -63,8 +62,8 @@ public class SparkEntity extends HostileEntity {
         return SoundEvents.BLOCK_FIRE_EXTINGUISH;
     }
 
-    public void readCustomDataFromTag(CompoundTag tag) {
-        super.readCustomDataFromTag(tag);
+    public void readCustomDataFromTag(NbtCompound tag) {
+        super.readCustomDataFromNbt(tag);
         this.age = tag.getInt("age");
         this.maxAge = tag.getInt("maxAge");
         double x = tag.getDouble("dirX");
@@ -73,8 +72,8 @@ public class SparkEntity extends HostileEntity {
         direction = new Vec3d(x, y, z);
     }
 
-    public void writeCustomDataToTag(CompoundTag tag) {
-        super.writeCustomDataToTag(tag);
+    public void writeCustomDataToTag(NbtCompound tag) {
+        super.writeCustomDataToNbt(tag);
         tag.putInt("age", this.age);
         tag.putInt("maxAge", this.maxAge);
         tag.putDouble("dirX", direction.x);
@@ -85,7 +84,7 @@ public class SparkEntity extends HostileEntity {
     protected void initGoals() {
         super.initGoals();
         this.goalSelector.add(0, new SwimGoal(this));
-        this.targetSelector.add(1, new FollowTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
 
         addSpecificGoals();
     }
@@ -128,7 +127,7 @@ public class SparkEntity extends HostileEntity {
 
         if (this.getHealth() <= 0) {
             playRandomEffect(random.nextInt(4) + 3, true);
-            this.remove();
+            this.remove(RemovalReason.DISCARDED);
         }
     }
 
@@ -181,12 +180,12 @@ public class SparkEntity extends HostileEntity {
         Vec3d vec3d2 = vec3d.add((Math.signum(d) * 0.5 - vec3d.x) * 0.1, (Math.signum(e) * 0.7 - vec3d.y) * 0.1, (Math.signum(f) * 0.5 - vec3d.z) * 0.1);
         this.setVelocity(vec3d2.multiply(s));
         float g = (float) (MathHelper.atan2(vec3d2.z, vec3d2.x) * 57.3) - 90;
-        float h = MathHelper.wrapDegrees(g - this.yaw);
-        this.yaw += h;
+        float h = MathHelper.wrapDegrees(g - this.headYaw);
+        this.headYaw += h;
     }
 
     @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, CompoundTag entityTag) {
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, EntityData entityData, NbtCompound entityTag) {
         this.maxAge = getMaxAge( difficulty.getGlobalDifficulty() );
         return super.initialize(world, difficulty, spawnReason, entityData, entityTag);
     }
