@@ -32,7 +32,12 @@ public class WallsFeature extends Feature<DefaultFeatureConfig> implements Simpl
             Direction.EAST, Direction.WEST, Direction.NORTH, Direction.SOUTH
     };
 
-    private static ArrayList<BlockState> BLOCKS = null;
+    private static final BlockState[] BLOCKS = {
+            ModBlocks.RUNESTONE.getDefaultState(),
+            Blocks.BLACKSTONE.getDefaultState(),
+            Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS.getDefaultState(),
+            Blocks.POLISHED_BLACKSTONE_BRICKS.getDefaultState()
+    };
 
     public WallsFeature(Codec<DefaultFeatureConfig> config) {
         super(config);
@@ -40,21 +45,6 @@ public class WallsFeature extends Feature<DefaultFeatureConfig> implements Simpl
 
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-
-        // init block collection
-        if( BLOCKS == null ) {
-            BLOCKS = new ArrayList<>();
-            List<Block> runes = ModTags.RUNES.values();
-
-            for( Block rune : runes ) {
-                BLOCKS.add(rune.getDefaultState().with(RuneBlock.FROZEN, true));
-                BLOCKS.add(ModBlocks.RUNESTONE.getDefaultState());
-                BLOCKS.add(Blocks.BLACKSTONE.getDefaultState());
-                BLOCKS.add(Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS.getDefaultState());
-                BLOCKS.add(Blocks.POLISHED_BLACKSTONE_BRICKS.getDefaultState());
-            }
-        }
-
         BlockPos target = pos.down();
 
         if( RandUtils.getBool(StylishOccult.SETTINGS.featureWallChance, random) && world.getBlockState( target ).isSolidBlock( world, target ) ) {
@@ -178,7 +168,12 @@ public class WallsFeature extends Feature<DefaultFeatureConfig> implements Simpl
     }
 
     private void generateRune( StructureWorldAccess world, BlockPos pos, Random random ) {
-        world.setBlockState( pos, RandUtils.getListEntry(BLOCKS, random), 3 );
+        if(RandUtils.getBool(StylishOccult.SETTINGS.featureWallRuneChance, random)) {
+            Block rune = ModTags.RUNES.getRandom(random);
+            world.setBlockState(pos, rune.getDefaultState().with(RuneBlock.FROZEN, true), 3);
+        }else{
+            world.setBlockState(pos, RandUtils.getArrayEntry(BLOCKS, random), 3);
+        }
     }
 
     private Direction.Axis getAxis( Random random ) {

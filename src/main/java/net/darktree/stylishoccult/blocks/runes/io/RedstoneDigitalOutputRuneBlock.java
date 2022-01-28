@@ -1,5 +1,6 @@
-package net.darktree.stylishoccult.blocks.runes;
+package net.darktree.stylishoccult.blocks.runes.io;
 
+import net.darktree.stylishoccult.blocks.runes.ActorRuneBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;

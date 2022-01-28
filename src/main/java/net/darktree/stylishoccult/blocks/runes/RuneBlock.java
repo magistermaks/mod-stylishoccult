@@ -35,7 +35,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public class RuneBlock extends SimpleBlock implements BlockEntityProvider {
+public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
     public static final IntProperty COOLDOWN = IntProperty.of("cooldown", 0, 3);
     public static final BooleanProperty FROZEN = BooleanProperty.of("frozen");

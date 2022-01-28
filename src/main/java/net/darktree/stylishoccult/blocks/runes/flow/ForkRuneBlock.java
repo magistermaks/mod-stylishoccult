@@ -1,5 +1,6 @@
-package net.darktree.stylishoccult.blocks.runes;
+package net.darktree.stylishoccult.blocks.runes.flow;
 
+import net.darktree.stylishoccult.blocks.runes.DirectionalRuneBlock;
 import net.darktree.stylishoccult.script.RunicScript;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;

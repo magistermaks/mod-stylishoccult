@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-public class EntryRuneBlock extends RuneBlock {
+public abstract class EntryRuneBlock extends RuneBlock {
 
     public EntryRuneBlock( String name ) {
         super( RuneType.ENTRY, name );

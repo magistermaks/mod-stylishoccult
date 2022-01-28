@@ -1,5 +1,6 @@
-package net.darktree.stylishoccult.blocks.runes;
+package net.darktree.stylishoccult.blocks.runes.io;
 
+import net.darktree.stylishoccult.blocks.runes.InputRuneBlock;
 import net.darktree.stylishoccult.script.RunicScript;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;

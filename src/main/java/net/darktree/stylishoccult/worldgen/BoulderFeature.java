@@ -8,6 +8,7 @@ import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.CountConfig;
@@ -45,6 +46,8 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> implements Sim
 			return false;
 		}
 
+		boolean fire = RandUtils.getBool(StylishOccult.SETTINGS.featureBoulderFireChance, random);
+
 		for(int x = -extend; x < extend; x ++) {
 			for(int y = -extend; y < extend; y ++) {
 				for(int z = -extend; z < extend; z ++) {
@@ -53,7 +56,7 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> implements Sim
 					float distance = MathHelper.sqrt(x * x + y * y + z * z);
 
 					if(distance < radius) {
-						generateBlock(world, pos, random, distance + 1 > radius, erosion);
+						generateBlock(world, pos, random, distance + 1 > radius, erosion, fire);
 					}
 				}
 			}
@@ -63,13 +66,21 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> implements Sim
 		return false;
 	}
 
-	private void generateBlock(StructureWorldAccess world, BlockPos.Mutable pos, Random random, boolean edge, int erosion) {
+	private void generateBlock(StructureWorldAccess world, BlockPos.Mutable pos, Random random, boolean edge, int erosion, boolean fire) {
 		if(edge) {
 			if( random.nextInt(4 - erosion) != 0 ) {
 				world.setBlockState(pos, Blocks.BLACKSTONE.getDefaultState(), 3);
 			}
 		} else {
 			world.setBlockState(pos, RandUtils.getArrayEntry(BLOCKS, random), 3);
+		}
+
+		if(fire && random.nextBoolean()) {
+			BlockPos target = pos.offset(RandUtils.getEnum(Direction.class, random));
+
+			if(world.getBlockState(target.down()).getBlock() == Blocks.NETHERRACK && world.getBlockState(target).isAir()) {
+				world.setBlockState(target, Blocks.FIRE.getDefaultState(), 3);
+			}
 		}
 	}
 

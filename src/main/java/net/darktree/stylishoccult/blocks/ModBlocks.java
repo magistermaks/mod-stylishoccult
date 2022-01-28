@@ -2,6 +2,12 @@ package net.darktree.stylishoccult.blocks;
 
 import net.darktree.stylishoccult.blocks.occult.*;
 import net.darktree.stylishoccult.blocks.runes.*;
+import net.darktree.stylishoccult.blocks.runes.trigger.ClickRuneBlock;
+import net.darktree.stylishoccult.blocks.runes.trigger.ClockRuneBlock;
+import net.darktree.stylishoccult.blocks.runes.trigger.RandomRuneBlock;
+import net.darktree.stylishoccult.blocks.runes.trigger.RedstoneEntryRuneBlock;
+import net.darktree.stylishoccult.blocks.runes.flow.*;
+import net.darktree.stylishoccult.blocks.runes.io.*;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;

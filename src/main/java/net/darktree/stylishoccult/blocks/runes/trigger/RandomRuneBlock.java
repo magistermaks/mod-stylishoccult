@@ -1,5 +1,6 @@
-package net.darktree.stylishoccult.blocks.runes;
+package net.darktree.stylishoccult.blocks.runes.trigger;
 
+import net.darktree.stylishoccult.blocks.runes.EntryRuneBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;

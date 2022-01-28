@@ -13,7 +13,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class DirectionalRuneBlock extends RuneBlock {
+public abstract class DirectionalRuneBlock extends RuneBlock {
 
     public static final DirectionProperty FACING = Properties.FACING;
 

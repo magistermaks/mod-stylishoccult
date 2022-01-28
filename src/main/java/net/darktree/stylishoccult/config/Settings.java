@@ -42,11 +42,13 @@ public class Settings {
 
     // features
     public final float featureBoulderChance = CONFIG.getOrDefault("feature.boulder.chance", 7.5f);
+    public final float featureBoulderFireChance = CONFIG.getOrDefault("feature.boulder.fire.chance", 45.0f);
     public final int featureFleshVainSize = CONFIG.getOrDefault("feature.flesh.vain", 30);
     public final int featureFleshStoneVainSize = CONFIG.getOrDefault("feature.flesh.stone.vain", 12);
     public final float featureGrassChance = CONFIG.getOrDefault("feature.grass.chance", 98.0f);
     public final float featureFernChance = CONFIG.getOrDefault("feature.fern.chance", 5.0f);
     public final float featureWallChance = CONFIG.getOrDefault("feature.wall.chance", 2.0f);
+    public final float featureWallRuneChance = CONFIG.getOrDefault("feature.wall.rune.chance", 23.0f);
 
     // difficult based stuff
     public final DifficultyBased<Integer> lavaDemonSparkSpawnRarity = difficultyInt("demon.spark.spawn.rarity", 180, 190, 200, 500);
