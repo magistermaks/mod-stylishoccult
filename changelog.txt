@@ -1,5 +1,5 @@
 
-0.4.0 alpha
+0.4.0 alpha <2022/01/28>
 - Removed all bricks
 - Removed candles
 - Removed wax
@@ -11,6 +11,7 @@
 - Added missing recipes, loot tables, and lang keys
 - Added dripping blood particle to all (full) flesh blocks
 - Added Crystalline Blackstone Boulders feature
+- Added basic config
 
 0.3.0 alpha <2021/03/14>
 - Sparks now flicker and glow in the dark

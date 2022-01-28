@@ -5,7 +5,6 @@ import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.runes.RuneBlock;
 import net.darktree.stylishoccult.tags.ModTags;
-import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.block.Block;
@@ -22,8 +21,6 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class WallsFeature extends Feature<DefaultFeatureConfig> implements SimpleFeature {

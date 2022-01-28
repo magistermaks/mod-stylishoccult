@@ -11,7 +11,7 @@
   "contact": {
     "website": "darktree.net"
   },
-  "license": "MIT",
+  "license": "LGPL",
   "icon": "assets/stylish_occult/icon.png",
   "environment": "*",
   "entrypoints": {

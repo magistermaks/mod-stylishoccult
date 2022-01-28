@@ -39,12 +39,14 @@ public class Settings {
     public final float sporeEntityDamage = CONFIG.getOrDefault("entity.spore.harm", 0.4f); // damage dealt to itself on attack
     public final float fleshBloodChance = CONFIG.getOrDefault("flesh.bloody.chance", 12.5f);
     public final int fernPoisonTimeMinBase = CONFIG.getOrDefault("fern.poison.time.min", 40);
+    public final boolean fleshInfiniteSpreadInFluids = CONFIG.getOrDefault("flesh.spread.fluid.infinite", true);
 
     // features
     public final float featureBoulderChance = CONFIG.getOrDefault("feature.boulder.chance", 7.5f);
     public final float featureBoulderFireChance = CONFIG.getOrDefault("feature.boulder.fire.chance", 45.0f);
-    public final int featureFleshVainSize = CONFIG.getOrDefault("feature.flesh.vain", 30);
-    public final int featureFleshStoneVainSize = CONFIG.getOrDefault("feature.flesh.stone.vain", 12);
+    public final float featureFleshVainChance = CONFIG.getOrDefault("feature.flesh.vain.chance", 79.0f);
+    public final int featureFleshVainSize = CONFIG.getOrDefault("feature.flesh.vain.size", 30);
+    public final int featureFleshStoneVainSize = CONFIG.getOrDefault("feature.flesh.stone.vain.size", 12);
     public final float featureGrassChance = CONFIG.getOrDefault("feature.grass.chance", 98.0f);
     public final float featureFernChance = CONFIG.getOrDefault("feature.fern.chance", 5.0f);
     public final float featureWallChance = CONFIG.getOrDefault("feature.wall.chance", 2.0f);

@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.entities;
 
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.entities.goal.FollowCorruptedGoal;
+import net.darktree.stylishoccult.items.material.TwistedBoneArmorMaterial;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.FollowTargetGoal;
@@ -11,11 +12,14 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Arm;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
@@ -141,7 +145,13 @@ public class SparkEntity extends HostileEntity {
 
         if (target != null) {
             if (this.getBoundingBox().intersects(target.getBoundingBox())) {
-                if (this.tryAttack(target)) {
+
+                if(random.nextInt(getBoneArmor(target)) == 0) {
+                    if (this.tryAttack(target)) {
+                        dealDamage();
+                    }
+                }else{
+                    target.damage(DamageSource.mob(this), 0);
                     dealDamage();
                 }
             }
@@ -183,6 +193,28 @@ public class SparkEntity extends HostileEntity {
 
     public int getMaxAge(Difficulty d) {
         return world.getRandom().nextInt(10 * 20) + (20 * StylishOccult.SETTINGS.sparkEntityBaseLiveTime.get(d));
+    }
+
+    public int getBoneArmor(LivingEntity entity) {
+        int bones = 1;
+        bones += getBoneArmorBySlot(entity, EquipmentSlot.HEAD, 1);
+        bones += getBoneArmorBySlot(entity, EquipmentSlot.CHEST, 2);
+        bones += getBoneArmorBySlot(entity, EquipmentSlot.LEGS, 1);
+        bones += getBoneArmorBySlot(entity, EquipmentSlot.FEET, 1);
+        return bones;
+    }
+
+    public int getBoneArmorBySlot(LivingEntity entity, EquipmentSlot slot, int bones) {
+        Item item = entity.getEquippedStack(slot).getItem();
+
+        if(item instanceof ArmorItem) {
+            ArmorItem armor = (ArmorItem) item;
+            if(armor.getMaterial() instanceof TwistedBoneArmorMaterial) {
+                return bones;
+            }
+        }
+
+        return 0;
     }
 
     @Override

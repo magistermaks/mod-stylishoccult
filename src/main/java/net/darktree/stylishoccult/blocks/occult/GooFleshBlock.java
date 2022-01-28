@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.blocks.occult;
 
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
@@ -70,11 +71,13 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        BlockPos target = pos.offset(RandUtils.getEnum(Direction.class));
-        BlockState targetState = world.getBlockState(target);
+        if(StylishOccult.SETTINGS.fleshInfiniteSpreadInFluids) {
+            BlockPos target = pos.offset(RandUtils.getEnum(Direction.class));
+            BlockState targetState = world.getBlockState(target);
 
-        if( RandUtils.getBool(5.0f) && targetState.getBlock() instanceof FluidBlock) {
-            world.setBlockState( target, state.with(TOP, world.getBlockState(target.up()).isAir()) );
+            if (RandUtils.getBool(5.0f) && targetState.getBlock() instanceof FluidBlock) {
+                world.setBlockState(target, state.with(TOP, world.getBlockState(target.up()).isAir()));
+            }
         }
     }
 

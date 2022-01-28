@@ -11,6 +11,9 @@ import net.darktree.stylishoccult.loot.entry.ValveEntry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class LootTables {
 
     public static final LootTable SIMPLE = LootManager.create()
@@ -56,15 +59,16 @@ public class LootTables {
             .build();
 
     public static final LootTable GROWTH = LootManager.create()
-            .addValve( (arr, rng, ctx) -> {
-                int size = ctx.getState().get(ThinFleshBlock.SIZE);
-                int sides = Integer.bitCount( ThinFleshBlock.getBitfield(ctx.getState()) );
-                int multiplier = Math.min( rng.nextInt( size + sides ), sides );
-
-                for( ItemStack stack : arr ) stack.setCount( multiplier );
-                return arr;
-            } )
-                .addItem( ModItems.VEINS, 77.7f )
+            .addCondition(ConditionEntry::hasSilkTouch)
+                .addBlockItem()
+                .pop()
+            .addElse()
+                .addValve(ValveEntry::fortune)
+                    .addItem(ModItems.VEINS, 77.0f)
+                    .addItem(ModItems.VEINS, 23.0f)
+                    .addItem(ModItems.VEINS, 10.0f)
+                    .minimum(1)
+                    .pop()
                 .pop()
             .build();
 

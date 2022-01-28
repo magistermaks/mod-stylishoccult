@@ -2,6 +2,7 @@ package net.darktree.stylishoccult;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.entities.BlockEntities;
+import net.darktree.stylishoccult.config.Settings;
 import net.darktree.stylishoccult.effects.ModEffects;
 import net.darktree.stylishoccult.entities.ModEntities;
 import net.darktree.stylishoccult.event.LookAtEvent;
@@ -9,7 +10,6 @@ import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.particles.Particles;
-import net.darktree.stylishoccult.config.Settings;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.tags.ModTags;
 import net.darktree.stylishoccult.worldgen.ModFeatures;
@@ -54,6 +54,6 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
         ModItems.clientInit();
         Particles.clientInit();
         ModEntities.clientInit();
-        LOGGER.info( "Sound effects for Stylish Occult obtained from https://www.zapsplat.com" );
+        LOGGER.info( "Additional sound effects from https://www.zapsplat.com" );
     }
 }

@@ -1,11 +1,9 @@
 package net.darktree.stylishoccult.worldgen;
 
 import com.mojang.serialization.Codec;
-import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.LavaDemonBlock;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.enums.LavaDemonPart;
-import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;

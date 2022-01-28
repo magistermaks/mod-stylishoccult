@@ -1,7 +1,6 @@
 package net.darktree.stylishoccult.worldgen;
 
 import com.mojang.serialization.Codec;
-import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.SparkVentBlock;
 import net.darktree.stylishoccult.utils.BlockUtils;

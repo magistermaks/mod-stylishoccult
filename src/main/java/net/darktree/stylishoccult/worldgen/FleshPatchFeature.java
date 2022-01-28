@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.worldgen;
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
@@ -22,9 +23,13 @@ public class FleshPatchFeature extends OreFeature implements SimpleFeature {
 	}
 
 	public boolean generate(StructureWorldAccess structureWorldAccess, ChunkGenerator chunkGenerator, Random random, BlockPos pos, OreFeatureConfig oreFeatureConfig) {
-		boolean generated = super.generate(structureWorldAccess, chunkGenerator, random, pos, oreFeatureConfig);
-		if(generated) this.debugWrite(pos);
-		return generated;
+		if(RandUtils.getBool(StylishOccult.SETTINGS.featureFleshVainChance, random)) {
+			boolean generated = super.generate(structureWorldAccess, chunkGenerator, random, pos, oreFeatureConfig);
+			if (generated) this.debugWrite(pos);
+			return generated;
+		}
+
+		return false;
 	}
 
 	@Override
