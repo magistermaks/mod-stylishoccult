@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.blocks;
 
+import net.darktree.interference.api.DropsItself;
 import net.darktree.stylishoccult.StylishOccult;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -13,7 +14,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class NetherFernBlock extends NetherGrassBlock {
+public class NetherFernBlock extends NetherGrassBlock implements DropsItself {
 
     protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
 

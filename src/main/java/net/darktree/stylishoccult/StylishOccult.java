@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult;
 
+import net.darktree.interference.MessageInjector;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.entities.BlockEntities;
 import net.darktree.stylishoccult.config.Settings;
@@ -54,6 +55,14 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
         ModItems.clientInit();
         Particles.clientInit();
         ModEntities.clientInit();
+
+        MessageInjector.injectPlain("D" + "own with JSON!");
+        MessageInjector.injectPlain("T" + "iny potato!");
+        MessageInjector.injectPlain("S" + "tylish nightmare!");
+        MessageInjector.injectPlain("T" + "he nightmare before breakfast!");
+        MessageInjector.injectPlain("T" + "he wheels of progress frozen motionless...");
+        MessageInjector.injectPlain("B" + "y the power of The Mixin Subsystem!");
+
         LOGGER.info("Additional sound effects from https://www.zapsplat.com");
     }
 }

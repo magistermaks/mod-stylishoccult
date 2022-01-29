@@ -4,15 +4,8 @@
   "package": "net.darktree.stylishoccult.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "AxeItemMixin",
-    "FlowableFluidMixin",
-    "HardnessAccessor",
-    "HardnessMixin",
     "HungerManagerMixin",
     "StatusEffectInstanceAccessor"
-  ],
-  "client": [
-    "MessageProviderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

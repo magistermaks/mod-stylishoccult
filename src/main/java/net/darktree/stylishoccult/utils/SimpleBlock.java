@@ -1,16 +1,17 @@
 package net.darktree.stylishoccult.utils;
 
+import net.darktree.interference.api.DefaultLoot;
+import net.darktree.interference.api.MutableHardness;
+import net.darktree.interference.mixin.HardnessAccessor;
 import net.darktree.stylishoccult.loot.LootManager;
-import net.darktree.stylishoccult.mixin.HardnessAccessor;
+import net.darktree.stylishoccult.loot.LootTable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -18,7 +19,8 @@ import net.minecraft.world.WorldAccess;
 
 import java.util.List;
 
-public abstract class SimpleBlock extends Block implements MutableHardness {
+
+public class SimpleBlock extends Block implements MutableHardness, DefaultLoot {
 
     public SimpleBlock(Settings settings) {
         super(settings);
@@ -34,28 +36,16 @@ public abstract class SimpleBlock extends Block implements MutableHardness {
     }
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
-        if ( !canPlaceAt(state, world, pos) ) {
-            return Blocks.AIR.getDefaultState();
-        }else{
-            return super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
-        }
+        return !canPlaceAt(state, world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
     }
 
-    public net.darktree.stylishoccult.loot.LootTable getInternalLootTableId() {
+    public LootTable getInternalLootTableId() {
         return null;
     }
 
     @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, net.minecraft.loot.context.LootContext.Builder builder) {
-        LootContext lootContext = builder.parameter(LootContextParameters.BLOCK_STATE, state).build(LootContextTypes.BLOCK);
-        ServerWorld serverWorld = lootContext.getWorld();
-        LootTable lootTable = serverWorld.getServer().getLootManager().getTable(lootTableId);
-
-        if( lootTable == LootTable.EMPTY ) {
-            return LootManager.dispatch(state, builder, this.lootTableId, getInternalLootTableId());
-        }
-
-        return super.getDroppedStacks(state, builder);
+    public List<ItemStack> getDefaultStacks(BlockState state, LootContext.Builder builder, Identifier identifier, LootContext lootContext, ServerWorld serverWorld, net.minecraft.loot.LootTable lootTable) {
+        return LootManager.dispatch(state, builder, this.lootTableId, getInternalLootTableId());
     }
 
 }

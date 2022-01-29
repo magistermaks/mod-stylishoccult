@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.blocks.occult;
 
+import net.darktree.interference.api.FluidReplaceable;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;

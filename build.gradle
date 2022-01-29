@@ -6,6 +6,11 @@ plugins {
 repositories {
     maven { url "https://maven.shedaniel.me/" }
     maven { url "https://maven.terraformersmc.com" }
+
+    maven {
+        allowInsecureProtocol = true
+        url 'http://maven.darktree.net'
+    }
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -31,6 +36,10 @@ dependencies {
     // Mod Menu
     compileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+
+    // Interference API
+    modImplementation "net.darktree:interference:${project.interference_version}"
+    include "net.darktree:interference:${project.interference_version}"
 }
 
 processResources {
