@@ -2,6 +2,7 @@
 0.5.0 beta
 - Updated to 1.17
 - Flesh stone can now be scraped with an axe
+- Tweaked Wall feature
 
 0.4.0 beta <2022/01/28>
 - Removed all bricks

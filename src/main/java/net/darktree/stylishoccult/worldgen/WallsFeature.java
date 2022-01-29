@@ -10,16 +10,20 @@ import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CandleBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.World;
 import net.minecraft.world.gen.CountConfig;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
@@ -43,8 +47,8 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         BlockPos target = pos.down();
 
-        if( RandUtils.getBool(StylishOccult.SETTINGS.featureWallChance, random) && world.getBlockState( target ).isSolidBlock( world, target ) ) {
-            generateWall( getAxis(random), world, target, RandUtils.rangeInt(2, 5, random), (float) RandUtils.rangeInt(80, 90, random), random );
+        if( RandUtils.getBool(StylishOccult.SETTINGS.featureWallChance, random) && world.getBlockState(target).isSolidBlock(world, target) ) {
+            generateWall( getAxis(random), world, target, RandUtils.rangeInt(2, 5, random), (float) RandUtils.rangeInt(83, 90, random), random );
             scatterUrns(world, target, random);
             this.debugWrite(target);
         }
@@ -82,11 +86,11 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
             ad --;
 
             if( hasChild && RandUtils.getBool( 25.0f, random ) ) {
-                generateWall( child, world, pos.offset( axis, ad ), ah + 1, chance, random );
+                generateWall( child, world, pos.offset(axis, ad), ah + 1, chance, random );
                 hasChild = false;
             }
 
-            if( !generateColumn( world, pos.offset( axis, ad ), ah, random ) ) break;
+            if( !generateColumn( world, pos.offset(axis, ad), ah, random ) ) break;
         }
 
         int bh = height, bd = 0;
@@ -95,11 +99,11 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
             bd ++;
 
             if( hasChild && RandUtils.getBool( 25.0f, random ) ) {
-                generateWall( child, world, pos.offset( axis, bd ), bh + 1, chance, random );
+                generateWall( child, world, pos.offset(axis, bd), bh + 1, chance, random );
                 hasChild = false;
             }
 
-            if( !generateColumn( world, pos.offset( axis, bd ), bh, random ) ) break;
+            if( !generateColumn( world, pos.offset(axis, bd), bh, random ) ) break;
         }
 
     }
@@ -124,35 +128,58 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 
     private void scatterUrns(StructureWorldAccess world, BlockPos target, Random random) {
 
-        final int minX = RandUtils.rangeInt(-5, -2, random);
-        final int minY = RandUtils.rangeInt(-4, -2, random);
-        final int minZ = RandUtils.rangeInt(-5, -2, random);
-        final int maxX = RandUtils.rangeInt( 2,  5, random);
-        final int maxY = RandUtils.rangeInt( 2,  4, random);
-        final int maxZ = RandUtils.rangeInt( 2,  5, random);
+        final int minX = -5;
+        final int minY = -4;
+        final int minZ = -5;
+        final int maxX =  5;
+        final int maxY =  4;
+        final int maxZ =  5;
 
-        int slots = RandUtils.rangeInt( 2, 4, random);
+        ArrayList<BlockPos> qualified = new ArrayList<>();
+        int cx = target.getX(), cy = target.getY(), cz = target.getZ();
+        BlockPos.Mutable pos = new BlockPos.Mutable();
 
         for( int x = minX; x <= maxX; x ++ ) {
             for( int z = minZ; z <= maxZ; z ++ ) {
                 for( int y = minY; y <= maxY; y ++ ) {
-                    if( RandUtils.getBool(33, random) ) {
-                        BlockPos pos = target.west(z).north(x).down(y);
-                        BlockPos surface = pos.down();
+                    pos.set(cx + x, cy + y, cz + z);
 
-                        if (world.getBlockState(surface).isSolidBlock(world, surface)) {
-                            if (world.getBlockState(pos).isAir() && touchesRunes(world, pos)) {
-                                world.setBlockState(pos, ModBlocks.URN.getDefaultState(), 3);
-                                slots --;
-                            }
+                    if( world.getBlockState(pos).isSolidBlock(world, pos) ) {
+                        pos.move(0, 1, 0);
+
+                        if (world.getBlockState(pos).isAir() && touchesRunes(world, pos)) {
+                            qualified.add(pos.toImmutable());
                         }
-
-                        if( slots <= 0 ) return;
                     }
                 }
             }
         }
 
+        // pick random candidates
+        Collections.shuffle(qualified, random);
+        int slots = RandUtils.rangeInt(0, 5, random);
+
+        for( BlockPos position : qualified ) {
+            if( slots > 0 ) {
+                placeRandomDecoration(world, position, random, cy);
+                slots --;
+            }else{
+                break;
+            }
+        }
+
+    }
+
+    private void placeRandomDecoration(StructureWorldAccess world, BlockPos pos, Random random, int base) {
+        int height = pos.getY() - base;
+
+        if(height > 2 || random.nextInt(3) == 0) {
+            world.setBlockState(pos, Blocks.CANDLE.getDefaultState()
+                    .with(CandleBlock.CANDLES, random.nextInt(4) + 1)
+                    .with(CandleBlock.LIT, random.nextInt(8) != 0), 3);
+        }else{
+            world.setBlockState(pos, ModBlocks.URN.getDefaultState(), 3);
+        }
     }
 
     private static boolean touchesRunes(BlockView world, BlockPos origin) {
