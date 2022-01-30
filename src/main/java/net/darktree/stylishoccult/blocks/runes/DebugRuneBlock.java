@@ -21,7 +21,7 @@ public class DebugRuneBlock extends RuneBlock {
     @Override
     protected void onTriggered(RunicScript script, World world, BlockPos pos, BlockState state) {
         RuneBlockEntity entity = getEntity(world, pos);
-        entity.setMeta( script.toTag() );
+        entity.setMeta( script.toNbt() );
     }
 
     @Override
@@ -29,7 +29,7 @@ public class DebugRuneBlock extends RuneBlock {
         RuneBlockEntity entity = getEntity(world, pos);
 
         if( entity != null && entity.hasMeta() && !world.isClient ) {
-            RunicScript script = RunicScript.fromTag( entity.getMeta() );
+            RunicScript script = RunicScript.fromNbt( entity.getMeta() );
 
             player.sendMessage( new LiteralText("Snapshot of previous rune activation:"), false );
             player.sendMessage( new LiteralText(" Local: " + script.value), false );

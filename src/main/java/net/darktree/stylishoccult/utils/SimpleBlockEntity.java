@@ -15,20 +15,12 @@ public abstract class SimpleBlockEntity extends BlockEntity implements BlockEnti
 
     @Override
     public void fromClientTag(NbtCompound tag) {
-        fromTag(tag);
+        readNbt(tag);
     }
 
     @Override
     public NbtCompound toClientTag(NbtCompound tag) {
-        return toTag(tag);
-    }
-
-    public void fromTag(NbtCompound tag) {
-        super.readNbt(tag);
-    }
-
-    public NbtCompound toTag(NbtCompound tag) {
-        return this.writeNbt(tag);
+        return writeNbt(tag);
     }
 
     public void safeSync() {

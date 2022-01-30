@@ -21,11 +21,11 @@ public class JoinRuneBlock extends DirectionalRuneBlock {
         if( entity != null ) {
             if( facing == script.getDirection() ) {
                 if( entity.hasMeta() ) {
-                    RunicScript storedScript = RunicScript.fromTag( entity.getMeta() );
+                    RunicScript storedScript = RunicScript.fromNbt( entity.getMeta() );
                     script.combine( storedScript );
                 }
             }else{
-                entity.setMeta( script.toTag() );
+                entity.setMeta( script.toNbt() );
             }
         }
     }

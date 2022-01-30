@@ -47,14 +47,14 @@ public class ClockRuneBlock extends EntryRuneBlock {
     }
 
     private boolean updateTime(RuneBlockEntity entity) {
-        NbtCompound tag = entity.getMeta();
-        int time = tag.getInt("time");
+        NbtCompound nbt = entity.getMeta();
+        int time = nbt.getInt("time");
         if( time <= 0 ) {
             entity.setMeta(null);
             return true;
         }else{
-            tag.putInt("time", time - 1);
-            entity.setMeta(tag);
+            nbt.putInt("time", time - 1);
+            entity.setMeta(nbt);
             return false;
         }
     }

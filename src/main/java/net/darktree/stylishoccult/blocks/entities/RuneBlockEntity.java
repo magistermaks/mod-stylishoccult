@@ -20,23 +20,23 @@ public class RuneBlockEntity extends SimpleBlockEntity {
     }
 
     @Override
-    public NbtCompound toTag(NbtCompound tag) {
-        if( script != null ) tag.put( "state", script.toTag() );
-        if( meta != null ) tag.put( "meta", meta );
-        return super.toTag( tag );
+    public NbtCompound writeNbt(NbtCompound tag) {
+        if( script != null ) tag.put("state", script.toNbt());
+        if( meta != null ) tag.put("meta", meta);
+        return super.writeNbt(tag);
     }
 
     @Override
-    public void fromTag(NbtCompound tag) {
+    public void readNbt(NbtCompound nbt) {
         try {
-            if( tag.contains("state") ) {
-                script = RunicScript.fromTag( tag.getCompound("state") );
+            if( nbt.contains("state") ) {
+                script = RunicScript.fromNbt( nbt.getCompound("state") );
             }
-            if( tag.contains("meta") ) {
-                meta = tag.getCompound("meta");
+            if( nbt.contains("meta") ) {
+                meta = nbt.getCompound("meta");
             }
         } catch (Exception ignored) {}
-        super.fromTag(tag);
+        super.readNbt(nbt);
     }
 
     public void store( RunicScript script ) {

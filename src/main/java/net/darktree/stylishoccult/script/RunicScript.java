@@ -25,35 +25,35 @@ public class RunicScript {
         this(null);
     }
 
-    private void instanceFromTag( NbtCompound tag ) {
-        String name = tag.getString("rune");
+    private void instanceFromNbt(NbtCompound nbt) {
+        String name = nbt.getString("rune");
         RuneBlock rune = RuneRegistry.get(name);
         if( rune != null ) {
             instance = rune.getInstance();
             if( instance != null ) {
-                instance.fromTag(tag);
+                instance.fromTag(nbt);
             }
         }
     }
 
-    public static RunicScript fromTag( NbtCompound tag ) {
+    public static RunicScript fromNbt(NbtCompound nbt) {
         RunicScript script = new RunicScript();
 
-        script.value = tag.getDouble("value");
-        if( tag.contains("direction") ) script.setDirection( Direction.byId( tag.getInt("direction") ) );
-        if( tag.contains("instance") ) script.instanceFromTag( tag.getCompound("instance") );
-        script.stack.stackFromTag( tag.getCompound("stack") );
+        script.value = nbt.getDouble("value");
+        if( nbt.contains("direction") ) script.setDirection( Direction.byId( nbt.getInt("direction") ) );
+        if( nbt.contains("instance") ) script.instanceFromNbt( nbt.getCompound("instance") );
+        script.stack.stackFromNbt( nbt.getCompound("stack") );
 
         return script;
     }
 
-    public NbtCompound toTag() {
-        NbtCompound tag = new NbtCompound();
-        if( direction != null) tag.putInt("direction", direction.getId());
-        if( instance != null ) tag.put("instance", instance.toTag(new NbtCompound()));
-        tag.put("stack", stack.stackToTag( new NbtCompound() ));
-        tag.putDouble("value", value);
-        return tag;
+    public NbtCompound toNbt() {
+        NbtCompound nbt = new NbtCompound();
+        if( direction != null) nbt.putInt("direction", direction.getId());
+        if( instance != null ) nbt.put("instance", instance.toTag(new NbtCompound()));
+        nbt.put("stack", stack.stackToNbt( new NbtCompound() ));
+        nbt.putDouble("value", value);
+        return nbt;
     }
 
     public Direction getDirection() {
@@ -91,7 +91,7 @@ public class RunicScript {
         RunicScript script = new RunicScript(direction);
         script.value = value;
         script.stack.copy( stack );
-        if( instance != null ) script.instanceFromTag( instance.toTag( new NbtCompound() ) );
+        if( instance != null ) script.instanceFromNbt( instance.toTag( new NbtCompound() ) );
         return script;
     }
 

@@ -8,19 +8,19 @@ public class StackManager {
 
     private ArrayList<Double> stack = new ArrayList<>();
 
-    public NbtCompound stackToTag(NbtCompound tag ) {
+    public NbtCompound stackToNbt(NbtCompound nbt) {
         int size = stack.size();
         for( int i = 0; i < size; i ++ ) {
-            tag.putDouble(String.valueOf(i), stack.get(i));
+            nbt.putDouble(String.valueOf(i), stack.get(i));
         }
-        return tag;
+        return nbt;
     }
 
-    public void stackFromTag( NbtCompound tag ) {
+    public void stackFromNbt(NbtCompound nbt) {
         try {
-            int size = tag.getSize();
+            int size = nbt.getSize();
             for( int i = 0; i < size; i ++ ) {
-                stack.add( tag.getDouble(String.valueOf(i)) );
+                stack.add( nbt.getDouble(String.valueOf(i)) );
             }
         } catch (Exception ignore) {}
     }
