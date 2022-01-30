@@ -4,6 +4,8 @@ import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.loot.LootTable;
+import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -86,14 +88,19 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
         BlockState up = ctx.getWorld().getBlockState(ctx.getBlockPos().up());
         BlockState down = ctx.getWorld().getBlockState(ctx.getBlockPos().down());
 
-        if( isValid( up, 0 ) != isValid( down, 0 ) ) {
-            int size = Math.max( getSize(up), getSize(down) ) - 1;
+        if( isValid(up, 0) != isValid(down, 0) ) {
+
+            Random random = new Random(ctx.getWorld().getTime() / 10);
+            int fallback = RandUtils.rangeInt(1, 6, random) + 1;
+
+            int size = Math.max(getSize(up, fallback), getSize(down, fallback)) - 1;
             if( size >= 1 && size <= 6 ) {
                 return getDefaultState().with(SIZE, size);
             }
         }
 
         return null;
+
     }
 
     @Override
@@ -131,8 +138,8 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
         return (state.getBlock() instanceof TentacleBlock) ? state.get(SIZE) > size : (state.getBlock() instanceof FullFleshBlock);
     }
 
-    public int getSize( BlockState state ) {
-        return (state.getBlock() instanceof TentacleBlock) ? state.get(SIZE) : ((state.getBlock() instanceof FullFleshBlock) ? 7 : 0);
+    public int getSize( BlockState state, int fallback ) {
+        return (state.getBlock() instanceof TentacleBlock) ? state.get(SIZE) : ((state.getBlock() instanceof FullFleshBlock) ? fallback : 0);
     }
 
     public boolean grow( World world, BlockPos pos, int size ) {
@@ -146,4 +153,9 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
             return true;
         }
     }
+
+    public LootTable getInternalLootTableId() {
+        return LootTables.SIMPLE;
+    }
+
 }
