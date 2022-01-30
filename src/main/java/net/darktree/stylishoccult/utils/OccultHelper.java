@@ -6,27 +6,32 @@ import net.darktree.stylishoccult.blocks.occult.*;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.entities.SparkEntity;
 import net.darktree.stylishoccult.tags.ModTags;
 import net.minecraft.block.*;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
 public class OccultHelper {
 
-    public static void corruptAround(ServerWorld world, BlockPos pos, Random random) {
+    public static void corruptAround(ServerWorld world, BlockPos pos, Random random, boolean far) {
         BlockPos target = pos.offset( RandUtils.getEnum(Direction.class, random) );
 
-        int i = 0;
+        if(far) {
+            int i = 0;
 
-        while( random.nextInt(4) == 0 && (i < 5) ) {
-            target = target.offset( RandUtils.getEnum(Direction.class, random) );
-            i ++;
+            while (random.nextInt(4) == 0 && (i < 5)) {
+                target = target.offset(RandUtils.getEnum(Direction.class, random));
+                i++;
+            }
         }
 
         corrupt(world, target);
@@ -95,6 +100,10 @@ public class OccultHelper {
         }
 
         return false;
+    }
+
+    private static boolean standsOnSource(World world, BlockPos pos) {
+        return world.getBlockState(pos).getBlock() instanceof FullFleshBlock || world.getBlockState(pos.down()).getBlock() instanceof FullFleshBlock;
     }
 
     private static void spawnCorruption(World world, BlockPos target, BlockState state) {
@@ -169,6 +178,44 @@ public class OccultHelper {
 
     private static boolean validDownSpot( World world, BlockPos pos ) {
         return (world.getBlockState(pos.down()).getBlock() instanceof FullFleshBlock);
+    }
+
+    public static void sacrifice(World world, BlockPos pos, LivingEntity entity) {
+        if(entity instanceof SparkEntity) {
+            return;
+        }
+
+        if( standsOnSource(world, pos) ) {
+            int count = world.random.nextInt(4) + 1;
+
+            for(int i = 0; i < count; i ++) {
+                corruptAround((ServerWorld) world, pos, world.getRandom(), false);
+            }
+
+            ascendFlesh(world, pos);
+        }else{
+            StylishOccult.LOGGER.info(world.getBlockState(pos.down()));
+        }
+    }
+
+    public static void ascendFlesh(World world, BlockPos center) {
+        final BlockPos.Mutable pos = new BlockPos.Mutable();
+        final int min = -3, max = 3;
+        final int cx = center.getX(), cy = center.getY(), cz = center.getZ();
+
+        for(int x = min; x < max; x ++) {
+            for(int y = min; y < max; y ++) {
+                for(int z = min; z < max; z ++) {
+                    if( RandUtils.getBool(Math.max(MathHelper.fastInverseSqrt(x * x + y * y + z * z) * 50 - 8, 1), world.random) ) {
+                        pos.set(cx + x, cy + y, cz + z);
+
+                        if(world.getBlockState(pos).getBlock() == ModBlocks.FLESH_PASSIVE) {
+                            world.setBlockState(pos, ModBlocks.DEFAULT_FLESH.getDefaultState());
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

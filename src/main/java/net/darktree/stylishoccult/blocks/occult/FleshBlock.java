@@ -25,7 +25,7 @@ public class FleshBlock extends FullFleshBlock implements ImpureBlock {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        OccultHelper.corruptAround(world, pos, random);
+        OccultHelper.corruptAround(world, pos, random, true);
 
         if( random.nextInt( 256 ) == 0 && FossilizedFleshBlock.isPosValid(world, pos) && (BlockUtils.countInArea(world, pos, FossilizedFleshBlock.class, 4) < 3) ) {
             world.setBlockState(pos, ModBlocks.BONE_FLESH.getDefaultState());
