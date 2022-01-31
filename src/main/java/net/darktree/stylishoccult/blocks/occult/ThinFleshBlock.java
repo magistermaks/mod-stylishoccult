@@ -45,7 +45,11 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock, FluidRep
             Utils.box( 15,  0,  0, 16, 16, 16 )  // EAST
     };
 
-    @Override
+	public static boolean hasSide(BlockState state) {
+        return state.get(EAST) || state.get(WEST) || state.get(NORTH) || state.get(SOUTH);
+	}
+
+	@Override
     public LootTable getInternalLootTableId() {
         return LootTables.GROWTH;
     }

@@ -6,7 +6,12 @@
   "mixins": [
     "HungerManagerMixin",
     "LivingEntityMixin",
+    "PlayerEntityMixin",
     "StatusEffectInstanceAccessor"
+  ],
+  "client": [
+    "PlayerEntityClientMixin",
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

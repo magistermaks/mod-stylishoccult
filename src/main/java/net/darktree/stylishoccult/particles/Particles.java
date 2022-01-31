@@ -37,6 +37,7 @@ public class Particles {
         Utils.requestParticleTexture( new ModIdentifier( "particle/spark_2" ) );
         Utils.requestParticleTexture( new ModIdentifier( "particle/spark_3" ) );
         Utils.requestParticleTexture( new ModIdentifier( "particle/spark_4" ) );
+        Utils.requestParticleTexture( new ModIdentifier( "misc/madness_outline" ) );
 
         ParticleFactoryRegistry.getInstance().register(SPORE, FlameParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ORBITING_SPARK, OrbitingFlameParticle.Factory::new);

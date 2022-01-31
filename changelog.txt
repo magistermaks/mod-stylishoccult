@@ -3,6 +3,8 @@
 - Fixed runic script breaking on world reloads (introduced in 0.5.0)
 - Tentacles can now be harvested and placed
 - The flesh can now be awoken by sacrificing living entities on top of it
+- Growth is now climbable
+- Looking at the Eldritch Eye now gives a madness effect
 
 0.5.0 beta <2022/01/30>
 - Updated to 1.17

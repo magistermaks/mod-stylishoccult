@@ -13,13 +13,17 @@ public class Sounds {
     public static BlockSoundGroup CANDLE;
     public static BlockSoundGroup URN;
 
+    public static SoundEffect HEARTBEAT;
+
     public static void init() {
 
-        SoundManager.loadSound( "lava_demon_wakeup", SoundCategory.BLOCKS );
-        SoundManager.loadSound( "lava_demon_die", SoundCategory.BLOCKS );
-        SoundManager.loadSound( "urn_broken", SoundCategory.BLOCKS );
-        SoundManager.loadSound( "vent", SoundCategory.BLOCKS ).volume( 2.8f ).pitch( 0.8f, 1.1f );
-        SoundManager.loadSound( "spore_escapes", SoundCategory.BLOCKS ).volume( 0.05f );
+        SoundManager.loadSound("lava_demon_wakeup", SoundCategory.BLOCKS);
+        SoundManager.loadSound("lava_demon_die", SoundCategory.BLOCKS);
+        SoundManager.loadSound("urn_broken", SoundCategory.BLOCKS);
+        SoundManager.loadSound("vent", SoundCategory.BLOCKS).volume(2.8f).pitch(0.8f, 1.1f);
+        SoundManager.loadSound("spore_escapes", SoundCategory.BLOCKS).volume(0.05f);
+
+        HEARTBEAT = SoundManager.loadSound("heartbeat", SoundCategory.AMBIENT);
 
         FLESH = SoundManager.createGroup()
                 .setBreakSound(SoundEvents.BLOCK_HONEY_BLOCK_BREAK)

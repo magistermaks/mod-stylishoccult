@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "net.darktree.stylishoccult.StylishOccult"
+      "net.darktree.stylishoccult.ClientInitializer"
     ],
     "main": [
       "net.darktree.stylishoccult.StylishOccult"

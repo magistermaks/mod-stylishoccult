@@ -4,12 +4,12 @@ import net.darktree.interference.api.LookAtEvent;
 import net.darktree.stylishoccult.blocks.BuildingBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.overlay.PlayerEntityClientDuck;
+import net.darktree.stylishoccult.overlay.PlayerEntityDuck;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.*;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
@@ -41,7 +41,11 @@ public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFlesh
     @Override
     public void onLookAtTick(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if( !state.get(PERSISTENT) ) {
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 200));
+            ((PlayerEntityDuck) player).stylish_addMadness(0.03f);
+
+            if(world.isClient) {
+                ((PlayerEntityClientDuck) player).stylish_startHeartbeatSound();
+            }
         }
     }
 

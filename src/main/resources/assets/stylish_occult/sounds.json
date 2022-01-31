@@ -33,5 +33,11 @@
 		"sounds": [
 			"stylish_occult:spore_escapes"
 		]
+	},
+	"heartbeat": {
+		"subtitle": "sound.stylish_occult.heartbeat",
+		"sounds": [
+			"stylish_occult:heartbeat"
+		]
 	}
 }

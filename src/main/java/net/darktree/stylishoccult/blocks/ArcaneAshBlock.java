@@ -14,7 +14,6 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -37,9 +36,9 @@ public class ArcaneAshBlock extends SimpleBlock {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if( random.nextInt(20) == 0 && !state.get(PERSISTENT) ) {
-            this.scheduledTick(state, world, pos, random);
-        }
+//        if( !state.get(PERSISTENT) ) {
+//            this.scheduledTick(state, world, pos, random);
+//        }
     }
 
     @Override
@@ -58,8 +57,7 @@ public class ArcaneAshBlock extends SimpleBlock {
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         if( !state.get(PERSISTENT) ) {
-            int age = 4 - state.get(AGE);
-            world.getBlockTickScheduler().schedule(pos, this, MathHelper.nextInt(world.random, age * min, age * max));
+            world.getBlockTickScheduler().schedule(pos, this, 100 + world.random.nextInt(40));
             if( !world.isClient ) {
                 Network.ASH_PACKET.send(pos, (ServerWorld) world);
             }
@@ -75,8 +73,7 @@ public class ArcaneAshBlock extends SimpleBlock {
             world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), this.soundGroup.getBreakSound(), SoundCategory.BLOCKS, 0.8f, 1.0f);
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
         }else{
-            int h = 4 - age;
-            world.getBlockTickScheduler().schedule(pos, this, MathHelper.nextInt(random, h * min, h * max));
+            world.getBlockTickScheduler().schedule(pos, this, 100 + world.random.nextInt(40));
             world.setBlockState(pos, state.with(AGE, age + 1));
         }
     }
