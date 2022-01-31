@@ -193,8 +193,6 @@ public class OccultHelper {
             }
 
             ascendFlesh(world, pos);
-        }else{
-            StylishOccult.LOGGER.info(world.getBlockState(pos.down()));
         }
     }
 
