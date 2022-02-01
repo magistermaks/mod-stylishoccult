@@ -1,8 +1,8 @@
 package net.darktree.stylishoccult.blocks.runes;
 
-import net.darktree.stylishoccult.script.elements.NumericElement;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneType;
+import net.darktree.stylishoccult.script.elements.NumericElement;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

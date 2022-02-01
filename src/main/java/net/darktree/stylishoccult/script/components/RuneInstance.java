@@ -4,7 +4,7 @@ import net.darktree.stylishoccult.blocks.runes.RuneBlock;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.nbt.NbtCompound;
 
-public class RuneInstance {
+public abstract class RuneInstance {
 
     public final RuneBlock rune;
 
@@ -12,9 +12,8 @@ public class RuneInstance {
         this.rune = rune;
     }
 
-    public boolean push(Script script, RuneInstance instance) {
-        return false;
-    }
+    public abstract RuneInstance copy();
+    public abstract boolean push(Script script, RuneInstance instance);
 
     public NbtCompound writeNbt(NbtCompound tag) {
         tag.putString("rune", rune.name);

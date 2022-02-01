@@ -109,35 +109,32 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 
         if( entity != null && entity.hasScript() ) {
             Script script = entity.getScript();
-            script.apply( this, world, pos );
-            Direction[] dirs = getDirections(world, pos, script);
-
-            if( dirs.length >= 1 ) {
-                script.direction = dirs[0];
-
-                // TODO: make it always use the un copied script first,
-                // TODO: by checking the block and only then propagating.
-                // TODO: also notify the script when there is nowhere to go anymore
-
-                propagateTo(world, pos, dirs[0], script);
-
-                for( int i = 1; i < dirs.length; i ++ ) {
-                    propagateTo(world, pos, dirs[i], entity.copyScript(dirs[i]));
-                }
-            }
+            script.apply(this, world, pos);
+            propagateTo(world, pos, script, getDirections(world, pos, script));
 
             entity.clear();
         }
     }
 
-    protected void propagateTo(World world, BlockPos pos, Direction dir, Script script) {
-        BlockPos target = pos.offset(dir);
-        BlockState state = world.getBlockState(target);
+    protected void propagateTo(World world, BlockPos pos, Script script, Direction[] directions) {
+        boolean copy = false;
 
-        if (state.getBlock() instanceof RuneBlock runeBlock) {
-            if( runeBlock.canAcceptSignal() ) {
-                runeBlock.execute(world, target, state, script);
+        if(directions.length == 0) {
+            script.reset(world, pos);
+        }
+
+        for (Direction direction : directions) {
+
+            BlockPos target = pos.offset(direction);
+            BlockState state = world.getBlockState(target);
+
+            if (state.getBlock() instanceof RuneBlock rune) {
+                if (rune.canAcceptSignal()) {
+                    rune.execute(world, target, state, copy ? script.copyFor(direction) : script.with(direction));
+                    copy = true;
+                }
             }
+
         }
     }
 

@@ -44,7 +44,7 @@ public class DebugRuneBlock extends RuneBlock {
 
             player.sendMessage( new LiteralText(" - Drop Stack:"), false );
 
-            script.ring.forEach(element -> {
+            script.ring.reset(element -> {
                 player.sendMessage( new LiteralText("   " + (element == null ? "null" : element.toString())), false );
             });
         }

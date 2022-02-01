@@ -17,7 +17,6 @@ public class PlayerRuneBlock extends InputRuneBlock {
         this.box = new Box(distance, distance, distance, -distance, -distance, -distance);
     }
 
-    // FIXME: let's not use boxes here
     private boolean check( World world, Box box ) {
         return !world.getNonSpectatingEntities(PlayerEntity.class, box).isEmpty();
     }

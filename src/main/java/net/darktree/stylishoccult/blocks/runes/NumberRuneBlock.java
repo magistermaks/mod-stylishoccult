@@ -1,9 +1,9 @@
 package net.darktree.stylishoccult.blocks.runes;
 
-import net.darktree.stylishoccult.script.elements.NumericElement;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneInstance;
 import net.darktree.stylishoccult.script.components.RuneType;
+import net.darktree.stylishoccult.script.elements.NumericElement;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.nbt.NbtCompound;
 
@@ -40,6 +40,13 @@ public class NumberRuneBlock extends RuneBlock {
         @Override
         public void readNbt(NbtCompound tag ) {
             raw = tag.getString("raw");
+        }
+
+        @Override
+        public RuneInstance copy() {
+            NumberRuneInstance instance = new NumberRuneInstance(this.rune);
+            instance.raw = this.raw;
+            return instance;
         }
 
         @Override

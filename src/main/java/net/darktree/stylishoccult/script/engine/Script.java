@@ -1,10 +1,10 @@
 package net.darktree.stylishoccult.script.engine;
 
 import net.darktree.stylishoccult.blocks.runes.RuneBlock;
-import net.darktree.stylishoccult.script.elements.NumericElement;
-import net.darktree.stylishoccult.script.elements.StackElement;
 import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneInstance;
+import net.darktree.stylishoccult.script.elements.NumericElement;
+import net.darktree.stylishoccult.script.elements.StackElement;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -48,7 +48,7 @@ public final class Script {
 	}
 
 	/**
-	 * Execute the run at given position
+	 * Execute the rune at given position
 	 */
 	public void apply(RuneBlock rune, World world, BlockPos pos) {
 		try {
@@ -70,10 +70,16 @@ public final class Script {
 		script.value = value.copy();
 		script.stack.from(stack);
 		script.ring.from(ring);
-
-		/// TODO: this needs a better way
-		if(instance != null) this.instance = RuneInstance.from(instance.writeNbt(new NbtCompound()));
+		script.instance = this.instance == null ? null : this.instance.copy();
 		return script;
+	}
+
+	/**
+	 * Helper method for setting the direction
+	 */
+	public Script with(Direction direction) {
+		this.direction = direction;
+		return this;
 	}
 
 	/**
@@ -84,10 +90,22 @@ public final class Script {
 	}
 
 	/**
-	 * 'Pull & drop', get the newest value from stack, return it an add to drop stack
+	 * 'Pull & drop', get the newest value from stack, return it, and add to drop stack
 	 */
 	public StackElement pull(World world, BlockPos pos) {
 		return ring.push(stack.pull(), world, pos);
+	}
+
+	/**
+	 * Drop all elements from this script, called when execution concludes, with
+	 * exception or by reaching the end of line.
+	 */
+	public void reset(World world, BlockPos pos) {
+		this.stack.reset(element -> element.drop(world, pos));
+		this.ring.reset(element -> element.drop(world, pos));
+		this.value.drop(world, pos);
+		this.value = NumericElement.FALSE;
+		this.instance = null;
 	}
 
 	private void push(RuneBlock rune) {
@@ -100,13 +118,6 @@ public final class Script {
 				instance = inst;
 			}
 		}
-	}
-
-	private void reset(World world, BlockPos pos) {
-		this.stack.reset(element -> element.drop(world, pos));
-		// TODO: should the value also be reset?
-
-		this.instance = null;
 	}
 
 }

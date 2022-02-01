@@ -4,6 +4,7 @@ import net.darktree.stylishoccult.script.elements.StackElement;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
@@ -21,6 +22,9 @@ public final class Ring {
 		this.offset = (this.offset + distance) % this.buffer.length;
 	}
 
+	/**
+	 * Push one element onto the ring
+	 */
 	public StackElement push(StackElement element, World world, BlockPos pos) {
 		if( buffer[offset] != null ) {
 			buffer[offset].drop(world, pos);
@@ -32,7 +36,10 @@ public final class Ring {
 		return element;
 	}
 
-	public StackElement pull() {
+	/**
+	 * Take one element from the ring
+	 */
+	public @Nullable StackElement pull() {
 		move(-1);
 		StackElement element = buffer[offset];
 		buffer[offset] = null;
@@ -81,10 +88,13 @@ public final class Ring {
 		this.offset = ring.offset;
 	}
 
-	@Deprecated
-	public void forEach(Consumer<StackElement> consumer) {
-		for (StackElement stackElement : buffer) {
-			consumer.accept(stackElement);
+	/**
+	 * Reset this ring, notifies the consumer of every dropped element
+	 */
+	public void reset(Consumer<StackElement> consumer) {
+		for(StackElement element : buffer) {
+			if(element != null) consumer.accept(element);
 		}
 	}
+
 }
