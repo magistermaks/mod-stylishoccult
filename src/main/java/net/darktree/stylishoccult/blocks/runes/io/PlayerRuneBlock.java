@@ -1,7 +1,8 @@
 package net.darktree.stylishoccult.blocks.runes.io;
 
 import net.darktree.stylishoccult.blocks.runes.InputRuneBlock;
-import net.darktree.stylishoccult.script.RunicScript;
+import net.darktree.stylishoccult.script.elements.NumericElement;
+import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -16,12 +17,13 @@ public class PlayerRuneBlock extends InputRuneBlock {
         this.box = new Box(distance, distance, distance, -distance, -distance, -distance);
     }
 
+    // FIXME: let's not use boxes here
     private boolean check( World world, Box box ) {
         return !world.getNonSpectatingEntities(PlayerEntity.class, box).isEmpty();
     }
 
     @Override
-    public void apply(RunicScript script, World world, BlockPos pos) {
-        script.getStack().put( check(world, box.offset(pos)) ? 1.0 : 0.0 );
+    public void apply(Script script, World world, BlockPos pos) {
+        script.stack.push( check(world, box.offset(pos)) ? NumericElement.TRUE : NumericElement.FALSE );
     }
 }

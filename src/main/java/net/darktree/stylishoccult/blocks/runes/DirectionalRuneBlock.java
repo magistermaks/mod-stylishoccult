@@ -39,7 +39,7 @@ public abstract class DirectionalRuneBlock extends RuneBlock {
         }
     }
 
-    public Direction getFacing( World world, BlockPos pos ) {
+    public Direction getFacing(World world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
 
         if( state.getBlock() instanceof DirectionalRuneBlock ) {

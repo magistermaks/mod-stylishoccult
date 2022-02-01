@@ -4,10 +4,10 @@ import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.entities.RuneBlockEntity;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
-import net.darktree.stylishoccult.script.RunicScript;
 import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneInstance;
 import net.darktree.stylishoccult.script.components.RuneType;
+import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.RuneUtils;
 import net.darktree.stylishoccult.utils.SimpleBlock;
@@ -104,20 +104,25 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
         super.scheduledTick(state, world, pos, random);
     }
 
-    protected void executeStoredScript( World world, BlockPos pos ) {
+    protected void executeStoredScript(World world, BlockPos pos) {
         RuneBlockEntity entity = getEntity(world, pos);
 
         if( entity != null && entity.hasScript() ) {
-            RunicScript state = entity.getScript();
-            state.apply( this, world, pos );
-            Direction[] dirs = getDirections( world, pos, state );
+            Script script = entity.getScript();
+            script.apply( this, world, pos );
+            Direction[] dirs = getDirections(world, pos, script);
 
             if( dirs.length >= 1 ) {
-                state.setDirection( dirs[0] );
-                propagateTo( world, pos, dirs[0], state );
+                script.direction = dirs[0];
+
+                // TODO: make it always use the un copied script first,
+                // TODO: by checking the block and only then propagating.
+                // TODO: also notify the script when there is nowhere to go anymore
+
+                propagateTo(world, pos, dirs[0], script);
 
                 for( int i = 1; i < dirs.length; i ++ ) {
-                    propagateTo( world, pos, dirs[i], entity.copyScript(dirs[i]) );
+                    propagateTo(world, pos, dirs[i], entity.copyScript(dirs[i]));
                 }
             }
 
@@ -125,32 +130,31 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
         }
     }
 
-    protected void propagateTo( World world, BlockPos pos, Direction dir, RunicScript script ) {
+    protected void propagateTo(World world, BlockPos pos, Direction dir, Script script) {
         BlockPos target = pos.offset(dir);
         BlockState state = world.getBlockState(target);
 
-        if (state.getBlock() instanceof RuneBlock) {
-            RuneBlock runeBlock = (RuneBlock) state.getBlock();
+        if (state.getBlock() instanceof RuneBlock runeBlock) {
             if( runeBlock.canAcceptSignal() ) {
                 runeBlock.execute(world, target, state, script);
             }
         }
     }
 
-    protected void execute( World world, BlockPos pos, BlockState state, RunicScript script ) {
+    protected void execute(World world, BlockPos pos, BlockState state, Script script) {
         if( state.get(COOLDOWN) == 0 && !state.get(FROZEN) ) {
             RuneBlockEntity entity = getEntity(world, pos);
 
             if( entity != null ) {
                 entity.store(script);
                 world.setBlockState(pos, state.with(COOLDOWN, 3));
-                onTriggered( script, world, pos, state );
+                onTriggered(script, world, pos, state);
                 world.getBlockTickScheduler().schedule( pos, state.getBlock(), getDelayLength() );
             }
         }
     }
 
-    protected final RuneBlockEntity getEntity( World world, BlockPos pos ) {
+    protected final RuneBlockEntity getEntity(World world, BlockPos pos) {
         RuneBlockEntity entity = BlockUtils.getEntity(RuneBlockEntity.class, world, pos);
 
         if( entity == null ) {
@@ -168,9 +172,8 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
         return RuneUtils.getTint( state.get(COOLDOWN) );
     }
 
-    public Direction[] getDirections( World world, BlockPos pos, RunicScript script ) {
-        Direction dir = script.getDirection();
-        return dir == null ? new Direction[] {} : new Direction[] { dir };
+    public Direction[] getDirections(World world, BlockPos pos, Script script) {
+        return script.direction == null ? new Direction[] {} : new Direction[] { script.direction };
     }
 
     public boolean canAcceptSignal() {
@@ -181,19 +184,19 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
         return null;
     }
 
-    public void apply(RunicScript script, World world, BlockPos pos) {
+    public void apply(Script script, World world, BlockPos pos) {
         apply(script);
     }
 
-    public void apply(RunicScript script) {
+    public void apply(Script script) {
 
     }
 
-    protected void onTriggered( RunicScript script, World world, BlockPos pos, BlockState state ) {
+    protected void onTriggered(Script script, World world, BlockPos pos, BlockState state) {
 
     }
 
-    protected void onDelayEnd( World world, BlockPos pos ) {
+    protected void onDelayEnd(World world, BlockPos pos) {
 
     }
 

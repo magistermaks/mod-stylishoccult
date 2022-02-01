@@ -1,8 +1,8 @@
 package net.darktree.stylishoccult.blocks.runes.io;
 
 import net.darktree.stylishoccult.blocks.runes.ActorRuneBlock;
-import net.darktree.stylishoccult.script.RunicScript;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
+import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.StateManager;
@@ -38,9 +38,9 @@ public class RedstoneAnalogOutputRuneBlock extends ActorRuneBlock {
     }
 
     @Override
-    protected void onTriggered(RunicScript script, World world, BlockPos pos, BlockState state) {
+    protected void onTriggered(Script script, World world, BlockPos pos, BlockState state) {
         try {
-            world.setBlockState(pos, world.getBlockState(pos).with(POWER, toPowerLevel(script.getStack().pull())));
+            world.setBlockState(pos, world.getBlockState(pos).with(POWER, toPowerLevel(script.pull(world, pos).value())));
         }catch(Exception exception) {
             throw RuneExceptionType.INVALID_ARGUMENT_COUNT.get();
         }

@@ -77,7 +77,7 @@ public class ModBlocks {
     public static final Block PULL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "divexo", LogicRuneBlock.Functions.PULL ) );
     public static final Block EXCHANGE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "cambitas", LogicRuneBlock.Functions.EXCHANGE ) );
     public static final Block DUPLICATE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "effingo", LogicRuneBlock.Functions.DUPLICATE ) );
-    public static final Block OR_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "vel", LogicRuneBlock.Functions.OR ) );
+    public static final Block OR_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "vel", LogicRuneBlock.Functions.ADD ) ); // TODO: nuke this
     public static final Block ADD_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "adaugeo", LogicRuneBlock.Functions.ADD ) );
     public static final Block NOT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "ni", LogicRuneBlock.Functions.NOT ) );
     public static final Block MULTIPLY_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "multiplico", LogicRuneBlock.Functions.MULTIPLY ) );
@@ -92,14 +92,14 @@ public class ModBlocks {
     public static final Block DECREMENT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "decrementum", LogicRuneBlock.Functions.DECREMENT ) );
     public static final Block REDSTONE_ANALOG_OUT_RUNE_BLOCK = RegUtil.rune( new RedstoneAnalogOutputRuneBlock( "scribo" ) );
     public static final Block PROXIMITY_SENSOR_RUNE_BLOCK = RegUtil.rune( new PlayerRuneBlock( "propinquitas", 8 ) );
-    public static final Block SINE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "sine", LogicRuneBlock.Functions.SINE ) );
+    public static final Block SINE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "sine", LogicRuneBlock.Functions.SIN ) );
     public static final Block SPLIT_RUNE_BLOCK = RegUtil.rune( new SplitRuneBlock( "scindo" ) );
     public static final Block REDSTONE_DIGITAL_IN_RUNE_BLOCK = RegUtil.rune( new RedstoneEntryRuneBlock( "evigilo" ) );
     public static final Block REDSTONE_ANALOG_IN_RUNE_BLOCK = RegUtil.rune( new RedstoneAnalogInputRuneBlock( "sensum" ) );
     public static final Block CLOCK_RUNE_BLOCK = RegUtil.rune( new ClockRuneBlock( "horologium", 5 ) );
     public static final Block RANDOM_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "temere", LogicRuneBlock.Functions.RANDOM ) );
     public static final Block GATEWAY_RUNE_BLOCK = RegUtil.rune( new RedstoneGateRuneBlock( "porta" ) );
-    public static final Block POP_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "absumo", LogicRuneBlock.Functions.POP ) );
+    public static final Block POP_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "absumo", LogicRuneBlock.Functions.DROP) );
     public static final Block JOIN_RUNE_BLOCK = RegUtil.rune( new JoinRuneBlock( "adiungo" ) );
 
     public static void init() {

@@ -1,9 +1,10 @@
 package net.darktree.stylishoccult.blocks.runes;
 
-import net.darktree.stylishoccult.script.RunicScript;
+import net.darktree.stylishoccult.script.elements.NumericElement;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneInstance;
 import net.darktree.stylishoccult.script.components.RuneType;
+import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.nbt.NbtCompound;
 
 public class NumberRuneBlock extends RuneBlock {
@@ -31,18 +32,18 @@ public class NumberRuneBlock extends RuneBlock {
         }
 
         @Override
-        public NbtCompound toTag(NbtCompound tag) {
+        public NbtCompound writeNbt(NbtCompound tag) {
             tag.putString("raw", raw);
-            return super.toTag( tag );
+            return super.writeNbt( tag );
         }
 
         @Override
-        public void fromTag( NbtCompound tag ) {
+        public void readNbt(NbtCompound tag ) {
             raw = tag.getString("raw");
         }
 
         @Override
-        public boolean push(RunicScript script, RuneInstance instance ) {
+        public boolean push(Script script, RuneInstance instance ) {
 
             if( raw.length() > 16 ) {
                 throw RuneExceptionType.NUMBER_TOO_LONG.get();
@@ -61,7 +62,8 @@ public class NumberRuneBlock extends RuneBlock {
             }
 
             try {
-                script.value = Integer.parseInt(raw, 6);
+                // FIXME: this is not allowed, the value gets replaced
+                script.value = new NumericElement(Integer.parseInt(raw, 6));
             }catch (Exception e){
                 throw RuneExceptionType.INVALID_NUMBER.get();
             }

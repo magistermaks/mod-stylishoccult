@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.script.components;
 
 import net.darktree.stylishoccult.blocks.runes.RuneBlock;
-import net.darktree.stylishoccult.script.RunicScript;
+import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.nbt.NbtCompound;
 
 public class RuneInstance {
@@ -12,17 +12,32 @@ public class RuneInstance {
         this.rune = rune;
     }
 
-    public boolean push( RunicScript script, RuneInstance instance ) {
+    public boolean push(Script script, RuneInstance instance) {
         return false;
     }
 
-    public NbtCompound toTag( NbtCompound tag ) {
+    public NbtCompound writeNbt(NbtCompound tag) {
         tag.putString("rune", rune.name);
         return tag;
     }
 
-    public void fromTag( NbtCompound tag ) {
+    public void readNbt(NbtCompound tag) {
 
+    }
+
+    public static RuneInstance from(NbtCompound nbt) {
+        RuneBlock rune = RuneRegistry.getRune(nbt.getString("rune"));
+
+        if(rune != null) {
+            RuneInstance instance = rune.getInstance();
+
+            if(instance != null) {
+                instance.readNbt(nbt);
+            }
+
+            return instance;
+        }
+        return null;
     }
 
 }

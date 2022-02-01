@@ -1,7 +1,8 @@
 package net.darktree.stylishoccult.blocks.runes.io;
 
 import net.darktree.stylishoccult.blocks.runes.InputRuneBlock;
-import net.darktree.stylishoccult.script.RunicScript;
+import net.darktree.stylishoccult.script.elements.NumericElement;
+import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -12,8 +13,8 @@ public class RedstoneAnalogInputRuneBlock extends InputRuneBlock {
     }
 
     @Override
-    public void apply(RunicScript script, World world, BlockPos pos) {
-        script.getStack().put( world.getReceivedRedstonePower(pos) );
+    public void apply(Script script, World world, BlockPos pos) {
+        script.stack.push( new NumericElement(world.getReceivedRedstonePower(pos)) );
     }
 
 }

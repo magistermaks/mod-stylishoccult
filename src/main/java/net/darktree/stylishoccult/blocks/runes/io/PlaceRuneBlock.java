@@ -3,8 +3,8 @@ package net.darktree.stylishoccult.blocks.runes.io;
 import net.darktree.stylishoccult.blocks.ArcaneAshBlock;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.runes.ActorRuneBlock;
-import net.darktree.stylishoccult.script.RunicScript;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
+import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -31,15 +31,15 @@ public class PlaceRuneBlock extends ActorRuneBlock {
     }
 
     @Override
-    public void apply(RunicScript script, World world, BlockPos pos) {
+    public void apply(Script script, World world, BlockPos pos) {
         try {
-            int x = Math.round( (float) script.getStack().pull() );
-            int y = Math.round( (float) script.getStack().pull() );
-            int z = Math.round( (float) script.getStack().pull() );
+            int x = (int) Math.round( script.pull(world, pos).value() );
+            int y = (int) Math.round( script.pull(world, pos).value() );
+            int z = (int) Math.round( script.pull(world, pos).value() );
 
             BlockPos target = pos.add(x, y, z);
 
-            if( !target.isWithinDistance( pos, range ) ) {
+            if( !target.isWithinDistance(pos, range) ) {
                 throw RuneExceptionType.INVALID_ARGUMENT.get();
             }
 
