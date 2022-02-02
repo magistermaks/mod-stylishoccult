@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.script.engine;
 
+import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.elements.StackElement;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
@@ -39,10 +40,15 @@ public final class Ring {
 	/**
 	 * Take one element from the ring
 	 */
-	public @Nullable StackElement pull() {
+	public StackElement pull() {
 		move(-1);
 		StackElement element = buffer[offset];
 		buffer[offset] = null;
+
+		if(element == null) {
+			throw RuneExceptionType.INVALID_STATE.get();
+		}
+
 		return element;
 	}
 

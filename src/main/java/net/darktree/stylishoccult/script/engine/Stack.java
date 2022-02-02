@@ -50,6 +50,20 @@ public final class Stack {
 	}
 
 	/**
+	 * over (a, b -> a, b, a) => void
+	 */
+	public void over() {
+		push(stack.remove(stack.size() - 3));
+	}
+
+	/**
+	 * rotate (a, b, c -> b, c, a) => void
+	 */
+	public void rotate() {
+		push(stack.remove(0));
+	}
+
+	/**
 	 * Check if the stack hasn't grown too large
 	 */
 	public void validate() {

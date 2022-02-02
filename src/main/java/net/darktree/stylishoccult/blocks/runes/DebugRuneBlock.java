@@ -35,7 +35,6 @@ public class DebugRuneBlock extends RuneBlock {
             Script script = Script.fromNbt(entity.getMeta());
 
             player.sendMessage( new LiteralText("Snapshot of previous rune activation:"), false );
-            player.sendMessage( new LiteralText(" - Local: " + script.value), false );
             player.sendMessage( new LiteralText(" - Main Stack: (size " + script.stack.size() + ")"), false );
 
             script.stack.reset(element -> {

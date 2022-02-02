@@ -3,7 +3,6 @@ package net.darktree.stylishoccult.script.engine;
 import net.darktree.stylishoccult.blocks.runes.RuneBlock;
 import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneInstance;
-import net.darktree.stylishoccult.script.elements.NumericElement;
 import net.darktree.stylishoccult.script.elements.StackElement;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
@@ -16,8 +15,7 @@ public final class Script {
 
 	public final Ring ring = new Ring(8);
 	public final Stack stack = new Stack(32);
-	public StackElement value = NumericElement.FALSE;
-	public Direction direction;
+	public Direction direction = Direction.NORTH;
 
 	/**
 	 * Deserialize the script state from the given {@link NbtCompound}
@@ -25,9 +23,8 @@ public final class Script {
 	public static Script fromNbt(NbtCompound nbt) {
 		Script script = new Script();
 
-		if(nbt.contains("d")) script.direction = Direction.byId(nbt.getByte("d"));
 		if(nbt.contains("i")) script.instance = RuneInstance.from(nbt.getCompound("i"));
-		script.value = StackElement.from(nbt.getCompound("v"));
+		script.direction = Direction.byId(nbt.getByte("d"));
 		script.stack.readNbt(nbt.getCompound("s"));
 		script.ring.readNbt(nbt.getCompound("r"));
 
@@ -38,9 +35,8 @@ public final class Script {
 	 * Serializes the script state into the given {@link NbtCompound}
 	 */
 	public NbtCompound writeNbt(NbtCompound nbt) {
-		if( direction != null) nbt.putByte("d", (byte) direction.getId());
-		if( instance != null ) nbt.put("i", instance.writeNbt(new NbtCompound()));
-		nbt.put("v", value.writeNbt(new NbtCompound()));
+		if(instance != null) nbt.put("i", instance.writeNbt(new NbtCompound()));
+		nbt.putByte("d", (byte) direction.getId());
 		nbt.put("s", stack.writeNbt(new NbtCompound()));
 		nbt.put("r", ring.writeNbt(new NbtCompound()));
 
@@ -67,7 +63,6 @@ public final class Script {
 	public Script copyFor(Direction direction) {
 		Script script = new Script();
 		script.direction = direction;
-		script.value = value.copy();
 		script.stack.from(stack);
 		script.ring.from(ring);
 		script.instance = this.instance == null ? null : this.instance.copy();
@@ -103,8 +98,6 @@ public final class Script {
 	public void reset(World world, BlockPos pos) {
 		this.stack.reset(element -> element.drop(world, pos));
 		this.ring.reset(element -> element.drop(world, pos));
-		this.value.drop(world, pos);
-		this.value = NumericElement.FALSE;
 		this.instance = null;
 	}
 

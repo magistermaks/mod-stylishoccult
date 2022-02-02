@@ -43,8 +43,8 @@ public class LogicRuneBlock extends RuneBlock {
             script.stack.push(value ? NumericElement.TRUE : NumericElement.FALSE);
         }
 
-        public static final LogicFunction PUSH = (script, world, pos) -> script.stack.push(script.value.copy());
-        public static final LogicFunction PULL = (script, world, pos) -> script.value = script.stack.pull(); // FIXME: that destroys stuff
+//        public static final LogicFunction PUSH = (script, world, pos) -> script.stack.push(script.value.copy());
+//        public static final LogicFunction PULL = (script, world, pos) -> script.value = script.stack.pull(); // FIXME: that destroys stuff
         public static final LogicFunction EXCHANGE = (script, world, pos) -> script.stack.swap();
         public static final LogicFunction DUPLICATE = (script, world, pos) -> script.stack.duplicate();
         public static final LogicFunction NOT = (script, world, pos) -> put(script, get(script, world, pos) == 0);
@@ -60,6 +60,7 @@ public class LogicRuneBlock extends RuneBlock {
         public static final LogicFunction SIN = (script, world, pos) -> put(script, Math.sin(get(script, world, pos)));
         public static final LogicFunction RANDOM = (script, world, pos) -> put(script, world.random.nextDouble());
         public static final LogicFunction ASCEND = (script, world, pos) -> script.ascend();
+        public static final LogicFunction ROTATE = (script, world, pos) -> script.stack.rotate();
         public static final LogicFunction DROP = Script::pull;
 
     }

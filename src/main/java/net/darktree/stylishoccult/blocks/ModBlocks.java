@@ -4,10 +4,7 @@ import net.darktree.stylishoccult.blocks.occult.*;
 import net.darktree.stylishoccult.blocks.runes.*;
 import net.darktree.stylishoccult.blocks.runes.flow.*;
 import net.darktree.stylishoccult.blocks.runes.io.*;
-import net.darktree.stylishoccult.blocks.runes.trigger.ClickRuneBlock;
-import net.darktree.stylishoccult.blocks.runes.trigger.ClockRuneBlock;
-import net.darktree.stylishoccult.blocks.runes.trigger.RandomRuneBlock;
-import net.darktree.stylishoccult.blocks.runes.trigger.RedstoneEntryRuneBlock;
+import net.darktree.stylishoccult.blocks.runes.trigger.*;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -73,11 +70,11 @@ public class ModBlocks {
     public static final Block THREE_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_tres", '3' ) );
     public static final Block FOUR_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_quattuor", '4' ) );
     public static final Block FIVE_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_quinque", '5' ) );
-    public static final Block PUSH_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "paello", LogicRuneBlock.Functions.PUSH ) );
-    public static final Block PULL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "divexo", LogicRuneBlock.Functions.PULL ) );
+    public static final Block ASCEND_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "ascendo", LogicRuneBlock.Functions.ASCEND ) );
+    public static final Block PULL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "circumago", LogicRuneBlock.Functions.ROTATE ) );
     public static final Block EXCHANGE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "cambitas", LogicRuneBlock.Functions.EXCHANGE ) );
     public static final Block DUPLICATE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "effingo", LogicRuneBlock.Functions.DUPLICATE ) );
-    public static final Block OR_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "vel", LogicRuneBlock.Functions.ADD ) ); // TODO: nuke this
+//    public static final Block OR_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "vel", LogicRuneBlock.Functions.ADD ) ); // TODO: nuke this
     public static final Block ADD_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "adaugeo", LogicRuneBlock.Functions.ADD ) );
     public static final Block NOT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "ni", LogicRuneBlock.Functions.NOT ) );
     public static final Block MULTIPLY_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "multiplico", LogicRuneBlock.Functions.MULTIPLY ) );
@@ -99,8 +96,9 @@ public class ModBlocks {
     public static final Block CLOCK_RUNE_BLOCK = RegUtil.rune( new ClockRuneBlock( "horologium", 5 ) );
     public static final Block RANDOM_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "temere", LogicRuneBlock.Functions.RANDOM ) );
     public static final Block GATEWAY_RUNE_BLOCK = RegUtil.rune( new RedstoneGateRuneBlock( "porta" ) );
-    public static final Block POP_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "absumo", LogicRuneBlock.Functions.DROP) );
+    public static final Block DROP_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "absumo", LogicRuneBlock.Functions.DROP) );
     public static final Block JOIN_RUNE_BLOCK = RegUtil.rune( new JoinRuneBlock( "adiungo" ) );
+    public static final Block LOOK_AT_RUNE_BLOCK = RegUtil.rune( new LookAtRune( "inviso" ) );
 
     public static void init() {
         // load class
