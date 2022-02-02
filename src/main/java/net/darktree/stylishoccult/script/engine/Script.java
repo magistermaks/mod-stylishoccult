@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.script.engine;
 import net.darktree.stylishoccult.blocks.runes.RuneBlock;
 import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneInstance;
+import net.darktree.stylishoccult.script.components.SafeMode;
 import net.darktree.stylishoccult.script.elements.StackElement;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
@@ -12,8 +13,9 @@ import net.minecraft.world.World;
 public final class Script {
 
 	private RuneInstance instance = null;
+	private SafeMode safe = SafeMode.DISABLED;
 
-	public final Ring ring = new Ring(8);
+	public final Ring ring = new Ring(6);
 	public final Stack stack = new Stack(32);
 	public Direction direction = Direction.NORTH;
 
@@ -25,6 +27,7 @@ public final class Script {
 
 		if(nbt.contains("i")) script.instance = RuneInstance.from(nbt.getCompound("i"));
 		script.direction = Direction.byId(nbt.getByte("d"));
+		script.safe = SafeMode.from(nbt.getByte("f"));
 		script.stack.readNbt(nbt.getCompound("s"));
 		script.ring.readNbt(nbt.getCompound("r"));
 
@@ -37,6 +40,7 @@ public final class Script {
 	public NbtCompound writeNbt(NbtCompound nbt) {
 		if(instance != null) nbt.put("i", instance.writeNbt(new NbtCompound()));
 		nbt.putByte("d", (byte) direction.getId());
+		nbt.putByte("f", (byte) safe.ordinal());
 		nbt.put("s", stack.writeNbt(new NbtCompound()));
 		nbt.put("r", ring.writeNbt(new NbtCompound()));
 
@@ -47,6 +51,7 @@ public final class Script {
 	 * Execute the rune at given position
 	 */
 	public void apply(RuneBlock rune, World world, BlockPos pos) {
+		safe = this.safe.advance();
 		instance = instance == null ? rune.getInstance() : instance.choose(this, rune.getInstance());
 		rune.apply(this, world, pos);
 		stack.validate();
@@ -57,11 +62,10 @@ public final class Script {
 	 */
 	public Script copyFor(Direction direction) {
 		Script script = new Script();
-		script.direction = direction;
 		script.stack.from(stack);
 		script.ring.from(ring);
 		script.instance = this.instance == null ? null : this.instance.copy();
-		return script;
+		return script.with(direction);
 	}
 
 	/**
@@ -94,7 +98,22 @@ public final class Script {
 		this.stack.reset(element -> element.drop(world, pos));
 		this.ring.reset(element -> element.drop(world, pos));
 		this.instance = null;
+		this.safe = SafeMode.DISABLED;
 	}
 
+	/**
+	 * Use this to enter safe mode (no exceptions) for the next rune
+	 */
+	public void enableSafeMode() {
+		this.safe = SafeMode.SCHEDULED;
+	}
+
+	/**
+	 * This method is used to handle {@link RuneException}s
+	 */
+	public void handle(RuneException exception, World world, BlockPos pos) {
+		exception.apply(world, pos, this.safe);
+		this.reset(world, pos);
+	}
 
 }

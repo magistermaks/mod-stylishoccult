@@ -41,11 +41,11 @@ public class DebugRuneBlock extends RuneBlock {
                 player.sendMessage( new LiteralText("   " + element.toString()), false );
             });
 
-            player.sendMessage( new LiteralText(" - Drop Stack:"), false );
-
-            script.ring.reset(element -> {
-                player.sendMessage( new LiteralText("   " + (element == null ? "null" : element.toString())), false );
-            });
+//            player.sendMessage( new LiteralText(" - Drop Stack:"), false );
+//
+//            script.ring.reset(element -> {
+//                player.sendMessage( new LiteralText("   " + (element == null ? "null" : element.toString())), false );
+//            });
         }
 
         return ActionResult.SUCCESS;

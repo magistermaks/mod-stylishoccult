@@ -99,7 +99,8 @@ public class ModBlocks {
     public static final Block GATEWAY_RUNE_BLOCK = RegUtil.rune( new RedstoneGateRuneBlock( "porta" ) );
     public static final Block DROP_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "absumo", LogicRuneBlock.Functions.DROP) );
     public static final Block JOIN_RUNE_BLOCK = RegUtil.rune( new JoinRuneBlock( "adiungo" ) );
-    public static final Block LOOK_AT_RUNE_BLOCK = RegUtil.rune( new LookAtRune( "inviso" ) );
+    public static final Block LOOK_AT_RUNE_BLOCK = RegUtil.rune( new LookAtRuneBlock( "inviso" ) );
+    public static final Block TRY_RUNE_BLOCK = RegUtil.rune( new TryRuneBlock( "conatus" ) );
 
     public static void init() {
         // load class

@@ -20,11 +20,11 @@ import java.util.Random;
 
 public class AshS2CPacket {
 
-    private final Identifier identifier = new ModIdentifier("ash_packet");
+    private final Identifier IDENTIFIER = new ModIdentifier("ash_packet");
 
     @Environment(EnvType.CLIENT)
     public void register() {
-        ClientSidePacketRegistry.INSTANCE.register(identifier, this::read);
+        ClientSidePacketRegistry.INSTANCE.register(IDENTIFIER, this::read);
     }
 
     public void read(PacketContext context, PacketByteBuf buffer) {
@@ -51,7 +51,7 @@ public class AshS2CPacket {
     public void send( ServerPlayerEntity entity, BlockPos pos ) {
         PacketByteBuf data = new PacketByteBuf(Unpooled.buffer());
         data.writeBlockPos( pos );
-        ServerSidePacketRegistry.INSTANCE.sendToPlayer(entity, identifier, data);
+        ServerSidePacketRegistry.INSTANCE.sendToPlayer(entity, IDENTIFIER, data);
     }
 
     public void send(BlockPos pos, ServerWorld world) {

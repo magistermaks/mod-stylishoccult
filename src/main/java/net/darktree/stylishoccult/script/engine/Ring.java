@@ -66,6 +66,7 @@ public final class Ring {
 			nbt.put(String.valueOf(i), entry);
 		}
 
+		nbt.putShort("i", (short) offset);
 		return nbt;
 	}
 
@@ -78,6 +79,8 @@ public final class Ring {
 				NbtCompound entry = nbt.getCompound(String.valueOf(i));
 				buffer[offset] = entry.isEmpty() ? null : StackElement.from(entry);
 			}
+
+			offset = nbt.getShort("i") % buffer.length;
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}

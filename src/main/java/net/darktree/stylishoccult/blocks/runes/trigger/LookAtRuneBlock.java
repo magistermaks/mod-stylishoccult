@@ -8,9 +8,9 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class LookAtRune extends EntryRuneBlock implements LookAtEvent {
+public class LookAtRuneBlock extends EntryRuneBlock implements LookAtEvent {
 
-	public LookAtRune(String name) {
+	public LookAtRuneBlock(String name) {
 		super(name);
 	}
 
