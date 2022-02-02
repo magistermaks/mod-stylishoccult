@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "stylish_occult:block/brick/runestone_slab"
+    },
+    "type=double": {
+      "model": "stylish_occult:block/brick/runestone"
+    },
+    "type=top": {
+      "model": "stylish_occult:block/brick/runestone_slab_top"
+    }
+  }
+}

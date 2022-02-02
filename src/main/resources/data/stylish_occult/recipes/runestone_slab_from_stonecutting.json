@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {"item": "stylish_occult:runestone"},
+  "result": "stylish_occult:runestone_slab",
+  "count": 2
+}
