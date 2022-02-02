@@ -99,6 +99,12 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
             }
         }catch(RuneException exception) {
             exception.apply(world, pos);
+
+            try {
+                getEntity(world, pos).getScript().reset(world, pos);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         super.scheduledTick(state, world, pos, random);

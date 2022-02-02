@@ -22,7 +22,7 @@ public class DebugRuneBlock extends RuneBlock {
     }
 
     @Override
-    protected void onTriggered(Script script, World world, BlockPos pos, BlockState state) {
+    public void apply(Script script, World world, BlockPos pos) {
         RuneBlockEntity entity = getEntity(world, pos);
         entity.setMeta( script.writeNbt(new NbtCompound()) );
     }

@@ -47,14 +47,9 @@ public final class Script {
 	 * Execute the rune at given position
 	 */
 	public void apply(RuneBlock rune, World world, BlockPos pos) {
-		try {
-			push(rune);
-			rune.apply(this, world, pos);
-			stack.validate();
-		} catch (RuneException exception) {
-			exception.apply(world, pos);
-			reset(world, pos);
-		}
+		instance = instance == null ? rune.getInstance() : instance.choose(this, rune.getInstance());
+		rune.apply(this, world, pos);
+		stack.validate();
 	}
 
 	/**
@@ -101,16 +96,5 @@ public final class Script {
 		this.instance = null;
 	}
 
-	private void push(RuneBlock rune) {
-		RuneInstance inst = rune.getInstance();
-
-		if (instance == null) {
-			instance = inst;
-		} else {
-			if(!instance.push(this, inst)) {
-				instance = inst;
-			}
-		}
-	}
 
 }

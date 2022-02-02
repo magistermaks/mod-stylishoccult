@@ -63,6 +63,7 @@ public class ModBlocks {
     public static final Block DIRECTION_RUNE_BLOCK = RegUtil.rune( new RedirectRuneBlock( "directio" ) );
     public static final Block RANDOM_UPDATE_RUNE_BLOCK = RegUtil.rune( new RandomRuneBlock( "fortuitus" ) );
     public static final Block FORK_RUNE_BLOCK = RegUtil.rune( new ForkRuneBlock( "furca" ) );
+    public static final Block DOT_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_dot", '.' ) );
     public static final Block MINUS_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_minus", '-' ) );
     public static final Block ZERO_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_nihil", '0' ) );
     public static final Block ONE_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_unus", '1' ) );

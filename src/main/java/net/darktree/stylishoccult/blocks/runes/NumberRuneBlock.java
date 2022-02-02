@@ -50,7 +50,7 @@ public class NumberRuneBlock extends RuneBlock {
         }
 
         @Override
-        public boolean push(Script script, RuneInstance instance ) {
+        public RuneInstance choose(Script script, RuneInstance instance ) {
 
             if( raw.length() > 16 ) {
                 throw RuneExceptionType.NUMBER_TOO_LONG.get();
@@ -60,12 +60,12 @@ public class NumberRuneBlock extends RuneBlock {
                 raw += ((NumberRuneBlock) instance.rune).value;
 
                 try {
-                    Integer.parseInt(raw, 6);
+                    parse(raw, 6);
                 }catch (Exception e){
                     throw RuneExceptionType.INVALID_NUMBER.get();
                 }
 
-                return true;
+                return this;
             }
 
             try {
@@ -74,7 +74,7 @@ public class NumberRuneBlock extends RuneBlock {
                 throw RuneExceptionType.INVALID_NUMBER.get();
             }
 
-            return false;
+            return instance;
         }
 
         /**
@@ -86,7 +86,7 @@ public class NumberRuneBlock extends RuneBlock {
             String[] parts = string.split("\\.");
             double value = Integer.parseInt(parts[0], base);
 
-            if(parts.length == 2) {
+            if(parts.length == 2 && parts[1].length() > 0) {
                 value += Integer.parseInt(parts[1], base) / Math.pow(base, parts[1].length());
             }
 

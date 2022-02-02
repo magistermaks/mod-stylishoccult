@@ -13,7 +13,7 @@ public abstract class RuneInstance {
     }
 
     public abstract RuneInstance copy();
-    public abstract boolean push(Script script, RuneInstance instance);
+    public abstract RuneInstance choose(Script script, RuneInstance instance);
 
     public NbtCompound writeNbt(NbtCompound tag) {
         tag.putString("rune", rune.name);

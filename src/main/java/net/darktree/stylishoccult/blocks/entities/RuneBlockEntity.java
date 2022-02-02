@@ -47,10 +47,6 @@ public class RuneBlockEntity extends SimpleBlockEntity {
         markDirty();
     }
 
-    public Script copyScript(Direction direction) {
-        return script.copyFor( direction );
-    }
-
     public Script getScript() {
         return script;
     }
