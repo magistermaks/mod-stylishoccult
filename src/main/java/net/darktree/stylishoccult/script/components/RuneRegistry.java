@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.script.components;
 
 import it.unimi.dsi.fastutil.objects.Object2ShortOpenHashMap;
 import net.darktree.stylishoccult.blocks.runes.RuneBlock;
+import net.darktree.stylishoccult.script.elements.ItemElement;
 import net.darktree.stylishoccult.script.elements.NumericElement;
 import net.darktree.stylishoccult.script.elements.StackElement;
 import org.jetbrains.annotations.ApiStatus;
@@ -41,6 +42,7 @@ public class RuneRegistry {
 
     static {
         registerElement(NumericElement.class, NumericElement::new);
+        registerElement(ItemElement.class, ItemElement::new);
     }
 
 }

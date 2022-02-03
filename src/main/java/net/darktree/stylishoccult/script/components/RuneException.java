@@ -14,7 +14,7 @@ public class RuneException extends RuntimeException {
         return new RuneException( type.getName() );
     }
 
-    private RuneException( String message ) {
+    public RuneException(String message) {
         super(message);
     }
 

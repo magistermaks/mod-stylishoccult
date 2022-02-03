@@ -5,6 +5,7 @@ import net.darktree.stylishoccult.blocks.runes.*;
 import net.darktree.stylishoccult.blocks.runes.flow.*;
 import net.darktree.stylishoccult.blocks.runes.io.*;
 import net.darktree.stylishoccult.blocks.runes.trigger.*;
+import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -101,6 +102,7 @@ public class ModBlocks {
     public static final Block JOIN_RUNE_BLOCK = RegUtil.rune( new JoinRuneBlock( "adiungo" ) );
     public static final Block LOOK_AT_RUNE_BLOCK = RegUtil.rune( new LookAtRuneBlock( "inviso" ) );
     public static final Block TRY_RUNE_BLOCK = RegUtil.rune( new TryRuneBlock( "conatus" ) );
+    public static final Block CREATE_RUNE_BLOCK = RegUtil.rune( new CreateRuneBlock("creo", ModItems.ARCANE_ASH) );
 
     public static void init() {
         // load class

@@ -117,11 +117,7 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
     }
 
     protected void propagateTo(World world, BlockPos pos, Script script, Direction[] directions) {
-        boolean copy = false;
-
-        if(directions.length == 0) {
-            script.reset(world, pos);
-        }
+        boolean used = false;
 
         for (Direction direction : directions) {
 
@@ -130,11 +126,15 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 
             if (state.getBlock() instanceof RuneBlock rune) {
                 if (rune.canAcceptSignal()) {
-                    rune.execute(world, target, state, copy ? script.copyFor(direction) : script.with(direction));
-                    copy = true;
+                    rune.execute(world, target, state, used ? script.copyFor(direction) : script.with(direction));
+                    used = true;
                 }
             }
 
+        }
+
+        if(!used) {
+            script.reset(world, pos);
         }
     }
 
