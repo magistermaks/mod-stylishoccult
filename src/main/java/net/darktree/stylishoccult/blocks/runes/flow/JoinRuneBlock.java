@@ -18,25 +18,24 @@ public class JoinRuneBlock extends DirectionalRuneBlock {
     @Override
     public void apply(Script script, World world, BlockPos pos) {
         RuneBlockEntity entity = getEntity(world, pos);
-        Direction facing = getFacing(world, pos);
 
-        if( facing == script.direction ) {
-            if( entity.hasMeta() ) {
-                Stack stack = new Stack(32);
-                stack.readNbt(entity.getMeta());
-                stack.reset(script.stack::push);
-            }
+        if( entity.hasMeta() ) {
+            Stack stack = new Stack(32);
+            stack.readNbt(entity.getMeta());
+            stack.reset(script.stack::push);
+            entity.setMeta(null);
         }else{
             entity.setMeta(script.stack.writeNbt(new NbtCompound()));
+            script.stack.reset(element -> {});
         }
     }
 
     @Override
     public Direction[] getDirections(World world, BlockPos pos, Script script) {
-        if( script.direction != getFacing(world, pos) ) {
-            return new Direction[] {};
+        if( !getEntity(world, pos).hasMeta() ) {
+            return new Direction[] { getFacing(world, pos) };
         }
 
-        return super.getDirections(world, pos, script);
+        return new Direction[] {};
     }
 }
