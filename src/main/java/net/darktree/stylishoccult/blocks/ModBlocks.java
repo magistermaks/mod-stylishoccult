@@ -59,6 +59,7 @@ public class ModBlocks {
     public static final Block CRYSTALLINE_BLACKSTONE = RegUtil.block( "crystalline_blackstone", new CrystallineBlackstone( RegUtil.settings( Material.STONE, BlockSoundGroup.GILDED_BLACKSTONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
     public static final Block RUNESTONE_SLAB = RegUtil.block( "runestone_slab", new SlabBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
     public static final Block RUNESTONE_STAIR = RegUtil.block( "runestone_stairs", new PublicStairsBlock( RUNESTONE.getDefaultState(), RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
+    public static final Block RUNESTONE_TABLE = RegUtil.block( "runestone_table", new TableBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
 
     // runes
     public static final Block BROKEN_RUNE_BLOCK = RegUtil.rune( new BrokenRuneBlock( "damaged" ) );
