@@ -1,4 +1,10 @@
 
+0.4.1 alpha <2022/02/04>
+- Optimised assets
+- Increased rune icon contrast
+- Added runestone tables, stairs and slabs
+- This is the final update for 1.16, consider switching to 1.17
+
 0.4.0 alpha <2022/01/28>
 - Removed all bricks
 - Removed candles

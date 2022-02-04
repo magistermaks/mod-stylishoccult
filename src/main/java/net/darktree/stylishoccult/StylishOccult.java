@@ -33,6 +33,14 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
 
     @Override
     public void onInitialize() {
+
+        if(!FabricLoader.getInstance().getConfigDir().resolve("stylish_occult_116_nowarn.lock").toFile().exists()) {
+            LOGGER.fatal("YOU ARE USING A NO LONGER SUPPORTED AND INCOMPLETE VERSION OF STYLISH OCCULT,");
+            LOGGER.fatal("MANY FEATURES MAY BE MISSING OR UNSTABLE! YOU AT YOUR OWN RISK!");
+            LOGGER.fatal("Consider switching to a 1.17 version of Stylish Occult, if you would like to");
+            LOGGER.fatal("silence this warning create a file 'stylish_occult_116_nowarn.lock' in the game's config directory");
+        }
+
         Sounds.init();
         ModBlocks.init();
         Network.init();
