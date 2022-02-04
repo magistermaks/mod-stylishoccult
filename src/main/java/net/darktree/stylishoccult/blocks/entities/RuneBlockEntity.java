@@ -5,7 +5,6 @@ import net.darktree.stylishoccult.utils.SimpleBlockEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 
 public class RuneBlockEntity extends SimpleBlockEntity {
 

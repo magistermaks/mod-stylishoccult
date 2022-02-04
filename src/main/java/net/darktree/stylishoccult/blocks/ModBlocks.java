@@ -76,7 +76,6 @@ public class ModBlocks {
     public static final Block PULL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "circumago", LogicRuneBlock.Functions.ROTATE ) );
     public static final Block EXCHANGE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "cambitas", LogicRuneBlock.Functions.EXCHANGE ) );
     public static final Block DUPLICATE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "effingo", LogicRuneBlock.Functions.DUPLICATE ) );
-//    public static final Block OR_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "vel", LogicRuneBlock.Functions.ADD ) ); // TODO: nuke this
     public static final Block ADD_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "adaugeo", LogicRuneBlock.Functions.ADD ) );
     public static final Block NOT_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "ni", LogicRuneBlock.Functions.NOT ) );
     public static final Block MULTIPLY_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "multiplico", LogicRuneBlock.Functions.MULTIPLY ) );
@@ -103,6 +102,7 @@ public class ModBlocks {
     public static final Block LOOK_AT_RUNE_BLOCK = RegUtil.rune( new LookAtRuneBlock( "inviso" ) );
     public static final Block TRY_RUNE_BLOCK = RegUtil.rune( new TryRuneBlock( "conatus" ) );
     public static final Block CREATE_RUNE_BLOCK = RegUtil.rune( new CreateRuneBlock("creo", ModItems.ARCANE_ASH) );
+    public static final Block TAKE_RUNE_BLOCK = RegUtil.rune( new TakeRuneBlock("furtum") );
 
     public static void init() {
         // load class

@@ -5,7 +5,6 @@ import net.darktree.stylishoccult.script.elements.StackElement;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 

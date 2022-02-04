@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.script.elements;
 
+import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneRegistry;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
@@ -58,6 +59,14 @@ public abstract class StackElement {
 	 */
 	public void drop(World world, BlockPos pos) {
 		// by default do nothing about it
+	}
+
+	public <T extends StackElement> T cast(Class<T> clazz) {
+		if( clazz.isInstance(this) ) {
+			return clazz.cast(this);
+		}
+
+		throw new RuneException("invalid type!");
 	}
 
 	@FunctionalInterface
