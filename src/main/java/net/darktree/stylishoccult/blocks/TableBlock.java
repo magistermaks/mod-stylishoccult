@@ -1,6 +1,8 @@
 package net.darktree.stylishoccult.blocks;
 
-import net.darktree.interference.api.DropsItself;
+import net.darktree.stylishoccult.loot.LootTable;
+import net.darktree.stylishoccult.loot.LootTables;
+import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.darktree.stylishoccult.utils.Utils;
 import net.darktree.stylishoccult.utils.Voxels;
 import net.minecraft.block.Block;
@@ -9,7 +11,6 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -17,7 +18,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
-public class TableBlock extends Block implements DropsItself {
+public class TableBlock extends SimpleBlock {
 
 	public static final BooleanProperty SOUTH = BooleanProperty.of("south");
 	public static final BooleanProperty NORTH = BooleanProperty.of("north");
@@ -62,4 +63,8 @@ public class TableBlock extends Block implements DropsItself {
 				.with(TOP, world.getBlockState(pos.up()).isOf(this));
 	}
 
+	@Override
+	public LootTable getInternalLootTableId() {
+		return LootTables.SIMPLE;
+	}
 }
