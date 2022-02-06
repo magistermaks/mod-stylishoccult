@@ -33,12 +33,12 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
     public static final BooleanProperty STATIC = BooleanProperty.of("static");
 
     public static final VoxelShape[] SHAPES = {
-            Utils.box( 6, 0, 6, 10, 16, 10 ),
-            Utils.box( 5, 0, 5, 11, 16, 11 ),
-            Utils.box( 4, 0, 4, 12, 16, 12 ),
-            Utils.box( 3, 0, 3, 13, 16, 13 ),
-            Utils.box( 2, 0, 2, 14, 16, 14 ),
-            Utils.box( 1, 0, 1, 15, 16, 15 )
+            Utils.shape( 6, 0, 6, 10, 16, 10 ),
+            Utils.shape( 5, 0, 5, 11, 16, 11 ),
+            Utils.shape( 4, 0, 4, 12, 16, 12 ),
+            Utils.shape( 3, 0, 3, 13, 16, 13 ),
+            Utils.shape( 2, 0, 2, 14, 16, 14 ),
+            Utils.shape( 1, 0, 1, 15, 16, 15 )
     };
 
     public TentacleBlock() {

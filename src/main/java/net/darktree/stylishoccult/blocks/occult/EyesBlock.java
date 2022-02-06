@@ -34,7 +34,7 @@ import java.util.Random;
 public class EyesBlock extends SimpleBlock implements ImpureBlock, FoliageFleshBlock, FluidReplaceable {
 
     public static final IntProperty SIZE = IntProperty.of("size", 1, 3);
-    private static final VoxelShape OUTLINE_SHAPE = Utils.box(1, 0, 1, 15, 2, 15);
+    private static final VoxelShape OUTLINE_SHAPE = Utils.shape(1, 0, 1, 15, 2, 15);
 
     public EyesBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).ticksRandomly() );

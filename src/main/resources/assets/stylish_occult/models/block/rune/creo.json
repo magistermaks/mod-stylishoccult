@@ -1,6 +1,12 @@
 {
-    "parent": "stylish_occult:block/rune/common/basic",
+	"credit": "Made with Blockbench by magistermaks",
+    "parent": "stylish_occult:block/rune/common/base",
 	"textures": {
-		"rune": "stylish_occult:rune/creo"
+        "north": "stylish_occult:rune/creo",
+		"east": "stylish_occult:rune/creo",
+		"south": "stylish_occult:rune/creo",
+		"west": "stylish_occult:rune/creo",
+		"up": "stylish_occult:rune/generic/dot",
+		"down": "stylish_occult:rune/generic/dot"
 	}
 }

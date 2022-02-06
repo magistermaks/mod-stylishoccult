@@ -24,8 +24,7 @@ public abstract class DirectionalRuneBlock extends RuneBlock {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
-        builder.add(FACING);
+        super.appendProperties(builder.add(FACING));
     }
 
     @Nullable

@@ -28,9 +28,9 @@ public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFlesh
     public static final BooleanProperty PERSISTENT = BooleanProperty.of("persistent");
 
     private static final VoxelShape SHAPE = Utils.join(
-            Utils.box( 1, 1, 0, 15, 15, 16 ),
-            Utils.box( 0, 1, 1, 16, 15, 15 ),
-            Utils.box( 1, 0, 1, 15, 16, 15 )
+            Utils.shape( 1, 1, 0, 15, 15, 16 ),
+            Utils.shape( 0, 1, 1, 16, 15, 15 ),
+            Utils.shape( 1, 0, 1, 15, 16, 15 )
     );
 
     public EyeBlock() {

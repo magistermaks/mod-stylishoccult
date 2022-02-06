@@ -37,12 +37,12 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock, FluidRep
     public static final IntProperty SIZE = IntProperty.of("size", 1, 3);
 
     public static final VoxelShape[] SHAPES = {
-            Utils.box(  0, 16,  0, 16, 15, 16 ), // UP
-            Utils.box(  0,  0,  0, 16,  1, 16 ), // DOWN
-            Utils.box(  0,  0, 15, 16, 16, 16 ), // SOUTH
-            Utils.box(  0,  0,  0, 16, 16,  1 ), // NORTH
-            Utils.box(  0,  0,  0,  1, 16, 16 ), // WEST
-            Utils.box( 15,  0,  0, 16, 16, 16 )  // EAST
+            Utils.shape(  0, 16,  0, 16, 15, 16 ), // UP
+            Utils.shape(  0,  0,  0, 16,  1, 16 ), // DOWN
+            Utils.shape(  0,  0, 15, 16, 16, 16 ), // SOUTH
+            Utils.shape(  0,  0,  0, 16, 16,  1 ), // NORTH
+            Utils.shape(  0,  0,  0,  1, 16, 16 ), // WEST
+            Utils.shape( 15,  0,  0, 16, 16, 16 )  // EAST
     };
 
 	public static boolean hasSide(BlockState state) {

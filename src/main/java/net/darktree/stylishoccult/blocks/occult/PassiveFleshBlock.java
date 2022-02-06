@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
 
     public static final BooleanProperty BLOODY = BooleanProperty.of("bloody");
-    public static final VoxelShape SMALL_CUBE = Utils.box(1, 1, 1, 15, 15, 15);
+    public static final VoxelShape SMALL_CUBE = Utils.shape(1, 1, 1, 15, 15, 15);
 
     public PassiveFleshBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.8f) );

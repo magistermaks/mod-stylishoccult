@@ -28,7 +28,7 @@ import java.util.Random;
 public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
 
     public static final BooleanProperty TOP = BooleanProperty.of("top");
-    private static final VoxelShape BOX = Utils.box(0, 0, 0, 16, 15, 16);
+    private static final VoxelShape BOX = Utils.shape(0, 0, 0, 16, 15, 16);
 
     public GooFleshBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).noCollision().ticksRandomly());

@@ -13,118 +13,53 @@ public class Voxels {
         return new VoxelShapeBuilder();
     }
 
-    public static VoxelShapeBuilder from( Box box ) {
-        VoxelShapeBuilder builder = empty();
-        return builder.add( IntBox.from(box) );
+    public static VoxelShapeBuilder box(float x1, float y1, float z1, float x2, float y2, float z2) {
+        return empty().box( x1, y1, z1, x2, y2, z2 );
     }
 
-    public static VoxelShapeBuilder from( IntBox box ) {
-        VoxelShapeBuilder builder = empty();
-        return builder.add(box);
-    }
-
-    public static VoxelShapeBuilder box( int x1, int y1, int z1, int x2, int y2, int z2 ) {
-        VoxelShapeBuilder builder = empty();
-        return builder.box( x1, y1, z1, x2, y2, z2 );
-    }
-
-    public static class IntBox {
-
-        public int x1, y1, z1, x2, y2, z2;
-
-        IntBox( int x1, int y1, int z1, int x2, int y2, int z2 ) {
-            this.x1 = x1;
-            this.x2 = x2;
-            this.y1 = y1;
-            this.y2 = y2;
-            this.z1 = z1;
-            this.z2 = z2;
-        }
-
-        IntBox( IntBox box ) {
-            this.x1 = box.x1;
-            this.x2 = box.x2;
-            this.y1 = box.y1;
-            this.y2 = box.y2;
-            this.z1 = box.z1;
-            this.z2 = box.z2;
-        }
-
-        public static IntBox from( Box box ) {
-            return new IntBox(
-                    (int) box.minX,
-                    (int) box.minY,
-                    (int) box.maxZ,
-                    (int) box.maxX,
-                    (int) box.maxY,
-                    (int) box.maxZ
-            );
-        }
-
-        public IntBox copy() {
-            return new IntBox(this);
-        }
-
-        public VoxelShape asVoxelShape() {
-            return Utils.box(x1, y1, z1, x2, y2, z2);
-        }
-
+    public static VoxelShapeBuilder box(Box box) {
+        return empty().box(box);
     }
 
     public static class VoxelShapeBuilder {
 
-        private final ArrayList<IntBox> boxes;
+        private final ArrayList<VoxelShape> shapes;
 
         private VoxelShapeBuilder() {
-            boxes = new ArrayList<>();
+            shapes = new ArrayList<>();
         }
 
-        private VoxelShapeBuilder(VoxelShapeBuilder builder) {
-            boxes = copyBoxes( builder.boxes );
-        }
-
-        private ArrayList<IntBox> copyBoxes( ArrayList<IntBox> boxes ) {
-            ArrayList<IntBox> copied = new ArrayList<>();
-            copied.ensureCapacity( boxes.size() );
-
-            for( IntBox box : boxes ) {
-                copied.add( box.copy() );
-            }
-
-            return copied;
-        }
-
-        public VoxelShapeBuilder add( IntBox box ) {
-            boxes.add(box);
+        public VoxelShapeBuilder add(VoxelShape shape) {
+            shapes.add(shape);
             return this;
         }
 
-        public VoxelShapeBuilder box( int x1, int y1, int z1, int x2, int y2, int z2 ) {
-            return add( new IntBox( x1, y1, z1, x2, y2, z2 ) );
+        public VoxelShapeBuilder box(float x1, float y1, float z1, float x2, float y2, float z2) {
+            return add( Utils.shape(x1, y1, z1, x2, y2, z2) );
         }
 
-        public VoxelShapeBuilder copy() {
-            return new VoxelShapeBuilder(this);
+        public VoxelShapeBuilder box(Box box) {
+            return box((float) box.minX, (float) box.minY, (float) box.minZ, (float) box.maxX, (float) box.maxY, (float) box.maxZ);
         }
 
         public VoxelShape build( BooleanBiFunction function ) {
-            int size = boxes.size();
+            int size = shapes.size();
 
             if( size < 1 ) {
                 throw new RuntimeException("Can't join an empty collection!");
             }
 
-            VoxelShape shape = boxes.get(0).asVoxelShape();
+            VoxelShape shape = shapes.get(0);
 
             for (int i = 1; i < size; i++) {
-                shape = VoxelShapes.combine(shape, boxes.get(i).asVoxelShape(), function);
+                shape = VoxelShapes.combine(shape, shapes.get(i), function);
             }
 
             return shape;
         }
 
         public VoxelShape build() {
-            return build( BooleanBiFunction.OR );
+            return build(BooleanBiFunction.OR);
         }
 
     }

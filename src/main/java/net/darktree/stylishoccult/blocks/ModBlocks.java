@@ -101,8 +101,9 @@ public class ModBlocks {
     public static final Block JOIN_RUNE_BLOCK = RegUtil.rune( new JoinRuneBlock( "adiungo" ) );
     public static final Block LOOK_AT_RUNE_BLOCK = RegUtil.rune( new LookAtRuneBlock( "inviso" ) );
     public static final Block TRY_RUNE_BLOCK = RegUtil.rune( new TryRuneBlock( "conatus" ) );
-    public static final Block CREATE_RUNE_BLOCK = RegUtil.rune( new CreateRuneBlock("creo", ModItems.ARCANE_ASH) );
+    public static final Block CREATE_RUNE_BLOCK = RegUtil.rune( new CreateRuneBlock("cinis", ModItems.ARCANE_ASH) );
     public static final Block TAKE_RUNE_BLOCK = RegUtil.rune( new TakeRuneBlock("furtum") );
+    public static final Block CRAFT_RUNE_BLOCK = RegUtil.rune( new CraftRuneBlock("creo") );
 
     public static void init() {
         // load class

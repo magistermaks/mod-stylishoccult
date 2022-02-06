@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class WormsBlock extends BuildingBlock implements ImpureBlock, FoliageFleshBlock, FluidReplaceable {
 
-    private static final VoxelShape SHAPE = Utils.box(2, 0, 2, 14, 10, 14);
+    private static final VoxelShape SHAPE = Utils.shape(2, 0, 2, 14, 10, 14);
 
     public WormsBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).noCollision().breakInstantly().ticksRandomly() );
