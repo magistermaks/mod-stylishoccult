@@ -16,23 +16,11 @@ import net.minecraft.world.World;
 
 public class PlaceRuneBlock extends ActorRuneBlock {
 
-    public interface PlaceFunction {
-        void place( World world, BlockPos pos, BlockState state );
-    }
-
-    public static final PlaceFunction ARCANE_ASH_PLACER = (world, pos, state) -> {
-        if( (state.isAir() || state.getMaterial().isReplaceable()) && (state.getBlock() != ModBlocks.ARCANE_ASH || state.get(ArcaneAshBlock.AGE) != 0) ) {
-            world.setBlockState(pos, ModBlocks.ARCANE_ASH.getDefaultState().with(ArcaneAshBlock.PERSISTENT, false));
-        }
-    };
-
     private final int range;
-    private final PlaceFunction placeFunction;
 
-    public PlaceRuneBlock(String name, int range, PlaceFunction placeFunction) {
+    public PlaceRuneBlock(String name, int range) {
         super(name);
         this.range = range;
-        this.placeFunction = placeFunction;
     }
 
     @Override
@@ -43,7 +31,6 @@ public class PlaceRuneBlock extends ActorRuneBlock {
             int z = (int) Math.round( script.pull(world, pos).value() );
 
             ItemElement element = script.stack.pull().cast(ItemElement.class);
-
             BlockPos target = pos.add(x, y, z);
 
             if( !target.isWithinDistance(pos, range) ) {
@@ -69,6 +56,5 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 
         super.apply(script);
     }
-
 
 }

@@ -1,0 +1,33 @@
+{
+  "parent": "stylish_occult:occult/gather",
+  "display": {
+    "icon": {
+      "item": "stylish_occult:rune_damaged"
+    },
+    "title": {
+      "translate": "advancements.stylish_occult.explode.title"
+    },
+    "description": {
+      "translate": "advancements.stylish_occult.explode.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "explode": {
+      "trigger": "stylish_occult:exception",
+      "conditions": {
+        "defused": false,
+        "distance": 32,
+        "exception": null
+      }
+    }
+  },
+  "requirements": [
+    [
+      "explode"
+    ]
+  ]
+}

@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.blocks;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.blocks.entities.BlockEntities;
 import net.darktree.stylishoccult.blocks.entities.LavaDemonBlockEntity;
 import net.darktree.stylishoccult.enums.LavaDemonMaterial;
@@ -21,6 +22,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -77,7 +79,7 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add( ANGER, PART, CAN_SPREAD, MATERIAL );
+        builder.add(ANGER, PART, CAN_SPREAD, MATERIAL);
     }
 
     @Override
@@ -92,6 +94,10 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
     @Override
     public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
         world.setBlockState(pos, state.with(ANGER, 2));
+
+        if(!world.isClient) {
+            Criteria.WAKE.trigger((ServerPlayerEntity) player);
+        }
     }
 
     @Override

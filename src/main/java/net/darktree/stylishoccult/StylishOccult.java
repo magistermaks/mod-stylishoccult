@@ -10,6 +10,7 @@ import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.particles.Particles;
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.tags.ModTags;
 import net.darktree.stylishoccult.worldgen.ModFeatures;
@@ -44,6 +45,7 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
         ModFeatures.init();
         ModEffects.init();
         ModTags.init();
+        Criteria.init();
     }
 
     @Override

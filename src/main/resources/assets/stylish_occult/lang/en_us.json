@@ -126,5 +126,24 @@
   "itemGroup.stylish_occult.stylish_occult_main": "Stylish Occult: General",
   "itemGroup.stylish_occult.stylish_occult_runes": "Stylish Occult: Runes",
 
-  "effect.stylish_occult.corrupted_blood": "Corrupted Blood"
+  "effect.stylish_occult.corrupted_blood": "Corrupted Blood",
+
+  "advancements.stylish_occult.root.title": "Stylish Occult",
+  "advancements.stylish_occult.root.description": "With strange aeons even death may die",
+  "advancements.stylish_occult.gather.title": "Forbidden Knowledge",
+  "advancements.stylish_occult.gather.description": "Gather an ancient rune",
+  "advancements.stylish_occult.explode.title": "Explosive Setback",
+  "advancements.stylish_occult.explode.description": "Play with grater powers",
+  "advancements.stylish_occult.defuse.title": "Conatus Et Succedant",
+  "advancements.stylish_occult.defuse.description": "Prevent an explosion",
+  "advancements.stylish_occult.madness.title": "Deep Insight",
+  "advancements.stylish_occult.madness.description": "Stare into madness",
+  "advancements.stylish_occult.craft.title": "Equivalent Exchange",
+  "advancements.stylish_occult.craft.description": "To gain something must be lost",
+  "advancements.stylish_occult.place.title": "Encrusted With Blood",
+  "advancements.stylish_occult.place.description": "Build with the power of occult magic",
+  "advancements.stylish_occult.wake.title": "The Old Ones",
+  "advancements.stylish_occult.wake.description": "Awake the fiery beast sleeping in the depths",
+  "advancements.stylish_occult.hell.title": "Into Hell",
+  "advancements.stylish_occult.hell.description": "Descend into hell"
 }

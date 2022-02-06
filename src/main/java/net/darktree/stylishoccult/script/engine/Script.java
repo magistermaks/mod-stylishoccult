@@ -1,13 +1,18 @@
 package net.darktree.stylishoccult.script.engine;
 
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.blocks.runes.RuneBlock;
 import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneInstance;
 import net.darktree.stylishoccult.script.components.SafeMode;
 import net.darktree.stylishoccult.script.elements.StackElement;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public final class Script {
@@ -55,6 +60,7 @@ public final class Script {
 		instance = instance == null ? rune.getInstance() : instance.choose(this, rune.getInstance());
 		rune.apply(this, world, pos);
 		stack.validate();
+		Criteria.TRIGGER.trigger(world, pos, rune);
 	}
 
 	/**

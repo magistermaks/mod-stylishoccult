@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.blocks.occult;
 
 import net.darktree.interference.api.LookAtEvent;
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.blocks.BuildingBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
@@ -12,6 +13,7 @@ import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -45,6 +47,8 @@ public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFlesh
 
             if(world.isClient) {
                 ((PlayerEntityClientDuck) player).stylish_startHeartbeatSound();
+            }else{
+                Criteria.INSIGHT.trigger((ServerPlayerEntity) player, ((PlayerEntityDuck) player).stylish_getMadness());
             }
         }
     }
