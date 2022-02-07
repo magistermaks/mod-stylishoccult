@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.blocks.runes;
 
 import net.darktree.stylishoccult.script.components.RuneType;
 import net.darktree.stylishoccult.script.engine.Script;
+import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -13,7 +14,11 @@ public abstract class EntryRuneBlock extends RuneBlock {
     }
 
     protected void emit(World world, BlockPos pos) {
-        execute(world, pos, world.getBlockState(pos), new Script());
+        BlockState state = world.getBlockState(pos);
+
+        if (super.canAcceptSignal(state)) {
+            execute(world, pos, state, new Script());
+        }
     }
 
     @Override
@@ -22,7 +27,7 @@ public abstract class EntryRuneBlock extends RuneBlock {
     }
 
     @Override
-    public boolean canAcceptSignal() {
+    public boolean canAcceptSignal(BlockState state) {
         return false;
     }
 

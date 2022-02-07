@@ -31,5 +31,11 @@
     "minecraft": "1.17.x",
     "java": ">=17",
     "interference": ">=1.3.1"
+  },
+  "custom": {
+    "waila:plugins": {
+      "id": "stylish_occult:plugin",
+      "initializer": "net.darktree.stylishoccult.WailaPlugin"
+    }
   }
 }

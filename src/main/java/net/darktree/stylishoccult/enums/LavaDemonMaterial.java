@@ -1,18 +1,19 @@
 package net.darktree.stylishoccult.enums;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.StringIdentifiable;
 
 public enum LavaDemonMaterial implements StringIdentifiable {
-    STONE("stone"),
-    COAL("coal"),
-    IRON("iron"),
-    LAPIS("lapis"),
-    REDSTONE("redstone"),
-    GOLD("gold"),
-    EMERALD("emerald"),
-    DIAMOND("diamond");
+    STONE("stone", Blocks.STONE),
+    COAL("coal", Blocks.COAL_ORE),
+    IRON("iron", Blocks.IRON_ORE),
+    LAPIS("lapis", Blocks.LAPIS_ORE),
+    REDSTONE("redstone", Blocks.REDSTONE_ORE),
+    GOLD("gold", Blocks.GOLD_ORE),
+    EMERALD("emerald", Blocks.EMERALD_ORE),
+    DIAMOND("diamond", Blocks.DIAMOND_ORE);
 
     public int getLevel() {
         return switch (this) {
@@ -40,9 +41,11 @@ public enum LavaDemonMaterial implements StringIdentifiable {
     }
 
     private final String name;
+    private final Block block;
 
-    LavaDemonMaterial(String name) {
+    LavaDemonMaterial(String name, Block block) {
         this.name = name;
+        this.block = block;
     }
 
     @Override
@@ -54,4 +57,8 @@ public enum LavaDemonMaterial implements StringIdentifiable {
     public String asString() {
         return this.name;
     }
+
+	public Block asBlock() {
+        return this.block;
+	}
 }

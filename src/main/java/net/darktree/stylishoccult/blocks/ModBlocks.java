@@ -52,7 +52,7 @@ public class ModBlocks {
     public static final Block ARCANE_ASH = RegUtil.block( "arcane_ash", new ArcaneAshBlock( 100, 500, 0.4f, RegUtil.settings( Material.SOIL, BlockSoundGroup.SAND, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK) ) );
     public static final Block CRYSTALLINE_BLACKSTONE = RegUtil.block( "crystalline_blackstone", new CrystallineBlackstone( RegUtil.settings( Material.STONE, BlockSoundGroup.GILDED_BLACKSTONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
     public static final Block RUNESTONE_SLAB = RegUtil.block( "runestone_slab", new SlabBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
-    public static final Block RUNESTONE_STAIR = RegUtil.block( "runestone_stairs", new PublicStairsBlock( RUNESTONE.getDefaultState(), RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
+    public static final Block RUNESTONE_STAIR = RegUtil.block( "runestone_stairs", new StairsBlock( RUNESTONE.getDefaultState(), RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
     public static final Block RUNESTONE_TABLE = RegUtil.block( "runestone_table", new TableBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
 
     // runes
@@ -74,7 +74,7 @@ public class ModBlocks {
     public static final Block FOUR_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_quattuor", '4' ) );
     public static final Block FIVE_RUNE_BLOCK = RegUtil.rune( new NumberRuneBlock( "numerus_quinque", '5' ) );
     public static final Block ASCEND_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "ascendo", LogicRuneBlock.Functions.ASCEND ) );
-    public static final Block PULL_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "circumago", LogicRuneBlock.Functions.ROTATE ) );
+    public static final Block ROTATE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "circumago", LogicRuneBlock.Functions.ROTATE ) );
     public static final Block EXCHANGE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "cambitas", LogicRuneBlock.Functions.EXCHANGE ) );
     public static final Block DUPLICATE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "effingo", LogicRuneBlock.Functions.DUPLICATE ) );
     public static final Block ADD_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock( "adaugeo", LogicRuneBlock.Functions.ADD ) );

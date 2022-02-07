@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.utils;
 
+import net.darktree.stylishoccult.blocks.runes.RuneBlock;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.script.components.RuneException;
 import net.minecraft.block.Block;
@@ -15,9 +16,10 @@ public class RuneUtils {
     public static final int COLOR_2 = 140 << 16;
     public static final int COLOR_3 = 165 << 16;
 
-    public static void createErrorReport(RuneException exception, World world, BlockPos pos) {
+    public static void createErrorReport(RuneException exception, RuneBlock rune, World world, BlockPos pos) {
         NbtCompound tag = new NbtCompound();
         tag.putString("error", exception.getMessage());
+        tag.putString("rune", rune.name);
         tag.putInt("x", pos.getX());
         tag.putInt("y", pos.getY());
         tag.putInt("z", pos.getZ());

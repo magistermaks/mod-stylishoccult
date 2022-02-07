@@ -23,6 +23,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
@@ -65,12 +66,17 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
     @Override
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add( Utils.tooltip( "rune", new TranslatableText( "rune." + super.getTranslationKey() ) ) );
+//        tooltip.add( Utils.tooltip( "rune", new TranslatableText( "rune." + super.getTranslationKey() ) ) );
     }
 
     @Override
     public String getTranslationKey() {
         return "block." + StylishOccult.NAMESPACE + ".engraved_runestone";
+    }
+
+    @Override
+    public MutableText getName() {
+        return new TranslatableText(this.getTranslationKey(), new TranslatableText("rune." + super.getTranslationKey()));
     }
 
     @Override
@@ -125,7 +131,7 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
             BlockState state = world.getBlockState(target);
 
             if (state.getBlock() instanceof RuneBlock rune) {
-                if (rune.canAcceptSignal()) {
+                if (rune.canAcceptSignal(state)) {
                     rune.execute(world, target, state, used ? script.copyFor(direction) : script.with(direction));
                     used = true;
                 }
@@ -139,15 +145,13 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
     }
 
     protected void execute(World world, BlockPos pos, BlockState state, Script script) {
-        if( state.get(COOLDOWN) == 0 && !state.get(FROZEN) ) {
-            RuneBlockEntity entity = getEntity(world, pos);
+        RuneBlockEntity entity = getEntity(world, pos);
 
-            if( entity != null ) {
-                entity.store(script);
-                world.setBlockState(pos, state.with(COOLDOWN, 3));
-                onTriggered(script, world, pos, state);
-                world.getBlockTickScheduler().schedule( pos, state.getBlock(), getDelayLength() );
-            }
+        if( entity != null ) {
+            entity.store(script);
+            world.setBlockState(pos, state.with(COOLDOWN, 3));
+            onTriggered(script, world, pos, state);
+            world.getBlockTickScheduler().schedule( pos, state.getBlock(), getDelayLength() );
         }
     }
 
@@ -173,8 +177,8 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
         return script.direction == null ? new Direction[] {} : new Direction[] { script.direction };
     }
 
-    public boolean canAcceptSignal() {
-        return true;
+    public boolean canAcceptSignal(BlockState state) {
+        return state.get(COOLDOWN) == 0 && !state.get(FROZEN);
     }
 
     public RuneInstance getInstance() {

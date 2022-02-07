@@ -26,7 +26,7 @@ public class ErrorReportItem extends Item {
                 String z = String.valueOf( tag.getInt("z") );
 
                 tooltip.add( Utils.tooltip( "error_tablet.error." + tag.getString("error") ) );
-                tooltip.add( Utils.tooltip( "error_tablet.location", x, y, z ) );
+                tooltip.add( Utils.tooltip( "error_tablet.location", x, y, z, tag.getString("rune") ) );
                 return;
             }
         }catch(Exception ignore) {}

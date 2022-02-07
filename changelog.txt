@@ -1,5 +1,26 @@
 
-0.6.0 beta
+0.7.0 beta
+- Runic scrips can now operate on items
+- Added Crafting (creo) rune - for auto crafting
+- Added Over (supra) rune - stack operation
+- Added Take (furtum) rune - for taking items from inventories
+- Added Look At (inviso) rune - triggered when looked at
+- Added Create (cinis) rune - to spawn in Arcane Ash
+- Added Attempt (conatus) rune - to mitigate explosions
+- Added Ascend (ascendo) rune - to take elements from drop stack
+- Added Rotate (circumago) rune - stack operation
+- Runic numbers can now represent decimals using the new Numerus Dot rune
+- Added Drop Stack to runic scrips (a place with dropped elements)
+- Added custom advancement criteria, and some advancements
+- Added WTHIT compatibility
+- Optimised assets
+- Increased rune icon contrast and moved name to title
+- Added runestone tables, stairs and slabs
+- Reworked the Join, Place, and Debug runes
+- Removed the Or, Push, and Pull runes
+- Better error tablet reports
+
+0.6.0 beta <2022/01/31>
 - Fixed runic script breaking on world reloads (introduced in 0.5.0)
 - Tentacles can now be harvested and placed
 - The flesh can now be awoken by sacrificing living entities on top of it
