@@ -104,6 +104,7 @@ public class ModBlocks {
     public static final Block CREATE_RUNE_BLOCK = RegUtil.rune( new CreateRuneBlock("cinis", ModItems.ARCANE_ASH) );
     public static final Block TAKE_RUNE_BLOCK = RegUtil.rune( new TakeRuneBlock("furtum") );
     public static final Block CRAFT_RUNE_BLOCK = RegUtil.rune( new CraftRuneBlock("creo") );
+    public static final Block OVER_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("supra", LogicRuneBlock.Functions.OVER) );
 
     public static void init() {
         // load class

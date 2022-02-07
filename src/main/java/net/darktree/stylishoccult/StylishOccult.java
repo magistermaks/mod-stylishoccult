@@ -16,6 +16,8 @@ import net.darktree.stylishoccult.tags.ModTags;
 import net.darktree.stylishoccult.worldgen.ModFeatures;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.loader.api.FabricLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -65,4 +67,5 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
 
         LOGGER.info("Additional sound effects from https://www.zapsplat.com");
     }
+
 }
