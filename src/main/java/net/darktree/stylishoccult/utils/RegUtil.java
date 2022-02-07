@@ -48,7 +48,7 @@ public class RegUtil {
         ModBlocks.RUNESTONES.add(block);
 
         if( block.getInstance() != null ) {
-            RuneRegistry.put(block.name, block);
+            RuneRegistry.putRune(block.name, block);
         }
 
         return block( name, block );

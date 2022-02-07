@@ -1,55 +1,56 @@
 package net.darktree.stylishoccult.blocks.runes.io;
 
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ArcaneAshBlock;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.runes.ActorRuneBlock;
-import net.darktree.stylishoccult.script.RunicScript;
+import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
+import net.darktree.stylishoccult.script.elements.ItemElement;
+import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.block.BlockState;
+import net.minecraft.item.AutomaticItemPlacementContext;
+import net.minecraft.item.BlockItem;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 public class PlaceRuneBlock extends ActorRuneBlock {
 
-    public interface PlaceFunction {
-        void place( World world, BlockPos pos, BlockState state );
-    }
-
-    public static final PlaceFunction ARCANE_ASH_PLACER = (world, pos, state) -> {
-        if( (state.isAir() || state.getMaterial().isReplaceable()) && (state.getBlock() != ModBlocks.ARCANE_ASH || state.get(ArcaneAshBlock.AGE) != 0) ) {
-            world.setBlockState(pos, ModBlocks.ARCANE_ASH.getDefaultState().with(ArcaneAshBlock.PERSISTENT, false));
-        }
-    };
-
     private final int range;
-    private final PlaceFunction placeFunction;
 
-    public PlaceRuneBlock(String name, int range, PlaceFunction placeFunction) {
+    public PlaceRuneBlock(String name, int range) {
         super(name);
         this.range = range;
-        this.placeFunction = placeFunction;
     }
 
     @Override
-    public void apply(RunicScript script, World world, BlockPos pos) {
-        try {
-            int x = Math.round( (float) script.getStack().pull() );
-            int y = Math.round( (float) script.getStack().pull() );
-            int z = Math.round( (float) script.getStack().pull() );
+    public void apply(Script script, World world, BlockPos pos) {
+        int x = (int) Math.round( script.pull(world, pos).value() );
+        int y = (int) Math.round( script.pull(world, pos).value() );
+        int z = (int) Math.round( script.pull(world, pos).value() );
 
-            BlockPos target = pos.add(x, y, z);
+        ItemElement element = script.stack.pull().cast(ItemElement.class);
+        BlockPos target = pos.add(x, y, z);
 
-            if( !target.isWithinDistance( pos, range ) ) {
-                throw RuneExceptionType.INVALID_ARGUMENT.get();
+        if( !target.isWithinDistance(pos, range) ) {
+            throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT);
+        }
+
+        if( element.stack.getItem() instanceof BlockItem blockItem ) {
+            try {
+                if(!blockItem.place(new AutomaticItemPlacementContext(world, target, Direction.UP, element.stack, Direction.UP)).isAccepted()) {
+                    // make sure not to lose any items, even when operation fails
+                    script.ring.push(element, world, pos);
+                }
+            }catch (Exception e) {
+                StylishOccult.LOGGER.warn("place error!");
             }
-
-            placeFunction.place(world, target, world.getBlockState(target));
-        }catch (Exception exception) {
-            throw RuneExceptionType.INVALID_ARGUMENT_COUNT.get();
+        }else{
+            StylishOccult.LOGGER.warn("not a block item!");
         }
 
         super.apply(script);
     }
-
 
 }

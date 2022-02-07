@@ -7,6 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.AutomaticItemPlacementContext;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
@@ -15,6 +17,7 @@ import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
@@ -35,13 +38,6 @@ public class ArcaneAshBlock extends SimpleBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-//        if( !state.get(PERSISTENT) ) {
-//            this.scheduledTick(state, world, pos, random);
-//        }
-    }
-
-    @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         super.onBreak(world, pos, state, player);
         if( !world.isClient ) {
@@ -55,9 +51,14 @@ public class ArcaneAshBlock extends SimpleBlock {
     }
 
     @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return super.getDefaultState().with(PERSISTENT, !(ctx instanceof AutomaticItemPlacementContext));
+    }
+
+    @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         if( !state.get(PERSISTENT) ) {
-            world.getBlockTickScheduler().schedule(pos, this, 100 + world.random.nextInt(40));
+            world.getBlockTickScheduler().schedule(pos, this, 100 + world.random.nextInt(20));
             if( !world.isClient ) {
                 Network.ASH_PACKET.send(pos, (ServerWorld) world);
             }
@@ -73,7 +74,7 @@ public class ArcaneAshBlock extends SimpleBlock {
             world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), this.soundGroup.getBreakSound(), SoundCategory.BLOCKS, 0.8f, 1.0f);
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
         }else{
-            world.getBlockTickScheduler().schedule(pos, this, 100 + world.random.nextInt(40));
+            world.getBlockTickScheduler().schedule(pos, this, 100 + world.random.nextInt(20));
             world.setBlockState(pos, state.with(AGE, age + 1));
         }
     }

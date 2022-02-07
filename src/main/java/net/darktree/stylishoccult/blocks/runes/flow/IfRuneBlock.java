@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.blocks.runes.flow;
 
 import net.darktree.stylishoccult.blocks.runes.DirectionalRuneBlock;
-import net.darktree.stylishoccult.script.RunicScript;
+import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -13,9 +13,11 @@ public class IfRuneBlock extends DirectionalRuneBlock {
     }
 
     @Override
-    public Direction[] getDirections(World world, BlockPos pos, RunicScript script) {
+    public Direction[] getDirections(World world, BlockPos pos, Script script) {
         try {
-            if( script.getStack().pull() != 0 ) return new Direction[]{getFacing(world, pos)};
+            if( script.pull(world, pos).value() != 0 ) {
+                return new Direction[]{getFacing(world, pos)};
+            }
         }catch (Exception ignore) {}
 
         // Make it explode (?)

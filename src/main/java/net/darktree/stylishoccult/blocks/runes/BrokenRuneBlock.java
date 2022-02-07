@@ -1,9 +1,10 @@
 package net.darktree.stylishoccult.blocks.runes;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.script.RunicScript;
+import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneType;
+import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.Utils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -22,8 +23,8 @@ public class BrokenRuneBlock extends RuneBlock {
     }
 
     @Override
-    public void apply(RunicScript script) {
-        throw RuneExceptionType.BROKEN.get();
+    public void apply(Script script) {
+        throw RuneException.of(RuneExceptionType.BROKEN);
     }
 
     @Override

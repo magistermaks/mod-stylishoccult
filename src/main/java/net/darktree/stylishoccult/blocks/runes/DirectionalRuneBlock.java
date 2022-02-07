@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.blocks.runes;
 
+import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneType;
 import net.minecraft.block.Block;
@@ -24,8 +25,7 @@ public abstract class DirectionalRuneBlock extends RuneBlock {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
-        builder.add(FACING);
+        super.appendProperties(builder.add(FACING));
     }
 
     @Nullable
@@ -39,14 +39,14 @@ public abstract class DirectionalRuneBlock extends RuneBlock {
         }
     }
 
-    public Direction getFacing( World world, BlockPos pos ) {
+    public Direction getFacing(World world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
 
         if( state.getBlock() instanceof DirectionalRuneBlock ) {
             return state.get(DirectionalRuneBlock.FACING);
         }
 
-        throw RuneExceptionType.INVALID_STATE.get();
+        throw RuneException.of(RuneExceptionType.INVALID_STATE);
     }
 
 }

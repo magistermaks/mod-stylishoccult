@@ -1,9 +1,11 @@
 package net.darktree.stylishoccult.blocks.runes;
 
-import net.darktree.stylishoccult.script.RunicScript;
+import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneInstance;
 import net.darktree.stylishoccult.script.components.RuneType;
+import net.darktree.stylishoccult.script.elements.NumericElement;
+import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.nbt.NbtCompound;
 
 public class NumberRuneBlock extends RuneBlock {
@@ -31,42 +33,59 @@ public class NumberRuneBlock extends RuneBlock {
         }
 
         @Override
-        public NbtCompound toTag(NbtCompound tag) {
+        public NbtCompound writeNbt(NbtCompound tag) {
             tag.putString("raw", raw);
-            return super.toTag( tag );
+            return super.writeNbt( tag );
         }
 
         @Override
-        public void fromTag( NbtCompound tag ) {
+        public void readNbt(NbtCompound tag ) {
             raw = tag.getString("raw");
         }
 
         @Override
-        public boolean push(RunicScript script, RuneInstance instance ) {
+        public RuneInstance copy() {
+            NumberRuneInstance instance = new NumberRuneInstance(this.rune);
+            instance.raw = this.raw;
+            return instance;
+        }
 
-            if( raw.length() > 16 ) {
-                throw RuneExceptionType.NUMBER_TOO_LONG.get();
-            }
+        @Override
+        public RuneInstance choose(Script script, RuneInstance instance ) {
 
             if( instance instanceof NumberRuneInstance ) {
                 raw += ((NumberRuneBlock) instance.rune).value;
+                parse(raw, 6);
 
-                try {
-                    Integer.parseInt(raw, 6);
-                }catch (Exception e){
-                    throw RuneExceptionType.INVALID_NUMBER.get();
+                if( raw.length() > 16 ) {
+                    throw RuneException.of(RuneExceptionType.NUMBER_TOO_LONG);
                 }
 
-                return true;
+                return this;
+            }else{
+                script.stack.push(new NumericElement(parse(raw, 6)));
             }
 
+            return instance;
+        }
+
+        /**
+         * A naive float parser,
+         * intentionally ignores possible exceptions.
+         */
+        private double parse(String string, int base) {
             try {
-                script.value = Integer.parseInt(raw, 6);
-            }catch (Exception e){
-                throw RuneExceptionType.INVALID_NUMBER.get();
-            }
+                String[] parts = string.split("\\.");
+                double value = Integer.parseInt(parts[0], base);
 
-            return false;
+                if(parts.length == 2 && parts[1].length() > 0) {
+                    value += Integer.parseInt(parts[1], base) / Math.pow(base, parts[1].length());
+                }
+
+                return value;
+            }catch (Exception e){
+                throw RuneException.of(RuneExceptionType.INVALID_NUMBER);
+            }
         }
 
     }

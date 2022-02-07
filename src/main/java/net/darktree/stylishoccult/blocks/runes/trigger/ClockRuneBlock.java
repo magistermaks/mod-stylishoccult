@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.blocks.runes.trigger;
 
 import net.darktree.stylishoccult.blocks.entities.RuneBlockEntity;
 import net.darktree.stylishoccult.blocks.runes.EntryRuneBlock;
+import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.NbtCompound;
@@ -27,12 +28,8 @@ public class ClockRuneBlock extends EntryRuneBlock {
         world.getBlockTickScheduler().schedule(pos, world.getBlockState(pos).getBlock(), getDelayLength());
         RuneBlockEntity entity = getEntity(world, pos);
 
-        try {
-            if( !entity.hasMeta() || updateTime(entity) ) {
-                emit(world, pos);
-            }
-        }catch (Exception exception){
-            throw RuneExceptionType.INVALID_METADATA.get();
+        if( !entity.hasMeta() || updateTime(entity) ) {
+            emit(world, pos);
         }
     }
 
@@ -47,15 +44,19 @@ public class ClockRuneBlock extends EntryRuneBlock {
     }
 
     private boolean updateTime(RuneBlockEntity entity) {
-        NbtCompound nbt = entity.getMeta();
-        int time = nbt.getInt("time");
-        if( time <= 0 ) {
-            entity.setMeta(null);
-            return true;
-        }else{
-            nbt.putInt("time", time - 1);
-            entity.setMeta(nbt);
-            return false;
+        try {
+            NbtCompound nbt = entity.getMeta();
+            int time = nbt.getInt("time");
+            if( time <= 0 ) {
+                entity.setMeta(null);
+                return true;
+            }else{
+                nbt.putInt("time", time - 1);
+                entity.setMeta(nbt);
+                return false;
+            }
+        }catch (Exception exception){
+            throw RuneException.of(RuneExceptionType.INVALID_STATE);
         }
     }
 

@@ -1,23 +1,61 @@
 package net.darktree.stylishoccult.script.components;
 
 public enum RuneExceptionType {
-    INVALID_METADATA("invalid_metadata"),
-    INVALID_STATE("invalid_state"),
-    NUMBER_TOO_LONG("number_too_long"),
+
+    /**
+     * The number is incorrectly formatted
+     */
     INVALID_NUMBER("invalid_number"),
+
+    /**
+     * The number is too long
+     */
+    NUMBER_TOO_LONG("number_too_long"),
+
+    /**
+     * Expected a different argument
+     */
     INVALID_ARGUMENT("invalid_argument"),
+
+    /**
+     * Expected a different argument type
+     */
+    INVALID_ARGUMENT_TYPE("invalid_argument_type"),
+
+    /**
+     * Expected a different argument count
+     */
     INVALID_ARGUMENT_COUNT("invalid_argument_count"),
-    STACK_TOO_BIG("stack_too_big"),
+
+    /**
+     * Nothing left to return (e.g. from stack)
+     */
+    NOTHING_TO_RETURN("nothing_to_return"),
+
+    /**
+     * Internal problem, invalid block state or NBT tag
+     */
+    INVALID_STATE("invalid_state"),
+
+    /**
+     * Stack size exceeded
+     */
+    STACK_TOO_LONG("stack_too_long"),
+
+    /**
+     * Operation does not follow the rule of equivalent exchange
+     */
+    UNMET_EQUIVALENCY("unmet_equivalency"),
+
+    /**
+     * A broken rune activated
+     */
     BROKEN("broken");
 
     private final String name;
 
     RuneExceptionType( String name ) {
         this.name = name;
-    }
-
-    public RuneException get() {
-        return RuneException.of(this);
     }
 
     public String getName() {

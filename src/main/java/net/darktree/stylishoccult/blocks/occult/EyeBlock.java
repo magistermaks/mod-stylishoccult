@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.blocks.occult;
 
 import net.darktree.interference.api.LookAtEvent;
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.blocks.BuildingBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
@@ -12,6 +13,7 @@ import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -28,9 +30,9 @@ public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFlesh
     public static final BooleanProperty PERSISTENT = BooleanProperty.of("persistent");
 
     private static final VoxelShape SHAPE = Utils.join(
-            Utils.box( 1, 1, 0, 15, 15, 16 ),
-            Utils.box( 0, 1, 1, 16, 15, 15 ),
-            Utils.box( 1, 0, 1, 15, 16, 15 )
+            Utils.shape( 1, 1, 0, 15, 15, 16 ),
+            Utils.shape( 0, 1, 1, 16, 15, 15 ),
+            Utils.shape( 1, 0, 1, 15, 16, 15 )
     );
 
     public EyeBlock() {
@@ -45,6 +47,8 @@ public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFlesh
 
             if(world.isClient) {
                 ((PlayerEntityClientDuck) player).stylish_startHeartbeatSound();
+            }else{
+                Criteria.INSIGHT.trigger((ServerPlayerEntity) player, ((PlayerEntityDuck) player).stylish_getMadness());
             }
         }
     }

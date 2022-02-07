@@ -1,8 +1,15 @@
 package net.darktree.stylishoccult.script.components;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.blocks.runes.RuneBlock;
+import net.darktree.stylishoccult.network.Network;
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.utils.RuneUtils;
+import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 
@@ -12,15 +19,27 @@ public class RuneException extends RuntimeException {
         return new RuneException( type.getName() );
     }
 
-    private RuneException( String message ) {
+    public RuneException(String message) {
         super(message);
     }
 
-    public void apply(World world, BlockPos pos) {
+    public void apply(World world, BlockPos pos, SafeMode mode) {
         StylishOccult.LOGGER.warn( "Exception in script at: " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + " " + getMessage() );
-        float size = StylishOccult.SETTINGS.runicErrorExplosionSize.get(world);
-        world.createExplosion( null, pos.getX(), pos.getY(), pos.getZ(), size, Explosion.DestructionType.BREAK );
-        RuneUtils.createErrorReport( this, world, pos );
+
+        double x = pos.getX(), y = pos.getY(), z = pos.getZ();
+        boolean safe = mode == SafeMode.ENABLED;
+
+        if(world.getBlockState(pos).getBlock() instanceof RuneBlock rune) {
+            Criteria.EXCEPTION.trigger(world, pos, rune, getMessage(), safe);
+        }
+
+        if (safe) {
+            Network.DEFUSE_PACKET.send(pos, (ServerWorld) world);
+        }else{
+            float size = StylishOccult.SETTINGS.runicErrorExplosionSize.get(world);
+            world.createExplosion(null, x, y, z, size, Explosion.DestructionType.BREAK);
+            RuneUtils.createErrorReport(this, world, pos);
+        }
     }
 
 }

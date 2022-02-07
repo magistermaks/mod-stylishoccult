@@ -10,12 +10,13 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.function.BooleanBiFunction;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 
 public class Utils {
 
-    public static VoxelShape box( float x1, float y1, float z1, float x2, float y2, float z2 ) {
+    public static VoxelShape shape(float x1, float y1, float z1, float x2, float y2, float z2) {
         // make sure that the x1, y1, z1 given to VoxelShapes.cuboid are
         // smaller than x2, y2, z2, required my minecraft >=1.17
         return VoxelShapes.cuboid(
@@ -26,6 +27,10 @@ public class Utils {
                 Math.max(y1, y2) / 16d,
                 Math.max(z1, z2) / 16d
         );
+    }
+
+    public static Box box(float x1, float y1, float z1, float x2, float y2, float z2) {
+        return new Box(x1 / 16d, y1 / 16d, z1 / 16d, x2 / 16d, y2 / 16d, z2 / 16d);
     }
 
     public static void requestParticleTexture( Identifier id ) {

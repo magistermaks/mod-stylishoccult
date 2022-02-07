@@ -1,0 +1,35 @@
+{
+  "parent": "stylish_occult:occult/hell",
+  "display": {
+    "icon": {
+      "item": "stylish_occult:rune_tactus"
+    },
+    "title": {
+      "translate": "advancements.stylish_occult.gather.title"
+    },
+    "description": {
+      "translate": "advancements.stylish_occult.gather.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "gather": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "stylish_occult:runes"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "gather"
+    ]
+  ]
+}

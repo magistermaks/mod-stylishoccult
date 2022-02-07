@@ -1,0 +1,33 @@
+{
+  "parent": "stylish_occult:occult/explode",
+  "display": {
+    "icon": {
+      "item": "stylish_occult:rune_conatus"
+    },
+    "title": {
+      "translate": "advancements.stylish_occult.defuse.title"
+    },
+    "description": {
+      "translate": "advancements.stylish_occult.defuse.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "explode": {
+      "trigger": "stylish_occult:exception",
+      "conditions": {
+        "defused": true,
+        "distance": 32,
+        "exception": null
+      }
+    }
+  },
+  "requirements": [
+    [
+      "explode"
+    ]
+  ]
+}

@@ -1,0 +1,43 @@
+{
+    "multipart": [
+        {
+            "apply": { "model": "stylish_occult:block/rune/creo" }
+        },
+        {
+            "when": { "slot_0": "true" },
+            "apply": { "model": "stylish_occult:block/rune/creo/0" }
+        },
+        {
+            "when": { "slot_1": "true" },
+            "apply": { "model": "stylish_occult:block/rune/creo/1" }
+        },
+        {
+            "when": { "slot_2": "true" },
+            "apply": { "model": "stylish_occult:block/rune/creo/2" }
+        },
+        {
+            "when": { "slot_3": "true" },
+            "apply": { "model": "stylish_occult:block/rune/creo/3" }
+        },
+        {
+            "when": { "slot_4": "true" },
+            "apply": { "model": "stylish_occult:block/rune/creo/4" }
+        },
+        {
+            "when": { "slot_5": "true" },
+            "apply": { "model": "stylish_occult:block/rune/creo/5" }
+        },
+        {
+            "when": { "slot_6": "true" },
+            "apply": { "model": "stylish_occult:block/rune/creo/6" }
+        },
+        {
+            "when": { "slot_7": "true" },
+            "apply": { "model": "stylish_occult:block/rune/creo/7" }
+        },
+        {
+            "when": { "slot_8": "true" },
+            "apply": { "model": "stylish_occult:block/rune/creo/8" }
+        }
+    ]
+}

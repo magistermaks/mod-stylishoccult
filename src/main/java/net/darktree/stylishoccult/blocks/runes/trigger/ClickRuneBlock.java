@@ -1,8 +1,10 @@
 package net.darktree.stylishoccult.blocks.runes.trigger;
 
 import net.darktree.stylishoccult.blocks.runes.EntryRuneBlock;
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;

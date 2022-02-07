@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "stylish_occult:error_tablet"
+    },
+    "title": {
+      "translate": "advancements.stylish_occult.root.title"
+    },
+    "description": {
+      "translate": "advancements.stylish_occult.root.description"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "minecraft:textures/block/blackstone.png"
+  },
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "requirements": [
+    [
+      "tick"
+    ]
+  ]
+}

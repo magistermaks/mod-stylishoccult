@@ -1,15 +1,14 @@
 package net.darktree.stylishoccult.blocks.entities;
 
-import net.darktree.stylishoccult.script.RunicScript;
+import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.SimpleBlockEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 
 public class RuneBlockEntity extends SimpleBlockEntity {
 
-    private RunicScript script;
+    private Script script;
     private NbtCompound meta;
 
     public RuneBlockEntity(BlockPos pos, BlockState state) {
@@ -21,25 +20,23 @@ public class RuneBlockEntity extends SimpleBlockEntity {
 
     @Override
     public NbtCompound writeNbt(NbtCompound tag) {
-        if( script != null ) tag.put("state", script.toNbt());
-        if( meta != null ) tag.put("meta", meta);
+        if(script != null) tag.put("s", script.writeNbt(new NbtCompound()));
+        if(meta != null) tag.put("m", meta);
         return super.writeNbt(tag);
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         try {
-            if( nbt.contains("state") ) {
-                script = RunicScript.fromNbt( nbt.getCompound("state") );
-            }
-            if( nbt.contains("meta") ) {
-                meta = nbt.getCompound("meta");
-            }
-        } catch (Exception ignored) {}
+            if( nbt.contains("s") ) script = Script.fromNbt( nbt.getCompound("s") );
+            if( nbt.contains("m") ) meta = nbt.getCompound("m");
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
         super.readNbt(nbt);
     }
 
-    public void store( RunicScript script ) {
+    public void store(Script script) {
         this.script = script;
         markDirty();
     }
@@ -49,11 +46,7 @@ public class RuneBlockEntity extends SimpleBlockEntity {
         markDirty();
     }
 
-    public RunicScript copyScript(Direction direction ) {
-        return script.copyFor( direction );
-    }
-
-    public RunicScript getScript() {
+    public Script getScript() {
         return script;
     }
 

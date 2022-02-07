@@ -22,7 +22,7 @@ public class HeartbeatSoundInstance extends MovingSoundInstance {
 
 	@Override
 	public float getVolume() {
-		return player.stylish_getMadness();
+		return player.stylish_getMadness() * 2.0f;
 	}
 
 	@Override
