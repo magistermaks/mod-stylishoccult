@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.script.elements;
 
 import net.darktree.stylishoccult.script.components.RuneException;
+import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.inventory.Inventory;
@@ -35,7 +36,7 @@ public class ItemElement extends StackElement {
 
 	@Override
 	public StackElement copy() {
-		throw new RuneException("operation not permitted!");
+		throw RuneException.of(RuneExceptionType.UNMET_EQUIVALENCY);
 	}
 
 	public boolean equals(StackElement element) {

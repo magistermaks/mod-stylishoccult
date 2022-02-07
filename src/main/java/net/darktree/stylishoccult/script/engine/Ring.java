@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.script.engine;
 
+import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.elements.StackElement;
 import net.minecraft.nbt.NbtCompound;
@@ -20,6 +21,10 @@ public final class Ring {
 
 	private void move(int distance) {
 		this.offset = (this.offset + distance) % this.buffer.length;
+
+		if (this.offset < 0) {
+			this.offset = this.buffer.length - 1;
+		}
 	}
 
 	/**
@@ -45,7 +50,7 @@ public final class Ring {
 		buffer[offset] = null;
 
 		if(element == null) {
-			throw RuneExceptionType.INVALID_STATE.get();
+			throw RuneException.of(RuneExceptionType.NOTHING_TO_RETURN);
 		}
 
 		return element;

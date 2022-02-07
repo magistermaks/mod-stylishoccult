@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.blocks.runes;
 
+import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneInstance;
 import net.darktree.stylishoccult.script.components.RuneType;
@@ -52,26 +53,17 @@ public class NumberRuneBlock extends RuneBlock {
         @Override
         public RuneInstance choose(Script script, RuneInstance instance ) {
 
-            if( raw.length() > 16 ) {
-                throw RuneExceptionType.NUMBER_TOO_LONG.get();
-            }
-
             if( instance instanceof NumberRuneInstance ) {
                 raw += ((NumberRuneBlock) instance.rune).value;
+                parse(raw, 6);
 
-                try {
-                    parse(raw, 6);
-                }catch (Exception e){
-                    throw RuneExceptionType.INVALID_NUMBER.get();
+                if( raw.length() > 16 ) {
+                    throw RuneException.of(RuneExceptionType.NUMBER_TOO_LONG);
                 }
 
                 return this;
-            }
-
-            try {
+            }else{
                 script.stack.push(new NumericElement(parse(raw, 6)));
-            }catch (Exception e){
-                throw RuneExceptionType.INVALID_NUMBER.get();
             }
 
             return instance;
@@ -82,15 +74,18 @@ public class NumberRuneBlock extends RuneBlock {
          * intentionally ignores possible exceptions.
          */
         private double parse(String string, int base) {
+            try {
+                String[] parts = string.split("\\.");
+                double value = Integer.parseInt(parts[0], base);
 
-            String[] parts = string.split("\\.");
-            double value = Integer.parseInt(parts[0], base);
+                if(parts.length == 2 && parts[1].length() > 0) {
+                    value += Integer.parseInt(parts[1], base) / Math.pow(base, parts[1].length());
+                }
 
-            if(parts.length == 2 && parts[1].length() > 0) {
-                value += Integer.parseInt(parts[1], base) / Math.pow(base, parts[1].length());
+                return value;
+            }catch (Exception e){
+                throw RuneException.of(RuneExceptionType.INVALID_NUMBER);
             }
-
-            return value;
         }
 
     }

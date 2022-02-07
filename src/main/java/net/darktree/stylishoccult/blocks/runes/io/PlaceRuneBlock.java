@@ -4,6 +4,7 @@ import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.ArcaneAshBlock;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.runes.ActorRuneBlock;
+import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.elements.ItemElement;
 import net.darktree.stylishoccult.script.engine.Script;
@@ -25,33 +26,28 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 
     @Override
     public void apply(Script script, World world, BlockPos pos) {
-        try {
-            int x = (int) Math.round( script.pull(world, pos).value() );
-            int y = (int) Math.round( script.pull(world, pos).value() );
-            int z = (int) Math.round( script.pull(world, pos).value() );
+        int x = (int) Math.round( script.pull(world, pos).value() );
+        int y = (int) Math.round( script.pull(world, pos).value() );
+        int z = (int) Math.round( script.pull(world, pos).value() );
 
-            ItemElement element = script.stack.pull().cast(ItemElement.class);
-            BlockPos target = pos.add(x, y, z);
+        ItemElement element = script.stack.pull().cast(ItemElement.class);
+        BlockPos target = pos.add(x, y, z);
 
-            if( !target.isWithinDistance(pos, range) ) {
-                throw RuneExceptionType.INVALID_ARGUMENT.get();
-            }
+        if( !target.isWithinDistance(pos, range) ) {
+            throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT);
+        }
 
-            if( element.stack.getItem() instanceof BlockItem blockItem ) {
-                try {
-                    if(!blockItem.place(new AutomaticItemPlacementContext(world, target, Direction.UP, element.stack, Direction.UP)).isAccepted()) {
-                        // make sure not to lose any items, even when operation fails
-                        script.ring.push(element, world, pos);
-                    }
-                }catch (Exception e) {
-                    StylishOccult.LOGGER.warn("place error!");
+        if( element.stack.getItem() instanceof BlockItem blockItem ) {
+            try {
+                if(!blockItem.place(new AutomaticItemPlacementContext(world, target, Direction.UP, element.stack, Direction.UP)).isAccepted()) {
+                    // make sure not to lose any items, even when operation fails
+                    script.ring.push(element, world, pos);
                 }
-            }else{
-                StylishOccult.LOGGER.warn("not a block item!");
+            }catch (Exception e) {
+                StylishOccult.LOGGER.warn("place error!");
             }
-
-        }catch (Exception exception) {
-            throw RuneExceptionType.INVALID_ARGUMENT_COUNT.get();
+        }else{
+            StylishOccult.LOGGER.warn("not a block item!");
         }
 
         super.apply(script);

@@ -13,10 +13,6 @@ import net.minecraft.util.Identifier;
 public class InsightCriterion extends AbstractCriterion<InsightCriterion.Conditions> {
 	static final Identifier ID = new ModIdentifier("insight");
 
-	public InsightCriterion() {
-		// NOOP
-	}
-
 	public Identifier getId() {
 		return ID;
 	}

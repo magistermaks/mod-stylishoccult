@@ -20,10 +20,6 @@ import net.minecraft.world.World;
 public class TriggerCriterion extends AbstractCriterion<TriggerCriterion.Conditions> {
 	static final Identifier ID = new ModIdentifier("trigger");
 
-	public TriggerCriterion() {
-		// NOOP
-	}
-
 	public Identifier getId() {
 		return ID;
 	}

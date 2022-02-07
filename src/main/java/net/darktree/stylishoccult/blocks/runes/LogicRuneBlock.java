@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.blocks.runes;
 
-import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneType;
 import net.darktree.stylishoccult.script.elements.NumericElement;
 import net.darktree.stylishoccult.script.engine.Script;
@@ -22,11 +21,7 @@ public class LogicRuneBlock extends RuneBlock {
 
     @Override
     public void apply(Script script, World world, BlockPos pos) {
-        try {
-            function.apply(script, world, pos);
-        }catch(Exception exception) {
-            throw RuneExceptionType.INVALID_ARGUMENT.get();
-        }
+        function.apply(script, world, pos);
     }
 
     public static class Functions {

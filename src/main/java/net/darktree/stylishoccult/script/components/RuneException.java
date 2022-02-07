@@ -27,17 +27,18 @@ public class RuneException extends RuntimeException {
         StylishOccult.LOGGER.warn( "Exception in script at: " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + " " + getMessage() );
 
         double x = pos.getX(), y = pos.getY(), z = pos.getZ();
+        boolean safe = mode == SafeMode.ENABLED;
 
         if(world.getBlockState(pos).getBlock() instanceof RuneBlock rune) {
-            Criteria.EXCEPTION.trigger(world, pos, rune, getMessage(), mode == SafeMode.ENABLED);
+            Criteria.EXCEPTION.trigger(world, pos, rune, getMessage(), safe);
         }
 
-        if(mode != SafeMode.ENABLED) {
+        if (safe) {
+            Network.DEFUSE_PACKET.send(pos, (ServerWorld) world);
+        }else{
             float size = StylishOccult.SETTINGS.runicErrorExplosionSize.get(world);
             world.createExplosion(null, x, y, z, size, Explosion.DestructionType.BREAK);
             RuneUtils.createErrorReport(this, world, pos);
-        }else{
-            Network.DEFUSE_PACKET.send(pos, (ServerWorld) world);
         }
     }
 

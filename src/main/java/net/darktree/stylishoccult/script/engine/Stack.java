@@ -17,7 +17,7 @@ public final class Stack {
 		this.capacity = capacity;
 	}
 
-	public StackElement peek(int i) {
+	public StackElement peek(int i) throws IndexOutOfBoundsException {
 		return stack.get(stack.size() - i - 1);
 	}
 
@@ -25,42 +25,66 @@ public final class Stack {
 	 * pull (a, b, c -> a, b) => c
 	 */
 	public StackElement pull() {
-		return stack.remove(stack.size() - 1);
+		try {
+			return stack.remove(stack.size() - 1);
+		}catch (Exception exception) {
+			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
+		}
 	}
 
 	/**
 	 * push c (a, b -> a, b, c) => void
 	 */
 	public void push(StackElement element) {
-		stack.add(element);
+		try {
+			stack.add(element);
+		}catch (Exception exception) {
+			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
+		}
 	}
 
 	/**
 	 * swap (a, b, c -> a, c, b) => void
 	 */
 	public void swap() {
-		push(stack.remove(stack.size() - 2));
+		try {
+			push(stack.remove(stack.size() - 2));
+		}catch (Exception exception) {
+			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
+		}
 	}
 
 	/**
 	 * duplicate (a, b -> a, b, b) => void
 	 */
-	public void duplicate() throws RuneException {
-		push(peek(0).copy());
+	public void duplicate() {
+		try {
+			push(peek(0).copy());
+		}catch (Exception exception) {
+			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
+		}
 	}
 
 	/**
 	 * over (a, b -> a, b, a) => void
 	 */
 	public void over() {
-		push(stack.remove(stack.size() - 3));
+		try {
+			push(stack.remove(stack.size() - 3));
+		} catch (Exception exception) {
+			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
+		}
 	}
 
 	/**
 	 * rotate (a, b, c -> b, c, a) => void
 	 */
 	public void rotate() {
-		push(stack.remove(0));
+		try {
+			push(stack.remove(0));
+		} catch (Exception exception) {
+			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
+		}
 	}
 
 	/**
@@ -68,7 +92,7 @@ public final class Stack {
 	 */
 	public void validate() {
 		if(stack.size() > this.capacity) {
-			throw RuneExceptionType.STACK_TOO_BIG.get();
+			throw RuneException.of(RuneExceptionType.STACK_TOO_LONG);
 		}
 	}
 

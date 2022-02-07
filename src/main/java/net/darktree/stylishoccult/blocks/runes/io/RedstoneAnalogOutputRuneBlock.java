@@ -39,11 +39,7 @@ public class RedstoneAnalogOutputRuneBlock extends ActorRuneBlock {
 
     @Override
     protected void onTriggered(Script script, World world, BlockPos pos, BlockState state) {
-        try {
-            world.setBlockState(pos, world.getBlockState(pos).with(POWER, toPowerLevel(script.pull(world, pos).value())));
-        }catch(Exception exception) {
-            throw RuneExceptionType.INVALID_ARGUMENT_COUNT.get();
-        }
+        world.setBlockState(pos, world.getBlockState(pos).with(POWER, toPowerLevel(script.pull(world, pos).value())));
     }
 
     private static int toPowerLevel( double value ) {

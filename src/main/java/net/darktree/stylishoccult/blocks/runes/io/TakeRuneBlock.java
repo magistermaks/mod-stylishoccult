@@ -19,12 +19,8 @@ public class TakeRuneBlock extends InputRuneBlock {
 
 	@Override
 	public void apply(Script script, World world, BlockPos pos) {
-		try {
-			ItemStack stack = fetch(world, pos, (int) script.pull(world, pos).value());
-			script.stack.push(new ItemElement(stack));
-		}catch (Exception e) {
-			throw RuneExceptionType.INVALID_ARGUMENT_COUNT.get();
-		}
+		ItemStack stack = fetch(world, pos, (int) script.pull(world, pos).value());
+		script.stack.push(new ItemElement(stack));
 	}
 
 	private static ItemStack fetch(World world, BlockPos pos, int count) {

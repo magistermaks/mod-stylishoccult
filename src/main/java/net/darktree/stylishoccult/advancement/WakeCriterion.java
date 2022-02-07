@@ -13,10 +13,6 @@ import net.minecraft.util.Identifier;
 public class WakeCriterion extends AbstractCriterion<WakeCriterion.Conditions> {
 	static final Identifier ID = new ModIdentifier("wake");
 
-	public WakeCriterion() {
-		// NOOP
-	}
-
 	public Identifier getId() {
 		return ID;
 	}

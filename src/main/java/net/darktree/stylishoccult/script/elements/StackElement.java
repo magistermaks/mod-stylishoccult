@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.script.elements;
 
 import net.darktree.stylishoccult.script.components.RuneException;
+import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneRegistry;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
@@ -66,7 +67,7 @@ public abstract class StackElement {
 			return clazz.cast(this);
 		}
 
-		throw new RuneException("invalid type!");
+		throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_TYPE);
 	}
 
 	@FunctionalInterface

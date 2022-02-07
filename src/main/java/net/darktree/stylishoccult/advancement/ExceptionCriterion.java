@@ -20,10 +20,6 @@ import net.minecraft.world.World;
 public class ExceptionCriterion extends AbstractCriterion<ExceptionCriterion.Conditions> {
 	static final Identifier ID = new ModIdentifier("exception");
 
-	public ExceptionCriterion() {
-		// NOOP
-	}
-
 	public Identifier getId() {
 		return ID;
 	}

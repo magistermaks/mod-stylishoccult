@@ -120,6 +120,10 @@ public class CraftRuneBlock extends TransferRuneBlock {
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		SimpleRay ray = new SimpleRay(player.getCameraPosVec(1), player.getRotationVec(1), pos);
 
+		if( !player.getAbilities().allowModifyWorld ) {
+			return ActionResult.PASS;
+		}
+
 		Direction direction = SlotSide.get(ray);
 		if(direction != null) {
 
@@ -150,29 +154,26 @@ public class CraftRuneBlock extends TransferRuneBlock {
 
 	@Override
 	public void apply(Script script, World world, BlockPos pos) {
-		try {
-			CraftingInventory inventory = new CraftingInventory(new DummyScreenHandler(), 3, 3);
-			BlockState state = world.getBlockState(pos);
+		CraftingInventory inventory = new CraftingInventory(new DummyScreenHandler(), 3, 3);
+		BlockState state = world.getBlockState(pos);
 
-			// fill in the input inventory
-			for (int i = 0; i < SLOTS.length; i++) {
-				if (state.get(SLOTS[i].property))
-					inventory.setStack(i, script.stack.pull().cast(ItemElement.class).stack);
+		// fill in the input inventory
+		for (int i = 0; i < SLOTS.length; i++) {
+			if (state.get(SLOTS[i].property)) {
+				inventory.setStack(i, script.stack.pull().cast(ItemElement.class).stack);
 			}
+		}
 
-			Optional<CraftingRecipe> optional = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, inventory, world);
+		Optional<CraftingRecipe> optional = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, inventory, world);
 
-			if (optional.isPresent()) {
-				Recipe<CraftingInventory> recipe = optional.get();
-				script.stack.push(new ItemElement(recipe.craft(inventory)));
-				recipe.getRemainder(inventory).forEach(item -> script.ring.push(new ItemElement(item), world, pos));
-			} else {
-				for (int i = 0; i < 9; i++) {
-					script.ring.push(new ItemElement(inventory.getStack(i)), world, pos);
-				}
+		if (optional.isPresent()) {
+			Recipe<CraftingInventory> recipe = optional.get();
+			script.stack.push(new ItemElement(recipe.craft(inventory)));
+			recipe.getRemainder(inventory).forEach(item -> script.ring.push(new ItemElement(item), world, pos));
+		} else {
+			for (int i = 0; i < 9; i++) {
+				script.ring.push(new ItemElement(inventory.getStack(i)), world, pos);
 			}
-		}catch (Exception e) {
-			throw RuneExceptionType.INVALID_ARGUMENT_COUNT.get();
 		}
 	}
 
