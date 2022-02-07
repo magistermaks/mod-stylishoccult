@@ -10,9 +10,7 @@ import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.MapColor;
-import net.minecraft.block.Material;
+import net.minecraft.block.*;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.sound.BlockSoundGroup;
@@ -53,6 +51,9 @@ public class ModBlocks {
     public static final Block RUNESTONE = RegUtil.block( "runestone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
     public static final Block ARCANE_ASH = RegUtil.block( "arcane_ash", new ArcaneAshBlock( 100, 500, 0.4f, RegUtil.settings( Material.SOIL, BlockSoundGroup.SAND, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK) ) );
     public static final Block CRYSTALLINE_BLACKSTONE = RegUtil.block( "crystalline_blackstone", new CrystallineBlackstone( RegUtil.settings( Material.STONE, BlockSoundGroup.GILDED_BLACKSTONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
+    public static final Block RUNESTONE_SLAB = RegUtil.block( "runestone_slab", new SlabBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
+    public static final Block RUNESTONE_STAIR = RegUtil.block( "runestone_stairs", new PublicStairsBlock( RUNESTONE.getDefaultState(), RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
+    public static final Block RUNESTONE_TABLE = RegUtil.block( "runestone_table", new TableBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
 
     // runes
     public static final Block BROKEN_RUNE_BLOCK = RegUtil.rune( new BrokenRuneBlock( "damaged" ) );

@@ -10,10 +10,10 @@ import net.minecraft.world.World;
 
 public class RuneUtils {
 
-    public static final int COLOR_0 = 0x4d0000;
-    public static final int COLOR_1 = 0x660000;
-    public static final int COLOR_2 = 0x800000;
-    public static final int COLOR_3 = 0x990000;
+    public static final int COLOR_0 = 90 << 16;
+    public static final int COLOR_1 = 115 << 16;
+    public static final int COLOR_2 = 140 << 16;
+    public static final int COLOR_3 = 165 << 16;
 
     public static void createErrorReport(RuneException exception, World world, BlockPos pos) {
         NbtCompound tag = new NbtCompound();

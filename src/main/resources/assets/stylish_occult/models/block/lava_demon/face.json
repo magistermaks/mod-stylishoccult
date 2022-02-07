@@ -3,7 +3,6 @@
 	"textures": {
         "0": "stylish_occult:block/stone_veins_1",
 		"1": "stylish_occult:block/stone_veins_3",
-		"2": "minecraft:block/magma",
-		"particle": "minecraft:block/magma"
+		"2": "minecraft:block/magma"
 	}
 }

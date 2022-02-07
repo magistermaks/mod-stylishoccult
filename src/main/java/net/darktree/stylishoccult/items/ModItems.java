@@ -61,6 +61,9 @@ public class ModItems {
     public static final Item SPARK_VENT = RegUtil.item("spark_vent", ModBlocks.SPARK_VENT, Groups.STYLISH_OCCULT );
     public static final Item RUNESTONE = RegUtil.item( "runestone", ModBlocks.RUNESTONE, Groups.STYLISH_OCCULT );
     public static final Item RUNE_ERROR_REPORT = RegUtil.item( "error_tablet", new ErrorReportItem( new Item.Settings().group( Groups.STYLISH_OCCULT ).maxCount(1) ) );
+    public static final Item RUNESTONE_SLAB = RegUtil.item( "runestone_slab", ModBlocks.RUNESTONE_SLAB, Groups.STYLISH_OCCULT );
+    public static final Item RUNESTONE_STAIR = RegUtil.item( "runestone_stairs", ModBlocks.RUNESTONE_STAIR, Groups.STYLISH_OCCULT );
+    public static final Item RUNESTONE_TABLE = RegUtil.item( "runestone_table", ModBlocks.RUNESTONE_TABLE, Groups.STYLISH_OCCULT );
 
     // "decorative"
     public static final Item EYES_BLOCK = RegUtil.item( "eyes_block", ModBlocks.EYES_BLOCK, Groups.STYLISH_OCCULT );

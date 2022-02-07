@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "111",
+    " 2 ",
+    " 2 "
+  ],
+  "key": {
+    "1": {
+      "item": "stylish_occult:runestone_slab"
+    },
+    "2": {
+      "item": "stylish_occult:runestone"
+    }
+  },
+  "result": {
+    "item": "stylish_occult:runestone_table",
+    "count": 1
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "stylish_occult:block/runestone",
+    "top": "stylish_occult:block/runestone",
+    "side": "stylish_occult:block/runestone"
+  }
+}
