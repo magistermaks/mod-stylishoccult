@@ -1,5 +1,9 @@
 
-0.7.0 beta
+0.7.1 beta <2022/02/08>
+- Fixed fleshy stone glitching when scraped with an axe
+- Added new advancement criterion, and advancement
+
+0.7.0 beta <2022/02/07>
 - Runic scrips can now operate on items
 - Added Crafting (creo) rune - for auto crafting
 - Added Over (supra) rune - stack operation
@@ -19,6 +23,7 @@
 - Reworked the Join, Place, and Debug runes
 - Removed the Or, Push, and Pull runes
 - Better error tablet reports
+- Fixed crash on startup caused by interference
 
 0.6.0 beta <2022/01/31>
 - Fixed runic script breaking on world reloads (introduced in 0.5.0)

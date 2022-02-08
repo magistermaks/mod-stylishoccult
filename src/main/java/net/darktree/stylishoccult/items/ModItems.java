@@ -96,7 +96,7 @@ public class ModItems {
 
     public static void clientInit() {
         ColorProviderRegistry.ITEM.register(
-                (stack, tintIndex) -> RuneUtils.COLOR_0,
+                (stack, tintIndex) -> RuneUtils.COLOR_1,
                 ModItems.RUNESTONES.toArray( new Item[0] )
         );
     }
