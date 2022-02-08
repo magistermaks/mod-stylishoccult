@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "stylish_occult:veins"
+  },
+  "result": "stylish_occult:cooked_veins",
+  "experience": 0.4,
+  "cookingtime": 200
+}

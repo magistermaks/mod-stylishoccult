@@ -36,6 +36,7 @@
   "item.stylish_occult.blood_bottle": "Corrupted Blood Bottle",
   "item.stylish_occult.error_tablet": "Runic Error Tablet",
   "item.stylish_occult.veins": "Veins",
+  "item.stylish_occult.cooked_veins": "Cooked Veins",
   "item.stylish_occult.lava_shard": "Lava Shard",
   "item.stylish_occult.blazing_lava_shard": "Blazing Lava Shard",
   "item.stylish_occult.twisted_bone": "Twisted Bone",
@@ -152,6 +153,8 @@
   "advancements.stylish_occult.wake.description": "Awake the fiery beast sleeping in the depths",
   "advancements.stylish_occult.hell.title": "Into Hell",
   "advancements.stylish_occult.hell.description": "Descend into hell",
-  "advancements.stylish_occult.scrape.title": "Cleanse It With Fire!",
-  "advancements.stylish_occult.scrape.description": "Scrape flesh from fleshy stone with an Axe"
+  "advancements.stylish_occult.scrape.title": "Cleanse It With Fire",
+  "advancements.stylish_occult.scrape.description": "Scrape flesh from fleshy stone with an Axe",
+  "advancements.stylish_occult.veins.title": "Warm and Crunchy",
+  "advancements.stylish_occult.veins.description": "Eat cooked veins"
 }

@@ -1,0 +1,33 @@
+{
+  "parent": "stylish_occult:occult/scrape",
+  "display": {
+    "icon": {
+      "item": "stylish_occult:cooked_veins"
+    },
+    "title": {
+      "translate": "advancements.stylish_occult.veins.title"
+    },
+    "description": {
+      "translate": "advancements.stylish_occult.veins.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "cooked_veins": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": ["stylish_occult:cooked_veins"]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cooked_veins"
+    ]
+  ]
+}

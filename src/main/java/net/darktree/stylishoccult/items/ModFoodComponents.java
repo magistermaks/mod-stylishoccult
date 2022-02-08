@@ -22,6 +22,13 @@ public class ModFoodComponents {
             .snack()
             .build();
 
+    public static final FoodComponent COOKED_VEINS = new FoodComponent.Builder()
+            .hunger(2)
+            .saturationModifier(0.21F)
+            .meat()
+            .snack()
+            .build();
+
     public static final FoodComponent BLOOD = new FoodComponent.Builder()
             .statusEffect(new StatusEffectInstance(ModEffects.CORRUPTED_BLOOD, 600, 0), 0.9f)
             .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 1200, 0), 1)

@@ -54,6 +54,7 @@ public class ModItems {
     public static final Item URN = RegUtil.item( "urn", new BlockItem( ModBlocks.URN, new Item.Settings().group( Groups.STYLISH_OCCULT ).rarity( Rarity.UNCOMMON ) ) );
     public static final Item FLESH = RegUtil.item( "flesh", new Item.Settings().group( Groups.STYLISH_OCCULT ).food( ModFoodComponents.FLESH_FOOD ) );
     public static final Item VEINS = RegUtil.item( "veins", new Item.Settings().group( Groups.STYLISH_OCCULT ).food( ModFoodComponents.VEINS ) );
+    public static final Item COOKED_VEINS = RegUtil.item( "cooked_veins", new Item.Settings().group( Groups.STYLISH_OCCULT ).food( ModFoodComponents.COOKED_VEINS ) );
     public static final Item TWISTED_BONE = RegUtil.item( "twisted_bone", new Item.Settings().group( Groups.STYLISH_OCCULT ) );
     public static final Item GLOWGROWTH_SHARD = RegUtil.item( "glowgrowth_shard", new Item.Settings().group( Groups.STYLISH_OCCULT ) );
     public static final Item GROWTH = RegUtil.item( "growth", ModBlocks.GROWTH, Groups.STYLISH_OCCULT );
