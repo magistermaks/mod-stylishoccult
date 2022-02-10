@@ -25,7 +25,7 @@ public class ModBlocks {
     public static final Block LAVA_DEMON = RegUtil.block( "lava_demon", new LavaDemonBlock() );
     public static final Block FIERY_LANTERN = RegUtil.block( "fiery_lantern", new FieryLanternBlock() );
     public static final Block SPARK_VENT = RegUtil.block( "spark_vent", new SparkVentBlock() );
-    public static final Block GROWTH = RegUtil.block( "growth", new ThinFleshBlock() );
+    public static final Block GROWTH = RegUtil.block( "growth", new GrowthBlock() );
     public static final Block NETHER_GRASS = RegUtil.block( "nether_grass", new NetherGrassBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MapColor.RED).requiresTool().noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
     public static final Block NETHER_FERN = RegUtil.block( "nether_fern", new NetherFernBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MapColor.RED).requiresTool().noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
 

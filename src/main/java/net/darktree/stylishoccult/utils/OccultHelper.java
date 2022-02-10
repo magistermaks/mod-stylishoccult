@@ -137,7 +137,7 @@ public class OccultHelper {
                 }
 
                 if( type == 4 || type == 5 ) {
-                    return ((ThinFleshBlock) ModBlocks.GROWTH).getStateToFit(world, pos);
+                    return ((GrowthBlock) ModBlocks.GROWTH).getStateToFit(world, pos);
                 }
 
                 if( type >= 6 && validDownSpot(world, pos) ) {

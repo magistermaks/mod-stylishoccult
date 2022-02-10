@@ -1,4 +1,4 @@
-package net.darktree.stylishoccult.worldgen;
+package net.darktree.stylishoccult.worldgen.feature;
 
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
@@ -24,8 +24,8 @@ public class NetherGrassFeature extends SimpleFeature<DefaultFeatureConfig> {
     private final static BlockState GRASS = ModBlocks.NETHER_GRASS.getDefaultState();
     private final static BlockState FERN = ModBlocks.NETHER_FERN.getDefaultState();
 
-    public NetherGrassFeature(Codec<DefaultFeatureConfig> configCodec) {
-        super(configCodec);
+    public NetherGrassFeature(Codec<DefaultFeatureConfig> codec) {
+        super(codec);
     }
 
     @Override

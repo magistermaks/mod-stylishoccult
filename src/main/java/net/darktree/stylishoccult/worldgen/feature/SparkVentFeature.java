@@ -1,4 +1,4 @@
-package net.darktree.stylishoccult.worldgen;
+package net.darktree.stylishoccult.worldgen.feature;
 
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;

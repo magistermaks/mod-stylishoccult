@@ -15,6 +15,8 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -26,7 +28,7 @@ import net.minecraft.world.WorldAccess;
 
 import java.util.Random;
 
-public class ThinFleshBlock extends SimpleBlock implements ImpureBlock, FluidReplaceable {
+public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplaceable {
 
     public static final BooleanProperty UP = BooleanProperty.of("up");
     public static final BooleanProperty DOWN = BooleanProperty.of("down");
@@ -54,7 +56,7 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock, FluidRep
         return LootTables.GROWTH;
     }
 
-    public ThinFleshBlock() {
+    public GrowthBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).slipperiness(0.7f).ticksRandomly() );
         setDefaultState( getDefaultState().with(SIZE, 1).with(UP, false).with(DOWN, false).with(SOUTH, false).with(NORTH, false).with(WEST, false).with(EAST, false) );
     }
@@ -82,7 +84,7 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock, FluidRep
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
         BooleanProperty property = fromDirection(direction);
-        if( state.get( property ) && !canSupport((World) world, pos, direction) ) {
+        if( state.get( property ) && !canSupport(world, pos, direction) ) {
             state = state.with(property, false);
             world.playSound(null, pos, soundGroup.getBreakSound(), SoundCategory.BLOCKS, 1, 1);
         }
@@ -104,7 +106,19 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock, FluidRep
         return getStateToFit( ctx.getWorld(), ctx.getBlockPos() );
     }
 
-    public BlockState getStateToFit( World world, BlockPos pos ) {
+    @Override
+    public BlockState rotate(BlockState state, BlockRotation rotation) {
+        return getDefaultState()
+                .with(SIZE, state.get(SIZE))
+                .with(UP, state.get(UP))
+                .with(DOWN, state.get(DOWN))
+                .with(fromDirection(rotation.rotate(Direction.NORTH)), state.get(NORTH))
+                .with(fromDirection(rotation.rotate(Direction.EAST)), state.get(EAST))
+                .with(fromDirection(rotation.rotate(Direction.SOUTH)), state.get(SOUTH))
+                .with(fromDirection(rotation.rotate(Direction.WEST)), state.get(WEST));
+    }
+
+    public BlockState getStateToFit(World world, BlockPos pos ) {
         BlockState state = getDefaultState();
         boolean flag = false;
 
@@ -138,7 +152,7 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock, FluidRep
             }
         }
 
-        if( BlockUtils.countInArea(world, pos, ThinFleshBlock.class, 3) > 9 ) {
+        if( BlockUtils.countInArea(world, pos, GrowthBlock.class, 3) > 9 ) {
             return;
         }
 
@@ -210,7 +224,7 @@ public class ThinFleshBlock extends SimpleBlock implements ImpureBlock, FluidRep
         return context.getStack().isEmpty() || context.getStack().getItem() != this.asItem();
     }
 
-    private boolean canSupport(World world, BlockPos pos, Direction direction ) {
+    private boolean canSupport(WorldAccess world, BlockPos pos, Direction direction ) {
         BlockPos support = pos.offset(direction);
         BlockState state = world.getBlockState( support );
         return state.isFullCube(world, support) || isShapeFullCube(state.getOutlineShape(world, support)) || state.isSideSolidFullSquare( world, support, direction.getOpposite() );
