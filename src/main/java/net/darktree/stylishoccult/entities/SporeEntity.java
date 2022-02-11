@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.entities;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.entities.goal.FollowNonCorruptedGoal;
+import net.darktree.stylishoccult.entities.goal.FollowSparkGoal;
 import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.sounds.SoundManager;
 import net.minecraft.entity.EntityType;
@@ -35,7 +35,7 @@ public class SporeEntity extends SparkEntity implements CorruptedEntity {
 
     @Override
     protected void addSpecificGoals() {
-        this.targetSelector.add(0, new FollowNonCorruptedGoal(this, true));
+        this.targetSelector.add(0, new FollowSparkGoal(this, true));
     }
 
     @Override

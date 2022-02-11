@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.entities;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.entities.goal.FollowCorruptedGoal;
+import net.darktree.stylishoccult.entities.goal.FollowSporeGoal;
 import net.darktree.stylishoccult.items.material.TwistedBoneArmorMaterial;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -95,7 +95,7 @@ public class SparkEntity extends HostileEntity {
     }
 
     protected void addSpecificGoals() {
-        this.targetSelector.add(0, new FollowCorruptedGoal(this, true));
+        this.targetSelector.add(0, new FollowSporeGoal(this, true));
     }
 
     public static DefaultAttributeContainer.Builder createSparkAttributes() {

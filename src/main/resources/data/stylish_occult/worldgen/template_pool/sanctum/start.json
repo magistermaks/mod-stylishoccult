@@ -1,0 +1,15 @@
+{
+  "name": "stylish_occult:sanctum/start",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "stylish_occult:sanctum/upper",
+        "processors": "stylish_occult:sanctum",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

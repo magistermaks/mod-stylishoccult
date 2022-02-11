@@ -51,8 +51,7 @@ public class StoneStructureProcessor extends StructureProcessor {
 		return block.getDefaultState()
 				.with(StairsBlock.FACING, source.get(StairsBlock.FACING))
 				.with(StairsBlock.HALF, source.get(StairsBlock.HALF))
-				.with(StairsBlock.SHAPE, source.get(StairsBlock.SHAPE))
-				.with(StairsBlock.WATERLOGGED, source.get(StairsBlock.WATERLOGGED));
+				.with(StairsBlock.SHAPE, source.get(StairsBlock.SHAPE));
 	}
 
 	@Override

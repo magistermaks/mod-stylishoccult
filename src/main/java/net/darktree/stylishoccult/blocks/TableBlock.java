@@ -9,6 +9,7 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -52,6 +53,25 @@ public class TableBlock extends Block implements DropsItself {
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		return getStateToFit(ctx.getWorld(), ctx.getBlockPos(), getDefaultState());
+	}
+
+	@Override
+	public BlockState rotate(BlockState state, BlockRotation rotation) {
+		return state
+				.with(fromDirection(rotation.rotate(Direction.NORTH)), state.get(NORTH))
+				.with(fromDirection(rotation.rotate(Direction.EAST)), state.get(EAST))
+				.with(fromDirection(rotation.rotate(Direction.SOUTH)), state.get(SOUTH))
+				.with(fromDirection(rotation.rotate(Direction.WEST)), state.get(WEST));
+	}
+
+	private BooleanProperty fromDirection( Direction direction ) {
+		return switch (direction) {
+			case NORTH -> NORTH;
+			case SOUTH -> SOUTH;
+			case WEST -> WEST;
+			case EAST -> EAST;
+			default -> null;
+		};
 	}
 
 	private BlockState getStateToFit(WorldAccess world, BlockPos pos, BlockState state) {

@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.registry.DynamicRegistryManager;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSource;
@@ -27,14 +28,14 @@ import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 import java.util.Random;
 
-public class TerrainAwareStructure extends StructureFeature<StructurePoolFeatureConfig> {
+public class SanctumStructure extends StructureFeature<StructurePoolFeatureConfig> {
 	private final boolean modifyBoundingBox;
 	private final boolean surface;
 	private final int depth;
 	private final int slope;
 	private final int clearance;
 
-	public TerrainAwareStructure(boolean modifyBoundingBox, boolean surface, int depth, int slope, int clearance) {
+	public SanctumStructure(boolean modifyBoundingBox, boolean surface, int depth, int slope, int clearance) {
 		super(StructurePoolFeatureConfig.CODEC);
 		this.modifyBoundingBox = modifyBoundingBox;
 		this.surface = surface;
@@ -45,7 +46,7 @@ public class TerrainAwareStructure extends StructureFeature<StructurePoolFeature
 
 	@Override
 	public StructureStartFactory<StructurePoolFeatureConfig> getStructureStartFactory() {
-		return TerrainAwareStructure.Start::new;
+		return SanctumStructure.Start::new;
 	}
 
 	@Override
@@ -63,8 +64,6 @@ public class TerrainAwareStructure extends StructureFeature<StructurePoolFeature
 			mutable.set(0, i, 0);
 			if (!sample.getState(mutable).isAir()) {
 				if (air && verifyPlacementPosition(generator, pos, view, box, random, i)) {
-					StylishOccult.LOGGER.info("Found spawn location at: " + pos.getCenterAtY(i));
-
 					return i;
 				}
 
@@ -74,7 +73,6 @@ public class TerrainAwareStructure extends StructureFeature<StructurePoolFeature
 			}
 		}
 
-		StylishOccult.LOGGER.info("Verification failed for column at: " + pos);
 		return Integer.MIN_VALUE;
 	}
 
@@ -137,9 +135,9 @@ public class TerrainAwareStructure extends StructureFeature<StructurePoolFeature
 		}
 
 		@Override
-		public void init(DynamicRegistryManager registryManager, ChunkGenerator chunkGenerator, StructureManager manager, ChunkPos pos, Biome biome, StructurePoolFeatureConfig config, HeightLimitView view) {
-			Identifier id = new ModIdentifier("sanctum_top");
-			TerrainAwareStructure feature = (TerrainAwareStructure) this.getFeature();
+		public void init(DynamicRegistryManager registry, ChunkGenerator generator, StructureManager manager, ChunkPos pos, Biome biome, StructurePoolFeatureConfig config, HeightLimitView view) {
+			Identifier id = new ModIdentifier("sanctum/upper");
+			SanctumStructure feature = (SanctumStructure) this.getFeature();
 			BlockRotation rotation = Util.getRandom(BlockRotation.values(), this.random);
 
 			Structure structure = manager.getStructureOrBlank(id);
@@ -148,14 +146,25 @@ public class TerrainAwareStructure extends StructureFeature<StructurePoolFeature
 			BlockPos blockPos = new BlockPos(structure.getSize().getX() / 2, 0, structure.getSize().getZ() / 2);
 			BlockBox box = structure.calculateBoundingBox(pos.getStartPos(), rotation, blockPos, mirror);
 
-			int l = feature.getPlacementHeight(chunkGenerator, pos, view, box, this.random);
+			int l = feature.getPlacementHeight(generator, pos, view, box, this.random);
 
 			if (l == Integer.MIN_VALUE) {
 				return;
 			}
 
-			StructurePoolBasedGenerator.generate(registryManager, config, PoolStructurePiece::new, chunkGenerator, manager, new BlockPos(pos.x << 4, l, pos.z << 4), this, this.random, feature.modifyBoundingBox, feature.surface, view);
+//			StructurePoolBasedGenerator.generate(registryManager, config, PoolStructurePiece::new, chunkGenerator, manager, new BlockPos(pos.x << 4, l, pos.z << 4), this, this.random, feature.modifyBoundingBox, feature.surface, view);
+//			this.setBoundingBoxFromChildren();
+
+			StructurePoolFeatureConfig pool = new StructurePoolFeatureConfig(
+					() -> registry.get(Registry.STRUCTURE_POOL_KEY).get(new ModIdentifier("sanctum/start")), 5
+			);
+
+			StructurePoolBasedGenerator.generate(
+					registry, pool, PoolStructurePiece::new, generator, manager, new BlockPos(pos.x << 4, l, pos.z << 4), this, this.random, false, false, view
+			);
+
 			this.setBoundingBoxFromChildren();
+
 		}
 	}
 }

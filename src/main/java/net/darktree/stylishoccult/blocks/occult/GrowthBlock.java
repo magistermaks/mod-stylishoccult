@@ -108,10 +108,7 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return getDefaultState()
-                .with(SIZE, state.get(SIZE))
-                .with(UP, state.get(UP))
-                .with(DOWN, state.get(DOWN))
+        return state
                 .with(fromDirection(rotation.rotate(Direction.NORTH)), state.get(NORTH))
                 .with(fromDirection(rotation.rotate(Direction.EAST)), state.get(EAST))
                 .with(fromDirection(rotation.rotate(Direction.SOUTH)), state.get(SOUTH))

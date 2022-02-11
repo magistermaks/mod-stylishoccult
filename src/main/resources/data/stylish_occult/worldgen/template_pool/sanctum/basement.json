@@ -1,0 +1,16 @@
+{
+  "name": "stylish_occult:sanctum/basement",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "stylish_occult:sanctum/lower",
+        "processors": "stylish_occult:sanctum",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
+

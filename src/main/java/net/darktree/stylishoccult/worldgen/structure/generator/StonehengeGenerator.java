@@ -12,11 +12,10 @@ import net.minecraft.util.Identifier;
 
 public class StonehengeGenerator {
 
-	public static final Identifier ID = new ModIdentifier("stonehenge");
-	public static final StructurePool POOL = StructurePools.register(new StructurePool(ID, new Identifier("empty"), ImmutableList.of(
-			new Pair<>(StructurePoolElement.ofProcessedLegacySingle(StylishOccult.NAMESPACE + ":stonehenge_1", WorldGen.STONE_PROCESSOR), 7),
-			new Pair<>(StructurePoolElement.ofProcessedLegacySingle(StylishOccult.NAMESPACE + ":stonehenge_2", WorldGen.BLACKSTONE_PROCESSOR), 1),
-			new Pair<>(StructurePoolElement.ofProcessedLegacySingle(StylishOccult.NAMESPACE + ":stonehenge_3", WorldGen.DEEPSLATE_PROCESSOR), 2)
+	public static final StructurePool POOL = StructurePools.register(new StructurePool(new ModIdentifier("stonehenge"), new Identifier("empty"), ImmutableList.of(
+			new Pair<>(StructurePoolElement.ofProcessedLegacySingle(StylishOccult.NAMESPACE + ":stonehenge/stone", WorldGen.STONE_PROCESSOR), 7),
+			new Pair<>(StructurePoolElement.ofProcessedLegacySingle(StylishOccult.NAMESPACE + ":stonehenge/deepslate", WorldGen.DEEPSLATE_PROCESSOR), 2),
+			new Pair<>(StructurePoolElement.ofProcessedLegacySingle(StylishOccult.NAMESPACE + ":stonehenge/blackstone", WorldGen.BLACKSTONE_PROCESSOR), 1)
 	), StructurePool.Projection.TERRAIN_MATCHING));
 
 	public static void init() {

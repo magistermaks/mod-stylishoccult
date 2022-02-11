@@ -8,9 +8,10 @@ import net.darktree.stylishoccult.utils.SimpleFeatureProvider;
 import net.darktree.stylishoccult.worldgen.feature.*;
 import net.darktree.stylishoccult.worldgen.processor.BlackstoneStructureProcessor;
 import net.darktree.stylishoccult.worldgen.processor.DeepslateStructureProcessor;
+import net.darktree.stylishoccult.worldgen.processor.SanctumStructureProcessor;
 import net.darktree.stylishoccult.worldgen.processor.StoneStructureProcessor;
 import net.darktree.stylishoccult.worldgen.structure.StonehengeStructure;
-import net.darktree.stylishoccult.worldgen.structure.TerrainAwareStructure;
+import net.darktree.stylishoccult.worldgen.structure.SanctumStructure;
 import net.darktree.stylishoccult.worldgen.structure.generator.SanctumGenerator;
 import net.darktree.stylishoccult.worldgen.structure.generator.StonehengeGenerator;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -71,6 +72,7 @@ public class WorldGen {
 	public static StructureProcessorList STONE_PROCESSOR = addProcessorList("stone", ImmutableList.of(new StoneStructureProcessor()));
 	public static StructureProcessorList BLACKSTONE_PROCESSOR = addProcessorList("blackstone", ImmutableList.of(new BlackstoneStructureProcessor()));
 	public static StructureProcessorList DEEPSLATE_PROCESSOR = addProcessorList("deepslate", ImmutableList.of(new DeepslateStructureProcessor()));
+	public static StructureProcessorList SANCTUM_PROCESSOR = addProcessorList("sanctum", ImmutableList.of(new SanctumStructureProcessor()));
 
 	public static void init() {
 
@@ -139,7 +141,7 @@ public class WorldGen {
 				"sanctum",
 				2, 1, true,
 				BiomeSelectors.foundInTheNether().and(BiomeSelectors.excludeByKey(BiomeKeys.BASALT_DELTAS, BiomeKeys.SOUL_SAND_VALLEY)),
-				new TerrainAwareStructure(false, false, 8, 5, 4),
+				new SanctumStructure(false, false, 8, 5, 4),
 				SanctumGenerator.POOL,
 				GenerationStep.Feature.SURFACE_STRUCTURES
 		);

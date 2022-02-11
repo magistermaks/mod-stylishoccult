@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.entities.goal;
 
-import net.darktree.stylishoccult.entities.CorruptedEntity;
+import net.darktree.stylishoccult.entities.ModEntities;
+import net.darktree.stylishoccult.entities.SporeEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.Goal;
@@ -9,17 +10,17 @@ import net.minecraft.entity.mob.MobEntity;
 import java.util.EnumSet;
 import java.util.function.Predicate;
 
-public class FollowCorruptedGoal extends BasicFollowGoal {
+public class FollowSporeGoal extends BasicFollowGoal {
 
-    public FollowCorruptedGoal(MobEntity mob, boolean checkVisibility) {
+    public FollowSporeGoal(MobEntity mob, boolean checkVisibility) {
         this(mob, checkVisibility, false);
     }
 
-    public FollowCorruptedGoal(MobEntity mob, boolean checkVisibility, boolean checkCanNavigate) {
+    public FollowSporeGoal(MobEntity mob, boolean checkVisibility, boolean checkCanNavigate) {
         this(mob, 10, checkVisibility, checkCanNavigate, null);
     }
 
-    public FollowCorruptedGoal(MobEntity mob, int reciprocalChance, boolean checkVisibility, boolean checkCanNavigate, Predicate<LivingEntity> targetPredicate) {
+    public FollowSporeGoal(MobEntity mob, int reciprocalChance, boolean checkVisibility, boolean checkCanNavigate, Predicate<LivingEntity> targetPredicate) {
         super(mob, checkVisibility, checkCanNavigate, reciprocalChance);
 
         this.setControls(EnumSet.of(Goal.Control.TARGET));
@@ -35,8 +36,8 @@ public class FollowCorruptedGoal extends BasicFollowGoal {
         }
 
         @Override
-        public boolean test( LivingEntity baseEntity, LivingEntity targetEntity ) {
-            return super.test(baseEntity, targetEntity) && targetEntity instanceof CorruptedEntity;
+        public boolean test(LivingEntity baseEntity, LivingEntity target) {
+            return super.test(baseEntity, target) && target.getType() == ModEntities.SPORE;
         }
 
     }
