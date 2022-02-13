@@ -10,8 +10,8 @@
     "StatusEffectInstanceAccessor"
   ],
   "client": [
-    "InputUtilMixin",
     "InGameHudMixin",
+    "InputUtilMixin",
     "PlayerEntityClientMixin"
   ],
   "injectors": {

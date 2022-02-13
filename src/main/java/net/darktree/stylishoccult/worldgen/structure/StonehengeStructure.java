@@ -1,16 +1,16 @@
 package net.darktree.stylishoccult.worldgen.structure;
 
 import com.google.common.collect.ImmutableList;
-import net.darktree.stylishoccult.StylishOccult;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.FluidBlock;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
+import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.biome.Biome;
@@ -22,14 +22,10 @@ import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class StonehengeStructure extends StructureFeature<StructurePoolFeatureConfig> {
-	private final boolean modifyBoundingBox;
-	private final boolean surface;
 	private final int slope;
 
-	public StonehengeStructure(boolean modifyBoundingBox, boolean surface, int slope) {
+	public StonehengeStructure(int slope) {
 		super(StructurePoolFeatureConfig.CODEC);
-		this.modifyBoundingBox = modifyBoundingBox;
-		this.surface = surface;
 		this.slope = slope;
 	}
 
@@ -38,21 +34,20 @@ public class StonehengeStructure extends StructureFeature<StructurePoolFeatureCo
 		return StonehengeStructure.Start::new;
 	}
 
-	/**
-	 * Try to limit the number of
-	 * @param generator
-	 * @param pos
-	 * @param view
-	 * @return
-	 */
-	public boolean verifyPlacementPosition(ChunkGenerator generator, ChunkPos pos, HeightLimitView view) {
+	@Override
+	protected boolean isUniformDistribution() {
+		return false;
+	}
+
+	@Override
+	protected boolean shouldStartAt(ChunkGenerator generator, BiomeSource biomeSource, long worldSeed, ChunkRandom random, ChunkPos pos, Biome biome, ChunkPos chunkPos, StructurePoolFeatureConfig config, HeightLimitView view) {
 		BlockPos.Mutable mutable = new BlockPos.Mutable();
 
 		ImmutableList<BlockPos> list = ImmutableList.of(
-				new BlockPos(pos.getStartX() + 3, 0, pos.getStartZ() + 3),
-				new BlockPos(pos.getEndX() - 3, 0, pos.getStartZ() + 3),
-				new BlockPos(pos.getStartX() + 3, 0, pos.getEndZ() - 3),
-				new BlockPos(pos.getEndX() - 3, 0, pos.getEndZ() - 3)
+				new BlockPos(pos.getStartX(), 0, pos.getStartZ()),
+				new BlockPos(pos.getEndX(), 0, pos.getStartZ()),
+				new BlockPos(pos.getStartX(), 0, pos.getEndZ()),
+				new BlockPos(pos.getEndX(), 0, pos.getEndZ())
 		);
 
 		int max = Integer.MIN_VALUE;
@@ -88,26 +83,21 @@ public class StonehengeStructure extends StructureFeature<StructurePoolFeatureCo
 		return max - min <= this.slope;
 	}
 
-	@Override
-	protected boolean isUniformDistribution() {
-		return false;
-	}
-
-	@Override
-	protected boolean shouldStartAt(ChunkGenerator generator, BiomeSource biomeSource, long worldSeed, ChunkRandom random, ChunkPos pos, Biome biome, ChunkPos chunkPos, StructurePoolFeatureConfig config, HeightLimitView view) {
-		return verifyPlacementPosition(generator, pos, view);
-	}
-
 	public static class Start extends MarginedStructureStart<StructurePoolFeatureConfig> {
-		public Start(StructureFeature<StructurePoolFeatureConfig> s, ChunkPos c, int i, long l) {
-			super(s, c, i, l);
+		public Start(StructureFeature<StructurePoolFeatureConfig> structure, ChunkPos pos, int i, long l) {
+			super(structure, pos, i, l);
 		}
 
 		@Override
-		public void init(DynamicRegistryManager registryManager, ChunkGenerator generator, StructureManager manager, ChunkPos pos, Biome biome, StructurePoolFeatureConfig config, HeightLimitView view) {
-			StonehengeStructure structure = (StonehengeStructure) getFeature();
+		public void init(DynamicRegistryManager registry, ChunkGenerator generator, StructureManager manager, ChunkPos pos, Biome biome, StructurePoolFeatureConfig config, HeightLimitView view) {
+			BlockPos target = new BlockPos(pos.x * 16 + 8, 0, pos.z * 16 + 8);
+			StructurePoolBasedGenerator.generate(registry, config, PoolStructurePiece::new, generator, manager, target, this, this.random, false, true, view);
 
-			StructurePoolBasedGenerator.generate(registryManager, config, PoolStructurePiece::new, generator, manager, new BlockPos(pos.x << 4, 0, pos.z << 4), this, this.random, structure.modifyBoundingBox, structure.surface, view);
+			// center the structure on the chunk corner
+			StructurePiece piece = this.children.get(0);
+			Vec3i center = piece.getBoundingBox().getCenter();
+			piece.translate(target.getX() - center.getX(), 0, target.getZ() - center.getZ());
+
 			this.setBoundingBoxFromChildren();
 		}
 	}

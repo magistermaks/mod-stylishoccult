@@ -29,16 +29,12 @@ import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 import java.util.Random;
 
 public class SanctumStructure extends StructureFeature<StructurePoolFeatureConfig> {
-	private final boolean modifyBoundingBox;
-	private final boolean surface;
 	private final int depth;
 	private final int slope;
 	private final int clearance;
 
-	public SanctumStructure(boolean modifyBoundingBox, boolean surface, int depth, int slope, int clearance) {
+	public SanctumStructure(int depth, int slope, int clearance) {
 		super(StructurePoolFeatureConfig.CODEC);
-		this.modifyBoundingBox = modifyBoundingBox;
-		this.surface = surface;
 		this.depth = depth;
 		this.slope = slope;
 		this.clearance = clearance;

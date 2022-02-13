@@ -45,17 +45,15 @@ public class WorldGen {
 		BiomeModifications.addFeature(selector, step, key);
 	}
 
-	public static void addStructure(String name, int spacing, int separation, boolean adjustsSurface, Predicate<BiomeSelectionContext> selector, StructureFeature<StructurePoolFeatureConfig> feature, StructurePool pool, GenerationStep.Feature step) {
-		Identifier id = new ModIdentifier(name);
-
+	public static void addStructure(Identifier id, int spacing, int separation, int salt, boolean adjustsSurface, Predicate<BiomeSelectionContext> selector, StructureFeature<StructurePoolFeatureConfig> feature, StructurePool pool, GenerationStep.Feature step) {
 		ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> configured = feature.configure(new StructurePoolFeatureConfig(() -> pool, 2));
-		FabricStructureBuilder<?, ?> builder = FabricStructureBuilder.create(id, feature).step(step).defaultConfig(spacing, separation, 29483148).superflatFeature(configured);
+		FabricStructureBuilder<?, ?> builder = FabricStructureBuilder.create(id, feature).step(step).defaultConfig(spacing, separation, salt).superflatFeature(configured);
 		if (adjustsSurface) builder.adjustsSurface();
 		builder.register();
-		Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, new ModIdentifier("configured_" + name), configured);
+		Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, new Identifier(id.getNamespace(), "configured_" + id.getPath()), configured);
 
 		// add to biomes
-		BiomeModifications.create(new ModIdentifier(name)).add(ModificationPhase.ADDITIONS, selector, (context) -> {
+		BiomeModifications.create(id).add(ModificationPhase.ADDITIONS, selector, (context) -> {
 			context.getGenerationSettings().addBuiltInStructure(configured);
 		});
 	}
@@ -67,12 +65,6 @@ public class WorldGen {
 	public static StructureProcessorType<?> addProcessorType(String name, Supplier<StructureProcessor> supplier) {
 		return StructureProcessorType.register(StylishOccult.NAMESPACE + "_" + name + "_processor", Codec.unit(supplier));
 	}
-
-	// Processor lists
-	public static StructureProcessorList STONE_PROCESSOR = addProcessorList("stone", ImmutableList.of(new StoneStructureProcessor()));
-	public static StructureProcessorList BLACKSTONE_PROCESSOR = addProcessorList("blackstone", ImmutableList.of(new BlackstoneStructureProcessor()));
-	public static StructureProcessorList DEEPSLATE_PROCESSOR = addProcessorList("deepslate", ImmutableList.of(new DeepslateStructureProcessor()));
-	public static StructureProcessorList SANCTUM_PROCESSOR = addProcessorList("sanctum", ImmutableList.of(new SanctumStructureProcessor()));
 
 	public static void init() {
 
@@ -133,24 +125,21 @@ public class WorldGen {
 				new BoulderFeature( DefaultFeatureConfig.CODEC )
 		);
 
-		StonehengeGenerator.init();
-		SanctumGenerator.init();
-
 		// Structures
 		WorldGen.addStructure(
-				"sanctum",
-				2, 1, true,
+				SanctumGenerator.ID,
+				2, 1, 48151, true,
 				BiomeSelectors.foundInTheNether().and(BiomeSelectors.excludeByKey(BiomeKeys.BASALT_DELTAS, BiomeKeys.SOUL_SAND_VALLEY)),
-				new SanctumStructure(false, false, 8, 5, 4),
+				new SanctumStructure(8, 5, 4),
 				SanctumGenerator.POOL,
 				GenerationStep.Feature.SURFACE_STRUCTURES
 		);
 
 		WorldGen.addStructure(
-				"stonehedge",
-				30, 14, true,
+				StonehengeGenerator.ID,
+				30, 14, 62342, true,
 				BiomeSelectors.foundInOverworld().and(BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.JUNGLE, Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.TAIGA)),
-				new StonehengeStructure(true, true, 7),
+				new StonehengeStructure(7),
 				StonehengeGenerator.POOL,
 				GenerationStep.Feature.SURFACE_STRUCTURES
 		);
