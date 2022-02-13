@@ -1,10 +1,7 @@
 package net.darktree.stylishoccult.mixin;
 
 import net.minecraft.client.util.InputUtil;
-import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(InputUtil.class)
 public class InputUtilMixin {

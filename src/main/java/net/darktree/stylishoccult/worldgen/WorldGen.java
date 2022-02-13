@@ -10,21 +10,19 @@ import net.darktree.stylishoccult.worldgen.processor.BlackstoneStructureProcesso
 import net.darktree.stylishoccult.worldgen.processor.DeepslateStructureProcessor;
 import net.darktree.stylishoccult.worldgen.processor.SanctumStructureProcessor;
 import net.darktree.stylishoccult.worldgen.processor.StoneStructureProcessor;
-import net.darktree.stylishoccult.worldgen.structure.StonehengeStructure;
 import net.darktree.stylishoccult.worldgen.structure.SanctumStructure;
-import net.darktree.stylishoccult.worldgen.structure.generator.SanctumGenerator;
-import net.darktree.stylishoccult.worldgen.structure.generator.StonehengeGenerator;
+import net.darktree.stylishoccult.worldgen.structure.StonehengeStructure;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
-import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.processor.StructureProcessor;
 import net.minecraft.structure.processor.StructureProcessorList;
 import net.minecraft.structure.processor.StructureProcessorType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
+import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
@@ -45,8 +43,8 @@ public class WorldGen {
 		BiomeModifications.addFeature(selector, step, key);
 	}
 
-	public static void addStructure(Identifier id, int spacing, int separation, int salt, boolean adjustsSurface, Predicate<BiomeSelectionContext> selector, StructureFeature<StructurePoolFeatureConfig> feature, StructurePool pool, GenerationStep.Feature step) {
-		ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> configured = feature.configure(new StructurePoolFeatureConfig(() -> pool, 2));
+	public static void addStructure(Identifier id, int spacing, int separation, int salt, boolean adjustsSurface, Predicate<BiomeSelectionContext> selector, StructureFeature<DefaultFeatureConfig> feature, GenerationStep.Feature step) {
+		ConfiguredStructureFeature<DefaultFeatureConfig, ?> configured = feature.configure(new DefaultFeatureConfig());
 		FabricStructureBuilder<?, ?> builder = FabricStructureBuilder.create(id, feature).step(step).defaultConfig(spacing, separation, salt).superflatFeature(configured);
 		if (adjustsSurface) builder.adjustsSurface();
 		builder.register();
@@ -65,6 +63,16 @@ public class WorldGen {
 	public static StructureProcessorType<?> addProcessorType(String name, Supplier<StructureProcessor> supplier) {
 		return StructureProcessorType.register(StylishOccult.NAMESPACE + "_" + name + "_processor", Codec.unit(supplier));
 	}
+
+	public static StructurePoolFeatureConfig getPool(DynamicRegistryManager registry, String path, int size) {
+		return new StructurePoolFeatureConfig(() -> registry.get(Registry.STRUCTURE_POOL_KEY).get(new ModIdentifier(path)), size);
+	}
+
+	// Structure processors
+	private static final StructureProcessorList STONE_DECAY_PROCESSOR = WorldGen.addProcessorList("stone_decay", ImmutableList.of(new StoneStructureProcessor()));
+	private static final StructureProcessorList DEEPSLATE_DECAY_PROCESSOR = WorldGen.addProcessorList("deepslate_decay", ImmutableList.of(new DeepslateStructureProcessor()));
+	private static final StructureProcessorList BLACKSTONE_DECAY_PROCESSOR = WorldGen.addProcessorList("blackstone_decay", ImmutableList.of(new BlackstoneStructureProcessor()));
+	private static final StructureProcessorList SANCTUM_PROCESSOR = WorldGen.addProcessorList("sanctum", ImmutableList.of(new SanctumStructureProcessor()));
 
 	public static void init() {
 
@@ -127,20 +135,18 @@ public class WorldGen {
 
 		// Structures
 		WorldGen.addStructure(
-				SanctumGenerator.ID,
+				new ModIdentifier("sanctum"),
 				2, 1, 48151, true,
 				BiomeSelectors.foundInTheNether().and(BiomeSelectors.excludeByKey(BiomeKeys.BASALT_DELTAS, BiomeKeys.SOUL_SAND_VALLEY)),
-				new SanctumStructure(8, 5, 4),
-				SanctumGenerator.POOL,
+				new SanctumStructure(8, 9, 4),
 				GenerationStep.Feature.SURFACE_STRUCTURES
 		);
 
 		WorldGen.addStructure(
-				StonehengeGenerator.ID,
+				new ModIdentifier("stonehenge"),
 				30, 14, 62342, true,
 				BiomeSelectors.foundInOverworld().and(BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.JUNGLE, Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.TAIGA)),
-				new StonehengeStructure(7),
-				StonehengeGenerator.POOL,
+				new StonehengeStructure(6),
 				GenerationStep.Feature.SURFACE_STRUCTURES
 		);
 

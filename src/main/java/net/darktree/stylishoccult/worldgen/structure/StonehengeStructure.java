@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.worldgen.structure;
 
 import com.google.common.collect.ImmutableList;
+import net.darktree.stylishoccult.worldgen.WorldGen;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.structure.MarginedStructureStart;
@@ -18,19 +19,20 @@ import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.VerticalBlockSample;
+import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
-public class StonehengeStructure extends StructureFeature<StructurePoolFeatureConfig> {
+public class StonehengeStructure extends StructureFeature<DefaultFeatureConfig> {
 	private final int slope;
 
 	public StonehengeStructure(int slope) {
-		super(StructurePoolFeatureConfig.CODEC);
+		super(DefaultFeatureConfig.CODEC);
 		this.slope = slope;
 	}
 
 	@Override
-	public StructureStartFactory<StructurePoolFeatureConfig> getStructureStartFactory() {
+	public StructureStartFactory<DefaultFeatureConfig> getStructureStartFactory() {
 		return StonehengeStructure.Start::new;
 	}
 
@@ -40,7 +42,7 @@ public class StonehengeStructure extends StructureFeature<StructurePoolFeatureCo
 	}
 
 	@Override
-	protected boolean shouldStartAt(ChunkGenerator generator, BiomeSource biomeSource, long worldSeed, ChunkRandom random, ChunkPos pos, Biome biome, ChunkPos chunkPos, StructurePoolFeatureConfig config, HeightLimitView view) {
+	protected boolean shouldStartAt(ChunkGenerator generator, BiomeSource biomeSource, long worldSeed, ChunkRandom random, ChunkPos pos, Biome biome, ChunkPos chunkPos, DefaultFeatureConfig config, HeightLimitView view) {
 		BlockPos.Mutable mutable = new BlockPos.Mutable();
 
 		ImmutableList<BlockPos> list = ImmutableList.of(
@@ -83,17 +85,20 @@ public class StonehengeStructure extends StructureFeature<StructurePoolFeatureCo
 		return max - min <= this.slope;
 	}
 
-	public static class Start extends MarginedStructureStart<StructurePoolFeatureConfig> {
-		public Start(StructureFeature<StructurePoolFeatureConfig> structure, ChunkPos pos, int i, long l) {
+	public static class Start extends MarginedStructureStart<DefaultFeatureConfig> {
+		public Start(StructureFeature<DefaultFeatureConfig> structure, ChunkPos pos, int i, long l) {
 			super(structure, pos, i, l);
 		}
 
 		@Override
-		public void init(DynamicRegistryManager registry, ChunkGenerator generator, StructureManager manager, ChunkPos pos, Biome biome, StructurePoolFeatureConfig config, HeightLimitView view) {
+		public void init(DynamicRegistryManager registry, ChunkGenerator generator, StructureManager manager, ChunkPos pos, Biome biome, DefaultFeatureConfig config, HeightLimitView view) {
 			BlockPos target = new BlockPos(pos.x * 16 + 8, 0, pos.z * 16 + 8);
-			StructurePoolBasedGenerator.generate(registry, config, PoolStructurePiece::new, generator, manager, target, this, this.random, false, true, view);
 
-			// center the structure on the chunk corner
+			// generate pool based structure
+			StructurePoolFeatureConfig pool = WorldGen.getPool(registry, "stonehenge/start", 4);
+			StructurePoolBasedGenerator.generate(registry, pool, PoolStructurePiece::new, generator, manager, target, this, this.random, false, true, view);
+
+			// center the structure on the chunk center
 			StructurePiece piece = this.children.get(0);
 			Vec3i center = piece.getBoundingBox().getCenter();
 			piece.translate(target.getX() - center.getX(), 0, target.getZ() - center.getZ());

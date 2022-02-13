@@ -5,7 +5,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/room_1",
+        "location": "stylish_occult:sanctum/room/1",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -15,7 +15,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/room_2",
+        "location": "stylish_occult:sanctum/room/2",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -25,7 +25,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/room_3",
+        "location": "stylish_occult:sanctum/room/3",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -35,7 +35,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/room_4",
+        "location": "stylish_occult:sanctum/room/4",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -45,7 +45,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/room_5",
+        "location": "stylish_occult:sanctum/room/5",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -55,7 +55,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/room_6",
+        "location": "stylish_occult:sanctum/room/6",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -65,7 +65,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/room_7",
+        "location": "stylish_occult:sanctum/room/7",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -75,7 +75,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/plug_1",
+        "location": "stylish_occult:sanctum/room/8",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -85,7 +85,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/plug_2",
+        "location": "stylish_occult:sanctum/plug/raw",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -95,7 +95,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/plug_3",
+        "location": "stylish_occult:sanctum/plug/collapsed",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -105,7 +105,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/hall_1",
+        "location": "stylish_occult:sanctum/plug/flesh",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -115,7 +115,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/hall_2",
+        "location": "stylish_occult:sanctum/hall/split",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -125,7 +125,17 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/hall_3",
+        "location": "stylish_occult:sanctum/hall/stairs",
+        "processors": "stylish_occult:sanctum",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 1,
+      "element": {
+        "location": "stylish_occult:sanctum/hall/straight",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

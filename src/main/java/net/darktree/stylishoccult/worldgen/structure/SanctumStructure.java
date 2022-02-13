@@ -1,56 +1,49 @@
 package net.darktree.stylishoccult.worldgen.structure;
 
 import com.google.common.collect.ImmutableList;
-import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.utils.ModIdentifier;
+import net.darktree.stylishoccult.worldgen.WorldGen;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.PoolStructurePiece;
-import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructureManager;
+import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.registry.DynamicRegistryManager;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.VerticalBlockSample;
+import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
-import java.util.Random;
-
-public class SanctumStructure extends StructureFeature<StructurePoolFeatureConfig> {
+public class SanctumStructure extends StructureFeature<DefaultFeatureConfig> {
 	private final int depth;
 	private final int slope;
 	private final int clearance;
 
 	public SanctumStructure(int depth, int slope, int clearance) {
-		super(StructurePoolFeatureConfig.CODEC);
+		super(DefaultFeatureConfig.CODEC);
 		this.depth = depth;
 		this.slope = slope;
 		this.clearance = clearance;
 	}
 
 	@Override
-	public StructureStartFactory<StructurePoolFeatureConfig> getStructureStartFactory() {
+	public StructureStartFactory<DefaultFeatureConfig> getStructureStartFactory() {
 		return SanctumStructure.Start::new;
 	}
 
 	@Override
-	protected boolean shouldStartAt(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long worldSeed, ChunkRandom random, ChunkPos pos, Biome biome, ChunkPos chunkPos, StructurePoolFeatureConfig config, HeightLimitView world) {
-		return true;
+	protected boolean shouldStartAt(ChunkGenerator generator, BiomeSource biomeSource, long worldSeed, ChunkRandom random, ChunkPos pos, Biome biome, ChunkPos chunkPos, DefaultFeatureConfig config, HeightLimitView view) {
+		return this.getPlacementHeight(generator, pos, view) != Integer.MIN_VALUE;
 	}
 
-	private int getPlacementHeight(ChunkGenerator generator, ChunkPos pos, HeightLimitView view, BlockBox box, Random random) {
+	private int getPlacementHeight(ChunkGenerator generator, ChunkPos pos, HeightLimitView view) {
 		VerticalBlockSample sample = generator.getColumnSample(pos.getCenterX(), pos.getCenterZ(), view);
 		BlockPos.Mutable mutable = new BlockPos.Mutable();
 
@@ -59,7 +52,7 @@ public class SanctumStructure extends StructureFeature<StructurePoolFeatureConfi
 		for (int i = view.getTopY(); i > view.getBottomY(); i --) {
 			mutable.set(0, i, 0);
 			if (!sample.getState(mutable).isAir()) {
-				if (air && verifyPlacementPosition(generator, pos, view, box, random, i)) {
+				if (air && verifyPlacementPosition(generator, view, pos, i)) {
 					return i;
 				}
 
@@ -72,14 +65,14 @@ public class SanctumStructure extends StructureFeature<StructurePoolFeatureConfi
 		return Integer.MIN_VALUE;
 	}
 
-	public boolean verifyPlacementPosition(ChunkGenerator generator, ChunkPos pos, HeightLimitView view, BlockBox box, Random random, int y) {
+	public boolean verifyPlacementPosition(ChunkGenerator generator, HeightLimitView view, ChunkPos pos, int y) {
 		BlockPos.Mutable mutable = new BlockPos.Mutable();
 
 		ImmutableList<BlockPos> list = ImmutableList.of(
-				new BlockPos(box.getMinX(), 0, box.getMinZ()),
-				new BlockPos(box.getMaxX(), 0, box.getMinZ()),
-				new BlockPos(box.getMinX(), 0, box.getMaxZ()),
-				new BlockPos(box.getMaxX(), 0, box.getMaxZ())
+				new BlockPos(pos.getStartX(), 0, pos.getStartZ()),
+				new BlockPos(pos.getEndX(), 0, pos.getStartZ()),
+				new BlockPos(pos.getStartX(), 0, pos.getEndZ()),
+				new BlockPos(pos.getEndX(), 0, pos.getEndZ())
 		);
 
 		int max = Integer.MIN_VALUE;
@@ -125,39 +118,33 @@ public class SanctumStructure extends StructureFeature<StructurePoolFeatureConfi
 		return (max - min) <= this.slope;
 	}
 
-	public static class Start extends MarginedStructureStart<StructurePoolFeatureConfig> {
-		public Start(StructureFeature<StructurePoolFeatureConfig> s, ChunkPos c, int i, long l) {
+	public static class Start extends MarginedStructureStart<DefaultFeatureConfig> {
+		public Start(StructureFeature<DefaultFeatureConfig> s, ChunkPos c, int i, long l) {
 			super(s, c, i, l);
 		}
 
 		@Override
-		public void init(DynamicRegistryManager registry, ChunkGenerator generator, StructureManager manager, ChunkPos pos, Biome biome, StructurePoolFeatureConfig config, HeightLimitView view) {
-			Identifier id = new ModIdentifier("sanctum/upper");
+		public void init(DynamicRegistryManager registry, ChunkGenerator generator, StructureManager manager, ChunkPos pos, Biome biome, DefaultFeatureConfig config, HeightLimitView view) {
+
 			SanctumStructure feature = (SanctumStructure) this.getFeature();
-			BlockRotation rotation = Util.getRandom(BlockRotation.values(), this.random);
-
-			Structure structure = manager.getStructureOrBlank(id);
-
-			BlockMirror mirror = this.random.nextFloat() < 0.5f ? BlockMirror.NONE : BlockMirror.FRONT_BACK;
-			BlockPos blockPos = new BlockPos(structure.getSize().getX() / 2, 0, structure.getSize().getZ() / 2);
-			BlockBox box = structure.calculateBoundingBox(pos.getStartPos(), rotation, blockPos, mirror);
-
-			int l = feature.getPlacementHeight(generator, pos, view, box, this.random);
+			int l = feature.getPlacementHeight(generator, pos, view);
 
 			if (l == Integer.MIN_VALUE) {
 				return;
 			}
 
-//			StructurePoolBasedGenerator.generate(registryManager, config, PoolStructurePiece::new, chunkGenerator, manager, new BlockPos(pos.x << 4, l, pos.z << 4), this, this.random, feature.modifyBoundingBox, feature.surface, view);
-//			this.setBoundingBoxFromChildren();
+			BlockPos target = new BlockPos(pos.x * 16 + 8, l, pos.z * 16 + 8);
+			StructurePoolFeatureConfig pool = WorldGen.getPool(registry, "sanctum/start", 5);
+			StructurePoolBasedGenerator.generate(registry, pool, PoolStructurePiece::new, generator, manager, target, this, this.random, false, false, view);
 
-			StructurePoolFeatureConfig pool = new StructurePoolFeatureConfig(
-					() -> registry.get(Registry.STRUCTURE_POOL_KEY).get(new ModIdentifier("sanctum/start")), 5
-			);
+			// center the structure on the chunk center
+			Vec3i center = this.children.get(0).getBoundingBox().getCenter();
+			int xOffset = target.getX() - center.getX();
+			int zOffset = target.getZ() - center.getZ();
 
-			StructurePoolBasedGenerator.generate(
-					registry, pool, PoolStructurePiece::new, generator, manager, new BlockPos(pos.x << 4, l, pos.z << 4), this, this.random, false, false, view
-			);
+			for(StructurePiece structurePiece : this.children){
+				structurePiece.translate(xOffset, 0, zOffset);
+			}
 
 			this.setBoundingBoxFromChildren();
 

@@ -1,7 +1,6 @@
 package net.darktree.stylishoccult.blocks.runes;
 
 import net.darktree.stylishoccult.network.Network;
-import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.elements.ItemElement;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.SimpleRay;

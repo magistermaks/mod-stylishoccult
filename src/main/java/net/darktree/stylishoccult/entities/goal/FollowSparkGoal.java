@@ -1,9 +1,6 @@
 package net.darktree.stylishoccult.entities.goal;
 
-import net.darktree.stylishoccult.entities.CorruptedEntity;
 import net.darktree.stylishoccult.entities.ModEntities;
-import net.darktree.stylishoccult.entities.SparkEntity;
-import net.darktree.stylishoccult.entities.SporeEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.Goal;

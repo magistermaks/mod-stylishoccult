@@ -1,7 +1,6 @@
 package net.darktree.stylishoccult.blocks.runes.io;
 
 import net.darktree.stylishoccult.blocks.runes.ActorRuneBlock;
-import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

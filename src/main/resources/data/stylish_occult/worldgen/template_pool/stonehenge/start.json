@@ -1,0 +1,35 @@
+{
+  "name": "stylish_occult:stonehedge/start",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 7,
+      "element": {
+        "location": "stylish_occult:stonehenge/stone",
+        "processors": "stylish_occult:stone_decay",
+        "projection": "terrain_matching",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    },
+
+    {
+      "weight": 2,
+      "element": {
+        "location": "stylish_occult:stonehenge/deepslate",
+        "processors": "stylish_occult:deepslate_decay",
+        "projection": "terrain_matching",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    },
+
+	{
+      "weight": 1,
+      "element": {
+        "location": "stylish_occult:stonehenge/blackstone",
+        "processors": "stylish_occult:blackstone_decay",
+        "projection": "terrain_matching",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    }
+  ]
+}

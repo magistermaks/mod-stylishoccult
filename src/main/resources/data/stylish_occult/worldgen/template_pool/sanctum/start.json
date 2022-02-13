@@ -5,7 +5,17 @@
     {
       "weight": 1,
       "element": {
-        "location": "stylish_occult:sanctum/upper",
+        "location": "stylish_occult:sanctum/upper/pristine",
+        "processors": "stylish_occult:sanctum",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 4,
+      "element": {
+        "location": "stylish_occult:sanctum/upper/dilapidated",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

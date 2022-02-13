@@ -1,13 +1,10 @@
 package net.darktree.stylishoccult.mixin;
 
-import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.overlay.PlayerEntityDuck;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

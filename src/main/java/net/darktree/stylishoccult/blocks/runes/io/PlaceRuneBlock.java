@@ -1,14 +1,11 @@
 package net.darktree.stylishoccult.blocks.runes.io;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.blocks.ArcaneAshBlock;
-import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.runes.ActorRuneBlock;
 import net.darktree.stylishoccult.script.components.RuneException;
 import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.elements.ItemElement;
 import net.darktree.stylishoccult.script.engine.Script;
-import net.minecraft.block.BlockState;
 import net.minecraft.item.AutomaticItemPlacementContext;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.math.BlockPos;

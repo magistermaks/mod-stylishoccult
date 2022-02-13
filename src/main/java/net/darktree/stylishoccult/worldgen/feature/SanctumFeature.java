@@ -1,12 +1,7 @@
 package net.darktree.stylishoccult.worldgen.feature;
 
 import com.mojang.serialization.Codec;
-import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.blocks.SparkVentBlock;
-import net.darktree.stylishoccult.utils.BlockUtils;
-import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleFeature;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.CountConfig;
