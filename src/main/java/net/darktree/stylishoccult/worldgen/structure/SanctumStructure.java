@@ -142,8 +142,8 @@ public class SanctumStructure extends StructureFeature<DefaultFeatureConfig> {
 			int xOffset = target.getX() - center.getX();
 			int zOffset = target.getZ() - center.getZ();
 
-			for(StructurePiece structurePiece : this.children){
-				structurePiece.translate(xOffset, 0, zOffset);
+			for(StructurePiece piece : this.children){
+				piece.translate(xOffset, 0, zOffset);
 			}
 
 			this.setBoundingBoxFromChildren();

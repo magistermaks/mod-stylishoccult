@@ -115,6 +115,16 @@
     {
       "weight": 1,
       "element": {
+        "location": "stylish_occult:sanctum/plug/loot",
+        "processors": "stylish_occult:sanctum",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 1,
+      "element": {
         "location": "stylish_occult:sanctum/hall/split",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
@@ -136,6 +146,16 @@
       "weight": 1,
       "element": {
         "location": "stylish_occult:sanctum/hall/straight",
+        "processors": "stylish_occult:sanctum",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 1,
+      "element": {
+        "location": "stylish_occult:sanctum/hall/door",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

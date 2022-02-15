@@ -2,6 +2,8 @@ package net.darktree.stylishoccult.worldgen.processor;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.EyesBlock;
+import net.darktree.stylishoccult.blocks.runes.RuneBlock;
+import net.darktree.stylishoccult.tags.ModTags;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.worldgen.WorldGen;
 import net.minecraft.block.Block;
@@ -23,7 +25,7 @@ public class SanctumStructureProcessor extends SimpleStructureProcessor {
 	@Override
 	public BlockState process(Random random, Block block, BlockState state) {
 		if (block == Blocks.BLACK_WOOL) return RandUtils.getArrayEntry(RUBBLE, random).getDefaultState(); else
-		if (block == Blocks.POLISHED_BLACKSTONE_BRICKS) return RandUtils.getArrayEntry(BRICKS, random).getDefaultState(); else
+		if (block == Blocks.POLISHED_BLACKSTONE_BRICKS) return RandUtils.getBool(10f, random) ? getRune(random) : RandUtils.getArrayEntry(BRICKS, random).getDefaultState(); else
 		if (block == Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS) return copyStair(state, RandUtils.getArrayEntry(STAIRS, random)); else
 		if (block == Blocks.POLISHED_BLACKSTONE_BRICK_SLAB) return copySlab(state, RandUtils.getArrayEntry(SLABS, random)); else
 		if (block == ModBlocks.URN && RandUtils.getBool(50f, random)) return Blocks.AIR.getDefaultState(); else
@@ -32,6 +34,10 @@ public class SanctumStructureProcessor extends SimpleStructureProcessor {
 		if (block == Blocks.BLACKSTONE && RandUtils.getBool(20f, random)) return ModBlocks.CRYSTALLINE_BLACKSTONE.getDefaultState();
 
 		return null;
+	}
+
+	private BlockState getRune(Random random) {
+		return ModTags.RUNES.getRandom(random).getDefaultState().with(RuneBlock.FROZEN, true);
 	}
 
 	@Override
