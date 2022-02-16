@@ -30,7 +30,7 @@ public class LavaDemonBlockEntity extends BlockEntity {
     private short timeout = 50;
     private short interval = 0;
     private short amount = 4;
-    private static final TargetPredicate CLOSE_PLAYER_PREDICATE = (new TargetPredicate(true)).setBaseMaxDistance( 16.0D );
+    private static final TargetPredicate CLOSE_PLAYER_PREDICATE = new TargetPredicate(true).setBaseMaxDistance(16.0D);
 
     public LavaDemonBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntities.LAVA_DEMON, pos, state);

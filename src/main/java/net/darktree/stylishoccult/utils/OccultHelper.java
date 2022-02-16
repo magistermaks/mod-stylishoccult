@@ -153,7 +153,7 @@ public class OccultHelper {
                 }
             }else{
                 if( state.getLuminance() > 3 && state.isFullCube(world, pos) ) return ModBlocks.GLOW_FLESH.getDefaultState();
-                if( BlockTags.LEAVES.contains(block) ) return LeavesFleshBlock.getStateForPosition(world, pos);
+                if( BlockTags.LEAVES.contains(block) ) return LeavesFleshBlock.getStateToFit(world, pos);
                 if( ModTags.TOP_SOIL.contains(block) && RandUtils.getBool(80) ) return ModBlocks.SOIL_FLESH.getDefaultState();
 
                 return ModBlocks.FLESH_PASSIVE.getDefaultState().with(PassiveFleshBlock.BLOODY, RandUtils.getBool(StylishOccult.SETTINGS.fleshBloodChance));

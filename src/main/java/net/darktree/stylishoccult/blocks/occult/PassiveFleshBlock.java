@@ -1,17 +1,21 @@
 package net.darktree.stylishoccult.blocks.occult;
 
+import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.items.BottleItem;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
+import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
@@ -25,14 +29,23 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
 
     public static final BooleanProperty BLOODY = BooleanProperty.of("bloody");
     public static final VoxelShape SMALL_CUBE = Utils.shape(1, 1, 1, 15, 15, 15);
 
     public PassiveFleshBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.8f) );
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).ticksRandomly().slipperiness(0.8f) );
         setDefaultState( getDefaultState().with(BLOODY, false) );
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if (StylishOccult.SETTINGS.fleshInfiniteSpread && RandUtils.getBool(5f, random)) {
+            world.setBlockState(pos, ModBlocks.DEFAULT_FLESH.getDefaultState());
+        }
     }
 
     @Override

@@ -39,7 +39,7 @@ public class Settings {
     public final float sporeEntityDamage = CONFIG.getOrDefault("entity.spore.harm", 0.4f); // damage dealt to itself on attack
     public final float fleshBloodChance = CONFIG.getOrDefault("flesh.bloody.chance", 12.5f);
     public final int fernPoisonTimeMinBase = CONFIG.getOrDefault("fern.poison.time.min", 40);
-    public final boolean fleshInfiniteSpreadInFluids = CONFIG.getOrDefault("flesh.spread.fluid.infinite", true);
+    public final boolean fleshInfiniteSpread = CONFIG.getOrDefault("flesh.spread.infinite", false);
 
     // features
     public final float featureBoulderChance = CONFIG.getOrDefault("feature.boulder.chance", 7.0f);
@@ -56,7 +56,7 @@ public class Settings {
 
     // difficult based stuff
     public final DifficultyBased<Integer> lavaDemonSparkSpawnRarity = difficultyInt("demon.spark.spawn.rarity", 180, 190, 200, 500);
-    public final DifficultyBased<Integer> lavaDemonSpreadAngerRarity = difficultyInt("demon.anger.spread.rarity", 3, 4, 5, 6);
+    public final DifficultyBased<Integer> lavaDemonSpreadAngerRarity = difficultyInt("demon.anger.spread.rarity", 2, 3, 4, 5);
     public final DifficultyBased<Integer> sparkEntityBaseLiveTime = difficultyInt("spark.live.time.min", 13, 10, 5, 4);
     public final DifficultyBased<Integer> sparkVentSleepTimeBase = difficultyInt("spark.vent.sleep.min", 150, 250, 350, 400);
     public final DifficultyBased<Integer> fernPoisonTimeDelta = difficultyInt("fern.poison.time.delta", 80, 60, 40, 30);

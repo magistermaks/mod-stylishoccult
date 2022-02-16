@@ -5,9 +5,14 @@ import net.darktree.stylishoccult.entities.goal.FollowSparkGoal;
 import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.sounds.SoundManager;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.entity.passive.MerchantEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
@@ -36,6 +41,8 @@ public class SporeEntity extends SparkEntity implements CorruptedEntity {
     @Override
     protected void addSpecificGoals() {
         this.targetSelector.add(0, new FollowSparkGoal(this, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, MerchantEntity.class, false));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, IronGolemEntity.class, true));
     }
 
     @Override

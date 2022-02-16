@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.enums;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.StringIdentifiable;
+import org.lwjgl.system.CallbackI;
 
 public enum LavaDemonMaterial implements StringIdentifiable {
     STONE("stone", Blocks.STONE),

@@ -6,6 +6,9 @@
 - Boulders are buried one block deeper
 - Added new item: Blood Shard, it can be found in Sanctums
 - Added two new advancements
+- Spores now attack villagers and iron golems
+- Config option `flesh.spread.fluid.infinite` has been replaced with `flesh.spread.infinite` and set to false by default
+- Fixed one Lava Demon bug
 
 0.7.1 beta <2022/02/08>
 - Fixed fleshy stone glitching when scraped with an axe

@@ -44,8 +44,8 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
     public static final EnumProperty<LavaDemonMaterial> MATERIAL = EnumProperty.of("material", LavaDemonMaterial.class);
 
     public LavaDemonBlock() {
-        super(RegUtil.settings( Material.STONE, Sounds.LAVA_DEMON, 4.0F, 16.0F, false )
-                .luminance( state -> state.get(ANGER) > 0 ? 3 : 0 )
+        super(RegUtil.settings(Material.STONE, Sounds.LAVA_DEMON, 4.0F, 6.0F, false)
+                .luminance(state -> state.get(ANGER) > 0 ? 3 : 0)
                 .ticksRandomly()
                 .requiresTool());
 
@@ -133,9 +133,9 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
         if( part == LavaDemonPart.BODY ) {
             return hardness;
         }else if( part == LavaDemonPart.EMITTER ) {
-            return hardness + 11;
+            return hardness * 2;
         }else if( part == LavaDemonPart.HEAD ) {
-            return hardness + 33;
+            return hardness * 3;
         }
 
         return hardness;

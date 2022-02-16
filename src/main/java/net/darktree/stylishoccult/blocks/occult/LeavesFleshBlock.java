@@ -10,6 +10,7 @@ import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 
 public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock, FoliageFleshBlock {
 
@@ -40,7 +41,7 @@ public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock, Foliag
         return 20;
     }
 
-    public static BlockState getStateForPosition( World world, BlockPos pos ) {
+    public static BlockState getStateToFit(World world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
         int distance = ( state.getBlock() instanceof LeavesBlock ) ? state.get( DISTANCE ) : 7;
         return state.getBlock().getDefaultState().with(DISTANCE, distance);
