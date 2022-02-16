@@ -36,7 +36,7 @@ public class BoulderFeature extends SimpleFeature<DefaultFeatureConfig> {
 	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos target, DefaultFeatureConfig config) {
 		float radius = random.nextFloat() * 2 + 1;
 		int erosion = random.nextInt(2);
-		int cx = target.getX(), cy = target.getY() - erosion - 1, cz = target.getZ();
+		int cx = target.getX(), cy = target.getY() - erosion - 2, cz = target.getZ();
 
 		BlockPos.Mutable pos = target.mutableCopy();
 		int extend = MathHelper.ceil(radius);

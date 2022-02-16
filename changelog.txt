@@ -1,4 +1,12 @@
 
+0.8.0 beta
+- Added Sanctum structures in The Nether
+- Added Stonehenge structures in the overworld
+- Lowered Runic Wall and Boulder spawn rate
+- Boulders are buried one block deeper
+- Added new item: Blood Shard, it can be found in Sanctums
+- Added two new advancements
+
 0.7.1 beta <2022/02/08>
 - Fixed fleshy stone glitching when scraped with an axe
 - Added new advancement criterion, and advancement

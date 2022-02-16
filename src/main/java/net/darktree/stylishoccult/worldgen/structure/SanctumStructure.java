@@ -2,6 +2,9 @@ package net.darktree.stylishoccult.worldgen.structure;
 
 import com.google.common.collect.ImmutableList;
 import net.darktree.stylishoccult.worldgen.WorldGen;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
@@ -23,13 +26,11 @@ import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class SanctumStructure extends StructureFeature<DefaultFeatureConfig> {
 	private final int depth;
-	private final int slope;
 	private final int clearance;
 
-	public SanctumStructure(int depth, int slope, int clearance) {
+	public SanctumStructure(int depth, int clearance) {
 		super(DefaultFeatureConfig.CODEC);
 		this.depth = depth;
-		this.slope = slope;
 		this.clearance = clearance;
 	}
 
@@ -67,55 +68,31 @@ public class SanctumStructure extends StructureFeature<DefaultFeatureConfig> {
 
 	public boolean verifyPlacementPosition(ChunkGenerator generator, HeightLimitView view, ChunkPos pos, int y) {
 		BlockPos.Mutable mutable = new BlockPos.Mutable();
+		VerticalBlockSample sample = generator.getColumnSample(pos.getStartX(),  pos.getStartZ(), view);
 
-		ImmutableList<BlockPos> list = ImmutableList.of(
-				new BlockPos(pos.getStartX(), 0, pos.getStartZ()),
-				new BlockPos(pos.getEndX(), 0, pos.getStartZ()),
-				new BlockPos(pos.getStartX(), 0, pos.getEndZ()),
-				new BlockPos(pos.getEndX(), 0, pos.getEndZ())
-		);
+		for (int i = 0; i < this.clearance; i ++) {
+			mutable.set(0, y + i, 0);
 
-		int max = Integer.MIN_VALUE;
-		int min = Integer.MAX_VALUE;
+			if ( !sample.getState(mutable).isAir() ) {
+				return false;
+			}
+		}
 
-		for (BlockPos samplePos : list) {
-			VerticalBlockSample sample = generator.getColumnSample(samplePos.getX(), samplePos.getZ(), view);
+		boolean hit = false;
 
-			for (int i = 0; i < this.clearance; i ++) {
-				mutable.set(0, y + i, 0);
+		for (int i = 0; i < this.depth; i ++) {
+			mutable.set(0, y - i, 0);
 
-				if ( !sample.getState(mutable).isAir() ) {
+			if (!sample.getState(mutable).isAir()) {
+				hit = true;
+			}else{
+				if (hit) {
 					return false;
 				}
 			}
-
-			boolean hit = false;
-
-			for (int i = 0; i < this.depth; i ++) {
-				mutable.set(0, y - i, 0);
-
-				if (!sample.getState(mutable).isAir()) {
-
-					if (!hit) {
-						if (i > max) max = i;
-						if (i < min) min = i;
-					}
-
-					hit = true;
-				}else{
-					if (hit) {
-						return false;
-					}
-				}
-			}
-
-			if (!hit) {
-				return false;
-			}
-
 		}
 
-		return (max - min) <= this.slope;
+		return hit;
 	}
 
 	public static class Start extends MarginedStructureStart<DefaultFeatureConfig> {

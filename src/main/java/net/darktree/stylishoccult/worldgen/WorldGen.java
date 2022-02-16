@@ -136,9 +136,9 @@ public class WorldGen {
 		// Structures
 		WorldGen.addStructure(
 				new ModIdentifier("sanctum"),
-				2, 1, 48151, true,
+				10, 7, 48151, true,
 				BiomeSelectors.foundInTheNether().and(BiomeSelectors.excludeByKey(BiomeKeys.BASALT_DELTAS, BiomeKeys.SOUL_SAND_VALLEY)),
-				new SanctumStructure(8, 9, 4),
+				new SanctumStructure(8, 4),
 				GenerationStep.Feature.SURFACE_STRUCTURES
 		);
 

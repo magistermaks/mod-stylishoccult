@@ -42,14 +42,14 @@ public class Settings {
     public final boolean fleshInfiniteSpreadInFluids = CONFIG.getOrDefault("flesh.spread.fluid.infinite", true);
 
     // features
-    public final float featureBoulderChance = CONFIG.getOrDefault("feature.boulder.chance", 7.5f);
+    public final float featureBoulderChance = CONFIG.getOrDefault("feature.boulder.chance", 7.0f);
     public final float featureBoulderFireChance = CONFIG.getOrDefault("feature.boulder.fire.chance", 45.0f);
     public final float featureFleshVainChance = CONFIG.getOrDefault("feature.flesh.vain.chance", 79.0f);
     public final int featureFleshVainSize = CONFIG.getOrDefault("feature.flesh.vain.size", 30);
     public final int featureFleshStoneVainSize = CONFIG.getOrDefault("feature.flesh.stone.vain.size", 12);
     public final float featureGrassChance = CONFIG.getOrDefault("feature.grass.chance", 98.0f);
     public final float featureFernChance = CONFIG.getOrDefault("feature.fern.chance", 5.0f);
-    public final float featureWallChance = CONFIG.getOrDefault("feature.wall.chance", 3.0f);
+    public final float featureWallChance = CONFIG.getOrDefault("feature.wall.chance", 1.9f);
     public final float featureWallRuneChance = CONFIG.getOrDefault("feature.wall.rune.chance", 29.0f);
     public final float featureDemonChance = CONFIG.getOrDefault("feature.demon.chance", 25.0f);
     public final float featureSparkVentChance = CONFIG.getOrDefault("feature.spark.vent.chance", 18.0f);
@@ -60,7 +60,7 @@ public class Settings {
     public final DifficultyBased<Integer> sparkEntityBaseLiveTime = difficultyInt("spark.live.time.min", 13, 10, 5, 4);
     public final DifficultyBased<Integer> sparkVentSleepTimeBase = difficultyInt("spark.vent.sleep.min", 150, 250, 350, 400);
     public final DifficultyBased<Integer> fernPoisonTimeDelta = difficultyInt("fern.poison.time.delta", 80, 60, 40, 30);
-    public final DifficultyBased<Float> runicErrorExplosionSize = new DifficultyBased<>(2.5f, 2.0f, 1.5f, 0.0f);
+    public final DifficultyBased<Float> runicErrorExplosionSize = new DifficultyBased<>(2.5f, 2.0f, 1.5f, 1.0f);
 
     public Settings() {
         if( CONFIG.isBroken() ) {
