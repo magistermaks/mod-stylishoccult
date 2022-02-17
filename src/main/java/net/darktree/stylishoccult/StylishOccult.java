@@ -18,11 +18,12 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class StylishOccult implements ModInitializer, ClientModInitializer {
+public class StylishOccult implements ModInitializer {
 
-    public static final Logger LOGGER = LogManager.getLogger("Stylish Occult");
+    public static final Logger LOGGER = LoggerFactory.getLogger("Stylish Occult");
     public static final String NAMESPACE = "stylish_occult";
     public static final Settings SETTINGS = new Settings();
 
@@ -46,24 +47,6 @@ public class StylishOccult implements ModInitializer, ClientModInitializer {
         ModEffects.init();
         ModTags.init();
         Criteria.init();
-    }
-
-    @Override
-    public void onInitializeClient() {
-        ModBlocks.clientInit();
-        Network.clientInit();
-        ModItems.clientInit();
-        Particles.clientInit();
-        ModEntities.clientInit();
-
-        MessageInjector.injectPlain("D" + "own with JSON!");
-        MessageInjector.injectPlain("T" + "iny potato!");
-        MessageInjector.injectPlain("S" + "tylish nightmare!");
-        MessageInjector.injectPlain("T" + "he nightmare before breakfast!");
-        MessageInjector.injectPlain("T" + "he wheels of progress frozen motionless...");
-        MessageInjector.injectPlain("B" + "y the power of The Mixin Subsystem!");
-
-        LOGGER.info("Additional sound effects from https://www.zapsplat.com");
     }
 
 }

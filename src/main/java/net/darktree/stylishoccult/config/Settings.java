@@ -65,7 +65,7 @@ public class Settings {
 
     // structure configs
     public final StructureConfig sanctum = new StructureConfig(CONFIG, "structure.sanctum", 10, 7, 48151, 5);
-    public final StructureConfig stonehenge = new StructureConfig(CONFIG, "structure.stonehenge", 10, 7, 48151, 4);
+    public final StructureConfig stonehenge = new StructureConfig(CONFIG, "structure.stonehenge", 30, 14, 62342, 4);
 
     public Settings() {
         if( CONFIG.isBroken() ) {

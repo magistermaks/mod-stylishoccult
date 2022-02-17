@@ -86,6 +86,11 @@ public class SparkEntity extends HostileEntity {
     }
 
     @Override
+    protected void playStepSound(BlockPos pos, BlockState state) {
+        // noop
+    }
+
+    @Override
     protected void initGoals() {
         super.initGoals();
         this.goalSelector.add(0, new SwimGoal(this));

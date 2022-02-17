@@ -1,7 +1,7 @@
 
 0.8.0 beta
-- Added Sanctum structures in The Nether
-- Added Stonehenge structures in the overworld
+- Added Sanctum structure in The Nether
+- Added Stonehenge structure in the overworld
 - Lowered Runic Wall and Boulder spawn rate
 - Boulders are buried one block deeper
 - Added new item: Blood Shard, it can be found in Sanctums
@@ -9,6 +9,8 @@
 - Spores now attack villagers and iron golems
 - Config option `flesh.spread.fluid.infinite` has been replaced with `flesh.spread.infinite` and set to false by default
 - Fixed one Lava Demon bug
+- Dropped Log4j dependency
+- Sparks and Spores no longer play walking sound
 
 0.7.1 beta <2022/02/08>
 - Fixed fleshy stone glitching when scraped with an axe
