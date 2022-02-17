@@ -2,16 +2,17 @@ package net.darktree.stylishoccult.config;
 
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.utils.DifficultyBased;
+import net.darktree.stylishoccult.utils.StructureConfig;
 
 import java.util.Date;
 
 public class Settings {
 
     // Rarity:  bigger => more rare
-    // Chance:  bigger => more common (%)
+    // Chance:  bigger => more common (0% - 100%)
     // Base:    given value is only a base value of some math formula
 
-    SimpleConfig CONFIG = SimpleConfig.of("stylish_occult").provider(Settings::provider).request();
+    private final SimpleConfig CONFIG = SimpleConfig.of("stylish_occult").provider(Settings::provider).request();
 
     private static String provider(String name) {
         return "# Configuration file for mod Stylish Occult, intended for modpack makers and advanced users!\n# Generated on " + new Date() + "\n";
@@ -49,7 +50,7 @@ public class Settings {
     public final int featureFleshStoneVainSize = CONFIG.getOrDefault("feature.flesh.stone.vain.size", 12);
     public final float featureGrassChance = CONFIG.getOrDefault("feature.grass.chance", 98.0f);
     public final float featureFernChance = CONFIG.getOrDefault("feature.fern.chance", 5.0f);
-    public final float featureWallChance = CONFIG.getOrDefault("feature.wall.chance", 1.9f);
+    public final float featureWallChance = CONFIG.getOrDefault("feature.wall.chance", 1.2f);
     public final float featureWallRuneChance = CONFIG.getOrDefault("feature.wall.rune.chance", 29.0f);
     public final float featureDemonChance = CONFIG.getOrDefault("feature.demon.chance", 25.0f);
     public final float featureSparkVentChance = CONFIG.getOrDefault("feature.spark.vent.chance", 18.0f);
@@ -61,6 +62,10 @@ public class Settings {
     public final DifficultyBased<Integer> sparkVentSleepTimeBase = difficultyInt("spark.vent.sleep.min", 150, 250, 350, 400);
     public final DifficultyBased<Integer> fernPoisonTimeDelta = difficultyInt("fern.poison.time.delta", 80, 60, 40, 30);
     public final DifficultyBased<Float> runicErrorExplosionSize = new DifficultyBased<>(2.5f, 2.0f, 1.5f, 1.0f);
+
+    // structure configs
+    public final StructureConfig sanctum = new StructureConfig(CONFIG, "structure.sanctum", 10, 7, 48151, 5);
+    public final StructureConfig stonehenge = new StructureConfig(CONFIG, "structure.stonehenge", 10, 7, 48151, 4);
 
     public Settings() {
         if( CONFIG.isBroken() ) {

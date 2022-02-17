@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.worldgen.structure;
 
 import com.google.common.collect.ImmutableList;
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.worldgen.WorldGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -111,7 +112,7 @@ public class SanctumStructure extends StructureFeature<DefaultFeatureConfig> {
 			}
 
 			BlockPos target = new BlockPos(pos.x * 16 + 8, l, pos.z * 16 + 8);
-			StructurePoolFeatureConfig pool = WorldGen.getPool(registry, "sanctum/start", 5);
+			StructurePoolFeatureConfig pool = WorldGen.getPool(registry, "sanctum/start", StylishOccult.SETTINGS.sanctum.depth);
 			StructurePoolBasedGenerator.generate(registry, pool, PoolStructurePiece::new, generator, manager, target, this, this.random, false, false, view);
 
 			// center the structure on the chunk center

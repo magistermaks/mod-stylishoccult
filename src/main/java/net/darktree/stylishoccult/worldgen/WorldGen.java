@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.darktree.stylishoccult.utils.SimpleFeatureProvider;
+import net.darktree.stylishoccult.utils.StructureConfig;
 import net.darktree.stylishoccult.worldgen.feature.*;
 import net.darktree.stylishoccult.worldgen.processor.BlackstoneStructureProcessor;
 import net.darktree.stylishoccult.worldgen.processor.DeepslateStructureProcessor;
@@ -43,9 +44,9 @@ public class WorldGen {
 		BiomeModifications.addFeature(selector, step, key);
 	}
 
-	public static void addStructure(Identifier id, int spacing, int separation, int salt, boolean adjustsSurface, Predicate<BiomeSelectionContext> selector, StructureFeature<DefaultFeatureConfig> feature, GenerationStep.Feature step) {
+	public static void addStructure(Identifier id, StructureConfig config, boolean adjustsSurface, Predicate<BiomeSelectionContext> selector, StructureFeature<DefaultFeatureConfig> feature, GenerationStep.Feature step) {
 		ConfiguredStructureFeature<DefaultFeatureConfig, ?> configured = feature.configure(new DefaultFeatureConfig());
-		FabricStructureBuilder<?, ?> builder = FabricStructureBuilder.create(id, feature).step(step).defaultConfig(spacing, separation, salt).superflatFeature(configured);
+		FabricStructureBuilder<?, ?> builder = FabricStructureBuilder.create(id, feature).step(step).defaultConfig(config.spacing, config.separation, config.salt).superflatFeature(configured);
 		if (adjustsSurface) builder.adjustsSurface();
 		builder.register();
 		Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, new Identifier(id.getNamespace(), "configured_" + id.getPath()), configured);
@@ -136,7 +137,7 @@ public class WorldGen {
 		// Structures
 		WorldGen.addStructure(
 				new ModIdentifier("sanctum"),
-				10, 7, 48151, true,
+				StylishOccult.SETTINGS.sanctum, true,
 				BiomeSelectors.foundInTheNether().and(BiomeSelectors.excludeByKey(BiomeKeys.BASALT_DELTAS, BiomeKeys.SOUL_SAND_VALLEY)),
 				new SanctumStructure(8, 4),
 				GenerationStep.Feature.SURFACE_STRUCTURES
@@ -144,7 +145,7 @@ public class WorldGen {
 
 		WorldGen.addStructure(
 				new ModIdentifier("stonehenge"),
-				30, 14, 62342, true,
+				StylishOccult.SETTINGS.stonehenge, true,
 				BiomeSelectors.foundInOverworld().and(BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.JUNGLE, Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.TAIGA)),
 				new StonehengeStructure(6),
 				GenerationStep.Feature.SURFACE_STRUCTURES

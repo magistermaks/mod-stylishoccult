@@ -27,7 +27,7 @@ public class LootTables {
                 .addItem( ModItems.URN )
                 .pop()
             .addElse()
-                .addItem( Items.DIAMOND, 5.7f )
+                .addItem( Items.DIAMOND, 5.9f )
                 .addItem( Items.GOLD_NUGGET, 35.3f )
                 .addItem( Items.GOLD_INGOT, 12.1f )
                 .addItem( Items.EMERALD, 23.4f )
