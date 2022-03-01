@@ -1,5 +1,7 @@
 package net.darktree.stylishoccult.blocks.runes;
 
+import net.darktree.stylishoccult.script.components.RuneException;
+import net.darktree.stylishoccult.script.components.RuneExceptionType;
 import net.darktree.stylishoccult.script.components.RuneType;
 import net.darktree.stylishoccult.script.elements.NumericElement;
 import net.darktree.stylishoccult.script.engine.Script;
@@ -56,6 +58,14 @@ public class LogicRuneBlock extends RuneBlock {
         public static final LogicFunction ROTATE = (script, world, pos) -> script.stack.rotate();
         public static final LogicFunction DROP = (script, world, pos) -> script.stack.pull().drop(world, pos);
         public static final LogicFunction OVER = (script, world, pos) -> script.stack.over();
+
+        public static final LogicFunction VALUE = (script, world, pos) -> {
+            try {
+                put(script, script.stack.peek(0).value());
+            }catch (IndexOutOfBoundsException exception) {
+                throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
+            }
+        };
 
     }
 

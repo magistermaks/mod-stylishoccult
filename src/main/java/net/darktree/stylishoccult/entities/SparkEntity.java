@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.entities;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.entities.goal.FollowSporeGoal;
 import net.darktree.stylishoccult.items.material.TwistedBoneArmorMaterial;
+import net.darktree.stylishoccult.utils.OccultHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
@@ -157,7 +158,7 @@ public class SparkEntity extends HostileEntity {
         if (target != null) {
             if (this.getBoundingBox().intersects(target.getBoundingBox())) {
 
-                if(random.nextInt(getBoneArmor(target)) == 0) {
+                if(random.nextInt(OccultHelper.getBoneArmor(target)) == 0) {
                     if (this.tryAttack(target)) {
                         dealDamage();
                     }
@@ -204,25 +205,6 @@ public class SparkEntity extends HostileEntity {
 
     public int getMaxAge(Difficulty d) {
         return world.getRandom().nextInt(10 * 20) + (20 * StylishOccult.SETTINGS.sparkEntityBaseLiveTime.get(d));
-    }
-
-    public int getBoneArmor(LivingEntity entity) {
-        int bones = 1;
-        bones += getBoneArmorBySlot(entity, EquipmentSlot.HEAD, 1);
-        bones += getBoneArmorBySlot(entity, EquipmentSlot.CHEST, 2);
-        bones += getBoneArmorBySlot(entity, EquipmentSlot.LEGS, 1);
-        bones += getBoneArmorBySlot(entity, EquipmentSlot.FEET, 1);
-        return bones;
-    }
-
-    public int getBoneArmorBySlot(LivingEntity entity, EquipmentSlot slot, int bones) {
-        if(entity.getEquippedStack(slot).getItem() instanceof ArmorItem armor) {
-            if(armor.getMaterial() instanceof TwistedBoneArmorMaterial) {
-                return bones;
-            }
-        }
-
-        return 0;
     }
 
     @Override

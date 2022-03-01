@@ -67,6 +67,7 @@ public class ModItems {
     public static final Item RUNESTONE_SLAB = RegUtil.item("runestone_slab", ModBlocks.RUNESTONE_SLAB, Groups.STYLISH_OCCULT);
     public static final Item RUNESTONE_STAIR = RegUtil.item("runestone_stairs", ModBlocks.RUNESTONE_STAIR, Groups.STYLISH_OCCULT);
     public static final Item RUNESTONE_TABLE = RegUtil.item("runestone_table", ModBlocks.RUNESTONE_TABLE, Groups.STYLISH_OCCULT);
+    public static final Item BLOOD_BUCKET = RegUtil.item("blood_bucket", new BucketItem(ModBlocks.STILL_BLOOD, new Item.Settings().group(ItemGroup.MISC).recipeRemainder(Items.BUCKET).maxCount(1)));
 
     // "decorative"
     public static final Item EYES_BLOCK = RegUtil.item( "eyes_block", ModBlocks.EYES_BLOCK, Groups.STYLISH_OCCULT );

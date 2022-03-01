@@ -12,6 +12,8 @@ repositories {
         allowInsecureProtocol = true
         url 'http://maven.darktree.net'
     }
+
+    mavenLocal()
 }
 
 sourceCompatibility = JavaVersion.VERSION_17

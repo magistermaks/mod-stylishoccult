@@ -22,6 +22,7 @@ public class Sounds {
         SoundManager.loadSound("urn_broken", SoundCategory.BLOCKS);
         SoundManager.loadSound("vent", SoundCategory.BLOCKS).volume(2.8f).pitch(0.8f, 1.1f);
         SoundManager.loadSound("spore_escapes", SoundCategory.BLOCKS).volume(0.05f);
+        SoundManager.loadSound("spark", SoundCategory.BLOCKS).pitch(0.8f, 1.1f);
 
         HEARTBEAT = SoundManager.loadSound("heartbeat", SoundCategory.AMBIENT);
 

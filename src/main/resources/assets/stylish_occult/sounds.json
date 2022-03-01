@@ -39,5 +39,12 @@
 		"sounds": [
 			"stylish_occult:heartbeat"
 		]
+	},
+	"spark": {
+		"subtitle": "sound.stylish_occult.spark",
+		"sounds": [
+			"stylish_occult:spark_1",
+			"stylish_occult:spark_2"
+		]
 	}
 }

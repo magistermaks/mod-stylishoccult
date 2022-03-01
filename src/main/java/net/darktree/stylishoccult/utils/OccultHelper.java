@@ -7,9 +7,12 @@ import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.entities.SparkEntity;
+import net.darktree.stylishoccult.items.material.TwistedBoneArmorMaterial;
 import net.darktree.stylishoccult.tags.ModTags;
 import net.minecraft.block.*;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.tag.BlockTags;
@@ -214,6 +217,25 @@ public class OccultHelper {
                 }
             }
         }
+    }
+
+    public static int getBoneArmor(LivingEntity entity) {
+        int bones = 1;
+        bones += getBoneArmorBySlot(entity, EquipmentSlot.HEAD, 1);
+        bones += getBoneArmorBySlot(entity, EquipmentSlot.CHEST, 2);
+        bones += getBoneArmorBySlot(entity, EquipmentSlot.LEGS, 1);
+        bones += getBoneArmorBySlot(entity, EquipmentSlot.FEET, 1);
+        return bones;
+    }
+
+    public static int getBoneArmorBySlot(LivingEntity entity, EquipmentSlot slot, int bones) {
+        if(entity.getEquippedStack(slot).getItem() instanceof ArmorItem armor) {
+            if(armor.getMaterial() instanceof TwistedBoneArmorMaterial) {
+                return bones;
+            }
+        }
+
+        return 0;
     }
 
 }

@@ -38,12 +38,12 @@ public enum RuneExceptionType {
     INVALID_STATE("invalid_state"),
 
     /**
-     * Stack size exceeded
+     * Maximum stack size exceeded
      */
     STACK_TOO_LONG("stack_too_long"),
 
     /**
-     * Operation does not follow the rule of equivalent exchange
+     * Operation is in violation of the rule of equivalent exchange
      */
     UNMET_EQUIVALENCY("unmet_equivalency"),
 

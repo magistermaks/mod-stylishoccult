@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.blocks;
 
+import net.darktree.stylishoccult.blocks.fluid.BloodFluid;
 import net.darktree.stylishoccult.blocks.occult.*;
 import net.darktree.stylishoccult.blocks.runes.*;
 import net.darktree.stylishoccult.blocks.runes.flow.*;
@@ -8,14 +9,16 @@ import net.darktree.stylishoccult.blocks.runes.trigger.*;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.MapColor;
-import net.minecraft.block.Material;
+import net.minecraft.block.*;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 
@@ -56,6 +59,11 @@ public class ModBlocks {
     public static final Block RUNESTONE_SLAB = RegUtil.block( "runestone_slab", new SlabBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
     public static final Block RUNESTONE_STAIR = RegUtil.block( "runestone_stairs", new StairsBlock( RUNESTONE.getDefaultState(), RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
     public static final Block RUNESTONE_TABLE = RegUtil.block( "runestone_table", new TableBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
+
+    // fluids
+    public static final FlowableFluid STILL_BLOOD = RegUtil.fluid("blood", new BloodFluid.Still());
+    public static final FlowableFluid FLOWING_BLOOD = RegUtil.fluid("flowing_blood", new BloodFluid.Flowing());
+    public static final Block BLOOD = RegUtil.block("blood", new FluidBlock(STILL_BLOOD, FabricBlockSettings.copy(Blocks.WATER)){});
 
     // runes
     public static final Block BROKEN_RUNE_BLOCK = RegUtil.rune( new BrokenRuneBlock( "damaged" ) );
@@ -108,6 +116,8 @@ public class ModBlocks {
     public static final Block TAKE_RUNE_BLOCK = RegUtil.rune( new TakeRuneBlock("furtum") );
     public static final Block CRAFT_RUNE_BLOCK = RegUtil.rune( new CraftRuneBlock("creo") );
     public static final Block OVER_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("supra", LogicRuneBlock.Functions.OVER) );
+    public static final Block SUSPICIOUS_RUNE_BLOCK = RegUtil.rune( new SuspiciousRuneBlock("suspectum") );
+    public static final Block VALUE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("valorem", LogicRuneBlock.Functions.VALUE) );
 
     public static void init() {
         // load class
@@ -127,7 +137,10 @@ public class ModBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(GOO_FLESH, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), runestones);
 
-        ColorProviderRegistry.BLOCK.register( runeTintProvider, runestones );
+        ColorProviderRegistry.BLOCK.register(runeTintProvider, runestones);
+
+        FluidRenderHandlerRegistry.INSTANCE.register(STILL_BLOOD, FLOWING_BLOOD, SimpleFluidRenderHandler.coloredWater(0x931b15)); //0xa0241e));
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), STILL_BLOOD, FLOWING_BLOOD);
     }
 
 }
