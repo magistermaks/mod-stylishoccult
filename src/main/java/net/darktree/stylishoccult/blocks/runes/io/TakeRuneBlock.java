@@ -3,12 +3,19 @@ package net.darktree.stylishoccult.blocks.runes.io;
 import net.darktree.stylishoccult.blocks.runes.InputRuneBlock;
 import net.darktree.stylishoccult.script.elements.ItemElement;
 import net.darktree.stylishoccult.script.engine.Script;
+import net.darktree.stylishoccult.utils.InventoryAccess;
 import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TakeRuneBlock extends InputRuneBlock {
 
@@ -23,18 +30,11 @@ public class TakeRuneBlock extends InputRuneBlock {
 	}
 
 	private static ItemStack fetch(World world, BlockPos pos, int count) {
-
 		for (Direction direction : Direction.values()) {
-			Inventory inventory = HopperBlockEntity.getInventoryAt(world, pos.offset(direction));
+			ItemStack stack = InventoryAccess.at(world, pos, direction).extract(count);
 
-			if (inventory == null) {
-				continue;
-			}
-
-			for (int i = 0; i < inventory.size(); i++) {
-				if(!inventory.getStack(i).isEmpty()){
-					return inventory.removeStack(i, count);
-				}
+			if (!stack.isEmpty()) {
+				return stack;
 			}
 		}
 

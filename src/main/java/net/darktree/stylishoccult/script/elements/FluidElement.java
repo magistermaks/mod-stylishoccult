@@ -18,6 +18,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FluidElement extends StackElement {
 
 	private final FluidVariant fluid;
@@ -48,6 +51,24 @@ public class FluidElement extends StackElement {
 	@Override
 	public StackElement copy() {
 		throw RuneException.of(RuneExceptionType.UNMET_EQUIVALENCY);
+	}
+
+	@Override
+	public List<StackElement> split(int split) {
+		ArrayList<StackElement> list = new ArrayList<>();
+
+		long reminder = amount % split;
+		long count = amount / split;
+
+		for (int i = 0; i < split; i ++) {
+			list.add(new FluidElement(fluid, count + reminder));
+
+			if (reminder > 0) {
+				reminder --;
+			}
+		}
+
+		return list;
 	}
 
 	public boolean equals(StackElement element) {

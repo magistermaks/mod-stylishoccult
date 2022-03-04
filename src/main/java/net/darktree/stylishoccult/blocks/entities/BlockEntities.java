@@ -15,8 +15,13 @@ public class BlockEntities {
     public static final BlockEntityType<RuneBlockEntity> RUNESTONE = FabricBlockEntityTypeBuilder.create(
             RuneBlockEntity::new, ModBlocks.RUNESTONES.toArray(new Block[0]) ).build(null);
 
+    public static final BlockEntityType<AltarPlateBlockEntity> ALTAR_PLATE = FabricBlockEntityTypeBuilder.create(
+            AltarPlateBlockEntity::new, ModBlocks.ALTAR_PLATE).build(null);
+
     public static void init() {
         Registry.register(Registry.BLOCK_ENTITY_TYPE, new ModIdentifier("lava_demon"), LAVA_DEMON);
-        Registry.register(Registry.BLOCK_ENTITY_TYPE, new ModIdentifier("runestone"), RUNESTONE); }
+        Registry.register(Registry.BLOCK_ENTITY_TYPE, new ModIdentifier("runestone"), RUNESTONE);
+        Registry.register(Registry.BLOCK_ENTITY_TYPE, new ModIdentifier("altar_plate"), ALTAR_PLATE);
+    }
 
 }

@@ -7,6 +7,9 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class StackElement {
 
 	/**
@@ -18,6 +21,11 @@ public abstract class StackElement {
 	 * Get a copy of this element, or throw an exception if duplicating this element is not allowed
 	 */
 	public abstract StackElement copy();
+
+	/**
+	 * Split this element into a list of N parts
+	 */
+	public abstract List<StackElement> split(int split);
 
 	/**
 	 * Save itself to the given NBT tag

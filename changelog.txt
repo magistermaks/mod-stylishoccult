@@ -3,6 +3,7 @@
 - Added Suspicious (suspectum) rune - harvesting blood
 - Added Value (valorem) rune - copy by value
 - Added blood fluid
+- Fixed stuttering in motion of Orbiting Flame particles
 
 0.8.0 beta
 - Added Sanctum structure in The Nether

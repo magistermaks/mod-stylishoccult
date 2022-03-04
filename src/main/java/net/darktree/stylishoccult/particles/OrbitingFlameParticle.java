@@ -33,6 +33,11 @@ public class OrbitingFlameParticle extends AnimatedParticle {
         radius = RandUtils.rangeInt(30, 90) * 0.01f;
         bop = random.nextFloat();
 
+        updatePosition();
+
+        this.prevPosX = this.x;
+        this.prevPosY = this.y;
+        this.prevPosZ = this.z;
     }
 
     @Override
@@ -46,14 +51,22 @@ public class OrbitingFlameParticle extends AnimatedParticle {
 
     @Override
     public void tick() {
-        this.prevPosX = this.x = origin.getX() + radius * Math.cos( rad );
-        this.prevPosY = this.y = origin.getY() + Math.sin( bop ) / 3;
-        this.prevPosZ = this.z = origin.getZ() + radius * Math.sin( rad );
+        this.prevPosX = this.x;
+        this.prevPosY = this.y;
+        this.prevPosZ = this.z;
+
+        updatePosition();
 
         rad += 0.1f;
         bop += 0.1f;
 
-        if( this.age ++ > this.maxAge ) this.markDead();
+        if (this.age ++ > this.maxAge) this.markDead();
+    }
+
+    private void updatePosition() {
+        this.x = origin.getX() + radius * Math.cos( rad );
+        this.y = origin.getY() + Math.sin( bop ) / 3;
+        this.z = origin.getZ() + radius * Math.sin( rad );
     }
 
     @Environment(EnvType.CLIENT)

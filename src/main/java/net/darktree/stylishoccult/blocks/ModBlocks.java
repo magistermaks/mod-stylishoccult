@@ -33,6 +33,7 @@ public class ModBlocks {
     public static final Block GROWTH = RegUtil.block( "growth", new GrowthBlock() );
     public static final Block NETHER_GRASS = RegUtil.block( "nether_grass", new NetherGrassBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MapColor.RED).requiresTool().noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
     public static final Block NETHER_FERN = RegUtil.block( "nether_fern", new NetherFernBlock( FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MapColor.RED).requiresTool().noCollision().breakInstantly().sounds(BlockSoundGroup.NETHER_SPROUTS)) );
+    public static final Block ALTAR_PLATE = RegUtil.block( "runestone_altar_plate", new AltarPlateBlock(RegUtil.settings(Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true).mapColor(MapColor.BLACK).requiresTool() ) );
 
     // flesh and friends
     public static final Block DEFAULT_FLESH = RegUtil.block( "flesh_default", new FleshBlock() );
@@ -56,9 +57,11 @@ public class ModBlocks {
     public static final Block RUNESTONE = RegUtil.block( "runestone", new BuildingBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
     public static final Block ARCANE_ASH = RegUtil.block( "arcane_ash", new ArcaneAshBlock( 100, 500, 0.4f, RegUtil.settings( Material.SOIL, BlockSoundGroup.SAND, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK) ) );
     public static final Block CRYSTALLINE_BLACKSTONE = RegUtil.block( "crystalline_blackstone", new CrystallineBlackstone( RegUtil.settings( Material.STONE, BlockSoundGroup.GILDED_BLACKSTONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
-    public static final Block RUNESTONE_SLAB = RegUtil.block( "runestone_slab", new SlabBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
-    public static final Block RUNESTONE_STAIR = RegUtil.block( "runestone_stairs", new StairsBlock( RUNESTONE.getDefaultState(), RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
-    public static final Block RUNESTONE_TABLE = RegUtil.block( "runestone_table", new TableBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
+    public static final Block RUNESTONE_SLAB = RegUtil.block( "runestone_slab", new SlabBlock( RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true).mapColor(MapColor.BLACK).requiresTool() ) );
+    public static final Block RUNESTONE_STAIR = RegUtil.block( "runestone_stairs", new StairsBlock(RUNESTONE.getDefaultState(), RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
+    public static final Block RUNESTONE_TABLE = RegUtil.block( "runestone_table", new TableBlock(RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true).mapColor(MapColor.BLACK).requiresTool() ) );
+
+
 
     // fluids
     public static final FlowableFluid STILL_BLOOD = RegUtil.fluid("blood", new BloodFluid.Still());
@@ -118,6 +121,7 @@ public class ModBlocks {
     public static final Block OVER_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("supra", LogicRuneBlock.Functions.OVER) );
     public static final Block SUSPICIOUS_RUNE_BLOCK = RegUtil.rune( new SuspiciousRuneBlock("suspectum") );
     public static final Block VALUE_RUNE_BLOCK = RegUtil.rune( new LogicRuneBlock("valorem", LogicRuneBlock.Functions.VALUE) );
+    public static final Block SEPARATE_RUNE_BLOCK = RegUtil.rune( new SeparateRuneBlock("separatum") );
 
     public static void init() {
         // load class

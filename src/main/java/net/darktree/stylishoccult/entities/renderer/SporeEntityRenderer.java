@@ -9,7 +9,6 @@ import net.minecraft.util.Identifier;
 public class SporeEntityRenderer extends SparkEntityRenderer {
 
     private static final Identifier TEXTURE = new ModIdentifier( "textures/particle/spore.png" );
-    private static final RenderLayer LAYER = RenderLayer.getEntityCutout(TEXTURE);
 
     public SporeEntityRenderer(EntityRendererFactory.Context context) {
         super(context);
@@ -18,11 +17,6 @@ public class SporeEntityRenderer extends SparkEntityRenderer {
     @Override
     protected int getLight(int i) {
         return i;
-    }
-
-    @Override
-    public RenderLayer getLayer(SparkEntity entity) {
-        return LAYER;
     }
 
     @Override

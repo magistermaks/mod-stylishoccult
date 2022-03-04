@@ -26,7 +26,7 @@ public class TableBlock extends Block implements DropsItself {
 	public static final BooleanProperty TOP = BooleanProperty.of("top");
 
 	// TODO: better shape
-	public static final VoxelShape SHAPE_BASE = Voxels.box(5, 0, 5, 11, 12, 11).box(0, 12, 0, 16, 16, 16).build();
+	public static final VoxelShape SHAPE_BASE = Voxels.box(4.5f, 0, 4.5f, 11.5f, 12, 11.5f).box(0, 12, 0, 16, 16, 16).build();
 	public static final VoxelShape SHAPE_CONNECTED = Utils.shape(5, 0, 5, 11, 16, 11);
 
 	public TableBlock(Settings settings) {

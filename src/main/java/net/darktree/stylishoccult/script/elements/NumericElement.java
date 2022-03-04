@@ -2,6 +2,9 @@ package net.darktree.stylishoccult.script.elements;
 
 import net.minecraft.nbt.NbtCompound;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NumericElement extends StackElement {
 
 	public static final NumericElement TRUE = new NumericElement(1);
@@ -32,6 +35,19 @@ public class NumericElement extends StackElement {
 	public StackElement copy() {
 		// this is allowed as state non-mutable
 		return this;
+	}
+
+	@Override
+	public List<StackElement> split(int split) {
+		ArrayList<StackElement> list = new ArrayList<>();
+
+		double val = value / split;
+
+		for (int i = 0; i < split; i ++) {
+			list.add(new NumericElement(val));
+		}
+
+		return list;
 	}
 
 	@Override

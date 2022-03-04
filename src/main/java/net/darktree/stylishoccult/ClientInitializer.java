@@ -2,11 +2,14 @@ package net.darktree.stylishoccult;
 
 import net.darktree.interference.MessageInjector;
 import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.blocks.entities.BlockEntities;
+import net.darktree.stylishoccult.blocks.entities.client.AltarPlateBlockEntityRenderer;
 import net.darktree.stylishoccult.entities.ModEntities;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.particles.Particles;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 
 public class ClientInitializer implements ClientModInitializer {
 
@@ -17,6 +20,8 @@ public class ClientInitializer implements ClientModInitializer {
 		ModItems.clientInit();
 		Particles.clientInit();
 		ModEntities.clientInit();
+
+		BlockEntityRendererRegistry.register(BlockEntities.ALTAR_PLATE, AltarPlateBlockEntityRenderer::new);
 
 		MessageInjector.injectPlain("Down with JSON!");
 		MessageInjector.injectPlain("Tiny potato!");

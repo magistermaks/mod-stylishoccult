@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.particles;
 
+import net.darktree.interference.render.RenderHelper;
 import net.darktree.interference.render.RenderedParticle;
 import net.darktree.interference.render.ShapeRenderer;
 import net.minecraft.client.render.RenderLayer;
@@ -8,6 +9,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Matrix4f;
 
 public class SwirlyParticle extends RenderedParticle {
 
@@ -49,7 +51,28 @@ public class SwirlyParticle extends RenderedParticle {
 			i ++;
 		}
 
-		ShapeRenderer.renderPrismAlong(matrices, buffer, 4, 0.01f * f, 0, 1.0f, 0.2f, 0.1f, 1.0f, 0f, 0f, 0f, 0f, 8f, 0f, segments);
+		renderPrismAlong(matrices, buffer, 4, 0.01f * f, 0, 1.0f, 0.2f, 0.1f, 1.0f, 0f, 0f, 0f, 0f, 8f, 0f, segments);
+	}
+
+	public static void renderPrism(Matrix4f matrix, VertexConsumer buffer, int count, float height, float radius, float angle, float r, float g, float b, float a, ShapeRenderer.Segment[] segments) {
+		float step = height / segments.length;
+
+		float x = 0, y = 0;
+
+		float p = MathHelper.PI / segments.length;
+
+		for(int i = 0; i < segments.length; i ++) {
+			ShapeRenderer.renderPrism(matrix, buffer, count, step, radius * MathHelper.sin(i * p), angle, r, g, b, a, x, y, segments[i].ox, i * step, segments[i].oz);
+			x = segments[i].ox;
+			y = segments[i].oz;
+		}
+	}
+
+	public static void renderPrismAlong(MatrixStack matrices, VertexConsumer buffer, int count, float radius, float angle, float r, float g, float b, float a, float x1, float y1, float z1, float x2, float y2, float z2, ShapeRenderer.Segment[] segments) {
+		matrices.push();
+		float length = RenderHelper.lookAlong(matrices, x1, y1, z1, x2, y2, z2);
+		renderPrism(matrices.peek().getModel(), buffer, count, length, radius, angle, r, g, b, a, segments);
+		matrices.pop();
 	}
 
 }

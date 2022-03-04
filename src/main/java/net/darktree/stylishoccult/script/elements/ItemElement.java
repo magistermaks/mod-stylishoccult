@@ -11,6 +11,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemElement extends StackElement {
 
 	public final ItemStack stack;
@@ -37,6 +40,27 @@ public class ItemElement extends StackElement {
 	@Override
 	public StackElement copy() {
 		throw RuneException.of(RuneExceptionType.UNMET_EQUIVALENCY);
+	}
+
+	@Override
+	public List<StackElement> split(int split) {
+		ArrayList<StackElement> list = new ArrayList<>();
+
+		int reminder = stack.getCount() % split;
+		int count = stack.getCount() / split;
+
+		for (int i = 0; i < split; i ++) {
+			ItemStack copy = stack.copy();
+			copy.setCount(count + reminder);
+
+			list.add(new ItemElement(copy));
+
+			if (reminder > 0) {
+				reminder --;
+			}
+		}
+
+		return list;
 	}
 
 	public boolean equals(StackElement element) {

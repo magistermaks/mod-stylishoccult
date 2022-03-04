@@ -5,10 +5,10 @@ import java.util.Random;
 
 public class RandUtils {
 
-    private static final Random random = new Random();
+    public static final Random RANDOM = new Random();
 
     public static <T extends Enum<?>> T getEnum(Class<T> clazz){
-        return getEnum(clazz, random);
+        return getEnum(clazz, RANDOM);
     }
 
     public static <T extends Enum<?>> T getEnum(Class<T> clazz, Random random){
@@ -25,7 +25,7 @@ public class RandUtils {
     }
 
     public static int rangeInt(int min, int max) {
-        return rangeInt(min, max, random);
+        return rangeInt(min, max, RANDOM);
     }
 
     public static int rangeInt(int min, int max, Random random) {
