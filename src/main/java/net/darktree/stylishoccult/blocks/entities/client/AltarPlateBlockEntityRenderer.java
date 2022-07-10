@@ -18,10 +18,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
 
 import java.util.List;
+import java.util.Objects;
 
 public class AltarPlateBlockEntityRenderer implements BlockEntityRenderer<AltarPlateBlockEntity> {
 
-	Identifier FIRE = new ModIdentifier("textures/particle/spark_0.png");
+	private static final Identifier FIRE = new ModIdentifier("textures/particle/spark_0.png");
 
 	private final BlockRenderManager blockRenderer;
 	private final ItemRenderer itemRenderer;
@@ -33,7 +34,7 @@ public class AltarPlateBlockEntityRenderer implements BlockEntityRenderer<AltarP
 
 	@Override
 	public void render(AltarPlateBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		double time = entity.getWorld().getTime() + tickDelta;
+		double time = Objects.requireNonNull(entity.getWorld()).getTime() + tickDelta;
 		double offset = (Math.sin(time / 12.0) + 1) / 12.0;
 
 		// render center item

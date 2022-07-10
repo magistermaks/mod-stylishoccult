@@ -2,13 +2,16 @@ package net.darktree.stylishoccult.blocks;
 
 import net.darktree.interference.api.DropsItself;
 import net.darktree.stylishoccult.blocks.entities.AltarPlateBlockEntity;
+import net.darktree.stylishoccult.blocks.entities.BlockEntities;
 import net.darktree.stylishoccult.utils.BlockUtils;
-import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.darktree.stylishoccult.utils.Voxels;
-import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -22,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class AltarPlateBlock extends SimpleBlock implements DropsItself, BlockEntityProvider {
+public class AltarPlateBlock extends BlockWithEntity implements DropsItself {
 
 	public static final VoxelShape SHAPE = Voxels.box(2, 0, 2, 14, 2, 14).build();
 
@@ -56,10 +59,14 @@ public class AltarPlateBlock extends SimpleBlock implements DropsItself, BlockEn
 		return BlockUtils.getEntity(AltarPlateBlockEntity.class, world, pos).use(player.getStackInHand(hand)) ? ActionResult.SUCCESS : ActionResult.PASS;
 	}
 
-	//	@Nullable
-//	@Override
-//	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-//		return BlockEntityProvider.super.getTicker(world, state, type);
-//	}
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		return checkType(type, BlockEntities.ALTAR_PLATE, (world_, pos_, state_, entity) -> entity.tick());
+	}
+
+	@Override
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
+	}
 
 }

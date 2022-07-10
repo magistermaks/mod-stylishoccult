@@ -52,7 +52,7 @@ public class AttackS2CPacket {
 		}
 	}
 
-	public void send(ServerPlayerEntity entity, BlockPos source, double x, double y, double z, Direction face) {
+	private void send(ServerPlayerEntity entity, BlockPos source, double x, double y, double z, Direction face) {
 		PacketByteBuf data = new PacketByteBuf(Unpooled.buffer());
 		data.writeDouble(x);
 		data.writeDouble(y);

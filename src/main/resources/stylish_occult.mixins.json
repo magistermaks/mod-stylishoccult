@@ -10,8 +10,8 @@
     "StatusEffectInstanceAccessor"
   ],
   "client": [
-    "CameraMixin",
     "BackgroundRendererMixin",
+    "CameraMixin",
     "InGameHudMixin",
     "InputUtilMixin",
     "PlayerEntityClientMixin"

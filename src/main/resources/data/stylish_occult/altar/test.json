@@ -1,0 +1,17 @@
+{
+  "blood": 0,
+  "instability": 0,
+  "catalyst": "stylish_occult:lava_heart",
+  "ingredients": [
+    "stylish_occult:glowgrowth_shard",
+    "stylish_occult:glowgrowth_shard",
+    "stylish_occult:glowgrowth_shard",
+    "stylish_occult:glowgrowth_shard",
+    "stylish_occult:glowgrowth_shard",
+    "stylish_occult:glowgrowth_shard",
+    "stylish_occult:glowgrowth_shard",
+    "stylish_occult:glowgrowth_shard"
+  ],
+  "product": "minecraft:dirt",
+  "count": 3
+}
