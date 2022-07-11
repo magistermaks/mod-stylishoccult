@@ -47,7 +47,7 @@ public class AttackS2CPacket {
 					0, 0, 0);
 
 			if (particle instanceof AttackParticle attackParticle) {
-				attackParticle.setTarget(x, y, z);
+				attackParticle.setTarget(x, y, z, false);
 			}
 		}
 	}

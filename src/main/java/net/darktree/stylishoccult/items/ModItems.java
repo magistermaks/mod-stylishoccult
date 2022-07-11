@@ -94,6 +94,9 @@ public class ModItems {
     public static final Item SPARK_SPAWN_EGG = RegUtil.item("spark_spawn_egg", new SpawnEggItem(ModEntities.SPARK, 0xff5454, 0xff0000, new Item.Settings().group(ItemGroup.MISC)));
     public static final Item SPORE_SPAWN_EGG = RegUtil.item("spore_spawn_egg", new SpawnEggItem(ModEntities.SPORE, 0x620d0d, 0x4e0909, new Item.Settings().group(ItemGroup.MISC)));
 
+    // staff
+    public static final Item OCCULT_STAFF = RegUtil.item("staff", new Item(new Item.Settings().group(Groups.STYLISH_OCCULT)));
+
     public static void init() {
         // Load this class
     }

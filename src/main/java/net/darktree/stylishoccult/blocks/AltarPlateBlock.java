@@ -3,6 +3,8 @@ package net.darktree.stylishoccult.blocks;
 import net.darktree.interference.api.DropsItself;
 import net.darktree.stylishoccult.blocks.entities.AltarPlateBlockEntity;
 import net.darktree.stylishoccult.blocks.entities.BlockEntities;
+import net.darktree.stylishoccult.blocks.runes.VerticalRuneLink;
+import net.darktree.stylishoccult.script.elements.StackElement;
 import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.Voxels;
 import net.minecraft.block.BlockRenderType;
@@ -25,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class AltarPlateBlock extends BlockWithEntity implements DropsItself {
+public class AltarPlateBlock extends BlockWithEntity implements DropsItself, VerticalRuneLink {
 
 	public static final VoxelShape SHAPE = Voxels.box(2, 0, 2, 14, 2, 14).build();
 
@@ -67,6 +69,15 @@ public class AltarPlateBlock extends BlockWithEntity implements DropsItself {
 	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
+	}
+
+	@Override
+	public boolean onEndReached(World world, BlockPos pos, StackElement element) {
+		if (element == null && world.getBlockEntity(pos) instanceof AltarPlateBlockEntity plate) {
+			return plate.activate();
+		}
+
+		return false;
 	}
 
 }

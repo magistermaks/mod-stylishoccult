@@ -15,6 +15,7 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
@@ -47,8 +48,12 @@ public class ArcS2CPacket {
 			Particle particle = renderer.spawnParticle(Particles.ATTACK, true, true, fx, fy, fz, 0, 0, 0);
 
 			if (particle instanceof AttackParticle attackParticle) {
-				attackParticle.setTarget(tx, ty, tz);
+				attackParticle.setTarget(tx, ty, tz, true);
 			}
+
+			renderer.spawnParticle(ParticleTypes.CLOUD, true, true, fx, fy, fz, 0, 0, 0);
+			renderer.spawnParticle(ParticleTypes.CLOUD, true, false, fx, fy, fz, 0, 0, 0);
+			renderer.spawnParticle(ParticleTypes.CLOUD, false, false, fx, fy, fz, 0, 0, 0);
 		}
 	}
 

@@ -130,7 +130,8 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
             BlockState state = world.getBlockState(target);
 
             if (state.getBlock() instanceof RuneBlock rune) {
-                if (rune.canAcceptSignal(state)) {
+                if (rune.canAcceptSignal(state, direction.getOpposite())) {
+                    rune.onSignalAccepted(world, pos);
                     rune.execute(world, target, state, used ? script.copyFor(direction) : script.with(direction));
                     used = true;
                 }
@@ -176,7 +177,7 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
         return script.direction == null ? new Direction[] {} : new Direction[] { script.direction };
     }
 
-    public boolean canAcceptSignal(BlockState state) {
+    public boolean canAcceptSignal(BlockState state, @Nullable Direction from) {
         return state.get(COOLDOWN) == 0 && !state.get(FROZEN);
     }
 
@@ -197,6 +198,10 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
     }
 
     protected void onDelayEnd(World world, BlockPos pos) {
+
+    }
+
+    protected void onSignalAccepted(World world, BlockPos pos) {
 
     }
 

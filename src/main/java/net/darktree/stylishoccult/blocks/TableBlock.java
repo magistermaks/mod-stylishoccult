@@ -1,6 +1,11 @@
 package net.darktree.stylishoccult.blocks;
 
 import net.darktree.interference.api.DropsItself;
+import net.darktree.stylishoccult.blocks.runes.RuneBlock;
+import net.darktree.stylishoccult.blocks.runes.VerticalRuneLink;
+import net.darktree.stylishoccult.blocks.runes.EntryRuneBlock;
+import net.darktree.stylishoccult.script.elements.StackElement;
+import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.Utils;
 import net.darktree.stylishoccult.utils.Voxels;
 import net.minecraft.block.Block;
@@ -14,10 +19,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
-public class TableBlock extends Block implements DropsItself {
+public class TableBlock extends EntryRuneBlock implements DropsItself, VerticalRuneLink {
 
 	public static final BooleanProperty SOUTH = BooleanProperty.of("south");
 	public static final BooleanProperty NORTH = BooleanProperty.of("north");
@@ -29,13 +35,14 @@ public class TableBlock extends Block implements DropsItself {
 	public static final VoxelShape SHAPE_BASE = Voxels.box(4.5f, 0, 4.5f, 11.5f, 12, 11.5f).box(0, 12, 0, 16, 16, 16).build();
 	public static final VoxelShape SHAPE_CONNECTED = Utils.shape(5, 0, 5, 11, 16, 11);
 
-	public TableBlock(Settings settings) {
-		super(settings);
+	public TableBlock(String name) {
+		super(name);
 	}
 
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(SOUTH, NORTH, WEST, EAST, TOP);
+		super.appendProperties(builder);
 	}
 
 	@Override
@@ -79,6 +86,37 @@ public class TableBlock extends Block implements DropsItself {
 				.with(SOUTH, world.getBlockState(pos.south()).isOf(this))
 				.with(NORTH, world.getBlockState(pos.north()).isOf(this))
 				.with(TOP, world.getBlockState(pos.up()).isOf(this));
+	}
+
+	@Override
+	public Direction[] getDirections(World world, BlockPos pos, Script script) {
+		return new Direction[] {Direction.DOWN};
+	}
+
+	@Override
+	public boolean canAcceptSignal(BlockState state, @Nullable Direction from) {
+		return from == Direction.DOWN;
+	}
+
+	@Override
+	public boolean onEndReached(World world, BlockPos pos, StackElement element) {
+		Script script = new Script();
+
+		if (element != null) {
+			script.stack.push(element);
+		}
+
+		if (world.getBlockState(pos.down()).getBlock() instanceof RuneBlock) {
+			emit(world, pos, script);
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	protected void onSignalAccepted(World world, BlockPos pos) {
+		sendUp(world, pos, null);
 	}
 
 }

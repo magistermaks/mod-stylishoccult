@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "HungerManagerMixin",
+    "KillMeMixin",
     "LivingEntityMixin",
     "PlayerEntityMixin",
     "StatusEffectInstanceAccessor"

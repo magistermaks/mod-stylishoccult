@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class EntryRuneBlock extends RuneBlock {
 
@@ -14,10 +15,14 @@ public abstract class EntryRuneBlock extends RuneBlock {
     }
 
     protected void emit(World world, BlockPos pos) {
+        emit(world, pos, new Script());
+    }
+
+    protected void emit(World world, BlockPos pos, Script script) {
         BlockState state = world.getBlockState(pos);
 
-        if (super.canAcceptSignal(state)) {
-            execute(world, pos, state, new Script());
+        if (super.canAcceptSignal(state, null)) {
+            execute(world, pos, state, script);
         }
     }
 
@@ -27,7 +32,7 @@ public abstract class EntryRuneBlock extends RuneBlock {
     }
 
     @Override
-    public boolean canAcceptSignal(BlockState state) {
+    public boolean canAcceptSignal(BlockState state, @Nullable Direction from) {
         return false;
     }
 
