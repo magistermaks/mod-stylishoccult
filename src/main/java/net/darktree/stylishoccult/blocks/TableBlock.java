@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.blocks;
 
 import net.darktree.interference.api.DropsItself;
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.blocks.runes.RuneBlock;
 import net.darktree.stylishoccult.blocks.runes.VerticalRuneLink;
 import net.darktree.stylishoccult.blocks.runes.EntryRuneBlock;
@@ -14,6 +15,8 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -31,12 +34,21 @@ public class TableBlock extends EntryRuneBlock implements DropsItself, VerticalR
 	public static final BooleanProperty EAST = BooleanProperty.of("east");
 	public static final BooleanProperty TOP = BooleanProperty.of("top");
 
-	// TODO: better shape
-	public static final VoxelShape SHAPE_BASE = Voxels.box(4.5f, 0, 4.5f, 11.5f, 12, 11.5f).box(0, 12, 0, 16, 16, 16).build();
-	public static final VoxelShape SHAPE_CONNECTED = Utils.shape(5, 0, 5, 11, 16, 11);
+	public static final VoxelShape SHAPE_FULL = Voxels.box(4.5f, 0, 4.5f, 11.5f, 12, 11.5f).box(0, 12, 0, 16, 16, 16).build();
+	public static final VoxelShape SHAPE_STACKED = Utils.shape(4.5f, 0, 4.5f, 11.5f, 12, 11.5f);
 
 	public TableBlock(String name) {
 		super(name);
+	}
+
+	@Override
+	public String getTranslationKey() {
+		return "block." + StylishOccult.NAMESPACE + ".runestone_table";
+	}
+
+	@Override
+	public MutableText getName() {
+		return new TranslatableText(getTranslationKey());
 	}
 
 	@Override
@@ -47,7 +59,7 @@ public class TableBlock extends EntryRuneBlock implements DropsItself, VerticalR
 
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return state.get(TOP) ? SHAPE_CONNECTED : SHAPE_BASE;
+		return state.get(TOP) ? SHAPE_STACKED : SHAPE_FULL;
 	}
 
 	@Override

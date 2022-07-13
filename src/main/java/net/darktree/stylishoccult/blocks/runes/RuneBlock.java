@@ -63,12 +63,6 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-//        tooltip.add( Utils.tooltip( "rune", new TranslatableText( "rune." + super.getTranslationKey() ) ) );
-    }
-
-    @Override
     public String getTranslationKey() {
         return "block." + StylishOccult.NAMESPACE + ".engraved_runestone";
     }

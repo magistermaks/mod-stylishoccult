@@ -67,5 +67,31 @@
 		"sounds": [
 			"stylish_occult:boom"
 		]
+	},
+	"failure": {
+		"subtitle": "sound.stylish_occult.failure",
+		"author": ["https://freesound.org/people/2887679652/sounds/135594/","https://freesound.org/people/4_and_a_half_Star_Games/sounds/353874/"],
+		"sounds": [
+			"stylish_occult:failure"
+		]
+	},
+	"voice": {
+		"subtitle": "sound.stylish_occult.voice",
+		"author": [
+			"https://freesound.org/people/MaxDemianAGL/sounds/132250/",
+			"https://freesound.org/people/pcruzn/sounds/204819/",
+			"https://freesound.org/people/argon098/sounds/338344/",
+			"https://freesound.org/people/RICHERlandTV/sounds/216095/",
+			"https://freesound.org/people/NinjaSharkStudios/sounds/180022/",
+			"https://freesound.org/people/VishwaJay/sounds/552039/"
+		],
+		"sounds": [
+			"stylish_occult:voice_1",
+			"stylish_occult:voice_2",
+			"stylish_occult:voice_3",
+			"stylish_occult:voice_4",
+			"stylish_occult:voice_5",
+			"stylish_occult:voice_6"
+		]
 	}
 }

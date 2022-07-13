@@ -10,6 +10,7 @@ import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.script.elements.ItemElement;
 import net.darktree.stylishoccult.sounds.SoundManager;
 import net.darktree.stylishoccult.utils.BlockUtils;
+import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.SimpleBlockEntity;
 import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.Block;
@@ -28,6 +29,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -111,9 +113,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		ingredients.clear();
 		pillars.clear();
 		SoundManager.playSound(world, pos, "boom");
-
 		BlockPos.Mutable pos = this.pos.mutableCopy();
-		System.out.println("[ALTAR] Catalyst placed at: " + BlockUtils.posToString(pos));
 
 		for (int x = -7; x <= 7; x ++) {
 			for (int z = -7; z <= 7; z ++) {
@@ -127,7 +127,6 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 
 					if (plate != null) {
 						pillars.add(new BlockPos(pos));
-						System.out.println("[ALTAR] Found altar pillar at: " + BlockUtils.posToString(pos));
 					}
 				}
 			}
@@ -143,8 +142,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 	}
 
 	public void tick() {
-
-		if (world.isClient) {
+		if (world != null && world.isClient) {
 			return;
 		}
 
@@ -164,13 +162,21 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 					AltarRitual ritual = ResourceLoaders.ALTAR_RITUALS.find(center.getItem(), ingredients);
 
 					if (ritual == null) {
-						System.out.println("[ALTAR] No ritual found!");
-					}else {
+						SoundManager.playSound(world, pos, "failure");
+						ejectItems(ingredients);
+						ingredients.clear();
+					} else {
 						if (world.getBlockState(pos).getBlock() instanceof VerticalRuneLink pillar) {
-							ItemStack products = new ItemStack(ritual.product, ritual.count);
+							ItemElement products = new ItemElement(new ItemStack(ritual.product, ritual.count));
 
-							if (!pillar.sendDown(world, pos, new ItemElement(products))) {
-								Block.dropStack(world, pos, products);
+							ingredients.clear();
+							if (ritual.consume) {
+								this.center.decrement(1);
+								sync();
+							}
+
+							if (!pillar.sendDown(world, pos, products)) {
+								ejectItems(Collections.nCopies(ritual.count, ritual.product));
 							}
 
 							SoundManager.playSound(world, pos, "transmute");
@@ -189,10 +195,29 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				ritual = 0;
 			}
 
+			OccultHelper.corruptAround((ServerWorld) world, pos, world.random, true);
 		}else{
 			ritual = 0;
 		}
+	}
 
+	private void ejectItems(List<Item> items) {
+		int count = items.size();
+
+		if (count < 3) {
+			for(Item item : items) {
+				Block.dropStack(world, pos, new ItemStack(item));
+			}
+		} else {
+			float angle = MathHelper.TAU / count;
+
+			for (int i = 0; i < count; i ++) {
+				float x = (float) Math.sin(angle * i) * 0.12f;
+				float z = (float) Math.cos(angle * i) * 0.12f;
+
+				Utils.ejectStack(world, pos.getX() + 0.5f, pos.getY() + 0.25f, pos.getZ() + 0.5f,new ItemStack(items.get(i)), x, 0.25f, z);
+			}
+		}
 	}
 
 	private void tryPickupItems() {
@@ -225,6 +250,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				plate.center = ItemStack.EMPTY;
 				plate.sync();
 				plate.playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_HIT);
+				SoundManager.playSound(world, pos.down(1), "voice");
 
 				Network.ARC.send(pos, (ServerWorld) world,
 						pos.getX() + 0.5, pos.getY() + 0.1, pos.getZ() + 0.5,
@@ -278,6 +304,19 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 
 	public List<AltarRingItemStack> getCandles() {
 		return candles;
+	}
+
+	public void onBlockRemoved() {
+		for (AltarRingItemStack candle : candles) {
+			Block.dropStack(world, pos, candle.stack);
+		}
+
+		Block.dropStack(world, pos, center);
+		ejectItems(ingredients);
+
+		if (active) {
+			playSound(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE);
+		}
 	}
 
 }

@@ -6,25 +6,33 @@ import net.darktree.stylishoccult.blocks.entities.BlockEntities;
 import net.darktree.stylishoccult.blocks.runes.VerticalRuneLink;
 import net.darktree.stylishoccult.script.elements.StackElement;
 import net.darktree.stylishoccult.utils.BlockUtils;
+import net.darktree.stylishoccult.utils.Utils;
 import net.darktree.stylishoccult.utils.Voxels;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
-import net.minecraft.block.ShapeContext;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Random;
 
 public class AltarPlateBlock extends BlockWithEntity implements DropsItself, VerticalRuneLink {
@@ -41,8 +49,16 @@ public class AltarPlateBlock extends BlockWithEntity implements DropsItself, Ver
 	}
 
 	@Override
+	@Environment(EnvType.CLIENT)
+	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+        tooltip.add( Utils.tooltip("altar_plate") );
+	}
+
+	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		super.randomDisplayTick(state, world, pos, random);
+		if (random.nextFloat() < 0.2F && world.getBlockEntity(pos) instanceof AltarPlateBlockEntity plate && plate.getCandles().size() > 0) {
+			world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.BLOCK_CANDLE_AMBIENT, SoundCategory.BLOCKS, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
+		}
 	}
 
 	@Override
@@ -67,6 +83,15 @@ public class AltarPlateBlock extends BlockWithEntity implements DropsItself, Ver
 	}
 
 	@Override
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+		if (direction == Direction.DOWN) {
+			return canPlaceAt(state, world, pos) ? state : Blocks.AIR.getDefaultState();
+		}
+
+		return state;
+	}
+
+	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
@@ -78,6 +103,19 @@ public class AltarPlateBlock extends BlockWithEntity implements DropsItself, Ver
 		}
 
 		return false;
+	}
+
+	@Override
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+		if (state.isOf(newState.getBlock())) {
+			return;
+		}
+
+		if (world.getBlockEntity(pos) instanceof AltarPlateBlockEntity plate) {
+			plate.onBlockRemoved();
+		}
+
+		super.onStateReplaced(state, world, pos, newState, moved);
 	}
 
 }

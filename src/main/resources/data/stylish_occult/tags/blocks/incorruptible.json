@@ -1,4 +1,7 @@
 {
     "replace": false,
-    "values": []
+    "values": [
+        "stylish_occult:runestone_altar_plate",
+        "stylish_occult:runestone_table"
+    ]
 }

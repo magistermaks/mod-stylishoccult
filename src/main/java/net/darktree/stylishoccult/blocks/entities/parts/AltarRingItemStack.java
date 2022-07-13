@@ -15,6 +15,10 @@ public class AltarRingItemStack {
 	public final float offset;
 
 	public AltarRingItemStack(ItemStack stack, float offset) {
+		if (!(stack.getItem() instanceof BlockItem)) {
+			throw new RuntimeException("Invalid argument, given candle is not a BlockItem!");
+		}
+
 		this.stack = stack;
 		this.offset = offset;
 	}

@@ -73,6 +73,7 @@
   "tooltip.stylish_occult.error_tablet.error.stack_too_long": "Too many elements on stack!",
   "tooltip.stylish_occult.error_tablet.error.unmet_equivalency": "Unmet equivalency!",
   "tooltip.stylish_occult.error_tablet.error.broken": "Damaged inscription!",
+  "tooltip.stylish_occult.altar_plate": "Place on top of a Runestone Table to create an altar",
 
   "rune.block.stylish_occult.rune_debug": "Inveniet",
   "rune.block.stylish_occult.rune_tactus": "Tactus",
@@ -137,6 +138,10 @@
   "sound.stylish_occult.spore_escapes": "Spore Pops",
   "sound.stylish_occult.heartbeat": "Heartbeats",
   "sound.stylish_occult.spark": "Electricity Sparks",
+  "sound.stylish_occult.arc": "Dark Magic Arcs",
+  "sound.stylish_occult.boom": "Altar Activates",
+  "sound.stylish_occult.transmute": "Matter Transmuts",
+  "sound.stylish_occult.voice": "Ghostly whisper",
 
   "itemGroup.stylish_occult.stylish_occult_main": "Stylish Occult: General",
   "itemGroup.stylish_occult.stylish_occult_runes": "Stylish Occult: Runes",

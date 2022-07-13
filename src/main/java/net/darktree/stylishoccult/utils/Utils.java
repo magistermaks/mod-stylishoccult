@@ -1,8 +1,11 @@
 package net.darktree.stylishoccult.utils;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.items.ThrownItemEntity;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
+import net.minecraft.block.Block;
 import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
@@ -13,6 +16,8 @@ import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.GameRules;
+import net.minecraft.world.World;
 
 public class Utils {
 
@@ -66,6 +71,14 @@ public class Utils {
     public static void decrement( PlayerEntity entity, ItemStack stack ) {
         if( !entity.isCreative() ) {
             stack.decrement(1);
+        }
+    }
+
+    public static void ejectStack(World world, float x, float y, float z, ItemStack stack, float vx, float vy, float vz) {
+        if (!world.isClient && !stack.isEmpty()) {
+            ItemEntity itemEntity = new ThrownItemEntity(world, x, y, z, stack, vx, vy, vz, 20);
+            itemEntity.setToDefaultPickupDelay();
+            world.spawnEntity(itemEntity);
         }
     }
 

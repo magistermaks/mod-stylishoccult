@@ -23,3 +23,9 @@ accessible   field   net/minecraft/client/world/ClientWorld   worldRenderer   Ln
 
 # Needed so i can spawn epic particles (part 2/2)
 accessible   method   net/minecraft/client/render/WorldRenderer   spawnParticle   (Lnet/minecraft/particle/ParticleEffect;ZZDDDDDD)Lnet/minecraft/client/particle/Particle;
+
+# Needed to make thrown items not merge instantly (part 1/2)
+accessible   method   net/minecraft/entity/ItemEntity   canMerge   ()Z
+
+# Needed to make thrown items not merge instantly (part 1/2)
+extendable   method   net/minecraft/entity/ItemEntity   canMerge   ()Z

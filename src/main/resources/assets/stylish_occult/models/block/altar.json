@@ -5,6 +5,14 @@
 		"0": "stylish_occult:block/runestone_table_top",
 		"particle": "stylish_occult:block/runestone_table_top"
 	},
+	"display": {
+		"firstperson_righthand": {
+			"translation": [3.5, 4, 0]
+		},
+		"firstperson_lefthand": {
+			"translation": [3.5, 4, 0]
+		}
+	},
 	"elements": [
 		{
 			"from": [2, 0, 2],
@@ -100,6 +108,5 @@
 				"up": {"uv": [14, 4, 16, 12], "texture": "#0"}
 			}
 		}
-	],
-	"display": {}
+	]
 }

@@ -72,6 +72,7 @@
   "tooltip.stylish_occult.error_tablet.error.stack_too_long": "Zbyt długi stos!",
   "tooltip.stylish_occult.error_tablet.error.unmet_equivalency": "Niezachowanie równości!",
   "tooltip.stylish_occult.error_tablet.error.broken": "Uszkodzony zapis runiczny!",
+  "tooltip.stylish_occult.altar_plate": "Połóż na runicznym stole by utworzyć ołtarz",
 
   "entity.stylish_occult.lava_spark": "Iskra",
   "entity.stylish_occult.spore": "Zarodnik",
@@ -82,6 +83,10 @@
   "sound.stylish_occult.spore_escapes": "Zarodnik pęka",
   "sound.stylish_occult.heartbeat": "Bicie serca",
   "sound.stylish_occult.spark": "Wyładowanie elektryczne",
+  "sound.stylish_occult.arc": "Magiczne wyładowanie",
+  "sound.stylish_occult.boom": "Ołtarz aktywuje się",
+  "sound.stylish_occult.transmute": "Materia jest transmutowana",
+  "sound.stylish_occult.voice": "Zjawa szepta",
 
   "itemGroup.stylish_occult.stylish_occult_main": "Stylish Occult: Ogólne",
   "itemGroup.stylish_occult.stylish_occult_runes": "Stylish Occult: Runy",
