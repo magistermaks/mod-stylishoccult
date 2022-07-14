@@ -61,7 +61,7 @@ public class SuspiciousRuneBlock extends TransferRuneBlock {
 			}
 		}
 
-		script.stack.push(new FluidElement(FluidVariant.of(ModBlocks.STILL_BLOOD), Math.round(damage)));
+		script.stack.push(new FluidElement(FluidVariant.of(ModBlocks.STILL_BLOOD), (long) Math.ceil(100 * damage)));
 	}
 
 	public static class LivingTarget {

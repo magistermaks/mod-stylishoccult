@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.blocks;
 
+import net.darktree.stylishoccult.blocks.entities.BloodCauldronBlockEntity;
 import net.darktree.stylishoccult.blocks.fluid.BloodFluid;
 import net.darktree.stylishoccult.blocks.occult.*;
 import net.darktree.stylishoccult.blocks.runes.*;
@@ -7,23 +8,33 @@ import net.darktree.stylishoccult.blocks.runes.flow.*;
 import net.darktree.stylishoccult.blocks.runes.io.*;
 import net.darktree.stylishoccult.blocks.runes.trigger.*;
 import net.darktree.stylishoccult.items.ModItems;
+import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.transfer.v1.fluid.CauldronFluidContent;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.fabricmc.fabric.impl.transfer.fluid.CauldronStorage;
 import net.minecraft.block.*;
+import net.minecraft.block.cauldron.CauldronBehavior;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
+import net.minecraft.world.biome.Biome;
 
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.function.Predicate;
 
 public class ModBlocks {
 
+    public static final Predicate<Biome.Precipitation> FALSE_PRECIPITATION_PREDICATE = precipitation -> false;
     public static final ArrayList<Block> RUNESTONES = new ArrayList<>();
 
     public static final Block URN = RegUtil.block( "urn", new UrnBlock() );
@@ -61,12 +72,12 @@ public class ModBlocks {
     public static final Block RUNESTONE_STAIR = RegUtil.block( "runestone_stairs", new StairsBlock(RUNESTONE.getDefaultState(), RegUtil.settings( Material.STONE, BlockSoundGroup.STONE, 2.0f, 6.0f, true ).mapColor(MapColor.BLACK).requiresTool() ) );
     public static final Block RUNESTONE_TABLE = RegUtil.block( "runestone_table", new TableBlock("altare"));
 
-
-
     // fluids
     public static final FlowableFluid STILL_BLOOD = RegUtil.fluid("blood", new BloodFluid.Still());
     public static final FlowableFluid FLOWING_BLOOD = RegUtil.fluid("flowing_blood", new BloodFluid.Flowing());
     public static final Block BLOOD = RegUtil.block("blood", new FluidBlock(STILL_BLOOD, FabricBlockSettings.copy(Blocks.WATER)){});
+    public static final Block BLOOD_CAULDRON = RegUtil.block("blood_cauldron", new BloodCauldronBlock(AbstractBlock.Settings.copy(Blocks.CAULDRON)));
+    public static final FluidVariant BLOOD_VARIANT = FluidVariant.of(ModBlocks.STILL_BLOOD);
 
     // runes
     public static final Block BROKEN_RUNE_BLOCK = RegUtil.rune( new BrokenRuneBlock( "damaged" ) );
@@ -143,8 +154,11 @@ public class ModBlocks {
 
         ColorProviderRegistry.BLOCK.register(runeTintProvider, runestones);
 
-        FluidRenderHandlerRegistry.INSTANCE.register(STILL_BLOOD, FLOWING_BLOOD, SimpleFluidRenderHandler.coloredWater(0x931b15)); //0xa0241e));
+        FluidRenderHandlerRegistry.INSTANCE.register(STILL_BLOOD, FLOWING_BLOOD, SimpleFluidRenderHandler.coloredWater(0x931b15));
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), STILL_BLOOD, FLOWING_BLOOD);
+        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> 0x931b15, BLOOD_CAULDRON);
+        FluidStorage.SIDED.registerForBlocks((world, pos, state, be, context) -> ((BloodCauldronBlockEntity) Objects.requireNonNull(be)).getStorage(), BLOOD_CAULDRON);
+        BloodCauldronBehaviour.init();
     }
 
 }

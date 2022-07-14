@@ -4,6 +4,8 @@
   "package": "net.darktree.stylishoccult.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "CauldronBehaviourMixin",
+    "CauldronStorageMixin",
     "HungerManagerMixin",
     "KillMeMixin",
     "LivingEntityMixin",

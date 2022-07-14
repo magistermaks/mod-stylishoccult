@@ -70,7 +70,10 @@
 	},
 	"failure": {
 		"subtitle": "sound.stylish_occult.failure",
-		"author": ["https://freesound.org/people/2887679652/sounds/135594/","https://freesound.org/people/4_and_a_half_Star_Games/sounds/353874/"],
+		"author": [
+			"https://freesound.org/people/2887679652/sounds/135594/",
+			"https://freesound.org/people/4_and_a_half_Star_Games/sounds/353874/"
+		],
 		"sounds": [
 			"stylish_occult:failure"
 		]
