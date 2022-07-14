@@ -179,7 +179,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 								ejectItems(Collections.nCopies(ritual.count, ritual.product));
 							}
 
-							SoundManager.playSound(world, pos, "transmute");
+							SoundManager.playSound(world, pos, "spell");
 						}
 					}
 

@@ -2,7 +2,6 @@ package net.darktree.stylishoccult.entities.renderer;
 
 import net.darktree.stylishoccult.entities.SparkEntity;
 import net.darktree.stylishoccult.utils.ModIdentifier;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.Identifier;
 

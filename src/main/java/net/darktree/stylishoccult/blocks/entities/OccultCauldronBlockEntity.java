@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.blocks.entities;
 
-import net.darktree.stylishoccult.blocks.BloodCauldronBlock;
 import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.blocks.OccultCauldronBlock;
 import net.darktree.stylishoccult.utils.MutableInteger;
 import net.darktree.stylishoccult.utils.SimpleBlockEntity;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
@@ -11,18 +11,17 @@ import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
 import net.fabricmc.fabric.api.transfer.v1.transaction.base.SnapshotParticipant;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 
-public class BloodCauldronBlockEntity extends SimpleBlockEntity {
+public class OccultCauldronBlockEntity extends SimpleBlockEntity {
 
 	private final static int MAX_AMOUNT = (int) FluidConstants.BUCKET;
 	private final Storage storage;
 	private int amount = 0;
 
-	public BloodCauldronBlockEntity(BlockPos pos, BlockState state) {
-		super(BlockEntities.BLOOD_CAULDRON, pos, state);
+	public OccultCauldronBlockEntity(BlockPos pos, BlockState state) {
+		super(BlockEntities.OCCULT_CAULDRON, pos, state);
 		this.storage = new Storage();
 	}
 
@@ -39,7 +38,7 @@ public class BloodCauldronBlockEntity extends SimpleBlockEntity {
 	}
 
 	public int getLevel() {
-		return Math.max(Math.min((int) Math.ceil((this.amount / (float) MAX_AMOUNT) * 11), 11), 1);
+		return Math.max(Math.min((int) Math.ceil((this.amount / (float) MAX_AMOUNT) * 11), 11), 0);
 	}
 
 	public Storage getStorage() {
@@ -63,11 +62,7 @@ public class BloodCauldronBlockEntity extends SimpleBlockEntity {
 	}
 
 	private void updateState() {
-		if (amount == 0) {
-			world.setBlockState(pos, Blocks.CAULDRON.getDefaultState());
-		}else {
-			world.setBlockState(pos, ModBlocks.BLOOD_CAULDRON.getDefaultState().with(BloodCauldronBlock.LEVEL, getLevel()));
-		}
+		world.setBlockState(pos, ModBlocks.OCCULT_CAULDRON.getDefaultState().with(OccultCauldronBlock.LEVEL, getLevel()));
 
 		if (!world.isClient) {
 			markDirty();
@@ -143,7 +138,7 @@ public class BloodCauldronBlockEntity extends SimpleBlockEntity {
 
 		@Override
 		public long getAmount() {
-			return BloodCauldronBlockEntity.this.getAmount();
+			return OccultCauldronBlockEntity.this.getAmount();
 		}
 
 		@Override

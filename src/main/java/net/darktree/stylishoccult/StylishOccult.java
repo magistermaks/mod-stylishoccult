@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult;
 
-import net.darktree.interference.MessageInjector;
 import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.entities.BlockEntities;
@@ -15,10 +14,8 @@ import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.tags.ModTags;
 import net.darktree.stylishoccult.worldgen.WorldGen;
-import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
-import org.apache.logging.log4j.LogManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

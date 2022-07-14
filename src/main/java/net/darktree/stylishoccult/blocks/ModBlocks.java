@@ -1,6 +1,6 @@
 package net.darktree.stylishoccult.blocks;
 
-import net.darktree.stylishoccult.blocks.entities.BloodCauldronBlockEntity;
+import net.darktree.stylishoccult.blocks.entities.OccultCauldronBlockEntity;
 import net.darktree.stylishoccult.blocks.fluid.BloodFluid;
 import net.darktree.stylishoccult.blocks.occult.*;
 import net.darktree.stylishoccult.blocks.runes.*;
@@ -8,7 +8,6 @@ import net.darktree.stylishoccult.blocks.runes.flow.*;
 import net.darktree.stylishoccult.blocks.runes.io.*;
 import net.darktree.stylishoccult.blocks.runes.trigger.*;
 import net.darktree.stylishoccult.items.ModItems;
-import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
@@ -19,9 +18,7 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.CauldronFluidContent;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
-import net.fabricmc.fabric.impl.transfer.fluid.CauldronStorage;
 import net.minecraft.block.*;
-import net.minecraft.block.cauldron.CauldronBehavior;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.fluid.FlowableFluid;
@@ -76,6 +73,7 @@ public class ModBlocks {
     public static final FlowableFluid STILL_BLOOD = RegUtil.fluid("blood", new BloodFluid.Still());
     public static final FlowableFluid FLOWING_BLOOD = RegUtil.fluid("flowing_blood", new BloodFluid.Flowing());
     public static final Block BLOOD = RegUtil.block("blood", new FluidBlock(STILL_BLOOD, FabricBlockSettings.copy(Blocks.WATER)){});
+    public static final Block OCCULT_CAULDRON = RegUtil.block("occult_cauldron", new OccultCauldronBlock(AbstractBlock.Settings.copy(Blocks.CAULDRON)));
     public static final Block BLOOD_CAULDRON = RegUtil.block("blood_cauldron", new BloodCauldronBlock(AbstractBlock.Settings.copy(Blocks.CAULDRON)));
     public static final FluidVariant BLOOD_VARIANT = FluidVariant.of(ModBlocks.STILL_BLOOD);
 
@@ -154,10 +152,14 @@ public class ModBlocks {
 
         ColorProviderRegistry.BLOCK.register(runeTintProvider, runestones);
 
+        // fluids
         FluidRenderHandlerRegistry.INSTANCE.register(STILL_BLOOD, FLOWING_BLOOD, SimpleFluidRenderHandler.coloredWater(0x931b15));
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), STILL_BLOOD, FLOWING_BLOOD);
-        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> 0x931b15, BLOOD_CAULDRON);
-        FluidStorage.SIDED.registerForBlocks((world, pos, state, be, context) -> ((BloodCauldronBlockEntity) Objects.requireNonNull(be)).getStorage(), BLOOD_CAULDRON);
+
+        // cauldron stuff
+        FluidStorage.SIDED.registerForBlocks((world, pos, state, be, context) -> ((OccultCauldronBlockEntity) Objects.requireNonNull(be)).getStorage(), OCCULT_CAULDRON);
+        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> 0x931b15, BLOOD_CAULDRON, OCCULT_CAULDRON);
+        CauldronFluidContent.registerCauldron(BLOOD_CAULDRON, STILL_BLOOD, FluidConstants.BOTTLE, LeveledCauldronBlock.LEVEL);
         BloodCauldronBehaviour.init();
     }
 

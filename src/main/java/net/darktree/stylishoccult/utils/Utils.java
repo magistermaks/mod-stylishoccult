@@ -3,7 +3,6 @@ package net.darktree.stylishoccult.utils;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.items.ThrownItemEntity;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
-import net.minecraft.block.Block;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,7 +15,6 @@ import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
 public class Utils {

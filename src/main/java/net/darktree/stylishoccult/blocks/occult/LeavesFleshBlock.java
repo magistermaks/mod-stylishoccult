@@ -10,7 +10,6 @@ import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 
 public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock, FoliageFleshBlock {
 

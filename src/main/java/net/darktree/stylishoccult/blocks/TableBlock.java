@@ -2,9 +2,9 @@ package net.darktree.stylishoccult.blocks;
 
 import net.darktree.interference.api.DropsItself;
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.blocks.runes.EntryRuneBlock;
 import net.darktree.stylishoccult.blocks.runes.RuneBlock;
 import net.darktree.stylishoccult.blocks.runes.VerticalRuneLink;
-import net.darktree.stylishoccult.blocks.runes.EntryRuneBlock;
 import net.darktree.stylishoccult.script.elements.StackElement;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.Utils;

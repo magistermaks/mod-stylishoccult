@@ -1,11 +1,7 @@
 package net.darktree.stylishoccult.worldgen.structure;
 
-import com.google.common.collect.ImmutableList;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.worldgen.WorldGen;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;

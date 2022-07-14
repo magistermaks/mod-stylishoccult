@@ -1,9 +1,8 @@
 package net.darktree.stylishoccult.blocks;
 
-import net.darktree.stylishoccult.blocks.entities.BloodCauldronBlockEntity;
 import net.darktree.stylishoccult.items.ModItems;
-import net.darktree.stylishoccult.utils.BlockUtils;
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
+import net.darktree.stylishoccult.sounds.SoundManager;
+import net.minecraft.block.LeveledCauldronBlock;
 import net.minecraft.block.cauldron.CauldronBehavior;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -29,7 +28,7 @@ public class BloodCauldronBehaviour {
 
 	private static final CauldronBehavior BUCKET_FILL_WITH_BLOOD = (state, world, pos, player, hand, stack) -> {
 		if (!world.isClient) {
-			placeBloodCauldron(world, pos, player, hand, stack, FluidConstants.BUCKET, SoundEvents.ITEM_BUCKET_EMPTY);
+			placeBloodCauldron(world, pos, player, hand, stack, 3, SoundEvents.ITEM_BUCKET_EMPTY);
 		}
 
 		return ActionResult.success(world.isClient);
@@ -37,28 +36,43 @@ public class BloodCauldronBehaviour {
 
 	private static final CauldronBehavior BOTTLE_FILL_WITH_BLOOD = (state, world, pos, player, hand, stack) -> {
 		if (!world.isClient) {
-			placeBloodCauldron(world, pos, player, hand, stack, FluidConstants.BOTTLE, SoundEvents.ITEM_BOTTLE_EMPTY);
+			placeBloodCauldron(world, pos, player, hand, stack, 1, SoundEvents.ITEM_BOTTLE_EMPTY);
 		}
 
 		return ActionResult.success(world.isClient);
 	};
 
-	private static void placeBloodCauldron(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack stack, long amount, SoundEvent event) {
-		Item item = stack.getItem();
-		player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
+	private static final CauldronBehavior ENCHANT = (state, world, pos, player, hand, stack) -> {
+		if (!world.isClient) {
+			Item item = stack.getItem();
+			incrementStats(player, item);
+			SoundManager.playSound(world, pos, "spell");
+			world.setBlockState(pos, ModBlocks.OCCULT_CAULDRON.getDefaultState());
+		}
+
+		return ActionResult.success(world.isClient);
+	};
+
+	private static void incrementStats(PlayerEntity player, Item item) {
 		player.incrementStat(Stats.USE_CAULDRON);
 		player.incrementStat(Stats.USED.getOrCreateStat(item));
-		world.setBlockState(pos, ModBlocks.BLOOD_CAULDRON.getDefaultState());
+	}
+
+	private static void placeBloodCauldron(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack stack, int amount, SoundEvent event) {
+		Item item = stack.getItem();
+		player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
+		incrementStats(player, item);
+		world.setBlockState(pos, ModBlocks.BLOOD_CAULDRON.getDefaultState().with(LeveledCauldronBlock.LEVEL, amount));
 		world.playSound(null, pos, event, SoundCategory.BLOCKS, 1.0f, 1.0f);
-		BlockUtils.getEntity(BloodCauldronBlockEntity.class, world, pos).getStorage().insert(amount);
 	}
 
 	public static void init() {
-		CauldronBehavior.EMPTY_CAULDRON_BEHAVIOR.put(ModItems.BLOOD_BOTTLE, BloodCauldronBehaviour.BOTTLE_FILL_WITH_BLOOD);
-		CauldronBehavior.registerBucketBehavior(BloodCauldronBlock.BEHAVIORS);
+		CauldronBehavior.EMPTY_CAULDRON_BEHAVIOR.put(ModItems.BLOOD_BOTTLE, BOTTLE_FILL_WITH_BLOOD);
+		CauldronBehavior.EMPTY_CAULDRON_BEHAVIOR.put(ModItems.OCCULT_STAFF, ENCHANT);
+		CauldronBehavior.registerBucketBehavior(BloodCauldronBlock.BLOOD_BEHAVIOURS);
 
 		for (Map<Item, CauldronBehavior> map : MAPS) {
-			map.put(ModItems.BLOOD_BUCKET, BloodCauldronBehaviour.BUCKET_FILL_WITH_BLOOD);
+			map.put(ModItems.BLOOD_BUCKET, BUCKET_FILL_WITH_BLOOD);
 		}
 	}
 

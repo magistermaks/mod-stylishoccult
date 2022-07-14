@@ -2,7 +2,6 @@ package net.darktree.stylishoccult.entities;
 
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.entities.goal.FollowSporeGoal;
-import net.darktree.stylishoccult.items.material.TwistedBoneArmorMaterial;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -13,7 +12,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;

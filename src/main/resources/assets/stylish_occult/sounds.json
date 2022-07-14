@@ -54,11 +54,11 @@
 			"stylish_occult:arc"
 		]
 	},
-	"transmute": {
-		"subtitle": "sound.stylish_occult.transmute",
+	"spell": {
+		"subtitle": "sound.stylish_occult.spell",
 		"author": "https://freesound.org/people/RICHERlandTV/sounds/216089/",
 		"sounds": [
-			"stylish_occult:transmute"
+			"stylish_occult:spell"
 		]
 	},
 	"boom": {

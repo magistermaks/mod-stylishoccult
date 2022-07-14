@@ -4,18 +4,10 @@ import net.darktree.stylishoccult.blocks.runes.InputRuneBlock;
 import net.darktree.stylishoccult.script.elements.ItemElement;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.InventoryAccess;
-import net.minecraft.block.entity.HopperBlockEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class TakeRuneBlock extends InputRuneBlock {
 

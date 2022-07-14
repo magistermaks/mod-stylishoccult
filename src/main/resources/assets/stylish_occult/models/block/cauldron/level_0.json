@@ -145,13 +145,6 @@
         "west": { "texture": "#side" },
         "down": { "texture": "#bottom", "cullface": "down" }
       }
-    },
-    {
-      "from": [ 2, 14, 2 ],
-      "to": [ 14, 15, 14 ],
-      "faces": {
-        "up": { "texture": "#content", "tintindex": 0, "cullface": "up" }
-      }
     }
   ]
 }

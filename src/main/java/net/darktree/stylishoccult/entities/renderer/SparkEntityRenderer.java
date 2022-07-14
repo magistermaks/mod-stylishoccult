@@ -3,15 +3,12 @@ package net.darktree.stylishoccult.entities.renderer;
 import net.darktree.interference.render.RenderHelper;
 import net.darktree.stylishoccult.entities.SparkEntity;
 import net.darktree.stylishoccult.utils.ModIdentifier;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.LightmapTextureManager;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Matrix3f;
-import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Vec3f;
 
 public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
 

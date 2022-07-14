@@ -24,7 +24,7 @@ public class Sounds {
         SoundManager.loadSound("spore_escapes", SoundCategory.BLOCKS).volume(0.05f);
         SoundManager.loadSound("spark", SoundCategory.BLOCKS).pitch(0.8f, 1.1f);
         SoundManager.loadSound("arc", SoundCategory.BLOCKS).pitch(1.0f, 1.8f);
-        SoundManager.loadSound("transmute", SoundCategory.BLOCKS).pitch(1.0f, 1.8f);
+        SoundManager.loadSound("spell", SoundCategory.BLOCKS).pitch(1.0f, 1.8f);
         SoundManager.loadSound("boom", SoundCategory.BLOCKS).pitch(1.0f, 1.3f);
         SoundManager.loadSound("failure", SoundCategory.BLOCKS).pitch(1.0f, 1.2f);
         SoundManager.loadSound("voice", SoundCategory.BLOCKS).pitch(0.8f, 1.4f).volume(0.55f);

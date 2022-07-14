@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.utils;
 
-import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
