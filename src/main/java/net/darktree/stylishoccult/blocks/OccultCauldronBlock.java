@@ -18,8 +18,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -37,15 +35,8 @@ import java.util.Objects;
  */
 public class OccultCauldronBlock extends BlockWithEntity {
 
-	public static final IntProperty LEVEL = IntProperty.of("level", 0, 11);
-
 	protected OccultCauldronBlock(Settings settings) {
 		super(settings);
-	}
-
-	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(LEVEL);
 	}
 
 	@Override
@@ -79,14 +70,16 @@ public class OccultCauldronBlock extends BlockWithEntity {
 		return new OccultCauldronBlockEntity(pos, state);
 	}
 
-	private OccultCauldronBlockEntity.Storage getStorage(World world, BlockPos pos) {
-		return Objects.requireNonNull(BlockUtils.getEntity(OccultCauldronBlockEntity.class, world, pos)).getStorage();
+	private OccultCauldronBlockEntity getEntity(World world, BlockPos pos) {
+		return Objects.requireNonNull(BlockUtils.getEntity(OccultCauldronBlockEntity.class, world, pos));
 	}
 
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-		if (!world.isClient && entity.isOnFire() && this.isEntityTouchingFluid(state, pos, entity)) {
-			OccultCauldronBlockEntity.Storage storage = getStorage(world, pos);
+		OccultCauldronBlockEntity blockEntity = getEntity(world, pos);
+
+		if (!world.isClient && entity.isOnFire() && this.isEntityTouchingFluid(blockEntity, pos, entity)) {
+			OccultCauldronBlockEntity.Storage storage = blockEntity.getStorage();
 
 			if (storage.getAmount() >= FluidConstants.INGOT) {
 				entity.extinguish();
@@ -101,8 +94,8 @@ public class OccultCauldronBlock extends BlockWithEntity {
 		}
 	}
 
-	private boolean isEntityTouchingFluid(BlockState state, BlockPos pos, Entity entity) {
-		return entity.getY() < (pos.getY() + (4.0 + state.get(LEVEL)) / 16.0) && entity.getBoundingBox().maxY > (double)pos.getY() + 0.25;
+	private boolean isEntityTouchingFluid(OccultCauldronBlockEntity blockEntity, BlockPos pos, Entity entity) {
+		return entity.getY() < (pos.getY() + blockEntity.getLevel()) && entity.getBoundingBox().maxY > (double)pos.getY() + 0.25;
 	}
 
 	private void playSound(World world, BlockPos pos, SoundEvent event) {
@@ -111,7 +104,7 @@ public class OccultCauldronBlock extends BlockWithEntity {
 
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		OccultCauldronBlockEntity.Storage storage = getStorage(world, pos);
+		OccultCauldronBlockEntity.Storage storage = getEntity(world, pos).getStorage();
 		ItemStack stack = player.getStackInHand(hand);
 		Item item = stack.getItem();
 

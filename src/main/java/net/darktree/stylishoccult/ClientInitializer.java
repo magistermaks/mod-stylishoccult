@@ -4,6 +4,7 @@ import net.darktree.interference.MessageInjector;
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.entities.BlockEntities;
 import net.darktree.stylishoccult.blocks.entities.client.AltarPlateBlockEntityRenderer;
+import net.darktree.stylishoccult.blocks.entities.client.OccultCauldronBlockEntityRenderer;
 import net.darktree.stylishoccult.entities.ModEntities;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.network.Network;
@@ -22,6 +23,7 @@ public class ClientInitializer implements ClientModInitializer {
 		ModEntities.clientInit();
 
 		BlockEntityRendererRegistry.register(BlockEntities.ALTAR_PLATE, AltarPlateBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(BlockEntities.OCCULT_CAULDRON, OccultCauldronBlockEntityRenderer::new);
 
 		MessageInjector.injectPlain("Down with JSON!");
 		MessageInjector.injectPlain("Tiny potato!");

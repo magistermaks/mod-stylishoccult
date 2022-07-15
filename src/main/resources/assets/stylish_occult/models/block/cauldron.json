@@ -6,8 +6,7 @@
     "bottom": "stylish_occult:block/cauldron/bottom",
     "side": "stylish_occult:block/cauldron/side",
     "side_in": "stylish_occult:block/cauldron/side_inner",
-    "inside": "stylish_occult:block/cauldron/inner",
-    "content": "minecraft:block/water_still"
+    "inside": "stylish_occult:block/cauldron/inner"
   },
   "elements": [
     {
@@ -144,13 +143,6 @@
         "east": { "texture": "#side", "cullface": "east" },
         "west": { "texture": "#side" },
         "down": { "texture": "#bottom", "cullface": "down" }
-      }
-    },
-    {
-      "from": [ 2, 14, 2 ],
-      "to": [ 14, 15, 14 ],
-      "faces": {
-        "up": { "texture": "#content", "tintindex": 0, "cullface": "up" }
       }
     }
   ]
