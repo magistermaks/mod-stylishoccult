@@ -2,7 +2,7 @@ package net.darktree.stylishoccult.item;
 
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.fluid.ModFluids;
-import net.darktree.stylishoccult.entities.ModEntities;
+import net.darktree.stylishoccult.entity.ModEntities;
 import net.darktree.stylishoccult.item.material.TwistedBoneArmorMaterial;
 import net.darktree.stylishoccult.item.material.TwistedBoneToolMaterial;
 import net.darktree.stylishoccult.item.tools.AxeItem;

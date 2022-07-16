@@ -1,9 +1,11 @@
-package net.darktree.stylishoccult.entities;
+package net.darktree.stylishoccult.entity;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.entities.goal.FollowSparkGoal;
+import net.darktree.stylishoccult.entity.goal.FollowLanternGoal;
+import net.darktree.stylishoccult.entity.goal.FollowSparkGoal;
 import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.sounds.Sounds;
+import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -13,9 +15,13 @@ import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class SporeEntity extends SparkEntity implements CorruptedEntity {
+
+    Vec3d fixedTarget = null;
 
     public SporeEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -38,9 +44,10 @@ public class SporeEntity extends SparkEntity implements CorruptedEntity {
 
     @Override
     protected void addSpecificGoals() {
-        this.targetSelector.add(0, new FollowSparkGoal(this, true));
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, MerchantEntity.class, false));
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, IronGolemEntity.class, true));
+        this.targetSelector.add(1, new FollowSparkGoal(this, true));
+        this.targetSelector.add(1, new FollowLanternGoal(this));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, MerchantEntity.class, false));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, IronGolemEntity.class, true));
     }
 
     @Override
@@ -57,4 +64,32 @@ public class SporeEntity extends SparkEntity implements CorruptedEntity {
     protected SoundEvent getDeathSound() {
         return SoundEvents.BLOCK_HONEY_BLOCK_BREAK;
     }
+
+    public void setFixedTarget(Vec3d target) {
+        fixedTarget = target;
+    }
+
+    @Override
+    protected Box getTargetBoundingBox() {
+        return fixedTarget != null ? Utils.box(0, 0, 0, 16, 16, 16).offset(fixedTarget) : super.getTargetBoundingBox();
+    }
+
+    @Override
+    protected Vec3d getTargetPosition() {
+        return fixedTarget != null ? fixedTarget : super.getTargetPosition();
+    }
+
+    @Override
+    protected void tryAttackTarget() {
+        if (fixedTarget != null) {
+            dealDamage();
+        }else{
+            super.tryAttackTarget();
+        }
+    }
+
+    protected boolean hasTarget() {
+        return fixedTarget != null || super.hasTarget();
+    }
+
 }

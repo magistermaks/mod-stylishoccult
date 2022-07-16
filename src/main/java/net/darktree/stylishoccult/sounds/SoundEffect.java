@@ -9,16 +9,16 @@ import java.util.Random;
 
 public class SoundEffect {
 
-    public SoundEvent soundEvent;
-    public SoundCategory soundCategory;
+    public final SoundEvent event;
+    public final SoundCategory category;
 
     private float pitchMin = 1.0f;
     private float pitchMax = 1.0f;
     private float volume = 1.0f;
 
-    public SoundEffect (SoundEvent soundEvent, SoundCategory soundCategory) {
-        this.soundEvent = soundEvent;
-        this.soundCategory = soundCategory;
+    public SoundEffect (SoundEvent event, SoundCategory category) {
+        this.event = event;
+        this.category = category;
     }
 
     public SoundEffect pitch( float min, float max ) {

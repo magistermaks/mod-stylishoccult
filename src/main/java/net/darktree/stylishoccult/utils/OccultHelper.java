@@ -6,7 +6,7 @@ import net.darktree.stylishoccult.block.occult.*;
 import net.darktree.stylishoccult.block.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
-import net.darktree.stylishoccult.entities.SparkEntity;
+import net.darktree.stylishoccult.entity.SparkEntity;
 import net.darktree.stylishoccult.item.material.TwistedBoneArmorMaterial;
 import net.darktree.stylishoccult.tag.ModTags;
 import net.minecraft.block.*;

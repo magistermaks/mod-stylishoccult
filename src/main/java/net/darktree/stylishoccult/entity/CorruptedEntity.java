@@ -1,4 +1,4 @@
-package net.darktree.stylishoccult.entities;
+package net.darktree.stylishoccult.entity;
 
 public interface CorruptedEntity {
 

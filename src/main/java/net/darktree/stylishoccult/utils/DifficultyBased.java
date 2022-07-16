@@ -10,14 +10,14 @@ public class DifficultyBased<T> {
     private final T normal;
     private final T hard;
 
-    public DifficultyBased( T hard, T normal, T easy, T peaceful ) {
+    public DifficultyBased(T hard, T normal, T easy, T peaceful) {
         this.hard = hard;
         this.normal = normal;
         this.easy = easy;
         this.peaceful = peaceful;
     }
 
-    public T get( Difficulty difficulty ) {
+    public T get(Difficulty difficulty) {
         return switch (difficulty) {
             case EASY -> easy;
             case NORMAL -> normal;

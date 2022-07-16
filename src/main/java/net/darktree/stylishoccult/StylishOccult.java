@@ -6,7 +6,7 @@ import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.config.Settings;
 import net.darktree.stylishoccult.data.ResourceLoaders;
 import net.darktree.stylishoccult.effect.ModEffects;
-import net.darktree.stylishoccult.entities.ModEntities;
+import net.darktree.stylishoccult.entity.ModEntities;
 import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.network.Network;

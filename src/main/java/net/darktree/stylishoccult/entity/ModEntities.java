@@ -1,6 +1,6 @@
-package net.darktree.stylishoccult.entities;
+package net.darktree.stylishoccult.entity;
 
-import net.darktree.stylishoccult.entities.renderer.ClientModEntities;
+import net.darktree.stylishoccult.entity.renderer.ClientModEntities;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

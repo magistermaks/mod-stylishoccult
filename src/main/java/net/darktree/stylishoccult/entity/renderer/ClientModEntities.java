@@ -1,6 +1,6 @@
-package net.darktree.stylishoccult.entities.renderer;
+package net.darktree.stylishoccult.entity.renderer;
 
-import net.darktree.stylishoccult.entities.ModEntities;
+import net.darktree.stylishoccult.entity.ModEntities;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;

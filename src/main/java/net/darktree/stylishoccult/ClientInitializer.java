@@ -5,7 +5,7 @@ import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.block.entity.altar.AltarPlateBlockEntityRenderer;
 import net.darktree.stylishoccult.block.entity.cauldron.OccultCauldronBlockEntityRenderer;
-import net.darktree.stylishoccult.entities.ModEntities;
+import net.darktree.stylishoccult.entity.ModEntities;
 import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.particles.Particles;

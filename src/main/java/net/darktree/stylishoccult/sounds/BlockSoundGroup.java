@@ -23,7 +23,7 @@ public class BlockSoundGroup {
     }
 
     public BlockSoundGroup setBreakSound(SoundEffect effect) {
-        setBreakSound(effect.soundEvent);
+        setBreakSound(effect.event);
         return this;
     }
 
@@ -33,7 +33,7 @@ public class BlockSoundGroup {
     }
 
     public BlockSoundGroup setStepSound(SoundEffect effect) {
-        setStepSound( effect.soundEvent );
+        setStepSound( effect.event);
         return this;
     }
 
@@ -43,7 +43,7 @@ public class BlockSoundGroup {
     }
 
     public BlockSoundGroup setPlaceSound(SoundEffect effect) {
-        setPlaceSound( effect.soundEvent );
+        setPlaceSound( effect.event);
         return this;
     }
 
@@ -53,7 +53,7 @@ public class BlockSoundGroup {
     }
 
     public BlockSoundGroup setHitSound(SoundEffect effect) {
-        setHitSound(effect.soundEvent);
+        setHitSound(effect.event);
         return this;
     }
 
@@ -63,7 +63,7 @@ public class BlockSoundGroup {
     }
 
     public BlockSoundGroup setFallSound(SoundEffect effect) {
-        setFallSound( effect.soundEvent );
+        setFallSound( effect.event);
         return this;
     }
 
@@ -73,11 +73,11 @@ public class BlockSoundGroup {
     }
 
     public net.minecraft.sound.BlockSoundGroup build() {
-        if( breakSound == null ) throw new RuntimeException( "BreakSound not registered!" );
-        if( stepSound == null ) throw new RuntimeException( "StepSound not registered!" );
-        if( placeSound == null ) throw new RuntimeException( "PlaceSound not registered!" );
-        if( hitSound == null ) throw new RuntimeException( "HitSound not registered!" );
-        if( fallSound == null ) throw new RuntimeException( "FallSound not registered!" );
+        if( breakSound == null ) throw new RuntimeException("BreakSound not registered!");
+        if( stepSound == null ) throw new RuntimeException("StepSound not registered!");
+        if( placeSound == null ) throw new RuntimeException("PlaceSound not registered!");
+        if( hitSound == null ) throw new RuntimeException("HitSound not registered!");
+        if( fallSound == null ) throw new RuntimeException("FallSound not registered!");
 
         return new net.minecraft.sound.BlockSoundGroup(volume, pitch, breakSound, stepSound, placeSound, hitSound, fallSound);
     }

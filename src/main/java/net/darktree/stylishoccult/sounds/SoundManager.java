@@ -37,8 +37,8 @@ public class SoundManager {
             world.playSound(
                     null,
                     pos,
-                    effect.soundEvent,
-                    effect.soundCategory,
+                    effect.event,
+                    effect.category,
                     volume,
                     pitch
             );

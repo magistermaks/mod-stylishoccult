@@ -1,4 +1,4 @@
-package net.darktree.stylishoccult.entities.goal;
+package net.darktree.stylishoccult.entity.goal;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.TargetPredicate;

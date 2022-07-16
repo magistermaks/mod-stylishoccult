@@ -170,7 +170,7 @@ public class OccultCauldronBlock extends BlockWithEntity {
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(BOILING) && random.nextInt(4) == 0) {
 			if (getEntity(world, pos ).getStorage().getAmount() > 0) {
-				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, Sounds.BOIL.soundEvent, SoundCategory.BLOCKS, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
+				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, Sounds.BOIL.event, SoundCategory.BLOCKS, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
 			}
 		}
 	}

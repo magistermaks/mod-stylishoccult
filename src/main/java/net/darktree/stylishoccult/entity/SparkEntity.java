@@ -1,7 +1,7 @@
-package net.darktree.stylishoccult.entities;
+package net.darktree.stylishoccult.entity;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.entities.goal.FollowSporeGoal;
+import net.darktree.stylishoccult.entity.goal.FollowSporeGoal;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -17,10 +17,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -93,7 +90,7 @@ public class SparkEntity extends HostileEntity {
     protected void initGoals() {
         super.initGoals();
         this.goalSelector.add(0, new SwimGoal(this));
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
 
         addSpecificGoals();
     }
@@ -145,25 +142,42 @@ public class SparkEntity extends HostileEntity {
         damage(DamageSource.ON_FIRE, StylishOccult.SETTINGS.entityDamage);
     }
 
+    protected boolean hasTarget() {
+        return this.getTarget() != null;
+    }
+
+    protected Vec3d getTargetPosition() {
+        return this.getTarget().getPos();
+    }
+
+    protected Box getTargetBoundingBox() {
+        return this.getTarget().getBoundingBox();
+    }
+
+    protected void tryAttackTarget() {
+        LivingEntity entity = getTarget();
+
+        if(random.nextInt(OccultHelper.getBoneArmor(entity)) == 0) {
+            if (this.tryAttack(entity)) {
+                dealDamage();
+            }
+        }else{
+            entity.damage(DamageSource.mob(this), 0);
+            dealDamage();
+        }
+    }
+
     @Override
     protected void mobTick() {
         super.mobTick();
 
         direction = direction.multiply( 0.9 );
-        LivingEntity target = this.getTarget();
         double d, e, f, s;
 
-        if (target != null) {
-            if (this.getBoundingBox().intersects(target.getBoundingBox())) {
-
-                if(random.nextInt(OccultHelper.getBoneArmor(target)) == 0) {
-                    if (this.tryAttack(target)) {
-                        dealDamage();
-                    }
-                }else{
-                    target.damage(DamageSource.mob(this), 0);
-                    dealDamage();
-                }
+        if (hasTarget()) {
+            Vec3d target = this.getTargetPosition();
+            if (this.getBoundingBox().intersects(getTargetBoundingBox())) {
+                tryAttackTarget();
             }
 
             s = 0.82F + this.random.nextFloat() / 10;

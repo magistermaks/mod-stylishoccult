@@ -9,7 +9,7 @@ public class HeartbeatSoundInstance extends MovingSoundInstance {
 	PlayerEntityDuck player;
 
 	public HeartbeatSoundInstance(PlayerEntityDuck player) {
-		super(Sounds.HEARTBEAT.soundEvent, SoundCategory.AMBIENT);
+		super(Sounds.HEARTBEAT.event, SoundCategory.AMBIENT);
 		this.player = player;
 	}
 

@@ -1,8 +1,8 @@
 package net.darktree.stylishoccult.block;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.entities.ModEntities;
-import net.darktree.stylishoccult.entities.SparkEntity;
+import net.darktree.stylishoccult.entity.ModEntities;
+import net.darktree.stylishoccult.entity.SparkEntity;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.sounds.Sounds;

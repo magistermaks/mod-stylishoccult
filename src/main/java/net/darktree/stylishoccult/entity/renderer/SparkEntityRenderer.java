@@ -1,7 +1,7 @@
-package net.darktree.stylishoccult.entities.renderer;
+package net.darktree.stylishoccult.entity.renderer;
 
 import net.darktree.interference.render.RenderHelper;
-import net.darktree.stylishoccult.entities.SparkEntity;
+import net.darktree.stylishoccult.entity.SparkEntity;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.render.VertexConsumerProvider;
