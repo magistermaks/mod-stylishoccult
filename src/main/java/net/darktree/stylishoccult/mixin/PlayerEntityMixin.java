@@ -24,7 +24,7 @@ public class PlayerEntityMixin implements PlayerEntityDuck {
 	private float madness;
 
 	@Inject(method="tickMovement", at=@At("HEAD"))
-	public void tick(CallbackInfo ci) {
+	public void stylish_tickMovement(CallbackInfo ci) {
 		stylish_addMadness(-0.01f);
 
 		float value = MathHelper.sin(madness * MathHelper.HALF_PI);

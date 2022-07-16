@@ -1,11 +1,11 @@
 package net.darktree.stylishoccult.loot;
 
-import net.darktree.stylishoccult.blocks.ArcaneAshBlock;
-import net.darktree.stylishoccult.blocks.LavaDemonBlock;
-import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.occult.EyesBlock;
-import net.darktree.stylishoccult.enums.LavaDemonPart;
-import net.darktree.stylishoccult.items.ModItems;
+import net.darktree.stylishoccult.block.ArcaneAshBlock;
+import net.darktree.stylishoccult.block.LavaDemonBlock;
+import net.darktree.stylishoccult.block.ModBlocks;
+import net.darktree.stylishoccult.block.occult.EyesBlock;
+import net.darktree.stylishoccult.block.property.LavaDemonPart;
+import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.loot.entry.ConditionEntry;
 import net.darktree.stylishoccult.loot.entry.ValveEntry;
 import net.minecraft.item.ItemStack;

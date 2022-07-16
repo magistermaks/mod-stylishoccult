@@ -2,6 +2,8 @@ package net.darktree.stylishoccult.sounds;
 
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -36,6 +38,10 @@ public class SoundEffect {
 
     public float getVolume() {
         return volume;
+    }
+
+    public void play(World world, BlockPos pos) {
+        SoundManager.playSound(world, pos, this, -1, -1);
     }
 
 }

@@ -41,6 +41,7 @@ public class Settings {
     public final float fleshBloodChance = CONFIG.getOrDefault("flesh.bloody.chance", 12.5f);
     public final int fernPoisonTimeMinBase = CONFIG.getOrDefault("fern.poison.time.min", 40);
     public final boolean fleshInfiniteSpread = CONFIG.getOrDefault("flesh.spread.infinite", false);
+    public final int runeBloodYield = CONFIG.getOrDefault("rune.blood.yield", 100);
 
     // features
     public final float featureBoulderChance = CONFIG.getOrDefault("feature.boulder.chance", 7.0f);

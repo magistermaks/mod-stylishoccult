@@ -17,7 +17,7 @@ public abstract class InGameHudMixin {
 	protected abstract void renderOverlay(Identifier texture, float opacity);
 
 	@Inject(method="render", at=@At(value="INVOKE", shift=At.Shift.BEFORE, target="Lnet/minecraft/client/network/ClientPlayerEntity;getFrozenTicks()I"))
-	public void render(MatrixStack matrices, float tickDelta, CallbackInfo ci){
+	public void stylish_render(MatrixStack matrices, float tickDelta, CallbackInfo ci){
 		Identifier texture = OverlayManager.getTexture();
 
 		if(texture != null) {

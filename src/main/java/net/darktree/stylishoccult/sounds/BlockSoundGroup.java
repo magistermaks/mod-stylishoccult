@@ -22,52 +22,52 @@ public class BlockSoundGroup {
         this.pitch = 1.0f;
     }
 
-    public BlockSoundGroup setBreakSound( String name ) {
-        setBreakSound( SoundManager.getSound( name ).soundEvent );
+    public BlockSoundGroup setBreakSound(SoundEffect effect) {
+        setBreakSound(effect.soundEvent);
         return this;
     }
 
-    public BlockSoundGroup setBreakSound( SoundEvent event ) {
+    public BlockSoundGroup setBreakSound(SoundEvent event) {
         breakSound = event;
         return this;
     }
 
-    public BlockSoundGroup setStepSound( String name ) {
-        setStepSound( SoundManager.getSound( name ).soundEvent );
+    public BlockSoundGroup setStepSound(SoundEffect effect) {
+        setStepSound( effect.soundEvent );
         return this;
     }
 
-    public BlockSoundGroup setStepSound( SoundEvent event ) {
+    public BlockSoundGroup setStepSound(SoundEvent event) {
         stepSound = event;
         return this;
     }
 
-    public BlockSoundGroup setPlaceSound( String name ) {
-        setPlaceSound( SoundManager.getSound( name ).soundEvent );
+    public BlockSoundGroup setPlaceSound(SoundEffect effect) {
+        setPlaceSound( effect.soundEvent );
         return this;
     }
 
-    public BlockSoundGroup setPlaceSound( SoundEvent event ) {
+    public BlockSoundGroup setPlaceSound(SoundEvent event) {
         placeSound = event;
         return this;
     }
 
-    public BlockSoundGroup setHitSound( String name ) {
-        setHitSound( SoundManager.getSound( name ).soundEvent );
+    public BlockSoundGroup setHitSound(SoundEffect effect) {
+        setHitSound(effect.soundEvent);
         return this;
     }
 
-    public BlockSoundGroup setHitSound( SoundEvent event ) {
+    public BlockSoundGroup setHitSound(SoundEvent event) {
         hitSound = event;
         return this;
     }
 
-    public BlockSoundGroup setFallSound( String name ) {
-        setFallSound( SoundManager.getSound( name ).soundEvent );
+    public BlockSoundGroup setFallSound(SoundEffect effect) {
+        setFallSound( effect.soundEvent );
         return this;
     }
 
-    public BlockSoundGroup setFallSound( SoundEvent event ) {
+    public BlockSoundGroup setFallSound(SoundEvent event) {
         fallSound = event;
         return this;
     }

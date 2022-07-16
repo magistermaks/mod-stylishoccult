@@ -51,9 +51,9 @@ public class ArcS2CPacket {
 				attackParticle.setTarget(tx, ty, tz, true);
 			}
 
-			renderer.spawnParticle(ParticleTypes.CLOUD, true, true, fx, fy, fz, 0, 0, 0);
-			renderer.spawnParticle(ParticleTypes.CLOUD, true, false, fx, fy, fz, 0, 0, 0);
-			renderer.spawnParticle(ParticleTypes.CLOUD, false, false, fx, fy, fz, 0, 0, 0);
+			renderer.spawnParticle(ParticleTypes.CLOUD, true, true, tx, ty, tz, 0, 0, 0);
+			renderer.spawnParticle(ParticleTypes.CLOUD, true, false, tx, ty, tz, 0, 0, 0);
+			renderer.spawnParticle(ParticleTypes.CLOUD, false, false, tx, ty, tz, 0, 0, 0);
 		}
 	}
 

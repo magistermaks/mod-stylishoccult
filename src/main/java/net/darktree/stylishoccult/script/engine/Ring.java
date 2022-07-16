@@ -1,8 +1,8 @@
 package net.darktree.stylishoccult.script.engine;
 
-import net.darktree.stylishoccult.script.components.RuneException;
-import net.darktree.stylishoccult.script.components.RuneExceptionType;
-import net.darktree.stylishoccult.script.elements.StackElement;
+import net.darktree.stylishoccult.script.component.RuneException;
+import net.darktree.stylishoccult.script.component.RuneExceptionType;
+import net.darktree.stylishoccult.script.element.StackElement;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

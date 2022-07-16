@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.mixin;
 
 import net.darktree.stylishoccult.overlay.SubmersionExtension;
-import net.darktree.stylishoccult.tags.ModTags;
+import net.darktree.stylishoccult.tag.ModTags;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.CameraSubmersionType;
 import net.minecraft.fluid.FluidState;
@@ -15,12 +15,12 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public class CameraMixin {
 
 	@Inject(method="getSubmersionType", at=@At(value="HEAD"))
-	private void getSubmersionType(CallbackInfoReturnable<CameraSubmersionType> info) {
+	private void stylish_getSubmersionType(CallbackInfoReturnable<CameraSubmersionType> info) {
 		SubmersionExtension.under_blood = false;
 	}
 
 	@Inject(method="getSubmersionType", at=@At(value="RETURN", ordinal=1), cancellable=true, locals=LocalCapture.CAPTURE_FAILHARD)
-	private void getSubmersionType(CallbackInfoReturnable<CameraSubmersionType> info, FluidState state) {
+	private void stylish_getSubmersionType(CallbackInfoReturnable<CameraSubmersionType> info, FluidState state) {
 		if (state.isIn(ModTags.BLOOD)) {
 			SubmersionExtension.under_blood = true;
 			info.setReturnValue(CameraSubmersionType.LAVA);

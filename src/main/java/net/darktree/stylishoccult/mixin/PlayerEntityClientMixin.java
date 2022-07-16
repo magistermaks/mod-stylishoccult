@@ -24,7 +24,7 @@ public class PlayerEntityClientMixin implements PlayerEntityClientDuck {
 	SoundInstance heartbeat;
 
 	@Inject(method="tickMovement", at=@At("HEAD"))
-	public void tick(CallbackInfo ci) {
+	public void stylish_tickMovement(CallbackInfo ci) {
 		float value = MathHelper.sin(((PlayerEntityDuck) this).stylish_getMadness() * MathHelper.HALF_PI);
 		OverlayManager.show(OverlayManager.MADNESS, value);
 	}

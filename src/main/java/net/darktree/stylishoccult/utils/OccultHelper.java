@@ -1,14 +1,14 @@
 package net.darktree.stylishoccult.utils;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.occult.*;
-import net.darktree.stylishoccult.blocks.occult.api.FoliageFleshBlock;
-import net.darktree.stylishoccult.blocks.occult.api.FullFleshBlock;
-import net.darktree.stylishoccult.blocks.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.block.ModBlocks;
+import net.darktree.stylishoccult.block.occult.*;
+import net.darktree.stylishoccult.block.occult.api.FoliageFleshBlock;
+import net.darktree.stylishoccult.block.occult.api.FullFleshBlock;
+import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.entities.SparkEntity;
-import net.darktree.stylishoccult.items.material.TwistedBoneArmorMaterial;
-import net.darktree.stylishoccult.tags.ModTags;
+import net.darktree.stylishoccult.item.material.TwistedBoneArmorMaterial;
+import net.darktree.stylishoccult.tag.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;

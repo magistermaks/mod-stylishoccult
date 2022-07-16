@@ -1,8 +1,8 @@
 package net.darktree.stylishoccult.utils;
 
-import net.darktree.stylishoccult.blocks.runes.RuneBlock;
-import net.darktree.stylishoccult.items.ModItems;
-import net.darktree.stylishoccult.script.components.RuneException;
+import net.darktree.stylishoccult.block.rune.RuneBlock;
+import net.darktree.stylishoccult.item.ModItems;
+import net.darktree.stylishoccult.script.component.RuneException;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;

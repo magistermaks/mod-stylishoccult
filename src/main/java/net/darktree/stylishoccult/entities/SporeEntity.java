@@ -3,7 +3,7 @@ package net.darktree.stylishoccult.entities;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.entities.goal.FollowSparkGoal;
 import net.darktree.stylishoccult.particles.Particles;
-import net.darktree.stylishoccult.sounds.SoundManager;
+import net.darktree.stylishoccult.sounds.Sounds;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -32,7 +32,7 @@ public class SporeEntity extends SparkEntity implements CorruptedEntity {
         }
 
         if(die) {
-            SoundManager.playSound(world, this.getBlockPos(), "spore_escapes");
+            Sounds.SPORE_ESCAPES.play(world, this.getBlockPos());
         }
     }
 

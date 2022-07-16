@@ -1,18 +1,18 @@
 package net.darktree.stylishoccult;
 
 import net.darktree.stylishoccult.advancement.Criteria;
-import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.entities.BlockEntities;
+import net.darktree.stylishoccult.block.ModBlocks;
+import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.config.Settings;
 import net.darktree.stylishoccult.data.ResourceLoaders;
-import net.darktree.stylishoccult.effects.ModEffects;
+import net.darktree.stylishoccult.effect.ModEffects;
 import net.darktree.stylishoccult.entities.ModEntities;
-import net.darktree.stylishoccult.items.ModItems;
+import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.sounds.Sounds;
-import net.darktree.stylishoccult.tags.ModTags;
+import net.darktree.stylishoccult.tag.ModTags;
 import net.darktree.stylishoccult.worldgen.WorldGen;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;

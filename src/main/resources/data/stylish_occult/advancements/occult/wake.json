@@ -17,7 +17,7 @@
   },
   "criteria": {
     "wake": {
-      "trigger": "stylish_occult:wake"
+      "trigger": "stylish_occult:wake_demon"
     }
   },
   "requirements": [

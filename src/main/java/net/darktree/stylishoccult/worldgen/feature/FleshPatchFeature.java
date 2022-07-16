@@ -2,7 +2,7 @@ package net.darktree.stylishoccult.worldgen.feature;
 
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleFeatureProvider;
 import net.minecraft.world.gen.YOffset;
@@ -21,7 +21,7 @@ public class FleshPatchFeature extends OreFeature implements SimpleFeatureProvid
 	}
 
 	@Override
-	public boolean generate(FeatureContext context) {
+	public boolean generate(FeatureContext<OreFeatureConfig> context) {
 		if(RandUtils.getBool(StylishOccult.SETTINGS.featureFleshVainChance, context.getRandom())) {
 			boolean generated = super.generate(context);
 			if (generated) this.debugWrite(context.getOrigin());

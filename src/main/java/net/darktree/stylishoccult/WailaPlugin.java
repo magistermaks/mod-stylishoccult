@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult;
 
 import mcp.mobius.waila.api.*;
-import net.darktree.stylishoccult.blocks.LavaDemonBlock;
+import net.darktree.stylishoccult.block.LavaDemonBlock;
 import net.minecraft.block.BlockState;
 
 public class WailaPlugin implements IWailaPlugin {

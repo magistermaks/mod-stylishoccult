@@ -1,10 +1,10 @@
 package net.darktree.stylishoccult.utils;
 
-import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.runes.RuneBlock;
-import net.darktree.stylishoccult.items.ModItems;
-import net.darktree.stylishoccult.items.RuneBlockItem;
-import net.darktree.stylishoccult.script.components.RuneRegistry;
+import net.darktree.stylishoccult.block.ModBlocks;
+import net.darktree.stylishoccult.block.rune.RuneBlock;
+import net.darktree.stylishoccult.item.ModItems;
+import net.darktree.stylishoccult.item.RuneBlockItem;
+import net.darktree.stylishoccult.script.component.RuneRegistry;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;

@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.utils;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class RandUtils {
@@ -30,10 +29,6 @@ public class RandUtils {
 
     public static int rangeInt(int min, int max, Random random) {
         return min + random.nextInt( (max - min) + 1 );
-    }
-
-    public static <E> E getListEntry(ArrayList<E> list, Random random) {
-        return list.get( random.nextInt( list.size() ) );
     }
 
     public static <E> E getArrayEntry(E[] array, Random random) {

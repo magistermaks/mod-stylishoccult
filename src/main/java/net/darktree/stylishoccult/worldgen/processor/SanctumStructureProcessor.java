@@ -1,9 +1,9 @@
 package net.darktree.stylishoccult.worldgen.processor;
 
-import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.occult.EyesBlock;
-import net.darktree.stylishoccult.blocks.runes.RuneBlock;
-import net.darktree.stylishoccult.tags.ModTags;
+import net.darktree.stylishoccult.block.ModBlocks;
+import net.darktree.stylishoccult.block.occult.EyesBlock;
+import net.darktree.stylishoccult.block.rune.RuneBlock;
+import net.darktree.stylishoccult.tag.ModTags;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.worldgen.WorldGen;
 import net.minecraft.block.Block;

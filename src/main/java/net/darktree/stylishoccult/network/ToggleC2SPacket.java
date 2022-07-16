@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.network;
 
 import io.netty.buffer.Unpooled;
-import net.darktree.stylishoccult.blocks.runes.CraftRuneBlock;
+import net.darktree.stylishoccult.block.rune.CraftRuneBlock;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.fabricmc.fabric.api.network.PacketContext;

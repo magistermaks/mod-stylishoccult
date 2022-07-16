@@ -2,7 +2,7 @@ package net.darktree.stylishoccult.worldgen.feature;
 
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.block.BlockState;

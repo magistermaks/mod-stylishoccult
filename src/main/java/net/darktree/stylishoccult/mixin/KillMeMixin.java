@@ -16,7 +16,7 @@ public class KillMeMixin {
 	 * infinite loop while reloading resource packs
 	 */
 	@Redirect(method="getSpritesAndForget", at=@At(value="INVOKE", target="Ljava/util/HashMap;remove(Ljava/lang/Object;)Ljava/lang/Object;"))
-	private static Object redirectMyPastMistakes(HashMap map, Object identifier) {
+	private static Object stylish_redirectMyPastMistakes(HashMap map, Object identifier) {
 		return map.get(identifier);
 	}
 

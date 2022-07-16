@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.mixin;
 
-import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.occult.GrowthBlock;
+import net.darktree.stylishoccult.block.ModBlocks;
+import net.darktree.stylishoccult.block.occult.GrowthBlock;
 import net.darktree.stylishoccult.duck.LivingEntityDuck;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.minecraft.block.BlockState;
@@ -20,8 +20,11 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin implements LivingEntityDuck {
 
-	@Shadow public abstract boolean damage(DamageSource source, float amount);
-	@Shadow public abstract float getHealth();
+	@Shadow
+	public abstract boolean damage(DamageSource source, float amount);
+
+	@Shadow
+	public abstract float getHealth();
 
 	@Unique
 	private long lastShockTaken = 0;
@@ -39,7 +42,7 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
 	}
 
 	@Inject(method="isClimbing", at=@At(value="INVOKE_ASSIGN", target="Lnet/minecraft/entity/LivingEntity;getBlockStateAtPos()Lnet/minecraft/block/BlockState;"), locals=LocalCapture.CAPTURE_FAILHARD, cancellable=true)
-	public void isClimbing(CallbackInfoReturnable<Boolean> info, BlockPos pos, BlockState state) {
+	public void stylish_isClimbing(CallbackInfoReturnable<Boolean> info, BlockPos pos, BlockState state) {
 		if(state.getBlock() == ModBlocks.GROWTH) {
 			if(GrowthBlock.hasSide(state)) {
 				info.setReturnValue(true);

@@ -11,7 +11,6 @@ import java.util.List;
 public class AltarRitual {
 
 	public final int blood;
-	public final float instability;
 	public final boolean consume;
 	public final Item catalyst;
 	public final Item product;
@@ -20,7 +19,6 @@ public class AltarRitual {
 
 	public static class Json {
 		private int blood;
-		private float instability;
 		private boolean consume;
 		private String catalyst;
 		private String product;
@@ -28,13 +26,12 @@ public class AltarRitual {
 		private int count;
 
 		public AltarRitual build() {
-			return new AltarRitual(this.blood, this.instability, this.consume, this.catalyst, this.product, this.ingredients, this.count);
+			return new AltarRitual(this.blood, this.consume, this.catalyst, this.product, this.ingredients, this.count);
 		}
 	}
 
-	private AltarRitual(int blood, float instability, boolean consume, String catalyst, String product, String[] ingredients, int count) {
+	private AltarRitual(int blood, boolean consume, String catalyst, String product, String[] ingredients, int count) {
 		this.blood = blood;
-		this.instability = instability;
 		this.consume = consume;
 		this.catalyst = getItem(catalyst);
 		this.product = getItem(product);

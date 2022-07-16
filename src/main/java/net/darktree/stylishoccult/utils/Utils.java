@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.utils;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.items.ThrownItemEntity;
+import net.darktree.stylishoccult.item.ThrownItemEntity;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.entity.ItemEntity;

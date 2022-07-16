@@ -1,12 +1,12 @@
 package net.darktree.stylishoccult;
 
 import net.darktree.interference.MessageInjector;
-import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.entities.BlockEntities;
-import net.darktree.stylishoccult.blocks.entities.client.AltarPlateBlockEntityRenderer;
-import net.darktree.stylishoccult.blocks.entities.client.OccultCauldronBlockEntityRenderer;
+import net.darktree.stylishoccult.block.ModBlocks;
+import net.darktree.stylishoccult.block.entity.BlockEntities;
+import net.darktree.stylishoccult.block.entity.altar.AltarPlateBlockEntityRenderer;
+import net.darktree.stylishoccult.block.entity.cauldron.OccultCauldronBlockEntityRenderer;
 import net.darktree.stylishoccult.entities.ModEntities;
-import net.darktree.stylishoccult.items.ModItems;
+import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.particles.Particles;
 import net.fabricmc.api.ClientModInitializer;
@@ -31,6 +31,7 @@ public class ClientInitializer implements ClientModInitializer {
 		MessageInjector.injectPlain("By the Mad Arab, Abdul Alhazred!");
 		MessageInjector.injectPlain("The wheels of progress frozen motionless...");
 		MessageInjector.injectPlain("Power of The Mixin Subsystem compels you!");
+		MessageInjector.injectPlain("With strange aeons even death may die.");
 
 		StylishOccult.LOGGER.info("Some sound effects for Stylish Occult are sourced from https://www.zapsplat.com");
 	}

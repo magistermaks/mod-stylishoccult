@@ -18,10 +18,6 @@ public class OverlayManager {
 		OverlayManager.intensity = intensity;
 	}
 
-	public static void hide() {
-		OverlayManager.texture = null;
-	}
-
 	public static float getIntensity() {
 		return intensity;
 	}

@@ -2,7 +2,7 @@ package net.darktree.stylishoccult.worldgen.feature;
 
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.utils.SimpleFeatureProvider;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.decorator.Decorator;
@@ -22,7 +22,6 @@ public class FleshStonePatchFeature extends OreFeature implements SimpleFeatureP
 	@Override
 	public boolean generate(FeatureContext<OreFeatureConfig> context) {
 		boolean generated = super.generate(context);
-//		if(generated) this.debugWrite(context.getOrigin());
 		return generated;
 	}
 

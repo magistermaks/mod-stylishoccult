@@ -1,6 +1,6 @@
 package net.darktree.stylishoccult.mixin;
 
-import net.darktree.stylishoccult.blocks.BloodCauldronBehaviour;
+import net.darktree.stylishoccult.block.BloodCauldronBehaviour;
 import net.minecraft.block.cauldron.CauldronBehavior;
 import net.minecraft.item.Item;
 import org.spongepowered.asm.mixin.Mixin;

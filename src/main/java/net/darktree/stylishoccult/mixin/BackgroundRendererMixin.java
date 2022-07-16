@@ -20,7 +20,7 @@ public class BackgroundRendererMixin {
 	@Shadow private static float green;
 
 	@Inject(method="render", at=@At(value="FIELD", opcode=Opcodes.PUTSTATIC, target="Lnet/minecraft/client/render/BackgroundRenderer;blue:F", ordinal=1))
-	private static void render(Camera camera, float tickDelta, ClientWorld world, int i, float f, CallbackInfo ci) {
+	private static void stylish_render(Camera camera, float tickDelta, ClientWorld world, int i, float f, CallbackInfo ci) {
 		if (SubmersionExtension.under_blood) {
 			red = 0.3f;
 			green = 0.0f;
@@ -28,8 +28,8 @@ public class BackgroundRendererMixin {
 		}
 	}
 
-	@Inject(method="applyFog", at=@At(value="INVOKE", target="Lcom/mojang/blaze3d/systems/RenderSystem;setShaderFogEnd(F)V", shift=At.Shift.AFTER))
-	private static void fog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, CallbackInfo ci) {
+	@Inject(method="applyFog", at=@At(value="INVOKE", remap=false, target="Lcom/mojang/blaze3d/systems/RenderSystem;setShaderFogEnd(F)V", ordinal=1, shift=At.Shift.AFTER))
+	private static void stylish_applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, CallbackInfo ci) {
 		if (SubmersionExtension.under_blood) {
 			RenderSystem.setShaderFogStart(1);
 			RenderSystem.setShaderFogEnd(4);
