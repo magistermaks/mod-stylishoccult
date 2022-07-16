@@ -42,7 +42,7 @@ public class AltarPlateBlockEntityRenderer implements BlockEntityRenderer<AltarP
 		matrices.translate(0.5, 0.2, 0.5);
 		matrices.translate(0, offset, 0);
 		matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((float) time * 4));
-		itemRenderer.renderItem(entity.getCenter(), ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 42);
+		itemRenderer.renderItem(entity.getCatalyst(), ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 42);
 		matrices.pop();
 
 		List<AltarRingItemStack> ring = entity.getCandles();

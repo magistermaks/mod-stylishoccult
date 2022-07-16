@@ -1,6 +1,8 @@
 package net.darktree.stylishoccult.blocks.entities;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.stylishoccult.blocks.OccultCauldronBlock;
+import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.utils.MutableInteger;
 import net.darktree.stylishoccult.utils.SimpleBlockEntity;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
@@ -22,9 +24,36 @@ public class OccultCauldronBlockEntity extends SimpleBlockEntity {
 	private final Storage storage;
 	private int amount = 0;
 
+	private int boiling = 10;
+	private int timer = 0;
+
 	public OccultCauldronBlockEntity(BlockPos pos, BlockState state) {
 		super(BlockEntities.OCCULT_CAULDRON, pos, state);
 		this.storage = new Storage();
+	}
+
+	public void tick() {
+		if (amount == 0 || world == null || !world.isClient || !world.getBlockState(pos).get(OccultCauldronBlock.BOILING)) {
+			timer = 0;
+			boiling = 10;
+			return;
+		}
+
+		if (timer >= boiling) {
+			if (boiling > 0) {
+				boiling --;
+				timer = 0;
+			}
+
+			float level = getLevel();
+
+			float x = pos.getX() + world.random.nextFloat() * (12.0f / 16.0f) + (2.0f / 16.0f);
+			float z = pos.getZ() + world.random.nextFloat() * (12.0f / 16.0f) + (2.0f / 16.0f);
+
+			world.addParticle(Particles.BOILING_BLOOD, true, x, pos.getY() + level, z, 0, 0, 0);
+		}
+
+		timer ++;
 	}
 
 	@Override

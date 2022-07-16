@@ -19,8 +19,10 @@ public class Particles {
     public static DefaultParticleType BLOOD_DRIPPING = FabricParticleTypes.simple();
     public static DefaultParticleType BLOOD_FALLING = FabricParticleTypes.simple();
     public static DefaultParticleType SWIRLY = ParticleHelper.register(new ModIdentifier("swirly"), true);
+    public static DefaultParticleType VORTEX = ParticleHelper.register(new ModIdentifier("vortex"), true, new Identifier("generic_0"));
     public static DefaultParticleType ATTACK = ParticleHelper.register(new ModIdentifier("attack"), true);
     public static DefaultParticleType UNDER_BLOOD = ParticleHelper.register(new ModIdentifier("under_blood"), false, new Identifier("generic_0"));
+    public static DefaultParticleType BOILING_BLOOD = ParticleHelper.register(new ModIdentifier("boiling_blood"), false, new Identifier("generic_0"));
 
     public static void init(){
         Registry.register(Registry.PARTICLE_TYPE, new ModIdentifier("orbiting_spark"), ORBITING_SPARK);
@@ -50,9 +52,11 @@ public class Particles {
         ParticleFactoryRegistry.getInstance().register(BLOOD_FALLING, BloodParticle.FallingFactory::new);
         ParticleFactoryRegistry.getInstance().register(BLOOD_SPLASH, WaterSplashParticle.SplashFactory::new);
         ParticleFactoryRegistry.getInstance().register(UNDER_BLOOD, BloodParticle.SuspendFactory::new);
+        ParticleFactoryRegistry.getInstance().register(BOILING_BLOOD, BoilingBloodParticle.Factory::new);
 
         ParticleHelper.registerFactory(SWIRLY, SwirlyParticle::new);
         ParticleHelper.registerFactory(ATTACK, AttackParticle::new);
+        ParticleHelper.registerFactory(VORTEX, VortexParticle::new);
     }
 
 }

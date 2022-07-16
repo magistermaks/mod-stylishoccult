@@ -23,6 +23,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 import java.util.Map;
@@ -42,6 +43,11 @@ public class BloodCauldronBlock extends LeveledCauldronBlock {
 
 	private void playSound(World world, BlockPos pos, SoundEvent event) {
 		world.playSound(null, pos, event, SoundCategory.BLOCKS, 1, 1);
+	}
+
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return new ItemStack(Items.CAULDRON);
 	}
 
 	@Override

@@ -1,12 +1,16 @@
 package net.darktree.stylishoccult.blocks;
 
+import net.darktree.stylishoccult.blocks.entities.BlockEntities;
 import net.darktree.stylishoccult.blocks.entities.OccultCauldronBlockEntity;
 import net.darktree.stylishoccult.items.ModItems;
+import net.darktree.stylishoccult.sounds.SoundManager;
 import net.darktree.stylishoccult.utils.BlockUtils;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,6 +22,8 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -28,6 +34,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * For now this can only store blood, but it would be a good idea
@@ -35,8 +42,16 @@ import java.util.Objects;
  */
 public class OccultCauldronBlock extends BlockWithEntity {
 
+	public static final BooleanProperty BOILING = BooleanProperty.of("boiling");
+
 	protected OccultCauldronBlock(Settings settings) {
 		super(settings);
+		setDefaultState(getDefaultState().with(BOILING, false));
+	}
+
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(BOILING);
 	}
 
 	@Override
@@ -68,6 +83,12 @@ public class OccultCauldronBlock extends BlockWithEntity {
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new OccultCauldronBlockEntity(pos, state);
+	}
+
+	public static void set(World world, BlockPos pos, boolean sure, boolean boiling) {
+		if (sure || world.getBlockState(pos).getBlock() == ModBlocks.OCCULT_CAULDRON) {
+			world.setBlockState(pos, ModBlocks.OCCULT_CAULDRON.getDefaultState().with(BOILING, boiling));
+		}
 	}
 
 	private OccultCauldronBlockEntity getEntity(World world, BlockPos pos) {
@@ -144,4 +165,19 @@ public class OccultCauldronBlock extends BlockWithEntity {
 		player.incrementStat(Stats.USED.getOrCreateStat(item));
 	}
 
+	@Override
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+		if (state.get(BOILING) && random.nextInt(4) == 0) {
+			if (getEntity(world, pos ).getStorage().getAmount() > 0) {
+				SoundEvent boil = SoundManager.getSound("boil").soundEvent;
+				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, boil, SoundCategory.BLOCKS, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
+				SoundManager.playSound(world, pos, "boil");
+			}
+		}
+	}
+
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		return checkType(type, BlockEntities.OCCULT_CAULDRON, (world_, pos_, state_, entity) -> entity.tick());
+	}
 }

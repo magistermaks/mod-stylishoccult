@@ -28,6 +28,7 @@ public class Sounds {
         SoundManager.loadSound("boom", SoundCategory.BLOCKS).pitch(1.0f, 1.3f);
         SoundManager.loadSound("transmute", SoundCategory.BLOCKS).pitch(1.0f, 1.2f);
         SoundManager.loadSound("voice", SoundCategory.BLOCKS).pitch(0.8f, 1.4f).volume(0.55f);
+        SoundManager.loadSound("boil", SoundCategory.BLOCKS);
 
         HEARTBEAT = SoundManager.loadSound("heartbeat", SoundCategory.AMBIENT);
 

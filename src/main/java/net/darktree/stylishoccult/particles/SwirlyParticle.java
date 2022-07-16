@@ -3,6 +3,8 @@ package net.darktree.stylishoccult.particles;
 import net.darktree.interference.render.RenderHelper;
 import net.darktree.interference.render.RenderedParticle;
 import net.darktree.interference.render.ShapeRenderer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -11,6 +13,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Matrix4f;
 
+@Environment(EnvType.CLIENT)
 public class SwirlyParticle extends RenderedParticle {
 
 	private ShapeRenderer.Segment segments[];

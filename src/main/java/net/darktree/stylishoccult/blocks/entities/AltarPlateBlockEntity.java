@@ -2,15 +2,14 @@ package net.darktree.stylishoccult.blocks.entities;
 
 import net.darktree.stylishoccult.blocks.ModBlocks;
 import net.darktree.stylishoccult.blocks.entities.parts.AltarRingItemStack;
+import net.darktree.stylishoccult.blocks.entities.parts.RitualState;
 import net.darktree.stylishoccult.blocks.runes.VerticalRuneLink;
-import net.darktree.stylishoccult.data.ResourceLoaders;
 import net.darktree.stylishoccult.data.json.AltarRitual;
 import net.darktree.stylishoccult.items.ModItems;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.script.elements.ItemElement;
 import net.darktree.stylishoccult.sounds.SoundManager;
 import net.darktree.stylishoccult.utils.BlockUtils;
-import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.SimpleBlockEntity;
 import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.Block;
@@ -38,16 +37,12 @@ import java.util.List;
 public class AltarPlateBlockEntity extends SimpleBlockEntity {
 
 	private final Box box;
+	private final RitualState state = new RitualState();
+	private final List<AltarRingItemStack> candles = new ArrayList<>();
 
-	List<Item> ingredients = new ArrayList<>();
-	List<BlockPos> pillars = new ArrayList<>();
-	boolean active = false;
-	int pillar = 0;
-	int ritual = 0;
-	int pickup = 0;
-
-	List<AltarRingItemStack> candles = new ArrayList<>();
-	ItemStack center = ItemStack.EMPTY;
+	private boolean active = false;
+	private int pickup = 0;
+	private ItemStack catalyst = ItemStack.EMPTY;
 
 	public AltarPlateBlockEntity(BlockPos pos, BlockState state) {
 		super(BlockEntities.ALTAR_PLATE, pos, state);
@@ -61,12 +56,12 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		}
 
 		if (world != null && stack.isEmpty()) {
-			if (!center.isEmpty()) {
+			if (!catalyst.isEmpty()) {
 				playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_HIT);
 				pickup = 40;
-				Block.dropStack(world, pos, center);
-				center = ItemStack.EMPTY;
-				markDirty();
+				Block.dropStack(world, pos, catalyst);
+				catalyst = ItemStack.EMPTY;
+				update();
 				return true;
 			}
 
@@ -75,7 +70,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				pickup = 40;
 				Block.dropStack(world, pos, taken);
 				playSound(SoundEvents.BLOCK_CANDLE_BREAK);
-				markDirty();
+				update();
 				return true;
 			}
 
@@ -83,17 +78,19 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		}
 
 		if (stack.isIn(ItemTags.CANDLES)) {
-			candles.add(AltarRingItemStack.create(stack.split(1)));
-			playSound(SoundEvents.BLOCK_CANDLE_PLACE);
-			markDirty();
+			if (candles.size() < 64) {
+				candles.add(AltarRingItemStack.create(stack.split(1)));
+				playSound(SoundEvents.BLOCK_CANDLE_PLACE);
+				update();
+			}
+
 			return true;
 		}
 
-		if (center.isEmpty()) {
-			center = stack.split(1);
+		if (catalyst.isEmpty()) {
+			catalyst = stack.split(1);
 			playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE);
-
-			markDirty();
+			update();
 			return true;
 		}
 
@@ -106,12 +103,11 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 	 */
 	public boolean activate() {
 
-		if (active || world == null || world.isClient || candles.size() < 3 || this.center.isEmpty()) {
+		if (active || world == null || world.isClient || candles.size() < 3 || this.catalyst.isEmpty()) {
 			return false;
 		}
 
-		ingredients.clear();
-		pillars.clear();
+		state.reset();
 		SoundManager.playSound(world, pos, "boom");
 		BlockPos.Mutable pos = this.pos.mutableCopy();
 
@@ -120,25 +116,32 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				if (x == 0 && z == 0) continue;
 
 				pos.setX(this.pos.getX() + x);
+				pos.setY(this.pos.getY());
 				pos.setZ(this.pos.getZ() + z);
 
 				if (this.world.getBlockState(pos).getBlock() == ModBlocks.ALTAR_PLATE) {
 					AltarPlateBlockEntity plate = BlockUtils.getEntity(AltarPlateBlockEntity.class, world, pos);
 
 					if (plate != null) {
-						pillars.add(new BlockPos(pos));
+						state.addPillar(pos);
+					}
+				}
+
+				for (int y = -7; y <= 7; y ++) {
+					pos.setY(this.pos.getY() + y);
+
+					if (this.world.getBlockState(pos).getBlock() == ModBlocks.OCCULT_CAULDRON) {
+						state.addCauldron(world, pos);
 					}
 				}
 			}
 		}
 
-		Collections.shuffle(pillars);
+		markDirty();
+		state.begin();
 		active = true;
-		pillar = 0;
-		ritual = 20;
 
 		return true;
-
 	}
 
 	public void tick() {
@@ -152,56 +155,68 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 			pickup --;
 		}
 
-		if (active) {
-			ritual ++;
+		// update counters, returns true when
+		// it's time to steal another item
+		boolean next = state.tick(active);
 
+		if (active) {
 			world.getServer().getPlayerManager().sendToAround(null, pos.getX() + 0.5, pos.getY() + 0.1, pos.getZ() + 0.5, 128, world.getRegistryKey(), new ParticleS2CPacket(ParticleTypes.SMOKE, false, this.pos.getX() + 0.45, this.pos.getY() + 0.1, this.pos.getZ() + 0.45, 0.1f, 0, 0.1f, 0.01f, 1));
 
-			if (ritual >= 40) {
-				if (pillar >= pillars.size()) {
-					AltarRitual ritual = ResourceLoaders.ALTAR_RITUALS.find(center.getItem(), ingredients);
+			if (next) {
 
-					if (ritual == null) {
-						ejectItems(ingredients);
-						ingredients.clear();
-
-						playSound(SoundEvents.ENTITY_GENERIC_EXPLODE);
-					} else {
-						if (world.getBlockState(pos).getBlock() instanceof VerticalRuneLink pillar) {
-							ItemElement products = new ItemElement(new ItemStack(ritual.product, ritual.count));
-
-							ingredients.clear();
-							if (ritual.consume) {
-								this.center.decrement(1);
-								sync();
-							}
-
-							if (!pillar.sendDown(world, pos, products)) {
-								ejectItems(Collections.nCopies(ritual.count, ritual.product));
-							}
-						}
-
-						SoundManager.playSound(world, pos, "transmute");
-					}
-
-					active = false;
-				}else{
+				// there are some pillars left to check
+				if (state.hasNextPillar()) {
 					boolean item = false;
 
-					while (!item && pillar < pillars.size()) {
+					// keep checking until we find an items or run out of pillars
+					while (!item && state.hasNextPillar()) {
 						item = tryStealItem();
 					}
+				} else {
+
+					// get matching recipe
+					AltarRitual ritual = state.getRitual(this.catalyst);
+
+					if (ritual == null || !state.getBlood(world, ritual.blood)) {
+						ejectItems(state.getIngredients());
+						playSound(SoundEvents.ENTITY_GENERIC_EXPLODE);
+					} else {
+						applyTransmutation(ritual);
+					}
+
+					// reset altar state
+					state.notifyCauldrons(world);
+					state.reset();
+					active = false;
+					update();
 				}
-
-				ritual = 0;
 			}
-
-			OccultHelper.corruptAround((ServerWorld) world, pos, world.random, true);
-		}else{
-			ritual = 0;
 		}
 	}
 
+	/**
+	 * Finalizes the ritual and fulfils the given altar recipe
+	 * by activating a rune or spawning the items in the world
+	 */
+	private void applyTransmutation(AltarRitual ritual) {
+		if (world.getBlockState(pos).getBlock() instanceof VerticalRuneLink pillar) {
+			ItemElement products = new ItemElement(new ItemStack(ritual.product, ritual.count));
+
+			if (ritual.consume) {
+				this.catalyst.decrement(1);
+			}
+
+			if (!pillar.sendDown(world, pos, products)) {
+				ejectItems(Collections.nCopies(ritual.count, ritual.product));
+			}
+		}
+
+		SoundManager.playSound(world, pos, "transmute");
+	}
+
+	/**
+	 * Throw the items in a circle around the altar
+	 */
 	private void ejectItems(List<Item> items) {
 		int count = items.size();
 
@@ -228,35 +243,40 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		}
 	}
 
+	/**
+	 * Try picking up items from the world
+	 */
 	private void tryPickupItems() {
-		if (this.center.isEmpty() && world.getTime() % 4 == 0) {
+		if (this.catalyst.isEmpty() && world.getTime() % 4 == 0) {
 			List<ItemEntity> entities = world.getEntitiesByType(EntityType.ITEM, this.box, item -> true);
 
 			for (ItemEntity item : entities) {
 				ItemStack stack = item.getStack();
 
 				if (stack.getCount() >= 0) {
-					this.center = stack.split(1);
+					this.catalyst = stack.split(1);
 
-					markDirty();
-					sync();
+					update();
 					break;
 				}
 			}
 		}
 	}
 
+	/**
+	 * Tries stealing one item from connected pillars
+	 */
 	private boolean tryStealItem() {
-		BlockPos pos = pillars.get(pillar ++);
+		BlockPos pos = state.getNextPillar();
 		AltarPlateBlockEntity plate = BlockUtils.getEntity(AltarPlateBlockEntity.class, world, pos);
 
 		if (plate != null) {
-			ItemStack stack = plate.center;
+			ItemStack stack = plate.catalyst;
 
 			if (!stack.isEmpty()) {
-				ingredients.add(stack.getItem());
-				plate.center = ItemStack.EMPTY;
-				plate.sync();
+				state.addIngredient(stack);
+				plate.catalyst = ItemStack.EMPTY;
+				plate.update();
 				plate.playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_HIT);
 				SoundManager.playSound(world, pos.down(1), "voice");
 
@@ -274,11 +294,21 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 	}
 
 	private void playSound(SoundEvent event) {
-		world.playSound(null, pos, event, SoundCategory.BLOCKS, 1, 1 + world.random.nextFloat()/2);
+		world.playSound(null, pos, event, SoundCategory.BLOCKS, 1, 1 + world.random.nextFloat() / 2.0f);
 	}
 
 	public NbtCompound writeNbt(NbtCompound nbt) {
-		nbt.put("c", this.center.writeNbt(new NbtCompound()));
+		nbt.put("catalyst", this.catalyst.writeNbt(new NbtCompound()));
+		nbt.putInt("pickup", this.pickup);
+		nbt.putBoolean("active", this.active);
+
+		if (this.active) {
+			NbtCompound stateNbt = new NbtCompound();
+			nbt.put("state", stateNbt);
+
+			state.writeNbt(stateNbt);
+		}
+
 		nbt.putInt("l", this.candles.size());
 
 		for (int i = 0; i < this.candles.size(); i ++) {
@@ -292,7 +322,13 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 	public void readNbt(NbtCompound nbt) {
 		try {
 			candles.clear();
-			this.center = ItemStack.fromNbt(nbt.getCompound("c"));
+			this.catalyst = ItemStack.fromNbt(nbt.getCompound("catalyst"));
+			this.pickup = nbt.getInt("pickup");
+			this.active = nbt.getBoolean("active");
+
+			if (this.active) {
+				state.readNbt(nbt.getCompound("state"));
+			}
 
 			int l = nbt.getInt("l");
 
@@ -306,8 +342,8 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		super.readNbt(nbt);
 	}
 
-	public ItemStack getCenter() {
-		return center;
+	public ItemStack getCatalyst() {
+		return catalyst;
 	}
 
 	public List<AltarRingItemStack> getCandles() {
@@ -319,10 +355,11 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 			Block.dropStack(world, pos, candle.stack);
 		}
 
-		Block.dropStack(world, pos, center);
-		ejectItems(ingredients);
+		Block.dropStack(world, pos, catalyst);
+		ejectItems(state.getIngredients());
 
 		if (active) {
+			state.notifyCauldrons(world);
 			playSound(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE);
 		}
 	}

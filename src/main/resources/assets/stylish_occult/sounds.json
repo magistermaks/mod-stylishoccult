@@ -96,5 +96,19 @@
 			"stylish_occult:voice_5",
 			"stylish_occult:voice_6"
 		]
+	},
+	"boil": {
+		"subtitle": "sound.stylish_occult.boil",
+		"author": [
+			"https://freesound.org/people/unfa/sounds/174499/",
+			"https://freesound.org/people/Glaneur%20de%20sons/sounds/104949/"
+		],
+		"sounds": [
+			"stylish_occult:boil_1",
+			"stylish_occult:boil_2",
+			"stylish_occult:boil_3",
+			"stylish_occult:boil_4",
+			"stylish_occult:boil_5"
+		]
 	}
 }

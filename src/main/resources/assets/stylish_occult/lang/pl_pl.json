@@ -31,6 +31,8 @@
   "block.stylish_occult.eyes_block": "Blok oczu",
   "block.stylish_occult.flesh_glow": "Jasnonarośl",
   "block.stylish_occult.flesh_vent": "Zarodnia",
+  "block.stylish_occult.blood_cauldron": "Kocioł krwi",
+  "block.stylish_occult.occult_cauldron": "Przeklęty kocioł",
 
   "item.stylish_occult.flesh": "Ciało",
   "item.stylish_occult.lava_heart": "Magmowa kula",
@@ -88,6 +90,7 @@
   "sound.stylish_occult.spell": "Zaklęcie",
   "sound.stylish_occult.transmute": "Materia jest transmutowana",
   "sound.stylish_occult.voice": "Zjawa szepta",
+  "sound.stylish_occult.boil": "Bulgotanie",
 
   "itemGroup.stylish_occult.stylish_occult_main": "Stylish Occult: Ogólne",
   "itemGroup.stylish_occult.stylish_occult_runes": "Stylish Occult: Runy",

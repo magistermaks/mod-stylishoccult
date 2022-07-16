@@ -31,6 +31,8 @@
   "block.stylish_occult.eyes_block": "Eyes Block",
   "block.stylish_occult.flesh_glow": "Glowgrowth",
   "block.stylish_occult.flesh_vent": "Sporangium",
+  "block.stylish_occult.blood_cauldron": "Blood Cauldron",
+  "block.stylish_occult.occult_cauldron": "Occult Cauldron",
 
   "item.stylish_occult.flesh": "Flesh",
   "item.stylish_occult.lava_heart": "Magmatic Orb",
@@ -142,7 +144,8 @@
   "sound.stylish_occult.boom": "Altar Activates",
   "sound.stylish_occult.spell": "Spell Cast",
   "sound.stylish_occult.transmute": "Matter is Transmuted",
-  "sound.stylish_occult.voice": "Ghostly whisper",
+  "sound.stylish_occult.voice": "Ghostly Whisper",
+  "sound.stylish_occult.boil": "Boiling",
 
   "itemGroup.stylish_occult.stylish_occult_main": "Stylish Occult: General",
   "itemGroup.stylish_occult.stylish_occult_runes": "Stylish Occult: Runes",
