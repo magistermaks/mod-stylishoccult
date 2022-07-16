@@ -36,6 +36,7 @@ public class SoundManager {
         return new BlockSoundGroup();
     }
 
+    @Deprecated
     public static void playSound(World world, BlockPos pos, String name, float volume, float pitch) {
         SoundEffect effect = soundEffectHashMap.get(name);
         volume = (volume == -1 ? effect.getVolume() : volume);
@@ -53,6 +54,7 @@ public class SoundManager {
         }
     }
 
+    @Deprecated
     public static void playSound(World world, BlockPos pos, String name) {
         playSound( world, pos, name, -1, -1 );
     }

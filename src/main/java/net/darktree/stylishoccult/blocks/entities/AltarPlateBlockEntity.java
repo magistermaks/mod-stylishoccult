@@ -162,9 +162,10 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 					AltarRitual ritual = ResourceLoaders.ALTAR_RITUALS.find(center.getItem(), ingredients);
 
 					if (ritual == null) {
-						SoundManager.playSound(world, pos, "failure");
 						ejectItems(ingredients);
 						ingredients.clear();
+
+						playSound(SoundEvents.ENTITY_GENERIC_EXPLODE);
 					} else {
 						if (world.getBlockState(pos).getBlock() instanceof VerticalRuneLink pillar) {
 							ItemElement products = new ItemElement(new ItemStack(ritual.product, ritual.count));
@@ -178,9 +179,9 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 							if (!pillar.sendDown(world, pos, products)) {
 								ejectItems(Collections.nCopies(ritual.count, ritual.product));
 							}
-
-							SoundManager.playSound(world, pos, "spell");
 						}
+
+						SoundManager.playSound(world, pos, "transmute");
 					}
 
 					active = false;
@@ -206,7 +207,14 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 
 		if (count < 3) {
 			for(Item item : items) {
-				Block.dropStack(world, pos, new ItemStack(item));
+				float x = (pos.getX() + 0.5f) + MathHelper.nextFloat(world.random, -0.25f, 0.25f);
+				float y = (pos.getY() + 0.5f) + MathHelper.nextFloat(world.random, -0.25f, 0.25f) - EntityType.ITEM.getHeight() / 2.0f;
+				float z = (pos.getZ() + 0.5f) + MathHelper.nextFloat(world.random, -0.25f, 0.25f);
+
+				float vx = world.random.nextFloat() * 0.2f - 0.1f;
+				float vz = world.random.nextFloat() * 0.2f - 0.1f;
+
+				Utils.ejectStack(world, x, y, z,new ItemStack(item), vx, 0.2f, vz);
 			}
 		} else {
 			float angle = MathHelper.TAU / count;
