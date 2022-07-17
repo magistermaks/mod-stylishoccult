@@ -110,8 +110,8 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		Sounds.BOOM.play(world, pos);
 		BlockPos.Mutable pos = this.pos.mutableCopy();
 
-		for (int x = -7; x <= 7; x ++) {
-			for (int z = -7; z <= 7; z ++) {
+		for (int x = -6; x <= 6; x ++) {
+			for (int z = -6; z <= 6; z ++) {
 				if (x == 0 && z == 0) continue;
 
 				pos.setX(this.pos.getX() + x);
@@ -126,7 +126,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 					}
 				}
 
-				for (int y = -7; y <= 7; y ++) {
+				for (int y = -6; y <= 6; y ++) {
 					pos.setY(this.pos.getY() + y);
 
 					if (this.world.getBlockState(pos).getBlock() == ModBlocks.OCCULT_CAULDRON) {

@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.item;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.fluid.ModFluids;
 import net.darktree.stylishoccult.entity.ModEntities;
+import net.darktree.stylishoccult.item.client.OccultCauldronItemRenderer;
 import net.darktree.stylishoccult.item.material.TwistedBoneArmorMaterial;
 import net.darktree.stylishoccult.item.material.TwistedBoneToolMaterial;
 import net.darktree.stylishoccult.item.tools.AxeItem;
@@ -12,6 +13,7 @@ import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.RuneUtils;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
@@ -69,6 +71,7 @@ public class ModItems {
     public static final Item RUNESTONE_TABLE = RegUtil.item("runestone_table", ModBlocks.RUNESTONE_TABLE, Groups.STYLISH_OCCULT);
     public static final Item RUNESTONE_ALTAR_PLATE = RegUtil.item("runestone_altar_plate", ModBlocks.ALTAR_PLATE, Groups.STYLISH_OCCULT);
     public static final Item BLOOD_BUCKET = RegUtil.item("blood_bucket", new BucketItem(ModFluids.STILL_BLOOD, new Item.Settings().group(ItemGroup.MISC).recipeRemainder(Items.BUCKET).maxCount(1)));
+    public static final Item OCCULT_CAULDRON = RegUtil.item("occult_cauldron", new BlockItem(ModBlocks.OCCULT_CAULDRON, new Item.Settings().group(Groups.STYLISH_OCCULT)));
 
     // "decorative"
     public static final Item EYES_BLOCK = RegUtil.item( "eyes_block", ModBlocks.EYES_BLOCK, Groups.STYLISH_OCCULT );
@@ -107,6 +110,8 @@ public class ModItems {
                 (stack, tintIndex) -> RuneUtils.COLOR_1,
                 ModItems.RUNESTONES.toArray( new Item[0] )
         );
+
+        BuiltinItemRendererRegistry.INSTANCE.register(OCCULT_CAULDRON, new OccultCauldronItemRenderer());
     }
 
 }

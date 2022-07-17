@@ -27,6 +27,9 @@ public class ModTags {
     // lists all "top_soil" blocks (grass_block, nylium blocks etc.), makes them turn to soil_flesh not default_flesh
     public static Tag<Block> TOP_SOIL = TagFactory.BLOCK.create(new Identifier("c", "top_soil"));
 
+    // lists all heat emitting blocks (fire, campfires, lava) if the block has a LIT property is must be set to true
+    public static Tag<Block> HEAT_SOURCE = TagFactory.BLOCK.create(new Identifier("c", "heat_source"));
+
     public static void init() {
         // noop
     }

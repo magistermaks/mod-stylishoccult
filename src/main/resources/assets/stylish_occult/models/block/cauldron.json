@@ -1,4 +1,5 @@
 {
+  "parent": "block/block",
   "ambientocclusion": false,
   "textures": {
     "particle": "stylish_occult:block/cauldron/side",

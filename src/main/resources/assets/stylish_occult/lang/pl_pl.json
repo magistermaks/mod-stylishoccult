@@ -75,6 +75,7 @@
   "tooltip.stylish_occult.error_tablet.error.unmet_equivalency": "Niezachowanie równości!",
   "tooltip.stylish_occult.error_tablet.error.broken": "Uszkodzony zapis runiczny!",
   "tooltip.stylish_occult.altar_plate": "Połóż na runicznym stole by utworzyć ołtarz",
+  "tooltip.stylish_occult.blood_amount": "Ilość: %smb",
 
   "entity.stylish_occult.lava_spark": "Iskra",
   "entity.stylish_occult.spore": "Zarodnik",

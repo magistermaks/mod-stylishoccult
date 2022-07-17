@@ -1,39 +1,57 @@
 package net.darktree.stylishoccult.block;
 
+import net.darktree.interference.api.DefaultLoot;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.block.entity.cauldron.OccultCauldronBlockEntity;
 import net.darktree.stylishoccult.block.fluid.ModFluids;
 import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.sounds.Sounds;
+import net.darktree.stylishoccult.tag.ModTags;
 import net.darktree.stylishoccult.utils.BlockUtils;
+import net.darktree.stylishoccult.utils.Utils;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
+import java.text.DecimalFormat;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -41,8 +59,9 @@ import java.util.Random;
  * For now this can only store blood, but it would be a good idea
  * to consider other fluids as well (with fluid variant)
  */
-public class OccultCauldronBlock extends BlockWithEntity {
+public class OccultCauldronBlock extends BlockWithEntity implements DefaultLoot {
 
+	private static final DecimalFormat FORMAT = new DecimalFormat("#.##");
 	public static final BooleanProperty BOILING = BooleanProperty.of("boiling");
 
 	protected OccultCauldronBlock(Settings settings) {
@@ -71,6 +90,11 @@ public class OccultCauldronBlock extends BlockWithEntity {
 	}
 
 	@Override
+	public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+		return (int) Math.ceil(getEntity(world, pos).getStorage().getAmount() / (float) FluidConstants.BUCKET * 15.0f);
+	}
+
+	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
@@ -80,7 +104,6 @@ public class OccultCauldronBlock extends BlockWithEntity {
 		return BlockRenderType.MODEL;
 	}
 
-	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new OccultCauldronBlockEntity(pos, state);
@@ -88,7 +111,8 @@ public class OccultCauldronBlock extends BlockWithEntity {
 
 	public static void set(World world, BlockPos pos, boolean sure, boolean boiling) {
 		if (sure || world.getBlockState(pos).getBlock() == ModBlocks.OCCULT_CAULDRON) {
-			world.setBlockState(pos, ModBlocks.OCCULT_CAULDRON.getDefaultState().with(BOILING, boiling));
+			BlockState state = ModBlocks.OCCULT_CAULDRON.getDefaultState();
+			world.setBlockState(pos, state.with(BOILING, boiling || shouldBoil(world.getBlockState(pos.down()))));
 		}
 	}
 
@@ -116,8 +140,8 @@ public class OccultCauldronBlock extends BlockWithEntity {
 		}
 	}
 
-	private boolean isEntityTouchingFluid(OccultCauldronBlockEntity blockEntity, BlockPos pos, Entity entity) {
-		return entity.getY() < (pos.getY() + blockEntity.getLevel()) && entity.getBoundingBox().maxY > (double)pos.getY() + 0.25;
+	private boolean isEntityTouchingFluid(OccultCauldronBlockEntity cauldron, BlockPos pos, Entity entity) {
+		return entity.getY() < (pos.getY() + cauldron.getLevel(cauldron.getStorage().getAmount())) && entity.getBoundingBox().maxY > (double)pos.getY() + 0.25;
 	}
 
 	private void playSound(World world, BlockPos pos, SoundEvent event) {
@@ -179,4 +203,63 @@ public class OccultCauldronBlock extends BlockWithEntity {
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		return checkType(type, BlockEntities.OCCULT_CAULDRON, (world_, pos_, state_, entity) -> entity.tick());
 	}
+
+	@Override
+	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+		if (world.getBlockEntity(pos) instanceof OccultCauldronBlockEntity cauldron) {
+			try {
+				int amount = Objects.requireNonNull(stack.getNbt()).getInt("amount");
+				cauldron.getStorage().insert(amount);
+			} catch (Exception ignore) {
+
+			}
+
+			if (shouldBoil(world.getBlockState(pos.down()))) {
+				world.setBlockState(pos, getDefaultState().with(BOILING, true));
+			}
+		}
+	}
+
+	@Override
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighbor, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+		if (direction == Direction.DOWN) {
+			return state.with(BOILING, shouldBoil(neighbor));
+		}
+
+		return super.getStateForNeighborUpdate(state, direction, neighbor, world, pos, neighborPos);
+	}
+
+	private static boolean shouldBoil(BlockState neighbor) {
+		return ModTags.HEAT_SOURCE.contains(neighbor.getBlock()) && (!neighbor.contains(Properties.LIT) || neighbor.get(Properties.LIT));
+	}
+
+	@Override
+	public List<ItemStack> getDefaultStacks(BlockState state, LootContext.Builder builder, Identifier identifier, LootContext lootContext, ServerWorld serverWorld, LootTable lootTable) {
+		return Collections.singletonList(getAsItemStack(builder.get(LootContextParameters.BLOCK_ENTITY)));
+	}
+
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return getAsItemStack(world.getBlockEntity(pos));
+	}
+
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+		NbtCompound nbt = stack.getNbt();
+
+		if (nbt != null) {
+			tooltip.add(Utils.tooltip("blood_amount", FORMAT.format(nbt.getInt("amount") / 81.0f)));
+		}
+	}
+
+	private ItemStack getAsItemStack(BlockEntity entity) {
+		int amount = (int) ((OccultCauldronBlockEntity) entity).getStorage().getAmount();
+		NbtCompound nbt = new NbtCompound();
+		nbt.putInt("amount", amount);
+		ItemStack stack = new ItemStack(ModItems.OCCULT_CAULDRON, 1);
+		stack.setNbt(nbt);
+
+		return stack;
+	}
+
 }

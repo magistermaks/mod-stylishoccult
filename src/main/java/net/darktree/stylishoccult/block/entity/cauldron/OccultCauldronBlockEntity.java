@@ -46,7 +46,7 @@ public class OccultCauldronBlockEntity extends SimpleBlockEntity {
 				timer = 0;
 			}
 
-			float level = getLevel();
+			float level = getLevel(amount);
 
 			float x = pos.getX() + world.random.nextFloat() * (12.0f / 16.0f) + (2.0f / 16.0f);
 			float z = pos.getZ() + world.random.nextFloat() * (12.0f / 16.0f) + (2.0f / 16.0f);
@@ -81,7 +81,7 @@ public class OccultCauldronBlockEntity extends SimpleBlockEntity {
 		this.amount = (int) amount;
 	}
 
-	public float getLevel() {
+	public static float getLevel(long amount) {
 		return BOTTOM + (amount / (float) MAX_AMOUNT) * HEIGHT;
 	}
 
