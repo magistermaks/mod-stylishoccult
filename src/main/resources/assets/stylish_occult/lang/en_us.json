@@ -33,6 +33,8 @@
   "block.stylish_occult.flesh_vent": "Sporangium",
   "block.stylish_occult.blood_cauldron": "Blood Cauldron",
   "block.stylish_occult.occult_cauldron": "Occult Cauldron",
+  "block.stylish_occult.blood": "Blood",
+  "block.stylish_occult.flowing_blood": "Blood",
 
   "item.stylish_occult.flesh": "Flesh",
   "item.stylish_occult.lava_heart": "Magmatic Orb",
@@ -147,6 +149,18 @@
   "sound.stylish_occult.transmute": "Matter is Transmuted",
   "sound.stylish_occult.voice": "Ghostly Whisper",
   "sound.stylish_occult.boil": "Boiling",
+
+  "script.stylish_occult.element.number": "Numerus",
+  "script.stylish_occult.element.item": "Item",
+  "script.stylish_occult.element.fluid": "Liquidum",
+
+  "gui.stylish_occult.debug.title": "Inveniet Rune",
+  "gui.stylish_occult.debug.snapshot": "Snapshot of the previous rune activation",
+  "gui.stylish_occult.debug.empty": "This stack is empty",
+  "gui.stylish_occult.debug.toggle.numerical": "Numerical view",
+  "gui.stylish_occult.debug.toggle.stack": "Drop stack view",
+  "gui.stylish_occult.debug.tab.stack": "Main Stack",
+  "gui.stylish_occult.debug.tab.drop": "Drop Stack",
 
   "itemGroup.stylish_occult.stylish_occult_main": "Stylish Occult: General",
   "itemGroup.stylish_occult.stylish_occult_runes": "Stylish Occult: Runes",

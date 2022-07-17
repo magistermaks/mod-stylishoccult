@@ -17,7 +17,7 @@ public class RuneRegistry {
     private static final Object2ShortOpenHashMap<Class<?>> classToId = new Object2ShortOpenHashMap<>();
     private static final ArrayList<StackElement.Factory> idToFactory = new ArrayList<>();
 
-    public static RuneBlock putRune(String name, RuneBlock rune ) {
+    public static RuneBlock putRune(String name, RuneBlock rune) {
         return runes.put(name, rune);
     }
 

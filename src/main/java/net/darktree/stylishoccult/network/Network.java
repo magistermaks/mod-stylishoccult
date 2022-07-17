@@ -7,6 +7,7 @@ public class Network {
     public static final ToggleC2SPacket TOGGLE_PACKET = new ToggleC2SPacket();
     public static final AttackS2CPacket ATTACK = new AttackS2CPacket();
     public static final ArcS2CPacket ARC = new ArcS2CPacket();
+    public static final DebugS2CPacket DEBUG = new DebugS2CPacket();
 
     public static void init() {
         TOGGLE_PACKET.register();
@@ -17,6 +18,7 @@ public class Network {
         DEFUSE_PACKET.register();
         ATTACK.register();
         ARC.register();
+        DEBUG.register();
     }
 
 }

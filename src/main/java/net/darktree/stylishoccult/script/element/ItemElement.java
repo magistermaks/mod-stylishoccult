@@ -2,13 +2,17 @@ package net.darktree.stylishoccult.script.element;
 
 import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneExceptionType;
+import net.darktree.stylishoccult.script.element.view.ElementView;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.HopperBlockEntity;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -63,6 +67,14 @@ public class ItemElement extends StackElement {
 		return list;
 	}
 
+	@Override
+	public ElementView view() {
+		Item item = stack.getItem();
+		String text = stack.getCount() + "x " + I18n.translate(item.getTranslationKey());
+
+		return ElementView.of("item", ElementView.ITEM_ICON, text, Registry.ITEM.getId(item).toString());
+	}
+
 	public boolean equals(StackElement element) {
 		if (element instanceof ItemElement itemElement) {
 			return itemElement.stack.getItem() == this.stack.getItem();
@@ -72,6 +84,7 @@ public class ItemElement extends StackElement {
 	}
 
 	@Override
+	@Deprecated
 	public String toString() {
 		return "ItemElement " + this.stack.writeNbt(new NbtCompound());
 	}

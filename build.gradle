@@ -7,6 +7,7 @@ repositories {
     maven { url "https://maven.shedaniel.me/" }
     maven { url "https://maven.terraformersmc.com" }
     maven { url "https://maven.bai.lol" }
+    maven { url "https://server.bbkr.space/artifactory/libs-release" }
 
     maven {
         allowInsecureProtocol = true
@@ -33,7 +34,7 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Fabric API. This is technically optional, but you probably want it anyway.
+    // Fabric API
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // Mod Menu
@@ -45,8 +46,15 @@ dependencies {
     include "net.darktree:interference:${project.interference_version}"
 
     // What the hell is that?
-    modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${wthit_version}"
-    modImplementation "mcp.mobius.waila:wthit:fabric-${wthit_version}"
+    modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${project.wthit_version}"
+    modImplementation "mcp.mobius.waila:wthit:fabric-${project.wthit_version}"
+
+    // LibGUI
+    modImplementation "io.github.cottonmc:LibGui:${project.libgui_version}"
+    include "io.github.cottonmc:LibGui:${project.libgui_version}"
+
+//    // JMXL
+//    modImplementation "net.darktree:JMXL:${project.jmxl_version}"
 }
 
 processResources {

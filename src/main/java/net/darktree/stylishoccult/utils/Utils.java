@@ -58,12 +58,16 @@ public class Utils {
         return finalShape;
     }
 
-    public static MutableText tooltip( String text, Object... args ) {
-        return new TranslatableText( "tooltip." + StylishOccult.NAMESPACE + "." + text, args ).formatted( Formatting.GRAY );
+    public static MutableText tooltip(String text, Object... args) {
+        return new TranslatableText("tooltip." + StylishOccult.NAMESPACE + "." + text, args).formatted(Formatting.GRAY);
     }
 
-    public static MutableText tooltip( String text ) {
-        return new TranslatableText( "tooltip." + StylishOccult.NAMESPACE + "." + text ).formatted( Formatting.GRAY );
+    public static MutableText guiText(String text, Object... args) {
+        return new TranslatableText("gui." + StylishOccult.NAMESPACE + "." + text, args);
+    }
+
+    public static String langKey(String front, String back) {
+        return front + "." + StylishOccult.NAMESPACE + "." + back;
     }
 
     public static void decrement( PlayerEntity entity, ItemStack stack ) {

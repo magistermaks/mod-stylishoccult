@@ -1,12 +1,12 @@
 package net.darktree.stylishoccult.block.rune;
 
 import net.darktree.stylishoccult.block.entity.rune.RuneBlockEntity;
+import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.script.component.RuneType;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.LiteralText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -14,8 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class DebugRuneBlock extends RuneBlock {
-
-    // TODO: redo this rune
 
     public DebugRuneBlock( String name ) {
         super(RuneType.ACTOR, name);
@@ -32,20 +30,7 @@ public class DebugRuneBlock extends RuneBlock {
         RuneBlockEntity entity = getEntity(world, pos);
 
         if( entity != null && entity.hasMeta() && !world.isClient ) {
-            Script script = Script.fromNbt(entity.getMeta());
-
-            player.sendMessage( new LiteralText("Snapshot of previous rune activation:"), false );
-            player.sendMessage( new LiteralText(" - Main Stack: (size " + script.stack.size() + ")"), false );
-
-            script.stack.reset(element -> {
-                player.sendMessage( new LiteralText("   " + element.toString()), false );
-            });
-
-//            player.sendMessage( new LiteralText(" - Drop Stack:"), false );
-//
-//            script.ring.reset(element -> {
-//                player.sendMessage( new LiteralText("   " + (element == null ? "null" : element.toString())), false );
-//            });
+            Network.DEBUG.send(player, pos, entity.getMeta());
         }
 
         return ActionResult.SUCCESS;

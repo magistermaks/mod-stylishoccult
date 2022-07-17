@@ -9,12 +9,13 @@ import net.minecraft.world.World;
 
 import java.util.function.Consumer;
 
-public final class Ring {
+public final class Ring extends BaseStack {
 
 	private final StackElement[] buffer;
 	private int offset;
 
 	public Ring(int capacity) {
+		super(capacity);
 		this.buffer = new StackElement[capacity];
 		this.offset = 0;
 	}

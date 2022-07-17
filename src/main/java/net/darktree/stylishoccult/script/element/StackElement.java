@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.script.element;
 import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneExceptionType;
 import net.darktree.stylishoccult.script.component.RuneRegistry;
+import net.darktree.stylishoccult.script.element.view.ElementView;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -25,6 +26,11 @@ public abstract class StackElement {
 	 * Split this element into a list of N parts
 	 */
 	public abstract List<StackElement> split(int split);
+
+	/**
+	 * Get the language key of this element
+	 */
+	public abstract ElementView view();
 
 	/**
 	 * Save itself to the given NBT tag

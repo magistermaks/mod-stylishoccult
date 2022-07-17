@@ -33,6 +33,8 @@
   "block.stylish_occult.flesh_vent": "Zarodnia",
   "block.stylish_occult.blood_cauldron": "Kocioł krwi",
   "block.stylish_occult.occult_cauldron": "Przeklęty kocioł",
+  "block.stylish_occult.blood": "Krew",
+  "block.stylish_occult.flowing_blood": "Krew",
 
   "item.stylish_occult.flesh": "Ciało",
   "item.stylish_occult.lava_heart": "Magmowa kula",
@@ -92,6 +94,14 @@
   "sound.stylish_occult.transmute": "Materia jest transmutowana",
   "sound.stylish_occult.voice": "Zjawa szepta",
   "sound.stylish_occult.boil": "Bulgotanie",
+
+  "gui.stylish_occult.debug.title": "Runa Inveniet",
+  "gui.stylish_occult.debug.snapshot": "Zapis poprzedniaj aktywacji",
+  "gui.stylish_occult.debug.empty": "Ten stos jest pusty",
+  "gui.stylish_occult.debug.toggle.numerical": "Pokaż liczby",
+  "gui.stylish_occult.debug.toggle.stack": "Pokaż upuszczone",
+  "gui.stylish_occult.debug.tab.stack": "Upuszczone",
+  "gui.stylish_occult.debug.tab.drop": "Stos",
 
   "itemGroup.stylish_occult.stylish_occult_main": "Stylish Occult: Ogólne",
   "itemGroup.stylish_occult.stylish_occult_runes": "Stylish Occult: Runy",

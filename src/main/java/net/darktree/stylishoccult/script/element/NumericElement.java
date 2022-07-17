@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.script.element;
 
+import net.darktree.stylishoccult.script.element.view.ElementView;
 import net.minecraft.nbt.NbtCompound;
 
 import java.util.ArrayList;
@@ -51,7 +52,14 @@ public class NumericElement extends StackElement {
 	}
 
 	@Override
+	public ElementView view() {
+		return ElementView.of("number", ElementView.NUMBER_ICON, String.valueOf(value), null);
+	}
+
+	@Override
+	@Deprecated
 	public String toString() {
 		return "NumericElement " + value;
 	}
+
 }

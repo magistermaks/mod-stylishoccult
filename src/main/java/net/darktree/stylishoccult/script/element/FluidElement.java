@@ -3,13 +3,17 @@ package net.darktree.stylishoccult.script.element;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneExceptionType;
+import net.darktree.stylishoccult.script.element.view.ElementView;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -65,6 +69,14 @@ public class FluidElement extends StackElement {
 		return list;
 	}
 
+	@Override
+	public ElementView view() {
+		Identifier fluid = Registry.FLUID.getId(this.fluid.getFluid());
+		String text = amount + "x " + I18n.translate("block." + fluid.getNamespace() + "." + fluid.getPath());
+
+		return ElementView.of("fluid", ElementView.FLUID_ICON, text, fluid.toString());
+	}
+
 	public boolean equals(StackElement element) {
 		if (element instanceof FluidElement fluidElement) {
 			return fluidElement.amount == this.amount && fluidElement.fluid.equals(this.fluid);
@@ -74,6 +86,7 @@ public class FluidElement extends StackElement {
 	}
 
 	@Override
+	@Deprecated
 	public String toString() {
 		return "FluidElement " + this.amount + "x " + this.fluid.toNbt();
 	}
