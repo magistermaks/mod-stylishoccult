@@ -5,20 +5,19 @@ import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.SimpleBlock;
-import net.darktree.stylishoccult.utils.Utils;
-import net.minecraft.block.Block;
+import net.darktree.stylishoccult.utils.Voxels;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.util.function.BooleanBiFunction;
+import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
 public class UrnBlock extends SimpleBlock {
 
-    public static VoxelShape COLLISION_SHAPE;
-    public static VoxelShape OUTLINE_SHAPE;
+    public static final VoxelShape COLLISION_SHAPE = Voxels.box(3, 0, 3, 13, 13, 13).build();
+    public static VoxelShape OUTLINE_SHAPE = Voxels.box(4, 0, 4, 12, 1, 12).box(3, 1, 3, 13, 10, 13).box(5, 10, 5, 11, 12, 11).box(4, 12, 4, 12, 13, 12).build();
 
     public UrnBlock() {
         super( RegUtil.settings( Material.WOOD, Sounds.URN, 0.1F, 6.0f, false ) );
@@ -39,14 +38,9 @@ public class UrnBlock extends SimpleBlock {
         return LootTables.URN;
     }
 
-    static {
-        COLLISION_SHAPE = Block.createCuboidShape( 3, 0, 3, 13, 13, 13 );
-        OUTLINE_SHAPE = Utils.combine( new VoxelShape[]{
-                Block.createCuboidShape( 4, 0, 4, 12, 1, 12 ),
-                Block.createCuboidShape( 3, 1, 3, 13, 10, 13 ),
-                Block.createCuboidShape( 5, 10, 5, 11, 12, 11 ),
-                Block.createCuboidShape( 4, 12, 4, 12, 13, 12 ),
-        }, BooleanBiFunction.OR );
+    @Override
+    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+        return false;
     }
 
 }

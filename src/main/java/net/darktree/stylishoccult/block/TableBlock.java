@@ -119,7 +119,7 @@ public class TableBlock extends EntryRuneBlock implements DropsItself, VerticalR
 		}
 
 		if (world.getBlockState(pos.down()).getBlock() instanceof RuneBlock) {
-			emit(world, pos, script);
+			emitScript(world, pos, script);
 			return true;
 		}
 

@@ -14,14 +14,16 @@ public class StructureConfig {
 		this.salt = salt;
 		this.depth = depth;
 
-		if(spacing <= separation) {
-			printDebug();
-			throw new RuntimeException("Invalid structure configuration, invalid spacing must be larger than separation!");
+		if (spacing <= separation) {
+			fail("spacing must be larger than separation");
 		}
 
-		if(depth <= 0 || spacing <= 0) {
-			printDebug();
-			throw new RuntimeException("Invalid structure configuration, depth and spacing must be a larger than 0!");
+		if (spacing <= 0) {
+			fail("spacing must be a larger than 0");
+		}
+
+		if (depth <= 0) {
+			fail("depth must be a larger than 0");
 		}
 	}
 
@@ -34,8 +36,9 @@ public class StructureConfig {
 		);
 	}
 
-	private void printDebug() {
+	private void fail(String details) {
 		StylishOccult.LOGGER.error("Tried to create invalid structure config: {spacing={} separation={} salt={} depth={}}", spacing, separation, salt, depth);
+		throw new RuntimeException("Invalid structure configuration, " + details + "!");
 	}
 
 }

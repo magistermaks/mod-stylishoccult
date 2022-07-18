@@ -12,7 +12,7 @@ public class RandUtils {
 
     public static <T extends Enum<?>> T getEnum(Class<T> clazz, Random random){
         final T[] values = clazz.getEnumConstants();
-        return values[random.nextInt( values.length )];
+        return values[random.nextInt(values.length)];
     }
 
     public static boolean getBool(float probability) {

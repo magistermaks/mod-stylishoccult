@@ -51,7 +51,7 @@ public class OccultCauldronBlockEntity extends SimpleBlockEntity {
 			float x = pos.getX() + world.random.nextFloat() * (12.0f / 16.0f) + (2.0f / 16.0f);
 			float z = pos.getZ() + world.random.nextFloat() * (12.0f / 16.0f) + (2.0f / 16.0f);
 
-			world.addParticle(Particles.BOILING_BLOOD, true, x, pos.getY() + level, z, 0, 0, 0);
+			world.addParticle(Particles.BOILING_BLOOD, false, x, pos.getY() + level, z, 0, 0, 0);
 		}
 
 		timer ++;

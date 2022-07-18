@@ -56,6 +56,10 @@ public class BloodCauldronBlock extends LeveledCauldronBlock {
 		ItemStack stack = player.getStackInHand(hand);
 		Item item = stack.getItem();
 
+		if (!player.getAbilities().allowModifyWorld) {
+			return ActionResult.PASS;
+		}
+
 		if (item == Items.BUCKET && level == 3) {
 			player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(ModItems.BLOOD_BUCKET)));
 			playSound(world, pos, SoundEvents.ITEM_BUCKET_FILL);

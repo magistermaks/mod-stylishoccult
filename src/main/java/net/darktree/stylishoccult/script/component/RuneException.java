@@ -3,8 +3,11 @@ package net.darktree.stylishoccult.script.component;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.block.rune.RuneBlock;
+import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.network.Network;
-import net.darktree.stylishoccult.utils.RuneUtils;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -33,8 +36,21 @@ public class RuneException extends RuntimeException {
         }else{
             float size = StylishOccult.SETTINGS.runicErrorExplosionSize.get(world);
             world.createExplosion(null, x, y, z, size, Explosion.DestructionType.BREAK);
-            RuneUtils.createErrorReport(this, rune, world, pos);
+            createErrorReport(rune, world, pos);
         }
+    }
+
+    private void createErrorReport(RuneBlock rune, World world, BlockPos pos) {
+        NbtCompound tag = new NbtCompound();
+        tag.putString("error", getMessage());
+        tag.putString("rune", rune.name);
+        tag.putInt("x", pos.getX());
+        tag.putInt("y", pos.getY());
+        tag.putInt("z", pos.getZ());
+
+        ItemStack stack = new ItemStack(ModItems.RUNE_ERROR_REPORT, 1);
+        stack.setNbt(tag);
+        Block.dropStack(world, pos, stack);
     }
 
 }

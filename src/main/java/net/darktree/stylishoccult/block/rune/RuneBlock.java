@@ -9,7 +9,6 @@ import net.darktree.stylishoccult.script.component.RuneInstance;
 import net.darktree.stylishoccult.script.component.RuneType;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.BlockUtils;
-import net.darktree.stylishoccult.utils.RuneUtils;
 import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -28,6 +27,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvider {
+
+    public static final int COLOR_0 = 0x5A0000;
+    public static final int COLOR_1 = 0x730000;
+    public static final int COLOR_2 = 0x8C0000;
+    public static final int COLOR_3 = 0xA50000;
 
     public static final IntProperty COOLDOWN = IntProperty.of("cooldown", 0, 3);
     public static final BooleanProperty FROZEN = BooleanProperty.of("frozen");
@@ -156,8 +160,14 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
         return 1;
     }
 
-    public int getTint( BlockState state ) {
-        return RuneUtils.getTint( state.get(COOLDOWN) );
+    public int getTint(BlockState state) {
+        return switch (state.get(COOLDOWN)) {
+            case 0 -> COLOR_0;
+            case 1 -> COLOR_1;
+            case 2 -> COLOR_2;
+            case 3 -> COLOR_3;
+            default -> 0;
+        };
     }
 
     public Direction[] getDirections(World world, BlockPos pos, Script script) {

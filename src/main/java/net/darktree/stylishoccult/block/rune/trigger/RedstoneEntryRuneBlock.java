@@ -29,7 +29,7 @@ public class RedstoneEntryRuneBlock extends EntryRuneBlock {
         if( state.get(POWERED) != power ) {
             world.setBlockState( pos, state.with(POWERED, power) );
             if( power ) {
-                emit(world, pos);
+                emit(world, pos, null);
             }
         }
     }

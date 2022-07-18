@@ -61,7 +61,7 @@ public class BoilingBloodParticle extends AnimatedParticle {
 		}
 
 		@Override
-		public Particle createParticle(DefaultParticleType type, ClientWorld world, double x, double y, double z, double vX, double vY, double vZ) {
+		public Particle createParticle(DefaultParticleType type, ClientWorld world, double x, double y, double z, double vx, double vy, double vz) {
 			return new BoilingBloodParticle(world, x, y, z, sprites);
 		}
 	}

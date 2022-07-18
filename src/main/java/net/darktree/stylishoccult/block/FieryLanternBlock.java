@@ -6,6 +6,7 @@ import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleBlock;
+import net.darktree.stylishoccult.utils.Voxels;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
@@ -22,7 +23,6 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -34,12 +34,8 @@ public class FieryLanternBlock extends SimpleBlock implements Waterloggable {
 
     public static final BooleanProperty HANGING = Properties.HANGING;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
-    protected static final VoxelShape STANDING_SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 7.0D, 11.0D),
-            Block.createCuboidShape(6.0D, 7.0D, 6.0D, 10.0D, 9.0D, 10.0D));
-    protected static final VoxelShape HANGING_SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(5.0D, 1.0D, 5.0D, 11.0D, 8.0D, 11.0D),
-            Block.createCuboidShape(6.0D, 8.0D, 6.0D, 10.0D, 10.0D, 10.0D));
+    private static final VoxelShape STANDING_SHAPE = Voxels.box(5, 0, 5, 11, 7, 11).box(6, 7, 6, 10, 9, 10).build();
+    private static final VoxelShape HANGING_SHAPE = Voxels.box(5, 1, 5, 11, 8, 11).box(6, 8, 6, 10, 10, 10).build();
 
     public FieryLanternBlock() {
         super( AbstractBlock.Settings.of(Material.METAL).ticksRandomly().requiresTool().strength(3.5F).sounds(BlockSoundGroup.LANTERN).luminance((state) -> 15).nonOpaque() );

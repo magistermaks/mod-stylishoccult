@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.script.element.view;
 
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.utils.ModIdentifier;
-import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
@@ -26,7 +26,7 @@ public class ElementView {
 	}
 
 	public static ElementView of(String name, Identifier icon, String text, @Nullable String tooltip) {
-		return new ElementView(Utils.langKey("script", "element." + name), icon, text, tooltip);
+		return new ElementView("script." + StylishOccult.NAMESPACE + ".element." + name, icon, text, tooltip);
 	}
 
 	/**

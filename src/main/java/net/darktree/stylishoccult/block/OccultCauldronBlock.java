@@ -154,6 +154,10 @@ public class OccultCauldronBlock extends BlockWithEntity implements DefaultLoot 
 		ItemStack stack = player.getStackInHand(hand);
 		Item item = stack.getItem();
 
+		if (!player.getAbilities().allowModifyWorld) {
+			return ActionResult.PASS;
+		}
+
 		if (item == Items.BUCKET && storage.extract(FluidConstants.BUCKET)) {
 			player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(ModItems.BLOOD_BUCKET)));
 			playSound(world, pos, SoundEvents.ITEM_BUCKET_FILL);

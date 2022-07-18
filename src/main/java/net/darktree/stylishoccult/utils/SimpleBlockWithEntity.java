@@ -19,6 +19,7 @@ import java.util.List;
 
 // TODO clean this up, after 1.17 it became a mess
 
+@Deprecated
 public abstract class SimpleBlockWithEntity extends BlockWithEntity implements MutableHardness, DefaultLoot {
 
     protected SimpleBlockWithEntity(Block.Settings settings) {

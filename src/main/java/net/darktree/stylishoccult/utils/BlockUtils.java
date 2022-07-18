@@ -14,15 +14,7 @@ public class BlockUtils {
         boolean call(BlockState state);
     }
 
-    public static int fastDistance(BlockPos pos1, BlockPos pos2){
-        return Math.abs( pos1.getX() - pos2.getX() ) + Math.abs( pos1.getY() - pos2.getY() ) + Math.abs( pos1.getZ() - pos2.getZ() );
-    }
-
-    public static String posToString( BlockPos pos ) {
-        if( pos == null ) return "null";
-        return ( pos.getX() + " " + pos.getY() + " " + pos.getZ() );
-    }
-
+    @Deprecated
     public static <T extends BlockEntity, Y extends BlockView> T getEntity(Class<T> clazz, Y world, BlockPos pos){
         if( world != null && pos != null && clazz != null ) {
             BlockEntity entity = world.getBlockEntity(pos);
@@ -31,6 +23,7 @@ public class BlockUtils {
         return null;
     }
 
+    @Deprecated
     public static boolean areInLine( BlockPos pos1, BlockPos pos2 ) {
         int x = (pos1.getX() - pos2.getX() != 0) ? 1 : 0;
         int y = (pos1.getY() - pos2.getY() != 0) ? 1 : 0;
@@ -90,13 +83,14 @@ public class BlockUtils {
         return null;
     }
 
+    @Deprecated
     public static Direction getOffsetDirection( BlockPos origin, BlockPos target ) {
-        if( target.getX() < origin.getX() )  return Direction.from(Direction.Axis.X, Direction.AxisDirection.NEGATIVE);
-        else if ( target.getX() > origin.getX() ) return Direction.from(Direction.Axis.X, Direction.AxisDirection.POSITIVE);
-        if( target.getZ() < origin.getZ() ) return Direction.from(Direction.Axis.Z, Direction.AxisDirection.NEGATIVE);
-        else if ( target.getZ() > origin.getZ() ) return Direction.from(Direction.Axis.Z, Direction.AxisDirection.POSITIVE);
-        if( target.getY() < origin.getY() ) return Direction.from( Direction.Axis.Y, Direction.AxisDirection.NEGATIVE );
-        return Direction.from( Direction.Axis.Y, Direction.AxisDirection.POSITIVE );
+        if (target.getX() < origin.getX()) return Direction.from(Direction.Axis.X, Direction.AxisDirection.NEGATIVE);
+        else if (target.getX() > origin.getX()) return Direction.from(Direction.Axis.X, Direction.AxisDirection.POSITIVE);
+        if (target.getZ() < origin.getZ()) return Direction.from(Direction.Axis.Z, Direction.AxisDirection.NEGATIVE);
+        else if (target.getZ() > origin.getZ()) return Direction.from(Direction.Axis.Z, Direction.AxisDirection.POSITIVE);
+        if (target.getY() < origin.getY()) return Direction.from(Direction.Axis.Y, Direction.AxisDirection.NEGATIVE);
+        return Direction.from(Direction.Axis.Y, Direction.AxisDirection.POSITIVE);
     }
 
 }

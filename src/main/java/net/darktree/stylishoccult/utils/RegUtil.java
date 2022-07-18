@@ -22,24 +22,16 @@ public class RegUtil {
         return Registry.register(Registry.BLOCK, new ModIdentifier(name), block);
     }
 
-    public static BlockItem item(String name, Block block, ItemGroup group) {
-        return (BlockItem) item( name, new BlockItem( block, new Item.Settings().group( group ) ) );
+    public static BlockItem item(String id, Block block, ItemGroup group) {
+        return (BlockItem) item(id, new BlockItem(block, new Item.Settings().group(group)));
     }
 
-    public static BlockItem item(String name, Block block, Item.Settings settings) {
-        return (BlockItem) item( name, new BlockItem( block, settings ) );
+    public static Item item(String id, Item.Settings settings) {
+        return item(id, new Item(settings));
     }
 
-    public static Item item(String name, ItemGroup group) {
-        return item( name, new Item( new Item.Settings().group( group ) ) );
-    }
-
-    public static Item item(String name, Item.Settings settings) {
-        return item( name, new Item( settings ) );
-    }
-
-    public static Item item(String name, Item item) {
-        return Registry.register( Registry.ITEM, new ModIdentifier(name), item );
+    public static Item item(String id, Item item) {
+        return Registry.register( Registry.ITEM, new ModIdentifier(id), item);
     }
 
     public static FlowableFluid fluid(String name, FlowableFluid fluid) {
@@ -47,24 +39,24 @@ public class RegUtil {
     }
 
     public static Block rune( RuneBlock block ) {
-
         String name = "rune_" + block.name;
-        Item item = item( name, new RuneBlockItem( block, new FabricItemSettings().group(ModItems.Groups.RUNES) ) );
+        Item item = item(name, new RuneBlockItem(block, new FabricItemSettings().group(ModItems.Groups.RUNES)));
         ModItems.RUNESTONES.add(item);
         ModBlocks.RUNESTONES.add(block);
 
-        if( block.getInstance() != null ) {
+        if (block.getInstance() != null) {
             RuneRegistry.putRune(block.name, block);
         }
 
-        return block( name, block );
+        return block(name, block);
     }
 
-    public static FabricBlockSettings settings(Material material, BlockSoundGroup sounds, float hardness, float resistance, boolean opaque ) {
-        FabricBlockSettings settings = FabricBlockSettings.of( material );
+    public static FabricBlockSettings settings(Material material, BlockSoundGroup sounds, float hardness, float resistance, boolean opaque) {
+        FabricBlockSettings settings = FabricBlockSettings.of(material);
         if( !opaque ) settings.nonOpaque();
-        settings.strength( hardness, resistance );
-        settings.sounds( sounds );
+        settings.strength(hardness, resistance);
+        settings.sounds(sounds);
+
         return settings;
     }
 

@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block;
 
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.entity.cauldron.OccultCauldronBlockEntity;
 import net.darktree.stylishoccult.block.fluid.ModFluids;
 import net.darktree.stylishoccult.block.occult.*;
@@ -9,6 +10,8 @@ import net.darktree.stylishoccult.block.rune.io.*;
 import net.darktree.stylishoccult.block.rune.trigger.*;
 import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.utils.RegUtil;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
@@ -128,11 +131,12 @@ public class ModBlocks {
     public static final Block SEPARATE_RUNE_BLOCK = RegUtil.rune( new SeparateRuneBlock("separatum") );
 
     public static void init() {
-        // load class
+        StylishOccult.LOGGER.info("Loaded " + RUNESTONES.size() + " runes!");
     }
 
+    @Environment(EnvType.CLIENT)
     public static void clientInit() {
-        Block[] runestones = ModBlocks.RUNESTONES.toArray( new Block[0] );
+        Block[] runestones = RUNESTONES.toArray(new Block[0]);
         BlockColorProvider runeTintProvider = (state, world, pos, tintIndex) -> ((RuneBlock) state.getBlock()).getTint(state);
 
         BlockRenderLayerMap.INSTANCE.putBlock(LAVA_STONE, RenderLayer.getCutout());

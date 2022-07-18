@@ -34,7 +34,7 @@ public class ToggleC2SPacket {
 		if( player != null && player.world != null ) {
 			World world = player.world;
 
-			if(world.isChunkLoaded(pos) && slot >= 0 && slot <= 8) {
+			if(world.isChunkLoaded(pos) && player.getBlockPos().isWithinDistance(pos, 256) && slot >= 0 && slot <= 8) {
 				CraftRuneBlock.toggle(world, pos, slot, value);
 				world.playSound(null, pos, SoundEvents.BLOCK_STONE_PRESSURE_PLATE_CLICK_ON, SoundCategory.BLOCKS, 1, 1);
 			}

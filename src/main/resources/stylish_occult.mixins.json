@@ -6,7 +6,6 @@
   "mixins": [
     "CauldronBehaviourMixin",
     "HungerManagerMixin",
-    "KillMeMixin",
     "LivingEntityMixin",
     "PlayerEntityMixin",
     "StatusEffectInstanceAccessor"

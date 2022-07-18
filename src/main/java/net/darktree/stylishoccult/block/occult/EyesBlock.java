@@ -85,9 +85,13 @@ public class EyesBlock extends SimpleBlock implements ImpureBlock, FoliageFleshB
         int size = state.get(SIZE);
         ItemStack stack = player.getStackInHand(hand);
 
-        if( size < 3 && stack.getItem() == asItem() ) {
+        if (player.getAbilities().allowModifyWorld && size < 3 && stack.getItem() == asItem()) {
             world.setBlockState( pos, state.with(SIZE, size + 1) );
-            Utils.decrement(player, stack);
+
+            if( !player.isCreative() ) {
+                stack.decrement(1);
+            }
+
             world.playSound( null, pos, soundGroup.getPlaceSound(), SoundCategory.BLOCKS, 1, 1 );
             return ActionResult.SUCCESS;
         }

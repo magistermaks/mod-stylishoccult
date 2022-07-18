@@ -1,19 +1,18 @@
 package net.darktree.stylishoccult.block.occult;
 
 import net.darktree.interference.api.LookAtEvent;
-import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.block.BuildingBlock;
 import net.darktree.stylishoccult.block.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.overlay.PlayerEntityClientDuck;
 import net.darktree.stylishoccult.overlay.PlayerEntityDuck;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RegUtil;
-import net.darktree.stylishoccult.utils.Utils;
+import net.darktree.stylishoccult.utils.Voxels;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -27,13 +26,8 @@ import net.minecraft.world.WorldAccess;
 
 public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFleshBlock, LookAtEvent {
 
-    public static final BooleanProperty PERSISTENT = BooleanProperty.of("persistent");
-
-    private static final VoxelShape SHAPE = Utils.join(
-            Utils.shape( 1, 1, 0, 15, 15, 16 ),
-            Utils.shape( 0, 1, 1, 16, 15, 15 ),
-            Utils.shape( 1, 0, 1, 15, 16, 15 )
-    );
+    private static final BooleanProperty PERSISTENT = BooleanProperty.of("persistent");
+    private static final VoxelShape SHAPE = Voxels.box(1, 1, 0, 15, 15, 16).box(0, 1, 1, 16, 15, 15).box(1, 0, 1, 15, 16, 15).build();
 
     public EyeBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 1.0F, 1.0F, true ).luminance(6) );
@@ -44,12 +38,10 @@ public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFlesh
     public void onLookAtTick(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if( !state.get(PERSISTENT) ) {
             ((PlayerEntityDuck) player).stylish_addMadness(0.03f);
+            ((PlayerEntityClientDuck) player).stylish_startHeartbeatSound();
 
-            if(world.isClient) {
-                ((PlayerEntityClientDuck) player).stylish_startHeartbeatSound();
-            }else{
-                Criteria.INSIGHT.trigger((ServerPlayerEntity) player, ((PlayerEntityDuck) player).stylish_getMadness());
-            }
+            // notify the server
+            Network.MADNESS.send();
         }
     }
 

@@ -19,7 +19,7 @@ public class ClickRuneBlock extends EntryRuneBlock {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        emit( world, pos );
+        emit(world, pos, player);
         world.playSound( null, pos, SoundEvents.BLOCK_STONE_PRESSURE_PLATE_CLICK_ON, SoundCategory.BLOCKS, 1, 1 );
         return ActionResult.SUCCESS;
     }

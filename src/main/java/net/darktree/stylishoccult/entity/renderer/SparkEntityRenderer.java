@@ -13,11 +13,11 @@ import net.minecraft.util.Identifier;
 public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
 
     private static final Identifier[] TEXTURES = {
-            new ModIdentifier("textures/particle/spark_0.png"),
-            new ModIdentifier("textures/particle/spark_1.png"),
-            new ModIdentifier("textures/particle/spark_2.png"),
-            new ModIdentifier("textures/particle/spark_3.png"),
-            new ModIdentifier("textures/particle/spark_4.png")
+            ModIdentifier.of("textures/particle/spark_0.png"),
+            ModIdentifier.of("textures/particle/spark_1.png"),
+            ModIdentifier.of("textures/particle/spark_2.png"),
+            ModIdentifier.of("textures/particle/spark_3.png"),
+            ModIdentifier.of("textures/particle/spark_4.png")
     };
 
     public SparkEntityRenderer(EntityRendererFactory.Context context) {

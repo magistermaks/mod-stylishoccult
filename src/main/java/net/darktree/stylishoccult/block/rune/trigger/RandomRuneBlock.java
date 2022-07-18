@@ -20,7 +20,7 @@ public class RandomRuneBlock extends EntryRuneBlock {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        emit(world, pos);
+        emit(world, pos, null);
     }
 
 }

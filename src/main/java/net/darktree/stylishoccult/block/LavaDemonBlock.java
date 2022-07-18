@@ -186,7 +186,7 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
 
                     BlockState targetState = ModBlocks.LAVA_DEMON.getDefaultState();
 
-                    if( random.nextInt(j) < BlockUtils.fastDistance(origin, pos) ) {
+                    if( random.nextInt(j) < origin.getManhattanDistance(pos) ) {
                         // Unable to spread! To far from origin!
                         world.setBlockState( pos, state.with(CAN_SPREAD, false) );
                     }
@@ -209,7 +209,7 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
                     world.setBlockState( pos, state.with(CAN_SPREAD, false) );
                 }
             }else{
-                if( (origin != null) && (random.nextInt(6) < BlockUtils.fastDistance(origin, pos)) ) {
+                if( (origin != null) && (random.nextInt(6) < origin.getManhattanDistance(pos)) ) {
                     // Unable to spread! Target is not spreadable!
                     world.setBlockState( pos, state.with(CAN_SPREAD, false) );
                 }

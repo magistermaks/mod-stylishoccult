@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.item;
 
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.fluid.ModFluids;
+import net.darktree.stylishoccult.block.rune.RuneBlock;
 import net.darktree.stylishoccult.entity.ModEntities;
 import net.darktree.stylishoccult.item.client.OccultCauldronItemRenderer;
 import net.darktree.stylishoccult.item.material.TwistedBoneArmorMaterial;
@@ -11,7 +12,8 @@ import net.darktree.stylishoccult.item.tools.HoeItem;
 import net.darktree.stylishoccult.item.tools.PickaxeItem;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.darktree.stylishoccult.utils.RegUtil;
-import net.darktree.stylishoccult.utils.RuneUtils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -53,9 +55,9 @@ public class ModItems {
     public static final Item LAVA_HEART = RegUtil.item("lava_heart", new Item.Settings().group(Groups.STYLISH_OCCULT).rarity(Rarity.UNCOMMON).fireproof());
     public static final Item LAVA_SHARD = RegUtil.item("lava_shard", new Item.Settings().group(Groups.STYLISH_OCCULT).rarity(Rarity.UNCOMMON).fireproof());
     public static final Item BLOOD_SHARD = RegUtil.item("blood_shard", new Item.Settings().group(Groups.STYLISH_OCCULT).rarity(Rarity.UNCOMMON));
-    public static final Item BLAZING_LAVA_SHARD = RegUtil.item("blazing_lava_shard", new Item.Settings().group( Groups.STYLISH_OCCULT ).rarity( Rarity.UNCOMMON ).fireproof() );
-    public static final Item FIERY_LANTERN = RegUtil.item("fiery_lantern", ModBlocks.FIERY_LANTERN, new Item.Settings().group(Groups.STYLISH_OCCULT).rarity(Rarity.UNCOMMON).fireproof() );
-    public static final Item URN = RegUtil.item("urn", new BlockItem( ModBlocks.URN, new Item.Settings().group( Groups.STYLISH_OCCULT ).rarity( Rarity.UNCOMMON ) ) );
+    public static final Item BLAZING_LAVA_SHARD = RegUtil.item("blazing_lava_shard", new Item.Settings().group(Groups.STYLISH_OCCULT ).rarity( Rarity.UNCOMMON ).fireproof());
+    public static final Item FIERY_LANTERN = RegUtil.item("fiery_lantern", new BlockItem(ModBlocks.FIERY_LANTERN, new Item.Settings().group(Groups.STYLISH_OCCULT).rarity(Rarity.UNCOMMON).fireproof()));
+    public static final Item URN = RegUtil.item("urn", new BlockItem( ModBlocks.URN, new Item.Settings().group( Groups.STYLISH_OCCULT ).rarity(Rarity.UNCOMMON)));
     public static final Item FLESH = RegUtil.item("flesh", new Item.Settings().group(Groups.STYLISH_OCCULT).food(ModFoodComponents.FLESH_FOOD));
     public static final Item VEINS = RegUtil.item("veins", new Item.Settings().group( Groups.STYLISH_OCCULT ).food( ModFoodComponents.VEINS));
     public static final Item COOKED_VEINS = RegUtil.item("cooked_veins", new Item.Settings().group( Groups.STYLISH_OCCULT).food(ModFoodComponents.COOKED_VEINS));
@@ -105,12 +107,9 @@ public class ModItems {
         // Load this class
     }
 
+    @Environment(EnvType.CLIENT)
     public static void clientInit() {
-        ColorProviderRegistry.ITEM.register(
-                (stack, tintIndex) -> RuneUtils.COLOR_1,
-                ModItems.RUNESTONES.toArray( new Item[0] )
-        );
-
+        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> RuneBlock.COLOR_1, ModItems.RUNESTONES.toArray(new Item[0]));
         BuiltinItemRendererRegistry.INSTANCE.register(OCCULT_CAULDRON, new OccultCauldronItemRenderer());
     }
 

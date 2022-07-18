@@ -84,7 +84,7 @@ public class LavaDemonBlockEntity extends BlockEntity {
 
                 entity.interval = 3;
 
-                Direction direction = BlockUtils.getOffsetDirection( pos, player.getBlockPos() );
+                Direction direction = BlockUtils.getOffsetDirection(pos, player.getBlockPos());
                 if( direction != Direction.DOWN && direction != Direction.UP ) {
                     BlockPos spawnPoint = pos.offset( direction );
 

@@ -9,7 +9,7 @@ public interface SimpleFeatureProvider {
 	ConfiguredFeature<?, ?> configure();
 
 	default void debugWrite(BlockPos pos) {
-		StylishOccult.debug("Generated feature '" + this.getClass().getSimpleName() + "' generated at: " + BlockUtils.posToString(pos));
+		StylishOccult.debug("Generated feature '" + this.getClass().getSimpleName() + "' generated at: " + pos.toShortString());
 	}
 
 }

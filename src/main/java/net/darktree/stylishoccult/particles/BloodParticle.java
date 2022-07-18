@@ -17,8 +17,8 @@ public class BloodParticle {
 			this.spriteProvider = spriteProvider;
 		}
 
-		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-			BlockLeakParticle particle = new BlockLeakParticle.ContinuousFalling(clientWorld, d, e, f, Fluids.EMPTY, Particles.BLOOD_SPLASH);
+		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double x, double y, double z, double vx, double vy, double vz) {
+			BlockLeakParticle particle = new BlockLeakParticle.ContinuousFalling(clientWorld, x, y, z, Fluids.EMPTY, Particles.BLOOD_SPLASH);
 			particle.setColor(0.5f, 0.01f, 0.01f);
 			particle.setSprite(this.spriteProvider);
 			return particle;
@@ -33,8 +33,8 @@ public class BloodParticle {
 			this.spriteProvider = spriteProvider;
 		}
 
-		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-			BlockLeakParticle particle = new BlockLeakParticle.Dripping(clientWorld, d, e, f, Fluids.EMPTY, Particles.BLOOD_FALLING);
+		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double x, double y, double z, double vx, double vy, double vz) {
+			BlockLeakParticle particle = new BlockLeakParticle.Dripping(clientWorld, x, y, z, Fluids.EMPTY, Particles.BLOOD_FALLING);
 			particle.setColor(0.5f, 0.05f, 0.01f);
 			particle.setSprite(this.spriteProvider);
 			return particle;
@@ -49,8 +49,8 @@ public class BloodParticle {
 			this.spriteProvider = spriteProvider;
 		}
 
-		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-			WaterSuspendParticle particle = new WaterSuspendParticle(clientWorld, this.spriteProvider, d, e, f);
+		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double x, double y, double z, double vx, double vy, double vz) {
+			WaterSuspendParticle particle = new WaterSuspendParticle(clientWorld, this.spriteProvider, x, y, z);
 			particle.setColor(0.7f, 0.2f, 0.2f);
 			return particle;
 		}

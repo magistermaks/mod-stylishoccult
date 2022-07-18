@@ -24,7 +24,7 @@ public abstract class SimpleBlockEntity extends BlockEntity implements BlockEnti
     }
 
     public void safeSync() {
-        if( isServer() ) {
+        if (world != null && !world.isClient) {
             sync();
         }
     }
@@ -32,14 +32,6 @@ public abstract class SimpleBlockEntity extends BlockEntity implements BlockEnti
     public void update() {
         this.markDirty();
         this.safeSync();
-    }
-
-    public boolean isClient() {
-        return ( this.world != null && world.isClient );
-    }
-
-    public boolean isServer() {
-        return ( this.world != null && !world.isClient );
     }
 
 }
