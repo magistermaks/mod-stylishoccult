@@ -74,12 +74,16 @@ public class AltarPlateBlock extends BlockWithEntity implements DropsItself, Ver
 
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		if (!player.getAbilities().allowModifyWorld) {
+			return ActionResult.PASS;
+		}
+
 		return BlockUtils.getEntity(AltarPlateBlockEntity.class, world, pos).use(player.getStackInHand(hand)) ? ActionResult.SUCCESS : ActionResult.PASS;
 	}
 
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return checkType(type, BlockEntities.ALTAR_PLATE, (world_, pos_, state_, entity) -> entity.tick());
+		return checkType(type, BlockEntities.ALTAR_PLATE, (w, p, s, entity) -> entity.tick(w, p, s));
 	}
 
 	@Override

@@ -21,6 +21,9 @@ public class ModTags {
     // empty by default, blocks in this list are made incorruptible
     public static Tag<Block> INCORRUPTIBLE = TagFactory.BLOCK.create(ModIdentifier.of("incorruptible"));
 
+    // block that can be found in boulder features
+    public static Tag<Block> BOULDER_FILLER = TagFactory.BLOCK.create(ModIdentifier.of("boulder_filler"));
+
     // all fluids that should use the blood overlays
     public static Tag<Fluid> BLOOD = TagFactory.FLUID.create(ModIdentifier.of("blood"));
 

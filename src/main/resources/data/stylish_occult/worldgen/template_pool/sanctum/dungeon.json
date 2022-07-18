@@ -85,6 +85,16 @@
     {
       "weight": 1,
       "element": {
+        "location": "stylish_occult:sanctum/room/9",
+        "processors": "stylish_occult:sanctum",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 1,
+      "element": {
         "location": "stylish_occult:sanctum/plug/raw",
         "processors": "stylish_occult:sanctum",
         "projection": "rigid",

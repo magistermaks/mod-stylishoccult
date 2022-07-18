@@ -24,7 +24,7 @@ public class RuneException extends RuntimeException {
     }
 
     public void apply(World world, BlockPos pos, SafeMode mode) {
-        StylishOccult.LOGGER.warn( "Exception in script at: " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + " " + getMessage() );
+        StylishOccult.LOGGER.warn("Exception in script at: " + pos.toShortString() + " " + getMessage());
 
         double x = pos.getX(), y = pos.getY(), z = pos.getZ();
         boolean safe = mode == SafeMode.ENABLED;

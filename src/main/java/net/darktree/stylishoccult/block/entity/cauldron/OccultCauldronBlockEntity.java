@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.entity.cauldron;
 
+import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.OccultCauldronBlock;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.block.fluid.ModFluids;
@@ -15,6 +16,7 @@ import net.fabricmc.fabric.api.transfer.v1.transaction.base.SnapshotParticipant;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class OccultCauldronBlockEntity extends SimpleBlockEntity {
 
@@ -33,8 +35,8 @@ public class OccultCauldronBlockEntity extends SimpleBlockEntity {
 		this.storage = new Storage();
 	}
 
-	public void tick() {
-		if (amount == 0 || world == null || !world.isClient || !world.getBlockState(pos).get(OccultCauldronBlock.BOILING)) {
+	public void tick(World world, BlockPos pos, BlockState state) {
+		if (amount == 0 || world == null || !world.isClient || state.getBlock() != ModBlocks.OCCULT_CAULDRON || !state.get(OccultCauldronBlock.BOILING)) {
 			timer = 0;
 			boiling = 10;
 			return;

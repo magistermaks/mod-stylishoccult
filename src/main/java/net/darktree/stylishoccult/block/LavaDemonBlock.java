@@ -241,7 +241,7 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, BlockEntities.LAVA_DEMON, LavaDemonBlockEntity::tick);
+        return checkType(type, BlockEntities.LAVA_DEMON, (w, p, s, entity) -> entity.tick(w, p, s));
     }
 
 }

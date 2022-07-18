@@ -83,14 +83,4 @@ public class BlockUtils {
         return null;
     }
 
-    @Deprecated
-    public static Direction getOffsetDirection( BlockPos origin, BlockPos target ) {
-        if (target.getX() < origin.getX()) return Direction.from(Direction.Axis.X, Direction.AxisDirection.NEGATIVE);
-        else if (target.getX() > origin.getX()) return Direction.from(Direction.Axis.X, Direction.AxisDirection.POSITIVE);
-        if (target.getZ() < origin.getZ()) return Direction.from(Direction.Axis.Z, Direction.AxisDirection.NEGATIVE);
-        else if (target.getZ() > origin.getZ()) return Direction.from(Direction.Axis.Z, Direction.AxisDirection.POSITIVE);
-        if (target.getY() < origin.getY()) return Direction.from(Direction.Axis.Y, Direction.AxisDirection.NEGATIVE);
-        return Direction.from(Direction.Axis.Y, Direction.AxisDirection.POSITIVE);
-    }
-
 }

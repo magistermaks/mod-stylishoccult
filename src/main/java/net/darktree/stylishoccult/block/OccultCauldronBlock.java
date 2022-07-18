@@ -205,7 +205,7 @@ public class OccultCauldronBlock extends BlockWithEntity implements DefaultLoot 
 
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return checkType(type, BlockEntities.OCCULT_CAULDRON, (world_, pos_, state_, entity) -> entity.tick());
+		return checkType(type, BlockEntities.OCCULT_CAULDRON, (w, p, s, entity) -> entity.tick(w, p, s));
 	}
 
 	@Override

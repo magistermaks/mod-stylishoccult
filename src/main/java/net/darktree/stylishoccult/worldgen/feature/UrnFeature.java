@@ -25,12 +25,12 @@ public class UrnFeature extends SimpleFeature<DefaultFeatureConfig> {
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 
-        if( world.getBlockState(pos).isAir() && pos.getY() > 6 && pos.getY() < 30 ) {
+        if (world.getBlockState(pos).isAir() && pos.getY() > 6 && pos.getY() < 30) {
 
             BlockPos pos2 = pos.down();
             BlockPos pos3 = pos.offset( Direction.fromHorizontal( random.nextInt() ) );
 
-            if( isFloorAccepted(world.getBlockState(pos2).getBlock()) && world.getBlockState(pos3).isSolidBlock(world, pos3) ) {
+            if (isFloorAccepted(world.getBlockState(pos2).getBlock()) && world.getBlockState(pos3).isSolidBlock(world, pos3)) {
                 world.setBlockState(pos, ModBlocks.URN.getDefaultState(), 3);
                 this.debugWrite(pos);
             }

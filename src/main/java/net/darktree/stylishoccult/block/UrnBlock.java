@@ -16,8 +16,8 @@ import net.minecraft.world.BlockView;
 
 public class UrnBlock extends SimpleBlock {
 
-    public static final VoxelShape COLLISION_SHAPE = Voxels.box(3, 0, 3, 13, 13, 13).build();
-    public static VoxelShape OUTLINE_SHAPE = Voxels.box(4, 0, 4, 12, 1, 12).box(3, 1, 3, 13, 10, 13).box(5, 10, 5, 11, 12, 11).box(4, 12, 4, 12, 13, 12).build();
+    private static final VoxelShape COLLISION_SHAPE = Voxels.box(3, 0, 3, 13, 13, 13).build();
+    private static final VoxelShape OUTLINE_SHAPE = Voxels.box(4, 0, 4, 12, 1, 12).box(3, 1, 3, 13, 10, 13).box(5, 10, 5, 11, 12, 11).box(4, 12, 4, 12, 13, 12).build();
 
     public UrnBlock() {
         super( RegUtil.settings( Material.WOOD, Sounds.URN, 0.1F, 6.0f, false ) );

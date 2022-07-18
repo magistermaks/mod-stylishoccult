@@ -25,7 +25,7 @@ public class SanctumStructureProcessor extends SimpleStructureProcessor {
 	@Override
 	public BlockState process(Random random, Block block, BlockState state) {
 		if (block == Blocks.BLACK_WOOL) return RandUtils.getArrayEntry(RUBBLE, random).getDefaultState(); else
-		if (block == Blocks.POLISHED_BLACKSTONE_BRICKS) return RandUtils.getBool(8f, random) ? getRune(random) : RandUtils.getArrayEntry(BRICKS, random).getDefaultState(); else
+		if (block == Blocks.POLISHED_BLACKSTONE_BRICKS) return RandUtils.getBool(6f, random) ? getRune(random) : RandUtils.getArrayEntry(BRICKS, random).getDefaultState(); else
 		if (block == Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS) return copyStair(state, RandUtils.getArrayEntry(STAIRS, random)); else
 		if (block == Blocks.POLISHED_BLACKSTONE_BRICK_SLAB) return copySlab(state, RandUtils.getArrayEntry(SLABS, random)); else
 		if (block == ModBlocks.URN && RandUtils.getBool(50f, random)) return Blocks.AIR.getDefaultState(); else

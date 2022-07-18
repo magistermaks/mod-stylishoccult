@@ -28,6 +28,7 @@ import net.minecraft.tag.ItemTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -143,8 +144,8 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		return true;
 	}
 
-	public void tick() {
-		if (world != null && world.isClient) {
+	public void tick(World world, BlockPos pos, BlockState blockState) {
+		if (world == null || world.isClient || blockState.getBlock() != ModBlocks.ALTAR_PLATE) {
 			return;
 		}
 

@@ -44,14 +44,16 @@ public class Settings {
     public final int runeBloodYield = CONFIG.getOrDefault("rune.blood.yield", 100);
 
     // features
-    public final float featureBoulderChance = CONFIG.getOrDefault("feature.boulder.chance", 7.0f);
+    public final float featureBoulderChance = CONFIG.getOrDefault("feature.boulder.chance", 8.0f);
     public final float featureBoulderFireChance = CONFIG.getOrDefault("feature.boulder.fire.chance", 45.0f);
-    public final float featureFleshVainChance = CONFIG.getOrDefault("feature.flesh.vain.chance", 79.0f);
+    public final float featureBoulderRadiusBase = CONFIG.getOrDefault("feature.boulder.radius.base", 2.1f);
+    public final float featureBoulderBlackstoneChance = CONFIG.getOrDefault("feature.boulder.blackstone.chance", 20.0f);
+    public final float featureFleshVainChance = CONFIG.getOrDefault("feature.flesh.vain.chance", 80.0f);
     public final int featureFleshVainSize = CONFIG.getOrDefault("feature.flesh.vain.size", 30);
     public final int featureFleshStoneVainSize = CONFIG.getOrDefault("feature.flesh.stone.vain.size", 12);
     public final float featureGrassChance = CONFIG.getOrDefault("feature.grass.chance", 98.0f);
     public final float featureFernChance = CONFIG.getOrDefault("feature.fern.chance", 5.0f);
-    public final float featureWallChance = CONFIG.getOrDefault("feature.wall.chance", 1.2f);
+    public final float featureWallChance = CONFIG.getOrDefault("feature.wall.chance", 1.4f);
     public final float featureWallRuneChance = CONFIG.getOrDefault("feature.wall.rune.chance", 29.0f);
     public final float featureDemonChance = CONFIG.getOrDefault("feature.demon.chance", 25.0f);
     public final float featureSparkVentChance = CONFIG.getOrDefault("feature.spark.vent.chance", 18.0f);
