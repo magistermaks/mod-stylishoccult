@@ -82,7 +82,7 @@ public final class Ring extends BaseStack {
 		try {
 			for(int i = 0; i < buffer.length; i ++) {
 				NbtCompound entry = nbt.getCompound(String.valueOf(i));
-				buffer[offset] = entry.isEmpty() ? null : StackElement.from(entry);
+				buffer[i] = entry.isEmpty() ? null : StackElement.from(entry);
 			}
 
 			offset = nbt.getShort("i") % buffer.length;

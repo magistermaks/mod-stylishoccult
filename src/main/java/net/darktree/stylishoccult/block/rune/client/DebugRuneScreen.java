@@ -6,11 +6,11 @@ import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import io.github.cottonmc.cotton.gui.widget.data.HorizontalAlignment;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.script.element.StackElement;
 import net.darktree.stylishoccult.script.element.view.ElementView;
 import net.darktree.stylishoccult.script.engine.BaseStack;
 import net.darktree.stylishoccult.script.engine.Script;
-import net.darktree.stylishoccult.utils.Utils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.util.TriState;
@@ -24,8 +24,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Environment(EnvType.CLIENT)
 public class DebugRuneScreen extends CottonClientScreen {
-
-	// TODO: cleanup required asap
 
 	public DebugRuneScreen(GuiDescription description) {
 		super(description);
@@ -42,108 +40,131 @@ public class DebugRuneScreen extends CottonClientScreen {
 
 	public static class Gui extends LightweightGuiDescription {
 
-		private WToggleButton numericalToggle, dropToggle;
-
-		private final BlockPos pos;
+		private boolean numericalView;
 
 		public Gui(BlockPos pos, NbtCompound nbt) {
-			this.pos = pos;
-			Script script = Script.fromNbt(nbt);
+			StylishOccult.LOGGER.info("Displaying debug information for rune at: [" + pos.toShortString() + "]");
 
+			// create root
 			WGridPanel root = new WGridPanel();
 			setRootPanel(root);
 			root.setSize(14 * 18, 13 * 18);
 			root.setInsets(Insets.ROOT_PANEL);
 
-			WLabel title = new WLabel(Utils.guiText("debug.title"));
-			title.setHorizontalAlignment(HorizontalAlignment.CENTER);
+			// title
+			WSimpleLabel title = new WSimpleLabel("debug.title", HorizontalAlignment.CENTER);
 			root.add(title, 0, 0, 14, 1);
 
-			WLabel subtitle = new WLabel(Utils.guiText("debug.snapshot"));
-			subtitle.setHorizontalAlignment(HorizontalAlignment.CENTER);
-			subtitle.setColor(Formatting.DARK_GRAY.getColorValue());
+			// subtitle
+			WSimpleLabel subtitle = new WSimpleLabel("debug.snapshot", HorizontalAlignment.CENTER, Formatting.DARK_GRAY);
 			root.add(subtitle, 0, 1, 14, 1);
 
-			WGridPanel right = new WGridPanel();
-			right.setInsets(new Insets(0, 4));
+			// create panels
+			WCardPanel cards = getStackCards(Script.fromNbt(nbt));
+			WPanel settings = getSettingsPanel(cards);
 
-			WCardPanel cards = new WCardPanel();
-
-			numericalToggle = new WToggleButton(Utils.guiText("debug.toggle.numerical"));
-			right.add(numericalToggle, 0, 0, 7, 1);
-
-			dropToggle = new WToggleButton(Utils.guiText("debug.toggle.stack"));
-			dropToggle.setOnToggle(on -> {
-				cards.setSelectedIndex(on ? 1 : 0);
-			});
-
-			right.add(dropToggle, 0, 1, 7, 1);
-
-			WDynamicLabel cardLabel = new WDynamicLabel(() -> {
-				return dropToggle.getToggle() ? Utils.guiText("debug.tab.drop").getString() : Utils.guiText("debug.tab.stack").getString();
-			});
-			cardLabel.setAlignment(HorizontalAlignment.CENTER);
-			root.add(cardLabel, 0, 2, 7, 1);
-
-			cards.add(getElementListPanel(script.stack));
-			cards.add(getElementListPanel(script.ring));
-
-			root.add(cards, 0, 3, 7, 9);
-
-			root.add(right, 7, 3, 7, 9);
+			// append panels
+			root.add(cards, 0, 2, 7, 10);
+			root.add(settings, 7, 3, 7, 9);
 
 			root.validate(this);
 		}
-		private WPanel getElementListPanel(BaseStack stack) {
-			WGridPanel panel = new WGridPanel(3);
+
+		/**
+		 * Get the panel representing the settings
+		 * @param cards the WCardPanel widget to be controlled
+		 */
+		private WPanel getSettingsPanel(WCardPanel cards) {
+			WGridPanel panel = new WGridPanel();
+			panel.setInsets(new Insets(0, 4));
+
+			WSimpleToggle numerical = new WSimpleToggle("debug.toggle.numerical", on -> numericalView = on);
+			panel.add(numerical, 0, 0, 7, 1);
+
+			WSimpleToggle stack = new WSimpleToggle("debug.toggle.stack", on -> cards.setSelectedIndex(on ? 1 : 0));
+			panel.add(stack, 0, 1, 7, 1);
+
+			return panel;
+		}
+
+		/**
+		 * Get the stack cards panel
+		 */
+		private WCardPanel getStackCards(Script script) {
+			WCardPanel cards = new WCardPanel();
+
+			cards.add(getStackPanel(script.stack, "debug.tab.stack"));
+			cards.add(getStackPanel(script.ring, "debug.tab.drop"));
+
+			return cards;
+		}
+
+		/**
+		 * Get a panel representing the given stack
+		 */
+		private WPanel getStackPanel(BaseStack stack, String key) {
+			WGridPanel panel = new WGridPanel();
+
+			// add title
+			WLabel title = new WSimpleLabel(key, HorizontalAlignment.CENTER);
+			panel.add(title, 0, 0, 7, 1);
+
+			// create element list
+			WScrollPanel list = new WScrollPanel(getStackEntries(stack));
+			list.setScrollingHorizontally(TriState.FALSE);
+			list.setScrollingVertically(TriState.TRUE);
+			panel.add(list, 0, 1, 7, 9);
+
+			return panel;
+		}
+
+		/**
+		 * Get a list of stack entries, or an "empty" message
+		 */
+		private WGridPanel getStackEntries(BaseStack stack) {
+			WGridPanel entries = new WGridPanel(3);
 
 			AtomicInteger offset = new AtomicInteger();
 			stack.reset(element -> {
-				panel.add(getElementPanel(element), 0, offset.getAndAdd(7));
+				entries.add(getStackElement(element), 0, offset.getAndAdd(7));
 			});
 
+			// add message if there were no entries
 			if (offset.get() == 0) {
-				WLabel label = new WLabel(Utils.guiText("debug.empty"));
-				label.setHorizontalAlignment(HorizontalAlignment.CENTER);
-				label.setColor(Formatting.GRAY.getColorValue());
-
-				panel.add(label, 0, 0, 42, 6);
+				WSimpleLabel label = new WSimpleLabel("debug.empty", HorizontalAlignment.CENTER, Formatting.GRAY);
+				entries.add(label, 0, 0, 42, 6);
 			}
 
-			WScrollPanel scrollPanel = new WScrollPanel(panel);
-			scrollPanel.setScrollingHorizontally(TriState.FALSE);
-			scrollPanel.setScrollingVertically(TriState.TRUE);
-
-			return scrollPanel;
+			return entries;
 		}
 
-		private WGridPanel getElementPanel(StackElement element) {
+		/**
+		 * Get a panel representing a single stack entry generated using ElementView
+		 */
+		private WGridPanel getStackElement(StackElement element) {
 			ElementView view = element.view();
-
-			WSprite icon = new WSprite(view.getIcon()) {
-				@Override
-				public void addTooltip(TooltipBuilder tooltip) {
-					String tip = view.getTooltip();
-
-					if (tip != null) {
-						tooltip.add(new LiteralText(view.getBody()));
-
-						if (MinecraftClient.getInstance().options.advancedItemTooltips) {
-							tooltip.add(new LiteralText(view.getTooltip()).formatted(Formatting.GRAY));
-						}
-					}
-				}
-			};
-
-			WLabel label = new WLabel(view.getHead());
-			WDynamicLabel body = new WDynamicLabel(() -> {
-				return numericalToggle.getToggle() ? String.valueOf(element.value()) : view.getBody();
-			}, Formatting.DARK_GRAY.getColorValue());
-
 			WGridPanel panel = new WGridPanel(3);
 
+			// add icon with tooltip
+			WTooltipSprite icon = new WTooltipSprite(view.getIcon(), (builder, advanced) -> {
+				String tip = view.getTooltip();
+
+				if (tip != null) {
+					builder.add(new LiteralText(view.getBody()));
+
+					if (advanced) {
+						builder.add(new LiteralText(tip).formatted(Formatting.GRAY));
+					}
+				}
+			});
 			panel.add(icon, 0, 0, 6, 6);
-			panel.add(label, 7, 0, 36, 3);
+
+			// add entry title
+			WLabel title = new WLabel(view.getHead());
+			panel.add(title, 7, 0, 36, 3);
+
+			// add entry description
+			WDynamicLabel body = new WDynamicLabel(() -> numericalView ? String.valueOf(element.value()) : view.getBody(), Formatting.DARK_GRAY.getColorValue());
 			panel.add(body, 7, 3, 36, 3);
 
 			return panel;

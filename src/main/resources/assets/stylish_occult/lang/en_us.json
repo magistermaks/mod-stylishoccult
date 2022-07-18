@@ -79,6 +79,7 @@
   "tooltip.stylish_occult.error_tablet.error.broken": "Damaged inscription!",
   "tooltip.stylish_occult.altar_plate": "Place on top of a Runestone Table to create an altar",
   "tooltip.stylish_occult.blood_amount": "Amount: %smb",
+  "tooltip.stylish_occult.debug_unavailable": "No debug information available!",
 
   "rune.block.stylish_occult.rune_debug": "Inveniet",
   "rune.block.stylish_occult.rune_tactus": "Tactus",
@@ -156,7 +157,7 @@
 
   "gui.stylish_occult.debug.title": "Inveniet Rune",
   "gui.stylish_occult.debug.snapshot": "Snapshot of the previous rune activation",
-  "gui.stylish_occult.debug.empty": "This stack is empty",
+  "gui.stylish_occult.debug.empty": "This stack is empty.",
   "gui.stylish_occult.debug.toggle.numerical": "Numerical view",
   "gui.stylish_occult.debug.toggle.stack": "Drop stack view",
   "gui.stylish_occult.debug.tab.stack": "Main Stack",

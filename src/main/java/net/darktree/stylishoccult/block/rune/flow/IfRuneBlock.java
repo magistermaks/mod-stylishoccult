@@ -15,7 +15,7 @@ public class IfRuneBlock extends DirectionalRuneBlock {
     @Override
     public Direction[] getDirections(World world, BlockPos pos, Script script) {
         try {
-            if( script.pull(world, pos).value() != 0 ) {
+            if (script.pull(world, pos).value() != 0) {
                 return new Direction[]{getFacing(world, pos)};
             }
         }catch (Exception ignore) {}
