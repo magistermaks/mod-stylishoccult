@@ -3,6 +3,7 @@ package net.darktree.stylishoccult;
 import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
+import net.darktree.stylishoccult.config.Config;
 import net.darktree.stylishoccult.config.Settings;
 import net.darktree.stylishoccult.data.ResourceLoaders;
 import net.darktree.stylishoccult.effect.ModEffects;
@@ -23,7 +24,9 @@ public class StylishOccult implements ModInitializer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger("Stylish Occult");
     public static final String NAMESPACE = "stylish_occult";
-    public static final Settings SETTINGS = new Settings();
+
+    public static final Config<Settings> CONFIG = Config.of(Settings.class, NAMESPACE).request();
+    public static Settings SETTING = CONFIG.getConfigured();
 
     public static void debug( String message ) {
         if(FabricLoader.getInstance().isDevelopmentEnvironment()) {

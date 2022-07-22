@@ -9,7 +9,10 @@
     "magistermaks"
   ],
   "contact": {
-    "website": "darktree.net"
+    "website": "http://darktree.net",
+    "homepage": "http://darktree.net",
+    "issues": "https://github.com/magistermaks/mod-stylishoccult/issues",
+    "github": "https://github.com/magistermaks/mod-stylishoccult"
   },
   "license": "LGPL",
   "icon": "assets/stylish_occult/icon.png",
@@ -20,6 +23,9 @@
     ],
     "main": [
       "net.darktree.stylishoccult.StylishOccult"
+    ],
+    "modmenu": [
+      "net.darktree.stylishoccult.config.client.Menu"
     ]
   },
   "mixins": [

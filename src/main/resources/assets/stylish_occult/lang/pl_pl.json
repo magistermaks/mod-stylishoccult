@@ -103,6 +103,10 @@
   "gui.stylish_occult.debug.toggle.stack": "Pokaż upuszczone",
   "gui.stylish_occult.debug.tab.stack": "Upuszczone",
   "gui.stylish_occult.debug.tab.drop": "Stos",
+  "gui.stylish_occult.config.save": "Zapisz",
+  "gui.stylish_occult.config.done": "Zamknij",
+  "gui.stylish_occult.config.reset": "Wymaż",
+  "gui.stylish_occult.config.unsaved": " %s niezapisanych zmian",
 
   "itemGroup.stylish_occult.stylish_occult_main": "Stylish Occult: Ogólne",
   "itemGroup.stylish_occult.stylish_occult_runes": "Stylish Occult: Runy",

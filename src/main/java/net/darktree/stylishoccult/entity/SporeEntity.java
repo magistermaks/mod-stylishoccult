@@ -9,6 +9,7 @@ import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
@@ -28,16 +29,18 @@ public class SporeEntity extends SparkEntity implements CorruptedEntity {
     }
 
     public static DefaultAttributeContainer.Builder createSporeAttributes() {
-        return SparkEntity.createSparkAttributes();
+        return createMobAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, StylishOccult.SETTING.spore_health)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, StylishOccult.SETTING.spore_damage);
     }
 
     @Override
     protected void playRandomEffect(int c, boolean die) {
-        for(int i = 0; i < c; i ++) {
+        for (int i = 0; i < c; i ++) {
             world.addParticle(die ? Particles.BLOOD_SPLASH : Particles.BLOOD_FALLING, this.getX(), this.getY(), this.getZ(), 0, 0.03f, 0);
         }
 
-        if(die) {
+        if (die) {
             Sounds.SPORE_ESCAPES.play(world, this.getBlockPos());
         }
     }
@@ -52,7 +55,7 @@ public class SporeEntity extends SparkEntity implements CorruptedEntity {
 
     @Override
     protected void dealDamage() {
-        damage(DamageSource.GENERIC, StylishOccult.SETTINGS.sporeEntityDamage);
+        damage(DamageSource.GENERIC, StylishOccult.SETTING.spore_selfharm);
     }
 
     @Override

@@ -152,7 +152,7 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
             }
         }
 
-        if( material == LavaDemonMaterial.STONE && RandUtils.getBool( StylishOccult.SETTINGS.lavaDemonRandomDisguise ) ) {
+        if( material == LavaDemonMaterial.STONE && RandUtils.getBool(StylishOccult.SETTING.disguise_chance) ) {
             material = RandUtils.getEnum( LavaDemonMaterial.class );
         }
 
@@ -175,60 +175,60 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
                     world,
                     target,
                     ModBlocks.LAVA_DEMON,
-                    StylishOccult.SETTINGS.lavaDemonMaxSearchRadius,
+                    StylishOccult.SETTING.max_search_radius,
                     (BlockState s) -> s.get(PART) == LavaDemonPart.HEAD);
 
-            if( world.getBlockState(target).getBlock() == net.minecraft.block.Blocks.STONE ){
-                if( origin != null ) {
+            if (world.getBlockState(target).getBlock() == net.minecraft.block.Blocks.STONE){
+                if (origin != null) {
                     int j = BlockUtils.touchesAir(world, pos)
-                            ? StylishOccult.SETTINGS.lavaDemonSpreadLockAirRarity
-                            : StylishOccult.SETTINGS.lavaDemonSpreadLockDefaultRarity;
+                            ? StylishOccult.SETTING.spread_lock_exposed_rarity
+                            : StylishOccult.SETTING.spread_lock_buried_rarity;
 
                     BlockState targetState = ModBlocks.LAVA_DEMON.getDefaultState();
 
-                    if( random.nextInt(j) < origin.getManhattanDistance(pos) ) {
+                    if (random.nextInt(j) < origin.getManhattanDistance(pos)) {
                         // Unable to spread! To far from origin!
                         world.setBlockState( pos, state.with(CAN_SPREAD, false) );
                     }
 
-                    if( BlockUtils.touchesAir(world, target) ) {
-                        if( random.nextInt( StylishOccult.SETTINGS.lavaDemonEmitterAirRarity ) <= 3 ) {
+                    if (BlockUtils.touchesAir(world, target)) {
+                        if (RandUtils.getBool(StylishOccult.SETTING.emitter_exposed)) {
                             targetState = targetState.with(PART, LavaDemonPart.EMITTER);
                         }
-                    }else{
-                        if( random.nextInt( StylishOccult.SETTINGS.lavaDemonEmitterDefaultRarity ) <= 3 ) {
+                    } else {
+                        if (RandUtils.getBool(StylishOccult.SETTING.emitter_buried)) {
                             targetState = targetState.with(PART, LavaDemonPart.EMITTER);
                         }
                     }
 
                     targetState = targetState.with(MATERIAL, getDisguise(world, target));
 
-                    world.setBlockState( target, targetState );
-                }else{
+                    world.setBlockState(target, targetState);
+                } else {
                     // Unable to spread! No origin found!
-                    world.setBlockState( pos, state.with(CAN_SPREAD, false) );
+                    world.setBlockState(pos, state.with(CAN_SPREAD, false));
                 }
-            }else{
-                if( (origin != null) && (random.nextInt(6) < origin.getManhattanDistance(pos)) ) {
+            } else {
+                if ((origin != null) && (random.nextInt(6) < origin.getManhattanDistance(pos))) {
                     // Unable to spread! Target is not spreadable!
-                    world.setBlockState( pos, state.with(CAN_SPREAD, false) );
+                    world.setBlockState(pos, state.with(CAN_SPREAD, false));
                 }
             }
         }
 
         // Calming 2 -> 1
-        if( state.get(ANGER) == 2 ){
-            if( RandUtils.getBool( StylishOccult.SETTINGS.lavaDemonCalmChance1 ) ) {
+        if (state.get(ANGER) == 2) {
+            if( RandUtils.getBool(StylishOccult.SETTING.calm_chance_1 )) {
                 world.setBlockState(pos, state.with(ANGER, 1));
                 return;
             }
         }
 
         // Calming 1 -> 0
-        if( state.get(ANGER) == 1 ){
-            if( RandUtils.getBool( StylishOccult.SETTINGS.lavaDemonCalmChance2 ) ) {
-                if( BlockUtils.find(world, pos, ModBlocks.LAVA_DEMON, StylishOccult.SETTINGS.lavaDemonCalmRadius, (BlockState s) -> s.get(ANGER) == 2) == null ) {
-                    world.setBlockState( pos, state.with(ANGER, 0) );
+        if (state.get(ANGER) == 1){
+            if (RandUtils.getBool(StylishOccult.SETTING.calm_chance_2)) {
+                if (BlockUtils.find(world, pos, ModBlocks.LAVA_DEMON, StylishOccult.SETTING.calm_radius, (BlockState s) -> s.get(ANGER) == 2) == null ) {
+                    world.setBlockState(pos, state.with(ANGER, 0));
                 }
             }
         }

@@ -61,7 +61,7 @@ public class LavaDemonBlockEntity extends BlockEntity {
         PlayerEntity player = getNearbyPlayer();
 
         // Spread anger
-        if (anger == 2 && random.nextInt(StylishOccult.SETTINGS.lavaDemonSpreadAngerRarity.get(d)) == 0) {
+        if (anger == 2 && RandUtils.getBool(StylishOccult.SETTING.spread_anger_chance.get(d), random)) {
             BlockPos target = pos.offset(RandUtils.getEnum(Direction.class));
             BlockState targetState = world.getBlockState(target);
 
@@ -78,8 +78,8 @@ public class LavaDemonBlockEntity extends BlockEntity {
             if (BlockUtils.areInLine(player.getBlockPos(), pos) || BlockUtils.areInLine(player.getBlockPos().up(), pos)) {
 
                 if (amount <= 0) {
-                    timeout = (random.nextInt(60) + StylishOccult.SETTINGS.lavaDemonFireBallTimeoutBase);
-                    amount = (random.nextInt(6) + StylishOccult.SETTINGS.lavaDemonFireBallAmountBase);
+                    timeout = (random.nextInt(60) + StylishOccult.SETTING.fire_ball_timeout_min);
+                    amount = (random.nextInt(6) + StylishOccult.SETTING.fire_ball_amount_min);
                 }
 
                 interval = 3;
@@ -88,7 +88,7 @@ public class LavaDemonBlockEntity extends BlockEntity {
                 if( direction != Direction.DOWN && direction != Direction.UP ) {
                     BlockPos spawnPoint = pos.offset( direction );
 
-                    float speed = StylishOccult.SETTINGS.lavaDemonFireBallSpeed;
+                    float speed = StylishOccult.SETTING.fire_ball_speed;
                     float vx = direction == Direction.WEST ? -speed : direction == Direction.EAST ? speed : 0;
                     float vz = direction == Direction.NORTH ? -speed : direction == Direction.SOUTH ? speed : 0;
 
@@ -112,7 +112,7 @@ public class LavaDemonBlockEntity extends BlockEntity {
         }
 
         // summon spark
-        if (d != Difficulty.PEACEFUL && (random.nextInt( StylishOccult.SETTINGS.lavaDemonSparkSpawnRarity.get(d) ) == 0) && (anger > 0) && (part != LavaDemonPart.BODY) && (player != null) ) {
+        if (d != Difficulty.PEACEFUL && RandUtils.getBool(StylishOccult.SETTING.spark_spawn_chance, random) && (anger > 0) && (part != LavaDemonPart.BODY) && (player != null) ) {
             if (BlockUtils.touchesAir(world, pos)) {
 
                 for (int i = 0; i < 10; i ++){

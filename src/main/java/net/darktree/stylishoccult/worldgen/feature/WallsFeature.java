@@ -46,7 +46,7 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         BlockPos target = pos.down();
 
-        if (RandUtils.getBool(StylishOccult.SETTINGS.featureWallChance, random) && world.getBlockState(target).isSolidBlock(world, target)) {
+        if (RandUtils.getBool(StylishOccult.SETTING.wall_chance, random) && world.getBlockState(target).isSolidBlock(world, target)) {
             generateWall( getAxis(random), world, target, RandUtils.rangeInt(2, 5, random), (float) RandUtils.rangeInt(83, 90, random), random );
             scatterUrns(world, target, random);
             this.debugWrite(target);
@@ -61,7 +61,7 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
             BlockPos.Mutable pos = origin.mutableCopy();
 
             for (int i = 0; i <= height; i ++) {
-                pos.move( Direction.UP );
+                pos.move(Direction.UP);
                 generateRune(world, pos, random);
             }
 
@@ -188,7 +188,7 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
     }
 
     private void generateRune(StructureWorldAccess world, BlockPos pos, Random random) {
-        if (RandUtils.getBool(StylishOccult.SETTINGS.featureWallRuneChance, random)) {
+        if (RandUtils.getBool(StylishOccult.SETTING.wall_rune_chance, random)) {
             Block rune = ModTags.RUNES.getRandom(random);
             world.setBlockState(pos, rune.getDefaultState().with(RuneBlock.FROZEN, true), 3);
         } else {

@@ -28,7 +28,7 @@ public class LavaDemonFeature extends SimpleFeature<DefaultFeatureConfig> {
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 
-        if( !RandUtils.getBool(StylishOccult.SETTINGS.featureDemonChance, random) ) {
+        if( !RandUtils.getBool(StylishOccult.SETTING.demon_chance, random) ) {
             return false;
         }
 

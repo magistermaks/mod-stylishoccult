@@ -159,7 +159,7 @@ public class OccultHelper {
                 if( BlockTags.LEAVES.contains(block) ) return LeavesFleshBlock.getStateToFit(world, pos);
                 if( ModTags.TOP_SOIL.contains(block) && RandUtils.getBool(80) ) return ModBlocks.SOIL_FLESH.getDefaultState();
 
-                return ModBlocks.FLESH_PASSIVE.getDefaultState().with(PassiveFleshBlock.BLOODY, RandUtils.getBool(StylishOccult.SETTINGS.fleshBloodChance));
+                return ModBlocks.FLESH_PASSIVE.getDefaultState().with(PassiveFleshBlock.BLOODY, RandUtils.getBool(StylishOccult.SETTING.bloody_flesh_chance));
             }
         }
 

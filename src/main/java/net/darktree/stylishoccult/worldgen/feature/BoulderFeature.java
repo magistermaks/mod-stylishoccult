@@ -26,18 +26,18 @@ public class BoulderFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	@Override
 	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos target, DefaultFeatureConfig config) {
-		float radius = random.nextFloat() * StylishOccult.SETTINGS.featureBoulderRadiusBase + 1;
+		float radius = random.nextFloat() * StylishOccult.SETTING.boulder_radius_base + 1;
 		int erosion = random.nextInt(2);
 		int cx = target.getX(), cy = target.getY() - erosion - 2, cz = target.getZ();
 
 		BlockPos.Mutable pos = target.mutableCopy();
 		int extend = MathHelper.ceil(radius);
 
-		if (!RandUtils.getBool(StylishOccult.SETTINGS.featureBoulderChance, random)) {
+		if (!RandUtils.getBool(StylishOccult.SETTING.boulder_chance, random)) {
 			return false;
 		}
 
-		boolean fire = RandUtils.getBool(StylishOccult.SETTINGS.featureBoulderFireChance, random);
+		boolean fire = RandUtils.getBool(StylishOccult.SETTING.boulder_fire_chance, random);
 
 		for (int x = -extend; x < extend; x ++) {
 			for (int y = -extend; y < extend; y ++) {
@@ -59,11 +59,11 @@ public class BoulderFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	private void generateBlock(StructureWorldAccess world, BlockPos.Mutable pos, Random random, boolean edge, int erosion, boolean fire) {
 		if (edge) {
-			if (random.nextInt(4 - erosion) != 0) {
+			if (!StylishOccult.SETTING.boulder_erode || random.nextInt(4 - erosion) != 0) {
 				world.setBlockState(pos, Blocks.BLACKSTONE.getDefaultState(), 3);
 			}
 		} else {
-			if (RandUtils.getBool(StylishOccult.SETTINGS.featureBoulderBlackstoneChance, random)) {
+			if (RandUtils.getBool(StylishOccult.SETTING.boulder_blackstone_chance, random)) {
 				world.setBlockState(pos, Blocks.BLACKSTONE.getDefaultState(), 3);
 			} else {
 				world.setBlockState(pos, ModTags.BOULDER_FILLER.getRandom(random).getDefaultState(), 3);

@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.network;
 
 import io.netty.buffer.Unpooled;
-import net.darktree.stylishoccult.block.rune.client.DebugRuneScreen;
+import net.darktree.stylishoccult.gui.screen.DebugRuneScreen;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

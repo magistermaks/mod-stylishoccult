@@ -33,7 +33,7 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 
-        if (!RandUtils.getBool(StylishOccult.SETTINGS.featureSparkVentChance, random)) {
+        if (!RandUtils.getBool(StylishOccult.SETTING.spark_vent_chance, random)) {
             return false;
         }
 

@@ -1,4 +1,4 @@
-package net.darktree.stylishoccult.block.rune.client;
+package net.darktree.stylishoccult.gui.screen;
 
 import io.github.cottonmc.cotton.gui.GuiDescription;
 import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
@@ -7,6 +7,10 @@ import io.github.cottonmc.cotton.gui.widget.*;
 import io.github.cottonmc.cotton.gui.widget.data.HorizontalAlignment;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.gui.ScreenHelper;
+import net.darktree.stylishoccult.gui.widget.WSimpleLabel;
+import net.darktree.stylishoccult.gui.widget.WSimpleToggle;
+import net.darktree.stylishoccult.gui.widget.WTooltipSprite;
 import net.darktree.stylishoccult.script.element.StackElement;
 import net.darktree.stylishoccult.script.element.view.ElementView;
 import net.darktree.stylishoccult.script.engine.BaseStack;
@@ -46,10 +50,7 @@ public class DebugRuneScreen extends CottonClientScreen {
 			StylishOccult.LOGGER.info("Displaying debug information for rune at: [" + pos.toShortString() + "]");
 
 			// create root
-			WGridPanel root = new WGridPanel();
-			setRootPanel(root);
-			root.setSize(14 * 18, 13 * 18);
-			root.setInsets(Insets.ROOT_PANEL);
+			WGridPanel root = ScreenHelper.getRoot(this, 14, 13, 9);
 
 			// title
 			WSimpleLabel title = new WSimpleLabel("debug.title", HorizontalAlignment.CENTER);

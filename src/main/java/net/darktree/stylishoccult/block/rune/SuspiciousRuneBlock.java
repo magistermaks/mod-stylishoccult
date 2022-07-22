@@ -62,7 +62,7 @@ public class SuspiciousRuneBlock extends TransferRuneBlock {
 			}
 		}
 
-		float yield = StylishOccult.SETTINGS.runeBloodYield;
+		float yield = StylishOccult.SETTING.rune_blood_yield;
 		script.stack.push(new FluidElement(FluidVariant.of(ModFluids.STILL_BLOOD), (long) Math.ceil(yield * damage)));
 	}
 

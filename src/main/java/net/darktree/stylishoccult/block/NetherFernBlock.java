@@ -31,7 +31,7 @@ public class NetherFernBlock extends NetherGrassBlock implements DropsItself {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if( entity instanceof LivingEntity ) {
             if( !world.isClient && !((LivingEntity) entity).hasStatusEffect(StatusEffects.POISON) ) {
-                int duration = StylishOccult.SETTINGS.fernPoisonTimeMinBase + world.random.nextInt( StylishOccult.SETTINGS.fernPoisonTimeDelta.get(world) );
+                int duration = StylishOccult.SETTING.poison_time_min + world.random.nextInt(50);
                 ((LivingEntity) entity).addStatusEffect( new StatusEffectInstance(StatusEffects.POISON, duration, 0) );
             }
         }

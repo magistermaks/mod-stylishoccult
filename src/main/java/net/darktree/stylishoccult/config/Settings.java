@@ -1,88 +1,141 @@
 package net.darktree.stylishoccult.config;
 
-import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.utils.DifficultyBased;
 import net.darktree.stylishoccult.utils.StructureConfig;
 
-import java.util.Date;
-
 public class Settings {
 
-    // Rarity:  bigger => more rare
-    // Chance:  bigger => more common (0% - 100%)
-    // Base:    given value is only a base value of some math formula
+	@Config.Entry(group="feature", min=0, max=100)
+	public float boulder_chance = 8.0f;
 
-    private final SimpleConfig CONFIG = SimpleConfig.of("stylish_occult").provider(Settings::provider).request();
+	@Config.Entry(group="feature", min=0, max=100)
+	public float boulder_fire_chance = 45.0f;
 
-    private static String provider(String name) {
-        return "# Configuration file for mod Stylish Occult, intended for modpack makers and advanced users!\n# Generated on " + new Date() + "\n";
-    }
+	@Config.Entry(group="feature", min=0, max=16)
+	public float boulder_radius_base = 2.1f;
 
-    // lava demon
-    public final int lavaDemonEmitterAirRarity = CONFIG.getOrDefault("demon.emitter.exposed.rarity", 8);
-    public final int lavaDemonEmitterDefaultRarity = CONFIG.getOrDefault("demon.emitter.buried.rarity", 15);
-    public final float lavaDemonRandomDisguise = CONFIG.getOrDefault("demon.disguise.chance", 12.0f);
-    public final float lavaDemonCalmChance1 = CONFIG.getOrDefault("demon.calm.chance.1", 40.0f);
-    public final float lavaDemonCalmChance2 = CONFIG.getOrDefault("demon.calm.chance.2", 50.0f);
-    public final int lavaDemonCalmRadius = CONFIG.getOrDefault("demon.calm.radius", 2);
-    public final float lavaDemonFireBallSpeed = CONFIG.getOrDefault("demon.fireball.speed", 0.821f);
-    public final int lavaDemonFireBallAmountBase = CONFIG.getOrDefault("demon.fireball.amount", 4);
-    public final int lavaDemonFireBallTimeoutBase = CONFIG.getOrDefault("demon.fireball.timeout", 180);
+	@Config.Entry(group="feature", min=0, max=100)
+	public float boulder_blackstone_chance = 20.0f;
 
-    // don't touch those unless you really know what are you doing, or you can cause infinite growth
-    public final int lavaDemonSpreadLockDefaultRarity = CONFIG.getOrDefault("demon.spread.lock.buried.rarity", 6);
-    public final int lavaDemonSpreadLockAirRarity = CONFIG.getOrDefault("demon.spread.lock.exposed.rarity", 10);
-    public final int lavaDemonMaxSearchRadius = CONFIG.getOrDefault("demon.spread.seek.radius", 5);
+	@Config.Entry(group="feature")
+	public boolean boulder_erode = true;
 
-    // other
-    public final float entityHealth = CONFIG.getOrDefault("entity.health", 1.0f);
-    public final float entityDamage = CONFIG.getOrDefault("entity.damage", 1.0f);
-    public final float sporeEntityDamage = CONFIG.getOrDefault("entity.spore.harm", 0.4f); // damage dealt to itself on attack
-    public final float fleshBloodChance = CONFIG.getOrDefault("flesh.bloody.chance", 12.5f);
-    public final int fernPoisonTimeMinBase = CONFIG.getOrDefault("fern.poison.time.min", 40);
-    public final boolean fleshInfiniteSpread = CONFIG.getOrDefault("flesh.spread.infinite", false);
-    public final int runeBloodYield = CONFIG.getOrDefault("rune.blood.yield", 100);
+	@Config.Entry(group="feature", min=1, restart=true)
+	public int flesh_vain_size = 30;
 
-    // features
-    public final float featureBoulderChance = CONFIG.getOrDefault("feature.boulder.chance", 8.0f);
-    public final float featureBoulderFireChance = CONFIG.getOrDefault("feature.boulder.fire.chance", 45.0f);
-    public final float featureBoulderRadiusBase = CONFIG.getOrDefault("feature.boulder.radius.base", 2.1f);
-    public final float featureBoulderBlackstoneChance = CONFIG.getOrDefault("feature.boulder.blackstone.chance", 20.0f);
-    public final float featureFleshVainChance = CONFIG.getOrDefault("feature.flesh.vain.chance", 80.0f);
-    public final int featureFleshVainSize = CONFIG.getOrDefault("feature.flesh.vain.size", 30);
-    public final int featureFleshStoneVainSize = CONFIG.getOrDefault("feature.flesh.stone.vain.size", 12);
-    public final float featureGrassChance = CONFIG.getOrDefault("feature.grass.chance", 98.0f);
-    public final float featureFernChance = CONFIG.getOrDefault("feature.fern.chance", 5.0f);
-    public final float featureWallChance = CONFIG.getOrDefault("feature.wall.chance", 1.4f);
-    public final float featureWallRuneChance = CONFIG.getOrDefault("feature.wall.rune.chance", 29.0f);
-    public final float featureDemonChance = CONFIG.getOrDefault("feature.demon.chance", 25.0f);
-    public final float featureSparkVentChance = CONFIG.getOrDefault("feature.spark.vent.chance", 18.0f);
+	@Config.Entry(group="feature", min=1, restart=true)
+	public int flesh_vain_count = 1;
 
-    // difficult based stuff
-    public final DifficultyBased<Integer> lavaDemonSparkSpawnRarity = difficultyInt("demon.spark.spawn.rarity", 180, 190, 200, 500);
-    public final DifficultyBased<Integer> lavaDemonSpreadAngerRarity = difficultyInt("demon.anger.spread.rarity", 2, 3, 4, 5);
-    public final DifficultyBased<Integer> sparkEntityBaseLiveTime = difficultyInt("spark.live.time.min", 13, 10, 5, 4);
-    public final DifficultyBased<Integer> sparkVentSleepTimeBase = difficultyInt("spark.vent.sleep.min", 150, 250, 350, 400);
-    public final DifficultyBased<Integer> fernPoisonTimeDelta = difficultyInt("fern.poison.time.delta", 80, 60, 40, 30);
-    public final DifficultyBased<Float> runicErrorExplosionSize = new DifficultyBased<>(2.5f, 2.0f, 1.5f, 1.0f);
+	@Config.Entry(group="feature", min=1, restart=true)
+	public int flesh_stone_vain_size = 12;
 
-    // structure configs
-    public final StructureConfig sanctum = new StructureConfig(CONFIG, "structure.sanctum", 10, 7, 48151, 5);
-    public final StructureConfig stonehenge = new StructureConfig(CONFIG, "structure.stonehenge", 30, 14, 62342, 4);
+	@Config.Entry(group="feature", min=1, restart=true)
+	public int flesh_stone_vain_count = 3;
 
-    public Settings() {
-        if( CONFIG.isBroken() ) {
-            StylishOccult.LOGGER.error("Error: Invalid config data! reverting to default...");
-            CONFIG.delete();
-        }
-    }
+	@Config.Entry(group="feature", min=0, max=100)
+	public float grass_patch_chance = 98.0f;
 
-    private DifficultyBased<Integer> difficultyInt(String config, int hard, int normal, int easy, int peaceful) {
-        return new DifficultyBased<>(
-                CONFIG.getOrDefault(config + ".hard", hard),
-                CONFIG.getOrDefault(config + ".normal", normal),
-                CONFIG.getOrDefault(config + ".easy", easy),
-                CONFIG.getOrDefault(config + ".peaceful", peaceful)
-        );
-    }
+	@Config.Entry(group="feature", min=0, max=100)
+	public float fern_chance = 5.0f;
+
+	@Config.Entry(group="feature", min=0, max=100)
+	public float wall_chance = 1.4f;
+
+	@Config.Entry(group="feature", min=0, max=100)
+	public float wall_rune_chance = 29.0f;
+
+	@Config.Entry(group="feature", min=0, max=100)
+	public float demon_chance = 25.0f;
+
+	@Config.Entry(group="feature", min=0, max=100)
+	public float spark_vent_chance = 18.0f;
+
+	@Config.Entry(group="demon", min=0, max=100)
+	public float emitter_exposed = 44.0f;
+
+	@Config.Entry(group="demon", min=0, max=100)
+	public float emitter_buried = 26.0f;
+
+	@Config.Entry(group="demon", min=0, max=100)
+	public float disguise_chance = 12.0f;
+
+	@Config.Entry(group="demon", min=0, max=100)
+	public float calm_chance_1 = 40.0f;
+
+	@Config.Entry(group="demon", min=0, max=100)
+	public float calm_chance_2 = 50.0f;
+
+	@Config.Entry(group="demon", min=0, max=100)
+	public int calm_radius = 2;
+
+	@Config.Entry(group="demon", min=0)
+	public float fire_ball_speed = 0.821f;
+
+	@Config.Entry(group="demon", min=0)
+	public int fire_ball_amount_min = 4;
+
+	@Config.Entry(group="demon", min=0)
+	public int fire_ball_timeout_min = 180;
+
+	@Config.Entry(group="demon", min=0)
+	public float spark_spawn_chance = 0.005263f;
+
+	@Config.Entry(group="demon", min=1)
+	public int spread_lock_buried_rarity = 6;
+
+	@Config.Entry(group="demon", min=1)
+	public int spread_lock_exposed_rarity = 10;
+
+	@Config.Entry(group="demon", min=1)
+	public int max_search_radius = 5;
+
+	@Config.Entry(group="other", min=0)
+	public int poison_time_min = 40;
+
+	@Config.Entry(group="other", min=0)
+	public int rune_blood_yield = 100;
+
+	@Config.Entry(group="other", min=1, restart=true)
+	public float spark_health = 1.0f;
+
+	@Config.Entry(group="other", min=0, restart=true)
+	public float spark_damage = 1.0f;
+
+	@Config.Entry(group="other", min=0)
+	public float spark_selfharm = 0.4f;
+
+	@Config.Entry(group="other", min=1, restart=true)
+	public float spore_health = 1.0f;
+
+	@Config.Entry(group="other", min=0, restart=true)
+	public float spore_damage = 1.0f;
+
+	@Config.Entry(group="other", min=0)
+	public float spore_selfharm = 0.4f;
+
+	@Config.Entry(group="other", min=0, max=100)
+	public float bloody_flesh_chance = 12.5f;
+
+	@Config.Entry(group="other")
+	public boolean infinite_flesh_growth = false;
+
+	@Config.Entry(group="structure", restart=true)
+	public StructureConfig sanctum = new StructureConfig(10, 7, 48151, 5);
+
+	@Config.Entry(group="structure", restart=true)
+	public StructureConfig stonehenge = new StructureConfig(30, 14, 62342, 4);
+
+	@Config.Entry(group="difficulty")
+	public DifficultyBased spread_anger_chance = new DifficultyBased(50.0f, 33.0f, 25.0f, 20.0f);
+
+	@Config.Entry(group="difficulty")
+	public DifficultyBased spark_live_time = new DifficultyBased(13, 10, 5, 4);
+
+	@Config.Entry(group="difficulty")
+	public DifficultyBased vent_timeout = new DifficultyBased(150, 250, 350, 400);
+
+	@Config.Entry(group="difficulty")
+	public DifficultyBased rune_error_explosion = new DifficultyBased(2.5f, 2.0f, 1.5f, 1.0f);
+
+
 }

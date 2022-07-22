@@ -1,4 +1,4 @@
-package net.darktree.stylishoccult.block.rune.client;
+package net.darktree.stylishoccult.gui.widget;
 
 import io.github.cottonmc.cotton.gui.widget.WToggleButton;
 import net.darktree.stylishoccult.utils.Utils;

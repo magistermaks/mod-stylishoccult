@@ -39,7 +39,7 @@ public class NetherGrassFeature extends SimpleFeature<DefaultFeatureConfig> {
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 
-        if( !RandUtils.getBool(StylishOccult.SETTINGS.featureGrassChance, random) ) {
+        if( !RandUtils.getBool(StylishOccult.SETTING.grass_patch_chance, random) ) {
             return false;
         }
 
@@ -58,7 +58,7 @@ public class NetherGrassFeature extends SimpleFeature<DefaultFeatureConfig> {
                     );
 
                     if( world.isAir(target) && target.getY() > 0 && GRASS.canPlaceAt(world, target) ) {
-                        world.setBlockState(target, RandUtils.getBool(StylishOccult.SETTINGS.featureFernChance, random) ? FERN : GRASS, 2);
+                        world.setBlockState(target, RandUtils.getBool(StylishOccult.SETTING.fern_chance, random) ? FERN : GRASS, 2);
                     }
 
                 }

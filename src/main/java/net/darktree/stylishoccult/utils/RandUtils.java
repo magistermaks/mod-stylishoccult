@@ -15,6 +15,7 @@ public class RandUtils {
         return values[random.nextInt(values.length)];
     }
 
+    @Deprecated
     public static boolean getBool(float probability) {
         return (Math.random() * 100) <= probability;
     }

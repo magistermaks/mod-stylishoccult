@@ -30,12 +30,12 @@ public class FleshStonePatchFeature extends OreFeature implements SimpleFeatureP
         return configure( new OreFeatureConfig(
 					OreFeatureConfig.Rules.STONE_ORE_REPLACEABLES,
 					ModBlocks.STONE_FLESH.getDefaultState(),
-					StylishOccult.SETTINGS.featureFleshStoneVainSize ))   // vein size
+					StylishOccult.SETTING.flesh_stone_vain_size ))   // vein size
                 .decorate(Decorator.RANGE.configure( new RangeDecoratorConfig(BiasedToBottomHeightProvider.create(
 						YOffset.aboveBottom(0), YOffset.aboveBottom(100), 20
 				))))
                 .spreadHorizontally()
-                .repeat(3);    // number of veins per chunk
+                .repeat(StylishOccult.SETTING.flesh_stone_vain_count);    // number of veins per chunk
     }
 
 }

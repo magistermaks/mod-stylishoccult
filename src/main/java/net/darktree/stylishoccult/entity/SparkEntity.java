@@ -101,8 +101,8 @@ public class SparkEntity extends HostileEntity {
 
     public static DefaultAttributeContainer.Builder createSparkAttributes() {
         return createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, StylishOccult.SETTINGS.entityHealth)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, StylishOccult.SETTINGS.entityDamage);
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, StylishOccult.SETTING.spark_health)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, StylishOccult.SETTING.spark_damage);
     }
 
     protected void playRandomEffect(int c, boolean die) {
@@ -139,7 +139,7 @@ public class SparkEntity extends HostileEntity {
     }
 
     protected void dealDamage() {
-        damage(DamageSource.ON_FIRE, StylishOccult.SETTINGS.entityDamage);
+        damage(DamageSource.GENERIC, StylishOccult.SETTING.spark_selfharm);
     }
 
     protected boolean hasTarget() {
@@ -216,7 +216,7 @@ public class SparkEntity extends HostileEntity {
     }
 
     public int getMaxAge(Difficulty d) {
-        return world.getRandom().nextInt(10 * 20) + (20 * StylishOccult.SETTINGS.sparkEntityBaseLiveTime.get(d));
+        return world.getRandom().nextInt(10 * 20) + (int) (20 * StylishOccult.SETTING.spark_live_time.get(d));
     }
 
     @Override
