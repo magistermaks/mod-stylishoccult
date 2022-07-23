@@ -9,7 +9,6 @@ import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.gui.ScreenHelper;
 import net.darktree.stylishoccult.gui.widget.WSimpleLabel;
-import net.darktree.stylishoccult.gui.widget.WSimpleToggle;
 import net.darktree.stylishoccult.gui.widget.WTooltipSprite;
 import net.darktree.stylishoccult.script.element.StackElement;
 import net.darktree.stylishoccult.script.element.view.ElementView;
@@ -79,10 +78,10 @@ public class DebugRuneScreen extends CottonClientScreen {
 			WGridPanel panel = new WGridPanel();
 			panel.setInsets(new Insets(0, 4));
 
-			WSimpleToggle numerical = new WSimpleToggle("debug.toggle.numerical", on -> numericalView = on);
+			WToggleButton numerical = ScreenHelper.toggle("debug.toggle.numerical", on -> numericalView = on);
 			panel.add(numerical, 0, 0, 7, 1);
 
-			WSimpleToggle stack = new WSimpleToggle("debug.toggle.stack", on -> cards.setSelectedIndex(on ? 1 : 0));
+			WToggleButton stack = ScreenHelper.toggle("debug.toggle.stack", on -> cards.setSelectedIndex(on ? 1 : 0));
 			panel.add(stack, 0, 1, 7, 1);
 
 			return panel;

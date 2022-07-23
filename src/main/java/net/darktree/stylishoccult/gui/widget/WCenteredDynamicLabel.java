@@ -5,9 +5,9 @@ import net.minecraft.client.util.math.MatrixStack;
 
 import java.util.function.Supplier;
 
-public class WAlignedDynamicLabel extends WDynamicLabel {
+public class WCenteredDynamicLabel extends WDynamicLabel {
 
-	public WAlignedDynamicLabel(Supplier<String> text) {
+	public WCenteredDynamicLabel(Supplier<String> text) {
 		super(text);
 	}
 

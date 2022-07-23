@@ -39,4 +39,5 @@ public class WSimpleLabel extends WLabel {
 	public void setTooltip(BiConsumer<TooltipBuilder, Boolean> appender) {
 		this.appender = appender;
 	}
+
 }

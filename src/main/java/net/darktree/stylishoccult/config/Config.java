@@ -76,8 +76,11 @@ public class Config<T> {
 		 */
 		float max() default Float.MAX_VALUE;
 
+		/**
+		 * IIndicates whether the game must be restarted
+		 * for this config entry to be applied
+		 */
 		boolean restart() default false;
-
 
 	}
 
@@ -270,7 +273,7 @@ public class Config<T> {
 	/**
 	 * Get a config instance reflecting the default state
 	 */
-	public T getDefault() {
+	private T getDefault() {
 		try {
 			return request.clazz.newInstance();
 		} catch (Exception exception) {
@@ -334,13 +337,6 @@ public class Config<T> {
 		createConfigFile(builder.toString());
 	}
 
-	/**
-	 * Get a list of underlying properties
-	 */
-	public List<Property<T>> getProperties() {
-		return properties;
-	}
-
 	public Set<Map.Entry<String, List<Property<T>>>> getGroups() {
 		return groups.entrySet();
 	}
@@ -348,7 +344,7 @@ public class Config<T> {
 	public static class Property<T> {
 		public final String key;
 		public final Class<?> type;
-		private final boolean restart;
+		public final boolean requiresRestart;
 		private final FieldStack stack;
 		private final float min;
 		private final float max;
@@ -362,20 +358,14 @@ public class Config<T> {
 			this.stack = stack;
 			this.min = min;
 			this.max = max;
-			this.restart = restart;
+			this.requiresRestart = restart;
 			this.defaultValue = defaultValue;
 			this.currentValue = defaultValue;
 			this.futureValue = defaultValue;
 		}
 
-		public boolean requiresRestart() {
-			return restart;
-		}
-
 		/**
 		 * Set the value, no changes will be visible until they are applied
-		 *
-		 * @param value the new value to be set
 		 */
 		public void set(Object value) {
 			this.futureValue = value;
@@ -383,8 +373,6 @@ public class Config<T> {
 
 		/**
 		 * Set the value from string, no changes will be visible until they are applied
-		 *
-		 * @param string the new string to be parsed and set
 		 */
 		public boolean parse(String string) {
 			if (type == String.class && string.length() < min && string.length() > max) {
@@ -412,8 +400,6 @@ public class Config<T> {
 
 		/**
 		 * Get the current value
-		 *
-		 * @return the current value of this property
 		 */
 		public Object get() {
 			return this.futureValue;
@@ -428,8 +414,6 @@ public class Config<T> {
 
 		/**
 		 * Check if there are non-applied changes made to this property
-		 *
-		 * @return TODO
 		 */
 		public boolean isModified() {
 			return !this.currentValue.equals(this.futureValue);
@@ -437,8 +421,6 @@ public class Config<T> {
 
 		/**
 		 * Check if this property differs from the default value
-		 *
-		 * @return TODO
 		 */
 		public boolean isNotDefault() {
 			return !this.futureValue.equals(this.defaultValue);

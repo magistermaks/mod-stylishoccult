@@ -137,5 +137,4 @@ public class Settings {
 	@Config.Entry(group="difficulty")
 	public DifficultyBased rune_error_explosion = new DifficultyBased(2.5f, 2.0f, 1.5f, 1.0f);
 
-
 }

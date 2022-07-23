@@ -9,10 +9,10 @@ import io.github.cottonmc.cotton.gui.widget.data.VerticalAlignment;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.config.Config;
 import net.darktree.stylishoccult.gui.ScreenHelper;
-import net.darktree.stylishoccult.gui.widget.WAlignedDynamicLabel;
-import net.darktree.stylishoccult.gui.widget.WBasicToggle;
+import net.darktree.stylishoccult.gui.widget.WCenteredDynamicLabel;
 import net.darktree.stylishoccult.gui.widget.WDynamicButton;
 import net.darktree.stylishoccult.gui.widget.WSimpleLabel;
+import net.darktree.stylishoccult.gui.widget.WSimpleToggle;
 import net.darktree.stylishoccult.utils.Utils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -87,7 +87,7 @@ public class SettingsScreen<T> extends CottonClientScreen {
 			root.add(scroll, 0, 0, 84, 72);
 
 			// unsaved warning label
-			WAlignedDynamicLabel info = new WAlignedDynamicLabel(() -> Utils.guiText("config.unsaved", config.getChangedCount()).getString());
+			WCenteredDynamicLabel info = new WCenteredDynamicLabel(() -> Utils.guiText("config.unsaved", config.getChangedCount()).getString());
 			root.add(info, 0, 78, 24, 6);
 
 			// cancel and quit button
@@ -113,7 +113,7 @@ public class SettingsScreen<T> extends CottonClientScreen {
 			title.setTooltip((builder, advanced) -> {
 				Arrays.stream(Utils.guiText("config." + property.key + ".description").getString().split("\n")).map(LiteralText::new).forEach(builder::add);
 
-				if (property.requiresRestart()) {
+				if (property.requiresRestart) {
 					builder.add(Utils.guiText("config.restart").formatted(Formatting.RED));
 				}
 
@@ -128,7 +128,7 @@ public class SettingsScreen<T> extends CottonClientScreen {
 
 			// input filed
 			if (property.type == Boolean.class) {
-				WBasicToggle button = new WBasicToggle((Boolean) property.get(), property::set);
+				WSimpleToggle button = new WSimpleToggle((Boolean) property.get(), property::set);
 				option.add(button, 54, 0, 12, 6);
 
 				reset.setOnClick(() -> {
