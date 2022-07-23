@@ -31,20 +31,28 @@ import java.util.Set;
 public class SettingsScreen<T> extends CottonClientScreen {
 
 	private final Config<T> config;
+	private final Screen screen;
 
-	public SettingsScreen(GuiDescription description, Config<T> config) {
+	public SettingsScreen(GuiDescription description, Config<T> config, Screen screen) {
 		super(description);
 		this.config = config;
+		this.screen = screen;
 	}
 
 	public static <T> SettingsScreen<T> open(Screen parent, Config<T> config) {
-		return new SettingsScreen<>(new Gui<>(parent, config), config);
+		return new SettingsScreen<>(new Gui<>(parent, config), config, parent);
 	}
 
 	@Override
 	public void removed() {
 		config.discardAllChanges(); // if there were any changes made there are now applied anyway
 		StylishOccult.SETTING = StylishOccult.CONFIG.getConfigured(); // update current configuration
+	}
+
+	@Override
+	public void onClose() {
+		assert this.client != null;
+		this.client.setScreen(this.screen);
 	}
 
 	public static class Gui<T> extends LightweightGuiDescription {

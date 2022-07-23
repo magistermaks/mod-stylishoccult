@@ -3,7 +3,10 @@ package net.darktree.stylishoccult.gui;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class ScreenHelper {
 
 	public static WGridPanel getRoot(LightweightGuiDescription gui, int w, int h, int grid) {

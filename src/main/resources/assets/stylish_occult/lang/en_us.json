@@ -270,7 +270,7 @@
   "gui.stylish_occult.config.difficulty.spread_anger_chance.peaceful.description": "Controls the chance that anger will \nspread from one Lava Demon block to another",
   "gui.stylish_occult.config.difficulty.spread_anger_chance.easy.title": "Anger Spreading (Easy)",
   "gui.stylish_occult.config.difficulty.spread_anger_chance.easy.description": "Controls the chance that anger will \nspread from one Lava Demon block to another",
-  "gui.stylish_occult.config.difficulty.spread_anger_chance.normal.title": "Anger Spread Chance (Normal)",
+  "gui.stylish_occult.config.difficulty.spread_anger_chance.normal.title": "Anger Spreading (Normal)",
   "gui.stylish_occult.config.difficulty.spread_anger_chance.normal.description": "Controls the chance that anger will \nspread from one Lava Demon block to another",
   "gui.stylish_occult.config.difficulty.spread_anger_chance.hard.title": "Anger Spreading (Hard)",
   "gui.stylish_occult.config.difficulty.spread_anger_chance.hard.description": "Controls the chance that anger will \nspread from one Lava Demon block to another",
@@ -298,7 +298,6 @@
   "gui.stylish_occult.config.difficulty.rune_error_explosion.normal.description": "Controls the size of an explosion \nthat occurs on runic exceptions",
   "gui.stylish_occult.config.difficulty.rune_error_explosion.hard.title": "Rune Explosion Size (Hard)",
   "gui.stylish_occult.config.difficulty.rune_error_explosion.hard.description": "Controls the size of an explosion \nthat occurs on runic exceptions",
-
 
   "itemGroup.stylish_occult.stylish_occult_main": "Stylish Occult: General",
   "itemGroup.stylish_occult.stylish_occult_runes": "Stylish Occult: Runes",
