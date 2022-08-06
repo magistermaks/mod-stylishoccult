@@ -1,47 +1,47 @@
 {
-  "schemaVersion": 1,
-  "id": "stylish_occult",
-  "version": "${version}",
-  "name": "Stylish Occult",
-  "description": "Runes (and more...) straight from the occult!",
-  "accessWidener": "stylish_occult.accesswidener",
-  "authors": [
-    "magistermaks"
-  ],
-  "contact": {
-    "website": "http://darktree.net",
-    "homepage": "http://darktree.net",
-    "issues": "https://github.com/magistermaks/mod-stylishoccult/issues",
-    "github": "https://github.com/magistermaks/mod-stylishoccult"
-  },
-  "license": "LGPL",
-  "icon": "assets/stylish_occult/icon.png",
-  "environment": "*",
-  "entrypoints": {
-    "client": [
-      "net.darktree.stylishoccult.ClientInitializer"
-    ],
-    "main": [
-      "net.darktree.stylishoccult.StylishOccult"
-    ],
-    "modmenu": [
-      "net.darktree.stylishoccult.config.client.Menu"
-    ]
-  },
-  "mixins": [
-    "stylish_occult.mixins.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.10.8",
-    "fabric": ">=0.30.0",
-    "minecraft": "1.17.x",
-    "java": ">=17",
-    "interference": ">=1.3.1"
-  },
-  "custom": {
-    "waila:plugins": {
-      "id": "stylish_occult:plugin",
-      "initializer": "net.darktree.stylishoccult.WailaPlugin"
-    }
-  }
+	"schemaVersion": 1,
+	"id": "stylish_occult",
+	"version": "${version}",
+	"name": "Stylish Occult",
+	"description": "Runes (and more...) straight from the occult!",
+	"accessWidener": "stylish_occult.accesswidener",
+	"authors": [
+		"magistermaks"
+	],
+	"contact": {
+		"website": "http://darktree.net",
+		"homepage": "http://darktree.net",
+		"issues": "https://github.com/magistermaks/mod-stylishoccult/issues",
+		"github": "https://github.com/magistermaks/mod-stylishoccult"
+	},
+	"license": "LGPL",
+	"icon": "assets/stylish_occult/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"client": [
+			"net.darktree.stylishoccult.ClientInitializer"
+		],
+		"main": [
+			"net.darktree.stylishoccult.StylishOccult"
+		],
+		"modmenu": [
+			"net.darktree.stylishoccult.config.client.Menu"
+		]
+	},
+	"mixins": [
+		"stylish_occult.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.10.8",
+		"fabric": ">=0.30.0",
+		"minecraft": "1.17.x",
+		"java": ">=17",
+		"interference": ">=1.3.1"
+	},
+	"custom": {
+		"waila:plugins": {
+			"id": "stylish_occult:plugin",
+			"initializer": "net.darktree.stylishoccult.WailaPlugin"
+		}
+	}
 }

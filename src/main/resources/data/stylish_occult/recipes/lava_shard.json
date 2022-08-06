@@ -1,12 +1,12 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "stylish_occult:lava_heart"
-    }
-  ],
-  "result": {
-    "item": "stylish_occult:lava_shard",
-    "count": 3
-  }
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "stylish_occult:lava_heart"
+		}
+	],
+	"result": {
+		"item": "stylish_occult:lava_shard",
+		"count": 3
+	}
 }

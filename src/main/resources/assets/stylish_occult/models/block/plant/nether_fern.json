@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "stylish_occult:block/nether_fern"
-  }
+	"parent": "minecraft:block/cross",
+	"textures": {
+		"cross": "stylish_occult:block/nether_fern"
+	}
 }

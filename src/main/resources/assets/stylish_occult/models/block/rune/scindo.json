@@ -1,7 +1,7 @@
 {
-    "parent": "stylish_occult:block/rune/common/rune",
+	"parent": "stylish_occult:block/rune/common/rune",
 	"textures": {
-        "north": "stylish_occult:rune/scindo",
+		"north": "stylish_occult:rune/scindo",
 		"east": "stylish_occult:rune/scindo",
 		"south": "stylish_occult:rune/scindo",
 		"west": "stylish_occult:rune/scindo",

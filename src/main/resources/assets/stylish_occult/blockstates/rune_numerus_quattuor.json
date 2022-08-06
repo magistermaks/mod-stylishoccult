@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "stylish_occult:block/rune/numerus/quattuor" }
-    }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/rune/numerus/quattuor"
+		}
+	}
 }

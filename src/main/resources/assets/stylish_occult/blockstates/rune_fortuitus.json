@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "stylish_occult:block/rune/fortuitus" }
-    }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/rune/fortuitus"
+		}
+	}
 }

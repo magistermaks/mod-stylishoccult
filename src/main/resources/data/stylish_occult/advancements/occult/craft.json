@@ -1,34 +1,34 @@
 {
-  "parent": "stylish_occult:occult/gather",
-  "display": {
-    "icon": {
-      "item": "stylish_occult:rune_creo"
-    },
-    "title": {
-      "translate": "advancements.stylish_occult.craft.title"
-    },
-    "description": {
-      "translate": "advancements.stylish_occult.craft.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
-  "criteria": {
-    "trigger": {
-      "trigger": "stylish_occult:trigger",
-      "conditions": {
-        "distance": 32,
-        "rune": {
-          "items": ["stylish_occult:rune_creo"]
-        }
-      }
-    }
-  },
-  "requirements": [
-    [
-      "trigger"
-    ]
-  ]
+	"parent": "stylish_occult:occult/gather",
+	"display": {
+		"icon": {
+			"item": "stylish_occult:rune_creo"
+		},
+		"title": {
+			"translate": "advancements.stylish_occult.craft.title"
+		},
+		"description": {
+			"translate": "advancements.stylish_occult.craft.description"
+		},
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"trigger": {
+			"trigger": "stylish_occult:trigger",
+			"conditions": {
+				"distance": 32,
+				"rune": {
+					"items": ["stylish_occult:rune_creo"]
+				}
+			}
+		}
+	},
+	"requirements": [
+		[
+			"trigger"
+		]
+	]
 }

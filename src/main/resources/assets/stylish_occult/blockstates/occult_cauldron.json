@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "stylish_occult:block/cauldron"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/cauldron"
+		}
+	}
 }

@@ -1,176 +1,160 @@
 {
-  "name": "stylish_occult:sanctum/dungeon",
-  "fallback": "stylish_occult:sanctum/terminator",
-  "elements": [
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/room/1",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/room/2",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/room/3",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/room/4",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/room/5",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/room/6",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/room/7",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/room/8",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/room/9",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/plug/raw",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/plug/collapsed",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/plug/flesh",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/plug/loot",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/hall/split",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/hall/stairs",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/hall/straight",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/hall/door",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    }
-  ]
+	"name": "stylish_occult:sanctum/dungeon",
+	"fallback": "stylish_occult:sanctum/terminator",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/room/1",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/room/2",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/room/3",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/room/4",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/room/5",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/room/6",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/room/7",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/room/8",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/room/9",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/plug/raw",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/plug/collapsed",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/plug/flesh",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/plug/loot",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/hall/split",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/hall/stairs",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/hall/straight",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/hall/door",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		}
+	]
 }
 

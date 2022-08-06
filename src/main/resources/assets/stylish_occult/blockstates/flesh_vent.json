@@ -1,12 +1,31 @@
-    {
-      "variants": {
-        "facing=up": { "model": "stylish_occult:block/flesh/vent" },
-        "facing=down": { "model": "stylish_occult:block/flesh/vent", "x": 180 },
-        "facing=north": { "model": "stylish_occult:block/flesh/vent", "x": 90 },
-        "facing=south": { "model": "stylish_occult:block/flesh/vent", "x": 270 },
-        "facing=west": { "model": "stylish_occult:block/flesh/vent", "x": 90, "y": 270 },
-        "facing=east": { "model": "stylish_occult:block/flesh/vent", "x": 90, "y": 90 }
-      }
-    }
+{
+	"variants": {
+		"facing=up": {
+			"model": "stylish_occult:block/flesh/vent"
+		},
+		"facing=down": {
+			"model": "stylish_occult:block/flesh/vent",
+			"x": 180
+		},
+		"facing=north": {
+			"model": "stylish_occult:block/flesh/vent",
+			"x": 90
+		},
+		"facing=south": {
+			"model": "stylish_occult:block/flesh/vent",
+			"x": 270
+		},
+		"facing=west": {
+			"model": "stylish_occult:block/flesh/vent",
+			"x": 90,
+			"y": 270
+		},
+		"facing=east": {
+			"model": "stylish_occult:block/flesh/vent",
+			"x": 90,
+			"y": 90
+		}
+	}
+}
 
 

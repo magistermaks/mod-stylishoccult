@@ -1,7 +1,9 @@
-    {
-      "variants": {
-        "": { "model": "stylish_occult:block/urn" }
-      }
-    }
+{
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/urn"
+		}
+	}
+}
 
 

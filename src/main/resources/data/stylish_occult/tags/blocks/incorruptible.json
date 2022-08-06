@@ -1,7 +1,7 @@
 {
-    "replace": false,
-    "values": [
-        "stylish_occult:runestone_altar_plate",
-        "stylish_occult:runestone_table"
-    ]
+	"replace": false,
+	"values": [
+		"stylish_occult:runestone_altar_plate",
+		"stylish_occult:runestone_table"
+	]
 }

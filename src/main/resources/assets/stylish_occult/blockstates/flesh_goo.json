@@ -1,8 +1,12 @@
-    {
-      "variants": {
-        "top=false": { "model": "stylish_occult:block/flesh/goo" },
-        "top=true": { "model": "stylish_occult:block/flesh/goo_top" }
-      }
-    }
+{
+	"variants": {
+		"top=false": {
+			"model": "stylish_occult:block/flesh/goo"
+		},
+		"top=true": {
+			"model": "stylish_occult:block/flesh/goo_top"
+		}
+	}
+}
 
 

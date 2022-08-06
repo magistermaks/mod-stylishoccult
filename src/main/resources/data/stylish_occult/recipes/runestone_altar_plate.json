@@ -1,18 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "222",
-    "111"
-  ],
-  "key": {
-    "1": {
-      "item": "stylish_occult:runestone_slab"
-    },
-    "2": {
-      "item": "minecraft:amethyst_shard"
-    }
-  },
-  "result": {
-    "item": "stylish_occult:runestone_altar_plate"
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"222",
+		"111"
+	],
+	"key": {
+		"1": {
+			"item": "stylish_occult:runestone_slab"
+		},
+		"2": {
+			"item": "minecraft:amethyst_shard"
+		}
+	},
+	"result": {
+		"item": "stylish_occult:runestone_altar_plate"
+	}
 }

@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "stylish_occult:block/rune/numerus/nihil" }
-    }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/rune/numerus/nihil"
+		}
+	}
 }

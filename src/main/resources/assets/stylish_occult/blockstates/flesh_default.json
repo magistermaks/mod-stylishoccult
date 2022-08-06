@@ -1,7 +1,9 @@
-    {
-      "variants": {
-        "": { "model": "stylish_occult:block/flesh/default" }
-      }
-    }
+{
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/flesh/default"
+		}
+	}
+}
 
 

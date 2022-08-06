@@ -1,18 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "21",
-    "12"
-  ],
-  "key": {
-    "1": {
-      "item": "stylish_occult:glowgrowth_shard"
-    },
-    "2": {
-      "item": "stylish_occult:flesh"
-    }
-  },
-  "result": {
-    "item": "stylish_occult:flesh_glow"
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"21",
+		"12"
+	],
+	"key": {
+		"1": {
+			"item": "stylish_occult:glowgrowth_shard"
+		},
+		"2": {
+			"item": "stylish_occult:flesh"
+		}
+	},
+	"result": {
+		"item": "stylish_occult:flesh_glow"
+	}
 }

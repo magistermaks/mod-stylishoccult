@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "stylish_occult:block/rune/numerus/unus" }
-    }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/rune/numerus/unus"
+		}
+	}
 }

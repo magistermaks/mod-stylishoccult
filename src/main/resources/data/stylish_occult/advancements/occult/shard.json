@@ -1,35 +1,35 @@
 {
-  "parent": "stylish_occult:occult/sanctum",
-  "display": {
-    "icon": {
-      "item": "stylish_occult:blood_shard"
-    },
-    "title": {
-      "translate": "advancements.stylish_occult.shard.title"
-    },
-    "description": {
-      "translate": "advancements.stylish_occult.shard.description"
-    },
-    "frame": "goal",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
-  "criteria": {
-    "blood_shard": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": ["stylish_occult:blood_shard"]
-          }
-        ]
-      }
-    }
-  },
-  "requirements": [
-    [
-      "blood_shard"
-    ]
-  ]
+	"parent": "stylish_occult:occult/sanctum",
+	"display": {
+		"icon": {
+			"item": "stylish_occult:blood_shard"
+		},
+		"title": {
+			"translate": "advancements.stylish_occult.shard.title"
+		},
+		"description": {
+			"translate": "advancements.stylish_occult.shard.description"
+		},
+		"frame": "goal",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"blood_shard": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": ["stylish_occult:blood_shard"]
+					}
+				]
+			}
+		}
+	},
+	"requirements": [
+		[
+			"blood_shard"
+		]
+	]
 }

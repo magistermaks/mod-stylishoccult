@@ -1,5 +1,7 @@
 {
-  "variants": {
-    "": { "model": "stylish_occult:block/plant/nether_grass" }
-  }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/plant/nether_grass"
+		}
+	}
 }

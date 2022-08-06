@@ -1,6 +1,6 @@
 {
-    "parent": "minecraft:block/lantern_hanging",
-    "textures": {
-        "lantern": "stylish_occult:block/lantern"
-    }
+	"parent": "minecraft:block/lantern_hanging",
+	"textures": {
+		"lantern": "stylish_occult:block/lantern"
+	}
 }

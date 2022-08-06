@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "stylish_occult:block/rune/numerus/quinque" }
-    }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/rune/numerus/quinque"
+		}
+	}
 }

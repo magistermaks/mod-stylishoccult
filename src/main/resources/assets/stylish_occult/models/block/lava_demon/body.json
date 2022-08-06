@@ -1,7 +1,7 @@
 {
-    "parent": "stylish_occult:block/lava_demon/common",
+	"parent": "stylish_occult:block/lava_demon/common",
 	"textures": {
-        "0": "stylish_occult:block/stone_veins_1",
+		"0": "stylish_occult:block/stone_veins_1",
 		"1": "stylish_occult:block/stone_veins_1",
 		"2": "minecraft:block/magma"
 	}

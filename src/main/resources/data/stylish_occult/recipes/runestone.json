@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "stylish_occult:crystalline_blackstone"
-  },
-  "result": "stylish_occult:runestone",
-  "experience": 0.4,
-  "cookingtime": 200
+	"type": "minecraft:smelting",
+	"ingredient": {
+		"item": "stylish_occult:crystalline_blackstone"
+	},
+	"result": "stylish_occult:runestone",
+	"experience": 0.4,
+	"cookingtime": 200
 }

@@ -1,7 +1,9 @@
-    {
-      "variants": {
-        "": { "model": "stylish_occult:block/flesh/leaves" }
-      }
-    }
+{
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/flesh/leaves"
+		}
+	}
+}
 
 

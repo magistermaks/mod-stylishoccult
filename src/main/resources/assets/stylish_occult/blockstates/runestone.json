@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "stylish_occult:block/brick/runestone" }
-    }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/brick/runestone"
+		}
+	}
 }

@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "stylish_occult:item/blood_bucket"
-  }
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "stylish_occult:item/blood_bucket"
+	}
 }

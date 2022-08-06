@@ -1,33 +1,33 @@
 {
-    "lava_demon_wakeup": {
-        "subtitle": "sound.stylish_occult.lava_demon.wakeup",
-        "sounds": [
-            "stylish_occult:lava_demon_wakeup_1",
-            "stylish_occult:lava_demon_wakeup_2",
-            "stylish_occult:lava_demon_wakeup_3"
-        ]
-    },
-    "lava_demon_die": {
-        "subtitle": "sound.stylish_occult.lava_demon.die",
-        "sounds": [
-            "stylish_occult:lava_demon_die"
-        ]
-    },
-    "urn_broken": {
-        "subtitle": "sound.stylish_occult.urn.broken",
-        "sounds": [
-            "stylish_occult:urn_1",
-            "stylish_occult:urn_2",
-            "stylish_occult:urn_3",
-            "stylish_occult:urn_4"
-        ]
-    },
-    "vent": {
-        "subtitle": "sound.stylish_occult.vent",
-        "sounds": [
-            "stylish_occult:vent"
-        ]
-    },
+	"lava_demon_wakeup": {
+		"subtitle": "sound.stylish_occult.lava_demon.wakeup",
+		"sounds": [
+			"stylish_occult:lava_demon_wakeup_1",
+			"stylish_occult:lava_demon_wakeup_2",
+			"stylish_occult:lava_demon_wakeup_3"
+		]
+	},
+	"lava_demon_die": {
+		"subtitle": "sound.stylish_occult.lava_demon.die",
+		"sounds": [
+			"stylish_occult:lava_demon_die"
+		]
+	},
+	"urn_broken": {
+		"subtitle": "sound.stylish_occult.urn.broken",
+		"sounds": [
+			"stylish_occult:urn_1",
+			"stylish_occult:urn_2",
+			"stylish_occult:urn_3",
+			"stylish_occult:urn_4"
+		]
+	},
+	"vent": {
+		"subtitle": "sound.stylish_occult.vent",
+		"sounds": [
+			"stylish_occult:vent"
+		]
+	},
 	"spore_escapes": {
 		"subtitle": "sound.stylish_occult.spore_escapes",
 		"sounds": [
@@ -49,7 +49,7 @@
 	},
 	"arc": {
 		"subtitle": "sound.stylish_occult.arc",
-        "author": "https://freesound.org/people/kev_durr/sounds/396511/",
+		"author": "https://freesound.org/people/kev_durr/sounds/396511/",
 		"sounds": [
 			"stylish_occult:arc"
 		]
@@ -143,5 +143,4 @@
 			"stylish_occult:inspect_1"
 		]
 	}
-
 }

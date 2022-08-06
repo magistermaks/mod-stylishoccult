@@ -1,76 +1,181 @@
 {
-    "multipart": [
-        {
-            "when": { "down": "true", "size": "3" },
-            "apply": { "model": "stylish_occult:block/growth/3/north", "x": 90 }
-        },
-        {
-            "when": { "up": "true", "size": "3" },
-            "apply": { "model": "stylish_occult:block/growth/3/north", "x": 270 }
-        },
-        {
-            "when": { "north": "true", "size": "3" },
-            "apply": { "model": "stylish_occult:block/growth/3/north" }
-        },
-        {
-            "when": { "south": "true", "size": "3" },
-            "apply": { "model": "stylish_occult:block/growth/3/north", "y": 180 }
-        },
-        {
-            "when": { "east": "true", "size": "3" },
-            "apply": { "model": "stylish_occult:block/growth/3/north", "y": 90 }
-        },
-        {
-            "when": { "west": "true", "size": "3" },
-            "apply": { "model": "stylish_occult:block/growth/3/north", "y": 270 }
-        },
-        {
-             "when": { "down": "true", "size": "2" },
-             "apply": { "model": "stylish_occult:block/growth/2/north", "x": 90 }
-         },
-         {
-             "when": { "up": "true", "size": "2" },
-             "apply": { "model": "stylish_occult:block/growth/2/north", "x": 270 }
-         },
-         {
-             "when": { "north": "true", "size": "2" },
-             "apply": { "model": "stylish_occult:block/growth/2/north" }
-         },
-         {
-             "when": { "south": "true", "size": "2" },
-             "apply": { "model": "stylish_occult:block/growth/2/north", "y": 180 }
-         },
-         {
-             "when": { "east": "true", "size": "2" },
-             "apply": { "model": "stylish_occult:block/growth/2/north", "y": 90 }
-         },
-         {
-             "when": { "west": "true", "size": "2" },
-             "apply": { "model": "stylish_occult:block/growth/2/north", "y": 270 }
-         },
-        {
-            "when": { "down": "true", "size": "1" },
-            "apply": { "model": "stylish_occult:block/growth/1/north", "x": 90 }
-        },
-        {
-            "when": { "up": "true", "size": "1" },
-            "apply": { "model": "stylish_occult:block/growth/1/north", "x": 270 }
-        },
-        {
-            "when": { "north": "true", "size": "1" },
-            "apply": { "model": "stylish_occult:block/growth/1/north" }
-        },
-        {
-            "when": { "south": "true", "size": "1" },
-            "apply": { "model": "stylish_occult:block/growth/1/north", "y": 180 }
-        },
-        {
-            "when": { "east": "true", "size": "1" },
-            "apply": { "model": "stylish_occult:block/growth/1/north", "y": 90 }
-        },
-        {
-            "when": { "west": "true", "size": "1" },
-            "apply": { "model": "stylish_occult:block/growth/1/north", "y": 270 }
-        }
-    ]
+	"multipart": [
+		{
+			"when": {
+				"down": "true",
+				"size": "3"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/3/north",
+				"x": 90
+			}
+		},
+		{
+			"when": {
+				"up": "true",
+				"size": "3"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/3/north",
+				"x": 270
+			}
+		},
+		{
+			"when": {
+				"north": "true",
+				"size": "3"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/3/north"
+			}
+		},
+		{
+			"when": {
+				"south": "true",
+				"size": "3"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/3/north",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"east": "true",
+				"size": "3"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/3/north",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"west": "true",
+				"size": "3"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/3/north",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"down": "true",
+				"size": "2"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/2/north",
+				"x": 90
+			}
+		},
+		{
+			"when": {
+				"up": "true",
+				"size": "2"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/2/north",
+				"x": 270
+			}
+		},
+		{
+			"when": {
+				"north": "true",
+				"size": "2"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/2/north"
+			}
+		},
+		{
+			"when": {
+				"south": "true",
+				"size": "2"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/2/north",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"east": "true",
+				"size": "2"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/2/north",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"west": "true",
+				"size": "2"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/2/north",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"down": "true",
+				"size": "1"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/1/north",
+				"x": 90
+			}
+		},
+		{
+			"when": {
+				"up": "true",
+				"size": "1"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/1/north",
+				"x": 270
+			}
+		},
+		{
+			"when": {
+				"north": "true",
+				"size": "1"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/1/north"
+			}
+		},
+		{
+			"when": {
+				"south": "true",
+				"size": "1"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/1/north",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"east": "true",
+				"size": "1"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/1/north",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"west": "true",
+				"size": "1"
+			},
+			"apply": {
+				"model": "stylish_occult:block/growth/1/north",
+				"y": 270
+			}
+		}
+	]
 }

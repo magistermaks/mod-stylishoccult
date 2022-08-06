@@ -1,7 +1,9 @@
-    {
-      "variants": {
-        "": { "model": "stylish_occult:block/arcane_ash" }
-      }
-    }
+{
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/arcane_ash"
+		}
+	}
+}
 
 

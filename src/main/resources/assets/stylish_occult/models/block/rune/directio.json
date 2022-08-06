@@ -1,7 +1,7 @@
 {
-    "parent": "stylish_occult:block/rune/common/rune",
+	"parent": "stylish_occult:block/rune/common/rune",
 	"textures": {
-        "north": "stylish_occult:rune/directio",
+		"north": "stylish_occult:rune/directio",
 		"east": "stylish_occult:rune/directio",
 		"south": "stylish_occult:rune/directio",
 		"west": "stylish_occult:rune/directio",
