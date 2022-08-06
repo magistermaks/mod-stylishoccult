@@ -28,10 +28,10 @@ import java.util.Random;
 
 public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvider {
 
-    public static final int COLOR_0 = 0x5A0000;
-    public static final int COLOR_1 = 0x730000;
-    public static final int COLOR_2 = 0x8C0000;
-    public static final int COLOR_3 = 0xA50000;
+    public static final int COLOR_0 = 0x852020;
+    public static final int COLOR_1 = 0xA52020;
+    public static final int COLOR_2 = 0xD52020;
+    public static final int COLOR_3 = 0xF52020;
 
     public static final IntProperty COOLDOWN = IntProperty.of("cooldown", 0, 3);
     public static final BooleanProperty FROZEN = BooleanProperty.of("frozen");
@@ -149,7 +149,7 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
     protected final RuneBlockEntity getEntity(World world, BlockPos pos) {
         RuneBlockEntity entity = BlockUtils.getEntity(RuneBlockEntity.class, world, pos);
 
-        if( entity == null ) {
+        if (entity == null) {
             StylishOccult.LOGGER.error("Missing block entity for RuneBlock!");
         }
 

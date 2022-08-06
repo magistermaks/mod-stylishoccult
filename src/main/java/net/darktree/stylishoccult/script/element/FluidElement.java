@@ -58,12 +58,16 @@ public class FluidElement extends StackElement {
 		long reminder = amount % split;
 		long count = amount / split;
 
+
 		for (int i = 0; i < split; i ++) {
-			list.add(new FluidElement(fluid, count + reminder));
+			long amount = count;
 
 			if (reminder > 0) {
 				reminder --;
+				amount ++;
 			}
+
+			list.add(new FluidElement(fluid, amount));
 		}
 
 		return list;

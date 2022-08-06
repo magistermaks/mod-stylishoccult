@@ -1,0 +1,22 @@
+{
+	"name": "Minus Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/minus.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_minus",
+	"sortnum": 26,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "minus",
+			"title": "Minus Rune"
+		},
+		{
+			"type": "stylish_occult:page_long_symbol",
+			"text1": "Minus Rune drops two top elements from the $(hs) and adds numerical value equal",
+			"text2": "one onto the stack if the first one is smaller, and zero otherwise.",
+			"recipe": "stylish_occult:altar/rune/minus.json",
+			"rune": "minus",
+			"symbol": "logic"
+		}
+	]
+}

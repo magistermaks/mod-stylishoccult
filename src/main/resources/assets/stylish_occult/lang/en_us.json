@@ -150,6 +150,9 @@
   "sound.stylish_occult.transmute": "Matter is Transmuted",
   "sound.stylish_occult.voice": "Ghostly Whisper",
   "sound.stylish_occult.boil": "Boiling",
+  "sound.stylish_occult.chisel": "Rune Chiseled",
+  "sound.stylish_occult.activate": "Rune Activated",
+  "sound.stylish_occult.inspect": "Rune Inspected",
 
   "script.stylish_occult.element.number": "Numerus",
   "script.stylish_occult.element.item": "Item",
@@ -331,5 +334,8 @@
   "advancements.stylish_occult.shard.title": "Arcane Artifact",
   "advancements.stylish_occult.shard.description": "Find a Blood Shard",
   "advancements.stylish_occult.stonehenge.title": "Circle Of Stone",
-  "advancements.stylish_occult.stonehenge.description": "Visit a Stonehenge"
+  "advancements.stylish_occult.stonehenge.description": "Visit a Stonehenge",
+
+  "patchouli.stylish_occult.runeonomicon.name": "Runonomicon",
+  "patchouli.stylish_occult.runeonomicon.text": "The guide to the forgotten secrets of life and death, and the occult art of runic blood engravings. $(br)$(br)By Abdul Alhazred"
 }

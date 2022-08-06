@@ -1,0 +1,22 @@
+{
+	"name": "Absumo Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/absumo.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_absumo",
+	"sortnum": 41,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "absumo",
+			"title": "Absumo Rune"
+		},
+		{
+			"type": "stylish_occult:page_separated",
+			"text1": "Absumo Rune drops the top element from the $(hs).",
+			"text2": "The rule of $(o)Equivalent Exchange$() applies, no physical object will get destroyed.",
+			"recipe": "stylish_occult:altar/rune/absumo.json",
+			"rune": "absumo",
+			"separator": "symbols"
+		}
+	]
+}

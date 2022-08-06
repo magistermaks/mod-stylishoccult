@@ -4,6 +4,7 @@ import net.darktree.stylishoccult.block.entity.rune.RuneBlockEntity;
 import net.darktree.stylishoccult.block.rune.DirectionalRuneBlock;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.script.engine.Stack;
+import net.minecraft.block.BlockState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -19,12 +20,12 @@ public class JoinRuneBlock extends DirectionalRuneBlock {
     public void apply(Script script, World world, BlockPos pos) {
         RuneBlockEntity entity = getEntity(world, pos);
 
-        if( entity.hasMeta() ) {
+        if (entity.hasMeta()) {
             Stack stack = new Stack(32);
             stack.readNbt(entity.getMeta());
             stack.reset(script.stack::push);
             entity.setMeta(null);
-        }else{
+        } else {
             entity.setMeta(script.stack.writeNbt(new NbtCompound()));
             script.stack.reset(element -> {});
         }
@@ -32,10 +33,29 @@ public class JoinRuneBlock extends DirectionalRuneBlock {
 
     @Override
     public Direction[] getDirections(World world, BlockPos pos, Script script) {
-        if( !getEntity(world, pos).hasMeta() ) {
+        if (!getEntity(world, pos).hasMeta()) {
             return new Direction[] { getFacing(world, pos) };
         }
 
         return new Direction[] {};
     }
+
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.isOf(newState.getBlock())) {
+            return;
+        }
+
+        RuneBlockEntity entity = getEntity(world, pos);
+
+        if (entity.hasMeta()) {
+            Stack stack = new Stack(32);
+            stack.readNbt(entity.getMeta());
+            stack.reset(element -> element.drop(world, pos));
+            entity.setMeta(null);
+        }
+
+        super.onStateReplaced(state, world, pos, newState, moved);
+    }
+
 }

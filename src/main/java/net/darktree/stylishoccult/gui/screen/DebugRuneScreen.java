@@ -46,10 +46,10 @@ public class DebugRuneScreen extends CottonClientScreen {
 		private boolean numericalView;
 
 		public Gui(BlockPos pos, NbtCompound nbt) {
-			StylishOccult.LOGGER.info("Displaying debug information for rune at: [" + pos.toShortString() + "]");
+			StylishOccult.debug("Displaying debug information for rune at: [" + pos.toShortString() + "]");
 
 			// create root
-			WGridPanel root = ScreenHelper.getRoot(this, 14, 13, 9);
+			WGridPanel root = ScreenHelper.getRoot(this, 14, 13, 18);
 
 			// title
 			WSimpleLabel title = new WSimpleLabel("debug.title", HorizontalAlignment.CENTER);

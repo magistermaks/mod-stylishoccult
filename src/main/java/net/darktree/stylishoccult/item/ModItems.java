@@ -30,12 +30,12 @@ public class ModItems {
     static public class Groups {
         public static final ItemGroup STYLISH_OCCULT = FabricItemGroupBuilder.create(
                 new ModIdentifier("stylish_occult_main"))
-                .icon(() -> new ItemStack( ModItems.LAVA_HEART ))
+                .icon(() -> new ItemStack(ModItems.LAVA_HEART))
                 .build();
 
         public static final ItemGroup RUNES = FabricItemGroupBuilder.create(
                 new ModIdentifier("stylish_occult_runes"))
-                .icon(() -> new ItemStack( ModBlocks.CLICK_RUNE_BLOCK.asItem() ))
+                .icon(() -> new ItemStack(ModBlocks.CLICK_RUNE_BLOCK.asItem()))
                 .build();
     }
 
@@ -76,25 +76,25 @@ public class ModItems {
     public static final Item OCCULT_CAULDRON = RegUtil.item("occult_cauldron", new BlockItem(ModBlocks.OCCULT_CAULDRON, new Item.Settings().group(Groups.STYLISH_OCCULT)));
 
     // "decorative"
-    public static final Item EYES_BLOCK = RegUtil.item( "eyes_block", ModBlocks.EYES_BLOCK, Groups.STYLISH_OCCULT );
-    public static final Item WORMS_FLESH_BLOCK = RegUtil.item( "flesh_worms", ModBlocks.WORMS_FLESH, Groups.STYLISH_OCCULT );
-    public static final Item EYES_FLESH_BLOCK = RegUtil.item( "flesh_eyes", ModBlocks.EYES_FLESH, Groups.STYLISH_OCCULT );
-    public static final Item WARTS_FLESH_BLOCK = RegUtil.item( "flesh_warts", ModBlocks.WARTS_FLESH, Groups.STYLISH_OCCULT );
-    public static final Item DEFAULT_FLESH_BLOCK = RegUtil.item( "flesh_default", ModBlocks.DEFAULT_FLESH, Groups.STYLISH_OCCULT );
-    public static final Item LEAVES_FLESH_BLOCK = RegUtil.item( "flesh_leaves", ModBlocks.LEAVES_FLESH, Groups.STYLISH_OCCULT );
-    public static final Item SOIL_FLESH_BLOCK = RegUtil.item( "flesh_soil", ModBlocks.SOIL_FLESH, Groups.STYLISH_OCCULT );
-    public static final Item BONE_FLESH_BLOCK = RegUtil.item( "flesh_bone", ModBlocks.BONE_FLESH, Groups.STYLISH_OCCULT );
-    public static final Item GOO_FLESH_BLOCK = RegUtil.item( "flesh_goo", ModBlocks.GOO_FLESH, Groups.STYLISH_OCCULT );
-    public static final Item GLOW_FLESH_BLOCK = RegUtil.item( "flesh_glow", ModBlocks.GLOW_FLESH, Groups.STYLISH_OCCULT );
-    public static final Item STONE_FLESH_BLOCK = RegUtil.item( "flesh_stone", ModBlocks.STONE_FLESH, Groups.STYLISH_OCCULT );
-    public static final Item TENTACLE_FLESH_BLOCK = RegUtil.item( "flesh_tentacle", ModBlocks.TENTACLE, Groups.STYLISH_OCCULT );
-    public static final Item EYE_FLESH_BLOCK = RegUtil.item( "flesh_eye", ModBlocks.EYE_FLESH, Groups.STYLISH_OCCULT );
-    public static final Item PASSIVE_FLESH_BLOCK = RegUtil.item( "flesh_passive", ModBlocks.FLESH_PASSIVE, Groups.STYLISH_OCCULT );
-    public static final Item NETHER_GRASS = RegUtil.item( "nether_grass", ModBlocks.NETHER_GRASS, Groups.STYLISH_OCCULT );
-    public static final Item NETHER_FERN = RegUtil.item( "nether_fern", ModBlocks.NETHER_FERN, Groups.STYLISH_OCCULT );
-    public static final Item ARCANE_ASH = RegUtil.item( "arcane_ash", ModBlocks.ARCANE_ASH, Groups.STYLISH_OCCULT );
-    public static final Item CRYSTALLINE_BLACKSTONE = RegUtil.item( "crystalline_blackstone", ModBlocks.CRYSTALLINE_BLACKSTONE, Groups.STYLISH_OCCULT );
-    public static final Item SPORE_VENT = RegUtil.item( "spore_vent", ModBlocks.SPORE_VENT, Groups.STYLISH_OCCULT );
+    public static final Item EYES_BLOCK = RegUtil.item("eyes_block", ModBlocks.EYES_BLOCK, Groups.STYLISH_OCCULT );
+    public static final Item WORMS_FLESH_BLOCK = RegUtil.item("flesh_worms", ModBlocks.WORMS_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item EYES_FLESH_BLOCK = RegUtil.item("flesh_eyes", ModBlocks.EYES_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item WARTS_FLESH_BLOCK = RegUtil.item("flesh_warts", ModBlocks.WARTS_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item DEFAULT_FLESH_BLOCK = RegUtil.item("flesh_default", ModBlocks.DEFAULT_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item LEAVES_FLESH_BLOCK = RegUtil.item("flesh_leaves", ModBlocks.LEAVES_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item SOIL_FLESH_BLOCK = RegUtil.item("flesh_soil", ModBlocks.SOIL_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item BONE_FLESH_BLOCK = RegUtil.item("flesh_bone", ModBlocks.BONE_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item GOO_FLESH_BLOCK = RegUtil.item("flesh_goo", ModBlocks.GOO_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item GLOW_FLESH_BLOCK = RegUtil.item("flesh_glow", ModBlocks.GLOW_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item STONE_FLESH_BLOCK = RegUtil.item("flesh_stone", ModBlocks.STONE_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item TENTACLE_FLESH_BLOCK = RegUtil.item("flesh_tentacle", ModBlocks.TENTACLE, Groups.STYLISH_OCCULT );
+    public static final Item EYE_FLESH_BLOCK = RegUtil.item("flesh_eye", ModBlocks.EYE_FLESH, Groups.STYLISH_OCCULT );
+    public static final Item PASSIVE_FLESH_BLOCK = RegUtil.item("flesh_passive", ModBlocks.FLESH_PASSIVE, Groups.STYLISH_OCCULT );
+    public static final Item NETHER_GRASS = RegUtil.item("nether_grass", ModBlocks.NETHER_GRASS, Groups.STYLISH_OCCULT );
+    public static final Item NETHER_FERN = RegUtil.item("nether_fern", ModBlocks.NETHER_FERN, Groups.STYLISH_OCCULT );
+    public static final Item ARCANE_ASH = RegUtil.item("arcane_ash", ModBlocks.ARCANE_ASH, Groups.STYLISH_OCCULT );
+    public static final Item CRYSTALLINE_BLACKSTONE = RegUtil.item("crystalline_blackstone", ModBlocks.CRYSTALLINE_BLACKSTONE, Groups.STYLISH_OCCULT );
+    public static final Item SPORE_VENT = RegUtil.item("spore_vent", ModBlocks.SPORE_VENT, Groups.STYLISH_OCCULT );
 
     // spawn eggs
     public static final Item SPARK_SPAWN_EGG = RegUtil.item("spark_spawn_egg", new SpawnEggItem(ModEntities.SPARK, 0xff5454, 0xff0000, new Item.Settings().group(ItemGroup.MISC)));

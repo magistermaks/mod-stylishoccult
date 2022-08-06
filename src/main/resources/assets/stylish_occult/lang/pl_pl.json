@@ -95,6 +95,9 @@
   "sound.stylish_occult.transmute": "Materia jest transmutowana",
   "sound.stylish_occult.voice": "Zjawa szepta",
   "sound.stylish_occult.boil": "Bulgotanie",
+  "sound.stylish_occult.chisel": "Dłuto",
+  "sound.stylish_occult.activate": "Aktywacja",
+  "sound.stylish_occult.inspect": "Inspekcja",
 
   "gui.stylish_occult.debug.title": "Runa Inveniet",
   "gui.stylish_occult.debug.snapshot": "Zapis poprzedniaj aktywacji",
@@ -272,5 +275,9 @@
   "advancements.stylish_occult.shard.title": "Pradawnych artefakt",
   "advancements.stylish_occult.shard.description": "Znajdź Krwawy odłamek",
   "advancements.stylish_occult.stonehenge.title": "Krąg z kamienia",
-  "advancements.stylish_occult.stonehenge.description": "Odwiedź Stonehenge"
+  "advancements.stylish_occult.stonehenge.description": "Odwiedź Stonehenge",
+
+  "patchouli.stylish_occult.runeonomicon.name": "Runonomicon",
+  "patchouli.stylish_occult.runeonomicon.text": "Przewodnik po zapomnianych sekretach życia i śmierci, i okultystycznej sztuce runicznych grawerunków. $(br)$(br)Spisane przez Abdula Alhazreda"
+
 }

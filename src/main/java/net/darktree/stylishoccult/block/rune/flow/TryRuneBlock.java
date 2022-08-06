@@ -13,4 +13,5 @@ public class TryRuneBlock extends TransferRuneBlock {
 	public void apply(Script script) {
 		script.enableSafeMode();
 	}
+
 }

@@ -110,5 +110,38 @@
 			"stylish_occult:boil_4",
 			"stylish_occult:boil_5"
 		]
+	},
+	"chisel": {
+		"subtitle": "sound.stylish_occult.chisel",
+		"author": "https://freesound.org/people/dheming/sounds/240981/",
+		"sounds": [
+			"stylish_occult:chisel_1",
+			"stylish_occult:chisel_2",
+			"stylish_occult:chisel_3"
+		]
+	},
+	"activate": {
+		"subtitle": "sound.stylish_occult.activate",
+		"author": [
+			"https://freesound.org/people/thanvannispen/sounds/29997/",
+			"https://freesound.org/people/thanvannispen/sounds/29996/",
+			"https://freesound.org/people/thanvannispen/sounds/29998/"
+		],
+		"sounds": [
+			"stylish_occult:activate_1",
+			"stylish_occult:activate_2",
+			"stylish_occult:activate_3"
+		]
+	},
+	"inspect": {
+		"subtitle": "sound.stylish_occult.inspect",
+		"author": [
+			"https://freesound.org/people/MathewHenry/sounds/636877/",
+			"https://freesound.org/people/tosha73/sounds/547534/"
+		],
+		"sounds": [
+			"stylish_occult:inspect_1"
+		]
 	}
+
 }

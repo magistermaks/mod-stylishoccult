@@ -1,0 +1,22 @@
+{
+	"name": "Horologium Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/horologium.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_horologium",
+	"sortnum": 38,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "horologium",
+			"title": "Horologium Rune"
+		},
+		{
+			"type": "stylish_occult:page_long_symbol",
+			"text1": "Tactus Rune activates every 0.25s, but it doesn't conduct magic on its own.",
+			"text2": "No elements are added to or removed from the $(hs) by this rune.",
+			"recipe": "stylish_occult:altar/rune/horologium.json",
+			"rune": "horologium",
+			"symbol": "trigger"
+		}
+	]
+}

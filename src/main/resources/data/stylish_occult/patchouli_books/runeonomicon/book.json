@@ -1,0 +1,9 @@
+{
+	"name": "patchouli.stylish_occult.runeonomicon.name",
+	"landing_text": "patchouli.stylish_occult.runeonomicon.text",
+	"version": 1,
+	"macros": {
+		"$(hs)": "$(thing)High Stack$()",
+		"$(ds)": "$(thing)Drop Stack$()"
+	}
+}

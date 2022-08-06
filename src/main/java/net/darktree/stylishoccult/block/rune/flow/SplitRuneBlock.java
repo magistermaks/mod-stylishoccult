@@ -15,7 +15,7 @@ public class SplitRuneBlock extends DirectionalRuneBlock {
     @Override
     public Direction[] getDirections(World world, BlockPos pos, Script script) {
         Direction direction = getFacing(world, pos);
-        return new Direction[] { direction, direction.getOpposite() };
+        return new Direction[] {direction, direction.getOpposite()};
     }
 
 }

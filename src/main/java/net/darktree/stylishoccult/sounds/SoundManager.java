@@ -33,7 +33,7 @@ public class SoundManager {
         volume = (volume == -1 ? effect.getVolume() : volume);
         pitch = (pitch == -1 ? effect.getPitch(random) : pitch);
 
-        if( !world.isClient ) {
+        if (!world.isClient) {
             world.playSound(
                     null,
                     pos,

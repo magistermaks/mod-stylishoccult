@@ -1,0 +1,23 @@
+{
+	"name": "Inverto Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/inverto.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_inverto",
+	"sortnum": 23,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "inverto",
+			"title": "Inverto Rune"
+		},
+		{
+			"type": "stylish_occult:page_short_symbol",
+			"text1": "Inverto Rune drops the top $(hs) element and puts back a inverted copy of its",
+			"text2": "numerical value in its place.",
+			"recipe": "stylish_occult:altar/rune/inverto.json",
+			"rune": "inverto",
+			"symbol": "math",
+			"footer": "tolkien"
+		}
+	]
+}

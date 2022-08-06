@@ -1,0 +1,21 @@
+{
+	"name": "Numerus Minus Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/numerus/minus.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_numerus_minus",
+	"sortnum": 9,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "numerus/minus",
+			"title": "Numerus Minus Rune"
+		},
+		{
+			"type": "stylish_occult:page_long_none",
+			"text1": "Numerus Minus can be used to represent a minus sign in a number. String multiple Numerus Runes one after another to encode a number in base-6.",
+			"text2": "The encoded number will added to the $(hs) after the Numerus Rune sequence is over.",
+			"recipe": "stylish_occult:altar/rune/numerus_minus.json",
+			"rune": "numerus_minus"
+		}
+	]
+}

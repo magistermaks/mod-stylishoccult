@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.utils;
 
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.rune.RuneBlock;
+import net.darktree.stylishoccult.data.generator.DataGenerator;
 import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.item.RuneBlockItem;
 import net.darktree.stylishoccult.script.component.RuneRegistry;
@@ -38,7 +39,7 @@ public class RegUtil {
         return Registry.register(Registry.FLUID, new ModIdentifier(name), fluid);
     }
 
-    public static Block rune( RuneBlock block ) {
+    public static Block rune(RuneBlock block) {
         String name = "rune_" + block.name;
         Item item = item(name, new RuneBlockItem(block, new FabricItemSettings().group(ModItems.Groups.RUNES)));
         ModItems.RUNESTONES.add(item);
@@ -47,6 +48,8 @@ public class RegUtil {
         if (block.getInstance() != null) {
             RuneRegistry.putRune(block.name, block);
         }
+
+        DataGenerator.generateAltarRitual(block);
 
         return block(name, block);
     }

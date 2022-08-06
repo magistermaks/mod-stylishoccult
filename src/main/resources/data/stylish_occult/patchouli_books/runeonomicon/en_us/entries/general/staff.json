@@ -1,0 +1,19 @@
+{
+	"name": "Occult Staff",
+	"icon": "stylish_occult:staff",
+	"category": "stylish_occult:general",
+	"sortnum": 1,
+	"pages": [
+		{
+			"type": "patchouli:spotlight",
+			"item": "stylish_occult:staff",
+			"title": "Occult Staff",
+			"link_recipe": true,
+			"text": "Occult Staff can be used to start rituals on the Dark Altar and convert normal cauldrons into occult ones.$(p)For reasons unknown, some, with time form a emotional bond with the eye at the end of their staffs, even going so far as calling them 'friends'."
+		},
+		{
+			"type": "patchouli:crafting",
+			"recipe": "stylish_occult:staff"
+		}
+	]
+}

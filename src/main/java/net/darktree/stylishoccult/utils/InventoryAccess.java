@@ -52,19 +52,24 @@ public class InventoryAccess {
 
 	/**
 	 * Get any item of given count from the inventory
+	 * For the sake of simplicity it doesn't combine the stacks
+	 * TODO: try combining the stacks
 	 */
 	public ItemStack extract(int count) {
 		for (int slot : slots) {
 			ItemStack stack = inventory.getStack(slot);
 
-			if (inventory instanceof SidedInventory sided) {
-				if( !sided.canExtract(slot, stack, direction) ) {
-					continue;
+			if (!stack.isEmpty() && stack.getMaxCount() >= count) {
+				if (inventory instanceof SidedInventory sided) {
+					if (!sided.canExtract(slot, stack, direction)) {
+						continue;
+					}
+				}
+
+				if (stack.getCount() >= count) {
+					return inventory.removeStack(slot, count);
 				}
 			}
-
-			return inventory.removeStack(slot, count);
-
 		}
 
 		return ItemStack.EMPTY;

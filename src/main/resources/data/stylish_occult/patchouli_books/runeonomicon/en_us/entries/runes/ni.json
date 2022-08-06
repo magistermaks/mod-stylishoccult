@@ -1,0 +1,23 @@
+{
+	"name": "Ni Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/ni.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_ni",
+	"sortnum": 21,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "ni",
+			"title": "Ni Rune"
+		},
+		{
+			"type": "stylish_occult:page_short_symbol",
+			"text1": "Ni Rune drops the top $(hs) element and if its numerical value equals zero",
+			"text2": "replaces it with a one, and if not with, with zero.",
+			"recipe": "stylish_occult:altar/rune/ni.json",
+			"rune": "ni",
+			"symbol": "math",
+			"footer": "landscape"
+		}
+	]
+}

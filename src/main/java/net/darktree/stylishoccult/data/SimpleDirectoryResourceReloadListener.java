@@ -31,9 +31,15 @@ public abstract class SimpleDirectoryResourceReloadListener implements SimpleSyn
 				StylishOccult.LOGGER.error("Error occurred while loading resource json " + id.toString(), e);
 			}
 		}
+
+		onReloadEnd();
 	}
 
 	public void onReloadStart() {
+
+	}
+
+	public void onReloadEnd() {
 
 	}
 

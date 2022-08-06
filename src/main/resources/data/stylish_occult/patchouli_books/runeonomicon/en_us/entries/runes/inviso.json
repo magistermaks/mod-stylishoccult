@@ -1,0 +1,23 @@
+{
+	"name": "Inviso Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/inviso.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_inviso",
+	"sortnum": 43,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "inviso",
+			"title": "Inviso Rune"
+		},
+		{
+			"type": "stylish_occult:page_short_symbol",
+			"text1": "Inviso Rune activates when looked at, but it doesn't conduct magic on its own.",
+			"text2": "No elements are added to or removed from the $(hs) by this rune.",
+			"recipe": "stylish_occult:altar/rune/inviso.json",
+			"rune": "inviso",
+			"symbol": "trigger",
+			"footer": "landscape"
+		}
+	]
+}

@@ -21,7 +21,7 @@ import java.util.Random;
 
 /**
  * Copied from Fabric Wiki
- * see: https://fabricmc.net/wiki/tutorial:fluids
+ * @see <a href="https://fabricmc.net/wiki/tutorial:fluids">Fluid Tutorial</a>
  */
 public abstract class BloodFluid extends BloodFlowableFluid {
 

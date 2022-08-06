@@ -1,0 +1,13 @@
+{
+    "blood": 27000,
+    "catalyst": "stylish_occult:blood_shard",
+    "consume": false,
+    "ingredients": [
+        "stylish_occult:runestone",
+        "stylish_occult:flesh_warts",
+        "stylish_occult:flesh_warts",
+        "stylish_occult:flesh_warts"
+    ],
+    "product": "stylish_occult:rune_separatum",
+    "count": 1
+}

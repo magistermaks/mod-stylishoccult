@@ -68,11 +68,11 @@ public class ArcaneAshBlock extends SimpleBlock {
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int age = state.get(AGE);
 
-        if( age == 3 ) {
+        if (age == 3) {
             Network.ASH_PACKET.send( pos, world );
             world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), this.soundGroup.getBreakSound(), SoundCategory.BLOCKS, 0.8f, 1.0f);
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
-        }else{
+        } else {
             world.getBlockTickScheduler().schedule(pos, this, 100 + world.random.nextInt(20));
             world.setBlockState(pos, state.with(AGE, age + 1));
         }

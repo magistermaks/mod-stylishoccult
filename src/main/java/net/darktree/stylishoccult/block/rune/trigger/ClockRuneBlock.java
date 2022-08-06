@@ -30,7 +30,7 @@ public class ClockRuneBlock extends EntryRuneBlock {
         world.getBlockTickScheduler().schedule(pos, world.getBlockState(pos).getBlock(), getDelayLength());
         RuneBlockEntity entity = getEntity(world, pos);
 
-        if( !entity.hasMeta() || updateTime(entity) ) {
+        if (!entity.hasMeta() || updateTime(entity)) {
             emit(world, pos, null);
         }
     }
@@ -49,10 +49,10 @@ public class ClockRuneBlock extends EntryRuneBlock {
         try {
             NbtCompound nbt = entity.getMeta();
             int time = nbt.getInt("time");
-            if( time <= 0 ) {
+            if (time <= 0) {
                 entity.setMeta(null);
                 return true;
-            }else{
+            } else {
                 nbt.putInt("time", time - 1);
                 entity.setMeta(nbt);
                 return false;

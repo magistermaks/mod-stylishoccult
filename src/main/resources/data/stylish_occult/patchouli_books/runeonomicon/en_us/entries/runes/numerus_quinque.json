@@ -1,0 +1,21 @@
+{
+	"name": "Numerus Quinque Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/numerus/5.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_numerus_quinque",
+	"sortnum": 15,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "numerus/5",
+			"title": "Numerus Quinque Rune"
+		},
+		{
+			"type": "stylish_occult:page_long_none",
+			"text1": "Numerus Quinque can be used to represent a number five. String multiple Numerus Runes one after another to encode a number in base-6.",
+			"text2": "The encoded number will added to the $(hs) after the Numerus Rune sequence is over.",
+			"recipe": "stylish_occult:altar/rune/numerus_quinque.json",
+			"rune": "numerus_quinque"
+		}
+	]
+}

@@ -41,8 +41,8 @@ public class RedstoneAnalogOutputRuneBlock extends ActorRuneBlock {
         world.setBlockState(pos, world.getBlockState(pos).with(POWER, toPowerLevel(script.pull(world, pos).value())));
     }
 
-    private static int toPowerLevel( double value ) {
-        return MathHelper.clamp( (int) value, 0, 15 );
+    private int toPowerLevel(double value) {
+        return MathHelper.clamp((int) value, 0, 15);
     }
 
 }

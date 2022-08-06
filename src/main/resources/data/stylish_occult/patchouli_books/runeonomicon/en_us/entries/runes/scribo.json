@@ -1,0 +1,22 @@
+{
+	"name": "Scribo Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/scribo.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_scribo",
+	"sortnum": 32,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "scribo",
+			"title": "Scribo Rune"
+		},
+		{
+			"type": "stylish_occult:page_separated",
+			"text1": "Scribo Rune drops one value from the $(hs), clamps it to range of 0 to 15 and outputs a redstone impulse of that strength.",
+			"text2": "",
+			"recipe": "stylish_occult:altar/rune/scribo.json",
+			"rune": "scribo",
+			"separator": "gods"
+		}
+	]
+}

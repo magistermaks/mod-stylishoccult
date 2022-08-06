@@ -1,0 +1,22 @@
+{
+	"name": "Cinis Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/cinis.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_cinis",
+	"sortnum": 45,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "cinis",
+			"title": "Cinis Rune"
+		},
+		{
+			"type": "stylish_occult:page_long_symbol",
+			"text1": "Cinis Rune uses the dark power of the $(obf)Philosopher's Stone$() to break the rule of",
+			"text2": "$(o)Equivalent Exchange$() and summon matter from the great void beyond. Adds a single Arcane Ash item to the $(hs).",
+			"recipe": "stylish_occult:altar/rune/cinis.json",
+			"rune": "cinis",
+			"symbol": "arcane"
+		}
+	]
+}

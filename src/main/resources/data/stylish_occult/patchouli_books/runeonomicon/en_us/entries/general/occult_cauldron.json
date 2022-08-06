@@ -1,0 +1,19 @@
+{
+	"name": "Occult Cauldron",
+	"icon": "stylish_occult:occult_cauldron",
+	"category": "stylish_occult:general",
+	"sortnum": 3,
+	"pages": [
+		{
+			"type": "patchouli:spotlight",
+			"item": "stylish_occult:occult_cauldron",
+			"title": "Occult Cauldron",
+			"link_recipe": true,
+			"text": "Occult Cauldrons allow for offering a sacrifice in blood to the Great Void Beyond through the $(l:stylish_occult:general/dark_altar)Dark Altar$(), they must be placed no further than 6 blocks from the central pylon.$(p)An occult cauldon can be created by clicking on a normal cauldron with a $(l:stylish_occult:general/staff)Staff$()."
+		},
+		{
+			"type": "patchouli:text",
+			"text": "Those cauldrons can also be picked up without loosing the contents inside. $(p)When active during a ritual blood in a cauldron will boil. You can also force it to do it all the time by placing a heat source such as lava, fire, or a lit campfire under it."
+		}
+	]
+}

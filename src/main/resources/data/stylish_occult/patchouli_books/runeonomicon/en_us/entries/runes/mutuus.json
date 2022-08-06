@@ -1,0 +1,23 @@
+{
+	"name": "Mutuus Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/mutuus.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_mutuus",
+	"sortnum": 24,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "mutuus",
+			"title": "Mutuus Rune"
+		},
+		{
+			"type": "stylish_occult:page_short_symbol",
+			"text1": "Mutuus Rune drops the top $(hs) element and puts back a $(o)$(t:one divided by it)reciprocal$() of its",
+			"text2": "numerical value in its place.",
+			"recipe": "stylish_occult:altar/rune/mutuus.json",
+			"rune": "mutuus",
+			"symbol": "math",
+			"footer": "symbols"
+		}
+	]
+}

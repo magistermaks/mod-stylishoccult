@@ -55,13 +55,14 @@ public class ItemElement extends StackElement {
 
 		for (int i = 0; i < split; i ++) {
 			ItemStack copy = stack.copy();
-			copy.setCount(count + reminder);
-
-			list.add(new ItemElement(copy));
+			copy.setCount(count);
 
 			if (reminder > 0) {
 				reminder --;
+				copy.increment(1);
 			}
+
+			list.add(new ItemElement(copy));
 		}
 
 		return list;

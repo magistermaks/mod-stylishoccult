@@ -1,0 +1,48 @@
+{
+	"name": "Dark Altar",
+	"icon": "stylish_occult:runestone_table",
+	"category": "stylish_occult:general",
+	"sortnum": 4,
+	"pages": [
+		{
+			"type": "patchouli:text",
+			"text": "Dark Altars are made of Runic Tables and Altar Plates placed on top of them. The central pylon must have at lest three candles orbiting it for the altar to work, and also is where the catalyst must be placed during a ritual. $(p)Most rituals require a sacrifice in blood to be present in $(l:stylish_occult:general/occult_cauldron)Occult Cauldrons$() near the altar."
+		},
+		{
+			"type": "patchouli:multiblock",
+			"name": "Dark Altar",
+			"text": "An altar can have an arbitrary number of pylons.",
+			"multiblock": {
+				"mapping": {
+					"T": "stylish_occult:runestone_table[east=false,south=false,north=false,west=false,top=false,frozen=false,cooldown=0]",
+					"0": "stylish_occult:runestone_table[east=false,south=false,north=false,west=false,top=false,frozen=false,cooldown=0]",
+					"-": "stylish_occult:runestone_altar_plate"
+				},
+				"pattern": [
+					[
+						"   -   ",
+						" -   - ",
+						"       ",
+						"-  -  -",
+						"       ",
+						" -   - ",
+						"   -   "
+					],
+					[
+						"   T   ",
+						" T   T ",
+						"       ",
+						"T  0  T",
+						"       ",
+						" T   T ",
+						"   T   "
+					]
+				]
+			}
+		},
+		{
+			"type": "patchouli:text",
+			"text": "The ritual can be started by clicking on the central pylon with a $(l:stylish_occult:general/staff)Occult Staff$() or by powering it with a runic impulse. $(p)Runes can also be used to receive items created on the altar through the central pylon."
+		}
+	]
+}

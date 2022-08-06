@@ -23,6 +23,6 @@ public class PlayerRuneBlock extends InputRuneBlock {
 
     @Override
     public void apply(Script script, World world, BlockPos pos) {
-        script.stack.push( check(world, box.offset(pos)) ? NumericElement.TRUE : NumericElement.FALSE );
+        script.stack.push(check(world, box.offset(pos)) ? NumericElement.TRUE : NumericElement.FALSE);
     }
 }

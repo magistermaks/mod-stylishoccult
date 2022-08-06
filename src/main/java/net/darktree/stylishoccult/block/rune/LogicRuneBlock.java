@@ -56,7 +56,7 @@ public class LogicRuneBlock extends RuneBlock {
         public static final LogicFunction RANDOM = (script, world, pos) -> put(script, world.random.nextDouble());
         public static final LogicFunction ASCEND = (script, world, pos) -> script.ascend();
         public static final LogicFunction ROTATE = (script, world, pos) -> script.stack.rotate();
-        public static final LogicFunction DROP = (script, world, pos) -> script.stack.pull().drop(world, pos);
+        public static final LogicFunction YEET = (script, world, pos) -> script.stack.pull().drop(world, pos);
         public static final LogicFunction OVER = (script, world, pos) -> script.stack.over();
 
         public static final LogicFunction VALUE = (script, world, pos) -> {

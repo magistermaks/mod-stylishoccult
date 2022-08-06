@@ -24,6 +24,9 @@ public class Sounds {
     public static SoundEffect TRANSMUTE = SoundManager.loadSound("transmute", SoundCategory.BLOCKS).pitch(1.0f, 1.2f).volume(0.9f);
     public static SoundEffect VOICE = SoundManager.loadSound("voice", SoundCategory.BLOCKS).pitch(0.8f, 1.4f).volume(0.55f);
     public static SoundEffect BOIL = SoundManager.loadSound("boil", SoundCategory.BLOCKS);
+    public static SoundEffect CHISEL = SoundManager.loadSound("chisel", SoundCategory.BLOCKS);
+    public static SoundEffect ACTIVATE = SoundManager.loadSound("activate", SoundCategory.BLOCKS);
+    public static SoundEffect INSPECT = SoundManager.loadSound("inspect", SoundCategory.BLOCKS);
 
     public static void init() {
 

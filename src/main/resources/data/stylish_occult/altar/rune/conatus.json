@@ -1,0 +1,19 @@
+{
+    "blood": 27000,
+    "catalyst": "stylish_occult:blood_shard",
+    "consume": false,
+    "ingredients": [
+        "stylish_occult:runestone",
+        "stylish_occult:veins",
+        "stylish_occult:flesh",
+        "stylish_occult:veins",
+        "stylish_occult:flesh",
+        "stylish_occult:flesh_eyes",
+        "stylish_occult:flesh",
+        "stylish_occult:veins",
+        "stylish_occult:flesh",
+        "stylish_occult:veins"
+    ],
+    "product": "stylish_occult:rune_conatus",
+    "count": 1
+}

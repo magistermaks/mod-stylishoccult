@@ -30,20 +30,20 @@ public class PlaceRuneBlock extends ActorRuneBlock {
         ItemElement element = script.stack.pull().cast(ItemElement.class);
         BlockPos target = pos.add(x, y, z);
 
-        if( !target.isWithinDistance(pos, range) ) {
+        if (!target.isWithinDistance(pos, range)) {
             throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT);
         }
 
-        if( element.stack.getItem() instanceof BlockItem blockItem ) {
+        if (element.stack.getItem() instanceof BlockItem blockItem) {
             try {
-                if(!blockItem.place(new AutomaticItemPlacementContext(world, target, Direction.UP, element.stack, Direction.UP)).isAccepted()) {
+                if (!blockItem.place(new AutomaticItemPlacementContext(world, target, Direction.UP, element.stack, Direction.UP)).isAccepted()) {
                     // make sure not to lose any items, even when operation fails
                     script.ring.push(element, world, pos);
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 StylishOccult.LOGGER.warn("place error!");
             }
-        }else{
+        } else {
             StylishOccult.LOGGER.warn("not a block item!");
         }
 

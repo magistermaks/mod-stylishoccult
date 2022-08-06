@@ -28,6 +28,8 @@ public class TakeRuneBlock extends InputRuneBlock {
 			if (!stack.isEmpty()) {
 				return stack;
 			}
+
+			// TODO: try extracting fluids (?)
 		}
 
 		return ItemStack.EMPTY;
