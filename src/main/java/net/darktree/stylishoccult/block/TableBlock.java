@@ -7,6 +7,7 @@ import net.darktree.stylishoccult.block.rune.RuneBlock;
 import net.darktree.stylishoccult.block.rune.VerticalRuneLink;
 import net.darktree.stylishoccult.script.element.StackElement;
 import net.darktree.stylishoccult.script.engine.Script;
+import net.darktree.stylishoccult.utils.Directions;
 import net.darktree.stylishoccult.utils.Utils;
 import net.darktree.stylishoccult.utils.Voxels;
 import net.minecraft.block.Block;
@@ -27,6 +28,8 @@ import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 public class TableBlock extends EntryRuneBlock implements DropsItself, VerticalRuneLink {
+
+	private static final Direction[] DOWN = Directions.of(Direction.DOWN);
 
 	public static final BooleanProperty SOUTH = BooleanProperty.of("south");
 	public static final BooleanProperty NORTH = BooleanProperty.of("north");
@@ -102,7 +105,7 @@ public class TableBlock extends EntryRuneBlock implements DropsItself, VerticalR
 
 	@Override
 	public Direction[] getDirections(World world, BlockPos pos, Script script) {
-		return new Direction[] {Direction.DOWN};
+		return DOWN;
 	}
 
 	@Override

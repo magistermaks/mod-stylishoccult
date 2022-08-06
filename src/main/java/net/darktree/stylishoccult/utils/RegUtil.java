@@ -2,7 +2,6 @@ package net.darktree.stylishoccult.utils;
 
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.rune.RuneBlock;
-import net.darktree.stylishoccult.data.generator.DataGenerator;
 import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.item.RuneBlockItem;
 import net.darktree.stylishoccult.script.component.RuneRegistry;
@@ -49,14 +48,12 @@ public class RegUtil {
             RuneRegistry.putRune(block.name, block);
         }
 
-        DataGenerator.generateAltarRitual(block);
-
         return block(name, block);
     }
 
     public static FabricBlockSettings settings(Material material, BlockSoundGroup sounds, float hardness, float resistance, boolean opaque) {
         FabricBlockSettings settings = FabricBlockSettings.of(material);
-        if( !opaque ) settings.nonOpaque();
+        if (!opaque) settings.nonOpaque();
         settings.strength(hardness, resistance);
         settings.sounds(sounds);
 

@@ -32,16 +32,15 @@ public class RuneIconComponent implements ICustomComponent {
 
 		matrices.push();
 		matrices.translate(x, y, 0);
+		matrices.scale(3f, 3f, 3f);
 
 		matrices.push();
-		matrices.scale(3f, 3f, 3f);
 		RenderSystem.enableBlend();
 		matrices.translate(0.5, 0.5, 0);
 		drawRuneIcon(matrices,0, 0, 0, 0.8f, 0, 0);
 		matrices.pop();
 
 		matrices.push();
-		matrices.scale(3, 3, 3);
 		drawRuneIcon(matrices,0.5f, 0.2f, 0.0f, 1, 0, 0);
 		matrices.pop();
 		matrices.pop();

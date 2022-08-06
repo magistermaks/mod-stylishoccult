@@ -6,7 +6,6 @@ import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.config.Config;
 import net.darktree.stylishoccult.config.Settings;
 import net.darktree.stylishoccult.data.ResourceLoaders;
-import net.darktree.stylishoccult.data.generator.DataGenerator;
 import net.darktree.stylishoccult.effect.ModEffects;
 import net.darktree.stylishoccult.entity.ModEntities;
 import net.darktree.stylishoccult.item.ModItems;
@@ -38,7 +37,6 @@ public class StylishOccult implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        DataGenerator.init();
         Sounds.init();
         ModBlocks.init();
         Network.init();

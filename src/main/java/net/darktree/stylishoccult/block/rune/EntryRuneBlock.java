@@ -2,6 +2,7 @@ package net.darktree.stylishoccult.block.rune;
 
 import net.darktree.stylishoccult.script.component.RuneType;
 import net.darktree.stylishoccult.script.engine.Script;
+import net.darktree.stylishoccult.utils.Directions;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +32,7 @@ public abstract class EntryRuneBlock extends RuneBlock {
 
     @Override
     public Direction[] getDirections(World world, BlockPos pos, Script script) {
-        return Direction.values();
+        return Directions.ALL;
     }
 
     @Override

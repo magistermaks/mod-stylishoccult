@@ -4,6 +4,7 @@ import net.darktree.stylishoccult.block.entity.rune.RuneBlockEntity;
 import net.darktree.stylishoccult.block.rune.DirectionalRuneBlock;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.script.engine.Stack;
+import net.darktree.stylishoccult.utils.Directions;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
@@ -33,11 +34,7 @@ public class JoinRuneBlock extends DirectionalRuneBlock {
 
     @Override
     public Direction[] getDirections(World world, BlockPos pos, Script script) {
-        if (!getEntity(world, pos).hasMeta()) {
-            return new Direction[] { getFacing(world, pos) };
-        }
-
-        return new Direction[] {};
+        return getEntity(world, pos).hasMeta() ? Directions.NONE : Directions.of(getFacing(world, pos));
     }
 
     @Override

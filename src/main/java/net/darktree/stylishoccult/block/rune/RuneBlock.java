@@ -9,6 +9,7 @@ import net.darktree.stylishoccult.script.component.RuneInstance;
 import net.darktree.stylishoccult.script.component.RuneType;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.BlockUtils;
+import net.darktree.stylishoccult.utils.Directions;
 import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -39,7 +40,7 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
     public final RuneType type;
     public final String name;
 
-    public RuneBlock( RuneType type, String name ) {
+    public RuneBlock(RuneType type, String name) {
         super( FabricBlockSettings.of(Material.STONE)
                 .mapColor(MapColor.BLACK)
                 .requiresTool()
@@ -48,10 +49,6 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
         this.type = type;
         this.name = name;
         setDefaultState( getDefaultState().with(COOLDOWN, 0).with(FROZEN, false) );
-    }
-
-    public String getTypeString() {
-        return type.getName();
     }
 
     @Override
@@ -103,7 +100,7 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
     protected void executeStoredScript(World world, BlockPos pos) {
         RuneBlockEntity entity = getEntity(world, pos);
 
-        if( entity != null && entity.hasScript() ) {
+        if (entity != null && entity.hasScript()) {
             Script script = entity.getScript();
             script.apply(this, world, pos);
             propagateTo(world, pos, script, getDirections(world, pos, script));
@@ -171,7 +168,7 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
     }
 
     public Direction[] getDirections(World world, BlockPos pos, Script script) {
-        return script.direction == null ? new Direction[] {} : new Direction[] { script.direction };
+        return Directions.of(script.direction);
     }
 
     public boolean canAcceptSignal(BlockState state, @Nullable Direction from) {
