@@ -90,12 +90,6 @@ public class FluidElement extends StackElement {
 	}
 
 	@Override
-	@Deprecated
-	public String toString() {
-		return "FluidElement " + this.amount + "x " + this.fluid.toNbt();
-	}
-
-	@Override
 	public void drop(World world, BlockPos pos) {
 		long remainder = insert(world, pos);
 

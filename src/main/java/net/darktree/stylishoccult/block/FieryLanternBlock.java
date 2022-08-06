@@ -127,7 +127,7 @@ public class FieryLanternBlock extends SimpleBlock implements Waterloggable {
     @Override
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if( !state.get(WATERLOGGED) || RandUtils.getBool( 50 ) ) {
+        if (!state.get(WATERLOGGED) || RandUtils.getBool(50, random)) {
             world.addParticle(Particles.ORBITING_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0.0D, 0.0D, 0.0D);
         }
     }

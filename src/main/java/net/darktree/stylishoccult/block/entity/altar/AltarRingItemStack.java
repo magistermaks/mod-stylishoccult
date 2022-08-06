@@ -1,11 +1,12 @@
 package net.darktree.stylishoccult.block.entity.altar;
 
-import net.darktree.stylishoccult.utils.RandUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CandleBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+
+import java.util.Random;
 
 /**
  * This class is used to represent the candles in the outer altar ring
@@ -23,8 +24,8 @@ public class AltarRingItemStack {
 		this.offset = offset;
 	}
 
-	public static AltarRingItemStack create(ItemStack stack) {
-		return new AltarRingItemStack(stack, RandUtils.RANDOM.nextFloat());
+	public static AltarRingItemStack create(ItemStack stack, Random random) {
+		return new AltarRingItemStack(stack, random.nextFloat());
 	}
 
 	public static AltarRingItemStack fromNbt(NbtCompound nbt) {

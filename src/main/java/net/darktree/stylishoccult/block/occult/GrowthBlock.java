@@ -130,19 +130,19 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        int count = Integer.bitCount( getBitfield(state) );
+        int count = Integer.bitCount(getBitfield(state));
 
-        if( count == 0 ) {
+        if (count == 0) {
             StylishOccult.LOGGER.warn("Empty growth block was found and removed!");
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             return;
         }
 
-        if( OccultHelper.touchesSource( world, pos ) ) {
+        if (OccultHelper.touchesSource(world, pos)) {
             if( BlockUtils.countInArea(world, pos, FoliageFleshBlock.class, 3) != 0 ) {
                 return;
             }else{
-                if( RandUtils.getBool(10) ) {
+                if (RandUtils.getBool(10, random)) {
                     return;
                 }
             }

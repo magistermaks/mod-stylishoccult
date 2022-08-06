@@ -13,15 +13,15 @@ public class ConditionEntry extends AbstractEntry {
     private final Condition condition;
     private final LootTable table, elseTable;
 
-    public static boolean hasSilkTouch( Random random, LootContext context ) {
-        return context.toolHasEnchantment( Enchantments.SILK_TOUCH );
+    public static boolean hasSilkTouch(Random random, LootContext context) {
+        return context.toolHasEnchantment(Enchantments.SILK_TOUCH);
     }
 
-    public static boolean hasFortune( Random random, LootContext context ) {
-        return context.toolHasEnchantment( Enchantments.FORTUNE );
+    public static boolean hasFortune(Random random, LootContext context) {
+        return context.toolHasEnchantment(Enchantments.FORTUNE);
     }
 
-    public ConditionEntry( Condition condition ) {
+    public ConditionEntry(Condition condition) {
         this.condition = condition;
         this.table = new LootTable();
         this.elseTable = new LootTable();

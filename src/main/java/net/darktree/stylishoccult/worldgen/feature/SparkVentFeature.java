@@ -72,7 +72,7 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
             world.setBlockState(pos, LAVA, 2);
 
             for (int i = random.nextInt(9); i > 0; i --) {
-                Direction dir = RandUtils.getEnum(Direction.class);
+                Direction dir = RandUtils.getEnum(Direction.class, random);
 
                 if (dir != Direction.UP) {
                     BlockPos tmp = pos.offset(dir);

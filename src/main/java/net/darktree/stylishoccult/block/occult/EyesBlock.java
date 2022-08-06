@@ -50,18 +50,18 @@ public class EyesBlock extends SimpleBlock implements ImpureBlock, FoliageFleshB
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int size = state.get(SIZE);
 
-        if( (size == 3 || RandUtils.getBool(40)) && BlockUtils.countInArea(world, pos, EyesBlock.class, 3) <= getMaxGroupSize()) {
-            BlockPos target = pos.offset( RandUtils.getEnum( Direction.class ) );
+        if ((size == 3 || RandUtils.getBool(40, random)) && BlockUtils.countInArea(world, pos, EyesBlock.class, 3) <= getMaxGroupSize()) {
+            BlockPos target = pos.offset(RandUtils.getEnum(Direction.class, random) );
 
-            if( RandUtils.getBool(75) ) {
-                target = target.offset( RandUtils.getEnum( Direction.class ) );
+            if (RandUtils.getBool(75, random) ) {
+                target = target.offset(RandUtils.getEnum(Direction.class, random));
             }
 
             BlockState stateTarget = world.getBlockState(target);
             BlockState stateDown = world.getBlockState(target.down());
 
-            if( stateDown.getBlock() instanceof FullFleshBlock && (stateTarget.isAir() || stateTarget.getMaterial().isReplaceable()) ) {
-                world.setBlockState( target, getDefaultState().with( SIZE, RandUtils.rangeInt(1, 3) ) );
+            if (stateDown.getBlock() instanceof FullFleshBlock && (stateTarget.isAir() || stateTarget.getMaterial().isReplaceable())) {
+                world.setBlockState(target, getDefaultState().with(SIZE, RandUtils.rangeInt(1, 3, random)));
             }
         }
     }

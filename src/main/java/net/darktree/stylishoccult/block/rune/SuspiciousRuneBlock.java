@@ -21,6 +21,8 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class SuspiciousRuneBlock extends TransferRuneBlock {
 
 	public SuspiciousRuneBlock(String name) {
@@ -122,8 +124,9 @@ public class SuspiciousRuneBlock extends TransferRuneBlock {
 		 * Get random damage value, based on distance and entity armor
 		 */
 		public float getDamage() {
+			Random random = entity.world.random;
 			float f = Math.min(1.5f - MathHelper.sqrt(this.distance) / 6f, 1f);
-			return f * ((entity.world.random.nextFloat() + RandUtils.rangeInt(1, 5)) / (OccultHelper.getBoneArmor(entity) + 1));
+			return f * ((random.nextFloat() + RandUtils.rangeInt(1, 5, random)) / (OccultHelper.getBoneArmor(entity) + 1));
 		}
 
 		/**

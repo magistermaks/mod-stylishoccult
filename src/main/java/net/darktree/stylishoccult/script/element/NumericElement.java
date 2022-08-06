@@ -56,10 +56,4 @@ public class NumericElement extends StackElement {
 		return ElementView.of("number", ElementView.NUMBER_ICON, String.valueOf(value), null);
 	}
 
-	@Override
-	@Deprecated
-	public String toString() {
-		return "NumericElement " + value;
-	}
-
 }

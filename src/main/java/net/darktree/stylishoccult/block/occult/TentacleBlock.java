@@ -59,15 +59,15 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int size = state.get(SIZE);
-        BlockState up = world.getBlockState( pos.up() );
+        BlockState up = world.getBlockState(pos.up());
         BlockState down = world.getBlockState(pos.down());
 
-        if( up.isAir() || up.getMaterial().isReplaceable() ) {
-            if( grow(world, pos.up(), size) ) {
+        if (up.isAir() || up.getMaterial().isReplaceable()) {
+            if (grow(world, pos.up(), size, random)) {
                 world.setBlockState( pos, state.with(STATIC, true) );
             }
-        } else if( down.isAir() || down.getMaterial().isReplaceable() ) {
-            if( grow(world, pos.down(), size) ) {
+        } else if (down.isAir() || down.getMaterial().isReplaceable()) {
+            if (grow(world, pos.down(), size, random)) {
                 world.setBlockState( pos, state.with(STATIC, true) );
             }
         }
@@ -142,12 +142,12 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
         return (state.getBlock() instanceof TentacleBlock) ? state.get(SIZE) : ((state.getBlock() instanceof FullFleshBlock) ? fallback : 0);
     }
 
-    public boolean grow( World world, BlockPos pos, int size ) {
+    public boolean grow(World world, BlockPos pos, int size, Random random) {
         if( size > 1 ) {
             world.setBlockState( pos, getDefaultState().with(SIZE, size - 1) );
             return false;
         }else{
-            if( RandUtils.getBool(80) ) {
+            if (RandUtils.getBool(80, random)) {
                 world.setBlockState(pos, ModBlocks.EYE_FLESH.getDefaultState());
             }
             return true;

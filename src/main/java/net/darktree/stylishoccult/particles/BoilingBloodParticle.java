@@ -18,7 +18,7 @@ public class BoilingBloodParticle extends AnimatedParticle {
 		super(world, x, y, z, sprites, 1);
 		setSprite( sprites.getSprite(world.random) );
 
-		maxAge = RandUtils.rangeInt(10, 30);
+		maxAge = RandUtils.rangeInt(10, 30, world.random);
 		velocityX = (world.random.nextFloat() - 0.5f) * 0.04;
 		velocityY = (world.random.nextFloat() + 1) * 0.08;
 		velocityZ = (world.random.nextFloat() - 0.5f) * 0.04;

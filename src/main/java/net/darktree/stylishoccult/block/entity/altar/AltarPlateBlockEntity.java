@@ -33,6 +33,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class AltarPlateBlockEntity extends SimpleBlockEntity {
 
@@ -49,7 +50,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		this.box = Utils.box(2, 2, 2, 14, 3, 14).offset(pos);
 	}
 
-	public boolean use(ItemStack stack) {
+	public boolean use(ItemStack stack, Random random) {
 		if (stack.getItem() == ModItems.OCCULT_STAFF) {
 			activate();
 			return true;
@@ -79,7 +80,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 
 		if (stack.isIn(ItemTags.CANDLES)) {
 			if (candles.size() < 64) {
-				candles.add(AltarRingItemStack.create(stack.split(1)));
+				candles.add(AltarRingItemStack.create(stack.split(1), random));
 				playSound(SoundEvents.BLOCK_CANDLE_PLACE);
 				update();
 			}

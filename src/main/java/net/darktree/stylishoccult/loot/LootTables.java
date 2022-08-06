@@ -23,35 +23,35 @@ public class LootTables {
             .build();
 
     public static final LootTable URN = LootManager.create()
-            .addCondition( ConditionEntry::hasSilkTouch )
-                .addItem( ModItems.URN )
+            .addCondition(ConditionEntry::hasSilkTouch )
+                .addItem(ModItems.URN )
                 .pop()
             .addElse()
-                .addItem( Items.DIAMOND, 5.9f )
-                .addItem( Items.GOLD_NUGGET, 35.3f )
-                .addItem( Items.GOLD_INGOT, 12.1f )
-                .addItem( Items.EMERALD, 23.4f )
-                .addItem( Items.LAPIS_LAZULI, 11.0f )
-                .addItem( Items.GUNPOWDER, 29.6f )
-                .addItem( Items.REDSTONE, 12.0f )
-                .addItem( Items.IRON_INGOT, 11.0f )
-                .addItem( Items.STRING, 3.2f )
-                .addItem( Items.ROTTEN_FLESH, 3.2f )
-                .addItem( Items.BONE, 4.2f )
+                .addItem(Items.DIAMOND, 5.9f)
+                .addItem(Items.GOLD_NUGGET, 35.3f)
+                .addItem(Items.GOLD_INGOT, 12.1f)
+                .addItem(Items.EMERALD, 23.4f)
+                .addItem(Items.LAPIS_LAZULI, 11.0f)
+                .addItem(Items.GUNPOWDER, 29.6f)
+                .addItem(Items.REDSTONE, 12.0f)
+                .addItem(Items.IRON_INGOT, 11.0f)
+                .addItem(Items.STRING, 3.2f)
+                .addItem(Items.ROTTEN_FLESH, 3.2f)
+                .addItem(Items.BONE, 4.2f)
                 .dropExperience(2, 10)
                 .pop()
             .minimum(1)
             .build();
 
     public static final LootTable ASH = LootManager.create()
-            .addCondition( (rng, ctx) -> ctx.getState().get(ArcaneAshBlock.PERSISTENT))
+            .addCondition((rng, ctx) -> ctx.getState().get(ArcaneAshBlock.PERSISTENT))
                 .addBlockItem()
                 .pop()
             .build();
 
     public static final LootTable CRYSTALLINE_BLACKSTONE = LootManager.create()
-            .addCondition( ConditionEntry::hasFortune )
-                .addValve( ValveEntry::fortune )
+            .addCondition(ConditionEntry::hasFortune)
+                .addValve(ValveEntry::fortune)
                     .addItem(Items.QUARTZ)
                     .dropExperience(1, 3)
                     .pop()
@@ -76,23 +76,23 @@ public class LootTables {
             .build();
 
     public static final LootTable LAVA_DEMON = LootManager.create()
-            .addCondition( (rng, ctx) -> ctx.getBlock() == ModBlocks.LAVA_DEMON && ctx.getState().get(LavaDemonBlock.PART) == LavaDemonPart.HEAD )
+            .addCondition((rng, ctx) -> ctx.getBlock() == ModBlocks.LAVA_DEMON && ctx.getState().get(LavaDemonBlock.PART) == LavaDemonPart.HEAD)
                 .addItem(ModItems.LAVA_HEART)
                 .pop()
             .addElse()
-                .addCondition( ConditionEntry::hasSilkTouch )
+                .addCondition(ConditionEntry::hasSilkTouch)
                     .addItem(ModItems.LAVA_STONE)
                     .pop()
                 .addElse()
-                    .addValve( ValveEntry::fortune )
-                        .addValve( ValveEntry::singular )
-                            .addItem( Items.DIAMOND, 3.8f )
-                            .addItem( Items.EMERALD, 23.0f )
-                            .addItem( Items.LAPIS_LAZULI, 5.0f )
-                            .addItem( Items.COAL, 35.4f )
-                            .addItem( Items.RAW_GOLD, 10.4f )
-                            .addItem( Items.RAW_IRON, 21.4f )
-                            .addItem( Items.RAW_COPPER, 28.4f )
+                    .addValve(ValveEntry::fortune)
+                        .addValve(ValveEntry::singular)
+                            .addItem(Items.DIAMOND, 3.8f)
+                            .addItem(Items.EMERALD, 23.0f)
+                            .addItem(Items.LAPIS_LAZULI, 5.0f)
+                            .addItem(Items.COAL, 35.4f)
+                            .addItem(Items.RAW_GOLD, 10.4f)
+                            .addItem(Items.RAW_IRON, 21.4f)
+                            .addItem(Items.RAW_COPPER, 28.4f)
                             .minimum(1)
                             .pop()
                         .pop()
@@ -101,7 +101,7 @@ public class LootTables {
             .build();
 
     public static final LootTable STONE_FLESH = LootManager.create()
-            .addCondition( ConditionEntry::hasSilkTouch )
+            .addCondition(ConditionEntry::hasSilkTouch)
                 .addBlockItem()
                 .pop()
             .addElse()
@@ -113,51 +113,51 @@ public class LootTables {
             .build();
 
     public static final LootTable GENERIC_FLESH = LootManager.create()
-            .addCondition( ConditionEntry::hasSilkTouch )
+            .addCondition(ConditionEntry::hasSilkTouch)
                 .addBlockItem()
                 .pop()
             .addElse()
-                .addItem( new ItemStack( ModItems.FLESH ), 100.0f, 1, 4 )
+                .addItem(new ItemStack( ModItems.FLESH ), 100.0f, 1, 4)
                 .pop()
             .build();
 
     public static final LootTable BONE_FLESH = LootManager.create()
-            .addCondition( ConditionEntry::hasSilkTouch )
+            .addCondition(ConditionEntry::hasSilkTouch)
                 .addBlockItem()
                 .pop()
             .addElse()
-                .addItem( ModItems.FLESH )
-                .addItem( new ItemStack( ModItems.TWISTED_BONE ), 100.0f, 1, 4 )
+                .addItem(ModItems.FLESH )
+                .addItem(new ItemStack( ModItems.TWISTED_BONE ), 100.0f, 1, 4)
                 .dropExperience( 0, 3 )
                 .pop()
             .build();
 
     public static final LootTable GLOW_FLESH = LootManager.create()
-            .addCondition( ConditionEntry::hasSilkTouch )
+            .addCondition(ConditionEntry::hasSilkTouch)
                 .addBlockItem()
                 .pop()
             .addElse()
-                .addItem( ModItems.FLESH )
-                .addItem( new ItemStack(ModItems.GLOWGROWTH_SHARD), 100.0f, 1, 2 )
+                .addItem(ModItems.FLESH)
+                .addItem(new ItemStack(ModItems.GLOWGROWTH_SHARD), 100.0f, 1, 2)
             .pop()
             .build();
 
     public static final LootTable EYES_BlOCK = LootManager.create()
-            .addValve( (arr, rng, ctx) -> {
+            .addValve((arr, rng, ctx) -> {
                 int size = ctx.getState().get(EyesBlock.SIZE);
-                for( ItemStack stack : arr ) stack.setCount( size );
+                for (ItemStack stack : arr) stack.setCount(size);
                 return arr;
-            } )
+            })
                 .addBlockItem()
                 .pop()
             .build();
 
     public static final LootTable SPARK_VENT = LootManager.create()
-            .addCondition( ConditionEntry::hasSilkTouch )
-                .addItem( ModItems.SPARK_VENT )
+            .addCondition(ConditionEntry::hasSilkTouch)
+                .addItem(ModItems.SPARK_VENT)
                 .pop()
             .addElse()
-                .addItem( Items.NETHERRACK )
+                .addItem(Items.NETHERRACK)
                 .pop()
             .build();
 

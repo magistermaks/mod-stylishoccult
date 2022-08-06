@@ -16,7 +16,6 @@ import net.minecraft.world.WorldAccess;
 
 import java.util.List;
 
-
 public class SimpleBlock extends Block implements DefaultLoot {
 
     public SimpleBlock(Settings settings) {

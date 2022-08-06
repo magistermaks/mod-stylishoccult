@@ -43,8 +43,8 @@ public class LogicRuneBlock extends RuneBlock {
         public static final LogicFunction EXCHANGE = (script, world, pos) -> script.stack.swap();
         public static final LogicFunction DUPLICATE = (script, world, pos) -> script.stack.duplicate();
         public static final LogicFunction NOT = (script, world, pos) -> put(script, get(script, world, pos) == 0);
-        public static final LogicFunction INVERT = (script, world, pos) -> put(script, -get(script, world, pos)); // TODO: remove
-        public static final LogicFunction RECIPROCAL = (script, world, pos) -> put(script, 1.0 / get(script, world, pos)); // TODO: remove
+        public static final LogicFunction INVERT = (script, world, pos) -> put(script, -get(script, world, pos));
+        public static final LogicFunction RECIPROCAL = (script, world, pos) -> put(script, 1.0 / get(script, world, pos));
         public static final LogicFunction ADD = (script, world, pos) -> put(script, get(script, world, pos) + get(script, world, pos));
         public static final LogicFunction MULTIPLY = (script, world, pos) -> put(script, get(script, world, pos) * get(script, world, pos));
         public static final LogicFunction EQUALS = (script, world, pos) -> put(script, script.pull(world, pos).equals(script.pull(world, pos)));

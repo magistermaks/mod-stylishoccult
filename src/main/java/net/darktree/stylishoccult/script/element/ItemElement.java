@@ -85,12 +85,6 @@ public class ItemElement extends StackElement {
 	}
 
 	@Override
-	@Deprecated
-	public String toString() {
-		return "ItemElement " + this.stack.writeNbt(new NbtCompound());
-	}
-
-	@Override
 	public void drop(World world, BlockPos pos) {
 		ItemStack remainder = insert(world, pos);
 		Block.dropStack(world, pos, remainder);

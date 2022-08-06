@@ -22,15 +22,15 @@ public class OrbitingFlameParticle extends AnimatedParticle {
 
     protected OrbitingFlameParticle(ClientWorld world, double x, double y, double z, SpriteProvider sprites) {
         super(world, x, y, z, sprites, 1);
-        setSprite( sprites.getSprite(world.random) );
+        setSprite(sprites.getSprite(world.random));
 
-        maxAge = RandUtils.rangeInt(50, 70);
+        maxAge = RandUtils.rangeInt(50, 70, world.random);
         velocityZ = world.random.nextFloat() * 6.2830;
         scale = 0.1F * (random.nextFloat() * 0.5F + 0.55F) * 1.3F;
         origin = new Vec3f((float) x, (float) y, (float) z);
 
         rad = random.nextFloat() * 6.2830f;
-        radius = RandUtils.rangeInt(30, 90) * 0.01f;
+        radius = RandUtils.rangeInt(30, 90, world.random) * 0.01f;
         bop = random.nextFloat();
 
         updatePosition();

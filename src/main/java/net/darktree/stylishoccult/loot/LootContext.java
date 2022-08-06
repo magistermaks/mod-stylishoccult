@@ -21,7 +21,7 @@ public class LootContext {
     final private BlockEntity blockEntity;
     final private float power;
 
-    private LootContext( World world, BlockPos pos, BlockState blockState, BlockEntity blockEntity, Entity entity, ItemStack tool, float power ) {
+    private LootContext(World world, BlockPos pos, BlockState blockState, BlockEntity blockEntity, Entity entity, ItemStack tool, float power) {
         this.world = world;
         this.pos = pos;
         this.entity = entity;
@@ -52,7 +52,7 @@ public class LootContext {
     }
 
     public ItemStack getBlockItem() {
-        return new ItemStack( getState().getBlock() );
+        return new ItemStack(getState().getBlock());
     }
 
     public Entity getEntity() {
@@ -60,19 +60,19 @@ public class LootContext {
     }
 
     public PlayerEntity getPlayer() {
-        return ( entity instanceof PlayerEntity ) ? (PlayerEntity) entity : null;
+        return (entity instanceof PlayerEntity) ? (PlayerEntity) entity : null;
     }
 
     public ItemStack getTool() {
         return tool;
     }
 
-    public boolean toolHasEnchantment( Enchantment enchantment ) {
-        return toolGetEnchantment( enchantment ) != 0;
+    public boolean toolHasEnchantment(Enchantment enchantment) {
+        return toolGetEnchantment(enchantment) != 0;
     }
 
-    public int toolGetEnchantment( Enchantment enchantment ) {
-        return EnchantmentHelper.getLevel( enchantment, getTool() );
+    public int toolGetEnchantment(Enchantment enchantment) {
+        return EnchantmentHelper.getLevel(enchantment, getTool());
     }
 
     public boolean shouldDrop() {
@@ -81,8 +81,8 @@ public class LootContext {
     }
 
     public <T extends BlockEntity> T getBlockEntity( Class<T> clazz ) {
-        if( clazz.isInstance( blockEntity ) ) {
-            return clazz.cast( blockEntity );
+        if (clazz.isInstance(blockEntity)) {
+            return clazz.cast(blockEntity );
         }
         return null;
     }
@@ -106,8 +106,8 @@ public class LootContext {
         private ItemStack tool;
         private float power;
 
-        public Builder( World world, BlockPos pos ) {
-            if( world == null || pos == null ) {
+        public Builder(World world, BlockPos pos) {
+            if (world == null || pos == null) {
                 throw new RuntimeException( "Invalid arguments for LootContext.Builder!" );
             }
 
@@ -120,27 +120,27 @@ public class LootContext {
             this.power = 0.0f;
         }
 
-        public Builder setBlockState( BlockState blockState ) {
+        public Builder setBlockState(BlockState blockState) {
             this.blockState = blockState;
             return this;
         }
 
-        public Builder setEntity( Entity entity ) {
+        public Builder setEntity(Entity entity) {
             this.entity = entity;
             return this;
         }
 
-        public Builder setTool( ItemStack tool ) {
+        public Builder setTool(ItemStack tool) {
             this.tool = (tool == null) ? ItemStack.EMPTY : tool;
             return this;
         }
 
-        public Builder setBlockEntity( BlockEntity blockEntity) {
+        public Builder setBlockEntity(BlockEntity blockEntity) {
             this.blockEntity = blockEntity;
             return this;
         }
 
-        public Builder setExplosionPower( float power ) {
+        public Builder setExplosionPower(float power) {
             this.power = power;
             return this;
         }

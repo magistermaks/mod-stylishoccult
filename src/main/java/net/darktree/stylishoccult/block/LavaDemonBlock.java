@@ -1,26 +1,31 @@
 package net.darktree.stylishoccult.block;
 
+import net.darktree.interference.api.DefaultLoot;
+import net.darktree.interference.api.MutableHardness;
+import net.darktree.interference.mixin.HardnessAccessor;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.block.entity.demon.LavaDemonBlockEntity;
 import net.darktree.stylishoccult.block.property.LavaDemonMaterial;
 import net.darktree.stylishoccult.block.property.LavaDemonPart;
-import net.darktree.stylishoccult.loot.LootTable;
+import net.darktree.stylishoccult.loot.LootManager;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.sounds.Sounds;
-import net.darktree.stylishoccult.utils.*;
+import net.darktree.stylishoccult.utils.BlockUtils;
+import net.darktree.stylishoccult.utils.OccultHelper;
+import net.darktree.stylishoccult.utils.RandUtils;
+import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContext;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -28,15 +33,16 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
+import java.util.List;
 import java.util.Random;
 
-public class LavaDemonBlock extends SimpleBlockWithEntity {
+public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, DefaultLoot {
 
     public static final IntProperty ANGER = IntProperty.of("anger", 0, 2);
     public static final EnumProperty<LavaDemonPart> PART = EnumProperty.of("part", LavaDemonPart.class);
@@ -57,24 +63,21 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
     }
 
     @Override
-    public LootTable getInternalLootTableId() {
-        return LootTables.LAVA_DEMON;
+    public List<ItemStack> getDefaultStacks(BlockState state, LootContext.Builder builder, Identifier identifier, LootContext lootContext, ServerWorld serverWorld, net.minecraft.loot.LootTable lootTable) {
+        return LootManager.dispatch(state, builder, this.lootTableId, LootTables.LAVA_DEMON);
     }
 
     @Override
     public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
         super.onStacksDropped(state, world, pos, stack);
 
-        int i = 0;
-        if( state.get(PART) == LavaDemonPart.BODY ) {
-            i = MathHelper.nextInt(world.random, 1, 3);
-        }else if( state.get(PART) == LavaDemonPart.EMITTER ) {
-            i = MathHelper.nextInt(world.random, 5, 7);
-        }else if( state.get(PART) == LavaDemonPart.HEAD ) {
-            i = MathHelper.nextInt(world.random, 7, 20);
-        }
+        int i = switch (state.get(PART)) {
+            case BODY -> RandUtils.rangeInt(1, 3, world.random);
+            case EMITTER -> RandUtils.rangeInt(5, 7, world.random);
+            case HEAD -> RandUtils.rangeInt(7, 20, world.random);
+        };
 
-        this.dropExperience( world, pos, i );
+        this.dropExperience(world, pos, i);
     }
 
     @Override
@@ -106,16 +109,17 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
         LavaDemonPart part = state.get(PART);
         int anger = state.get(ANGER);
 
-        if( anger > 0 && part == LavaDemonPart.EMITTER ){
+        if (anger > 0 && part == LavaDemonPart.EMITTER) {
             BlockPos posUp = pos.up();
-            if ( !world.getBlockState(posUp).isOpaqueFullCube(world, posUp) ) {
+            if (!world.getBlockState(posUp).isOpaqueFullCube(world, posUp)) {
                 if (random.nextInt(20) == 0) {
                     float d = ((float) pos.getX()) + 0.5f;
                     float e = ((float) pos.getY()) + 1.0f;
                     float f = ((float) pos.getZ()) + 0.5f;
                     world.addParticle(ParticleTypes.LAVA, d, e, f, 0.0D, -0.1D, 0.0D);
                 }
-                if(random.nextInt(10) == 0) {
+
+                if (random.nextInt(10) == 0) {
                     float d = ((float) pos.getX()) + random.nextFloat();
                     float e = ((float) pos.getY()) + 1.0f;
                     float f = ((float) pos.getZ()) + random.nextFloat();
@@ -128,20 +132,20 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
     @Override
     public float getHardness(BlockState state, BlockView world, BlockPos pos) {
         LavaDemonPart part = state.get(PART);
-        float hardness = getStoredHardness(state);
+        float hardness = ((HardnessAccessor) state).getStoredHardness();
 
-        if( part == LavaDemonPart.BODY ) {
+        if (part == LavaDemonPart.BODY) {
             return hardness;
-        }else if( part == LavaDemonPart.EMITTER ) {
+        }else if (part == LavaDemonPart.EMITTER) {
             return hardness * 2;
-        }else if( part == LavaDemonPart.HEAD ) {
+        }else if (part == LavaDemonPart.HEAD) {
             return hardness * 3;
         }
 
         return hardness;
     }
 
-    public LavaDemonMaterial getDisguise( World world, BlockPos pos ) {
+    public LavaDemonMaterial getDisguise(World world, BlockPos pos, Random random) {
         LavaDemonMaterial material = LavaDemonMaterial.STONE;
         Direction[] values = Direction.values();
 
@@ -152,8 +156,8 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
             }
         }
 
-        if( material == LavaDemonMaterial.STONE && RandUtils.getBool(StylishOccult.SETTING.disguise_chance) ) {
-            material = RandUtils.getEnum( LavaDemonMaterial.class );
+        if (material == LavaDemonMaterial.STONE && RandUtils.getBool(StylishOccult.SETTING.disguise_chance, random)) {
+            material = RandUtils.getEnum(LavaDemonMaterial.class, random);
         }
 
         return material;
@@ -161,7 +165,7 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if( world.isClient ) {
+        if (world.isClient) {
             return;
         }
 
@@ -169,8 +173,8 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
         OccultHelper.cleanseAround(world, pos, 4, 4, 20);
 
         // Spreading
-        if( state.get(CAN_SPREAD) ) {
-            BlockPos target = pos.offset( RandUtils.getEnum(Direction.class) );
+        if (state.get(CAN_SPREAD)) {
+            BlockPos target = pos.offset(RandUtils.getEnum(Direction.class, random));
             BlockPos origin = BlockUtils.find(
                     world,
                     target,
@@ -192,16 +196,16 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
                     }
 
                     if (BlockUtils.touchesAir(world, target)) {
-                        if (RandUtils.getBool(StylishOccult.SETTING.emitter_exposed)) {
+                        if (RandUtils.getBool(StylishOccult.SETTING.emitter_exposed, random)) {
                             targetState = targetState.with(PART, LavaDemonPart.EMITTER);
                         }
                     } else {
-                        if (RandUtils.getBool(StylishOccult.SETTING.emitter_buried)) {
+                        if (RandUtils.getBool(StylishOccult.SETTING.emitter_buried, random)) {
                             targetState = targetState.with(PART, LavaDemonPart.EMITTER);
                         }
                     }
 
-                    targetState = targetState.with(MATERIAL, getDisguise(world, target));
+                    targetState = targetState.with(MATERIAL, getDisguise(world, target, random));
 
                     world.setBlockState(target, targetState);
                 } else {
@@ -218,7 +222,7 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
 
         // Calming 2 -> 1
         if (state.get(ANGER) == 2) {
-            if( RandUtils.getBool(StylishOccult.SETTING.calm_chance_1 )) {
+            if (RandUtils.getBool(StylishOccult.SETTING.calm_chance_1, random)) {
                 world.setBlockState(pos, state.with(ANGER, 1));
                 return;
             }
@@ -226,7 +230,7 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
 
         // Calming 1 -> 0
         if (state.get(ANGER) == 1){
-            if (RandUtils.getBool(StylishOccult.SETTING.calm_chance_2)) {
+            if (RandUtils.getBool(StylishOccult.SETTING.calm_chance_2, random)) {
                 if (BlockUtils.find(world, pos, ModBlocks.LAVA_DEMON, StylishOccult.SETTING.calm_radius, (BlockState s) -> s.get(ANGER) == 2) == null ) {
                     world.setBlockState(pos, state.with(ANGER, 0));
                 }
@@ -242,6 +246,11 @@ public class LavaDemonBlock extends SimpleBlockWithEntity {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return checkType(type, BlockEntities.LAVA_DEMON, (w, p, s, entity) -> entity.tick(w, p, s));
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
 }

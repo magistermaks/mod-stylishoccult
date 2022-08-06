@@ -41,9 +41,11 @@ public class OccultHelper {
     }
 
     public static boolean cleanseAround(World world, BlockPos pos, int ra, int rb, int power) {
-        int x = RandUtils.rangeInt(-ra, ra);
-        int y = RandUtils.rangeInt(-rb, rb);
-        int z = RandUtils.rangeInt(-ra, ra);
+        Random random = world.getRandom();
+
+        int x = RandUtils.rangeInt(-ra, ra, random);
+        int y = RandUtils.rangeInt(-rb, rb, random);
+        int z = RandUtils.rangeInt(-ra, ra, random);
 
         BlockPos target = pos.add(x, y, z);
         BlockState state = world.getBlockState(target);
@@ -68,7 +70,7 @@ public class OccultHelper {
         boolean corruptible = ModTags.CORRUPTIBLE.contains(block);
 
         if( !state.isAir() ) {
-            if(corruptible || (canCorrupt(state, hardness) && requiredCheck(block, hardness))) {
+            if(corruptible || (canCorrupt(state, hardness, world.random) && requiredCheck(block, hardness))) {
                 spawnCorruption(world, target, state);
             }
         }else{
@@ -78,17 +80,17 @@ public class OccultHelper {
         }
     }
 
-    private static boolean canCorrupt(BlockState state, float hardness) {
+    private static boolean canCorrupt(BlockState state, float hardness, Random random) {
         Material material = state.getMaterial();
-        return hardnessCheck(hardness) || ((material.isBurnable() || material.isReplaceable() || material == Material.ORGANIC_PRODUCT || material == Material.SOLID_ORGANIC) && RandUtils.getBool(30.0f));
+        return hardnessCheck(hardness, random) || ((material.isBurnable() || material.isReplaceable() || material == Material.ORGANIC_PRODUCT || material == Material.SOLID_ORGANIC) && RandUtils.getBool(30.0f, random));
     }
 
-    private static boolean hardnessCheck( float hardness ) {
-        if( hardness < 1.0 ) return RandUtils.getBool(93.0f);
-        if( hardness < 1.5 ) return RandUtils.getBool(51.0f);
-        if( hardness < 2.0 ) return RandUtils.getBool(5.5f);
-        if( hardness < 2.5 ) return RandUtils.getBool(1.0f);
-        return RandUtils.getBool(0.1f);
+    private static boolean hardnessCheck(float hardness, Random random) {
+        if (hardness < 1.0) return RandUtils.getBool(93.0f, random);
+        if (hardness < 1.5) return RandUtils.getBool(51.0f, random);
+        if (hardness < 2.0) return RandUtils.getBool(5.5f, random);
+        if (hardness < 2.5) return RandUtils.getBool(1.0f, random);
+        return RandUtils.getBool(0.1f, random);
     }
 
     private static boolean requiredCheck( Block block, float hardness ) {
@@ -116,50 +118,52 @@ public class OccultHelper {
         }
     }
 
-    private static BlockState getCorruptionForBlock( World world, BlockPos pos, BlockState state ) {
-        if( state.isAir() || state.getBlock() instanceof PlantBlock ) {
-            if (RandUtils.getBool(33.3f) && shouldSpawnFoliage(world, pos) ) {
-                int type = RandUtils.rangeInt(0, 8);
+    private static BlockState getCorruptionForBlock(World world, BlockPos pos, BlockState state) {
+        Random random = world.getRandom();
 
-                if( type == 0 && validTentacleSpot(world, pos) ) {
-                    return ModBlocks.TENTACLE.getDefaultState().with(TentacleBlock.SIZE, RandUtils.rangeInt(3, 6));
+        if (state.isAir() || state.getBlock() instanceof PlantBlock) {
+            if (RandUtils.getBool(33.3f, random) && shouldSpawnFoliage(world, pos) ) {
+                int type = RandUtils.rangeInt(0, 8, random);
+
+                if (type == 0 && validTentacleSpot(world, pos)) {
+                    return ModBlocks.TENTACLE.getDefaultState().with(TentacleBlock.SIZE, RandUtils.rangeInt(3, 6, random));
                 }
 
-                if( type == 1 && validDownSpot(world, pos) ) {
-                    return ModBlocks.EYES_FLESH.getDefaultState().with(EyesBlock.SIZE, RandUtils.rangeInt(1, 3));
+                if (type == 1 && validDownSpot(world, pos)) {
+                    return ModBlocks.EYES_FLESH.getDefaultState().with(EyesBlock.SIZE, RandUtils.rangeInt(1, 3, random));
                 }
 
-                if( type == 2 && validDownSpot(world, pos) ) {
-                    return ModBlocks.WARTS_FLESH.getDefaultState().with(EyesBlock.SIZE, RandUtils.rangeInt(1, 3));
+                if (type == 2 && validDownSpot(world, pos)) {
+                    return ModBlocks.WARTS_FLESH.getDefaultState().with(EyesBlock.SIZE, RandUtils.rangeInt(1, 3, random));
                 }
 
-                if( type == 3 && RandUtils.getBool(55.6f) ) {
+                if (type == 3 && RandUtils.getBool(55.6f, random)) {
                     if( BlockUtils.countInArea(world, pos, VentBlock.class, 5) == 0 ) {
                         return ((VentBlock) ModBlocks.SPORE_VENT).getStateToFit(world, pos);
                     }
                 }
 
-                if( type == 4 || type == 5 ) {
+                if (type == 4 || type == 5) {
                     return ((GrowthBlock) ModBlocks.GROWTH).getStateToFit(world, pos);
                 }
 
-                if( type >= 6 && validDownSpot(world, pos) ) {
+                if (type >= 6 && validDownSpot(world, pos)) {
                     return ModBlocks.WORMS_FLESH.getDefaultState();
                 }
             }
         }else{
             Block block = state.getBlock();
 
-            if( block instanceof FluidBlock ) {
-                if( RandUtils.getBool(25.0f) ) {
+            if (block instanceof FluidBlock) {
+                if( RandUtils.getBool(25.0f, random) ) {
                     return ModBlocks.GOO_FLESH.getDefaultState().with(GooFleshBlock.TOP, world.getBlockState(pos.up()).isAir());
                 }
             }else{
-                if( state.getLuminance() > 3 && state.isFullCube(world, pos) ) return ModBlocks.GLOW_FLESH.getDefaultState();
-                if( BlockTags.LEAVES.contains(block) ) return LeavesFleshBlock.getStateToFit(world, pos);
-                if( ModTags.TOP_SOIL.contains(block) && RandUtils.getBool(80) ) return ModBlocks.SOIL_FLESH.getDefaultState();
+                if (state.getLuminance() > 3 && state.isFullCube(world, pos)) return ModBlocks.GLOW_FLESH.getDefaultState();
+                if (BlockTags.LEAVES.contains(block)) return LeavesFleshBlock.getStateToFit(world, pos);
+                if (ModTags.TOP_SOIL.contains(block) && RandUtils.getBool(80, random)) return ModBlocks.SOIL_FLESH.getDefaultState();
 
-                return ModBlocks.FLESH_PASSIVE.getDefaultState().with(PassiveFleshBlock.BLOODY, RandUtils.getBool(StylishOccult.SETTING.bloody_flesh_chance));
+                return ModBlocks.FLESH_PASSIVE.getDefaultState().with(PassiveFleshBlock.BLOODY, RandUtils.getBool(StylishOccult.SETTING.bloody_flesh_chance, world.random));
             }
         }
 

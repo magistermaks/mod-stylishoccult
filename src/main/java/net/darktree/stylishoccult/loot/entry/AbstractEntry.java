@@ -10,7 +10,7 @@ public abstract class AbstractEntry {
 
     public abstract ArrayList<ItemStack> getLoot(Random random, LootContext context);
 
-    protected ArrayList<ItemStack> asList( ItemStack stack ) {
+    protected ArrayList<ItemStack> asList(ItemStack stack) {
         ArrayList<ItemStack> list = new ArrayList<>();
         list.add(stack);
         return list;
