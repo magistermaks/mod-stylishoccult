@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
 @Mixin(PlayerEntity.class)
-public class PlayerEntityMixin implements PlayerEntityDuck {
+public abstract class PlayerEntityMixin implements PlayerEntityDuck {
 
 	@Unique
 	private static final UUID MADNESS_SLOW_ID = UUID.fromString("1eaff00f-7207-1234-b3ff-d7a07ab1cdef");

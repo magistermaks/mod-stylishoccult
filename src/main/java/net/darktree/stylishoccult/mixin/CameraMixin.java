@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(Camera.class)
-public class CameraMixin {
+public abstract class CameraMixin {
 
 	@Inject(method="getSubmersionType", at=@At(value="HEAD"))
 	private void stylish_getSubmersionType(CallbackInfoReturnable<CameraSubmersionType> info) {

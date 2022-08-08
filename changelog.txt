@@ -1,11 +1,17 @@
 
-0.9.0
+0.9.0 release
 - Added Suspicious (suspectum) rune - harvesting blood
 - Added Value (valorem) rune - copy by value
 - Added blood fluid
 - Fixed stuttering in motion of Orbiting Flame particles
+- Tweaked world generation
+- Added documentation
+- Added Dark Altars with data driven recipes
+- Added Occult Cauldrons
+- Debug runes now have a GUI
+- Added a config screen
 
-0.8.0 beta
+0.8.0 beta <2022/02/18>
 - Added Sanctum structure in The Nether
 - Added Stonehenge structure in the overworld
 - Lowered Runic Wall and Boulder spawn rate

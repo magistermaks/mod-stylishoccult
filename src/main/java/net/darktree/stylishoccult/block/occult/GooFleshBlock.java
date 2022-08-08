@@ -4,6 +4,7 @@ import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
+import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -11,7 +12,6 @@ import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +31,7 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
     private static final VoxelShape BOX = Utils.shape(0, 0, 0, 16, 15, 16);
 
     public GooFleshBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).noCollision().ticksRandomly());
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, false ).noCollision().ticksRandomly());
         setDefaultState( getDefaultState().with(TOP, false) );
     }
 

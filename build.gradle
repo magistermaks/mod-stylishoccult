@@ -27,7 +27,6 @@ group = project.maven_group
 
 loom {
     accessWidenerPath = file("src/main/resources/stylish_occult.accesswidener")
-    runtimeOnlyLog4j = true
 }
 
 dependencies {

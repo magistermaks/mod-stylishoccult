@@ -5,13 +5,13 @@ import net.darktree.stylishoccult.block.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
+import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -20,7 +20,7 @@ import java.util.Random;
 public class FleshBlock extends FullFleshBlock implements ImpureBlock {
 
     public FleshBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).slipperiness(0.8f).ticksRandomly() );
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, true ).slipperiness(0.8f).ticksRandomly() );
     }
 
     @Override

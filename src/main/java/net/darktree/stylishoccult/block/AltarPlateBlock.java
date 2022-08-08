@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block;
 
+import net.darktree.interference.Voxels;
 import net.darktree.interference.api.DropsItself;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.block.entity.altar.AltarPlateBlockEntity;
@@ -7,7 +8,6 @@ import net.darktree.stylishoccult.block.rune.VerticalRuneLink;
 import net.darktree.stylishoccult.script.element.StackElement;
 import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.Utils;
-import net.darktree.stylishoccult.utils.Voxels;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;

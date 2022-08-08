@@ -32,7 +32,7 @@ public class RuneException extends RuntimeException {
         Criteria.EXCEPTION.trigger(world, pos, rune, getMessage(), safe);
 
         if (safe) {
-            Network.DEFUSE_PACKET.send(pos, (ServerWorld) world);
+            Network.DEFUSE.send(pos, (ServerWorld) world);
         }else{
             float size = StylishOccult.SETTING.rune_error_explosion.get(world);
             world.createExplosion(null, x, y, z, size, Explosion.DestructionType.BREAK);

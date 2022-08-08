@@ -119,6 +119,9 @@ public class Settings {
 	@Config.Entry(group="other")
 	public boolean infinite_flesh_growth = false;
 
+	@Config.Entry(group="other", restart=true)
+	public boolean add_guide_to_loottables = true;
+
 	@Config.Entry(group="structure", restart=true)
 	public StructureConfig sanctum = new StructureConfig(10, 7, 48151, 5);
 

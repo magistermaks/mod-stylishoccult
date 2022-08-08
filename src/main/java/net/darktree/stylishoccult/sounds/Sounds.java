@@ -8,7 +8,6 @@ public class Sounds {
 
     public static BlockSoundGroup FLESH;
     public static BlockSoundGroup LAVA_DEMON;
-    public static BlockSoundGroup CANDLE;
     public static BlockSoundGroup URN;
 
     public static SoundEffect HEARTBEAT = SoundManager.loadSound("heartbeat", SoundCategory.AMBIENT);
@@ -40,14 +39,6 @@ public class Sounds {
 
         LAVA_DEMON = SoundManager.createGroup()
                 .setBreakSound(LAVA_DEMON_DIE)
-                .setFallSound(SoundEvents.BLOCK_STONE_FALL)
-                .setHitSound(SoundEvents.BLOCK_STONE_HIT)
-                .setPlaceSound(SoundEvents.BLOCK_STONE_PLACE)
-                .setStepSound(SoundEvents.BLOCK_STONE_STEP)
-                .build();
-
-        CANDLE = SoundManager.createGroup()
-                .setBreakSound(SoundEvents.BLOCK_STONE_BREAK)
                 .setFallSound(SoundEvents.BLOCK_STONE_FALL)
                 .setHitSound(SoundEvents.BLOCK_STONE_HIT)
                 .setPlaceSound(SoundEvents.BLOCK_STONE_PLACE)

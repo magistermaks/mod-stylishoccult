@@ -153,7 +153,7 @@ public class AltarRitualState {
 	}
 
 	public boolean getBlood(World world, int blood) {
-		StylishOccult.debug("[ALTAR] Trying to fetch: " + blood + " units of blood, detected: " + this.blood);
+		StylishOccult.LOGGER.debug("(Altar) Trying to fetch: " + blood + " units of blood, detected: " + this.blood);
 
 		if (blood <= this.blood) {
 			try (Transaction transaction = Transaction.openOuter()) {
@@ -165,7 +165,7 @@ public class AltarRitualState {
 					}
 				}
 
-				StylishOccult.debug("[ALTAR] Missing: " + blood);
+				StylishOccult.LOGGER.debug("(Altar) Amount missing: " + blood);
 
 				if (blood > 0) {
 					transaction.abort();

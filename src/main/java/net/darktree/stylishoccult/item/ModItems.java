@@ -1,5 +1,7 @@
 package net.darktree.stylishoccult.item;
 
+import net.darktree.interference.LootInjector;
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.fluid.ModFluids;
 import net.darktree.stylishoccult.block.rune.RuneBlock;
@@ -17,9 +19,13 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
+import net.minecraft.loot.LootTables;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Rarity;
+import vazkii.patchouli.common.item.PatchouliItems;
 
 import java.util.ArrayList;
 
@@ -30,7 +36,7 @@ public class ModItems {
     static public class Groups {
         public static final ItemGroup STYLISH_OCCULT = FabricItemGroupBuilder.create(
                 new ModIdentifier("stylish_occult_main"))
-                .icon(() -> new ItemStack(ModItems.LAVA_HEART))
+                .icon(() -> new ItemStack(ModItems.OCCULT_STAFF))
                 .build();
 
         public static final ItemGroup RUNES = FabricItemGroupBuilder.create(
@@ -104,7 +110,27 @@ public class ModItems {
     public static final Item OCCULT_STAFF = RegUtil.item("staff", new Item(new Item.Settings().group(Groups.STYLISH_OCCULT)));
 
     public static void init() {
-        // Load this class
+        if (FabricLoader.getInstance().isModLoaded("patchouli")) {
+            if (StylishOccult.SETTING.add_guide_to_loottables) {
+                NbtCompound tag = new NbtCompound();
+                tag.putString("patchouli:book", "stylish_occult:runonomicon");
+                ItemStack stack = new ItemStack(PatchouliItems.BOOK);
+                stack.setNbt(tag);
+
+                LootInjector.injectEntry(LootTables.STRONGHOLD_LIBRARY_CHEST, stack, 20);
+                LootInjector.injectEntry(LootTables.NETHER_BRIDGE_CHEST, stack, 60);
+                LootInjector.injectEntry(LootTables.BASTION_TREASURE_CHEST, stack, 60);
+                LootInjector.injectEntry(LootTables.BASTION_BRIDGE_CHEST, stack, 5);
+                LootInjector.injectEntry(LootTables.VILLAGE_CARTOGRAPHER_CHEST, stack, 1);
+            }
+        } else {
+            StylishOccult.LOGGER.error("Stylish Occult did not detect Patchouli among the loaded mods!");
+            StylishOccult.LOGGER.error("This is not a fatal error but it will negatively affect your gameplay!");
+
+            try {
+                Thread.sleep(2000);
+            } catch (Exception ignored) {}
+        }
     }
 
     @Environment(EnvType.CLIENT)

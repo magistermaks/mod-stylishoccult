@@ -1,0 +1,16 @@
+{
+	"name": "patchouli.stylish_occult.runonomicon.name",
+	"landing_text": "patchouli.stylish_occult.runonomicon.text",
+	"version": 1,
+	"macros": {
+		"$(hs)": "$(thing)High Stack$()",
+		"$(ds)": "$(thing)Drop Stack$()"
+	},
+	"link_color": "EE0000",
+	"link_hover_color": "EE0088",
+	"progress_bar_color": "EE2222",
+	"model": "patchouli:book_red",
+	"creative_tab": "stylish_occult.stylish_occult_main",
+	"use_blocky_font": false,
+	"text_overflow_mode": "overflow"
+}

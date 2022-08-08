@@ -2,12 +2,12 @@ package net.darktree.stylishoccult.block.occult;
 
 import net.darktree.stylishoccult.block.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.Material;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -17,7 +17,7 @@ public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock, Foliag
         super(AbstractBlock.Settings.of(Material.LEAVES)
                 .strength(0.2F)
                 .slipperiness(0.8f)
-                .sounds(BlockSoundGroup.HONEY)
+                .sounds(Sounds.FLESH)
                 .nonOpaque()
                 .allowsSpawning((a, b, c, d) -> false)
                 .suffocates((a, b, c) -> false)

@@ -1,12 +1,12 @@
 package net.darktree.stylishoccult.block;
 
+import net.darktree.interference.Voxels;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleBlock;
-import net.darktree.stylishoccult.utils.Voxels;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;

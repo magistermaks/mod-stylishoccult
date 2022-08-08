@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.occult;
 
+import net.darktree.interference.Voxels;
 import net.darktree.stylishoccult.block.SparkVentBlock;
 import net.darktree.stylishoccult.block.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.FullFleshBlock;
@@ -10,7 +11,6 @@ import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.SimpleBlock;
-import net.darktree.stylishoccult.utils.Voxels;
 import net.minecraft.block.*;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.item.ItemPlacementContext;

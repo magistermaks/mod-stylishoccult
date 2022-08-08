@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block;
 
+import net.darktree.interference.Voxels;
 import net.darktree.interference.api.DropsItself;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.rune.EntryRuneBlock;
@@ -8,8 +9,6 @@ import net.darktree.stylishoccult.block.rune.VerticalRuneLink;
 import net.darktree.stylishoccult.script.element.StackElement;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.Directions;
-import net.darktree.stylishoccult.utils.Utils;
-import net.darktree.stylishoccult.utils.Voxels;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -38,7 +37,7 @@ public class TableBlock extends EntryRuneBlock implements DropsItself, VerticalR
 	public static final BooleanProperty TOP = BooleanProperty.of("top");
 
 	public static final VoxelShape SHAPE_FULL = Voxels.box(4.5f, 0, 4.5f, 11.5f, 12, 11.5f).box(0, 12, 0, 16, 16, 16).build();
-	public static final VoxelShape SHAPE_STACKED = Utils.shape(4.5f, 0, 4.5f, 11.5f, 12, 11.5f);
+	public static final VoxelShape SHAPE_STACKED = Voxels.shape(4.5f, 0, 4.5f, 11.5f, 12, 11.5f);
 
 	public TableBlock(String name) {
 		super(name);

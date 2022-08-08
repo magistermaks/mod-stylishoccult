@@ -27,12 +27,12 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import java.util.Map;
 
 @Mixin(ServerAdvancementLoader.class)
-public class ServerAdvancementLoaderMixin {
+public abstract class ServerAdvancementLoaderMixin {
 
 	@Shadow @Final private LootConditionManager conditionManager;
 
 	@Inject(method="apply(Ljava/util/Map;Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/util/profiler/Profiler;)V", at=@At(value="INVOKE", target="Lnet/minecraft/advancement/AdvancementManager;load(Ljava/util/Map;)V", shift=At.Shift.BEFORE), locals=LocalCapture.CAPTURE_FAILHARD)
-	private void apply(Map<Identifier, JsonElement> map, ResourceManager resourceManager, Profiler profiler, CallbackInfo info, Map<Identifier, Advancement.Task> tasks, AdvancementManager advancementManager) {
+	private void stylish_apply(Map<Identifier, JsonElement> map, ResourceManager resourceManager, Profiler profiler, CallbackInfo info, Map<Identifier, Advancement.Task> tasks, AdvancementManager advancementManager) {
 		ModItems.RUNESTONES.forEach(item -> {
 			Identifier itemId = Registry.ITEM.getId(item);
 			Identifier taskId = ModIdentifier.of("gather/" + itemId.getPath());

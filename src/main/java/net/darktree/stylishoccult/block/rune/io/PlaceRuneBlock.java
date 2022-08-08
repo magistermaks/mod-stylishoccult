@@ -23,9 +23,9 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 
     @Override
     public void apply(Script script, World world, BlockPos pos) {
-        int x = (int) Math.round( script.pull(world, pos).value() );
-        int y = (int) Math.round( script.pull(world, pos).value() );
-        int z = (int) Math.round( script.pull(world, pos).value() );
+        int x = (int) Math.round(script.pull(world, pos).value());
+        int y = (int) Math.round(script.pull(world, pos).value());
+        int z = (int) Math.round(script.pull(world, pos).value());
 
         ItemElement element = script.stack.pull().cast(ItemElement.class);
         BlockPos target = pos.add(x, y, z);
@@ -41,10 +41,10 @@ public class PlaceRuneBlock extends ActorRuneBlock {
                     script.ring.push(element, world, pos);
                 }
             } catch (Exception e) {
-                StylishOccult.LOGGER.warn("place error!");
+                StylishOccult.LOGGER.warn("Failed to place block!");
             }
         } else {
-            StylishOccult.LOGGER.warn("not a block item!");
+            throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_TYPE);
         }
 
         super.apply(script);

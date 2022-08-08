@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.occult;
 
+import net.darktree.interference.Voxels;
 import net.darktree.interference.api.LookAtEvent;
 import net.darktree.stylishoccult.block.BuildingBlock;
 import net.darktree.stylishoccult.block.occult.api.FoliageFleshBlock;
@@ -7,13 +8,12 @@ import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.overlay.PlayerEntityClientDuck;
 import net.darktree.stylishoccult.overlay.PlayerEntityDuck;
+import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RegUtil;
-import net.darktree.stylishoccult.utils.Voxels;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.hit.BlockHitResult;
@@ -30,7 +30,7 @@ public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFlesh
     private static final VoxelShape SHAPE = Voxels.box(1, 1, 0, 15, 15, 16).box(0, 1, 1, 16, 15, 15).box(1, 0, 1, 15, 16, 15).build();
 
     public EyeBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 1.0F, 1.0F, true ).luminance(6) );
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 1.0F, 1.0F, true ).luminance(6) );
         setDefaultState( getDefaultState().with(PERSISTENT, false) );
     }
 

@@ -140,7 +140,7 @@ public class CraftRuneBlock extends TransferRuneBlock {
 
 			if (selected != null) {
 				if (world.isClient) {
-					Network.TOGGLE_PACKET.send(pos, selected.id, !state.get(selected.property));
+					Network.TOGGLE.send(pos, selected.id, !state.get(selected.property));
 				}
 
 				return ActionResult.SUCCESS;

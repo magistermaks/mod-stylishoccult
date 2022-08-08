@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntity.class)
-public class PlayerEntityClientMixin implements PlayerEntityClientDuck {
+public abstract class PlayerEntityClientMixin implements PlayerEntityClientDuck {
 
 	@Unique
 	@Environment(EnvType.CLIENT)

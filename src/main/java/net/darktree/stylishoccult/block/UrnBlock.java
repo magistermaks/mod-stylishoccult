@@ -1,11 +1,11 @@
 package net.darktree.stylishoccult.block;
 
+import net.darktree.interference.Voxels;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.SimpleBlock;
-import net.darktree.stylishoccult.utils.Voxels;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.ShapeContext;

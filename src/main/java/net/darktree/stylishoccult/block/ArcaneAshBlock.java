@@ -40,7 +40,7 @@ public class ArcaneAshBlock extends SimpleBlock {
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         super.onBreak(world, pos, state, player);
         if( !world.isClient ) {
-            Network.ASH_PACKET.send(pos, (ServerWorld) world);
+            Network.ASH.send(pos, (ServerWorld) world);
         }
     }
 
@@ -59,7 +59,7 @@ public class ArcaneAshBlock extends SimpleBlock {
         if( !state.get(PERSISTENT) ) {
             world.getBlockTickScheduler().schedule(pos, this, 100 + world.random.nextInt(20));
             if( !world.isClient ) {
-                Network.ASH_PACKET.send(pos, (ServerWorld) world);
+                Network.ASH.send(pos, (ServerWorld) world);
             }
         }
     }
@@ -69,7 +69,7 @@ public class ArcaneAshBlock extends SimpleBlock {
         int age = state.get(AGE);
 
         if (age == 3) {
-            Network.ASH_PACKET.send( pos, world );
+            Network.ASH.send( pos, world );
             world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), this.soundGroup.getBreakSound(), SoundCategory.BLOCKS, 0.8f, 1.0f);
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
         } else {

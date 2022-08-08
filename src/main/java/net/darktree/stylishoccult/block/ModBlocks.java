@@ -9,6 +9,7 @@ import net.darktree.stylishoccult.block.rune.flow.*;
 import net.darktree.stylishoccult.block.rune.io.*;
 import net.darktree.stylishoccult.block.rune.trigger.*;
 import net.darktree.stylishoccult.item.ModItems;
+import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -54,7 +55,7 @@ public class ModBlocks {
     public static final Block SPORE_VENT = RegUtil.block("flesh_vent", new VentBlock());
     public static final Block WARTS_FLESH = RegUtil.block("flesh_warts", new EyesBlock());
     public static final Block WORMS_FLESH = RegUtil.block("flesh_worms", new WormsBlock());
-    public static final Block EYES_BLOCK = RegUtil.block("eyes_block", new BuildingBlock(RegUtil.settings(Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false)));
+    public static final Block EYES_BLOCK = RegUtil.block("eyes_block", new BuildingBlock(RegUtil.settings(Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, false)));
     public static final Block FLESH_PASSIVE = RegUtil.block("flesh_passive", new PassiveFleshBlock());
 
     // simple building blocks

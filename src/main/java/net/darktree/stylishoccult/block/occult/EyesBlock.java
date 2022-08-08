@@ -7,6 +7,7 @@ import net.darktree.stylishoccult.block.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
+import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -15,7 +16,6 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
@@ -37,7 +37,7 @@ public class EyesBlock extends SimpleBlock implements ImpureBlock, FoliageFleshB
     private static final VoxelShape OUTLINE_SHAPE = Utils.shape(1, 0, 1, 15, 2, 15);
 
     public EyesBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).ticksRandomly() );
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, false ).ticksRandomly() );
         setDefaultState( getDefaultState().with(SIZE, 1) );
     }
 

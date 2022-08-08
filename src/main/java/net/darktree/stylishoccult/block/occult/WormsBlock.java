@@ -5,12 +5,12 @@ import net.darktree.stylishoccult.block.BuildingBlock;
 import net.darktree.stylishoccult.block.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
+import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -25,7 +25,7 @@ public class WormsBlock extends BuildingBlock implements ImpureBlock, FoliageFle
     private static final VoxelShape SHAPE = Utils.shape(2, 0, 2, 14, 10, 14);
 
     public WormsBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, false ).noCollision().breakInstantly().ticksRandomly() );
+        super( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, false ).noCollision().breakInstantly().ticksRandomly() );
     }
 
     @Override

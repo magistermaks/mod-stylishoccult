@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(HungerManager.class)
-public class HungerManagerMixin {
+public abstract class HungerManagerMixin {
 
     @Inject(method="update(Lnet/minecraft/entity/player/PlayerEntity;)V", at=@At(shift=At.Shift.AFTER, value="INVOKE", target="Lnet/minecraft/world/GameRules;getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"), cancellable=true)
     public void stylish_update(PlayerEntity player, CallbackInfo ci) {
