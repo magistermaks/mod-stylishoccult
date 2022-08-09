@@ -1,10 +1,10 @@
 {
-    "replace": false,
-    "values": [
-        "minecraft:grass_block",
-        "minecraft:mycelium",
-        "minecraft:podzol",
-        "minecraft:dirt_path",
-        "#minecraft:nylium"
-    ]
+	"replace": false,
+	"values": [
+		"minecraft:grass_block",
+		"minecraft:mycelium",
+		"minecraft:podzol",
+		"minecraft:dirt_path",
+		"#minecraft:nylium"
+	]
 }

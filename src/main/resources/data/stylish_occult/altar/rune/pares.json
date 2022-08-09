@@ -1,0 +1,17 @@
+{
+    "blood": 27000,
+    "catalyst": "stylish_occult:blood_shard",
+    "consume": false,
+    "ingredients": [
+        "stylish_occult:runestone",
+        "stylish_occult:glowgrowth_shard",
+        "stylish_occult:flesh",
+        "stylish_occult:flesh_worms",
+        "stylish_occult:glowgrowth_shard",
+        "stylish_occult:flesh_worms",
+        "stylish_occult:flesh",
+        "stylish_occult:glowgrowth_shard"
+    ],
+    "product": "stylish_occult:rune_pares",
+    "count": 1
+}

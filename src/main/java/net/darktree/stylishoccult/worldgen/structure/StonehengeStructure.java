@@ -96,7 +96,7 @@ public class StonehengeStructure extends StructureFeature<DefaultFeatureConfig> 
 			BlockPos target = new BlockPos(pos.x * 16 + 8, 0, pos.z * 16 + 8);
 
 			// generate pool based structure
-			StructurePoolFeatureConfig pool = WorldGen.getPool(registry, "stonehenge/start", StylishOccult.SETTINGS.stonehenge.depth);
+			StructurePoolFeatureConfig pool = WorldGen.getPool(registry, "stonehenge/start", StylishOccult.SETTING.stonehenge.depth);
 			StructurePoolBasedGenerator.generate(registry, pool, PoolStructurePiece::new, generator, manager, target, this, this.random, false, true, view);
 
 			// center the structure on the chunk center

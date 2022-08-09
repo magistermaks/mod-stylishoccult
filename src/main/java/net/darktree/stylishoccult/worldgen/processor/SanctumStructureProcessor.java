@@ -1,9 +1,10 @@
 package net.darktree.stylishoccult.worldgen.processor;
 
-import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.occult.EyesBlock;
-import net.darktree.stylishoccult.blocks.runes.RuneBlock;
-import net.darktree.stylishoccult.tags.ModTags;
+import net.darktree.lootboxes.LootBoxes;
+import net.darktree.stylishoccult.block.ModBlocks;
+import net.darktree.stylishoccult.block.occult.EyesBlock;
+import net.darktree.stylishoccult.block.rune.RuneBlock;
+import net.darktree.stylishoccult.tag.ModTags;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.worldgen.WorldGen;
 import net.minecraft.block.Block;
@@ -25,10 +26,10 @@ public class SanctumStructureProcessor extends SimpleStructureProcessor {
 	@Override
 	public BlockState process(Random random, Block block, BlockState state) {
 		if (block == Blocks.BLACK_WOOL) return RandUtils.getArrayEntry(RUBBLE, random).getDefaultState(); else
-		if (block == Blocks.POLISHED_BLACKSTONE_BRICKS) return RandUtils.getBool(8f, random) ? getRune(random) : RandUtils.getArrayEntry(BRICKS, random).getDefaultState(); else
+		if (block == Blocks.POLISHED_BLACKSTONE_BRICKS) return RandUtils.getBool(6f, random) ? getRune(random) : RandUtils.getArrayEntry(BRICKS, random).getDefaultState(); else
 		if (block == Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS) return copyStair(state, RandUtils.getArrayEntry(STAIRS, random)); else
 		if (block == Blocks.POLISHED_BLACKSTONE_BRICK_SLAB) return copySlab(state, RandUtils.getArrayEntry(SLABS, random)); else
-		if (block == ModBlocks.URN && RandUtils.getBool(50f, random)) return Blocks.AIR.getDefaultState(); else
+		if (block == LootBoxes.URN_BLOCK && RandUtils.getBool(50f, random)) return Blocks.AIR.getDefaultState(); else
 		if (block == Blocks.RED_CANDLE) return RandUtils.getBool(20f, random) ? Blocks.AIR.getDefaultState() : state.with(CandleBlock.CANDLES, RandUtils.rangeInt(1, 4, random)); else
 		if (block == ModBlocks.EYES_FLESH || block == ModBlocks.WARTS_FLESH) return state.with(EyesBlock.SIZE, RandUtils.rangeInt(1, 3, random)); else
 		if (block == Blocks.BLACKSTONE && RandUtils.getBool(20f, random)) return ModBlocks.CRYSTALLINE_BLACKSTONE.getDefaultState();

@@ -1,33 +1,33 @@
 {
-    "lava_demon_wakeup": {
-        "subtitle": "sound.stylish_occult.lava_demon.wakeup",
-        "sounds": [
-            "stylish_occult:lava_demon_wakeup_1",
-            "stylish_occult:lava_demon_wakeup_2", 
-            "stylish_occult:lava_demon_wakeup_3"
-        ]   
-    },
-    "lava_demon_die": {
-        "subtitle": "sound.stylish_occult.lava_demon.die",
-        "sounds": [
-            "stylish_occult:lava_demon_die"
-        ]   
-    },
-    "urn_broken": {
-        "subtitle": "sound.stylish_occult.urn.broken",
-        "sounds": [
-            "stylish_occult:urn_1",
-            "stylish_occult:urn_2", 
-            "stylish_occult:urn_3",
-            "stylish_occult:urn_4"
-        ]   
-    },
-    "vent": {
-        "subtitle": "sound.stylish_occult.vent",
-        "sounds": [
-            "stylish_occult:vent"
-        ]   
-    },
+	"lava_demon_wakeup": {
+		"subtitle": "sound.stylish_occult.lava_demon.wakeup",
+		"sounds": [
+			"stylish_occult:lava_demon_wakeup_1",
+			"stylish_occult:lava_demon_wakeup_2",
+			"stylish_occult:lava_demon_wakeup_3"
+		]
+	},
+	"lava_demon_die": {
+		"subtitle": "sound.stylish_occult.lava_demon.die",
+		"sounds": [
+			"stylish_occult:lava_demon_die"
+		]
+	},
+	"urn_broken": {
+		"subtitle": "sound.stylish_occult.urn.broken",
+		"sounds": [
+			"stylish_occult:urn_1",
+			"stylish_occult:urn_2",
+			"stylish_occult:urn_3",
+			"stylish_occult:urn_4"
+		]
+	},
+	"vent": {
+		"subtitle": "sound.stylish_occult.vent",
+		"sounds": [
+			"stylish_occult:vent"
+		]
+	},
 	"spore_escapes": {
 		"subtitle": "sound.stylish_occult.spore_escapes",
 		"sounds": [
@@ -38,6 +38,109 @@
 		"subtitle": "sound.stylish_occult.heartbeat",
 		"sounds": [
 			"stylish_occult:heartbeat"
+		]
+	},
+	"spark": {
+		"subtitle": "sound.stylish_occult.spark",
+		"sounds": [
+			"stylish_occult:spark_1",
+			"stylish_occult:spark_2"
+		]
+	},
+	"arc": {
+		"subtitle": "sound.stylish_occult.arc",
+		"author": "https://freesound.org/people/kev_durr/sounds/396511/",
+		"sounds": [
+			"stylish_occult:arc"
+		]
+	},
+	"spell": {
+		"subtitle": "sound.stylish_occult.spell",
+		"author": "https://freesound.org/people/RICHERlandTV/sounds/216089/",
+		"sounds": [
+			"stylish_occult:spell"
+		]
+	},
+	"boom": {
+		"subtitle": "sound.stylish_occult.boom",
+		"author": "https://freesound.org/people/Rizzard/sounds/559529/",
+		"sounds": [
+			"stylish_occult:boom"
+		]
+	},
+	"transmute": {
+		"subtitle": "sound.stylish_occult.transmute",
+		"author": [
+			"https://freesound.org/people/2887679652/sounds/135594/",
+			"https://freesound.org/people/4_and_a_half_Star_Games/sounds/353874/"
+		],
+		"sounds": [
+			"stylish_occult:transmute"
+		]
+	},
+	"voice": {
+		"subtitle": "sound.stylish_occult.voice",
+		"author": [
+			"https://freesound.org/people/MaxDemianAGL/sounds/132250/",
+			"https://freesound.org/people/pcruzn/sounds/204819/",
+			"https://freesound.org/people/argon098/sounds/338344/",
+			"https://freesound.org/people/RICHERlandTV/sounds/216095/",
+			"https://freesound.org/people/NinjaSharkStudios/sounds/180022/",
+			"https://freesound.org/people/VishwaJay/sounds/552039/"
+		],
+		"sounds": [
+			"stylish_occult:voice_1",
+			"stylish_occult:voice_2",
+			"stylish_occult:voice_3",
+			"stylish_occult:voice_4",
+			"stylish_occult:voice_5",
+			"stylish_occult:voice_6"
+		]
+	},
+	"boil": {
+		"subtitle": "sound.stylish_occult.boil",
+		"author": [
+			"https://freesound.org/people/unfa/sounds/174499/",
+			"https://freesound.org/people/Glaneur%20de%20sons/sounds/104949/"
+		],
+		"sounds": [
+			"stylish_occult:boil_1",
+			"stylish_occult:boil_2",
+			"stylish_occult:boil_3",
+			"stylish_occult:boil_4",
+			"stylish_occult:boil_5"
+		]
+	},
+	"chisel": {
+		"subtitle": "sound.stylish_occult.chisel",
+		"author": "https://freesound.org/people/dheming/sounds/240981/",
+		"sounds": [
+			"stylish_occult:chisel_1",
+			"stylish_occult:chisel_2",
+			"stylish_occult:chisel_3"
+		]
+	},
+	"activate": {
+		"subtitle": "sound.stylish_occult.activate",
+		"author": [
+			"https://freesound.org/people/thanvannispen/sounds/29997/",
+			"https://freesound.org/people/thanvannispen/sounds/29996/",
+			"https://freesound.org/people/thanvannispen/sounds/29998/"
+		],
+		"sounds": [
+			"stylish_occult:activate_1",
+			"stylish_occult:activate_2",
+			"stylish_occult:activate_3"
+		]
+	},
+	"inspect": {
+		"subtitle": "sound.stylish_occult.inspect",
+		"author": [
+			"https://freesound.org/people/MathewHenry/sounds/636877/",
+			"https://freesound.org/people/tosha73/sounds/547534/"
+		],
+		"sounds": [
+			"stylish_occult:inspect_1"
 		]
 	}
 }

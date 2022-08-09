@@ -1,6 +1,6 @@
 package net.darktree.stylishoccult.worldgen.processor;
 
-import net.darktree.stylishoccult.blocks.ModBlocks;
+import net.darktree.lootboxes.LootBoxes;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.worldgen.WorldGen;
 import net.minecraft.block.Block;
@@ -28,7 +28,7 @@ public class StoneStructureProcessor extends SimpleStructureProcessor {
 		if (block == Blocks.COBBLESTONE_SLAB) return RandUtils.getArrayEntry(SLAB, random).getDefaultState();
 		if (block == Blocks.STONE) return RandUtils.getArrayEntry(STONE, random).getDefaultState();
 		if (block == Blocks.STONE_BRICK_STAIRS) return copyStair(state, RandUtils.getArrayEntry(STAIR, random));
-		if (block == ModBlocks.URN && RandUtils.getBool(70f, random)) return Blocks.AIR.getDefaultState();
+		if (block == LootBoxes.URN_BLOCK && RandUtils.getBool(70f, random)) return Blocks.AIR.getDefaultState();
 
 		return null;
 	}

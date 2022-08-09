@@ -1,5 +1,7 @@
 {
-  "variants": {
-    "": { "model": "stylish_occult:block/lava_stone" }
-  }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/lava_stone"
+		}
+	}
 }

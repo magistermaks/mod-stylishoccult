@@ -1,20 +1,19 @@
 package net.darktree.stylishoccult.script.engine;
 
-import net.darktree.stylishoccult.script.components.RuneException;
-import net.darktree.stylishoccult.script.components.RuneExceptionType;
-import net.darktree.stylishoccult.script.elements.StackElement;
+import net.darktree.stylishoccult.script.component.RuneException;
+import net.darktree.stylishoccult.script.component.RuneExceptionType;
+import net.darktree.stylishoccult.script.element.StackElement;
 import net.minecraft.nbt.NbtCompound;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
-public final class Stack {
+public final class Stack extends BaseStack {
 
-	private final int capacity;
 	private final ArrayList<StackElement> stack = new ArrayList<>();
 
 	public Stack(int capacity) {
-		this.capacity = capacity;
+		super(capacity);
 	}
 
 	public StackElement peek(int i) throws IndexOutOfBoundsException {

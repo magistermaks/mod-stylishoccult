@@ -22,62 +22,62 @@ public class BlockSoundGroup {
         this.pitch = 1.0f;
     }
 
-    public BlockSoundGroup setBreakSound( String name ) {
-        setBreakSound( SoundManager.getSound( name ).soundEvent );
+    public BlockSoundGroup setBreakSound(SoundEffect effect) {
+        setBreakSound(effect.event);
         return this;
     }
 
-    public BlockSoundGroup setBreakSound( SoundEvent event ) {
+    public BlockSoundGroup setBreakSound(SoundEvent event) {
         breakSound = event;
         return this;
     }
 
-    public BlockSoundGroup setStepSound( String name ) {
-        setStepSound( SoundManager.getSound( name ).soundEvent );
+    public BlockSoundGroup setStepSound(SoundEffect effect) {
+        setStepSound( effect.event);
         return this;
     }
 
-    public BlockSoundGroup setStepSound( SoundEvent event ) {
+    public BlockSoundGroup setStepSound(SoundEvent event) {
         stepSound = event;
         return this;
     }
 
-    public BlockSoundGroup setPlaceSound( String name ) {
-        setPlaceSound( SoundManager.getSound( name ).soundEvent );
+    public BlockSoundGroup setPlaceSound(SoundEffect effect) {
+        setPlaceSound( effect.event);
         return this;
     }
 
-    public BlockSoundGroup setPlaceSound( SoundEvent event ) {
+    public BlockSoundGroup setPlaceSound(SoundEvent event) {
         placeSound = event;
         return this;
     }
 
-    public BlockSoundGroup setHitSound( String name ) {
-        setHitSound( SoundManager.getSound( name ).soundEvent );
+    public BlockSoundGroup setHitSound(SoundEffect effect) {
+        setHitSound(effect.event);
         return this;
     }
 
-    public BlockSoundGroup setHitSound( SoundEvent event ) {
+    public BlockSoundGroup setHitSound(SoundEvent event) {
         hitSound = event;
         return this;
     }
 
-    public BlockSoundGroup setFallSound( String name ) {
-        setFallSound( SoundManager.getSound( name ).soundEvent );
+    public BlockSoundGroup setFallSound(SoundEffect effect) {
+        setFallSound( effect.event);
         return this;
     }
 
-    public BlockSoundGroup setFallSound( SoundEvent event ) {
+    public BlockSoundGroup setFallSound(SoundEvent event) {
         fallSound = event;
         return this;
     }
 
     public net.minecraft.sound.BlockSoundGroup build() {
-        if( breakSound == null ) throw new RuntimeException( "BreakSound not registered!" );
-        if( stepSound == null ) throw new RuntimeException( "StepSound not registered!" );
-        if( placeSound == null ) throw new RuntimeException( "PlaceSound not registered!" );
-        if( hitSound == null ) throw new RuntimeException( "HitSound not registered!" );
-        if( fallSound == null ) throw new RuntimeException( "FallSound not registered!" );
+        if( breakSound == null ) throw new RuntimeException("BreakSound not registered!");
+        if( stepSound == null ) throw new RuntimeException("StepSound not registered!");
+        if( placeSound == null ) throw new RuntimeException("PlaceSound not registered!");
+        if( hitSound == null ) throw new RuntimeException("HitSound not registered!");
+        if( fallSound == null ) throw new RuntimeException("FallSound not registered!");
 
         return new net.minecraft.sound.BlockSoundGroup(volume, pitch, breakSound, stepSound, placeSound, hitSound, fallSound);
     }

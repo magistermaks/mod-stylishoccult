@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "stylish_occult:block/rune/cinis" }
-    }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/rune/cinis"
+		}
+	}
 }

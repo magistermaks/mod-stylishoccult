@@ -1,0 +1,23 @@
+{
+	"name": "Decrementum Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/decrementum.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_decrementum",
+	"sortnum": 31,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "decrementum",
+			"title": "Decrementum Rune"
+		},
+		{
+			"type": "stylish_occult:page_short_symbol",
+			"text1": "Decrementum Rune drops one element form the $(hs) and replaces it with a",
+			"text2": "numerical value smaller from it by one.",
+			"recipe": "stylish_occult:altar/rune/decrementum.json",
+			"rune": "decrementum",
+			"symbol": "math",
+			"footer": "circle"
+		}
+	]
+}

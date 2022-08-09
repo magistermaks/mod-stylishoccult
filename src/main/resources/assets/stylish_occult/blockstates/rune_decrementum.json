@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "stylish_occult:block/rune/decrementum" }
-    }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/rune/decrementum"
+		}
+	}
 }

@@ -1,0 +1,22 @@
+{
+	"name": "Temere Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/temere.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_temere",
+	"sortnum": 39,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "temere",
+			"title": "Temere Rune"
+		},
+		{
+			"type": "stylish_occult:page_short_none",
+			"text1": "Temere Rune adds a single numerical element with a random value ranging from 0 to 1 to the top of the $(hs).",
+			"text2": "",
+			"recipe": "stylish_occult:altar/rune/temere.json",
+			"rune": "temere",
+			"footer": "dice"
+		}
+	]
+}

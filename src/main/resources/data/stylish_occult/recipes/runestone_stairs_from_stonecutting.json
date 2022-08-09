@@ -1,6 +1,8 @@
 {
-  "type": "minecraft:stonecutting",
-  "ingredient": {"item": "stylish_occult:runestone"},
-  "result": "stylish_occult:runestone_stairs",
-  "count": 1
+	"type": "minecraft:stonecutting",
+	"ingredient": {
+		"item": "stylish_occult:runestone"
+	},
+	"result": "stylish_occult:runestone_stairs",
+	"count": 1
 }

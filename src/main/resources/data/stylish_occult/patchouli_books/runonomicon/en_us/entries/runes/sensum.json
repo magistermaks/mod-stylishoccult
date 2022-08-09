@@ -1,0 +1,22 @@
+{
+	"name": "Sensum Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/sensum.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_sensum",
+	"sortnum": 37,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "sensum",
+			"title": "Sensum Rune"
+		},
+		{
+			"type": "stylish_occult:page_separated",
+			"text1": "Sensum Rune adds the numerical value equal to the redstone power it is receiving at the time of its activation onto the $(hs).",
+			"text2": "",
+			"recipe": "stylish_occult:altar/rune/sensum.json",
+			"rune": "sensum",
+			"separator": "gods"
+		}
+	]
+}

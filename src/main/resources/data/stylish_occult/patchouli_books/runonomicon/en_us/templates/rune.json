@@ -1,0 +1,35 @@
+{
+	"components": [
+		{
+			"type": "patchouli:header",
+			"text": "#title",
+			"x": -1,
+			"y": -1
+		},
+		{
+			"type": "patchouli:separator",
+			"x": -1,
+			"y": -1
+		},
+		{
+			"type": "patchouli:image",
+			"image": "stylish_occult:textures/misc/book/circle.png",
+			"width": 128,
+			"height": 128,
+			"scale": 0.95,
+			"u": 0,
+			"v": 0,
+			"texture_width": 128,
+			"texture_height": 128,
+			"x": -2,
+			"y": 22
+		},
+		{
+			"type": "patchouli:custom",
+			"class": "net.darktree.stylishoccult.gui.patchouli.RuneIconComponent",
+			"image": "stylish_occult:textures/rune/#rune#.png",
+			"x": 33,
+			"y": 56
+		}
+	]
+}

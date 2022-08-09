@@ -1,0 +1,17 @@
+{
+    "blood": 27000,
+    "catalyst": "stylish_occult:blood_shard",
+    "consume": false,
+    "ingredients": [
+        "stylish_occult:runestone",
+        "stylish_occult:twisted_bone",
+        "stylish_occult:flesh",
+        "stylish_occult:flesh",
+        "stylish_occult:twisted_bone",
+        "stylish_occult:flesh",
+        "stylish_occult:flesh",
+        "stylish_occult:twisted_bone"
+    ],
+    "product": "stylish_occult:rune_furca",
+    "count": 1
+}

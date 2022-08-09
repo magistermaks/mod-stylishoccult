@@ -1,0 +1,22 @@
+{
+	"name": "Vanitas Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/vanitas.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_vanitas",
+	"sortnum": 2,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "vanitas",
+			"title": "Vanitas Rune"
+		},
+		{
+			"type": "stylish_occult:page_separated",
+			"text1": "Vanitas Rune passivly connducts magic, and changes non of its properties.",
+			"text2": "No elements are added or removed from the $(hs) by this rune.",
+			"recipe": "stylish_occult:altar/rune/vanitas.json",
+			"rune": "vanitas",
+			"separator": "vanitas"
+		}
+	]
+}

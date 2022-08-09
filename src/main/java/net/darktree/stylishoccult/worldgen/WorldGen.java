@@ -137,7 +137,7 @@ public class WorldGen {
 		// Structures
 		WorldGen.addStructure(
 				new ModIdentifier("sanctum"),
-				StylishOccult.SETTINGS.sanctum, true,
+				StylishOccult.SETTING.sanctum, true,
 				BiomeSelectors.foundInTheNether().and(BiomeSelectors.excludeByKey(BiomeKeys.BASALT_DELTAS, BiomeKeys.SOUL_SAND_VALLEY)),
 				new SanctumStructure(8, 4),
 				GenerationStep.Feature.SURFACE_STRUCTURES
@@ -145,7 +145,7 @@ public class WorldGen {
 
 		WorldGen.addStructure(
 				new ModIdentifier("stonehenge"),
-				StylishOccult.SETTINGS.stonehenge, true,
+				StylishOccult.SETTING.stonehenge, true,
 				BiomeSelectors.foundInOverworld().and(BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.JUNGLE, Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.TAIGA)),
 				new StonehengeStructure(6),
 				GenerationStep.Feature.SURFACE_STRUCTURES

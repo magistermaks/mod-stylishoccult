@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:smoking",
-  "ingredient": {
-    "item": "stylish_occult:veins"
-  },
-  "result": "stylish_occult:cooked_veins",
-  "experience": 0.4,
-  "cookingtime": 100
+	"type": "minecraft:smoking",
+	"ingredient": {
+		"item": "stylish_occult:veins"
+	},
+	"result": "stylish_occult:cooked_veins",
+	"experience": 0.4,
+	"cookingtime": 100
 }

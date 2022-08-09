@@ -1,11 +1,17 @@
-    {
-      "variants": {
-        "": [
-            { "model": "stylish_occult:block/flesh/worms/1" },
-            { "model": "stylish_occult:block/flesh/worms/2" },
-            { "model": "stylish_occult:block/flesh/worms/3" }
-        ]
-      }
-    }
+{
+	"variants": {
+		"": [
+			{
+				"model": "stylish_occult:block/flesh/worms/1"
+			},
+			{
+				"model": "stylish_occult:block/flesh/worms/2"
+			},
+			{
+				"model": "stylish_occult:block/flesh/worms/3"
+			}
+		]
+	}
+}
 
 

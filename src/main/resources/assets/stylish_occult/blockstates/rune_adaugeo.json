@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "stylish_occult:block/rune/adaugeo" }
-    }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/rune/adaugeo"
+		}
+	}
 }

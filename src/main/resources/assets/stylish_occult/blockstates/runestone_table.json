@@ -1,28 +1,55 @@
 {
-    "multipart": [
+	"multipart": [
 		{
-            "when": { "top": "true" },
-            "apply": { "model": "stylish_occult:block/table/top" }
-        },
+			"when": {
+				"top": "true"
+			},
+			"apply": {
+				"model": "stylish_occult:block/table/top"
+			}
+		},
 		{
-            "when": { "top": "false" },
-            "apply": { "model": "stylish_occult:block/table/base" }
-        },
-        {
-            "when": { "north": "true" },
-            "apply": { "model": "stylish_occult:block/table/north" }
-        },
-        {
-            "when": { "south": "true" },
-            "apply": { "model": "stylish_occult:block/table/north", "y": 180 }
-        },
-        {
-            "when": { "east": "true" },
-            "apply": { "model": "stylish_occult:block/table/north", "y": 90 }
-        },
-        {
-            "when": { "west": "true" },
-            "apply": { "model": "stylish_occult:block/table/north", "y": 270 }
-        }
-    ]
+			"when": {
+				"top": "false"
+			},
+			"apply": {
+				"model": "stylish_occult:block/table/base"
+			}
+		},
+		{
+			"when": {
+				"north": "true"
+			},
+			"apply": {
+				"model": "stylish_occult:block/table/north"
+			}
+		},
+		{
+			"when": {
+				"south": "true"
+			},
+			"apply": {
+				"model": "stylish_occult:block/table/north",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"east": "true"
+			},
+			"apply": {
+				"model": "stylish_occult:block/table/north",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"west": "true"
+			},
+			"apply": {
+				"model": "stylish_occult:block/table/north",
+				"y": 270
+			}
+		}
+	]
 }

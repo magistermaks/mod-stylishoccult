@@ -5,6 +5,7 @@
 		"stone": "stylish_occult:block/runestone",
 		"particle": "stylish_occult:block/runestone"
 	},
+	"jmxl": true,
 	"jmx": {
 		"materials": {
 			"rune": { "layers": [ { "layer": "cutout_mipped", "emissive": true, "diffuse": false } ] }
@@ -28,6 +29,8 @@
 			"from": [-0.1, 3, 3],
 			"to": [-0.1, 13, 13],
 			"rotation": {"angle": 0, "axis": "x", "origin": [0, 8, 0]},
+			"jmxl_emissive": true,
+			"jmxl_diffuse": false,
 			"faces": {
 				"west": {"uv": [0, 0, 15, 15], "texture": "#west", "tintindex": 0, "cullface": "west", "jmx_material": "#rune"}
 			}

@@ -1,8 +1,8 @@
 {
-  "textures": [
-    "stylish_occult:splash_0",
-    "stylish_occult:splash_1",
-    "stylish_occult:splash_2",
-    "stylish_occult:splash_3"
-  ]
+	"textures": [
+		"stylish_occult:splash_0",
+		"stylish_occult:splash_1",
+		"stylish_occult:splash_2",
+		"stylish_occult:splash_3"
+	]
 }

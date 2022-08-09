@@ -1,20 +1,24 @@
 {
-  "required": true,
-  "minVersion": "0.8",
-  "package": "net.darktree.stylishoccult.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "HungerManagerMixin",
-    "LivingEntityMixin",
-    "PlayerEntityMixin",
-    "StatusEffectInstanceAccessor"
-  ],
-  "client": [
-    "InGameHudMixin",
-    "InputUtilMixin",
-    "PlayerEntityClientMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+	"required": true,
+	"minVersion": "0.8",
+	"package": "net.darktree.stylishoccult.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"BookIconMixin",
+		"CauldronBehaviourMixin",
+		"HungerManagerMixin",
+		"LivingEntityMixin",
+		"PlayerEntityMixin",
+		"ServerAdvancementLoaderMixin",
+		"StatusEffectInstanceAccessor"
+	],
+	"client": [
+		"BackgroundRendererMixin",
+		"CameraMixin",
+		"InGameHudMixin",
+		"PlayerEntityClientMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
 }

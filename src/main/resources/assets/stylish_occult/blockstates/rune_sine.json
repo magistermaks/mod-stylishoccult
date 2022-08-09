@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "stylish_occult:block/rune/sine" }
-    }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/rune/sine"
+		}
+	}
 }

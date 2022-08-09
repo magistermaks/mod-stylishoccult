@@ -18,7 +18,7 @@ public class ExperienceEntry extends AbstractEntry {
     private final int amountMin;
     private final int amountMax;
 
-    public ExperienceEntry( float chance, int amountMin, int amountMax ) {
+    public ExperienceEntry(float chance, int amountMin, int amountMax) {
         this.chance = chance;
         this.amountMin = amountMin;
         this.amountMax = amountMax;
@@ -36,9 +36,9 @@ public class ExperienceEntry extends AbstractEntry {
 
     @Override
     public ArrayList<ItemStack> getLoot(Random random, LootContext context) {
-        if( RandUtils.getBool( this.chance ) ) {
-            int size = random.nextInt( (amountMax - amountMin) + 1 ) + amountMin;
-            dropExperience( context.getWorld(), context.getPos(), size );
+        if (RandUtils.getBool(this.chance, random)) {
+            int size = random.nextInt((amountMax - amountMin) + 1) + amountMin;
+            dropExperience(context.getWorld(), context.getPos(), size);
         }
 
         return LootManager.getEmpty();

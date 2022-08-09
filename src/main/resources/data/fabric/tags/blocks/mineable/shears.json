@@ -1,7 +1,7 @@
 {
-  "replace": false,
-  "values": [
-    "stylish_occult:nether_grass",
-	"stylish_occult:nether_fern"
-  ]
+	"replace": false,
+	"values": [
+		"stylish_occult:nether_grass",
+		"stylish_occult:nether_fern"
+	]
 }

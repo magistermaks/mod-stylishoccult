@@ -1,12 +1,21 @@
 package net.darktree.stylishoccult.utils;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.config.SimpleConfig;
+import net.darktree.stylishoccult.config.Config;
 
-public class StructureConfig {
+public class StructureConfig implements Config.ConfigProperty {
 
-	// 'depth' specifies how big the structure can get, affects only recursive structures, such as sanctum
-	public final int spacing, separation, salt, depth;
+	@Config.Entry(min=1, restart=true)
+	public int spacing;
+
+	@Config.Entry(min=0, restart=true)
+	public int separation;
+
+	@Config.Entry(min=0, restart=true)
+	public int salt;
+
+	@Config.Entry(min=1, restart=true)
+	public int depth;
 
 	public StructureConfig(int spacing, int separation, int salt, int depth) {
 		this.spacing = spacing;
@@ -14,28 +23,27 @@ public class StructureConfig {
 		this.salt = salt;
 		this.depth = depth;
 
-		if(spacing <= separation) {
-			printDebug();
-			throw new RuntimeException("Invalid structure configuration, invalid spacing must be larger than separation!");
-		}
-
-		if(depth <= 0 || spacing <= 0) {
-			printDebug();
-			throw new RuntimeException("Invalid structure configuration, depth and spacing must be a larger than 0!");
-		}
+		validate();
 	}
 
-	public StructureConfig(SimpleConfig config, String key, int spacing, int separation, int salt, int depth) {
-		this(
-				config.getOrDefault(key + ".spacing", spacing),
-				config.getOrDefault(key + ".separation", separation),
-				config.getOrDefault(key + ".salt", salt),
-				config.getOrDefault(key + ".depth", depth)
-		);
-	}
-
-	private void printDebug() {
+	private void fail(String details) {
 		StylishOccult.LOGGER.error("Tried to create invalid structure config: {spacing={} separation={} salt={} depth={}}", spacing, separation, salt, depth);
+		throw new RuntimeException("Invalid structure configuration, " + details + "!");
+	}
+
+	@Override
+	public void validate() {
+		if (spacing <= separation) {
+			fail("spacing must be larger than separation");
+		}
+
+		if (spacing <= 0) {
+			fail("spacing must be a larger than 0");
+		}
+
+		if (depth <= 0) {
+			fail("depth must be a larger than 0");
+		}
 	}
 
 }

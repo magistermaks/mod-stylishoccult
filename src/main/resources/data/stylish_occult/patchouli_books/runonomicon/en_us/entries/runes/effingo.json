@@ -1,0 +1,22 @@
+{
+	"name": "Effingo Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/effingo.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_effingo",
+	"sortnum": 19,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "effingo",
+			"title": "Effingo Rune"
+		},
+		{
+			"type": "stylish_occult:page_long_symbol",
+			"text1": "Effingo Rune duplicates the top element on the $(hs), or fail if",
+			"text2": "there are no elements there. The rule of $(o)equivalent exchange$() applies, no physical objects are allowed to be duplicated!",
+			"recipe": "stylish_occult:altar/rune/effingo.json",
+			"rune": "effingo",
+			"symbol": "stack"
+		}
+	]
+}

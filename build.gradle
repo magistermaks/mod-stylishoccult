@@ -7,11 +7,15 @@ repositories {
     maven { url "https://maven.shedaniel.me/" }
     maven { url "https://maven.terraformersmc.com" }
     maven { url "https://maven.bai.lol" }
+    maven { url "https://server.bbkr.space/artifactory/libs-release" }
+    maven { url 'https://maven.blamejared.com' }
 
     maven {
         allowInsecureProtocol = true
         url 'http://maven.darktree.net'
     }
+
+    mavenLocal()
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -23,7 +27,6 @@ group = project.maven_group
 
 loom {
     accessWidenerPath = file("src/main/resources/stylish_occult.accesswidener")
-    runtimeOnlyLog4j = true
 }
 
 dependencies {
@@ -31,20 +34,35 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Fabric API. This is technically optional, but you probably want it anyway.
+    // Fabric API
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // Mod Menu
-    compileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
-    modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+    modCompileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
+    modRuntimeOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
 
     // Interference API
     modImplementation "net.darktree:interference:${project.interference_version}"
     include "net.darktree:interference:${project.interference_version}"
 
     // What the hell is that?
-    modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${wthit_version}"
-    modImplementation "mcp.mobius.waila:wthit:fabric-${wthit_version}"
+    modCompileOnly "mcp.mobius.waila:wthit-api:fabric-${project.wthit_version}"
+    modImplementation "mcp.mobius.waila:wthit:fabric-${project.wthit_version}"
+
+    // LibGUI
+    modImplementation "io.github.cottonmc:LibGui:${project.libgui_version}"
+    include "io.github.cottonmc:LibGui:${project.libgui_version}"
+
+    // patchouli
+    modCompileOnly "vazkii.patchouli:Patchouli:${project.patchouli_version}-FABRIC"
+    modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}-FABRIC"
+
+    // Loot Boxes
+    modImplementation "net.darktree:lootboxes:${project.lootboxes}"
+    include "net.darktree:lootboxes:${project.lootboxes}"
+
+//    // JMXL
+//    modImplementation "net.darktree:JMXL:${project.jmxl_version}"
 }
 
 processResources {

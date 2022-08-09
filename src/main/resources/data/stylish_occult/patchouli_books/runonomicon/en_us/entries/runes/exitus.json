@@ -1,0 +1,22 @@
+{
+	"name": "Exitus Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/exitus.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_exitus",
+	"sortnum": 3,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "exitus",
+			"title": "Exitus Rune"
+		},
+		{
+			"type": "stylish_occult:page_short_none",
+			"text1": "Exitus Rune emits a redstone impulse of strength 15 when a magic signal passes through it.",
+			"text2": "No elements are added or removed from the $(hs) by this rune.",
+			"recipe": "stylish_occult:altar/rune/exitus.json",
+			"rune": "exitus",
+			"footer": "desire"
+		}
+	]
+}

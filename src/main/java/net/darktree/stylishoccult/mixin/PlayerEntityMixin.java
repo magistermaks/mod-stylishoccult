@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
 @Mixin(PlayerEntity.class)
-public class PlayerEntityMixin implements PlayerEntityDuck {
+public abstract class PlayerEntityMixin implements PlayerEntityDuck {
 
 	@Unique
 	private static final UUID MADNESS_SLOW_ID = UUID.fromString("1eaff00f-7207-1234-b3ff-d7a07ab1cdef");
@@ -24,7 +24,7 @@ public class PlayerEntityMixin implements PlayerEntityDuck {
 	private float madness;
 
 	@Inject(method="tickMovement", at=@At("HEAD"))
-	public void tick(CallbackInfo ci) {
+	public void stylish_tickMovement(CallbackInfo ci) {
 		stylish_addMadness(-0.01f);
 
 		float value = MathHelper.sin(madness * MathHelper.HALF_PI);

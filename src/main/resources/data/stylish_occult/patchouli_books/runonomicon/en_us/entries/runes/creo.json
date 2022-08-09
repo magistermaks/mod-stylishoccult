@@ -1,0 +1,21 @@
+{
+	"name": "Creo Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/creo.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_creo",
+	"sortnum": 47,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "creo",
+			"title": "Creo Rune"
+		},
+		{
+			"type": "stylish_occult:page_long_none",
+			"text1": "Creo Rune can be used to craft by selecting the boxes on the rune, the required ingredients are taken from the stack in top-left to bottom-right order. The resulting item stack will be added onto the $(hs). The energy needed for the transmutation is taken from life itself.",
+			"text2": "",
+			"recipe": "stylish_occult:altar/rune/creo.json",
+			"rune": "creo"
+		}
+	]
+}

@@ -2,8 +2,8 @@ package net.darktree.stylishoccult.worldgen.feature;
 
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.SparkVentBlock;
+import net.darktree.stylishoccult.block.ModBlocks;
+import net.darktree.stylishoccult.block.SparkVentBlock;
 import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleFeature;
@@ -33,11 +33,11 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 
-        if( !RandUtils.getBool(StylishOccult.SETTINGS.featureSparkVentChance, random) ) {
+        if (!RandUtils.getBool(StylishOccult.SETTING.spark_vent_chance, random)) {
             return false;
         }
 
-        if( !world.getBlockState(pos).isAir() || !world.getBlockState(pos.up()).isAir() ) {
+        if (!world.getBlockState(pos).isAir() || !world.getBlockState(pos.up()).isAir()) {
             return false;
         }
 
@@ -71,17 +71,16 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
         if( RandUtils.getBool(95.0f, random) ) {
             world.setBlockState(pos, LAVA, 2);
 
-            for( int i = random.nextInt(9); i > 0; i -- ) {
-                Direction dir = RandUtils.getEnum(Direction.class);
+            for (int i = random.nextInt(9); i > 0; i --) {
+                Direction dir = RandUtils.getEnum(Direction.class, random);
 
-                if( dir != Direction.UP ) {
-
+                if (dir != Direction.UP) {
                     BlockPos tmp = pos.offset(dir);
 
-                    if( !BlockUtils.touchesAir(world, tmp) ) {
+                    if (!BlockUtils.touchesAir(world, tmp)) {
 
                         Block block = world.getBlockState(tmp).getBlock();
-                        if( block == Blocks.NETHERRACK || block == Blocks.LAVA ) {
+                        if (block == Blocks.NETHERRACK || block == Blocks.LAVA) {
                             world.setBlockState(tmp, LAVA, 2);
                             pos = tmp;
                         }

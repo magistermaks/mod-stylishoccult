@@ -14,7 +14,7 @@ public class TableEntry extends AbstractEntry {
     private final LootTable table;
     private final float chance;
 
-    public TableEntry( LootTable table, float chance ) {
+    public TableEntry(LootTable table, float chance) {
         this.table = table;
         this.chance = chance;
     }
@@ -25,7 +25,7 @@ public class TableEntry extends AbstractEntry {
 
     @Override
     public ArrayList<ItemStack> getLoot(Random random, LootContext context) {
-        if( RandUtils.getBool( this.chance ) ) {
+        if (RandUtils.getBool(this.chance, random)) {
             return table.getLoot(random, context);
         }
 

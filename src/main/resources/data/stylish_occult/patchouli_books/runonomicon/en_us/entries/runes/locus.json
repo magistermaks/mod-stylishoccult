@@ -1,0 +1,21 @@
+{
+	"name": "Locus Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/locus.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_locus",
+	"sortnum": 29,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "locus",
+			"title": "Locus Rune"
+		},
+		{
+			"type": "stylish_occult:page_long_none",
+			"text1": "Locus Rune places a given block at the given position, it takes 4 elements from the top of the $(hs). ",
+			"text2": "Numerical values of the first 3 taken elements will be treated as x, y, and z block offsets from the rune's position, the final one must be an block item to place.",
+			"recipe": "stylish_occult:altar/rune/locus.json",
+			"rune": "locus"
+		}
+	]
+}

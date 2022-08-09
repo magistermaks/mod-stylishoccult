@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "item": "stylish_occult:flesh"
-  },
-  "result": "minecraft:rotten_flesh",
-  "experience": 0.4,
-  "cookingtime": 600
+	"type": "minecraft:campfire_cooking",
+	"ingredient": {
+		"item": "stylish_occult:flesh"
+	},
+	"result": "minecraft:rotten_flesh",
+	"experience": 0.4,
+	"cookingtime": 600
 }

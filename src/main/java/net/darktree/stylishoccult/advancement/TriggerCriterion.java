@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.advancement;
 
 import com.google.gson.JsonObject;
-import net.darktree.stylishoccult.blocks.runes.RuneBlock;
+import net.darktree.stylishoccult.block.rune.RuneBlock;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;

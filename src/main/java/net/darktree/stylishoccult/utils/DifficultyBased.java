@@ -1,23 +1,31 @@
 package net.darktree.stylishoccult.utils;
 
+import net.darktree.stylishoccult.config.Config;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.WorldAccess;
 
-public class DifficultyBased<T> {
+public class DifficultyBased implements Config.ConfigProperty {
 
-    private final T peaceful;
-    private final T easy;
-    private final T normal;
-    private final T hard;
+    @Config.Entry()
+    public float peaceful;
 
-    public DifficultyBased( T hard, T normal, T easy, T peaceful ) {
+    @Config.Entry()
+    public float easy;
+
+    @Config.Entry()
+    public float normal;
+
+    @Config.Entry()
+    public float hard;
+
+    public DifficultyBased(float hard, float normal, float easy, float peaceful) {
         this.hard = hard;
         this.normal = normal;
         this.easy = easy;
         this.peaceful = peaceful;
     }
 
-    public T get( Difficulty difficulty ) {
+    public float get(Difficulty difficulty) {
         return switch (difficulty) {
             case EASY -> easy;
             case NORMAL -> normal;
@@ -26,7 +34,7 @@ public class DifficultyBased<T> {
         };
     }
 
-    public T get(WorldAccess world) {
+    public float get(WorldAccess world) {
         return this.get(world.getDifficulty());
     }
 

@@ -1,0 +1,23 @@
+{
+	"name": "Ascendo Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/ascendo.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_ascendo",
+	"sortnum": 16,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "ascendo",
+			"title": "Ascendo Rune"
+		},
+		{
+			"type": "stylish_occult:page_short_symbol",
+			"text1": "Ascendo Rune ascends the previously dropped element back onto the $(hs),",
+			"text2": "or fails is there are no dropped elements.",
+			"recipe": "stylish_occult:altar/rune/ascendo.json",
+			"rune": "ascendo",
+			"symbol": "stack",
+			"footer": "landscape"
+		}
+	]
+}

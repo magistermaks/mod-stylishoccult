@@ -1,0 +1,17 @@
+{
+	"blood": 0,
+	"catalyst": "stylish_occult:lava_heart",
+	"consume": false,
+	"ingredients": [
+		"minecraft:rotten_flesh",
+		"minecraft:rotten_flesh",
+		"minecraft:rotten_flesh",
+		"minecraft:rotten_flesh",
+		"minecraft:rotten_flesh",
+		"minecraft:rotten_flesh",
+		"minecraft:rotten_flesh",
+		"minecraft:rotten_flesh"
+	],
+	"product": "stylish_occult:flesh",
+	"count": 2
+}

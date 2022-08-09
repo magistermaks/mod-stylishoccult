@@ -1,8 +1,6 @@
 package net.darktree.stylishoccult.utils;
 
 import net.darktree.interference.api.DefaultLoot;
-import net.darktree.interference.api.MutableHardness;
-import net.darktree.interference.mixin.HardnessAccessor;
 import net.darktree.stylishoccult.loot.LootManager;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.minecraft.block.Block;
@@ -14,25 +12,14 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 
 import java.util.List;
 
-
-public class SimpleBlock extends Block implements MutableHardness, DefaultLoot {
+public class SimpleBlock extends Block implements DefaultLoot {
 
     public SimpleBlock(Settings settings) {
         super(settings);
-    }
-
-    @Override
-    public float getHardness(BlockState state, BlockView world, BlockPos pos) {
-        return getStoredHardness(state);
-    }
-
-    public float getStoredHardness(BlockState state) {
-        return ((HardnessAccessor) state).getStoredHardness();
     }
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {

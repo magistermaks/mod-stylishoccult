@@ -1,0 +1,21 @@
+{
+	"name": "Scindo Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/scindo.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_scindo",
+	"sortnum": 35,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "scindo",
+			"title": "Scindo Rune"
+		},
+		{
+			"type": "stylish_occult:page_long_none",
+			"text1": "Scindo Rune splits the incoming signal into two, going in the opposite directions. ",
+			"text2": "No elements are added or removed from the $(hs) by this rune. The rule of equivalent exchange applies, no physical objects are allowed to be duplicated!",
+			"recipe": "stylish_occult:altar/rune/scindo.json",
+			"rune": "scindo"
+		}
+	]
+}

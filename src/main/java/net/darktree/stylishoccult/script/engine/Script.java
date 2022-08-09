@@ -1,11 +1,11 @@
 package net.darktree.stylishoccult.script.engine;
 
 import net.darktree.stylishoccult.advancement.Criteria;
-import net.darktree.stylishoccult.blocks.runes.RuneBlock;
-import net.darktree.stylishoccult.script.components.RuneException;
-import net.darktree.stylishoccult.script.components.RuneInstance;
-import net.darktree.stylishoccult.script.components.SafeMode;
-import net.darktree.stylishoccult.script.elements.StackElement;
+import net.darktree.stylishoccult.block.rune.RuneBlock;
+import net.darktree.stylishoccult.script.component.RuneException;
+import net.darktree.stylishoccult.script.component.RuneInstance;
+import net.darktree.stylishoccult.script.component.SafeMode;
+import net.darktree.stylishoccult.script.element.StackElement;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;

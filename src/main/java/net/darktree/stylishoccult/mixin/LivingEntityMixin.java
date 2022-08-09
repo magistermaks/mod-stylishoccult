@@ -1,13 +1,16 @@
 package net.darktree.stylishoccult.mixin;
 
-import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.blocks.occult.GrowthBlock;
+import net.darktree.stylishoccult.block.ModBlocks;
+import net.darktree.stylishoccult.block.occult.GrowthBlock;
+import net.darktree.stylishoccult.duck.LivingEntityDuck;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -15,10 +18,31 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(LivingEntity.class)
-public class LivingEntityMixin {
+public abstract class LivingEntityMixin implements LivingEntityDuck {
+
+	@Shadow
+	public abstract boolean damage(DamageSource source, float amount);
+
+	@Shadow
+	public abstract float getHealth();
+
+	@Unique
+	private long lastShockTaken = 0;
+
+	@Override
+	public float stylish_applyShock(long tick, float damage) {
+		if (tick - lastShockTaken > 20) {
+			this.lastShockTaken = tick;
+			damage = Math.min(this.getHealth(), damage);
+			this.damage(DamageSource.MAGIC, damage);
+			return damage;
+		}
+
+		return 0;
+	}
 
 	@Inject(method="isClimbing", at=@At(value="INVOKE_ASSIGN", target="Lnet/minecraft/entity/LivingEntity;getBlockStateAtPos()Lnet/minecraft/block/BlockState;"), locals=LocalCapture.CAPTURE_FAILHARD, cancellable=true)
-	public void isClimbing(CallbackInfoReturnable<Boolean> info, BlockPos pos, BlockState state) {
+	public void stylish_isClimbing(CallbackInfoReturnable<Boolean> info, BlockPos pos, BlockState state) {
 		if(state.getBlock() == ModBlocks.GROWTH) {
 			if(GrowthBlock.hasSide(state)) {
 				info.setReturnValue(true);

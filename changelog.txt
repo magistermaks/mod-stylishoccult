@@ -1,5 +1,20 @@
 
-0.8.0 beta
+0.9.0 release
+- Added Suspicious (Suspectum) rune - harvesting blood
+- Added Value (Valorem) rune - copy value
+- Added Blood
+- Fixed stuttering in motion of Orbiting Flame particles
+- Tweaked world generation
+- Added guide books (using Patchouli)
+- Added Dark Altars with data driven recipes
+- Added Occult Cauldrons
+- Debug Rune (Inveniet) now has a GUI
+- Added a new config system (with an in-game screen)
+- Added new spore AI task, they will now get attracted by Fiery Lantern and die
+- Replaced in-house urns with the ones from the Loot Boxes mod (stylish_occult:urn -> loot_boxes:urn)
+- Some critical bugfixes (including item duplication)
+
+0.8.0 beta <2022/02/18>
 - Added Sanctum structure in The Nether
 - Added Stonehenge structure in the overworld
 - Lowered Runic Wall and Boulder spawn rate

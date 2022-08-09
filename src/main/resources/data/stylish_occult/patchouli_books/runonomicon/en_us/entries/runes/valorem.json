@@ -1,0 +1,22 @@
+{
+	"name": "Valorem Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/valorem.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_valorem",
+	"sortnum": 50,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "valorem",
+			"title": "Valorem Rune"
+		},
+		{
+			"type": "stylish_occult:page_short_none",
+			"text1": "Valorem Rune adds a numerical element onto the stack with value equal to the value of the previous top element.",
+			"text2": "No elements are removed from the $(hs) by this rune.",
+			"recipe": "stylish_occult:altar/rune/valorem.json",
+			"rune": "valorem",
+			"footer": "tolkien"
+		}
+	]
+}

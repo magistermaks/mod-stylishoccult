@@ -1,20 +1,21 @@
 package net.darktree.stylishoccult.script.engine;
 
-import net.darktree.stylishoccult.script.components.RuneException;
-import net.darktree.stylishoccult.script.components.RuneExceptionType;
-import net.darktree.stylishoccult.script.elements.StackElement;
+import net.darktree.stylishoccult.script.component.RuneException;
+import net.darktree.stylishoccult.script.component.RuneExceptionType;
+import net.darktree.stylishoccult.script.element.StackElement;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.function.Consumer;
 
-public final class Ring {
+public final class Ring extends BaseStack {
 
 	private final StackElement[] buffer;
 	private int offset;
 
 	public Ring(int capacity) {
+		super(capacity);
 		this.buffer = new StackElement[capacity];
 		this.offset = 0;
 	}
@@ -81,7 +82,7 @@ public final class Ring {
 		try {
 			for(int i = 0; i < buffer.length; i ++) {
 				NbtCompound entry = nbt.getCompound(String.valueOf(i));
-				buffer[offset] = entry.isEmpty() ? null : StackElement.from(entry);
+				buffer[i] = entry.isEmpty() ? null : StackElement.from(entry);
 			}
 
 			offset = nbt.getShort("i") % buffer.length;

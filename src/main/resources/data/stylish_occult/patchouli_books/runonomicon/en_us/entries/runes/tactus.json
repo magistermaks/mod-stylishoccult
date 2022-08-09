@@ -1,0 +1,23 @@
+{
+	"name": "Tactus Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/tactus.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_tactus",
+	"sortnum": 1,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "tactus",
+			"title": "Tactus Rune"
+		},
+		{
+			"type": "stylish_occult:page_short_symbol",
+			"text1": "Tactus Rune activates when touched, but it doesn't conduct magic on its own.",
+			"text2": "No elements are added to or removed from the $(hs) by this rune.",
+			"recipe": "stylish_occult:altar/rune/tactus.json",
+			"rune": "tactus",
+			"symbol": "trigger",
+			"footer": "tolkien"
+		}
+	]
+}

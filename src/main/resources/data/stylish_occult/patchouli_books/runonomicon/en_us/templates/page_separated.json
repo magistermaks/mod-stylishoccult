@@ -1,0 +1,46 @@
+{
+	"processor": "net.darktree.stylishoccult.gui.patchouli.RuneRecipeProcessor",
+	"components": [
+		{
+			"type": "patchouli:text",
+			"text": "#text1#<br>#text2#",
+			"x": 0,
+			"y": -1
+		},
+		{
+			"type": "patchouli:custom",
+			"class": "net.darktree.stylishoccult.gui.patchouli.RuneRecipeComponent",
+			"recipe": "#recipe",
+			"radius": 24,
+			"x": 81,
+			"y": 110
+		},
+		{
+			"type": "patchouli:text",
+			"text": "It can be created on a altar with a sacrifice of $(t:#blood# droplets)$(#A00)blood$(/t)$()",
+			"max_width": 65,
+			"x": 0,
+			"y": 95
+		},
+		{
+			"type": "patchouli:image",
+			"image": "stylish_occult:textures/misc/book/separator/#separator#.png",
+			"width": 128,
+			"height": 64,
+			"scale": 0.9,
+			"u": 0,
+			"v": 0,
+			"texture_width": 128,
+			"texture_height": 64,
+			"x": 0,
+			"y": 42
+		},
+		{
+			"type": "patchouli:item",
+			"item": "stylish_occult:rune_#rune#",
+			"link_recipe": true,
+			"x": 0,
+			"y": 1000000
+		}
+	]
+}

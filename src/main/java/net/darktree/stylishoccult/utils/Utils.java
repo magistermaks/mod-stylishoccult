@@ -1,18 +1,16 @@
 package net.darktree.stylishoccult.utils;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
-import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.entity.player.PlayerEntity;
+import net.darktree.stylishoccult.item.ThrownItemEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.World;
 
 public class Utils {
 
@@ -33,39 +31,19 @@ public class Utils {
         return new Box(x1 / 16d, y1 / 16d, z1 / 16d, x2 / 16d, y2 / 16d, z2 / 16d);
     }
 
-    public static void requestParticleTexture( Identifier id ) {
-        ClientSpriteRegistryCallback.event(SpriteAtlasTexture.PARTICLE_ATLAS_TEXTURE).register(((texture, registry) -> registry.register( id )));
+    public static MutableText tooltip(String text, Object... args) {
+        return new TranslatableText("tooltip." + StylishOccult.NAMESPACE + "." + text, args).formatted(Formatting.GRAY);
     }
 
-    public static VoxelShape combine( VoxelShape[] shapes, BooleanBiFunction function ) {
-        VoxelShape finalShape = VoxelShapes.empty();
-        for( VoxelShape shape : shapes ) {
-            finalShape = VoxelShapes.combine( finalShape, shape, function );
-        }
-        return finalShape;
+    public static MutableText guiText(String text, Object... args) {
+        return new TranslatableText("gui." + StylishOccult.NAMESPACE + "." + text, args);
     }
 
-    public static VoxelShape join( VoxelShape... shapes ) {
-        VoxelShape finalShape = VoxelShapes.empty();
-
-        for( VoxelShape shape : shapes ) {
-            finalShape = VoxelShapes.combine( finalShape, shape, BooleanBiFunction.OR );
-        }
-
-        return finalShape;
-    }
-
-    public static MutableText tooltip( String text, Object... args ) {
-        return new TranslatableText( "tooltip." + StylishOccult.NAMESPACE + "." + text, args ).formatted( Formatting.GRAY );
-    }
-
-    public static MutableText tooltip( String text ) {
-        return new TranslatableText( "tooltip." + StylishOccult.NAMESPACE + "." + text ).formatted( Formatting.GRAY );
-    }
-
-    public static void decrement( PlayerEntity entity, ItemStack stack ) {
-        if( !entity.isCreative() ) {
-            stack.decrement(1);
+    public static void ejectStack(World world, float x, float y, float z, ItemStack stack, float vx, float vy, float vz) {
+        if (!world.isClient && !stack.isEmpty()) {
+            ItemEntity itemEntity = new ThrownItemEntity(world, x, y, z, stack, vx, vy, vz, 20);
+            itemEntity.setToDefaultPickupDelay();
+            world.spawnEntity(itemEntity);
         }
     }
 

@@ -1,0 +1,17 @@
+{
+    "blood": 27000,
+    "catalyst": "stylish_occult:blood_shard",
+    "consume": false,
+    "ingredients": [
+        "stylish_occult:runestone",
+        "stylish_occult:glowgrowth_shard",
+        "stylish_occult:blazing_lava_shard",
+        "stylish_occult:flesh_eyes",
+        "stylish_occult:glowgrowth_shard",
+        "stylish_occult:flesh_eyes",
+        "stylish_occult:blazing_lava_shard",
+        "stylish_occult:glowgrowth_shard"
+    ],
+    "product": "stylish_occult:rune_cinis",
+    "count": 1
+}

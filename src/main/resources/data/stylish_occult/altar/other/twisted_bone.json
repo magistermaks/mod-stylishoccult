@@ -1,0 +1,17 @@
+{
+	"blood": 0,
+	"catalyst": "stylish_occult:lava_heart",
+	"consume": false,
+	"ingredients": [
+		"minecraft:bone",
+		"minecraft:bone",
+		"minecraft:bone",
+		"minecraft:bone",
+		"minecraft:bone",
+		"minecraft:bone",
+		"minecraft:bone",
+		"minecraft:bone"
+	],
+	"product": "stylish_occult:twisted_bone",
+	"count": 2
+}

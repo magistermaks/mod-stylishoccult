@@ -1,16 +1,19 @@
 {
-  "replace": false,
-  "values": [
-    "#stylish_occult:runes",
-    "stylish_occult:runestone",
-    "stylish_occult:runestone_slab",
-    "stylish_occult:runestone_stairs",
-    "stylish_occult:runestone_table",
-    "stylish_occult:flesh_stone",
-    "stylish_occult:lava_stone",
-    "stylish_occult:flesh_bone",
-    "stylish_occult:crystalline_blackstone",
-    "stylish_occult:spark_vent",
-    "stylish_occult:lava_demon"
-  ]
+	"replace": false,
+	"values": [
+		"#stylish_occult:runes",
+		"stylish_occult:runestone",
+		"stylish_occult:runestone_slab",
+		"stylish_occult:runestone_stairs",
+		"stylish_occult:runestone_table",
+		"stylish_occult:flesh_stone",
+		"stylish_occult:lava_stone",
+		"stylish_occult:flesh_bone",
+		"stylish_occult:crystalline_blackstone",
+		"stylish_occult:spark_vent",
+		"stylish_occult:lava_demon",
+		"stylish_occult:runestone_altar_plate",
+		"stylish_occult:blood_cauldron",
+		"stylish_occult:occult_cauldron"
+	]
 }

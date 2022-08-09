@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "stylish_occult:item/lava_shard"
-  }
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "stylish_occult:item/lava_shard"
+	}
 }

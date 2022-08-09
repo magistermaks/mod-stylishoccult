@@ -1,0 +1,23 @@
+{
+	"name": "Magis Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/magis.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_magis",
+	"sortnum": 27,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "magis",
+			"title": "Magis Rune"
+		},
+		{
+			"type": "stylish_occult:page_short_symbol",
+			"text1": "Magis Rune drops two top elements from the $(hs) and adds numerical value equal",
+			"text2": "one onto the stack if the first one is larger, and zero otherwise.",
+			"recipe": "stylish_occult:altar/rune/magis.json",
+			"rune": "magis",
+			"symbol": "logic",
+			"footer": "circle"
+		}
+	]
+}

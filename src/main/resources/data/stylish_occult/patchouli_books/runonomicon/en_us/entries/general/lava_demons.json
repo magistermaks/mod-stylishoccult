@@ -1,0 +1,20 @@
+{
+	"name": "Lava Demons",
+	"icon": "stylish_occult:blazing_lava_shard",
+	"category": "stylish_occult:general",
+	"sortnum": 2,
+	"pages": [
+		{
+			"type": "patchouli:spotlight",
+			"item": "stylish_occult:lava_heart",
+			"title": "Lava Demons",
+			"link_recipe": true,
+			"text": "Lava Demons are beings far older than humanity, they lived under the forgotten foundations of this world for millennia slowly consuming precious minerals and depositing them in their bodies. Their hearts are rumored to contain a potent magical energy. Mine cautiously to not wake one up!"
+		},
+		{
+			"type": "patchouli:crafting",
+			"recipe": "stylish_occult:lava_shard",
+			"recipe2": "stylish_occult:blazing_lava_shard"
+		}
+	]
+}

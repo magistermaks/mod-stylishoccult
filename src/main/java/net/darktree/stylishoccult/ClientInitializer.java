@@ -1,12 +1,16 @@
 package net.darktree.stylishoccult;
 
 import net.darktree.interference.MessageInjector;
-import net.darktree.stylishoccult.blocks.ModBlocks;
-import net.darktree.stylishoccult.entities.ModEntities;
-import net.darktree.stylishoccult.items.ModItems;
+import net.darktree.stylishoccult.block.ModBlocks;
+import net.darktree.stylishoccult.block.entity.BlockEntities;
+import net.darktree.stylishoccult.block.entity.altar.AltarPlateBlockEntityRenderer;
+import net.darktree.stylishoccult.block.entity.cauldron.OccultCauldronBlockEntityRenderer;
+import net.darktree.stylishoccult.entity.ModEntities;
+import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.particles.Particles;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 
 public class ClientInitializer implements ClientModInitializer {
 
@@ -18,14 +22,19 @@ public class ClientInitializer implements ClientModInitializer {
 		Particles.clientInit();
 		ModEntities.clientInit();
 
-		MessageInjector.injectPlain("Down with JSON!");
-		MessageInjector.injectPlain("Tiny potato!");
-		MessageInjector.injectPlain("Stylish nightmare!");
-		MessageInjector.injectPlain("The nightmare before breakfast!");
-		MessageInjector.injectPlain("The wheels of progress frozen motionless...");
-		MessageInjector.injectPlain("By the power of The Mixin Subsystem!");
+		BlockEntityRendererRegistry.register(BlockEntities.ALTAR_PLATE, AltarPlateBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(BlockEntities.OCCULT_CAULDRON, OccultCauldronBlockEntityRenderer::new);
 
-		StylishOccult.LOGGER.info("Additional sound effects from https://www.zapsplat.com");
+		MessageInjector.injectPlain("May require a sacrifice in blood!");
+		MessageInjector.injectPlain("May include tiny potatoes!");
+		MessageInjector.injectPlain("Stylish nightmares!");
+		MessageInjector.injectPlain("By the Mad Arab, Abdul Alhazred!");
+		MessageInjector.injectPlain("The wheels of progress frozen motionless...");
+		MessageInjector.injectPlain("Power of The Mixin Subsystem compels you!");
+		MessageInjector.injectPlain("With strange aeons even death may die.");
+		MessageInjector.injectPlain("SplashScreenOutOfBoundsException!");
+
+		StylishOccult.LOGGER.info("Some sound effects for Stylish Occult are sourced from https://www.zapsplat.com");
 	}
 
 }

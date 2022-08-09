@@ -1,0 +1,17 @@
+{
+    "blood": 27000,
+    "catalyst": "stylish_occult:blood_shard",
+    "consume": false,
+    "ingredients": [
+        "stylish_occult:runestone",
+        "minecraft:redstone",
+        "stylish_occult:flesh",
+        "minecraft:redstone",
+        "stylish_occult:flesh_warts",
+        "minecraft:redstone",
+        "stylish_occult:flesh",
+        "minecraft:redstone"
+    ],
+    "product": "stylish_occult:rune_scribo",
+    "count": 1
+}

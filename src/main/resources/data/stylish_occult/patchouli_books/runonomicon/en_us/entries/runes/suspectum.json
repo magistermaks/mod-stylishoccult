@@ -1,0 +1,22 @@
+{
+	"name": "Suspectum Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/suspectum.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_suspectum",
+	"sortnum": 49,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "suspectum",
+			"title": "Suspectum Rune"
+		},
+		{
+			"type": "stylish_occult:page_long_symbol",
+			"text1": "Suspectum Rune when activated steals life energy from the nearby sacrifices and",
+			"text2": "adds it to the top of the $(hs). This rune is a symbol of Edalcet'h, a God of Blood and Suffering.",
+			"recipe": "stylish_occult:altar/rune/suspectum.json",
+			"rune": "suspectum",
+			"symbol": "arcane"
+		}
+	]
+}

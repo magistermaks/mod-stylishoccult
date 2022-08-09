@@ -10,7 +10,7 @@ public class GeneratorEntry extends AbstractEntry {
 
     private final Generator generator;
 
-    public GeneratorEntry( Generator generator ) {
+    public GeneratorEntry(Generator generator) {
         this.generator = generator;
     }
 

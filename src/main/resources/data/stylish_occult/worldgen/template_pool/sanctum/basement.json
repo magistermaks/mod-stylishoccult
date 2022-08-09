@@ -1,26 +1,25 @@
 {
-  "name": "stylish_occult:sanctum/basement",
-  "fallback": "minecraft:empty",
-  "elements": [
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/lower/1",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-
-    {
-      "weight": 1,
-      "element": {
-        "location": "stylish_occult:sanctum/lower/2",
-        "processors": "stylish_occult:sanctum",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    }
-  ]
+	"name": "stylish_occult:sanctum/basement",
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/lower/1",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		},
+		{
+			"weight": 1,
+			"element": {
+				"location": "stylish_occult:sanctum/lower/2",
+				"processors": "stylish_occult:sanctum",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		}
+	]
 }
 

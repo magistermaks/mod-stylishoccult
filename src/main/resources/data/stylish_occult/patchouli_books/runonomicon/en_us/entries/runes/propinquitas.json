@@ -1,0 +1,22 @@
+{
+	"name": "Propinquitas Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/propinquitas.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_propinquitas",
+	"sortnum": 33,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "propinquitas",
+			"title": "Propinquitas Rune"
+		},
+		{
+			"type": "stylish_occult:page_separated",
+			"text1": "Propinquitas Rune adds a numerical element equal one to the $(hs) if the player is nearby, and equal zero otherwise.",
+			"text2": "",
+			"recipe": "stylish_occult:altar/rune/propinquitas.json",
+			"rune": "propinquitas",
+			"separator": "symbols"
+		}
+	]
+}

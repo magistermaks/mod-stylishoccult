@@ -1,33 +1,33 @@
 {
-  "parent": "stylish_occult:occult/root",
-  "display": {
-    "icon": {
-      "item": "minecraft:deepslate_bricks"
-    },
-    "title": {
-      "translate": "advancements.stylish_occult.stonehenge.title"
-    },
-    "description": {
-      "translate": "advancements.stylish_occult.stonehenge.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
-  "criteria": {
-    "stonehenge": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "location": {
-          "feature": "stylish_occult:stonehenge"
-        }
-      }
-    }
-  },
-  "requirements": [
-    [
-      "stonehenge"
-    ]
-  ]
+	"parent": "stylish_occult:occult/root",
+	"display": {
+		"icon": {
+			"item": "minecraft:deepslate_bricks"
+		},
+		"title": {
+			"translate": "advancements.stylish_occult.stonehenge.title"
+		},
+		"description": {
+			"translate": "advancements.stylish_occult.stonehenge.description"
+		},
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"stonehenge": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"location": {
+					"feature": "stylish_occult:stonehenge"
+				}
+			}
+		}
+	},
+	"requirements": [
+		[
+			"stonehenge"
+		]
+	]
 }

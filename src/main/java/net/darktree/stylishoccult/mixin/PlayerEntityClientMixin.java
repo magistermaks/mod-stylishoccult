@@ -17,14 +17,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntity.class)
-public class PlayerEntityClientMixin implements PlayerEntityClientDuck {
+public abstract class PlayerEntityClientMixin implements PlayerEntityClientDuck {
 
 	@Unique
 	@Environment(EnvType.CLIENT)
 	SoundInstance heartbeat;
 
 	@Inject(method="tickMovement", at=@At("HEAD"))
-	public void tick(CallbackInfo ci) {
+	public void stylish_tickMovement(CallbackInfo ci) {
 		float value = MathHelper.sin(((PlayerEntityDuck) this).stylish_getMadness() * MathHelper.HALF_PI);
 		OverlayManager.show(OverlayManager.MADNESS, value);
 	}

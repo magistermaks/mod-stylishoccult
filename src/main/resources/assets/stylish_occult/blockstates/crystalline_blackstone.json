@@ -1,7 +1,9 @@
 {
-    "variants": {
-        "": { "model": "stylish_occult:block/crystalline_blackstone" }
-    }
+	"variants": {
+		"": {
+			"model": "stylish_occult:block/crystalline_blackstone"
+		}
+	}
 }
 
 
