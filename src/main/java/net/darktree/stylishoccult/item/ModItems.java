@@ -63,7 +63,6 @@ public class ModItems {
     public static final Item BLOOD_SHARD = RegUtil.item("blood_shard", new Item.Settings().group(Groups.STYLISH_OCCULT).rarity(Rarity.RARE));
     public static final Item BLAZING_LAVA_SHARD = RegUtil.item("blazing_lava_shard", new Item.Settings().group(Groups.STYLISH_OCCULT).rarity( Rarity.UNCOMMON ).fireproof());
     public static final Item FIERY_LANTERN = RegUtil.item("fiery_lantern", new BlockItem(ModBlocks.FIERY_LANTERN, new Item.Settings().group(Groups.STYLISH_OCCULT).rarity(Rarity.UNCOMMON).fireproof()));
-    public static final Item URN = RegUtil.item("urn", new BlockItem( ModBlocks.URN, new Item.Settings().group( Groups.STYLISH_OCCULT).rarity(Rarity.UNCOMMON)));
     public static final Item FLESH = RegUtil.item("flesh", new Item.Settings().group(Groups.STYLISH_OCCULT).food(ModFoodComponents.FLESH_FOOD));
     public static final Item VEINS = RegUtil.item("veins", new Item.Settings().group( Groups.STYLISH_OCCULT).food( ModFoodComponents.VEINS));
     public static final Item COOKED_VEINS = RegUtil.item("cooked_veins", new Item.Settings().group(Groups.STYLISH_OCCULT).food(ModFoodComponents.COOKED_VEINS));

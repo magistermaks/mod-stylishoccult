@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.worldgen.feature;
 
 import com.mojang.serialization.Codec;
+import net.darktree.lootboxes.LootBoxes;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.rune.RuneBlock;
@@ -175,7 +176,7 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
                     .with(CandleBlock.CANDLES, random.nextInt(4) + 1)
                     .with(CandleBlock.LIT, random.nextInt(8) != 0), 3);
         } else {
-            world.setBlockState(pos, ModBlocks.URN.getDefaultState(), 3);
+            world.setBlockState(pos, LootBoxes.URN_BLOCK.getDefaultState(), 3);
         }
     }
 

@@ -33,7 +33,6 @@ public class ModBlocks {
 
     public static final ArrayList<Block> RUNESTONES = new ArrayList<>();
 
-    public static final Block URN = RegUtil.block("urn", new UrnBlock());
     public static final Block LAVA_DEMON = RegUtil.block("lava_demon", new LavaDemonBlock());
     public static final Block FIERY_LANTERN = RegUtil.block("fiery_lantern", new FieryLanternBlock());
     public static final Block SPARK_VENT = RegUtil.block("spark_vent", new SparkVentBlock());

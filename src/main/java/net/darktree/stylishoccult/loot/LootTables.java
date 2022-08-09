@@ -22,27 +22,6 @@ public class LootTables {
             .addBlockItem()
             .build();
 
-    public static final LootTable URN = LootManager.create()
-            .addCondition(ConditionEntry::hasSilkTouch )
-                .addItem(ModItems.URN )
-                .pop()
-            .addElse()
-                .addItem(Items.DIAMOND, 5.9f)
-                .addItem(Items.GOLD_NUGGET, 35.3f)
-                .addItem(Items.GOLD_INGOT, 12.1f)
-                .addItem(Items.EMERALD, 23.4f)
-                .addItem(Items.LAPIS_LAZULI, 11.0f)
-                .addItem(Items.GUNPOWDER, 29.6f)
-                .addItem(Items.REDSTONE, 12.0f)
-                .addItem(Items.IRON_INGOT, 11.0f)
-                .addItem(Items.STRING, 3.2f)
-                .addItem(Items.ROTTEN_FLESH, 3.2f)
-                .addItem(Items.BONE, 4.2f)
-                .dropExperience(2, 10)
-                .pop()
-            .minimum(1)
-            .build();
-
     public static final LootTable ASH = LootManager.create()
             .addCondition((rng, ctx) -> ctx.getState().get(ArcaneAshBlock.PERSISTENT))
                 .addBlockItem()

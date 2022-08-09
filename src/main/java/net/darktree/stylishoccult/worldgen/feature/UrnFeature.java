@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.worldgen.feature;
 
 import com.mojang.serialization.Codec;
-import net.darktree.stylishoccult.block.ModBlocks;
+import net.darktree.lootboxes.LootBoxes;
 import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -31,7 +31,7 @@ public class UrnFeature extends SimpleFeature<DefaultFeatureConfig> {
             BlockPos pos3 = pos.offset( Direction.fromHorizontal( random.nextInt() ) );
 
             if (isFloorAccepted(world.getBlockState(pos2).getBlock()) && world.getBlockState(pos3).isSolidBlock(world, pos3)) {
-                world.setBlockState(pos, ModBlocks.URN.getDefaultState(), 3);
+                world.setBlockState(pos, LootBoxes.URN_BLOCK.getDefaultState(), 3);
                 this.debugWrite(pos);
             }
 
