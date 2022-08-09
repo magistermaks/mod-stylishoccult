@@ -18,6 +18,8 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.network.packet.s2c.play.ParticleS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -310,11 +312,13 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 			state.writeNbt(stateNbt);
 		}
 
-		nbt.putInt("l", this.candles.size());
+		NbtList ring = new NbtList();
 
-		for (int i = 0; i < this.candles.size(); i ++) {
-			nbt.put("i" + i, this.candles.get(i).writeNbt(new NbtCompound()));
+		for (AltarRingItemStack candle : this.candles) {
+			ring.add(candle.writeNbt(new NbtCompound()));
 		}
+
+		nbt.put("ring", ring);
 
 		return super.writeNbt(nbt);
 	}
@@ -331,12 +335,9 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				state.readNbt(nbt.getCompound("state"));
 			}
 
-			int l = nbt.getInt("l");
-
-			for (int i = 0; i < l; i ++) {
-				candles.add(AltarRingItemStack.fromNbt(nbt.getCompound("i" + i)));
+			for (NbtElement element : nbt.getList("ring", NbtElement.COMPOUND_TYPE)) {
+				candles.add(AltarRingItemStack.fromNbt((NbtCompound) element));
 			}
-
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
