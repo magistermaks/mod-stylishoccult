@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.data;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParser;
 import net.darktree.stylishoccult.StylishOccult;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.resource.ResourceManager;
@@ -13,6 +14,7 @@ import java.nio.charset.StandardCharsets;
 
 public abstract class SimpleDirectoryResourceReloadListener implements SimpleSynchronousResourceReloadListener {
 
+	protected final static JsonParser PARSER = new JsonParser();
 	protected final static Gson GSON = new Gson();
 	private final String path;
 
@@ -25,10 +27,12 @@ public abstract class SimpleDirectoryResourceReloadListener implements SimpleSyn
 		onReloadStart();
 
 		for(Identifier id : manager.findResources(this.path, path -> path.endsWith(".json"))) {
-			try(InputStream stream = manager.getResource(id).getInputStream()) {
-				apply(id, new InputStreamReader(stream, StandardCharsets.UTF_8));
-			} catch(Exception e) {
-				StylishOccult.LOGGER.error("Error occurred while loading resource json " + id.toString(), e);
+			if (id.getNamespace().equals(StylishOccult.NAMESPACE)) {
+				try (InputStream stream = manager.getResource(id).getInputStream()) {
+					apply(id, new InputStreamReader(stream, StandardCharsets.UTF_8));
+				} catch (Exception e) {
+					StylishOccult.LOGGER.error("Error occurred while loading resource json: " + id, e);
+				}
 			}
 		}
 

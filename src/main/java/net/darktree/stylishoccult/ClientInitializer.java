@@ -26,12 +26,13 @@ public class ClientInitializer implements ClientModInitializer {
 		BlockEntityRendererRegistry.register(BlockEntities.OCCULT_CAULDRON, OccultCauldronBlockEntityRenderer::new);
 
 		MessageInjector.injectPlain("May require a sacrifice in blood!");
-		MessageInjector.injectPlain("May include tiny potato!");
+		MessageInjector.injectPlain("May include tiny potatoes!");
 		MessageInjector.injectPlain("Stylish nightmares!");
 		MessageInjector.injectPlain("By the Mad Arab, Abdul Alhazred!");
 		MessageInjector.injectPlain("The wheels of progress frozen motionless...");
 		MessageInjector.injectPlain("Power of The Mixin Subsystem compels you!");
 		MessageInjector.injectPlain("With strange aeons even death may die.");
+		MessageInjector.injectPlain("SplashScreenOutOfBoundsException!");
 
 		StylishOccult.LOGGER.info("Some sound effects for Stylish Occult are sourced from https://www.zapsplat.com");
 	}

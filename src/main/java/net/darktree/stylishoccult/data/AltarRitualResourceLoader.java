@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.data;
 
+import com.google.gson.JsonElement;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.darktree.stylishoccult.StylishOccult;
@@ -12,12 +13,13 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.util.Identifier;
 
 import java.io.Reader;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AltarRitualResourceLoader extends SimpleDirectoryResourceReloadListener {
 
-	private final ArrayList<AltarRitual> rituals = new ArrayList<>();
+	private final Map<Identifier, AltarRitual> rituals = new HashMap<>();
 	private final IntList hashes = new IntArrayList();
 
 	public AltarRitualResourceLoader() {
@@ -42,15 +44,21 @@ public class AltarRitualResourceLoader extends SimpleDirectoryResourceReloadList
 
 	@Override
 	public void apply(Identifier identifier, Reader reader) {
-		rituals.add(GSON.fromJson(reader, AltarRitual.Json.class).build(identifier, hashes));
+		JsonElement json = PARSER.parse(reader);
+
+		if (json.isJsonObject() && json.getAsJsonObject().size() == 0) {
+			rituals.remove(identifier);
+		} else {
+			rituals.put(identifier, GSON.fromJson(json, AltarRitual.Json.class).build(identifier, hashes));
+		}
 	}
 
 	public AltarRitual find(Item catalyst, List<Item> ingredients) {
-		return rituals.stream().filter(ritual -> ritual.match(catalyst, ingredients)).findAny().orElse(null);
+		return rituals.values().stream().filter(ritual -> ritual.match(catalyst, ingredients)).findAny().orElse(null);
 	}
 
 	public AltarRitual find(Identifier identifier) {
-		return rituals.stream().filter(ritual -> ritual.match(identifier)).findAny().orElse(null);
+		return rituals.values().stream().filter(ritual -> ritual.match(identifier)).findAny().orElse(null);
 	}
 
 	public void sync(NbtList list) {
@@ -60,13 +68,15 @@ public class AltarRitualResourceLoader extends SimpleDirectoryResourceReloadList
 
 		for (NbtElement element : list) {
 			NbtCompound compound = (NbtCompound) element;
-			rituals.add(new AltarRitual.Json(compound).build(new Identifier(compound.getString("id")), hashes));
+			Identifier id = new Identifier(compound.getString("id"));
+
+			rituals.put(id, new AltarRitual.Json(compound).build(id, hashes));
 		}
 	}
 
 	public NbtList serialize() {
 		NbtList list = new NbtList();
-		rituals.stream().map(AltarRitual::getNbt).forEach(list::add);
+		rituals.values().stream().map(AltarRitual::getNbt).forEach(list::add);
 
 		return list;
 	}

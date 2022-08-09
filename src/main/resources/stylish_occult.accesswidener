@@ -30,8 +30,8 @@ accessible   method   net/minecraft/entity/ItemEntity   canMerge   ()Z
 # Needed to make thrown items not merge instantly (part 2/2)
 extendable   method   net/minecraft/entity/ItemEntity   canMerge   ()Z
 
-# To avoid vanilla code duplication (cauldron raycast voxel shape)
+# To avoid code duplication (cauldron raycast voxel shape)
 accessible   field   net/minecraft/block/AbstractCauldronBlock   RAYCAST_SHAPE   Lnet/minecraft/util/shape/VoxelShape;
 
-# To avoid vanilla code duplication (cauldron outline voxel shape)
+# To avoid code duplication (cauldron outline voxel shape)
 accessible   field   net/minecraft/block/AbstractCauldronBlock   OUTLINE_SHAPE   Lnet/minecraft/util/shape/VoxelShape;
