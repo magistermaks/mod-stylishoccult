@@ -11,6 +11,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
 public class ScrapeFleshCriterion extends AbstractCriterion<ScrapeFleshCriterion.Conditions> {
+
 	static final Identifier ID = new ModIdentifier("scrape_flesh");
 
 	public Identifier getId() {

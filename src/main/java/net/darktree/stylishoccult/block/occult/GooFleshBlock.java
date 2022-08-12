@@ -61,7 +61,7 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
-        if( direction == Direction.UP ) {
+        if (direction == Direction.UP) {
             return state.with(TOP, newState.isAir());
         }
 

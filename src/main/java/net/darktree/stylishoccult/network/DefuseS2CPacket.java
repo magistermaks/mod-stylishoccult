@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.network;
 
 import io.netty.buffer.Unpooled;
+import net.darktree.stylishoccult.utils.Directions;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -40,7 +41,7 @@ public class DefuseS2CPacket {
 		if( player != null && player.world != null ) {
 			Random random = player.world.random;
 
-			for(Direction direction : Direction.values()) {
+			for(Direction direction : Directions.ALL) {
 				BlockPos target = pos.offset(direction);
 				BlockState state = player.world.getBlockState(target);
 

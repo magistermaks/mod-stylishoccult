@@ -19,7 +19,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.loot.LootTables;
@@ -109,26 +108,17 @@ public class ModItems {
     public static final Item OCCULT_STAFF = RegUtil.item("staff", new Item(new Item.Settings().group(Groups.STYLISH_OCCULT)));
 
     public static void init() {
-        if (FabricLoader.getInstance().isModLoaded("patchouli")) {
-            if (StylishOccult.SETTING.add_guide_to_loottables) {
-                NbtCompound tag = new NbtCompound();
-                tag.putString("patchouli:book", "stylish_occult:runonomicon");
-                ItemStack stack = new ItemStack(PatchouliItems.BOOK);
-                stack.setNbt(tag);
+        if (StylishOccult.SETTING.add_guide_to_loottables) {
+            NbtCompound tag = new NbtCompound();
+            tag.putString("patchouli:book", "stylish_occult:runonomicon");
+            ItemStack stack = new ItemStack(PatchouliItems.BOOK);
+            stack.setNbt(tag);
 
-                LootInjector.injectEntry(LootTables.STRONGHOLD_LIBRARY_CHEST, stack, 20);
-                LootInjector.injectEntry(LootTables.NETHER_BRIDGE_CHEST, stack, 60);
-                LootInjector.injectEntry(LootTables.BASTION_TREASURE_CHEST, stack, 60);
-                LootInjector.injectEntry(LootTables.BASTION_BRIDGE_CHEST, stack, 5);
-                LootInjector.injectEntry(LootTables.VILLAGE_CARTOGRAPHER_CHEST, stack, 1);
-            }
-        } else {
-            StylishOccult.LOGGER.error("Stylish Occult did not detect Patchouli among the loaded mods!");
-            StylishOccult.LOGGER.error("This is not a fatal error but it will negatively affect your gameplay!");
-
-            try {
-                Thread.sleep(2000);
-            } catch (Exception ignored) {}
+            LootInjector.injectEntry(LootTables.STRONGHOLD_LIBRARY_CHEST, stack, 20);
+            LootInjector.injectEntry(LootTables.NETHER_BRIDGE_CHEST, stack, 60);
+            LootInjector.injectEntry(LootTables.BASTION_TREASURE_CHEST, stack, 60);
+            LootInjector.injectEntry(LootTables.BASTION_BRIDGE_CHEST, stack, 5);
+            LootInjector.injectEntry(LootTables.VILLAGE_CARTOGRAPHER_CHEST, stack, 1);
         }
     }
 

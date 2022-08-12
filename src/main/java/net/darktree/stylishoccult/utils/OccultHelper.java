@@ -28,7 +28,7 @@ public class OccultHelper {
     public static void corruptAround(ServerWorld world, BlockPos pos, Random random, boolean far) {
         BlockPos target = pos.offset( RandUtils.getEnum(Direction.class, random) );
 
-        if(far) {
+        if (far) {
             int i = 0;
 
             while (random.nextInt(4) == 0 && (i < 5)) {
@@ -69,12 +69,12 @@ public class OccultHelper {
         float hardness = state.getHardness(world, target);
         boolean corruptible = ModTags.CORRUPTIBLE.contains(block);
 
-        if( !state.isAir() ) {
-            if(corruptible || (canCorrupt(state, hardness, world.random) && requiredCheck(block, hardness))) {
+        if (!state.isAir()) {
+            if (corruptible || (canCorrupt(state, hardness, world.random) && requiredCheck(block, hardness))) {
                 spawnCorruption(world, target, state);
             }
-        }else{
-            if( touchesSource(world, target) ) {
+        } else {
+            if (touchesSource(world, target)) {
                 spawnCorruption(world, target, state);
             }
         }
@@ -158,7 +158,7 @@ public class OccultHelper {
                 if( RandUtils.getBool(25.0f, random) ) {
                     return ModBlocks.GOO_FLESH.getDefaultState().with(GooFleshBlock.TOP, world.getBlockState(pos.up()).isAir());
                 }
-            }else{
+            } else {
                 if (state.getLuminance() > 3 && state.isFullCube(world, pos)) return ModBlocks.GLOW_FLESH.getDefaultState();
                 if (BlockTags.LEAVES.contains(block)) return LeavesFleshBlock.getStateToFit(world, pos);
                 if (ModTags.TOP_SOIL.contains(block) && RandUtils.getBool(80, random)) return ModBlocks.SOIL_FLESH.getDefaultState();
@@ -188,14 +188,14 @@ public class OccultHelper {
     }
 
     public static void sacrifice(World world, BlockPos pos, LivingEntity entity) {
-        if(entity instanceof SparkEntity) {
+        if (entity instanceof SparkEntity) {
             return;
         }
 
-        if( standsOnSource(world, pos) ) {
+        if (standsOnSource(world, pos)) {
             int count = world.random.nextInt(4) + 1;
 
-            for(int i = 0; i < count; i ++) {
+            for (int i = 0; i < count; i ++) {
                 corruptAround((ServerWorld) world, pos, world.getRandom(), false);
             }
 
@@ -214,8 +214,8 @@ public class OccultHelper {
                     if( RandUtils.getBool(Math.max(MathHelper.fastInverseSqrt(x * x + y * y + z * z) * 50 - 8, 1), world.random) ) {
                         pos.set(cx + x, cy + y, cz + z);
 
-                        if(world.getBlockState(pos).getBlock() == ModBlocks.FLESH_PASSIVE) {
-                            world.setBlockState(pos, ModBlocks.DEFAULT_FLESH.getDefaultState());
+                        if(world.getBlockState(pos).getBlock() instanceof PassiveFleshBlock fleshBlock) {
+                            fleshBlock.ascend(world, pos);
                         }
                     }
                 }
@@ -233,8 +233,8 @@ public class OccultHelper {
     }
 
     public static int getBoneArmorBySlot(LivingEntity entity, EquipmentSlot slot, int bones) {
-        if(entity.getEquippedStack(slot).getItem() instanceof ArmorItem armor) {
-            if(armor.getMaterial() instanceof TwistedBoneArmorMaterial) {
+        if (entity.getEquippedStack(slot).getItem() instanceof ArmorItem armor) {
+            if (armor.getMaterial() instanceof TwistedBoneArmorMaterial) {
                 return bones;
             }
         }

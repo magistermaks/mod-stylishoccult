@@ -20,7 +20,7 @@
 			"trigger": "stylish_occult:exception",
 			"conditions": {
 				"defused": false,
-				"distance": 32,
+				"distance": 16,
 				"exception": null
 			}
 		}

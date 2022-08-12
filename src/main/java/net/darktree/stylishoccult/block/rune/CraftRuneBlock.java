@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.rune;
 
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.script.element.ItemElement;
 import net.darktree.stylishoccult.script.engine.Script;
@@ -174,6 +175,8 @@ public class CraftRuneBlock extends TransferRuneBlock {
 				script.ring.push(new ItemElement(inventory.getStack(i)), world, pos);
 			}
 		}
+
+		Criteria.TRIGGER.trigger(world, pos, this, optional.isPresent());
 	}
 
 	private static class SlotSide {

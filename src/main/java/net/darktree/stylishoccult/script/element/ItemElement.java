@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.script.element;
 import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneExceptionType;
 import net.darktree.stylishoccult.script.element.view.ElementView;
+import net.darktree.stylishoccult.utils.Directions;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.client.resource.language.I18n;
@@ -91,14 +92,13 @@ public class ItemElement extends StackElement {
 	}
 
 	private ItemStack insert(World world, BlockPos pos) {
-		for(Direction direction : Direction.values()) {
+		for (Direction direction : Directions.ALL) {
 
 			Inventory inventory = HopperBlockEntity.getInventoryAt(world, pos.offset(direction));
 
 			if (inventory != null) {
 				return HopperBlockEntity.transfer(null, inventory, this.stack.copy(), direction.getOpposite());
 			}
-
 		}
 
 		return this.stack;

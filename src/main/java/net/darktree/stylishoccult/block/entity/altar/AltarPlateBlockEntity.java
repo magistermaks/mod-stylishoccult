@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.entity.altar;
 
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.block.rune.VerticalRuneLink;
@@ -214,6 +215,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 			}
 		}
 
+		Criteria.RITUAL.trigger(world, pos, new ItemStack(ritual.catalyst), new ItemStack(ritual.product));
 		Sounds.TRANSMUTE.play(world, pos);
 	}
 

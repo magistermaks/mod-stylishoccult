@@ -1,14 +1,14 @@
 package net.darktree.stylishoccult.sounds;
 
-import net.darktree.stylishoccult.overlay.PlayerEntityDuck;
+import net.darktree.stylishoccult.overlay.PlayerEntityMadnessDuck;
 import net.minecraft.client.sound.MovingSoundInstance;
 import net.minecraft.sound.SoundCategory;
 
 public class HeartbeatSoundInstance extends MovingSoundInstance {
 
-	PlayerEntityDuck player;
+	PlayerEntityMadnessDuck player;
 
-	public HeartbeatSoundInstance(PlayerEntityDuck player) {
+	public HeartbeatSoundInstance(PlayerEntityMadnessDuck player) {
 		super(Sounds.HEARTBEAT.event, SoundCategory.AMBIENT);
 		this.player = player;
 	}

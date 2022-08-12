@@ -4,6 +4,7 @@ import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneExceptionType;
 import net.darktree.stylishoccult.script.element.view.ElementView;
+import net.darktree.stylishoccult.utils.Directions;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
@@ -103,7 +104,7 @@ public class FluidElement extends StackElement {
 	private long insert(World world, BlockPos pos) {
 		long left = this.amount;
 
-		for(Direction direction : Direction.values()) {
+		for (Direction direction : Directions.ALL) {
 
 			// It should never be less than 0, but just to be sure...
 			if (left <= 0) {

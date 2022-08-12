@@ -33,6 +33,7 @@ public class ClientInitializer implements ClientModInitializer {
 		MessageInjector.injectPlain("Power of The Mixin Subsystem compels you!");
 		MessageInjector.injectPlain("With strange aeons even death may die.");
 		MessageInjector.injectPlain("SplashScreenOutOfBoundsException!");
+		MessageInjector.injectPlain("Now with two poems!");
 
 		StylishOccult.LOGGER.info("Some sound effects for Stylish Occult are sourced from https://www.zapsplat.com");
 	}

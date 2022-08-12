@@ -1,12 +1,14 @@
 package net.darktree.stylishoccult.block.rune;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.block.fluid.ModFluids;
 import net.darktree.stylishoccult.duck.LivingEntityDuck;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.script.element.FluidElement;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.sounds.Sounds;
+import net.darktree.stylishoccult.utils.Directions;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -66,6 +68,7 @@ public class SuspiciousRuneBlock extends TransferRuneBlock {
 
 		float yield = StylishOccult.SETTING.rune_blood_yield;
 		script.stack.push(new FluidElement(FluidVariant.of(ModFluids.STILL_BLOOD), (long) Math.ceil(yield * damage)));
+		Criteria.TRIGGER.trigger(world, pos, this, damage > 0);
 	}
 
 	public static class LivingTarget {
@@ -86,7 +89,7 @@ public class SuspiciousRuneBlock extends TransferRuneBlock {
 			Direction closest = null;
 			double distance = 128;
 
-			for (Direction direction : Direction.values()) {
+			for (Direction direction : Directions.ALL) {
 				BlockPos target = pos.offset(direction);
 
 				if (!world.getBlockState(target).getCollisionShape(world, target).isEmpty()) {

@@ -1,7 +1,6 @@
 package net.darktree.stylishoccult.advancement;
 
 import com.google.gson.JsonObject;
-import net.darktree.stylishoccult.block.rune.RuneBlock;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
@@ -17,58 +16,48 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class ExceptionCriterion extends AbstractCriterion<ExceptionCriterion.Conditions> {
+public class RitualCriterion extends AbstractCriterion<RitualCriterion.Conditions> {
 
-	static final Identifier ID = new ModIdentifier("exception");
+	static final Identifier ID = new ModIdentifier("altar");
 
 	public Identifier getId() {
 		return ID;
 	}
 
-	public ExceptionCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
-		return new ExceptionCriterion.Conditions(extended, jsonObject);
+	public RitualCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+		return new RitualCriterion.Conditions(extended, jsonObject);
 	}
 
-	public void trigger(World world, BlockPos pos, RuneBlock rune, String message, boolean defused) {
+	public void trigger(World world, BlockPos pos, ItemStack catalyst, ItemStack product) {
 		if (world instanceof ServerWorld server) {
-			ItemStack stack = new ItemStack(rune.asItem());
-
 			for(ServerPlayerEntity player : server.getPlayers()) {
 				double distance = player.getPos().distanceTo(Vec3d.of(pos));
-				this.trigger(player, (conditions) -> conditions.matches(message, stack, defused, distance));
+				this.trigger(player, (conditions) -> conditions.matches(catalyst, product, distance));
 			}
 		}
 	}
 
 	public static class Conditions extends AbstractCriterionConditions {
-		private final ItemPredicate rune;
-		private final boolean defused;
+		private final ItemPredicate catalyst;
+		private final ItemPredicate product;
 		private final double distance;
-		private final String exception;
 
 		public Conditions(EntityPredicate.Extended player, JsonObject json) {
-			super(ExceptionCriterion.ID, player);
-			this.rune = ItemPredicate.fromJson(json.get("rune"));
-			this.defused = json.get("defused").getAsBoolean();
+			super(RitualCriterion.ID, player);
+			this.catalyst = ItemPredicate.fromJson(json.get("catalyst"));
+			this.product = ItemPredicate.fromJson(json.get("product"));
 			this.distance = json.get("distance").getAsDouble();
-
-			if(!json.get("exception").isJsonNull()) {
-				this.exception = json.get("exception").getAsString();
-			}else{
-				this.exception = null;
-			}
 		}
 
-		public boolean matches(String message, ItemStack stack, boolean defused, double distance) {
-			return (this.defused == defused) && (this.distance > distance) && (this.exception == null || message.equals(this.exception)) && this.rune.test(stack);
+		public boolean matches(ItemStack catalyst, ItemStack product, double distance) {
+			return (this.distance > distance) && this.catalyst.test(catalyst) && this.product.test(product);
 		}
 
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject json = super.toJson(predicateSerializer);
-			json.add("rune", this.rune.toJson());
-			json.addProperty("defused", this.defused);
+			json.add("catalyst", this.catalyst.toJson());
+			json.add("product", this.product.toJson());
 			json.addProperty("distance", this.distance);
-			json.addProperty("exception", this.exception);
 			return json;
 		}
 	}

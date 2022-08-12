@@ -85,8 +85,8 @@ public class LavaDemonBlockEntity extends BlockEntity {
                 interval = 3;
 
                 Direction direction = getOffsetDirection(pos, player.getBlockPos());
-                if( direction != Direction.DOWN && direction != Direction.UP ) {
-                    BlockPos spawnPoint = pos.offset( direction );
+                if (direction != Direction.DOWN && direction != Direction.UP) {
+                    BlockPos spawnPoint = pos.offset(direction);
 
                     float speed = StylishOccult.SETTING.fire_ball_speed;
                     float vx = direction == Direction.WEST ? -speed : direction == Direction.EAST ? speed : 0;
@@ -103,7 +103,6 @@ public class LavaDemonBlockEntity extends BlockEntity {
                             vx + (random.nextFloat() / 15) - (random.nextFloat() / 15),
                             0,
                             vz + (random.nextFloat() / 15) - (random.nextFloat() / 15));
-
 
                     world.spawnEntity(fireball);
 

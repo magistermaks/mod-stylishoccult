@@ -17,12 +17,11 @@
 	},
 	"criteria": {
 		"trigger": {
-			"trigger": "stylish_occult:trigger",
+			"trigger": "stylish_occult:special_rune_trigger",
 			"conditions": {
-				"distance": 32,
-				"rune": {
-					"items": ["stylish_occult:rune_locus"]
-				}
+				"distance": 16,
+				"rune": "locus",
+				"successful": true
 			}
 		}
 	},

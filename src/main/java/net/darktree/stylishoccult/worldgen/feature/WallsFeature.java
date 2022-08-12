@@ -28,7 +28,7 @@ import java.util.Random;
 
 public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 
-    private static final Direction[] neighbors = new Direction[] {
+    private static final Direction[] NEIGHBORS = new Direction[] {
             Direction.EAST, Direction.WEST, Direction.NORTH, Direction.SOUTH
     };
 
@@ -181,7 +181,7 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
     }
 
     private static boolean touchesRunes(BlockView world, BlockPos origin) {
-        for (Direction direction : neighbors){
+        for (Direction direction : NEIGHBORS){
             if(world.getBlockState( origin.offset( direction ) ).getBlock() instanceof RuneBlock) return true;
         }
 

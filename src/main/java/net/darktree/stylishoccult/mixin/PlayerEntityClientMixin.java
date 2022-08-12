@@ -2,7 +2,7 @@ package net.darktree.stylishoccult.mixin;
 
 import net.darktree.stylishoccult.overlay.OverlayManager;
 import net.darktree.stylishoccult.overlay.PlayerEntityClientDuck;
-import net.darktree.stylishoccult.overlay.PlayerEntityDuck;
+import net.darktree.stylishoccult.overlay.PlayerEntityMadnessDuck;
 import net.darktree.stylishoccult.sounds.HeartbeatSoundInstance;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -25,7 +25,7 @@ public abstract class PlayerEntityClientMixin implements PlayerEntityClientDuck 
 
 	@Inject(method="tickMovement", at=@At("HEAD"))
 	public void stylish_tickMovement(CallbackInfo ci) {
-		float value = MathHelper.sin(((PlayerEntityDuck) this).stylish_getMadness() * MathHelper.HALF_PI);
+		float value = MathHelper.sin(((PlayerEntityMadnessDuck) this).stylish_getMadness() * MathHelper.HALF_PI);
 		OverlayManager.show(OverlayManager.MADNESS, value);
 	}
 
@@ -33,7 +33,7 @@ public abstract class PlayerEntityClientMixin implements PlayerEntityClientDuck 
 	public void stylish_startHeartbeatSound() {
 		if(((PlayerEntity) (Object) this).world.isClient) {
 			if(heartbeat == null || !MinecraftClient.getInstance().getSoundManager().isPlaying(heartbeat)) {
-				heartbeat = new HeartbeatSoundInstance((PlayerEntityDuck) this);
+				heartbeat = new HeartbeatSoundInstance((PlayerEntityMadnessDuck) this);
 				MinecraftClient.getInstance().getSoundManager().play(heartbeat);
 			}
 		}

@@ -68,7 +68,7 @@ public class FieryLanternBlock extends SimpleBlock implements Waterloggable {
         FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
         Direction[] dirs = ctx.getPlacementDirections();
 
-        for( Direction dir : dirs ) {
+        for (Direction dir : dirs) {
             if (dir.getAxis() == Direction.Axis.Y) {
                 BlockState blockState = getDefaultState().with(HANGING, dir == Direction.UP);
                 if (blockState.canPlaceAt(ctx.getWorld(), ctx.getBlockPos())) {

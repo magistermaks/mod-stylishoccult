@@ -43,19 +43,19 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
 
 	@Inject(method="isClimbing", at=@At(value="INVOKE_ASSIGN", target="Lnet/minecraft/entity/LivingEntity;getBlockStateAtPos()Lnet/minecraft/block/BlockState;"), locals=LocalCapture.CAPTURE_FAILHARD, cancellable=true)
 	public void stylish_isClimbing(CallbackInfoReturnable<Boolean> info, BlockPos pos, BlockState state) {
-		if(state.getBlock() == ModBlocks.GROWTH) {
-			if(GrowthBlock.hasSide(state)) {
+		if (state.getBlock() == ModBlocks.GROWTH) {
+			if (GrowthBlock.hasSide(state)) {
 				info.setReturnValue(true);
 			}
 		}
 	}
 
 	@Inject(method="onDeath", at=@At("TAIL"))
-	public void onDeath(DamageSource source, CallbackInfo ci) {
+	public void stylish_onDeath(DamageSource source, CallbackInfo ci) {
 		LivingEntity entity = (LivingEntity) (Object) this;
 		BlockPos pos = entity.getBlockPos();
 
-		if(entity.world != null && pos != null && !entity.world.isClient) {
+		if (entity.world != null && pos != null && !entity.world.isClient) {
 			OccultHelper.sacrifice(entity.world, pos, entity);
 		}
 	}

@@ -7,7 +7,7 @@ import net.darktree.stylishoccult.block.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.overlay.PlayerEntityClientDuck;
-import net.darktree.stylishoccult.overlay.PlayerEntityDuck;
+import net.darktree.stylishoccult.overlay.PlayerEntityMadnessDuck;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RegUtil;
@@ -37,11 +37,11 @@ public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFlesh
     @Override
     public void onLookAtTick(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if( !state.get(PERSISTENT) ) {
-            ((PlayerEntityDuck) player).stylish_addMadness(0.03f);
+            float value = ((PlayerEntityMadnessDuck) player).stylish_addMadness(0.03f);
             ((PlayerEntityClientDuck) player).stylish_startHeartbeatSound();
 
             // notify the server
-            Network.MADNESS.send();
+            Network.MADNESS.send(value);
         }
     }
 

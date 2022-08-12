@@ -35,7 +35,7 @@ public class BrokenRuneBlock extends RuneBlock {
     @Override
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add( Utils.tooltip( "damaged_rune" ) );
+        tooltip.add(Utils.tooltip("damaged_rune"));
     }
 
 }

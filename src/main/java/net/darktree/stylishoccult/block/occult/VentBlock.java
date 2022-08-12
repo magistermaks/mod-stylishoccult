@@ -8,6 +8,7 @@ import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.entity.ModEntities;
 import net.darktree.stylishoccult.entity.SporeEntity;
 import net.darktree.stylishoccult.sounds.Sounds;
+import net.darktree.stylishoccult.utils.Directions;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RegUtil;
 import net.darktree.stylishoccult.utils.SimpleBlock;
@@ -58,13 +59,13 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
     };
 
     public VentBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.STONE, 2, 2, false ).ticksRandomly() );
-        setDefaultState( getDefaultState().with(FACING, Direction.UP).with(ACTIVE, false) );
+        super(RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.STONE, 2, 2, false ).ticksRandomly());
+        setDefaultState(getDefaultState().with(FACING, Direction.UP).with(ACTIVE, false));
     }
 
     public BlockState getStateToFit( World world, BlockPos pos ) {
-        for( Direction direction : Direction.values() ) {
-            if( world.getBlockState( pos.offset(direction) ).getBlock() instanceof FullFleshBlock) {
+        for (Direction direction : Directions.ALL) {
+            if (world.getBlockState(pos.offset(direction)).getBlock() instanceof FullFleshBlock) {
                 return getDefaultState().with(FACING, direction.getOpposite());
             }
         }
@@ -84,8 +85,8 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
-        if( state.get(FACING).getOpposite() == direction ) {
-            if( !(world.getBlockState(pos.offset(direction)).getBlock() instanceof FullFleshBlock) ) {
+        if (state.get(FACING).getOpposite() == direction) {
+            if (!(world.getBlockState(pos.offset(direction)).getBlock() instanceof FullFleshBlock)) {
                 return Blocks.AIR.getDefaultState();
             }
         }
@@ -98,14 +99,14 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
 
         SporeEntity sporeEntity = ModEntities.SPORE.create(world);
 
-        if( sporeEntity == null ){
-            throw new RuntimeException( "Unable to summon Spore!" );
+        if (sporeEntity == null){
+            throw new RuntimeException("Unable to summon Spore!");
         }
 
         Vec3f offset = OFFSETS[state.get(FACING).getId()];
-        double x = (double)pos.getX() + offset.getX() / 16.0f;
-        double y = (double)pos.getY() + offset.getY() / 16.0f;
-        double z = (double)pos.getZ() + offset.getZ() / 16.0f;
+        double x = (double) pos.getX() + offset.getX() / 16.0f;
+        double y = (double) pos.getY() + offset.getY() / 16.0f;
+        double z = (double) pos.getZ() + offset.getZ() / 16.0f;
 
         sporeEntity.setVentDirection(state.get(FACING), 0.9f);
         sporeEntity.refreshPositionAndAngles(x, y - 0.125, z, 0, 0);
@@ -118,20 +119,20 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
 
         Direction facing = ctx.getPlacementDirections()[0];
 
-        if( ctx.getWorld().getBlockState(ctx.getBlockPos().offset(facing)).getBlock() instanceof FullFleshBlock ) {
+        if (ctx.getWorld().getBlockState(ctx.getBlockPos().offset(facing)).getBlock() instanceof FullFleshBlock) {
             return getDefaultState().with(FACING, facing.getOpposite());
         }
 
         try {
             return getStateToFit(ctx.getWorld(), ctx.getBlockPos());
-        }catch (RuntimeException ignored) {
+        } catch (RuntimeException ignored) {
             return null;
         }
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if( !world.getBlockTickScheduler().isScheduled(pos, this) ) {
+        if (!world.getBlockTickScheduler().isScheduled(pos, this)) {
             world.getBlockTickScheduler().schedule(pos, this, 100);
         }
     }
@@ -142,10 +143,10 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
 
         summon(state, world, pos);
 
-        if( random.nextInt( 5 ) == 0 ) {
+        if (random.nextInt(5) == 0) {
             world.setBlockState(pos, state.with(ACTIVE, false));
             world.getBlockTickScheduler().schedule(pos, this, random.nextInt(450) + 250);
-        }else{
+        } else {
             world.getBlockTickScheduler().schedule(pos, this, 20);
         }
     }
@@ -155,10 +156,10 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
         Vec3f offset = OFFSETS[state.get(FACING).getId()];
         double x = offset.getX() / 16.0f, y = offset.getY() / 16.0f, z = offset.getZ() / 16.0f;
 
-        double d = (double)pos.getX() + x;
-        double e = (double)pos.getY() + y;
-        double f = (double)pos.getZ() + z;
-        world.addParticle( ParticleTypes.SMOKE, d, e, f, 0.0D, 0.0D, 0.0D );
+        double px = (double) pos.getX() + x;
+        double py = (double) pos.getY() + y;
+        double pz = (double) pos.getZ() + z;
+        world.addParticle(ParticleTypes.SMOKE, px, py, pz, 0.0D, 0.0D, 0.0D);
     }
 
     @Override

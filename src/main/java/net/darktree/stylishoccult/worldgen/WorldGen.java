@@ -57,8 +57,8 @@ public class WorldGen {
 		});
 	}
 
-	public static StructureProcessorList addProcessorList(String name, ImmutableList<StructureProcessor> processors) {
-		return BuiltinRegistries.add(BuiltinRegistries.STRUCTURE_PROCESSOR_LIST, new ModIdentifier(name), new StructureProcessorList(processors));
+	public static StructureProcessorList addProcessorList(String name, StructureProcessor processor) {
+		return BuiltinRegistries.add(BuiltinRegistries.STRUCTURE_PROCESSOR_LIST, new ModIdentifier(name), new StructureProcessorList(ImmutableList.of(processor)));
 	}
 
 	public static StructureProcessorType<?> addProcessorType(String name, Supplier<StructureProcessor> supplier) {
@@ -70,10 +70,10 @@ public class WorldGen {
 	}
 
 	// Structure processors
-	private static final StructureProcessorList STONE_DECAY_PROCESSOR = WorldGen.addProcessorList("stone_decay", ImmutableList.of(new StoneStructureProcessor()));
-	private static final StructureProcessorList DEEPSLATE_DECAY_PROCESSOR = WorldGen.addProcessorList("deepslate_decay", ImmutableList.of(new DeepslateStructureProcessor()));
-	private static final StructureProcessorList BLACKSTONE_DECAY_PROCESSOR = WorldGen.addProcessorList("blackstone_decay", ImmutableList.of(new BlackstoneStructureProcessor()));
-	private static final StructureProcessorList SANCTUM_PROCESSOR = WorldGen.addProcessorList("sanctum", ImmutableList.of(new SanctumStructureProcessor()));
+	private static final StructureProcessorList STONE_DECAY_PROCESSOR = WorldGen.addProcessorList("stone_decay", new StoneStructureProcessor());
+	private static final StructureProcessorList DEEPSLATE_DECAY_PROCESSOR = WorldGen.addProcessorList("deepslate_decay", new DeepslateStructureProcessor());
+	private static final StructureProcessorList BLACKSTONE_DECAY_PROCESSOR = WorldGen.addProcessorList("blackstone_decay", new BlackstoneStructureProcessor());
+	private static final StructureProcessorList SANCTUM_PROCESSOR = WorldGen.addProcessorList("sanctum", new SanctumStructureProcessor());
 
 	public static void init() {
 
@@ -96,42 +96,35 @@ public class WorldGen {
 				"flesh_stone_patch_feature",
 				BiomeSelectors.foundInOverworld(),
 				GenerationStep.Feature.UNDERGROUND_ORES,
-				new FleshStonePatchFeature( OreFeatureConfig.CODEC )
+				new FleshStonePatchFeature(OreFeatureConfig.CODEC)
 		);
 
 		WorldGen.addFeature(
 				"nether_grass_patch_feature",
 				BiomeSelectors.foundInTheNether(),
 				GenerationStep.Feature.RAW_GENERATION,
-				new NetherGrassFeature( DefaultFeatureConfig.CODEC )
+				new NetherGrassFeature(DefaultFeatureConfig.CODEC)
 		);
 
 		WorldGen.addFeature(
 				"spark_vent_feature",
 				BiomeSelectors.foundInTheNether(),
 				GenerationStep.Feature.RAW_GENERATION,
-				new SparkVentFeature( DefaultFeatureConfig.CODEC )
-		);
-
-		WorldGen.addFeature(
-				"urn_feature",
-				BiomeSelectors.foundInOverworld(),
-				GenerationStep.Feature.UNDERGROUND_DECORATION,
-				new UrnFeature( DefaultFeatureConfig.CODEC )
+				new SparkVentFeature(DefaultFeatureConfig.CODEC)
 		);
 
 		WorldGen.addFeature(
 				"runic_wall_feature",
 				BiomeSelectors.foundInTheNether(),
 				GenerationStep.Feature.RAW_GENERATION,
-				new WallsFeature( DefaultFeatureConfig.CODEC )
+				new WallsFeature(DefaultFeatureConfig.CODEC)
 		);
 
 		WorldGen.addFeature(
 				"boulder_feature",
 				BiomeSelectors.foundInTheNether(),
 				GenerationStep.Feature.RAW_GENERATION,
-				new BoulderFeature( DefaultFeatureConfig.CODEC )
+				new BoulderFeature(DefaultFeatureConfig.CODEC)
 		);
 
 		// Structures

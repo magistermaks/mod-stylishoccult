@@ -13,15 +13,6 @@
 			"stylish_occult:lava_demon_die"
 		]
 	},
-	"urn_broken": {
-		"subtitle": "sound.stylish_occult.urn.broken",
-		"sounds": [
-			"stylish_occult:urn_1",
-			"stylish_occult:urn_2",
-			"stylish_occult:urn_3",
-			"stylish_occult:urn_4"
-		]
-	},
 	"vent": {
 		"subtitle": "sound.stylish_occult.vent",
 		"sounds": [

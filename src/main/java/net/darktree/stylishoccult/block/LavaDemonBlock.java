@@ -12,10 +12,7 @@ import net.darktree.stylishoccult.block.property.LavaDemonPart;
 import net.darktree.stylishoccult.loot.LootManager;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.sounds.Sounds;
-import net.darktree.stylishoccult.utils.BlockUtils;
-import net.darktree.stylishoccult.utils.OccultHelper;
-import net.darktree.stylishoccult.utils.RandUtils;
-import net.darktree.stylishoccult.utils.RegUtil;
+import net.darktree.stylishoccult.utils.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
@@ -147,10 +144,10 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 
     public LavaDemonMaterial getDisguise(World world, BlockPos pos, Random random) {
         LavaDemonMaterial material = LavaDemonMaterial.STONE;
-        Direction[] values = Direction.values();
 
-        for (Direction value : values) {
+        for (Direction value : Directions.ALL) {
             LavaDemonMaterial material2 = LavaDemonMaterial.getFrom(world.getBlockState(pos.offset(value)).getBlock());
+
             if (material2 != null && (material2.getLevel() > material.getLevel())) {
                 material = material2;
             }

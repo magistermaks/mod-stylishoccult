@@ -1,6 +1,5 @@
 package net.darktree.stylishoccult.script.engine;
 
-import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.block.rune.RuneBlock;
 import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneInstance;
@@ -56,7 +55,6 @@ public final class Script {
 		instance = instance == null ? rune.getInstance() : instance.choose(this, rune.getInstance());
 		rune.apply(this, world, pos);
 		stack.validate();
-		Criteria.TRIGGER.trigger(world, pos, rune);
 	}
 
 	/**

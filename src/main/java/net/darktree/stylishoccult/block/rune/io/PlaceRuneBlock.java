@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.block.rune.io;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.block.rune.ActorRuneBlock;
 import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneExceptionType;
@@ -29,6 +30,7 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 
         ItemElement element = script.stack.pull().cast(ItemElement.class);
         BlockPos target = pos.add(x, y, z);
+        boolean placed = false;
 
         if (!target.isWithinDistance(pos, range)) {
             throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT);
@@ -36,18 +38,20 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 
         if (element.stack.getItem() instanceof BlockItem blockItem) {
             try {
-                if (!blockItem.place(new AutomaticItemPlacementContext(world, target, Direction.UP, element.stack, Direction.UP)).isAccepted()) {
-                    // make sure not to lose any items, even when operation fails
+                placed = blockItem.place(new AutomaticItemPlacementContext(world, target, Direction.UP, element.stack, Direction.UP)).isAccepted();
+
+                // make sure not to lose any items, even when operation fails
+                if (!placed) {
                     script.ring.push(element, world, pos);
                 }
             } catch (Exception e) {
-                StylishOccult.LOGGER.warn("Failed to place block!");
+                StylishOccult.LOGGER.warn("Failed to place block for unknown reason!", e);
             }
         } else {
             throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_TYPE);
         }
 
-        super.apply(script);
+        Criteria.TRIGGER.trigger(world, pos, this, placed);
     }
 
 }

@@ -5,10 +5,7 @@ import net.darktree.stylishoccult.block.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
-import net.darktree.stylishoccult.utils.BlockUtils;
-import net.darktree.stylishoccult.utils.OccultHelper;
-import net.darktree.stylishoccult.utils.RandUtils;
-import net.darktree.stylishoccult.utils.RegUtil;
+import net.darktree.stylishoccult.utils.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -33,7 +30,7 @@ public class FossilizedFleshBlock extends FullFleshBlock implements ImpureBlock 
     }
 
     public static boolean isPosValid(BlockView world, BlockPos origin) {
-        for( Direction direction : Direction.values() ){
+        for (Direction direction : Directions.ALL){
             BlockState state = world.getBlockState( origin.offset( direction ) );
             Block block = state.getBlock();
             if( block != ModBlocks.DEFAULT_FLESH && block != ModBlocks.BONE_FLESH ) return false;
