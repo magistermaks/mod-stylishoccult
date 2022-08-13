@@ -17,29 +17,29 @@ import net.minecraft.world.World;
 
 public class DebugRuneBlock extends RuneBlock {
 
-    public DebugRuneBlock( String name ) {
-        super(RuneType.ACTOR, name);
-    }
+	public DebugRuneBlock( String name ) {
+		super(RuneType.ACTOR, name);
+	}
 
-    @Override
-    public void apply(Script script, World world, BlockPos pos) {
-        RuneBlockEntity entity = getEntity(world, pos);
-        entity.setMeta( script.writeNbt(new NbtCompound()) );
-    }
+	@Override
+	public void apply(Script script, World world, BlockPos pos) {
+		RuneBlockEntity entity = getEntity(world, pos);
+		entity.setMeta( script.writeNbt(new NbtCompound()) );
+	}
 
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        RuneBlockEntity entity = getEntity(world, pos);
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		RuneBlockEntity entity = getEntity(world, pos);
 
-        if (!world.isClient) {
-            if (entity != null && entity.hasMeta()) {
-                Network.DEBUG.send(player, pos, entity.getMeta());
-            }else{
-                player.sendMessage(new TranslatableText("tooltip." + StylishOccult.NAMESPACE + ".debug_unavailable"), false);
-            }
-        }
+		if (!world.isClient) {
+			if (entity != null && entity.hasMeta()) {
+				Network.DEBUG.send(player, pos, entity.getMeta());
+			}else{
+				player.sendMessage(new TranslatableText("tooltip." + StylishOccult.NAMESPACE + ".debug_unavailable"), false);
+			}
+		}
 
-        return ActionResult.SUCCESS;
-    }
+		return ActionResult.SUCCESS;
+	}
 
 }

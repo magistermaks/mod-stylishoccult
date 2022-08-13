@@ -15,43 +15,43 @@ import net.minecraft.world.World;
 
 public class PlaceRuneBlock extends ActorRuneBlock {
 
-    private final int range;
+	private final int range;
 
-    public PlaceRuneBlock(String name, int range) {
-        super(name);
-        this.range = range;
-    }
+	public PlaceRuneBlock(String name, int range) {
+		super(name);
+		this.range = range;
+	}
 
-    @Override
-    public void apply(Script script, World world, BlockPos pos) {
-        int x = (int) Math.round(script.pull(world, pos).value());
-        int y = (int) Math.round(script.pull(world, pos).value());
-        int z = (int) Math.round(script.pull(world, pos).value());
+	@Override
+	public void apply(Script script, World world, BlockPos pos) {
+		int x = (int) Math.round(script.pull(world, pos).value());
+		int y = (int) Math.round(script.pull(world, pos).value());
+		int z = (int) Math.round(script.pull(world, pos).value());
 
-        ItemElement element = script.stack.pull().cast(ItemElement.class);
-        BlockPos target = pos.add(x, y, z);
-        boolean placed = false;
+		ItemElement element = script.stack.pull().cast(ItemElement.class);
+		BlockPos target = pos.add(x, y, z);
+		boolean placed = false;
 
-        if (!target.isWithinDistance(pos, range)) {
-            throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT);
-        }
+		if (!target.isWithinDistance(pos, range)) {
+			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT);
+		}
 
-        if (element.stack.getItem() instanceof BlockItem blockItem) {
-            try {
-                placed = blockItem.place(new AutomaticItemPlacementContext(world, target, Direction.UP, element.stack, Direction.UP)).isAccepted();
+		if (element.stack.getItem() instanceof BlockItem blockItem) {
+			try {
+				placed = blockItem.place(new AutomaticItemPlacementContext(world, target, Direction.UP, element.stack, Direction.UP)).isAccepted();
 
-                // make sure not to lose any items, even when operation fails
-                if (!placed) {
-                    script.ring.push(element, world, pos);
-                }
-            } catch (Exception e) {
-                StylishOccult.LOGGER.warn("Failed to place block for unknown reason!", e);
-            }
-        } else {
-            throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_TYPE);
-        }
+				// make sure not to lose any items, even when operation fails
+				if (!placed) {
+					script.ring.push(element, world, pos);
+				}
+			} catch (Exception e) {
+				StylishOccult.LOGGER.warn("Failed to place block for unknown reason!", e);
+			}
+		} else {
+			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_TYPE);
+		}
 
-        Criteria.TRIGGER.trigger(world, pos, this, placed);
-    }
+		Criteria.TRIGGER.trigger(world, pos, this, placed);
+	}
 
 }

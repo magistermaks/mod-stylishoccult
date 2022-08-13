@@ -10,63 +10,63 @@ import net.minecraft.util.math.BlockPos;
 
 public class RuneBlockEntity extends SimpleBlockEntity {
 
-    private Script script;
-    private NbtCompound meta;
+	private Script script;
+	private NbtCompound meta;
 
-    public RuneBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntities.RUNESTONE, pos, state);
+	public RuneBlockEntity(BlockPos pos, BlockState state) {
+		super(BlockEntities.RUNESTONE, pos, state);
 
-        script = null;
-        meta = null;
-    }
+		script = null;
+		meta = null;
+	}
 
-    @Override
-    public NbtCompound writeNbt(NbtCompound tag) {
-        if(script != null) tag.put("s", script.writeNbt(new NbtCompound()));
-        if(meta != null) tag.put("m", meta);
-        return super.writeNbt(tag);
-    }
+	@Override
+	public NbtCompound writeNbt(NbtCompound tag) {
+		if(script != null) tag.put("s", script.writeNbt(new NbtCompound()));
+		if(meta != null) tag.put("m", meta);
+		return super.writeNbt(tag);
+	}
 
-    @Override
-    public void readNbt(NbtCompound nbt) {
-        try {
-            if (nbt.contains("s")) script = Script.fromNbt(nbt.getCompound("s"));
-            if (nbt.contains("m")) meta = nbt.getCompound("m");
-        } catch (Exception exception) {
-            StylishOccult.LOGGER.error("Failed to deserialize rune block entity from NBT!", exception);
-        }
-        super.readNbt(nbt);
-    }
+	@Override
+	public void readNbt(NbtCompound nbt) {
+		try {
+			if (nbt.contains("s")) script = Script.fromNbt(nbt.getCompound("s"));
+			if (nbt.contains("m")) meta = nbt.getCompound("m");
+		} catch (Exception exception) {
+			StylishOccult.LOGGER.error("Failed to deserialize rune block entity from NBT!", exception);
+		}
+		super.readNbt(nbt);
+	}
 
-    public void store(Script script) {
-        this.script = script;
-        markDirty();
-    }
+	public void store(Script script) {
+		this.script = script;
+		markDirty();
+	}
 
-    public void clear() {
-        script = null;
-        markDirty();
-    }
+	public void clear() {
+		script = null;
+		markDirty();
+	}
 
-    public Script getScript() {
-        return script;
-    }
+	public Script getScript() {
+		return script;
+	}
 
-    public boolean hasScript() {
-        return script != null;
-    }
+	public boolean hasScript() {
+		return script != null;
+	}
 
-    public boolean hasMeta() {
-        return meta != null;
-    }
+	public boolean hasMeta() {
+		return meta != null;
+	}
 
-    public NbtCompound getMeta() {
-        return meta;
-    }
+	public NbtCompound getMeta() {
+		return meta;
+	}
 
-    public void setMeta(NbtCompound tag) {
-        meta = tag;
-        markDirty();
-    }
+	public void setMeta(NbtCompound tag) {
+		meta = tag;
+		markDirty();
+	}
 
 }

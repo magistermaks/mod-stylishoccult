@@ -88,7 +88,7 @@ public class BloodCauldronBlock extends LeveledCauldronBlock {
 			Sounds.SPELL.play(world, pos);
 			incrementStat(player, item);
 			world.setBlockState(pos, ModBlocks.OCCULT_CAULDRON.getDefaultState());
-			BlockUtils.getEntity(OccultCauldronBlockEntity.class, world, pos).getStorage().insert(FluidConstants.BOTTLE * level);
+			BlockUtils.get(OccultCauldronBlockEntity.class, world, pos).getStorage().insert(FluidConstants.BOTTLE * level);
 			return ActionResult.SUCCESS;
 		}
 

@@ -13,46 +13,46 @@ import net.minecraft.world.World;
 
 public class JoinRuneBlock extends DirectionalRuneBlock {
 
-    public JoinRuneBlock(String name) {
-        super(name);
-    }
+	public JoinRuneBlock(String name) {
+		super(name);
+	}
 
-    @Override
-    public void apply(Script script, World world, BlockPos pos) {
-        RuneBlockEntity entity = getEntity(world, pos);
+	@Override
+	public void apply(Script script, World world, BlockPos pos) {
+		RuneBlockEntity entity = getEntity(world, pos);
 
-        if (entity.hasMeta()) {
-            Stack stack = new Stack(32);
-            stack.readNbt(entity.getMeta());
-            stack.reset(script.stack::push);
-            entity.setMeta(null);
-        } else {
-            entity.setMeta(script.stack.writeNbt(new NbtCompound()));
-            script.stack.reset(element -> {});
-        }
-    }
+		if (entity.hasMeta()) {
+			Stack stack = new Stack(32);
+			stack.readNbt(entity.getMeta());
+			stack.reset(script.stack::push);
+			entity.setMeta(null);
+		} else {
+			entity.setMeta(script.stack.writeNbt(new NbtCompound()));
+			script.stack.reset(element -> {});
+		}
+	}
 
-    @Override
-    public Direction[] getDirections(World world, BlockPos pos, Script script) {
-        return getEntity(world, pos).hasMeta() ? Directions.NONE : Directions.of(getFacing(world, pos));
-    }
+	@Override
+	public Direction[] getDirections(World world, BlockPos pos, Script script) {
+		return getEntity(world, pos).hasMeta() ? Directions.NONE : Directions.of(getFacing(world, pos));
+	}
 
-    @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (state.isOf(newState.getBlock())) {
-            return;
-        }
+	@Override
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+		if (state.isOf(newState.getBlock())) {
+			return;
+		}
 
-        RuneBlockEntity entity = getEntity(world, pos);
+		RuneBlockEntity entity = getEntity(world, pos);
 
-        if (entity.hasMeta()) {
-            Stack stack = new Stack(32);
-            stack.readNbt(entity.getMeta());
-            stack.reset(element -> element.drop(world, pos));
-            entity.setMeta(null);
-        }
+		if (entity.hasMeta()) {
+			Stack stack = new Stack(32);
+			stack.readNbt(entity.getMeta());
+			stack.reset(element -> element.drop(world, pos));
+			entity.setMeta(null);
+		}
 
-        super.onStateReplaced(state, world, pos, newState, moved);
-    }
+		super.onStateReplaced(state, world, pos, newState, moved);
+	}
 
 }

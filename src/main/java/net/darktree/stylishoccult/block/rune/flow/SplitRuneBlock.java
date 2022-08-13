@@ -9,13 +9,13 @@ import net.minecraft.world.World;
 
 public class SplitRuneBlock extends DirectionalRuneBlock {
 
-    public SplitRuneBlock(String name) {
-        super(name);
-    }
+	public SplitRuneBlock(String name) {
+		super(name);
+	}
 
-    @Override
-    public Direction[] getDirections(World world, BlockPos pos, Script script) {
-        return Directions.opposites(getFacing(world, pos));
-    }
+	@Override
+	public Direction[] getDirections(World world, BlockPos pos, Script script) {
+		return Directions.opposites(getFacing(world, pos));
+	}
 
 }

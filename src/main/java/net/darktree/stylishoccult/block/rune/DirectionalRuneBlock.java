@@ -16,37 +16,37 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class DirectionalRuneBlock extends RuneBlock {
 
-    public static final DirectionProperty FACING = Properties.FACING;
+	public static final DirectionProperty FACING = Properties.FACING;
 
-    public DirectionalRuneBlock(String name) {
-        super(RuneType.TRANSFER, name);
-        setDefaultState( getDefaultState().with(FACING, Direction.NORTH) );
-    }
+	public DirectionalRuneBlock(String name) {
+		super(RuneType.TRANSFER, name);
+		setDefaultState( getDefaultState().with(FACING, Direction.NORTH) );
+	}
 
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder.add(FACING));
-    }
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		super.appendProperties(builder.add(FACING));
+	}
 
-    @Nullable
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        BlockState state = super.getPlacementState(ctx);
-        if( state != null ) {
-            return state.with(FACING, ctx.getPlayerLookDirection());
-        }else{
-            return getDefaultState();
-        }
-    }
+	@Nullable
+	@Override
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		BlockState state = super.getPlacementState(ctx);
+		if( state != null ) {
+			return state.with(FACING, ctx.getPlayerLookDirection());
+		}else{
+			return getDefaultState();
+		}
+	}
 
-    protected Direction getFacing(World world, BlockPos pos) {
-        BlockState state = world.getBlockState(pos);
+	protected Direction getFacing(World world, BlockPos pos) {
+		BlockState state = world.getBlockState(pos);
 
-        if (state.getBlock() instanceof DirectionalRuneBlock) {
-            return state.get(DirectionalRuneBlock.FACING);
-        }
+		if (state.getBlock() instanceof DirectionalRuneBlock) {
+			return state.get(DirectionalRuneBlock.FACING);
+		}
 
-        throw RuneException.of(RuneExceptionType.INVALID_STATE);
-    }
+		throw RuneException.of(RuneExceptionType.INVALID_STATE);
+	}
 
 }

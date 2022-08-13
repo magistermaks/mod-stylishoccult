@@ -6,7 +6,6 @@ import net.darktree.stylishoccult.block.entity.cauldron.OccultCauldronBlockEntit
 import net.darktree.stylishoccult.block.fluid.ModFluids;
 import net.darktree.stylishoccult.data.ResourceLoaders;
 import net.darktree.stylishoccult.data.json.AltarRitual;
-import net.darktree.stylishoccult.utils.BlockUtils;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -54,9 +53,7 @@ public class AltarRitualState {
 	}
 
 	public void addCauldron(World world, BlockPos.Mutable pos) {
-		OccultCauldronBlockEntity cauldron = BlockUtils.getEntity(OccultCauldronBlockEntity.class, world, pos);
-
-		if (cauldron != null) {
+		if (world.getBlockEntity(pos) instanceof OccultCauldronBlockEntity cauldron) {
 			cauldrons.add(pos.toImmutable());
 			OccultCauldronBlock.set(world, pos, true, true);
 			blood += cauldron.getStorage().getAmount();
@@ -158,9 +155,7 @@ public class AltarRitualState {
 		if (blood <= this.blood) {
 			try (Transaction transaction = Transaction.openOuter()) {
 				for (BlockPos pos : cauldrons) {
-					OccultCauldronBlockEntity cauldron = BlockUtils.getEntity(OccultCauldronBlockEntity.class, world, pos);
-
-					if (cauldron != null) {
+					if (world.getBlockEntity(pos) instanceof OccultCauldronBlockEntity cauldron) {
 						blood -= cauldron.getStorage().extract(ModFluids.BLOOD_VARIANT, blood, transaction);
 					}
 				}

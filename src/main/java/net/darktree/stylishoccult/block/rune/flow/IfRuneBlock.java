@@ -9,19 +9,19 @@ import net.minecraft.world.World;
 
 public class IfRuneBlock extends DirectionalRuneBlock {
 
-    public IfRuneBlock(String name) {
-        super(name);
-    }
+	public IfRuneBlock(String name) {
+		super(name);
+	}
 
-    @Override
-    public Direction[] getDirections(World world, BlockPos pos, Script script) {
-        try {
-            if (script.pull(world, pos).value() != 0) {
-                return Directions.of(getFacing(world, pos));
-            }
-        }catch (Exception ignore) {}
+	@Override
+	public Direction[] getDirections(World world, BlockPos pos, Script script) {
+		try {
+			if (script.pull(world, pos).value() != 0) {
+				return Directions.of(getFacing(world, pos));
+			}
+		}catch (Exception ignore) {}
 
-        // Make it explode (?)
-        return super.getDirections(world, pos, script);
-    }
+		// Make it explode (?)
+		return super.getDirections(world, pos, script);
+	}
 }

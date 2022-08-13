@@ -117,7 +117,7 @@ public class OccultCauldronBlock extends BlockWithEntity implements DefaultLoot 
 	}
 
 	private OccultCauldronBlockEntity getEntity(World world, BlockPos pos) {
-		return Objects.requireNonNull(BlockUtils.getEntity(OccultCauldronBlockEntity.class, world, pos));
+		return BlockUtils.get(OccultCauldronBlockEntity.class, world, pos);
 	}
 
 	@Override

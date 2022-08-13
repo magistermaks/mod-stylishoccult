@@ -6,10 +6,10 @@ import net.minecraft.world.World;
 
 public interface ImpureBlock {
 
-    void cleanse(World world, BlockPos pos, BlockState state);
+	void cleanse(World world, BlockPos pos, BlockState state);
 
-    default int impurityLevel(BlockState state) {
-        return 1;
-    }
+	default int impurityLevel(BlockState state) {
+		return 1;
+	}
 
 }

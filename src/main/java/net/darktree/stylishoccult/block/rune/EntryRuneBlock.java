@@ -12,32 +12,32 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class EntryRuneBlock extends RuneBlock {
 
-    public EntryRuneBlock(String name) {
-        super(RuneType.ENTRY, name);
-    }
+	public EntryRuneBlock(String name) {
+		super(RuneType.ENTRY, name);
+	}
 
-    protected void emit(World world, BlockPos pos, @Nullable PlayerEntity player) {
-        if (player == null || player.getAbilities().allowModifyWorld) {
-            emitScript(world, pos, new Script());
-        }
-    }
+	protected void emit(World world, BlockPos pos, @Nullable PlayerEntity player) {
+		if (player == null || player.getAbilities().allowModifyWorld) {
+			emitScript(world, pos, new Script());
+		}
+	}
 
-    protected void emitScript(World world, BlockPos pos, Script script) {
-        BlockState state = world.getBlockState(pos);
+	protected void emitScript(World world, BlockPos pos, Script script) {
+		BlockState state = world.getBlockState(pos);
 
-        if (super.canAcceptSignal(state, null)) {
-            execute(world, pos, state, script);
-        }
-    }
+		if (super.canAcceptSignal(state, null)) {
+			execute(world, pos, state, script);
+		}
+	}
 
-    @Override
-    public Direction[] getDirections(World world, BlockPos pos, Script script) {
-        return Directions.ALL;
-    }
+	@Override
+	public Direction[] getDirections(World world, BlockPos pos, Script script) {
+		return Directions.ALL;
+	}
 
-    @Override
-    public boolean canAcceptSignal(BlockState state, @Nullable Direction from) {
-        return false;
-    }
+	@Override
+	public boolean canAcceptSignal(BlockState state, @Nullable Direction from) {
+		return false;
+	}
 
 }

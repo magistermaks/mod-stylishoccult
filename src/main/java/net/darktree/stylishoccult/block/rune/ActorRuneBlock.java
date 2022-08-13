@@ -4,8 +4,8 @@ import net.darktree.stylishoccult.script.component.RuneType;
 
 public abstract class ActorRuneBlock extends RuneBlock {
 
-    public ActorRuneBlock(String name) {
-        super(RuneType.ACTOR, name);
-    }
+	public ActorRuneBlock(String name) {
+		super(RuneType.ACTOR, name);
+	}
 
 }

@@ -13,37 +13,37 @@ import net.minecraft.world.World;
 
 public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock, FoliageFleshBlock {
 
-    public LeavesFleshBlock() {
-        super(AbstractBlock.Settings.of(Material.LEAVES)
-                .strength(0.2F)
-                .slipperiness(0.8f)
-                .sounds(Sounds.FLESH)
-                .nonOpaque()
-                .allowsSpawning((a, b, c, d) -> false)
-                .suffocates((a, b, c) -> false)
-                .blockVision((a, b, c) -> false)
-        );
-    }
+	public LeavesFleshBlock() {
+		super(AbstractBlock.Settings.of(Material.LEAVES)
+				.strength(0.2F)
+				.slipperiness(0.8f)
+				.sounds(Sounds.FLESH)
+				.nonOpaque()
+				.allowsSpawning((a, b, c, d) -> false)
+				.suffocates((a, b, c) -> false)
+				.blockVision((a, b, c) -> false)
+		);
+	}
 
-    @Override
-    public boolean hasRandomTicks(BlockState state) {
-        return true;
-    }
+	@Override
+	public boolean hasRandomTicks(BlockState state) {
+		return true;
+	}
 
-    @Override
-    public void cleanse(World world, BlockPos pos, BlockState state) {
-        OccultHelper.cleanseFlesh(world, pos, state);
-    }
+	@Override
+	public void cleanse(World world, BlockPos pos, BlockState state) {
+		OccultHelper.cleanseFlesh(world, pos, state);
+	}
 
-    @Override
-    public int impurityLevel(BlockState state) {
-        return 20;
-    }
+	@Override
+	public int impurityLevel(BlockState state) {
+		return 20;
+	}
 
-    public static BlockState getStateToFit(World world, BlockPos pos) {
-        BlockState state = world.getBlockState(pos);
-        int distance = ( state.getBlock() instanceof LeavesBlock ) ? state.get( DISTANCE ) : 7;
-        return state.getBlock().getDefaultState().with(DISTANCE, distance);
-    }
+	public static BlockState getStateToFit(World world, BlockPos pos) {
+		BlockState state = world.getBlockState(pos);
+		int distance = ( state.getBlock() instanceof LeavesBlock ) ? state.get( DISTANCE ) : 7;
+		return state.getBlock().getDefaultState().with(DISTANCE, distance);
+	}
 
 }

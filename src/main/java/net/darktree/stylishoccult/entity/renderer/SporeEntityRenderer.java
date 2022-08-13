@@ -7,20 +7,20 @@ import net.minecraft.util.Identifier;
 
 public class SporeEntityRenderer extends SparkEntityRenderer {
 
-    private static final Identifier TEXTURE = new ModIdentifier( "textures/particle/spore.png" );
+	private static final Identifier TEXTURE = new ModIdentifier("textures/particle/spore.png");
 
-    public SporeEntityRenderer(EntityRendererFactory.Context context) {
-        super(context);
-    }
+	public SporeEntityRenderer(EntityRendererFactory.Context context) {
+		super(context);
+	}
 
-    @Override
-    protected int getLight(int i) {
-        return i;
-    }
+	@Override
+	protected int getLight(int i) {
+		return i;
+	}
 
-    @Override
-    public Identifier getTexture(SparkEntity sparkEntity) {
-        return TEXTURE;
-    }
+	@Override
+	public Identifier getTexture(SparkEntity sparkEntity) {
+		return TEXTURE;
+	}
 
 }

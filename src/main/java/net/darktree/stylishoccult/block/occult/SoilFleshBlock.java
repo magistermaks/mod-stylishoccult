@@ -14,26 +14,26 @@ import net.minecraft.world.World;
 
 public class SoilFleshBlock extends FullFleshBlock implements ImpureBlock {
 
-    public SoilFleshBlock() {
-        this(RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, true ).slipperiness(0.7f));
-    }
+	public SoilFleshBlock() {
+		this(RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, true ).slipperiness(0.7f));
+	}
 
-    public SoilFleshBlock(Settings settings) {
-        super(settings);
-    }
+	public SoilFleshBlock(Settings settings) {
+		super(settings);
+	}
 
-    @Override
-    public void cleanse(World world, BlockPos pos, BlockState state) {
-        OccultHelper.cleanseFlesh(world, pos, state);
-    }
+	@Override
+	public void cleanse(World world, BlockPos pos, BlockState state) {
+		OccultHelper.cleanseFlesh(world, pos, state);
+	}
 
-    @Override
-    public int impurityLevel(BlockState state) {
-        return 32;
-    }
+	@Override
+	public int impurityLevel(BlockState state) {
+		return 32;
+	}
 
-    @Override
-    public LootTable getDefaultLootTable() {
-        return LootTables.GENERIC_FLESH;
-    }
+	@Override
+	public LootTable getDefaultLootTable() {
+		return LootTables.GENERIC_FLESH;
+	}
 }

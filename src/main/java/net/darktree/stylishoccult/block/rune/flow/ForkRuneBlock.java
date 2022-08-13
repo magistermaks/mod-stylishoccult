@@ -9,13 +9,13 @@ import net.minecraft.world.World;
 
 public class ForkRuneBlock extends DirectionalRuneBlock {
 
-    public ForkRuneBlock(String name) {
-        super(name);
-    }
+	public ForkRuneBlock(String name) {
+		super(name);
+	}
 
-    @Override
-    public Direction[] getDirections(World world, BlockPos pos, Script script ) {
-        return Directions.pair(script.direction, getFacing(world, pos));
-    }
+	@Override
+	public Direction[] getDirections(World world, BlockPos pos, Script script ) {
+		return Directions.pair(script.direction, getFacing(world, pos));
+	}
 
 }

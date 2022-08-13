@@ -18,21 +18,21 @@ import java.util.List;
 
 public class SimpleBlock extends Block implements DefaultLoot {
 
-    public SimpleBlock(Settings settings) {
-        super(settings);
-    }
+	public SimpleBlock(Settings settings) {
+		super(settings);
+	}
 
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
-        return !canPlaceAt(state, world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
-    }
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
+		return !canPlaceAt(state, world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
+	}
 
-    public LootTable getDefaultLootTable() {
-        return null;
-    }
+	public LootTable getDefaultLootTable() {
+		return null;
+	}
 
-    @Override
-    public List<ItemStack> getDefaultStacks(BlockState state, LootContext.Builder builder, Identifier identifier, LootContext lootContext, ServerWorld serverWorld, net.minecraft.loot.LootTable lootTable) {
-        return LootManager.dispatch(state, builder, this.lootTableId, getDefaultLootTable());
-    }
+	@Override
+	public List<ItemStack> getDefaultStacks(BlockState state, LootContext.Builder builder, Identifier identifier, LootContext lootContext, ServerWorld serverWorld, net.minecraft.loot.LootTable lootTable) {
+		return LootManager.dispatch(state, builder, this.lootTableId, getDefaultLootTable());
+	}
 
 }

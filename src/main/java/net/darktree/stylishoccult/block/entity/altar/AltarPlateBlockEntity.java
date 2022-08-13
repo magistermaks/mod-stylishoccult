@@ -10,7 +10,6 @@ import net.darktree.stylishoccult.item.ThrownItemEntity;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.script.element.ItemElement;
 import net.darktree.stylishoccult.sounds.Sounds;
-import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.SimpleBlockEntity;
 import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.Block;
@@ -126,9 +125,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				pos.setZ(this.pos.getZ() + z);
 
 				if (this.world.getBlockState(pos).getBlock() == ModBlocks.ALTAR_PLATE) {
-					AltarPlateBlockEntity plate = BlockUtils.getEntity(AltarPlateBlockEntity.class, world, pos);
-
-					if (plate != null) {
+					if (world.getBlockEntity(pos) instanceof AltarPlateBlockEntity) {
 						state.addPillar(pos);
 					}
 				}
@@ -245,7 +242,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				float x = (float) Math.sin(angle * i) * 0.12f;
 				float z = (float) Math.cos(angle * i) * 0.12f;
 
-				spawnThrownItem(pos.getX() + 0.5f, pos.getY() + 0.25f, pos.getZ() + 0.5f,items.get(i), x, 0.25f, z);
+				spawnThrownItem(pos.getX() + 0.5f, pos.getY() + 0.25f, pos.getZ() + 0.5f, items.get(i), x, 0.25f, z);
 			}
 		}
 	}
@@ -286,9 +283,8 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 	 */
 	private boolean tryStealItem() {
 		BlockPos pos = state.getNextPillar();
-		AltarPlateBlockEntity plate = BlockUtils.getEntity(AltarPlateBlockEntity.class, world, pos);
 
-		if (plate != null) {
+		if (world.getBlockEntity(pos) instanceof AltarPlateBlockEntity plate) {
 			ItemStack stack = plate.catalyst;
 
 			if (!stack.isEmpty()) {

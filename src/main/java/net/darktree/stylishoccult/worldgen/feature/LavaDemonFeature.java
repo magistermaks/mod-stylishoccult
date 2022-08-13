@@ -21,34 +21,34 @@ import java.util.Random;
 
 public class LavaDemonFeature extends SimpleFeature<DefaultFeatureConfig> {
 
-    public LavaDemonFeature(Codec<DefaultFeatureConfig> codec) {
-        super(codec);
-    }
+	public LavaDemonFeature(Codec<DefaultFeatureConfig> codec) {
+		super(codec);
+	}
 
-    @Override
-    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+	@Override
+	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 
-        if( !RandUtils.getBool(StylishOccult.SETTING.demon_chance, random) ) {
-            return false;
-        }
+		if( !RandUtils.getBool(StylishOccult.SETTING.demon_chance, random) ) {
+			return false;
+		}
 
-        Direction direction = Direction.Type.HORIZONTAL.random( random );
-        BlockPos pos2 = pos.offset( direction );
+		Direction direction = Direction.Type.HORIZONTAL.random( random );
+		BlockPos pos2 = pos.offset( direction );
 
-        if( (world.getBlockState( pos2 ).getBlock() == Blocks.STONE) && pos2.getY() > 10 ) {
-            world.setBlockState(pos2, ModBlocks.LAVA_DEMON.getDefaultState().with(LavaDemonBlock.PART, LavaDemonPart.HEAD), 3);
-            this.debugWrite(pos2);
-        }
+		if( (world.getBlockState( pos2 ).getBlock() == Blocks.STONE) && pos2.getY() > 10 ) {
+			world.setBlockState(pos2, ModBlocks.LAVA_DEMON.getDefaultState().with(LavaDemonBlock.PART, LavaDemonPart.HEAD), 3);
+			this.debugWrite(pos2);
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    @Override
-    public ConfiguredFeature<?, ?> configure() {
-        return configure( new DefaultFeatureConfig() )
-                .decorate( Decorator.COUNT_MULTILAYER.configure(
-                        new CountConfig(1)
-                ) );
-    }
+	@Override
+	public ConfiguredFeature<?, ?> configure() {
+		return configure( new DefaultFeatureConfig() )
+				.decorate( Decorator.COUNT_MULTILAYER.configure(
+						new CountConfig(1)
+				) );
+	}
 
 }

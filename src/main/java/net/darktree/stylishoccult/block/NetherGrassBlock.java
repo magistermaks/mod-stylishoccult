@@ -9,14 +9,14 @@ import net.minecraft.world.BlockView;
 
 public class NetherGrassBlock extends SproutsBlock implements DropsItself {
 
-    public NetherGrassBlock(Settings settings) {
-        super(settings);
-    }
+	public NetherGrassBlock(Settings settings) {
+		super(settings);
+	}
 
-    @Override
-    public boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(ModTags.NETHER_GRASS_SOIL) || super.canPlantOnTop(floor, world, pos);
-    }
+	@Override
+	public boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+		return floor.isIn(ModTags.NETHER_GRASS_SOIL) || super.canPlantOnTop(floor, world, pos);
+	}
 
 }
 

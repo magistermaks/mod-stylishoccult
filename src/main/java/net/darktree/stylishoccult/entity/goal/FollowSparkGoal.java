@@ -11,34 +11,34 @@ import java.util.function.Predicate;
 
 public class FollowSparkGoal extends BasicFollowGoal {
 
-    public FollowSparkGoal(MobEntity mob, boolean checkVisibility) {
-        this(mob, checkVisibility, false);
-    }
+	public FollowSparkGoal(MobEntity mob, boolean checkVisibility) {
+		this(mob, checkVisibility, false);
+	}
 
-    public FollowSparkGoal(MobEntity mob, boolean checkVisibility, boolean checkCanNavigate) {
-        this(mob, 10, checkVisibility, checkCanNavigate, null);
-    }
+	public FollowSparkGoal(MobEntity mob, boolean checkVisibility, boolean checkCanNavigate) {
+		this(mob, 10, checkVisibility, checkCanNavigate, null);
+	}
 
-    public FollowSparkGoal(MobEntity mob, int reciprocalChance, boolean checkVisibility, boolean checkCanNavigate, Predicate<LivingEntity> targetPredicate) {
-        super(mob, checkVisibility, checkCanNavigate, reciprocalChance);
+	public FollowSparkGoal(MobEntity mob, int reciprocalChance, boolean checkVisibility, boolean checkCanNavigate, Predicate<LivingEntity> targetPredicate) {
+		super(mob, checkVisibility, checkCanNavigate, reciprocalChance);
 
-        this.setControls(EnumSet.of(Goal.Control.TARGET));
-        this.targetPredicate = new SparkEntityPredicate()
-                .setBaseMaxDistance(this.getFollowRange())
-                .setPredicate(targetPredicate);
-    }
+		this.setControls(EnumSet.of(Goal.Control.TARGET));
+		this.targetPredicate = new SparkEntityPredicate()
+				.setBaseMaxDistance(this.getFollowRange())
+				.setPredicate(targetPredicate);
+	}
 
-    public static class SparkEntityPredicate extends TargetPredicate {
+	public static class SparkEntityPredicate extends TargetPredicate {
 
-        public SparkEntityPredicate() {
-            super(true);
-        }
+		public SparkEntityPredicate() {
+			super(true);
+		}
 
-        @Override
-        public boolean test(LivingEntity baseEntity, LivingEntity target) {
-            return super.test(baseEntity, target) && target.getType() == ModEntities.SPARK;
-        }
+		@Override
+		public boolean test(LivingEntity baseEntity, LivingEntity target) {
+			return super.test(baseEntity, target) && target.getType() == ModEntities.SPARK;
+		}
 
-    }
+	}
 
 }

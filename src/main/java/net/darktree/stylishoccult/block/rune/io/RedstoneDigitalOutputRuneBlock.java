@@ -8,18 +8,18 @@ import net.minecraft.world.BlockView;
 
 public class RedstoneDigitalOutputRuneBlock extends ActorRuneBlock {
 
-    public RedstoneDigitalOutputRuneBlock(String name) {
-        super(name);
-    }
+	public RedstoneDigitalOutputRuneBlock(String name) {
+		super(name);
+	}
 
-    @Override
-    public boolean emitsRedstonePower(BlockState state) {
-        return true;
-    }
+	@Override
+	public boolean emitsRedstonePower(BlockState state) {
+		return true;
+	}
 
-    @Override
-    public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return state.get(COOLDOWN) != 0 ? 15 : 0;
-    }
+	@Override
+	public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
+		return state.get(COOLDOWN) != 0 ? 15 : 0;
+	}
 
 }

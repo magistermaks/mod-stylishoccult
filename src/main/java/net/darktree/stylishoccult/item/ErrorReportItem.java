@@ -12,25 +12,25 @@ import java.util.List;
 
 public class ErrorReportItem extends Item {
 
-    public ErrorReportItem(Settings settings) {
-        super(settings);
-    }
+	public ErrorReportItem(Settings settings) {
+		super(settings);
+	}
 
-    @Override
-    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        NbtCompound tag = stack.getNbt();
+	@Override
+	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+		NbtCompound tag = stack.getNbt();
 
-        if (tag != null && !tag.isEmpty()) {
-            String x = String.valueOf(tag.getInt("x"));
-            String y = String.valueOf(tag.getInt("y"));
-            String z = String.valueOf(tag.getInt("z"));
+		if (tag != null && !tag.isEmpty()) {
+			String x = String.valueOf(tag.getInt("x"));
+			String y = String.valueOf(tag.getInt("y"));
+			String z = String.valueOf(tag.getInt("z"));
 
-            tooltip.add(Utils.tooltip("error_tablet.error." + tag.getString("error")));
-            tooltip.add(Utils.tooltip("error_tablet.location", x, y, z, tag.getString("rune")));
-            return;
-        }
+			tooltip.add(Utils.tooltip("error_tablet.error." + tag.getString("error")));
+			tooltip.add(Utils.tooltip("error_tablet.location", x, y, z, tag.getString("rune")));
+			return;
+		}
 
-        tooltip.add(Utils.tooltip("error_tablet.success"));
-    }
+		tooltip.add(Utils.tooltip("error_tablet.success"));
+	}
 
 }

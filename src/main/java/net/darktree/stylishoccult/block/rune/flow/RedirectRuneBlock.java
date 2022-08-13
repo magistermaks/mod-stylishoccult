@@ -9,13 +9,13 @@ import net.minecraft.world.World;
 
 public class RedirectRuneBlock extends DirectionalRuneBlock {
 
-    public RedirectRuneBlock(String name) {
-        super(name);
-    }
+	public RedirectRuneBlock(String name) {
+		super(name);
+	}
 
-    @Override
-    public Direction[] getDirections(World world, BlockPos pos, Script script) {
-        return Directions.of(getFacing(world, pos));
-    }
+	@Override
+	public Direction[] getDirections(World world, BlockPos pos, Script script) {
+		return Directions.of(getFacing(world, pos));
+	}
 
 }

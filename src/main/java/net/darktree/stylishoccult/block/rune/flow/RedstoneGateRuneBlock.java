@@ -9,13 +9,13 @@ import net.minecraft.world.World;
 
 public class RedstoneGateRuneBlock extends TransferRuneBlock {
 
-    public RedstoneGateRuneBlock(String name) {
-        super(name);
-    }
+	public RedstoneGateRuneBlock(String name) {
+		super(name);
+	}
 
-    @Override
-    public Direction[] getDirections(World world, BlockPos pos, Script script) {
-        return world.isReceivingRedstonePower(pos) ? super.getDirections(world, pos, script) : Directions.NONE;
-    }
+	@Override
+	public Direction[] getDirections(World world, BlockPos pos, Script script) {
+		return world.isReceivingRedstonePower(pos) ? super.getDirections(world, pos, script) : Directions.NONE;
+	}
 
 }
