@@ -75,7 +75,7 @@ public class FossilizedFleshBlock extends FullFleshBlock implements ImpureBlock 
     }
 
     @Override
-    public LootTable getInternalLootTableId() {
+    public LootTable getDefaultLootTable() {
         return LootTables.BONE_FLESH;
     }
 }

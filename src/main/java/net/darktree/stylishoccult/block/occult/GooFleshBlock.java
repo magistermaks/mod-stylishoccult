@@ -1,11 +1,15 @@
 package net.darktree.stylishoccult.block.occult;
 
+import net.darktree.interference.Voxels;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.sounds.Sounds;
-import net.darktree.stylishoccult.utils.*;
+import net.darktree.stylishoccult.utils.OccultHelper;
+import net.darktree.stylishoccult.utils.RandUtils;
+import net.darktree.stylishoccult.utils.RegUtil;
+import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
@@ -28,7 +32,7 @@ import java.util.Random;
 public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
 
     public static final BooleanProperty TOP = BooleanProperty.of("top");
-    private static final VoxelShape BOX = Utils.shape(0, 0, 0, 16, 15, 16);
+    private static final VoxelShape BOX = Voxels.shape(0, 0, 0, 16, 15, 16);
 
     public GooFleshBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, false ).noCollision().ticksRandomly());
@@ -108,7 +112,7 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
     }
 
     @Override
-    public LootTable getInternalLootTableId() {
+    public LootTable getDefaultLootTable() {
         return LootTables.SIMPLE;
     }
 

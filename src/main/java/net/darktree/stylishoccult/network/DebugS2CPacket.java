@@ -13,7 +13,6 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
@@ -43,7 +42,7 @@ public class DebugS2CPacket {
 				float v = 0.9f + random.nextFloat() * 0.1f;
 				float p = 1 + (random.nextFloat() - 0.5f) * 0.25f;
 
-				clientWorld.playSound(pos, Sounds.INSPECT.event, SoundCategory.BLOCKS, v, p, false);
+				clientWorld.playSound(pos, Sounds.INSPECT.event, Sounds.INSPECT.category, v, p, false);
 			}
 		}
 	}

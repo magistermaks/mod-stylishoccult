@@ -19,18 +19,18 @@ public class ErrorReportItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
         NbtCompound tag = stack.getNbt();
-        try{
-            if( tag != null && !tag.isEmpty() ) {
-                String x = String.valueOf( tag.getInt("x") );
-                String y = String.valueOf( tag.getInt("y") );
-                String z = String.valueOf( tag.getInt("z") );
 
-                tooltip.add( Utils.tooltip( "error_tablet.error." + tag.getString("error") ) );
-                tooltip.add( Utils.tooltip( "error_tablet.location", x, y, z, tag.getString("rune") ) );
-                return;
-            }
-        }catch(Exception ignore) {}
-        tooltip.add( Utils.tooltip( "error_tablet.success") );
+        if (tag != null && !tag.isEmpty()) {
+            String x = String.valueOf(tag.getInt("x"));
+            String y = String.valueOf(tag.getInt("y"));
+            String z = String.valueOf(tag.getInt("z"));
+
+            tooltip.add(Utils.tooltip("error_tablet.error." + tag.getString("error")));
+            tooltip.add(Utils.tooltip("error_tablet.location", x, y, z, tag.getString("rune")));
+            return;
+        }
+
+        tooltip.add(Utils.tooltip("error_tablet.success"));
     }
 
 }

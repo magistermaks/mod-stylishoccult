@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.occult;
 
+import net.darktree.interference.Voxels;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.block.ModBlocks;
@@ -11,7 +12,6 @@ import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.RegUtil;
-import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,7 +35,7 @@ import java.util.Random;
 public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
 
     public static final BooleanProperty BLOODY = BooleanProperty.of("bloody");
-    public static final VoxelShape SMALL_CUBE = Utils.shape(1, 1, 1, 15, 15, 15);
+    public static final VoxelShape SMALL_CUBE = Voxels.shape(1, 1, 1, 15, 15, 15);
 
     public PassiveFleshBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).ticksRandomly().slipperiness(0.8f) );
@@ -60,7 +60,7 @@ public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
     }
 
     @Override
-    public LootTable getInternalLootTableId() {
+    public LootTable getDefaultLootTable() {
         return LootTables.GENERIC_FLESH;
     }
 

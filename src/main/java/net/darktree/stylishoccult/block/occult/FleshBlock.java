@@ -43,7 +43,7 @@ public class FleshBlock extends FullFleshBlock implements ImpureBlock {
     }
 
     @Override
-    public LootTable getInternalLootTableId() {
+    public LootTable getDefaultLootTable() {
         return LootTables.GENERIC_FLESH;
     }
 }

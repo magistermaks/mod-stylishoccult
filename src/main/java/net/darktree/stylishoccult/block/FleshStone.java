@@ -24,7 +24,7 @@ public class FleshStone extends BuildingBlock implements AxeScrapeable {
 	}
 
 	@Override
-	public LootTable getInternalLootTableId() {
+	public LootTable getDefaultLootTable() {
 		return LootTables.STONE_FLESH;
 	}
 

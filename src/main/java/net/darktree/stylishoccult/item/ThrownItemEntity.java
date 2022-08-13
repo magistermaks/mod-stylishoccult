@@ -4,6 +4,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.ParticleS2CPacket;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.PlayerManager;
 import net.minecraft.world.World;
 
 public class ThrownItemEntity extends ItemEntity {
@@ -22,12 +23,17 @@ public class ThrownItemEntity extends ItemEntity {
 		if (mergeDelay > 0) {
 			mergeDelay --;
 
-			if (age % 2 == 0) {
-				world.getServer().getPlayerManager().sendToAround(null, prevX, prevY, prevZ, 32, world.getRegistryKey(), new ParticleS2CPacket(ParticleTypes.SMOKE, false, prevX, prevY, prevZ, 0, 0, 0, 0, 1));
+			// this entity exists only on the server side, but let's verify it anyway
+			// in case something else caused it to spawn
+			if (age % 2 == 0 && !world.isClient) {
+				PlayerManager manager = world.getServer().getPlayerManager();
+				ParticleS2CPacket packet = new ParticleS2CPacket(ParticleTypes.SMOKE, false, prevX, prevY, prevZ, 0, 0, 0, 0, 1);
+				manager.sendToAround(null, prevX, prevY, prevZ, 32, world.getRegistryKey(), packet);
 			}
 		}
 	}
 
+	@Override
 	public boolean canMerge() {
 		return super.canMerge() && mergeDelay == 0;
 	}

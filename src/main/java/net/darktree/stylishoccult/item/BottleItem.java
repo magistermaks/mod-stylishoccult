@@ -31,8 +31,7 @@ public class BottleItem extends Item {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         super.finishUsing(stack, world, user);
 
-        if (user instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)user;
+        if (user instanceof ServerPlayerEntity serverPlayerEntity) {
             Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
             serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
         }
@@ -42,11 +41,11 @@ public class BottleItem extends Item {
         if (stack.isEmpty()) {
             return new ItemStack(Items.GLASS_BOTTLE);
         } else {
-            if (user instanceof PlayerEntity && !((PlayerEntity)user).getAbilities().creativeMode) {
+            if (user instanceof PlayerEntity player && !player.getAbilities().creativeMode) {
                 ItemStack itemStack = new ItemStack(Items.GLASS_BOTTLE);
-                PlayerEntity playerEntity = (PlayerEntity)user;
-                if (!playerEntity.getInventory().insertStack(itemStack)) {
-                    playerEntity.dropItem(itemStack, false);
+
+                if (!player.getInventory().insertStack(itemStack)) {
+                    player.dropItem(itemStack, false);
                 }
             }
 
@@ -70,7 +69,7 @@ public class BottleItem extends Item {
     }
 
     public boolean fill(ItemStack stack, World world, PlayerEntity player, Hand hand) {
-        if( stack.getItem() == Items.GLASS_BOTTLE && player != null ) {
+        if (stack.getItem() == Items.GLASS_BOTTLE && player != null) {
             stack.decrement(1);
             world.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
             ItemStack target = new ItemStack(this);

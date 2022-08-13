@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.occult;
 
+import net.darktree.interference.Voxels;
 import net.darktree.interference.api.FluidReplaceable;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.occult.api.FoliageFleshBlock;
@@ -34,7 +35,7 @@ import java.util.Random;
 public class EyesBlock extends SimpleBlock implements ImpureBlock, FoliageFleshBlock, FluidReplaceable {
 
     public static final IntProperty SIZE = IntProperty.of("size", 1, 3);
-    private static final VoxelShape OUTLINE_SHAPE = Utils.shape(1, 0, 1, 15, 2, 15);
+    private static final VoxelShape OUTLINE_SHAPE = Voxels.shape(1, 0, 1, 15, 2, 15);
 
     public EyesBlock() {
         super( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, false ).ticksRandomly() );
@@ -110,7 +111,7 @@ public class EyesBlock extends SimpleBlock implements ImpureBlock, FoliageFleshB
     }
 
     @Override
-    public LootTable getInternalLootTableId() {
+    public LootTable getDefaultLootTable() {
         return LootTables.EYES_BlOCK;
     }
 }

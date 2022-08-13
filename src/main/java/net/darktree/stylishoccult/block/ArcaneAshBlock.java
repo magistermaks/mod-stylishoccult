@@ -79,7 +79,7 @@ public class ArcaneAshBlock extends SimpleBlock {
     }
 
     @Override
-    public net.darktree.stylishoccult.loot.LootTable getInternalLootTableId() {
+    public net.darktree.stylishoccult.loot.LootTable getDefaultLootTable() {
         return LootTables.ASH;
     }
 

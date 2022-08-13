@@ -52,7 +52,7 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
     }
 
     @Override
-    public LootTable getInternalLootTableId() {
+    public LootTable getDefaultLootTable() {
         return LootTables.SIMPLE_RESISTANT;
     }
 

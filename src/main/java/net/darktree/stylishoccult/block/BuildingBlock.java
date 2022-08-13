@@ -11,7 +11,7 @@ public class BuildingBlock extends SimpleBlock {
     }
 
     @Override
-    public LootTable getInternalLootTableId() {
+    public LootTable getDefaultLootTable() {
         return LootTables.SIMPLE;
     }
 

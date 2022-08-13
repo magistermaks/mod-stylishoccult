@@ -3,7 +3,7 @@ package net.darktree.stylishoccult.gui.widget;
 import io.github.cottonmc.cotton.gui.widget.TooltipBuilder;
 import io.github.cottonmc.cotton.gui.widget.WLabel;
 import io.github.cottonmc.cotton.gui.widget.data.HorizontalAlignment;
-import net.darktree.stylishoccult.utils.Utils;
+import net.darktree.stylishoccult.gui.ScreenHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Formatting;
 
@@ -15,13 +15,13 @@ public class WSimpleLabel extends WLabel {
 	private BiConsumer<TooltipBuilder, Boolean> appender;
 
 	public WSimpleLabel(String key, HorizontalAlignment alignment, Formatting formatting) {
-		super(Utils.guiText(key));
+		super(ScreenHelper.text(key));
 		setHorizontalAlignment(alignment);
 		setColor(formatting);
 	}
 
 	public WSimpleLabel(String key, HorizontalAlignment alignment) {
-		super(Utils.guiText(key));
+		super(ScreenHelper.text(key));
 		setHorizontalAlignment(alignment);
 	}
 

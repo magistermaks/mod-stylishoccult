@@ -26,13 +26,13 @@ public class SimpleBlock extends Block implements DefaultLoot {
         return !canPlaceAt(state, world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
     }
 
-    public LootTable getInternalLootTableId() {
+    public LootTable getDefaultLootTable() {
         return null;
     }
 
     @Override
     public List<ItemStack> getDefaultStacks(BlockState state, LootContext.Builder builder, Identifier identifier, LootContext lootContext, ServerWorld serverWorld, net.minecraft.loot.LootTable lootTable) {
-        return LootManager.dispatch(state, builder, this.lootTableId, getInternalLootTableId());
+        return LootManager.dispatch(state, builder, this.lootTableId, getDefaultLootTable());
     }
 
 }

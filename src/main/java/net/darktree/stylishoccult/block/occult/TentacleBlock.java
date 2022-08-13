@@ -1,12 +1,16 @@
 package net.darktree.stylishoccult.block.occult;
 
+import net.darktree.interference.Voxels;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
-import net.darktree.stylishoccult.utils.*;
+import net.darktree.stylishoccult.utils.OccultHelper;
+import net.darktree.stylishoccult.utils.RandUtils;
+import net.darktree.stylishoccult.utils.RegUtil;
+import net.darktree.stylishoccult.utils.SimpleBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -33,12 +37,12 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
     public static final BooleanProperty STATIC = BooleanProperty.of("static");
 
     public static final VoxelShape[] SHAPES = {
-            Utils.shape( 6, 0, 6, 10, 16, 10 ),
-            Utils.shape( 5, 0, 5, 11, 16, 11 ),
-            Utils.shape( 4, 0, 4, 12, 16, 12 ),
-            Utils.shape( 3, 0, 3, 13, 16, 13 ),
-            Utils.shape( 2, 0, 2, 14, 16, 14 ),
-            Utils.shape( 1, 0, 1, 15, 16, 15 )
+            Voxels.shape( 6, 0, 6, 10, 16, 10 ),
+            Voxels.shape( 5, 0, 5, 11, 16, 11 ),
+            Voxels.shape( 4, 0, 4, 12, 16, 12 ),
+            Voxels.shape( 3, 0, 3, 13, 16, 13 ),
+            Voxels.shape( 2, 0, 2, 14, 16, 14 ),
+            Voxels.shape( 1, 0, 1, 15, 16, 15 )
     };
 
     public TentacleBlock() {
@@ -154,7 +158,7 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
         }
     }
 
-    public LootTable getInternalLootTableId() {
+    public LootTable getDefaultLootTable() {
         return LootTables.SIMPLE;
     }
 

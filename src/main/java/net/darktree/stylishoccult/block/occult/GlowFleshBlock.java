@@ -13,7 +13,7 @@ public class GlowFleshBlock extends SoilFleshBlock {
     }
 
     @Override
-    public LootTable getInternalLootTableId() {
+    public LootTable getDefaultLootTable() {
         return LootTables.GLOW_FLESH;
     }
 

@@ -1,8 +1,8 @@
 package net.darktree.stylishoccult.item.client;
 
 import net.darktree.stylishoccult.block.ModBlocks;
-import net.darktree.stylishoccult.block.entity.cauldron.OccultCauldronFluidRenderer;
 import net.darktree.stylishoccult.block.fluid.ModFluids;
+import net.darktree.stylishoccult.render.FluidRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
@@ -30,7 +30,7 @@ public final class OccultCauldronItemRenderer implements BuiltinItemRendererRegi
 
 		NbtCompound nbt = stack.getNbt();
 		if (nbt != null && nbt.contains("amount", NbtElement.INT_TYPE)) {
-			OccultCauldronFluidRenderer.drawCauldronFluidQuad(matrices, vertexConsumers, ModFluids.BLOOD_VARIANT, nbt.getInt("amount"), light);
+			FluidRenderer.drawCauldronFluidQuad(matrices, vertexConsumers, ModFluids.BLOOD_VARIANT, nbt.getInt("amount"), light);
 		}
 	}
 

@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.entity.cauldron;
 
+import net.darktree.stylishoccult.render.FluidRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -17,7 +18,7 @@ public class OccultCauldronBlockEntityRenderer implements BlockEntityRenderer<Oc
 	@Override
 	public void render(OccultCauldronBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		OccultCauldronBlockEntity.Storage storage = entity.getStorage();
-		OccultCauldronFluidRenderer.drawCauldronFluidQuad(matrices, vertexConsumers, storage.getResource(), storage.getAmount(), light);
+		FluidRenderer.drawCauldronFluidQuad(matrices, vertexConsumers, storage.getResource(), storage.getAmount(), light);
 	}
 
 }

@@ -33,6 +33,9 @@ public class ModTags {
     // lists all heat emitting blocks (fire, campfires, lava) if the block has a LIT property is must be set to true
     public static Tag<Block> HEAT_SOURCE = TagFactory.BLOCK.create(new Identifier("c", "heat_source"));
 
+    // list of blocks that nether grass and ferns can be planted on (excluding the common soils like dirt, nylium, etc.)
+    public static Tag<Block> NETHER_GRASS_SOIL = TagFactory.BLOCK.create(ModIdentifier.of("nether_grass_soil"));
+
     public static void init() {
         // noop
     }

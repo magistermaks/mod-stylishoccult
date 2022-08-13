@@ -1,0 +1,36 @@
+{
+	"parent": "stylish_occult:occult/hell",
+	"display": {
+		"icon": {
+			"item": "patchouli:guide_book"
+		},
+		"title": {
+			"translate": "advancements.stylish_occult.guide.title"
+		},
+		"description": {
+			"translate": "advancements.stylish_occult.guide.description"
+		},
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"guide": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": ["patchouli:guide_book"],
+						"nbt": "{\"patchouli:book\": \"stylish_occult:runonomicon\"}"
+					}
+				]
+			}
+		}
+	},
+	"requirements": [
+		[
+			"guide"
+		]
+	]
+}

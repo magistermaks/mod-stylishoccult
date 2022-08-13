@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.entity.rune;
 
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.SimpleBlockEntity;
@@ -29,10 +30,10 @@ public class RuneBlockEntity extends SimpleBlockEntity {
     @Override
     public void readNbt(NbtCompound nbt) {
         try {
-            if( nbt.contains("s") ) script = Script.fromNbt( nbt.getCompound("s") );
-            if( nbt.contains("m") ) meta = nbt.getCompound("m");
+            if (nbt.contains("s")) script = Script.fromNbt(nbt.getCompound("s"));
+            if (nbt.contains("m")) meta = nbt.getCompound("m");
         } catch (Exception exception) {
-            exception.printStackTrace();
+            StylishOccult.LOGGER.error("Failed to deserialize rune block entity from NBT!", exception);
         }
         super.readNbt(nbt);
     }
@@ -63,7 +64,7 @@ public class RuneBlockEntity extends SimpleBlockEntity {
         return meta;
     }
 
-    public void setMeta( NbtCompound tag ) {
+    public void setMeta(NbtCompound tag) {
         meta = tag;
         markDirty();
     }

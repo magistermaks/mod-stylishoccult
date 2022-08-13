@@ -133,7 +133,7 @@ public class FieryLanternBlock extends SimpleBlock implements Waterloggable {
     }
 
     @Override
-    public LootTable getInternalLootTableId() {
+    public LootTable getDefaultLootTable() {
         return LootTables.SIMPLE;
     }
 }

@@ -46,7 +46,7 @@ public class SparkVentBlock extends SimpleBlock {
     }
 
     @Override
-    public LootTable getInternalLootTableId() {
+    public LootTable getDefaultLootTable() {
         return LootTables.SPARK_VENT;
     }
 
@@ -104,27 +104,27 @@ public class SparkVentBlock extends SimpleBlock {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if( state.get(ACTIVE) ) {
+        if (state.get(ACTIVE)) {
 
             Difficulty d = world.getDifficulty();
             BlockPos up = pos.up();
 
-            if( d != Difficulty.PEACEFUL && world.getBlockState(up).isAir() ) {
+            if (d != Difficulty.PEACEFUL && world.getBlockState(up).isAir()) {
 
                 int count = world.random.nextInt( 8 );
 
-                for( int i = 0; i < count; i ++ ) {
+                for (int i = 0; i < count; i ++) {
 
-                    SparkEntity sparkEntity = ModEntities.SPARK.create(world);
+                    SparkEntity entity = ModEntities.SPARK.create(world);
 
-                    if( sparkEntity == null ){
+                    if (entity == null){
                         throw new RuntimeException( "Unable to summon Spark!" );
                     }
 
-                    sparkEntity.setVentDirection( Direction.UP, 0.5f );
-                    sparkEntity.refreshPositionAndAngles(up, 0.0F, 0.0F);
-                    sparkEntity.initialize(world, world.getLocalDifficulty(up), SpawnReason.REINFORCEMENT, null, null);
-                    world.spawnEntity(sparkEntity);
+                    entity.setVentDirection( Direction.UP, 0.5f );
+                    entity.refreshPositionAndAngles(up, 0.0F, 0.0F);
+                    entity.initialize(world, world.getLocalDifficulty(up), SpawnReason.REINFORCEMENT, null, null);
+                    world.spawnEntity(entity);
 
                     float x = pos.getX() + 0.4f + random.nextFloat() / 5;
                     float y = pos.getY() + 1.0f;
@@ -133,7 +133,7 @@ public class SparkVentBlock extends SimpleBlock {
 
                 }
 
-                if( count > 0 ) {
+                if (count > 0) {
                     Sounds.VENT.play(world, pos);
                 }
 

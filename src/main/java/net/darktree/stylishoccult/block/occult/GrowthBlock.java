@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.occult;
 
+import net.darktree.interference.Voxels;
 import net.darktree.interference.api.FluidReplaceable;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.occult.api.FoliageFleshBlock;
@@ -38,12 +39,12 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
     public static final IntProperty SIZE = IntProperty.of("size", 1, 3);
 
     public static final VoxelShape[] SHAPES = {
-            Utils.shape(  0, 16,  0, 16, 15, 16 ), // UP
-            Utils.shape(  0,  0,  0, 16,  1, 16 ), // DOWN
-            Utils.shape(  0,  0, 15, 16, 16, 16 ), // SOUTH
-            Utils.shape(  0,  0,  0, 16, 16,  1 ), // NORTH
-            Utils.shape(  0,  0,  0,  1, 16, 16 ), // WEST
-            Utils.shape( 15,  0,  0, 16, 16, 16 )  // EAST
+            Voxels.shape(  0, 16,  0, 16, 15, 16 ), // UP
+            Voxels.shape(  0,  0,  0, 16,  1, 16 ), // DOWN
+            Voxels.shape(  0,  0, 15, 16, 16, 16 ), // SOUTH
+            Voxels.shape(  0,  0,  0, 16, 16,  1 ), // NORTH
+            Voxels.shape(  0,  0,  0,  1, 16, 16 ), // WEST
+            Voxels.shape( 15,  0,  0, 16, 16, 16 )  // EAST
     };
 
 	public static boolean hasSide(BlockState state) {
@@ -51,7 +52,7 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 	}
 
 	@Override
-    public LootTable getInternalLootTableId() {
+    public LootTable getDefaultLootTable() {
         return LootTables.GROWTH;
     }
 

@@ -23,7 +23,7 @@ import java.util.Objects;
 @Environment(EnvType.CLIENT)
 public class AltarPlateBlockEntityRenderer implements BlockEntityRenderer<AltarPlateBlockEntity> {
 
-	private static final Identifier FIRE = new ModIdentifier("textures/particle/spark_0.png");
+	private static final Identifier FIRE = new ModIdentifier("textures/particle/altar_candle.png");
 
 	private final BlockRenderManager blockRenderer;
 	private final ItemRenderer itemRenderer;

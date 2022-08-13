@@ -31,14 +31,10 @@ public class LavaDemonBlockEntity extends BlockEntity {
     private int timeout = 50;
     private int interval = 0;
     private int amount = 4;
-    private static final TargetPredicate CLOSE_PLAYER_PREDICATE = new TargetPredicate(true).setBaseMaxDistance(16.0D);
+    private static final TargetPredicate PLAYER_PREDICATE = new TargetPredicate(true).setBaseMaxDistance(16.0);
 
     public LavaDemonBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntities.LAVA_DEMON, pos, state);
-    }
-
-    public PlayerEntity getNearbyPlayer() {
-        return world == null ? null : world.getClosestPlayer(CLOSE_PLAYER_PREDICATE, this.pos.getX(), this.pos.getY(), this.pos.getZ());
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
@@ -141,7 +137,11 @@ public class LavaDemonBlockEntity extends BlockEntity {
 
     }
 
-    public static Direction getOffsetDirection( BlockPos origin, BlockPos target ) {
+    private PlayerEntity getNearbyPlayer() {
+        return world == null ? null : world.getClosestPlayer(PLAYER_PREDICATE, this.pos.getX(), this.pos.getY(), this.pos.getZ());
+    }
+
+    private Direction getOffsetDirection( BlockPos origin, BlockPos target ) {
         if (target.getX() < origin.getX()) return Direction.from(Direction.Axis.X, Direction.AxisDirection.NEGATIVE);
         else if (target.getX() > origin.getX()) return Direction.from(Direction.Axis.X, Direction.AxisDirection.POSITIVE);
         if (target.getZ() < origin.getZ()) return Direction.from(Direction.Axis.Z, Direction.AxisDirection.NEGATIVE);
