@@ -1,65 +1,47 @@
 package net.darktree.stylishoccult.block.rune.trigger;
 
-import net.darktree.stylishoccult.block.entity.rune.RuneBlockEntity;
-import net.darktree.stylishoccult.block.rune.EntryRuneBlock;
-import net.darktree.stylishoccult.script.component.RuneException;
-import net.darktree.stylishoccult.script.component.RuneExceptionType;
+import net.darktree.stylishoccult.block.rune.TimedRuneBlock;
+import net.darktree.stylishoccult.script.component.RuneType;
+import net.darktree.stylishoccult.script.engine.Script;
+import net.darktree.stylishoccult.utils.Directions;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class ClockRuneBlock extends EntryRuneBlock {
+public class ClockRuneBlock extends TimedRuneBlock {
 
-	private final int timeout;
-
-	public ClockRuneBlock(String name, int timeout) {
-		super(name);
-		this.timeout = timeout;
+	public ClockRuneBlock(String name) {
+		super(RuneType.ENTRY, name);
 	}
 
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		onDelayEnd(world, pos);
+		if (oldState.getBlock() != this) onDelayEnd(world, pos);
 	}
 
 	@Override
 	protected void onDelayEnd(World world, BlockPos pos) {
-        world.getBlockTickScheduler().schedule(pos, this, getDelayLength());
-        RuneBlockEntity entity = getEntity(world, pos);
-
-        if (!entity.hasMeta() || updateTime(entity)) {
-            emit(world, pos, null);
-        }
+		setTimeout(world, pos, 3);
 	}
 
 	@Override
-	protected void emit(World world, BlockPos pos, @Nullable PlayerEntity player) {
-		RuneBlockEntity entity = getEntity(world, pos);
-
-		NbtCompound tag = new NbtCompound();
-		tag.putInt("time", timeout);
-		entity.setMeta(tag);
-		super.emit(world, pos, player);
+	public Direction[] getDirections(World world, BlockPos pos, Script script) {
+		return Directions.ALL;
 	}
 
-	private boolean updateTime(RuneBlockEntity entity) {
-		NbtCompound nbt = entity.getMeta();
+	@Override
+	public boolean canAcceptSignal(BlockState state, @Nullable Direction from) {
+		return false;
+	}
 
-		if (nbt == null) {
-			throw RuneException.of(RuneExceptionType.INVALID_STATE);
-		}
+	@Override
+	protected void onTimeoutEnd(World world, BlockPos pos) {
+		BlockState state = world.getBlockState(pos);
 
-		int time = nbt.getInt("time");
-		if (time <= 0) {
-			entity.setMeta(null);
-			return true;
-		} else {
-			nbt.putInt("time", time - 1);
-			entity.setMeta(nbt);
-			return false;
+		if (super.canAcceptSignal(state, null)) {
+			execute(world, pos, state, new Script());
 		}
 	}
 

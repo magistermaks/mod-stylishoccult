@@ -24,7 +24,7 @@ public class DebugRuneBlock extends RuneBlock {
 	@Override
 	public void apply(Script script, World world, BlockPos pos) {
 		RuneBlockEntity entity = getEntity(world, pos);
-		entity.setMeta( script.writeNbt(new NbtCompound()) );
+		entity.setMeta(script.writeNbt(new NbtCompound()));
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class DebugRuneBlock extends RuneBlock {
 		if (!world.isClient) {
 			if (entity != null && entity.hasMeta()) {
 				Network.DEBUG.send(player, pos, entity.getMeta());
-			}else{
+			} else {
 				player.sendMessage(new TranslatableText("tooltip." + StylishOccult.NAMESPACE + ".debug_unavailable"), false);
 			}
 		}

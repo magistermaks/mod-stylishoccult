@@ -4,6 +4,8 @@ import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneExceptionType;
 import net.darktree.stylishoccult.script.element.StackElement;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
@@ -98,6 +100,7 @@ public final class Stack extends BaseStack {
 	/**
 	 * Reset this stack, notifies the consumer of every dropped element
 	 */
+	@Override
 	public void reset(Consumer<StackElement> consumer) {
 		int length = stack.size();
 
@@ -118,14 +121,13 @@ public final class Stack extends BaseStack {
 	 * Serialize the stack to {@link NbtCompound}
 	 */
 	public NbtCompound writeNbt(NbtCompound nbt) {
-		int length = stack.size();
+		NbtList list = new NbtList();
 
-		for(int i = 0; i < length; i ++) {
-			NbtCompound entry = new NbtCompound();
-			peek(i).writeNbt(entry);
-			nbt.put(String.valueOf(i), entry);
+		for (StackElement element : stack) {
+			list.add(element.writeNbt(new NbtCompound()));
 		}
 
+		nbt.put("s", list);
 		return nbt;
 	}
 
@@ -133,14 +135,12 @@ public final class Stack extends BaseStack {
 	 * Deserialize the stack from {@link NbtCompound}
 	 */
 	public void readNbt(NbtCompound nbt) {
-		try {
-			int size = nbt.getSize();
+		NbtList list = nbt.getList("s", NbtElement.COMPOUND_TYPE);
+		int size = Math.min(list.size(), capacity);
 
-			for( int i = 0; i < size; i ++ ) {
-				stack.add(StackElement.from(nbt.getCompound(String.valueOf(i))));
-			}
-		} catch (Exception exception) {
-			exception.printStackTrace();
+		for (int i = 0; i < size; i ++) {
+			NbtCompound entry = (NbtCompound) list.get(i);
+			stack.add(StackElement.from(entry));
 		}
 	}
 

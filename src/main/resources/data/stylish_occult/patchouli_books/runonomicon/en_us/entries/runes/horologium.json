@@ -12,8 +12,8 @@
 		},
 		{
 			"type": "stylish_occult:page_long_symbol",
-			"text1": "Tactus Rune activates every 0.25s, but it doesn't conduct magic on its own.",
-			"text2": "No elements are added to or removed from the $(hs) by this rune.",
+			"text1": "Horologium Rune activates periodically on its own, but it doesn't conduct magic",
+			"text2": "from any outside sources. No elements are added to or removed from the $(hs) by this rune.",
 			"recipe": "stylish_occult:altar/rune/horologium.json",
 			"rune": "horologium",
 			"symbol": "trigger"

@@ -112,7 +112,7 @@ public class ModBlocks {
 	public static final Block SPLIT_RUNE_BLOCK = RegUtil.rune(new SplitRuneBlock("scindo"));
 	public static final Block REDSTONE_DIGITAL_IN_RUNE_BLOCK = RegUtil.rune(new RedstoneEntryRuneBlock("evigilo"));
 	public static final Block REDSTONE_ANALOG_IN_RUNE_BLOCK = RegUtil.rune(new RedstoneAnalogInputRuneBlock("sensum"));
-	public static final Block CLOCK_RUNE_BLOCK = RegUtil.rune(new ClockRuneBlock("horologium", 6) );
+	public static final Block CLOCK_RUNE_BLOCK = RegUtil.rune(new ClockRuneBlock("horologium") );
 	public static final Block RANDOM_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("temere", LogicRuneBlock.Functions.RANDOM));
 	public static final Block GATEWAY_RUNE_BLOCK = RegUtil.rune(new RedstoneGateRuneBlock("porta"));
 	public static final Block DROP_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("absumo", LogicRuneBlock.Functions.YEET));

@@ -83,7 +83,8 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 		try {
 			if (cooldown != 0) {
 				world.setBlockState(pos, state.with(COOLDOWN, cooldown - 1));
-				world.getBlockTickScheduler().schedule(pos, state.getBlock(), getDelayLength());
+				world.getBlockTickScheduler().schedule(pos, this, getDelayLength());
+
 				if (cooldown == 3) {
 					executeStoredScript(world, pos);
 				}

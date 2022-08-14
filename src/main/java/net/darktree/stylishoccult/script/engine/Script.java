@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.script.engine;
 
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.rune.RuneBlock;
 import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneInstance;
@@ -25,11 +26,15 @@ public final class Script {
 	public static Script fromNbt(NbtCompound nbt) {
 		Script script = new Script();
 
-		if(nbt.contains("i")) script.instance = RuneInstance.from(nbt.getCompound("i"));
-		script.direction = Direction.byId(nbt.getByte("d"));
-		script.safe = SafeMode.from(nbt.getByte("f"));
-		script.stack.readNbt(nbt.getCompound("s"));
-		script.ring.readNbt(nbt.getCompound("r"));
+		try {
+			if (nbt.contains("i")) script.instance = RuneInstance.from(nbt.getCompound("i"));
+			script.direction = Direction.byId(nbt.getByte("d"));
+			script.safe = SafeMode.from(nbt.getByte("f"));
+			script.stack.readNbt(nbt);
+			script.ring.readNbt(nbt);
+		} catch (Exception e) {
+			StylishOccult.LOGGER.error("Failed to load Talisman Script from NBT!", e);
+		}
 
 		return script;
 	}
@@ -41,8 +46,9 @@ public final class Script {
 		if(instance != null) nbt.put("i", instance.writeNbt(new NbtCompound()));
 		nbt.putByte("d", (byte) direction.getId());
 		nbt.putByte("f", (byte) safe.ordinal());
-		nbt.put("s", stack.writeNbt(new NbtCompound()));
-		nbt.put("r", ring.writeNbt(new NbtCompound()));
+
+		stack.writeNbt(nbt);
+		ring.writeNbt(nbt);
 
 		return nbt;
 	}
