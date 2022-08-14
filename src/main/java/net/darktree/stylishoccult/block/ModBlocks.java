@@ -126,6 +126,7 @@ public class ModBlocks {
 	public static final Block SUSPICIOUS_RUNE_BLOCK = RegUtil.rune(new SuspiciousRuneBlock("suspectum"));
 	public static final Block VALUE_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("valorem", LogicRuneBlock.Functions.VALUE));
 	public static final Block SEPARATE_RUNE_BLOCK = RegUtil.rune(new SeparateRuneBlock("separatum"));
+	public static final Block SLEEP_RUNE_BLOCK = RegUtil.rune(new SleepRuneBlock("somnum"));
 
 	public static void init() {
 		StylishOccult.LOGGER.info("Loaded " + RUNESTONES.size() + " runes!");

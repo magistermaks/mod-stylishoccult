@@ -11,7 +11,9 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -23,7 +25,7 @@ public class BrokenRuneBlock extends RuneBlock {
 	}
 
 	@Override
-	public void apply(Script script) {
+	public void apply(Script script, World world, BlockPos pos) {
 		throw RuneException.of(RuneExceptionType.BROKEN);
 	}
 

@@ -262,6 +262,7 @@ public class CraftRuneBlock extends TransferRuneBlock {
 			super(null, 0);
 		}
 
+		@Override
 		public void onContentChanged(Inventory inventory) {
 			// noop
 		}

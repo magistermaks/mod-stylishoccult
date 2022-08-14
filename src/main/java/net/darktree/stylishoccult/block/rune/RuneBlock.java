@@ -41,14 +41,11 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 	public final String name;
 
 	public RuneBlock(RuneType type, String name) {
-		super( FabricBlockSettings.of(Material.STONE)
-				.mapColor(MapColor.BLACK)
-				.requiresTool()
-				.strength(2.5f, 6.0f));
+		super(FabricBlockSettings.of(Material.STONE).mapColor(MapColor.BLACK).requiresTool().strength(2.5f, 6.0f));
 
 		this.type = type;
 		this.name = name;
-		setDefaultState( getDefaultState().with(COOLDOWN, 0).with(FROZEN, false) );
+		setDefaultState(getDefaultState().with(COOLDOWN, 0).with(FROZEN, false));
 	}
 
 	@Override
@@ -96,10 +93,10 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 		}
 	}
 
-	protected void executeStoredScript(World world, BlockPos pos) {
+	private void executeStoredScript(World world, BlockPos pos) {
 		RuneBlockEntity entity = getEntity(world, pos);
 
-		if (entity != null && entity.hasScript()) {
+		if (entity.hasScript()) {
 			Script script = entity.getScript();
 			script.apply(this, world, pos);
 			propagateTo(world, pos, script, getDirections(world, pos, script));
@@ -108,7 +105,7 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 		}
 	}
 
-	protected void propagateTo(World world, BlockPos pos, Script script, Direction[] directions) {
+	protected final void propagateTo(World world, BlockPos pos, Script script, Direction[] directions) {
 		boolean used = false;
 
 		for (Direction direction : directions) {
@@ -131,15 +128,13 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 		}
 	}
 
-	protected void execute(World world, BlockPos pos, BlockState state, Script script) {
+	protected final void execute(World world, BlockPos pos, BlockState state, Script script) {
 		RuneBlockEntity entity = getEntity(world, pos);
 
-		if( entity != null ) {
-			entity.store(script);
-			world.setBlockState(pos, state.with(COOLDOWN, 3));
-			onTriggered(script, world, pos, state);
-			world.getBlockTickScheduler().schedule( pos, state.getBlock(), getDelayLength() );
-		}
+		entity.store(script);
+		world.setBlockState(pos, state.with(COOLDOWN, 3));
+		onTriggered(script, world, pos, state);
+		world.getBlockTickScheduler().schedule( pos, state.getBlock(), getDelayLength() );
 	}
 
 	protected final RuneBlockEntity getEntity(World world, BlockPos pos) {
@@ -168,26 +163,37 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 		return state.get(COOLDOWN) == 0 && !state.get(FROZEN);
 	}
 
+	/**
+	 * Used for crating a RuneInstance of this rune, useful for gathering additional state across rune activations
+	 */
 	public RuneInstance getInstance() {
 		return null;
 	}
 
+	/**
+	 * Called {@link RuneBlock#getDelayLength()} ticks after {@link RuneBlock#onTriggered}, just before the signal is about to be propagated
+	 */
 	public void apply(Script script, World world, BlockPos pos) {
-		apply(script);
-	}
-
-	public void apply(Script script) {
 
 	}
 
+	/**
+	 * Called when the rune was just powered
+	 */
 	protected void onTriggered(Script script, World world, BlockPos pos, BlockState state) {
 
 	}
 
+	/**
+	 * Called when the cooldown period runs out
+	 */
 	protected void onDelayEnd(World world, BlockPos pos) {
 
 	}
 
+	/**
+	 * Works like {@link RuneBlock#onTriggered} but is not triggered if the rune activated itself
+	 */
 	protected void onSignalAccepted(World world, BlockPos pos) {
 
 	}

@@ -9,7 +9,7 @@
 			"item": "stylish_occult:blood_shard",
 			"title": "Blood Shard",
 			"link_recipe": true,
-			"text": "They allow anyone possessing even a single one to create new rune stones on the Dark Altar. $(p)The legends say that within those pale red crystal are trapped the souls of hundreds is not thousands of humans, condensed to nothing more than a conscious energy."
+			"text": "They allow anyone possessing even a single one to create new rune stones on the Dark Altar. $(p)The legends say that within those pale red crystal are trapped the souls of hundreds if not thousands of humans, condensed to nothing more than a conscious energy."
 		},
 		{
 			"type": "patchouli:text",

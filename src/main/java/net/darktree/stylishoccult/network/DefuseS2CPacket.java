@@ -38,7 +38,7 @@ public class DefuseS2CPacket {
 	}
 
 	private void apply(PlayerEntity player, BlockPos pos) {
-		if( player != null && player.world != null ) {
+		if (player != null && player.world != null) {
 			Random random = player.world.random;
 
 			for(Direction direction : Directions.ALL) {
@@ -69,8 +69,8 @@ public class DefuseS2CPacket {
 	}
 
 	public void send(BlockPos pos, ServerWorld world) {
-		for(ServerPlayerEntity player : PlayerLookup.tracking(world, pos)) {
-			if( player.getBlockPos().isWithinDistance(pos, 32.0D) ) {
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, pos)) {
+			if (player.getBlockPos().isWithinDistance(pos, 32.0)) {
 				send(player, pos);
 			}
 		}

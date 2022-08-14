@@ -16,7 +16,7 @@ import java.util.Random;
 public abstract class TimedRuneBlock extends RuneBlock {
 
 	private final static int FLAGS = Block.NO_REDRAW | Block.NOTIFY_LISTENERS;
-	private final static BooleanProperty WAITING = BooleanProperty.of("waiting");
+	public final static BooleanProperty WAITING = BooleanProperty.of("waiting");
 
 	public TimedRuneBlock(RuneType type, String name) {
 		super(type, name);

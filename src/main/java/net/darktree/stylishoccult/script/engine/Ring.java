@@ -34,7 +34,7 @@ public final class Ring extends BaseStack {
 	 * Push one element onto the ring
 	 */
 	public StackElement push(StackElement element, World world, BlockPos pos) {
-		if( buffer[offset] != null ) {
+		if (buffer[offset] != null) {
 			buffer[offset].drop(world, pos);
 		}
 
@@ -52,7 +52,7 @@ public final class Ring extends BaseStack {
 		StackElement element = buffer[offset];
 		buffer[offset] = null;
 
-		if(element == null) {
+		if (element == null) {
 			throw RuneException.of(RuneExceptionType.NOTHING_TO_RETURN);
 		}
 
@@ -70,7 +70,7 @@ public final class Ring extends BaseStack {
 		}
 
 		nbt.put("r", list);
-		nbt.putShort("i", (short) offset);
+		nbt.putShort("o", (short) offset);
 		return nbt;
 	}
 
@@ -86,14 +86,14 @@ public final class Ring extends BaseStack {
 			buffer[i] = entry.isEmpty() ? null : StackElement.from(entry);
 		}
 
-		offset = nbt.getShort("i") % buffer.length;
+		offset = nbt.getShort("o") % buffer.length;
 	}
 
 	/**
 	 * Copy elements from other stack
 	 */
 	public void from(Ring ring) {
-		for(int i = 0; i < buffer.length; i ++) {
+		for (int i = 0; i < buffer.length; i ++) {
 			buffer[i] = ring.buffer[i] == null ? null : ring.buffer[i].copy();
 		}
 
@@ -105,8 +105,11 @@ public final class Ring extends BaseStack {
 	 */
 	@Override
 	public void reset(Consumer<StackElement> consumer) {
-		for(StackElement element : buffer) {
-			if(element != null) consumer.accept(element);
+		for (int i = 0; i < buffer.length; i ++) {
+			if (buffer[i] != null) {
+				consumer.accept(buffer[i]);
+				buffer[i] = null;
+			}
 		}
 	}
 

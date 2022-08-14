@@ -28,7 +28,7 @@ public final class Stack extends BaseStack {
 	public StackElement pull() {
 		try {
 			return stack.remove(stack.size() - 1);
-		}catch (Exception exception) {
+		} catch (Exception exception) {
 			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
 		}
 	}
@@ -39,7 +39,7 @@ public final class Stack extends BaseStack {
 	public void push(StackElement element) {
 		try {
 			stack.add(element);
-		}catch (Exception exception) {
+		} catch (Exception exception) {
 			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
 		}
 	}
@@ -50,7 +50,7 @@ public final class Stack extends BaseStack {
 	public void swap() {
 		try {
 			push(stack.remove(stack.size() - 2));
-		}catch (Exception exception) {
+		} catch (Exception exception) {
 			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
 		}
 	}
@@ -61,7 +61,7 @@ public final class Stack extends BaseStack {
 	public void duplicate() {
 		try {
 			push(peek(0).copy());
-		}catch (Exception exception) {
+		} catch (Exception exception) {
 			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
 		}
 	}
@@ -104,17 +104,9 @@ public final class Stack extends BaseStack {
 	public void reset(Consumer<StackElement> consumer) {
 		int length = stack.size();
 
-		for(int i = 0; i < length; i ++) {
+		for (int i = 0; i < length; i ++) {
 			consumer.accept(pull());
 		}
-	}
-
-	/**
-	 * Get stack size
-	 */
-	@Deprecated
-	public int size() {
-		return stack.size();
 	}
 
 	/**
@@ -148,7 +140,7 @@ public final class Stack extends BaseStack {
 	 * Copy elements from other stack
 	 */
 	public void from(Stack stack) {
-		for(StackElement element : stack.stack) {
+		for (StackElement element : stack.stack) {
 			this.stack.add(element.copy());
 		}
 	}
