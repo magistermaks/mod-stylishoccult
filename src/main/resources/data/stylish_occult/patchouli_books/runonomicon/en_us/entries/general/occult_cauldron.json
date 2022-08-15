@@ -13,7 +13,13 @@
 		},
 		{
 			"type": "patchouli:text",
-			"text": "Those cauldrons can also be picked up without loosing the contents inside. $(p)When active during a ritual blood in a cauldron will boil. You can also force it to do it all the time by placing a heat source such as lava, fire, or a lit campfire under it."
+			"text": "Those cauldrons can also be picked up without loosing the contents inside. $(p)When active during a ritual blood in a cauldron will boil. You can also force it to do it all the time by placing a heat source such as lava, fire, or a lit campfire under it. $(p)To collect blood you will need to use the $(l:stylish_occult:runes/suspectum)Suspectum Rune$(), squeeze it from flesh blocks, or use a..."
+		},
+		{
+			"type": "patchouli:crafting",
+			"recipe": "stylish_occult:twisted_dagger",
+			"text": "You can use the Twisted Bone Knife to sacrifice some of your own blood to the gods, by using it on the Occult Cauldron. $(p)Sacrifices must be made, to satisfy this lust for pain."
 		}
+
 	]
 }

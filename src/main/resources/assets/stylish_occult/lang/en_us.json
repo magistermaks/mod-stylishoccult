@@ -53,6 +53,7 @@
 	"item.stylish_occult.twisted_sword": "Twisted Bone Sword",
 	"item.stylish_occult.twisted_shovel": "Twisted Bone Shovel",
 	"item.stylish_occult.twisted_pickaxe": "Twisted Bone Pickaxe",
+	"item.stylish_occult.twisted_dagger": "Twisted Bone Knife",
 	"item.stylish_occult.twisted_axe": "Twisted Bone Axe",
 	"item.stylish_occult.twisted_hoe": "Twisted Bone Hoe",
 	"item.stylish_occult.twisted_helmet": "Twisted Bone Helmet",
@@ -79,6 +80,7 @@
 	"tooltip.stylish_occult.altar_plate": "Place on top of a Runestone Table to create an altar",
 	"tooltip.stylish_occult.blood_amount": "Amount: %smb",
 	"tooltip.stylish_occult.debug_unavailable": "No debug information available!",
+	"tooltip.stylish_occult.dagger": "Use on a Occult Cauldron to make a sacrifice",
 
 	"rune.block.stylish_occult.rune_debug": "Inveniet",
 	"rune.block.stylish_occult.rune_tactus": "Tactus",
@@ -337,7 +339,9 @@
 	"advancements.stylish_occult.shard.description": "Find a Blood Shard",
 	"advancements.stylish_occult.stonehenge.title": "Circle Of Stone",
 	"advancements.stylish_occult.stonehenge.description": "Visit a Stonehenge",
+	"advancements.stylish_occult.sacrifice.title": "Sacrifices Must Be Made!",
+	"advancements.stylish_occult.sacrifice.description": "Drain some blood using a Twisted Knife",
 
 	"patchouli.stylish_occult.runonomicon.name": "Runonomicon",
-	"patchouli.stylish_occult.runonomicon.text": "The guide to the forgotten secrets of life and death, and the occult art of runic blood engravings. $(br)$(br)By Abdul Alhazred"
+	"patchouli.stylish_occult.runonomicon.text": "The guide to the forgotten secrets of life and death, and the occult art of runic blood engravings. $(p)By Abdul Alhazred"
 }

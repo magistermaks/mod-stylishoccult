@@ -50,6 +50,7 @@ public class ModItems {
 	public static final Item TWISTED_PICKAXE = RegUtil.item("twisted_pickaxe", new PickaxeItem(TwistedBoneToolMaterial.INSTANCE, 1, -2.8F, new Item.Settings().group(ItemGroup.TOOLS)));
 	public static final Item TWISTED_AXE = RegUtil.item("twisted_axe", new AxeItem(TwistedBoneToolMaterial.INSTANCE, 7.0F, -3.2F, new Item.Settings().group(ItemGroup.TOOLS)));
 	public static final Item TWISTED_HOE = RegUtil.item("twisted_hoe", new HoeItem(TwistedBoneToolMaterial.INSTANCE, -1, -2.0F, new Item.Settings().group(ItemGroup.TOOLS)));
+	public static final Item TWISTED_DAGGER = RegUtil.item("twisted_dagger", new DaggerItem(new Item.Settings().group(ItemGroup.TOOLS)));
 
 	public static final Item TWISTED_HELMET = RegUtil.item("twisted_helmet", new ArmorItem(TwistedBoneArmorMaterial.INSTANCE, EquipmentSlot.HEAD, new Item.Settings().group(ItemGroup.COMBAT)));
 	public static final Item TWISTED_CHESTPLATE = RegUtil.item("twisted_chestplate", new ArmorItem(TwistedBoneArmorMaterial.INSTANCE, EquipmentSlot.CHEST, new Item.Settings().group(ItemGroup.COMBAT)));

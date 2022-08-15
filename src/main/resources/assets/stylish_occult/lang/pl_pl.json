@@ -52,6 +52,7 @@
 	"item.stylish_occult.twisted_sword": "Skręcony miecz",
 	"item.stylish_occult.twisted_shovel": "Skręcona łopata",
 	"item.stylish_occult.twisted_pickaxe": "Skręcony kilof",
+	"item.stylish_occult.twisted_dagger": "Skręcony sztylet",
 	"item.stylish_occult.twisted_axe": "Skręcona siekiera",
 	"item.stylish_occult.twisted_hoe": "Skręcona motyka",
 	"item.stylish_occult.twisted_helmet": "Skręcony hełm",
@@ -78,6 +79,7 @@
 	"tooltip.stylish_occult.altar_plate": "Połóż na runicznym stole by utworzyć ołtarz",
 	"tooltip.stylish_occult.blood_amount": "Ilość: %smb",
 	"tooltip.stylish_occult.debug_unavailable": "Brak informacji do wyświetlenia!",
+	"tooltip.stylish_occult.dagger": "Użyj na przeklętym kotle aby złożyć ofiare",
 
 	"entity.stylish_occult.lava_spark": "Iskra",
 	"entity.stylish_occult.spore": "Zarodnik",
@@ -277,6 +279,8 @@
 	"advancements.stylish_occult.shard.description": "Znajdź Krwawy odłamek",
 	"advancements.stylish_occult.stonehenge.title": "Krąg z kamienia",
 	"advancements.stylish_occult.stonehenge.description": "Odwiedź Stonehenge",
+	"advancements.stylish_occult.sacrifice.title": "Wymagane poświęcenie",
+	"advancements.stylish_occult.sacrifice.description": "Urzyj skręconego sztyletu by oddać krew",
 
 	"patchouli.stylish_occult.runonomicon.name": "Runonomicon",
 	"patchouli.stylish_occult.runonomicon.text": "Przewodnik po zapomnianych sekretach życia i śmierci, i okultystycznej sztuce runicznych grawerunków. $(br)$(br)Spisane przez Abdula Alhazreda"
