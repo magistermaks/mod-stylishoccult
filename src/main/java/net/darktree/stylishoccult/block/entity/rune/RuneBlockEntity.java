@@ -10,28 +10,28 @@ import net.minecraft.util.math.BlockPos;
 
 public class RuneBlockEntity extends SimpleBlockEntity {
 
+	private final RuneBlockAttachment attachment;
 	private Script script;
-	private NbtCompound meta;
 
 	public RuneBlockEntity(BlockPos pos, BlockState state) {
 		super(BlockEntities.RUNESTONE, pos, state);
 
 		script = null;
-		meta = null;
+		attachment = new RuneBlockAttachment(this);
 	}
 
 	@Override
-	public NbtCompound writeNbt(NbtCompound tag) {
-		if(script != null) tag.put("s", script.writeNbt(new NbtCompound()));
-		if(meta != null) tag.put("m", meta);
-		return super.writeNbt(tag);
+	public NbtCompound writeNbt(NbtCompound nbt) {
+		if (script != null) nbt.put("s", script.writeNbt(new NbtCompound()));
+		if (!attachment.isEmpty()) nbt.put("a", attachment.writeNbt(new NbtCompound()));
+		return super.writeNbt(nbt);
 	}
 
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		try {
 			if (nbt.contains("s")) script = Script.fromNbt(nbt.getCompound("s"));
-			if (nbt.contains("m")) meta = nbt.getCompound("m");
+			if (nbt.contains("a")) attachment.readNbt(nbt.getCompound("a"));
 		} catch (Exception exception) {
 			StylishOccult.LOGGER.error("Failed to deserialize rune block entity from NBT!", exception);
 		}
@@ -56,17 +56,8 @@ public class RuneBlockEntity extends SimpleBlockEntity {
 		return script != null;
 	}
 
-	public boolean hasMeta() {
-		return meta != null;
-	}
-
-	public NbtCompound getMeta() {
-		return meta;
-	}
-
-	public void setMeta(NbtCompound tag) {
-		meta = tag;
-		markDirty();
+	public RuneBlockAttachment getAttachment() {
+		return attachment;
 	}
 
 }

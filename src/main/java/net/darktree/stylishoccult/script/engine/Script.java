@@ -15,6 +15,7 @@ public final class Script {
 
 	private RuneInstance instance = null;
 	private SafeMode safe = SafeMode.DISABLED;
+	private boolean reset = true;
 
 	public final Ring ring = new Ring(6);
 	public final Stack stack = new Stack(32);
@@ -101,10 +102,12 @@ public final class Script {
 	 * exception or by reaching the end of line.
 	 */
 	public void reset(World world, BlockPos pos) {
-		this.stack.reset(element -> element.drop(world, pos));
-		this.ring.reset(element -> element.drop(world, pos));
-		this.instance = null;
-		this.safe = SafeMode.DISABLED;
+		if (reset) {
+			this.stack.reset(element -> element.drop(world, pos));
+			this.ring.reset(element -> element.drop(world, pos));
+			this.instance = null;
+			this.safe = SafeMode.DISABLED;
+		}
 	}
 
 	/**
@@ -112,6 +115,11 @@ public final class Script {
 	 */
 	public void enableSafeMode() {
 		this.safe = SafeMode.SCHEDULED;
+	}
+
+	public Script drops(boolean reset) {
+		this.reset = reset;
+		return this;
 	}
 
 	/**

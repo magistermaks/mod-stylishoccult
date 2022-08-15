@@ -1,6 +1,6 @@
 package net.darktree.stylishoccult.block.rune.flow;
 
-import net.darktree.stylishoccult.block.entity.rune.RuneBlockEntity;
+import net.darktree.stylishoccult.block.entity.rune.RuneBlockAttachment;
 import net.darktree.stylishoccult.block.rune.TimedRuneBlock;
 import net.darktree.stylishoccult.script.component.RuneType;
 import net.darktree.stylishoccult.script.engine.Script;
@@ -22,16 +22,15 @@ public class SleepRuneBlock extends TimedRuneBlock {
 
 	@Override
 	public void apply(Script script, World world, BlockPos pos) {
-		RuneBlockEntity entity = getEntity(world, pos);
+		RuneBlockAttachment attachment = getEntity(world, pos).getAttachment();
 		int time = (int) script.pull(world, pos).value();
 
-		if (!entity.hasMeta()) {
+		if (attachment.getNbt() == null) {
+			attachment.setScript(script.drops(false));
+
 			NbtCompound nbt = new NbtCompound();
-			script.writeNbt(nbt);
-			script.stack.reset(element -> {});
-			script.ring.reset(element -> {});
 			nbt.putInt("time", time);
-			entity.setMeta(nbt);
+			attachment.setNbt(nbt);
 		}
 	}
 
@@ -42,19 +41,19 @@ public class SleepRuneBlock extends TimedRuneBlock {
 
 	@Override
 	protected void onDelayEnd(World world, BlockPos pos) {
-		RuneBlockEntity entity = getEntity(world, pos);
+		NbtCompound nbt = getEntity(world, pos).getAttachment().getNbt();
 
-		if (entity.hasMeta()) {
-			setTimeout(world, pos, entity.getMeta().getInt("time"));
+		if (nbt != null) {
+			setTimeout(world, pos, nbt.getInt("time"));
 		}
 	}
 
 	@Override
 	protected void onTimeoutEnd(World world, BlockPos pos) {
-		RuneBlockEntity entity = getEntity(world, pos);
-		Script script = Script.fromNbt(entity.getMeta());
-		entity.setMeta(null);
+		RuneBlockAttachment attachment = getEntity(world, pos).getAttachment();
+		Script script = attachment.getScript().drops(true);
 		propagateTo(world, pos, script, Directions.of(script.direction));
+		attachment.clear();
 	}
 
 	@Override
@@ -75,5 +74,22 @@ public class SleepRuneBlock extends TimedRuneBlock {
 			}
 		}
 	}
+
+	@Override
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+		if (state.isOf(newState.getBlock())) {
+			return;
+		}
+
+		RuneBlockAttachment attachment = getEntity(world, pos).getAttachment();
+
+		if (attachment.getScript() != null) {
+			attachment.getScript().drops(true).reset(world, pos);
+			attachment.clear();
+		}
+
+		super.onStateReplaced(state, world, pos, newState, moved);
+	}
+
 }
 

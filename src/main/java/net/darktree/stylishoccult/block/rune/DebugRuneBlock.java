@@ -1,7 +1,6 @@
 package net.darktree.stylishoccult.block.rune;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.block.entity.rune.RuneBlockEntity;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.script.component.RuneType;
 import net.darktree.stylishoccult.script.engine.Script;
@@ -23,17 +22,16 @@ public class DebugRuneBlock extends RuneBlock {
 
 	@Override
 	public void apply(Script script, World world, BlockPos pos) {
-		RuneBlockEntity entity = getEntity(world, pos);
-		entity.setMeta(script.writeNbt(new NbtCompound()));
+		getEntity(world, pos).getAttachment().setNbt(script.writeNbt(new NbtCompound()));
 	}
 
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		RuneBlockEntity entity = getEntity(world, pos);
-
 		if (!world.isClient) {
-			if (entity != null && entity.hasMeta()) {
-				Network.DEBUG.send(player, pos, entity.getMeta());
+			NbtCompound script = getEntity(world, pos).getAttachment().getNbt();
+
+			if (script != null) {
+				Network.DEBUG.send(player, pos, script);
 			} else {
 				player.sendMessage(new TranslatableText("tooltip." + StylishOccult.NAMESPACE + ".debug_unavailable"), false);
 			}
