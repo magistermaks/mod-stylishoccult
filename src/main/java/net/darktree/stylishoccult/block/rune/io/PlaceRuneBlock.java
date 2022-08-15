@@ -9,6 +9,7 @@ import net.darktree.stylishoccult.script.element.ItemElement;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.item.AutomaticItemPlacementContext;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -28,7 +29,7 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 		int y = (int) Math.round(script.pull(world, pos).value());
 		int z = (int) Math.round(script.pull(world, pos).value());
 
-		ItemElement element = script.stack.pull().cast(ItemElement.class);
+		ItemElement element = script.pull(world, pos).cast(ItemElement.class);
 		BlockPos target = pos.add(x, y, z);
 		boolean placed = false;
 
@@ -36,14 +37,11 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT);
 		}
 
-		if (element.stack.getItem() instanceof BlockItem blockItem) {
-			try {
-				placed = blockItem.place(new AutomaticItemPlacementContext(world, target, Direction.UP, element.stack, Direction.UP)).isAccepted();
+		ItemStack stack = element.stack;
 
-				// make sure not to lose any items, even when operation fails
-				if (!placed) {
-					script.ring.push(element, world, pos);
-				}
+		if (stack.getCount() > 0 && stack.getItem() instanceof BlockItem blockItem) {
+			try {
+				placed = blockItem.place(new AutomaticItemPlacementContext(world, target, Direction.UP, stack, Direction.UP)).isAccepted();
 			} catch (Exception e) {
 				StylishOccult.LOGGER.warn("Failed to place block for unknown reason!", e);
 			}

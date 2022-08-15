@@ -339,7 +339,9 @@
 	"advancements.stylish_occult.shard.description": "Find a Blood Shard",
 	"advancements.stylish_occult.stonehenge.title": "Circle Of Stone",
 	"advancements.stylish_occult.stonehenge.description": "Visit a Stonehenge",
-	"advancements.stylish_occult.sacrifice.title": "Sacrifices Must Be Made!",
+	"advancements.stylish_occult.guide.title": "Kitab al-Azif",
+	"advancements.stylish_occult.guide.description": "Find the Runonomicon",
+	"advancements.stylish_occult.sacrifice.title": "Sacrifices Must Be Made",
 	"advancements.stylish_occult.sacrifice.description": "Drain some blood using a Twisted Knife",
 
 	"patchouli.stylish_occult.runonomicon.name": "Runonomicon",

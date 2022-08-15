@@ -2,7 +2,8 @@
 	"parent": "stylish_occult:occult/hell",
 	"display": {
 		"icon": {
-			"item": "patchouli:guide_book"
+			"item": "patchouli:guide_book",
+			"nbt": "{\"patchouli:book\": \"stylish_occult:runonomicon\"}"
 		},
 		"title": {
 			"translate": "advancements.stylish_occult.guide.title"

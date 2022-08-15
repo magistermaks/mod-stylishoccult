@@ -28,7 +28,7 @@ public enum RuneExceptionType {
 	INVALID_ARGUMENT_COUNT("invalid_argument_count"),
 
 	/**
-	 * Nothing left to return (e.g. from stack)
+	 * Nothing was left to return (e.g. from stack)
 	 */
 	NOTHING_TO_RETURN("nothing_to_return"),
 
@@ -43,12 +43,12 @@ public enum RuneExceptionType {
 	STACK_TOO_LONG("stack_too_long"),
 
 	/**
-	 * Operation is in violation of the rule of equivalent exchange
+	 * Operation is in violation of the rule of Equivalent Exchange
 	 */
 	UNMET_EQUIVALENCY("unmet_equivalency"),
 
 	/**
-	 * A broken rune activated
+	 * A broken rune was activated
 	 */
 	BROKEN("broken");
 

@@ -72,11 +72,12 @@ public class ItemElement extends StackElement {
 	@Override
 	public ElementView view() {
 		Item item = stack.getItem();
-		String text = stack.getCount() + "x " + I18n.translate(item.getTranslationKey());
+		String text = stack.isEmpty() ? "(empty)" : stack.getCount() + "x " + I18n.translate(item.getTranslationKey());
 
 		return ElementView.of("item", ElementView.ITEM_ICON, text, Registry.ITEM.getId(item).toString());
 	}
 
+	@Override
 	public boolean equals(StackElement element) {
 		if (element instanceof ItemElement itemElement) {
 			return itemElement.stack.getItem() == this.stack.getItem();

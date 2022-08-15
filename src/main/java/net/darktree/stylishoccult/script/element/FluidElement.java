@@ -77,7 +77,7 @@ public class FluidElement extends StackElement {
 	@Override
 	public ElementView view() {
 		Identifier fluid = Registry.FLUID.getId(this.fluid.getFluid());
-		String text = amount + "x " + I18n.translate("block." + fluid.getNamespace() + "." + fluid.getPath());
+		String text = amount == 0 ? "(empty)" : amount + "x " + I18n.translate("block." + fluid.getNamespace() + "." + fluid.getPath());
 
 		return ElementView.of("fluid", ElementView.FLUID_ICON, text, fluid.toString());
 	}
@@ -97,7 +97,7 @@ public class FluidElement extends StackElement {
 		if (remainder > 0) {
 			// TODO do something creative here
 			// TODO spawn particles and/or place a source block if > FluidConstants.BLOCK
-			StylishOccult.LOGGER.info("{} units of fluid were lost to entropy!", remainder);
+			StylishOccult.debug(remainder + " droplets of fluid were lost to entropy!");
 		}
 	}
 

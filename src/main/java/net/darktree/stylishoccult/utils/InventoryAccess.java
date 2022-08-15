@@ -15,6 +15,7 @@ import java.util.stream.IntStream;
 public class InventoryAccess {
 
 	public static final InventoryAccess DUMMY = new InventoryAccess(new DummyInventory(), null) {
+		@Override
 		public ItemStack extract(int count) {
 			return ItemStack.EMPTY;
 		}
@@ -44,7 +45,7 @@ public class InventoryAccess {
 	}
 
 	/**
-	 * Access inventory pointed to from pos by direction
+	 * Access inventory pointed to, from pos, by direction
 	 */
 	public static InventoryAccess at(World world, BlockPos pos, Direction direction) {
 		return of(world, pos.offset(direction), direction.getOpposite());
