@@ -28,7 +28,7 @@ public class ArcaneAshBlock extends SimpleBlock {
 
 	public ArcaneAshBlock(float hardness, Settings settings) {
 		super(settings.ticksRandomly().strength(hardness, hardness));
-		setDefaultState( getDefaultState().with(PERSISTENT, true).with(AGE, 0) );
+		setDefaultState(getDefaultState().with(PERSISTENT, true).with(AGE, 0));
 	}
 
 	@Override
@@ -46,13 +46,13 @@ public class ArcaneAshBlock extends SimpleBlock {
 
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return super.getDefaultState().with(PERSISTENT, !(ctx instanceof AutomaticItemPlacementContext));
+		return super.getDefaultState().with(PERSISTENT, !(ctx instanceof AutomaticItemPlacementContext || ctx.getPlayer() == null));
 	}
 
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		if (!state.get(PERSISTENT)) {
-			world.getBlockTickScheduler().schedule(pos, this, 100 + world.random.nextInt(20));
+			world.getBlockTickScheduler().schedule(pos, this, 120 + world.random.nextInt(40));
 
 			if (!world.isClient) {
 				Network.ASH.send(pos, (ServerWorld) world);

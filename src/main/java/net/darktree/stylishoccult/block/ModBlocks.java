@@ -103,7 +103,7 @@ public class ModBlocks {
 	public static final Block LESS_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("minus", LogicRuneBlock.Functions.LESS));
 	public static final Block MORE_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("magis", LogicRuneBlock.Functions.MORE));
 	public static final Block IF_RUNE_BLOCK = RegUtil.rune(new IfRuneBlock("si"));
-	public static final Block PLACE_RUNE_BLOCK = RegUtil.rune(new PlaceRuneBlock("locus", 256));
+	public static final Block PLACE_RUNE_BLOCK = RegUtil.rune(new PlaceRuneBlock("locus", 64));
 	public static final Block INCREMENT_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("incrementum", LogicRuneBlock.Functions.INCREMENT));
 	public static final Block DECREMENT_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("decrementum", LogicRuneBlock.Functions.DECREMENT));
 	public static final Block REDSTONE_ANALOG_OUT_RUNE_BLOCK = RegUtil.rune(new RedstoneAnalogOutputRuneBlock("scribo"));

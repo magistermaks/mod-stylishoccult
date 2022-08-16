@@ -47,7 +47,7 @@ public class ErrorReportItem extends Item {
 		if (world.isClient) {
 			Random random = world.getRandom();
 			float p = 0.9f + (random.nextFloat() - 0.5f) * 0.25f;
-			float v = 0.2f + (random.nextFloat() * 0.1f);
+			float v = 0.3f + (random.nextFloat() * 0.1f);
 
 			MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(Sounds.DISPOSE.event, p, v));
 		}

@@ -8,7 +8,6 @@ import net.darktree.stylishoccult.script.component.RuneExceptionType;
 import net.darktree.stylishoccult.script.element.ItemElement;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.minecraft.item.AutomaticItemPlacementContext;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -31,7 +30,7 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 
 		ItemElement element = script.pull(world, pos).cast(ItemElement.class);
 		BlockPos target = pos.add(x, y, z);
-		boolean placed = false;
+		boolean successful = false;
 
 		if (!target.isWithinDistance(pos, range)) {
 			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT);
@@ -39,17 +38,18 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 
 		ItemStack stack = element.stack;
 
-		if (stack.getCount() > 0 && stack.getItem() instanceof BlockItem blockItem) {
+		if (stack.getCount() > 0) {
 			try {
-				placed = blockItem.place(new AutomaticItemPlacementContext(world, target, Direction.UP, stack, Direction.UP)).isAccepted();
+				AutomaticItemPlacementContext context = new AutomaticItemPlacementContext(world, target, Direction.UP, stack, Direction.UP);
+				successful = stack.useOnBlock(context).isAccepted();
 			} catch (Exception e) {
-				StylishOccult.LOGGER.warn("Failed to place block for unknown reason!", e);
+				StylishOccult.LOGGER.warn("Item usage operation interrupted for reasons unknown!", e);
 			}
 		} else {
 			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_TYPE);
 		}
 
-		Criteria.TRIGGER.trigger(world, pos, this, placed);
+		Criteria.TRIGGER.trigger(world, pos, this, successful);
 	}
 
 }
