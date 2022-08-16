@@ -8,9 +8,10 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class LootManager {
 
@@ -20,12 +21,8 @@ public class LootManager {
 		return new LootTable();
 	}
 
-	public static ArrayList<ItemStack> getEmpty() {
-		return new ArrayList<>();
-	}
-
-	public static ArrayList<ItemStack> getLoot(LootTable table, LootContext context) {
-		return table == null ? getEmpty() : table.getLoot( random, context );
+	public static List<ItemStack> getLoot(LootTable table, LootContext context) {
+		return table == null ? getEmpty() : table.getLoot(random, context);
 	}
 
 	public static List<ItemStack> dispatch(BlockState state, net.minecraft.loot.context.LootContext.Builder builder, Identifier vanilla, LootTable custom) {
@@ -34,8 +31,8 @@ public class LootManager {
 		ServerWorld serverWorld = lootContext.getWorld();
 		net.minecraft.loot.LootTable lootTable = serverWorld.getServer().getLootManager().getTable(vanilla);
 
-		if( lootTable == net.minecraft.loot.LootTable.EMPTY ) {
-			return LootManager.getLoot(custom, getLootContext( state, builder ));
+		if (lootTable == net.minecraft.loot.LootTable.EMPTY) {
+			return LootManager.getLoot(custom, getLootContext(state, builder)).stream().map(ItemStack::copy).collect(Collectors.toList());
 		}else{
 			return serverWorld.getServer().getLootManager().getTable(vanilla).generateLoot(lootContext);
 		}
@@ -51,10 +48,14 @@ public class LootManager {
 				.build();
 	}
 
-	public static ArrayList<ItemStack> getAsArray( ItemStack stack ) {
-		ArrayList<ItemStack> stacks = new ArrayList<>();
-		stacks.add( stack );
-		return stacks;
+	@Deprecated
+	public static List<ItemStack> getEmpty() {
+		return Collections.emptyList();
+	}
+
+	@Deprecated
+	public static List<ItemStack> getAsArray(ItemStack stack) {
+		return Collections.singletonList(stack);
 	}
 
 }

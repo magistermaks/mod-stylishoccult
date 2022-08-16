@@ -10,7 +10,8 @@ next
 - Added Somnum (Sleep) rune - suspend execution
 - Added Twisted Bone Knifes
 - Altar Rituals now require way less blood to perform
-- Removed unused assets
+- Runic tablets can now be destroyed by right-clicking
+- Fixed many bugs
 
 0.9.0 release <2022/08/10>
 - Added Suspicious (Suspectum) rune - harvesting blood

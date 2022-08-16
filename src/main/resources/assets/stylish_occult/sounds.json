@@ -133,5 +133,14 @@
 		"sounds": [
 			"stylish_occult:inspect_1"
 		]
+	},
+	"dispose": {
+		"subtitle": "sound.stylish_occult.dispose",
+		"author": [
+			"https://freesound.org/people/Bertsz/sounds/524312/"
+		],
+		"sounds": [
+			"stylish_occult:dispose_1"
+		]
 	}
 }

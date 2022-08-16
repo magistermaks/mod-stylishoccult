@@ -3,7 +3,7 @@ package net.darktree.stylishoccult.loot.entry;
 import net.darktree.stylishoccult.loot.LootContext;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class GeneratorEntry extends AbstractEntry {
@@ -15,11 +15,11 @@ public class GeneratorEntry extends AbstractEntry {
 	}
 
 	@Override
-	public ArrayList<ItemStack> getLoot(Random random, LootContext context) {
+	public List<ItemStack> getLoot(Random random, LootContext context) {
 		return generator.call(random, context);
 	}
 
 	public interface Generator {
-		ArrayList<ItemStack> call(Random random, LootContext context);
+		List<ItemStack> call(Random random, LootContext context);
 	}
 }

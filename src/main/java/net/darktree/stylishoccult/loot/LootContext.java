@@ -75,11 +75,6 @@ public class LootContext {
 		return EnchantmentHelper.getLevel(enchantment, getTool());
 	}
 
-	public boolean shouldDrop() {
-		PlayerEntity player = getPlayer();
-		return player == null || !player.isCreative();
-	}
-
 	public <T extends BlockEntity> T getBlockEntity( Class<T> clazz ) {
 		if (clazz.isInstance(blockEntity)) {
 			return clazz.cast(blockEntity );

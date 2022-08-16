@@ -6,13 +6,14 @@ import net.minecraft.item.ItemStack;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class LootTable {
 
 	private LootTable context;
 
-	private final ArrayList<AbstractEntry> entries = new ArrayList<>();
+	private final List<AbstractEntry> entries = new ArrayList<>();
 	private int amountMin = 0;
 	private boolean ignoreExplosion = false;
 
@@ -45,8 +46,8 @@ public class LootTable {
 	}
 
 	public LootTable addItem(ItemStack stack, float chance, int min, int max) {
-		if( max > stack.getMaxCount() || min < 0 ) {
-			throw new InvalidParameterException( "Invalid stack size range!" );
+		if (max > stack.getMaxCount() || min < 0) {
+			throw new InvalidParameterException("Invalid stack size range!");
 		}
 
 		entries.add( new ItemEntry( stack, chance, (byte) min, (byte) max ) );
@@ -54,7 +55,7 @@ public class LootTable {
 	}
 
 	public LootTable addBlockItem() {
-		this.addGenerator( (rng, ctx) -> LootManager.getAsArray( ctx.getBlockItem() ) );
+		this.addGenerator((rng, ctx) -> LootManager.getAsArray(ctx.getBlockItem()));
 		return this;
 	}
 
@@ -63,7 +64,7 @@ public class LootTable {
 	}
 
 	public LootTable dropExperience(float chance, int min, int max ) {
-		entries.add( new ExperienceEntry( chance, min, max ) );
+		entries.add(new ExperienceEntry(chance, min, max));
 		return this;
 	}
 
@@ -75,7 +76,7 @@ public class LootTable {
 	}
 
 	public LootTable addGenerator(GeneratorEntry.Generator generator) {
-		GeneratorEntry entry = new GeneratorEntry( generator );
+		GeneratorEntry entry = new GeneratorEntry(generator);
 		entries.add(entry);
 		return this;
 	}
@@ -127,16 +128,11 @@ public class LootTable {
 		return this;
 	}
 
-	private int countItems(ArrayList<ItemStack> stacks) {
-		int c = 0;
-		for (ItemStack stack : stacks) {
-			c += stack.getCount();
-		}
-		return c;
+	private int countItems(List<ItemStack> stacks) {
+		return stacks.stream().mapToInt(ItemStack::getCount).sum();
 	}
 
-	public ArrayList<ItemStack> getLoot(Random random, LootContext context) {
-
+	public List<ItemStack> getLoot(Random random, LootContext context) {
 		if (context.getWorld().isClient) {
 			return LootManager.getEmpty();
 		}
@@ -146,15 +142,15 @@ public class LootTable {
 		}
 
 		if (!ignoreExplosion && context.getExplosionPower() != 0) {
-			if( random.nextFloat() > 1.0f / context.getExplosionPower() ) return LootManager.getEmpty();
+			if(random.nextFloat() > 1.0f / context.getExplosionPower()) return LootManager.getEmpty();
 		}
 
 		int count = 0;
-		ArrayList<ItemStack> itemStacks = new ArrayList<>();
+		List<ItemStack> itemStacks = new ArrayList<>();
 
 		do {
 			for (AbstractEntry entry : entries) {
-				ArrayList<ItemStack> returnedStacks = entry.getLoot(random, context);
+				List<ItemStack> returnedStacks = entry.getLoot(random, context);
 				count += (amountMin > 0) ? countItems(returnedStacks) : 0;
 				itemStacks.addAll(returnedStacks);
 			}

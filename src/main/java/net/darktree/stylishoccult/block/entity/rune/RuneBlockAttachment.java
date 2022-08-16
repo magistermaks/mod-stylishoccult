@@ -8,10 +8,10 @@ public final class RuneBlockAttachment {
 
 	private Script script;
 	private NbtCompound nbt;
-	private final RuneBlockEntity entity;
+	private final Runnable marker;
 
-	RuneBlockAttachment(RuneBlockEntity entity) {
-		this.entity = entity;
+	RuneBlockAttachment(Runnable marker) {
+		this.marker = marker;
 	}
 
 	public Script getScript() {
@@ -20,7 +20,7 @@ public final class RuneBlockAttachment {
 
 	public void setScript(Script script) {
 		this.script = script;
-		entity.markDirty();
+		marker.run();
 	}
 
 	public NbtCompound getNbt() {
@@ -29,7 +29,7 @@ public final class RuneBlockAttachment {
 
 	public void setNbt(NbtCompound nbt) {
 		this.nbt = nbt;
-		entity.markDirty();
+		marker.run();
 	}
 
 	public void clear() {

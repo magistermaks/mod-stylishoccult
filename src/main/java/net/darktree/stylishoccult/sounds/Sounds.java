@@ -24,6 +24,7 @@ public class Sounds {
 	public static SoundEffect CHISEL = SoundEffect.load("chisel", SoundCategory.BLOCKS);
 	public static SoundEffect ACTIVATE = SoundEffect.load("activate", SoundCategory.BLOCKS);
 	public static SoundEffect INSPECT = SoundEffect.load("inspect", SoundCategory.BLOCKS);
+	public static SoundEffect DISPOSE = SoundEffect.load("dispose", SoundCategory.AMBIENT);
 
 	public static void init() {
 		FLESH = new BlockSoundGroup(1, 1,

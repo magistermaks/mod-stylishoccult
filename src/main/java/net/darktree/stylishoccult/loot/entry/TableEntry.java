@@ -6,7 +6,7 @@ import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class TableEntry extends AbstractEntry {
@@ -24,7 +24,7 @@ public class TableEntry extends AbstractEntry {
 	}
 
 	@Override
-	public ArrayList<ItemStack> getLoot(Random random, LootContext context) {
+	public List<ItemStack> getLoot(Random random, LootContext context) {
 		if (RandUtils.getBool(this.chance, random)) {
 			return table.getLoot(random, context);
 		}

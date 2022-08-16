@@ -17,7 +17,7 @@ public class RuneBlockEntity extends SimpleBlockEntity {
 		super(BlockEntities.RUNESTONE, pos, state);
 
 		script = null;
-		attachment = new RuneBlockAttachment(this);
+		attachment = new RuneBlockAttachment(this::markDirty);
 	}
 
 	@Override

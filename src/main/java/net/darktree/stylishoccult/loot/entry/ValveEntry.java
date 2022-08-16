@@ -6,26 +6,26 @@ import net.darktree.stylishoccult.utils.RandUtils;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ValveEntry extends AbstractEntry {
 
-	public static ArrayList<ItemStack> open(ArrayList<ItemStack> arr, Random rng, LootContext ctx) {
+	public static List<ItemStack> open(List<ItemStack> arr, Random rng, LootContext ctx) {
 		return arr;
 	}
 
-	public static ArrayList<ItemStack> singular(ArrayList<ItemStack> arr, Random rng, LootContext ctx) {
-		if( !arr.isEmpty() ){
+	public static List<ItemStack> singular(List<ItemStack> arr, Random rng, LootContext ctx) {
+		if (!arr.isEmpty()){
 			ItemStack stack = arr.get(0);
 			arr.clear();
-			arr.add( stack );
+			arr.add(stack);
 		}
 
 		return arr;
 	}
 
-	public static ArrayList<ItemStack> fortune(ArrayList<ItemStack> arr, Random rng, LootContext ctx) {
+	public static List<ItemStack> fortune(List<ItemStack> arr, Random rng, LootContext ctx) {
 		int level = ctx.toolGetEnchantment(Enchantments.FORTUNE);
 		if( level > 0 ) {
 			for( ItemStack stack : arr ) {
@@ -61,11 +61,11 @@ public class ValveEntry extends AbstractEntry {
 	}
 
 	@Override
-	public ArrayList<ItemStack> getLoot(Random random, LootContext context) {
-		return valve.call( table.getLoot(random, context), random, context );
+	public List<ItemStack> getLoot(Random random, LootContext context) {
+		return valve.call(table.getLoot(random, context), random, context);
 	}
 
 	public interface Valve {
-		ArrayList<ItemStack> call(ArrayList<ItemStack> stacks, Random random, LootContext context);
+		List<ItemStack> call(List<ItemStack> stacks, Random random, LootContext context);
 	}
 }

@@ -5,7 +5,7 @@ import net.darktree.stylishoccult.loot.LootTable;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ConditionEntry extends AbstractEntry {
@@ -36,7 +36,7 @@ public class ConditionEntry extends AbstractEntry {
 	}
 
 	@Override
-	public ArrayList<ItemStack> getLoot(Random random, LootContext context) {
+	public List<ItemStack> getLoot(Random random, LootContext context) {
 		if (condition.call(random, context)) {
 			return this.table.getLoot(random, context);
 		} else {

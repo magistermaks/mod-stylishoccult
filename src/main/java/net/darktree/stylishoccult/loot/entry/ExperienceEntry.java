@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ExperienceEntry extends AbstractEntry {
@@ -35,7 +35,7 @@ public class ExperienceEntry extends AbstractEntry {
 	}
 
 	@Override
-	public ArrayList<ItemStack> getLoot(Random random, LootContext context) {
+	public List<ItemStack> getLoot(Random random, LootContext context) {
 		if (RandUtils.getBool(this.chance, random)) {
 			int size = random.nextInt((amountMax - amountMin) + 1) + amountMin;
 			dropExperience(context.getWorld(), context.getPos(), size);

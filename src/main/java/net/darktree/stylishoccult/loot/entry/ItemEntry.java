@@ -5,7 +5,7 @@ import net.darktree.stylishoccult.loot.LootManager;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ItemEntry extends AbstractEntry {
@@ -23,10 +23,11 @@ public class ItemEntry extends AbstractEntry {
 	}
 
 	@Override
-	public ArrayList<ItemStack> getLoot(Random random, LootContext context) {
+	public List<ItemStack> getLoot(Random random, LootContext context) {
 		if (RandUtils.getBool(this.chance, random)) {
-			this.stack.setCount(random.nextInt( (amountMax - amountMin) + 1 ) + amountMin);
-			return asList(this.stack);
+			ItemStack stack = this.stack.copy();
+			stack.setCount(random.nextInt( (amountMax - amountMin) + 1 ) + amountMin);
+			return asList(stack);
 		}
 
 		return LootManager.getEmpty();
