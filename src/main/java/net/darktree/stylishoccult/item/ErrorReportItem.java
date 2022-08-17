@@ -1,7 +1,10 @@
 package net.darktree.stylishoccult.item;
 
+import net.darktree.stylishoccult.sounds.SoundEffect;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.Utils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.sound.PositionedSoundInstance;
@@ -45,14 +48,19 @@ public class ErrorReportItem extends Item {
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if (world.isClient) {
-			Random random = world.getRandom();
-			float p = 0.9f + (random.nextFloat() - 0.5f) * 0.25f;
-			float v = 0.3f + (random.nextFloat() * 0.1f);
-
-			MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(Sounds.DISPOSE.event, p, v));
+			playLocalSound(world, Sounds.DISPOSE);
 		}
 
 		return TypedActionResult.consume(ItemStack.EMPTY);
+	}
+
+	@Environment(EnvType.CLIENT)
+	private void playLocalSound(World world, SoundEffect effect) {
+		Random random = world.getRandom();
+		float p = 0.9f + (random.nextFloat() - 0.5f) * 0.25f;
+		float v = 0.3f + (random.nextFloat() * 0.1f);
+
+		MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(effect.event, p, v));
 	}
 
 }
