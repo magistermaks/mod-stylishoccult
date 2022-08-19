@@ -1,10 +1,9 @@
 package net.darktree.stylishoccult.item;
 
+import net.darktree.stylishoccult.particles.Particles;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.s2c.play.ParticleS2CPacket;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.PlayerManager;
 import net.minecraft.world.World;
 
 public class ThrownItemEntity extends ItemEntity {
@@ -26,9 +25,7 @@ public class ThrownItemEntity extends ItemEntity {
 			// this entity exists only on the server side, but let's verify it anyway
 			// in case something else caused it to spawn
 			if (age % 2 == 0 && !world.isClient) {
-				PlayerManager manager = world.getServer().getPlayerManager();
-				ParticleS2CPacket packet = new ParticleS2CPacket(ParticleTypes.SMOKE, false, prevX, prevY, prevZ, 0, 0, 0, 0, 1);
-				manager.sendToAround(null, prevX, prevY, prevZ, 32, world.getRegistryKey(), packet);
+				Particles.spawn(world, ParticleTypes.SMOKE, prevX, prevY, prevZ, 1);
 			}
 		}
 	}

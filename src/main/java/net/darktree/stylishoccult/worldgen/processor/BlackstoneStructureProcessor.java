@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.worldgen.processor;
 
 import net.darktree.lootboxes.LootBoxes;
+import net.darktree.stylishoccult.tag.ModTags;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.worldgen.WorldGen;
 import net.minecraft.block.Block;
@@ -18,6 +19,7 @@ public class BlackstoneStructureProcessor extends SimpleStructureProcessor {
 	public BlockState process(Random random, Block block, BlockState state) {
 		if (block == Blocks.RED_CANDLE) return permuteCandle(state, random);
 		if (block == LootBoxes.URN_BLOCK && RandUtils.getBool(25f, random)) return Blocks.AIR.getDefaultState();
+		if (block == Blocks.RED_WOOL) return ModTags.RUNES.getRandom(random).getDefaultState();
 
 		return null;
 	}

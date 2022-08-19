@@ -37,7 +37,7 @@
 
 	"item.stylish_occult.flesh": "Ciało",
 	"item.stylish_occult.lava_heart": "Magmowa kula",
-	"item.stylish_occult.blood_bottle": "Butelka z zepsutą krwią",
+	"item.stylish_occult.blood_bottle": "Butelka z krwią",
 	"item.stylish_occult.blood_bucket": "Wiadro krwią",
 	"item.stylish_occult.error_tablet": "Runiczna płyta informacyjna",
 	"item.stylish_occult.veins": "Żyły",
@@ -60,6 +60,9 @@
 	"item.stylish_occult.twisted_leggings": "Skręcone leginsy",
 	"item.stylish_occult.twisted_boots": "Skręcone buty",
 	"item.stylish_occult.staff": "Berło Krwi",
+	"item.stylish_occult.lava_demon_head": "Magmowy demon (głowa)",
+	"item.stylish_occult.lava_demon_emitter": "Magmowy demon (emitter)",
+	"item.stylish_occult.lava_demon_body": "Magmowy demon (ciało)",
 
 	"tooltip.stylish_occult.candle": "Długość: %s",
 	"tooltip.stylish_occult.rune": "Runa: %s",
@@ -69,6 +72,7 @@
 	"tooltip.stylish_occult.error_tablet.error.invalid_number": "Zła składnia liczby!",
 	"tooltip.stylish_occult.error_tablet.error.number_too_long": "Zbyt długa liczba!",
 	"tooltip.stylish_occult.error_tablet.error.invalid_argument": "Nieprawidłowy argument!",
+	"tooltip.stylish_occult.error_tablet.error.out_of_range": "Poza zasięgiem!",
 	"tooltip.stylish_occult.error_tablet.error.invalid_argument_type": "Nieprawidłowy typ argument!",
 	"tooltip.stylish_occult.error_tablet.error.invalid_argument_count": "Nieprawidłowa liczba argumentów!",
 	"tooltip.stylish_occult.error_tablet.error.nothing_to_return": "Brak danych do zwrócenia!",
@@ -81,6 +85,8 @@
 	"tooltip.stylish_occult.blood_amount": "Ilość: %smb",
 	"tooltip.stylish_occult.debug_unavailable": "Brak informacji do wyświetlenia!",
 	"tooltip.stylish_occult.dagger": "Użyj na przeklętym kotle aby złożyć ofiare",
+	"tooltip.stylish_occult.waila_cauldron_amount": "%s kropli",
+	"tooltip.stylish_occult.lava_demon_item": "Część magmowego demona",
 
 	"entity.stylish_occult.lava_spark": "Iskra",
 	"entity.stylish_occult.spore": "Zarodnik",

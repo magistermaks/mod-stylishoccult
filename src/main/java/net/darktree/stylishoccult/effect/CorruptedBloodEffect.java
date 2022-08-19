@@ -20,13 +20,13 @@ public class CorruptedBloodEffect extends SimpleStatusEffect {
 
 	@Override
 	public void onUpdate(LivingEntity entity, int amplifier) {
-		if( entity.world.isClient ) {
+		if (entity.world.isClient) {
 			return;
 		}
 
-		int a = Math.abs( amplifier );
+		int a = Math.abs(amplifier);
 
-		if( entity.world.random.nextInt(20) == 0 ) {
+		if (entity.world.random.nextInt(20) == 0) {
 			BlockPos pos = entity.getBlockPos();
 			float r = 4 + a / 2.0f;
 
@@ -44,31 +44,27 @@ public class CorruptedBloodEffect extends SimpleStatusEffect {
 			int time = target * 160;
 
 			for (LivingEntity livingEntity : list) {
-				applyToEntity( livingEntity, target, time );
+				applyToEntity(livingEntity, target, time);
 			}
-
 		}
 
 		StatusEffectInstanceAccessor accessor = (StatusEffectInstanceAccessor) entity.getStatusEffect(this);
-		if( accessor != null ) {
-			accessor.stylish_setStoredParticlesFlag( amplifier > 0 );
+		if (accessor != null) {
+			accessor.stylish_setStoredParticlesFlag(amplifier > 0);
 		}
 
-		if( amplifier > 0 && entity.world.getTime() % 4 == 0 ) {
-			if( entity.getHealth() > a / 3.0f || a >= 6 ) {
+		if (amplifier > 0 && entity.world.getTime() % 4 == 0) {
+			if(entity.getHealth() > a / 3.0f || a >= 6) {
 				entity.damage(DamageSource.WITHER, a / 4.0f);
 			}
 		}
 	}
 
 	private void applyToEntity(@NotNull LivingEntity entity, int amplifier, int bonusTime ) {
-		if( entity.world.random.nextInt(10) == 0 ) {
-			if( !entity.hasStatusEffect( this ) || (entity.world.random.nextInt( 20 ) == 0) ) {
-				entity.addStatusEffect(new StatusEffectInstance(
-						this,
-						800 + entity.world.random.nextInt(300) + bonusTime,
-						amplifier)
-				);
+		if (entity.world.random.nextInt(10) == 0) {
+			if (!entity.hasStatusEffect(this) || (entity.world.random.nextInt(20) == 0)) {
+				int time = 800 + entity.world.random.nextInt(300) + bonusTime;
+				entity.addStatusEffect(new StatusEffectInstance(this, time, amplifier));
 			}
 		}
 	}

@@ -29,24 +29,16 @@ public class JoinRuneBlock extends DirectionalRuneBlock {
 	}
 
 	@Override
-	public Direction[] getDirections(World world, BlockPos pos, Script script) {
-		return getEntity(world, pos).getAttachment().getScript() != null ? Directions.NONE : Directions.of(getFacing(world, pos));
+	public Direction[] getDirections(World world, BlockPos pos, BlockState state, Script script, RuneBlockAttachment attachment) {
+		return attachment.getScript() != null ? Directions.NONE : Directions.of(getFacing(state));
 	}
 
 	@Override
-	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		if (state.isOf(newState.getBlock())) {
-			return;
-		}
-
-		RuneBlockAttachment attachment = getEntity(world, pos).getAttachment();
-
+	protected void onRuneBroken(World world, BlockPos pos, RuneBlockAttachment attachment) {
 		if (attachment.getScript() != null) {
 			attachment.getScript().stack.reset(element -> element.drop(world, pos));
 			attachment.clear();
 		}
-
-		super.onStateReplaced(state, world, pos, newState, moved);
 	}
 
 }

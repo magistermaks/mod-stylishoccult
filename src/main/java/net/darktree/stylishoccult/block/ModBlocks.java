@@ -130,6 +130,11 @@ public class ModBlocks {
 
 	public static void init() {
 		StylishOccult.LOGGER.info("Loaded " + RUNESTONES.size() + " runes!");
+
+		// cauldron stuff
+		FluidStorage.SIDED.registerForBlocks((world, pos, state, be, context) -> ((OccultCauldronBlockEntity) Objects.requireNonNull(be)).getStorage(), OCCULT_CAULDRON);
+		CauldronFluidContent.registerCauldron(BLOOD_CAULDRON, ModFluids.STILL_BLOOD, FluidConstants.BOTTLE, LeveledCauldronBlock.LEVEL);
+		BloodCauldronBehaviour.init();
 	}
 
 	@Environment(EnvType.CLIENT)
@@ -148,16 +153,11 @@ public class ModBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), runestones);
 
 		ColorProviderRegistry.BLOCK.register(runeTintProvider, runestones);
+		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> 0x931b15, BLOOD_CAULDRON, OCCULT_CAULDRON);
 
 		// fluids
 		FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_BLOOD, ModFluids.FLOWING_BLOOD, SimpleFluidRenderHandler.coloredWater(0x931b15));
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), ModFluids.STILL_BLOOD, ModFluids.FLOWING_BLOOD);
-
-		// cauldron stuff
-		FluidStorage.SIDED.registerForBlocks((world, pos, state, be, context) -> ((OccultCauldronBlockEntity) Objects.requireNonNull(be)).getStorage(), OCCULT_CAULDRON);
-		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> 0x931b15, BLOOD_CAULDRON, OCCULT_CAULDRON);
-		CauldronFluidContent.registerCauldron(BLOOD_CAULDRON, ModFluids.STILL_BLOOD, FluidConstants.BOTTLE, LeveledCauldronBlock.LEVEL);
-		BloodCauldronBehaviour.init();
 	}
 
 }

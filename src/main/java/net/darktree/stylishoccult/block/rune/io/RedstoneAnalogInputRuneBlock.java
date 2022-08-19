@@ -14,7 +14,7 @@ public class RedstoneAnalogInputRuneBlock extends InputRuneBlock {
 
 	@Override
 	public void apply(Script script, World world, BlockPos pos) {
-		script.stack.push( new NumericElement(world.getReceivedRedstonePower(pos)) );
+		script.stack.push(new NumericElement(world.getReceivedRedstonePower(pos)));
 	}
 
 }

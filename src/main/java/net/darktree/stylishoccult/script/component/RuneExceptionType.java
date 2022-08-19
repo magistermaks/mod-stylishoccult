@@ -18,6 +18,11 @@ public enum RuneExceptionType {
 	INVALID_ARGUMENT("invalid_argument"),
 
 	/**
+	 * Operation was requested for a location outside the supported area
+	 */
+	OUT_OF_RANGE("out_of_range"),
+
+	/**
 	 * Expected a different argument type
 	 */
 	INVALID_ARGUMENT_TYPE("invalid_argument_type"),
@@ -54,7 +59,7 @@ public enum RuneExceptionType {
 
 	private final String name;
 
-	RuneExceptionType( String name ) {
+	RuneExceptionType(String name) {
 		this.name = name;
 	}
 

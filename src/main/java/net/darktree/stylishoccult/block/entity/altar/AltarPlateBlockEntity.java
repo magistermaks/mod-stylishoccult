@@ -8,6 +8,7 @@ import net.darktree.stylishoccult.data.json.AltarRitual;
 import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.item.ThrownItemEntity;
 import net.darktree.stylishoccult.network.Network;
+import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.script.element.ItemElement;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.SimpleBlockEntity;
@@ -22,7 +23,6 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.network.packet.s2c.play.ParticleS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -163,7 +163,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		boolean next = state.tick(active);
 
 		if (active) {
-			world.getServer().getPlayerManager().sendToAround(null, pos.getX() + 0.5, pos.getY() + 0.1, pos.getZ() + 0.5, 128, world.getRegistryKey(), new ParticleS2CPacket(ParticleTypes.SMOKE, false, this.pos.getX() + 0.45, this.pos.getY() + 0.1, this.pos.getZ() + 0.45, 0.1f, 0, 0.1f, 0.01f, 1));
+			Particles.spawn(world, ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.1, pos.getZ() + 0.5, 1);
 
 			if (next) {
 

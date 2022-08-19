@@ -63,14 +63,14 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
 		setDefaultState(getDefaultState().with(FACING, Direction.UP).with(ACTIVE, false));
 	}
 
-	public BlockState getStateToFit( World world, BlockPos pos ) {
+	public BlockState getStateToFit(World world, BlockPos pos, BlockState fallback) {
 		for (Direction direction : Directions.ALL) {
 			if (world.getBlockState(pos.offset(direction)).getBlock() instanceof FullFleshBlock) {
 				return getDefaultState().with(FACING, direction.getOpposite());
 			}
 		}
 
-		throw new RuntimeException("Unable to fit the block!");
+		return fallback;
 	}
 
 	@Override
@@ -116,18 +116,13 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
 
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-
 		Direction facing = ctx.getPlacementDirections()[0];
 
 		if (ctx.getWorld().getBlockState(ctx.getBlockPos().offset(facing)).getBlock() instanceof FullFleshBlock) {
 			return getDefaultState().with(FACING, facing.getOpposite());
 		}
 
-		try {
-			return getStateToFit(ctx.getWorld(), ctx.getBlockPos());
-		} catch (RuntimeException ignored) {
-			return null;
-		}
+		return getStateToFit(ctx.getWorld(), ctx.getBlockPos(), null);
 	}
 
 	@Override

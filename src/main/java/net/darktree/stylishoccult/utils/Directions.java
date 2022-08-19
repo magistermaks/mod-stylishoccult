@@ -11,6 +11,8 @@ public class Directions {
 
 	private static final ImmutableMap<Direction, Direction[]> DIRECT = bake(direction -> new Direction[] {direction});
 	private static final ImmutableMap<Direction, Direction[]> OPPOSITES = bake(direction -> new Direction[] {direction, direction.getOpposite()});
+	public static final Direction[] ALL_EXCEPT_UP = new Direction[] {Direction.DOWN, Direction.EAST, Direction.WEST, Direction.SOUTH, Direction.NORTH};
+	public static final Direction[] HORIZONTAL = new Direction[] {Direction.EAST, Direction.WEST, Direction.SOUTH, Direction.NORTH};
 	public static final Direction[] NONE = new Direction[] {};
 	public static final Direction[] ALL = Direction.values();
 

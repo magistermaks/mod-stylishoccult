@@ -135,7 +135,7 @@ public class CraftRuneBlock extends TransferRuneBlock {
 			for (SlotSwitch slot : SLOTS) {
 				float dist = slot.get(ray, direction);
 
-				if(dist < distance) {
+				if (dist < distance) {
 					distance = dist;
 					selected = slot;
 				}

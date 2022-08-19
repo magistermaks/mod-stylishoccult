@@ -21,7 +21,7 @@ public abstract class SimpleStatusEffect extends StatusEffect {
 	 */
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		onUpdate( entity, amplifier );
+		onUpdate(entity, amplifier);
 	}
 
 	/**
@@ -29,7 +29,7 @@ public abstract class SimpleStatusEffect extends StatusEffect {
 	 */
 	@Override
 	public void applyInstantEffect(@Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
-		onUpdate( target, amplifier );
+		onUpdate(target, amplifier);
 	}
 
 	/**

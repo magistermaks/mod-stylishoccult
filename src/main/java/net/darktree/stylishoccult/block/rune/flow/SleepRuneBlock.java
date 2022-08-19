@@ -35,7 +35,7 @@ public class SleepRuneBlock extends TimedRuneBlock {
 	}
 
 	@Override
-	public Direction[] getDirections(World world, BlockPos pos, Script script) {
+	public Direction[] getDirections(World world, BlockPos pos, BlockState state, Script script, RuneBlockAttachment attachment) {
 		return Directions.NONE;
 	}
 
@@ -52,7 +52,7 @@ public class SleepRuneBlock extends TimedRuneBlock {
 	protected void onTimeoutEnd(World world, BlockPos pos) {
 		RuneBlockAttachment attachment = getEntity(world, pos).getAttachment();
 		Script script = attachment.getScript().drops(true);
-		propagateTo(world, pos, script, Directions.of(script.direction));
+		propagateTo(world, pos, script, Directions.of(script.direction), null);
 		attachment.clear();
 	}
 
@@ -65,30 +65,22 @@ public class SleepRuneBlock extends TimedRuneBlock {
 
 				if (!world.getBlockState(target).isOpaqueFullCube(world, target)){
 					Direction.Axis axis = direction.getAxis();
-					double e = axis == Direction.Axis.X ? 0.5 + 0.5625 * (double) direction.getOffsetX() : (double) random.nextFloat();
-					double f = axis == Direction.Axis.Y ? 0.5 + 0.5625 * (double) direction.getOffsetY() : (double) random.nextFloat();
-					double g = axis == Direction.Axis.Z ? 0.5 + 0.5625 * (double) direction.getOffsetZ() : (double) random.nextFloat();
+					double x = axis == Direction.Axis.X ? 0.5 + 0.5625 * direction.getOffsetX() : random.nextFloat();
+					double y = axis == Direction.Axis.Y ? 0.5 + 0.5625 * direction.getOffsetY() : random.nextFloat();
+					double z = axis == Direction.Axis.Z ? 0.5 + 0.5625 * direction.getOffsetZ() : random.nextFloat();
 
-					world.addParticle(DustParticleEffect.DEFAULT, (double) pos.getX() + e, (double) pos.getY() + f, (double) pos.getZ() + g, 0.0, 0.0, 0.0);
+					world.addParticle(DustParticleEffect.DEFAULT, pos.getX() + x, pos.getY() + y, pos.getZ() + z, 0, 0, 0);
 				}
 			}
 		}
 	}
 
 	@Override
-	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		if (state.isOf(newState.getBlock())) {
-			return;
-		}
-
-		RuneBlockAttachment attachment = getEntity(world, pos).getAttachment();
-
+	protected void onRuneBroken(World world, BlockPos pos, RuneBlockAttachment attachment) {
 		if (attachment.getScript() != null) {
 			attachment.getScript().drops(true).reset(world, pos);
 			attachment.clear();
 		}
-
-		super.onStateReplaced(state, world, pos, newState, moved);
 	}
 
 }

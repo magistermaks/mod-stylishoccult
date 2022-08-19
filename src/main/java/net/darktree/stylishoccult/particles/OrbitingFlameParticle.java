@@ -42,8 +42,8 @@ public class OrbitingFlameParticle extends AnimatedParticle {
 
 	@Override
 	public float getSize(float tickDelta) {
-		float g = ((float)this.age + tickDelta);
-		float s = ( (float)Math.sin( g/4 + this.velocityZ ) + 1 ) / (4 + (float) age/32);
+		float g = ((float) this.age + tickDelta);
+		float s = ((float) Math.sin(g/4 + this.velocityZ) + 1) / (4 + (float) age / 32);
 
 		float f = (g / ((float)this.maxAge + (float) this.velocityZ)) + s;
 		return this.scale * (1.0F - f * f * 0.3F);
@@ -64,9 +64,9 @@ public class OrbitingFlameParticle extends AnimatedParticle {
 	}
 
 	private void updatePosition() {
-		this.x = origin.getX() + radius * Math.cos( rad );
-		this.y = origin.getY() + Math.sin( bop ) / 3;
-		this.z = origin.getZ() + radius * Math.sin( rad );
+		this.x = origin.getX() + radius * Math.cos(rad);
+		this.y = origin.getY() + Math.sin(bop) / 3;
+		this.z = origin.getZ() + radius * Math.sin(rad);
 	}
 
 	@Environment(EnvType.CLIENT)

@@ -26,9 +26,10 @@ public class RedstoneEntryRuneBlock extends EntryRuneBlock {
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		boolean power = world.isReceivingRedstonePower(pos);
 
-		if( state.get(POWERED) != power ) {
-			world.setBlockState( pos, state.with(POWERED, power) );
-			if( power ) {
+		if (state.get(POWERED) != power) {
+			world.setBlockState(pos, state.with(POWERED, power));
+
+			if (power) {
 				emit(world, pos, null);
 			}
 		}

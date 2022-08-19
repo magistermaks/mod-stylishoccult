@@ -44,7 +44,7 @@ public class ItemElement extends StackElement {
 
 	@Override
 	public StackElement copy() {
-		throw RuneException.of(RuneExceptionType.UNMET_EQUIVALENCY);
+  		throw RuneException.of(RuneExceptionType.UNMET_EQUIVALENCY);
 	}
 
 	@Override

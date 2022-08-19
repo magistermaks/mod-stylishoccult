@@ -33,7 +33,7 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 		boolean successful = false;
 
 		if (!target.isWithinDistance(pos, range)) {
-			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT);
+			throw RuneException.of(RuneExceptionType.OUT_OF_RANGE);
 		}
 
 		ItemStack stack = element.stack;

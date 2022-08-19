@@ -138,8 +138,8 @@ public class OccultHelper {
 				}
 
 				if (type == 3 && RandUtils.getBool(55.6f, random)) {
-					if( BlockUtils.countInArea(world, pos, VentBlock.class, 5) == 0 ) {
-						return ((VentBlock) ModBlocks.SPORE_VENT).getStateToFit(world, pos);
+					if (BlockUtils.countInArea(world, pos, VentBlock.class, 5) == 0) {
+						return ((VentBlock) ModBlocks.SPORE_VENT).getStateToFit(world, pos, Blocks.AIR.getDefaultState());
 					}
 				}
 

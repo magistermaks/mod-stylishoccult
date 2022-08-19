@@ -4,6 +4,7 @@ import net.darktree.interference.LootInjector;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.fluid.ModFluids;
+import net.darktree.stylishoccult.block.property.LavaDemonPart;
 import net.darktree.stylishoccult.block.rune.RuneBlock;
 import net.darktree.stylishoccult.entity.ModEntities;
 import net.darktree.stylishoccult.item.client.OccultCauldronItemRenderer;
@@ -57,6 +58,9 @@ public class ModItems {
 	public static final Item TWISTED_LEGGINGS = RegUtil.item("twisted_leggings", new ArmorItem(TwistedBoneArmorMaterial.INSTANCE, EquipmentSlot.LEGS, new Item.Settings().group(ItemGroup.COMBAT)));
 	public static final Item TWISTED_BOOTS = RegUtil.item("twisted_boots", new ArmorItem(TwistedBoneArmorMaterial.INSTANCE, EquipmentSlot.FEET, new Item.Settings().group(ItemGroup.COMBAT)));
 
+	public static final Item LAVA_DEMON_HEAD = RegUtil.item("lava_demon_head", new LavaDemonItem(LavaDemonPart.HEAD, Groups.STYLISH_OCCULT));
+	public static final Item LAVA_DEMON_EMITTER = RegUtil.item("lava_demon_emitter", new LavaDemonItem(LavaDemonPart.EMITTER, Groups.STYLISH_OCCULT));
+	public static final Item LAVA_DEMON_BODY = RegUtil.item("lava_demon_body", new LavaDemonItem(LavaDemonPart.BODY, Groups.STYLISH_OCCULT));
 	public static final Item LAVA_STONE = RegUtil.item("lava_stone", ModBlocks.LAVA_STONE, Groups.STYLISH_OCCULT);
 	public static final Item LAVA_HEART = RegUtil.item("lava_heart", new Item.Settings().group(Groups.STYLISH_OCCULT).rarity(Rarity.UNCOMMON).fireproof());
 	public static final Item LAVA_SHARD = RegUtil.item("lava_shard", new Item.Settings().group(Groups.STYLISH_OCCULT).rarity(Rarity.UNCOMMON).fireproof());

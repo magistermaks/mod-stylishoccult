@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.rune.trigger;
 
+import net.darktree.stylishoccult.block.entity.rune.RuneBlockAttachment;
 import net.darktree.stylishoccult.block.rune.TimedRuneBlock;
 import net.darktree.stylishoccult.script.component.RuneType;
 import net.darktree.stylishoccult.script.engine.Script;
@@ -27,7 +28,7 @@ public class ClockRuneBlock extends TimedRuneBlock {
 	}
 
 	@Override
-	public Direction[] getDirections(World world, BlockPos pos, Script script) {
+	public Direction[] getDirections(World world, BlockPos pos, BlockState state, Script script, RuneBlockAttachment attachment) {
 		return Directions.ALL;
 	}
 
@@ -41,7 +42,7 @@ public class ClockRuneBlock extends TimedRuneBlock {
 		BlockState state = world.getBlockState(pos);
 
 		if (super.canAcceptSignal(state, null)) {
-			execute(world, pos, state, new Script());
+			execute(world, pos, state, new Script(), null);
 		}
 	}
 

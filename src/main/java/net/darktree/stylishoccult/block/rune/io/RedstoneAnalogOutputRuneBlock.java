@@ -38,7 +38,7 @@ public class RedstoneAnalogOutputRuneBlock extends ActorRuneBlock {
 
 	@Override
 	protected void onTriggered(Script script, World world, BlockPos pos, BlockState state) {
-		world.setBlockState(pos, world.getBlockState(pos).with(POWER, toPowerLevel(script.pull(world, pos).value())));
+		world.setBlockState(pos, state.with(POWER, toPowerLevel(script.pull(world, pos).value())));
 	}
 
 	private int toPowerLevel(double value) {

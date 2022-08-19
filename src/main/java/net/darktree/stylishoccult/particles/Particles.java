@@ -7,8 +7,13 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.WaterSplashParticle;
+import net.minecraft.network.packet.s2c.play.ParticleS2CPacket;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.PlayerManager;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 
 public class Particles {
 
@@ -47,6 +52,19 @@ public class Particles {
 	@Environment(EnvType.CLIENT)
 	private static void registerFactory(DefaultParticleType type, ParticleFactoryRegistry.PendingParticleFactory<DefaultParticleType> factory) {
 		ParticleFactoryRegistry.getInstance().register(type, factory);
+	}
+
+	/**
+	 * Helper for spawning particles on the server-side
+	 */
+	public static void spawn(World world, ParticleEffect particle, double x, double y, double z, int count) {
+		MinecraftServer server = world.getServer();
+
+		if (server != null) {
+			PlayerManager manager = server.getPlayerManager();
+			ParticleS2CPacket packet = new ParticleS2CPacket(particle, false, x, y, z, 0, 0, 0, 0, count);
+			manager.sendToAround(null, x, y, z, 32, world.getRegistryKey(), packet);
+		}
 	}
 
 }

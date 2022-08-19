@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.block.rune;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.block.entity.rune.RuneBlockAttachment;
 import net.darktree.stylishoccult.block.entity.rune.RuneBlockEntity;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
@@ -79,11 +80,12 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 
 		try {
 			if (cooldown != 0) {
-				world.setBlockState(pos, state.with(COOLDOWN, cooldown - 1));
+				state = state.with(COOLDOWN, cooldown - 1);
+				world.setBlockState(pos, state);
 				world.getBlockTickScheduler().schedule(pos, this, getDelayLength());
 
 				if (cooldown == 3) {
-					executeStoredScript(world, pos);
+					executeStoredScript(world, pos, state);
 				}
 			} else {
 				onDelayEnd(world, pos);
@@ -93,55 +95,84 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 		}
 	}
 
-	private void executeStoredScript(World world, BlockPos pos) {
+	@Override
+	public final void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+		if (state.isOf(newState.getBlock())) {
+			return;
+		}
+
+		RuneBlockEntity entity = getEntity(world, pos);
+		Script script = entity.getScript();
+
+		if (script != null) {
+			StylishOccult.LOGGER.info("Rune was destroyed before the stored script was executed");
+			script.reset(world, pos);
+		}
+
+		onRuneBroken(world, pos, entity.getAttachment());
+		super.onStateReplaced(state, world, pos, newState, moved);
+	}
+
+	private void executeStoredScript(World world, BlockPos pos, BlockState state) {
 		RuneBlockEntity entity = getEntity(world, pos);
 
 		if (entity.hasScript()) {
 			Script script = entity.getScript();
 			script.apply(this, world, pos);
-			propagateTo(world, pos, script, getDirections(world, pos, script));
 
+			Direction[] directions = getDirections(world, pos, state, script, entity.getAttachment());
+			propagateTo(world, pos, script, directions, entity.getDirection());
+
+			// clear has to be after propagateTo as that method can throw runic exceptions
+			// and those need to be handled in scheduledTick
 			entity.clear();
 		}
 	}
 
-	protected final void propagateTo(World world, BlockPos pos, Script script, Direction[] directions) {
+	protected final void propagateTo(World world, BlockPos pos, Script script, Direction[] directions, @Nullable Direction except) {
 		boolean used = false;
 
 		for (Direction direction : directions) {
+
+			if (direction == except) {
+				continue;
+			}
 
 			BlockPos target = pos.offset(direction);
 			BlockState state = world.getBlockState(target);
 
 			if (state.getBlock() instanceof RuneBlock rune) {
-				if (rune.canAcceptSignal(state, direction.getOpposite())) {
+				Direction from = direction.getOpposite();
+
+				if (rune.canAcceptSignal(state, from)) {
 					rune.onSignalAccepted(world, pos);
-					rune.execute(world, target, state, used ? script.copyFor(direction) : script.with(direction));
+					rune.execute(world, target, state, used ? script.copyFor(direction) : script.with(direction), from);
 					used = true;
 				}
 			}
-
 		}
 
-		if(!used) {
+		// if the script wasn't propagated anywhere dump the contents
+		if (!used) {
 			script.reset(world, pos);
 		}
 	}
 
-	protected final void execute(World world, BlockPos pos, BlockState state, Script script) {
+	protected final void execute(World world, BlockPos pos, BlockState state, Script script, @Nullable Direction from) {
 		RuneBlockEntity entity = getEntity(world, pos);
 
-		entity.store(script);
-		world.setBlockState(pos, state.with(COOLDOWN, 3));
+		entity.store(script, from);
+		state = state.with(COOLDOWN, 3);
+		world.setBlockState(pos, state);
 		onTriggered(script, world, pos, state);
-		world.getBlockTickScheduler().schedule( pos, state.getBlock(), getDelayLength() );
+		world.getBlockTickScheduler().schedule(pos, this, getDelayLength());
 	}
 
 	protected final RuneBlockEntity getEntity(World world, BlockPos pos) {
 		return BlockUtils.get(RuneBlockEntity.class, world, pos);
 	}
 
-	protected int getDelayLength() {
+	protected final int getDelayLength() {
 		return 1;
 	}
 
@@ -155,10 +186,16 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 		};
 	}
 
-	public Direction[] getDirections(World world, BlockPos pos, Script script) {
+	/**
+	 * Returns the directions in which the output signal will be propagated, by default keeps the current one
+	 */
+	public Direction[] getDirections(World world, BlockPos pos, BlockState state, Script script, RuneBlockAttachment attachment) {
 		return Directions.of(script.direction);
 	}
 
+	/**
+	 * Used to determine if a rune can be triggered or not
+	 */
 	public boolean canAcceptSignal(BlockState state, @Nullable Direction from) {
 		return state.get(COOLDOWN) == 0 && !state.get(FROZEN);
 	}
@@ -195,6 +232,13 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 	 * Works like {@link RuneBlock#onTriggered} but is not triggered if the rune activated itself
 	 */
 	protected void onSignalAccepted(World world, BlockPos pos) {
+
+	}
+
+	/**
+	 * Called when the block is destroyed and stacks should be dropped
+	 */
+	protected void onRuneBroken(World world, BlockPos pos, RuneBlockAttachment attachment) {
 
 	}
 

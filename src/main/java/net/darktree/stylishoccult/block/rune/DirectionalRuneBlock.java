@@ -9,9 +9,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class DirectionalRuneBlock extends RuneBlock {
@@ -39,9 +37,7 @@ public abstract class DirectionalRuneBlock extends RuneBlock {
 		}
 	}
 
-	protected Direction getFacing(World world, BlockPos pos) {
-		BlockState state = world.getBlockState(pos);
-
+	protected final Direction getFacing(BlockState state) {
 		if (state.getBlock() instanceof DirectionalRuneBlock) {
 			return state.get(DirectionalRuneBlock.FACING);
 		}

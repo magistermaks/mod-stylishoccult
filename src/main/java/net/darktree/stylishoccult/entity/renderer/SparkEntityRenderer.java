@@ -26,7 +26,7 @@ public class SparkEntityRenderer extends EntityRenderer<SparkEntity> {
 
 	@Override
 	public void render(SparkEntity entity, float f, float g, MatrixStack matrices, VertexConsumerProvider vertexConsumerProvider, int i) {
-		float w = (float) Math.sin( entity.age / 10.0f ) * 0.1f + 0.4f;
+		float w = (float) Math.sin(entity.age / 10.0f) * 0.1f + 0.4f;
 
 		matrices.push();
 		matrices.scale(w, w, w);

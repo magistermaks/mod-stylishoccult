@@ -5,46 +5,31 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.StringIdentifiable;
 
 public enum LavaDemonMaterial implements StringIdentifiable {
-	STONE("stone", Blocks.STONE),
-	COAL("coal", Blocks.COAL_ORE),
-	IRON("iron", Blocks.IRON_ORE),
-	LAPIS("lapis", Blocks.LAPIS_ORE),
-	REDSTONE("redstone", Blocks.REDSTONE_ORE),
-	GOLD("gold", Blocks.GOLD_ORE),
-	EMERALD("emerald", Blocks.EMERALD_ORE),
-	DIAMOND("diamond", Blocks.DIAMOND_ORE);
+	STONE("stone", Blocks.STONE, 1),
+	COAL("coal", Blocks.COAL_ORE, 2),
+	IRON("iron", Blocks.IRON_ORE, 3),
+	LAPIS("lapis", Blocks.LAPIS_ORE, 4),
+	REDSTONE("redstone", Blocks.REDSTONE_ORE, 4),
+	GOLD("gold", Blocks.GOLD_ORE, 7),
+	EMERALD("emerald", Blocks.EMERALD_ORE, 8),
+	DIAMOND("diamond", Blocks.DIAMOND_ORE, 10);
 
-	public int getLevel() {
-		return switch (this) {
-			case STONE -> 1;
-			case COAL -> 2;
-			case IRON -> 3;
-			case LAPIS -> 4;
-			case REDSTONE -> 5;
-			case GOLD -> 6;
-			case EMERALD -> 7;
-			default -> 8;
-		};
-	}
+	public static LavaDemonMaterial getFrom(Block block) {
+		for (LavaDemonMaterial material : values()) {
+			if (material.block == block) return material;
+		}
 
-	public static LavaDemonMaterial getFrom( Block block ) {
-		if( block == Blocks.STONE ) return STONE;
-		if( block == Blocks.COAL_ORE ) return COAL;
-		if( block == Blocks.IRON_ORE ) return IRON;
-		if( block == Blocks.LAPIS_ORE ) return LAPIS;
-		if( block == Blocks.REDSTONE_ORE ) return REDSTONE;
-		if( block == Blocks.GOLD_ORE ) return GOLD;
-		if( block == Blocks.EMERALD_ORE ) return EMERALD;
-		if( block == Blocks.DIAMOND_ORE ) return DIAMOND;
 		return null;
 	}
 
 	private final String name;
 	private final Block block;
+	private final int level;
 
-	LavaDemonMaterial(String name, Block block) {
+	LavaDemonMaterial(String name, Block block, int level) {
 		this.name = name;
 		this.block = block;
+		this.level = level;
 	}
 
 	@Override
@@ -60,4 +45,9 @@ public enum LavaDemonMaterial implements StringIdentifiable {
 	public Block asBlock() {
 		return this.block;
 	}
+
+	public int getLevel() {
+		return level;
+	}
+
 }

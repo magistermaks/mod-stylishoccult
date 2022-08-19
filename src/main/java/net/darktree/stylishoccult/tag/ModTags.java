@@ -36,6 +36,9 @@ public class ModTags {
 	// list of blocks that nether grass and ferns can be planted on (excluding the common soils like dirt, nylium, etc.)
 	public static Tag<Block> NETHER_GRASS_SOIL = TagFactory.BLOCK.create(ModIdentifier.of("nether_grass_soil"));
 
+	// list of blacks that will be used to generate runic walls, except the runes, those are picked separately - from the runes block tag
+	public static Tag<Block> RUNIC_WALL = TagFactory.BLOCK.create(ModIdentifier.of("runic_wall"));
+
 	public static void init() {
 		// noop
 	}

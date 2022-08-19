@@ -31,9 +31,10 @@ public class ClientInitializer implements ClientModInitializer {
 		MessageInjector.injectPlain("By the Mad Arab, Abdul Alhazred!");
 		MessageInjector.injectPlain("The wheels of progress frozen motionless...");
 		MessageInjector.injectPlain("Power of The Mixin Subsystem compels you!");
-		MessageInjector.injectPlain("With strange aeons even death may die.");
+		MessageInjector.injectPlain("With strange aeons even death may die!");
 		MessageInjector.injectPlain("SplashScreenOutOfBoundsException!");
 		MessageInjector.injectPlain("Now with two poems!");
+		MessageInjector.injectPlain("You Poor Unfortunate Soul!");
 
 		StylishOccult.LOGGER.info("Some sound effects for Stylish Occult are sourced from https://www.zapsplat.com");
 	}

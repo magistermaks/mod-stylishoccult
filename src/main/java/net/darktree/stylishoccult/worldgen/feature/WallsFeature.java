@@ -3,13 +3,11 @@ package net.darktree.stylishoccult.worldgen.feature;
 import com.mojang.serialization.Codec;
 import net.darktree.lootboxes.LootBoxes;
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.rune.RuneBlock;
 import net.darktree.stylishoccult.tag.ModTags;
+import net.darktree.stylishoccult.utils.Directions;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleFeature;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CandleBlock;
 import net.minecraft.util.math.BlockPos;
@@ -28,18 +26,6 @@ import java.util.Random;
 
 public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 
-	private static final Direction[] NEIGHBORS = new Direction[] {
-			Direction.EAST, Direction.WEST, Direction.NORTH, Direction.SOUTH
-	};
-
-	// TODO make this a block tag
-	private static final BlockState[] BLOCKS = {
-			ModBlocks.RUNESTONE.getDefaultState(),
-			Blocks.BLACKSTONE.getDefaultState(),
-			Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS.getDefaultState(),
-			Blocks.POLISHED_BLACKSTONE_BRICKS.getDefaultState()
-	};
-
 	public WallsFeature(Codec<DefaultFeatureConfig> config) {
 		super(config);
 	}
@@ -49,8 +35,8 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 		BlockPos target = pos.down();
 
 		if (RandUtils.getBool(StylishOccult.SETTING.wall_chance, random) && world.getBlockState(target).isSolidBlock(world, target)) {
-			generateWall( getAxis(random), world, target, RandUtils.rangeInt(2, 5, random), (float) RandUtils.rangeInt(83, 90, random), random );
-			scatterUrns(world, target, random);
+			generateWall(getAxis(random), world, target, RandUtils.rangeInt(2, 5, random), (float) RandUtils.rangeInt(83, 90, random), random);
+			decorate(world, target, random);
 			this.debugWrite(target);
 		}
 
@@ -104,11 +90,9 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 			if (!generateColumn(world, pos.offset(axis, bd), bh, random)) break;
 		}
-
 	}
 
 	private boolean generateFoundation(StructureWorldAccess world, BlockPos origin, int height, Random random) {
-
 		BlockPos.Mutable pos = origin.mutableCopy();
 
 		for (int i = 0; i <= height; i ++) {
@@ -125,8 +109,7 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 		return false;
 	}
 
-	private void scatterUrns(StructureWorldAccess world, BlockPos target, Random random) {
-
+	private void decorate(StructureWorldAccess world, BlockPos target, Random random) {
 		final int minX = -5;
 		final int minY = -4;
 		final int minZ = -5;
@@ -166,7 +149,6 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 				break;
 			}
 		}
-
 	}
 
 	private void placeRandomDecoration(StructureWorldAccess world, BlockPos pos, Random random, int base) {
@@ -182,8 +164,10 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 	}
 
 	private static boolean touchesRunes(BlockView world, BlockPos origin) {
-		for (Direction direction : NEIGHBORS){
-			if(world.getBlockState( origin.offset( direction ) ).getBlock() instanceof RuneBlock) return true;
+		for (Direction direction : Directions.HORIZONTAL){
+			if(world.getBlockState(origin.offset(direction)).getBlock() instanceof RuneBlock) {
+				return true;
+			}
 		}
 
 		return false;
@@ -191,15 +175,14 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	private void generateRune(StructureWorldAccess world, BlockPos pos, Random random) {
 		if (RandUtils.getBool(StylishOccult.SETTING.wall_rune_chance, random)) {
-			Block rune = ModTags.RUNES.getRandom(random);
-			world.setBlockState(pos, rune.getDefaultState().with(RuneBlock.FROZEN, true), 3);
+			world.setBlockState(pos, ModTags.RUNES.getRandom(random).getDefaultState().with(RuneBlock.FROZEN, true), 3);
 		} else {
-			world.setBlockState(pos, RandUtils.getArrayEntry(BLOCKS, random), 3);
+			world.setBlockState(pos, ModTags.RUNIC_WALL.getRandom(random).getDefaultState(), 3);
 		}
 	}
 
 	private Direction.Axis getAxis(Random random) {
-		return RandUtils.getBool(50f, random) ? Direction.Axis.X : Direction.Axis.Z;
+		return random.nextBoolean() ? Direction.Axis.X : Direction.Axis.Z;
 	}
 
 	@Override

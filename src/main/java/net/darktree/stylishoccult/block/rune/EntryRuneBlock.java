@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.rune;
 
+import net.darktree.stylishoccult.block.entity.rune.RuneBlockAttachment;
 import net.darktree.stylishoccult.script.component.RuneType;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.Directions;
@@ -26,12 +27,12 @@ public abstract class EntryRuneBlock extends RuneBlock {
 		BlockState state = world.getBlockState(pos);
 
 		if (super.canAcceptSignal(state, null)) {
-			execute(world, pos, state, script);
+			execute(world, pos, state, script, null);
 		}
 	}
 
 	@Override
-	public Direction[] getDirections(World world, BlockPos pos, Script script) {
+	public Direction[] getDirections(World world, BlockPos pos, BlockState state, Script script, RuneBlockAttachment attachment) {
 		return Directions.ALL;
 	}
 

@@ -53,16 +53,16 @@ public class NumberRuneBlock extends RuneBlock {
 		@Override
 		public RuneInstance choose(Script script, RuneInstance instance ) {
 
-			if( instance instanceof NumberRuneInstance ) {
+			if (instance instanceof NumberRuneInstance) {
 				raw += ((NumberRuneBlock) instance.rune).value;
 				parse(raw, 6);
 
-				if( raw.length() > 16 ) {
+				if (raw.length() > 16) {
 					throw RuneException.of(RuneExceptionType.NUMBER_TOO_LONG);
 				}
 
 				return this;
-			}else{
+			} else {
 				script.stack.push(new NumericElement(parse(raw, 6)));
 			}
 
@@ -78,12 +78,12 @@ public class NumberRuneBlock extends RuneBlock {
 				String[] parts = string.split("\\.");
 				double value = Integer.parseInt(parts[0], base);
 
-				if(parts.length == 2 && parts[1].length() > 0) {
+				if (parts.length == 2 && parts[1].length() > 0) {
 					value += Integer.parseInt(parts[1], base) / Math.pow(base, parts[1].length());
 				}
 
 				return value;
-			}catch (Exception e){
+			} catch (Exception e) {
 				throw RuneException.of(RuneExceptionType.INVALID_NUMBER);
 			}
 		}

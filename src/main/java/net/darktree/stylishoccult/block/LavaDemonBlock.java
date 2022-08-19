@@ -21,6 +21,7 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.particle.ParticleTypes;
@@ -84,9 +85,9 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 
 	@Override
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-		if( !world.isClient() ){
-			if(state.get(ANGER) > 0){
-				entity.setFireTicks( world.getRandom().nextInt(20 * 4) + 20 * 4 );
+		if (!world.isClient()){
+			if (state.get(ANGER) > 0){
+				entity.setFireTicks(world.getRandom().nextInt(20 * 4) + 20 * 4);
 			}
 		}
 	}
@@ -95,7 +96,7 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 	public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
 		world.setBlockState(pos, state.with(ANGER, 2));
 
-		if(!world.isClient) {
+		if (!world.isClient && player != null) {
 			Criteria.WAKE.trigger((ServerPlayerEntity) player);
 		}
 	}
@@ -146,10 +147,10 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 		LavaDemonMaterial material = LavaDemonMaterial.STONE;
 
 		for (Direction value : Directions.ALL) {
-			LavaDemonMaterial material2 = LavaDemonMaterial.getFrom(world.getBlockState(pos.offset(value)).getBlock());
+			LavaDemonMaterial neighbour = LavaDemonMaterial.getFrom(world.getBlockState(pos.offset(value)).getBlock());
 
-			if (material2 != null && (material2.getLevel() > material.getLevel())) {
-				material = material2;
+			if (neighbour != null && (neighbour.getLevel() > material.getLevel())) {
+				material = neighbour;
 			}
 		}
 
@@ -179,7 +180,7 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 					StylishOccult.SETTING.max_search_radius,
 					(BlockState s) -> s.get(PART) == LavaDemonPart.HEAD);
 
-			if (world.getBlockState(target).getBlock() == net.minecraft.block.Blocks.STONE){
+			if (world.getBlockState(target).getBlock() == net.minecraft.block.Blocks.STONE) {
 				if (origin != null) {
 					int j = BlockUtils.touchesAir(world, pos)
 							? StylishOccult.SETTING.spread_lock_exposed_rarity
@@ -248,6 +249,14 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
+	}
+
+	public BlockState getPartPlacementState(LavaDemonPart part, ItemPlacementContext context) {
+		World world = context.getWorld();
+		BlockPos pos = context.getBlockPos();
+		Random random = new Random(pos.asLong());
+
+		return getDefaultState().with(MATERIAL, getDisguise(world, pos, random)).with(ANGER, 2).with(PART, part);
 	}
 
 }

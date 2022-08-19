@@ -122,7 +122,7 @@ public class LavaDemonBlockEntity extends BlockEntity {
 						SparkEntity sparkEntity = ModEntities.SPARK.create(world);
 
 						if (sparkEntity == null) {
-							throw new RuntimeException( "Unable to summon Spark!" );
+							throw new RuntimeException("Unable to summon Spark!");
 						}
 
 						sparkEntity.refreshPositionAndAngles(targetPos, 0.0F, 0.0F);
