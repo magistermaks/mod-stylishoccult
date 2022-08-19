@@ -15,6 +15,7 @@ public class Directions {
 	public static final Direction[] HORIZONTAL = new Direction[] {Direction.EAST, Direction.WEST, Direction.SOUTH, Direction.NORTH};
 	public static final Direction[] NONE = new Direction[] {};
 	public static final Direction[] ALL = Direction.values();
+	public static Direction UNDECIDED = null; // set from DirectionMixin
 
 	public static Direction[] of(Direction direction) {
 		return DIRECT.get(direction);

@@ -5,7 +5,9 @@
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
 		"CauldronBehaviourMixin",
+		"DirectionMixin",
 		"HungerManagerMixin",
+		"ItemUsageContextMixin",
 		"LivingEntityMixin",
 		"PlayerEntityMixin",
 		"ServerAdvancementLoaderMixin",

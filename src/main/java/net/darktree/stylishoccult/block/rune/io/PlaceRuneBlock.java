@@ -7,6 +7,7 @@ import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneExceptionType;
 import net.darktree.stylishoccult.script.element.ItemElement;
 import net.darktree.stylishoccult.script.engine.Script;
+import net.darktree.stylishoccult.utils.Directions;
 import net.minecraft.item.AutomaticItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -24,11 +25,12 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 
 	@Override
 	public void apply(Script script, World world, BlockPos pos) {
+		ItemElement element = script.stack.pull().cast(ItemElement.class);
+
 		int x = (int) Math.round(script.pull(world, pos).value());
 		int y = (int) Math.round(script.pull(world, pos).value());
 		int z = (int) Math.round(script.pull(world, pos).value());
 
-		ItemElement element = script.pull(world, pos).cast(ItemElement.class);
 		BlockPos target = pos.add(x, y, z);
 		boolean successful = false;
 
@@ -37,16 +39,17 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 		}
 
 		ItemStack stack = element.stack;
+		script.ring.push(element, world, pos);
 
 		if (stack.getCount() > 0) {
 			try {
-				AutomaticItemPlacementContext context = new AutomaticItemPlacementContext(world, target, Direction.UP, stack, Direction.UP);
+				AutomaticItemPlacementContext context = new AutomaticItemPlacementContext(world, target, Direction.UP, stack, Directions.UNDECIDED);
 				successful = stack.useOnBlock(context).isAccepted();
 			} catch (Exception e) {
 				StylishOccult.LOGGER.warn("Item usage operation interrupted for reasons unknown!", e);
 			}
 		} else {
-			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_TYPE);
+			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT);
 		}
 
 		Criteria.TRIGGER.trigger(world, pos, this, successful);

@@ -17,12 +17,8 @@ public class IfRuneBlock extends DirectionalRuneBlock {
 
 	@Override
 	public Direction[] getDirections(World world, BlockPos pos, BlockState state, Script script, RuneBlockAttachment attachment) {
-		try {
-			if (script.pull(world, pos).value() != 0) {
-				return Directions.of(getFacing(state));
-			}
-		} catch (Exception ignore) {
-			// TODO throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
+		if (script.pull(world, pos).value() != 0) {
+			return Directions.of(getFacing(state));
 		}
 
 		return super.getDirections(world, pos, state, script, attachment);
