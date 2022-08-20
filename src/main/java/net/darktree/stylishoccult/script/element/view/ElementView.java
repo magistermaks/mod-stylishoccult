@@ -1,13 +1,18 @@
 package net.darktree.stylishoccult.script.element.view;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.script.element.StackElement;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
+import java.text.DecimalFormat;
+
 public class ElementView {
+
+	private static final DecimalFormat FORMAT = new DecimalFormat("0.0#####");
 
 	public static final Identifier NUMBER_ICON = ModIdentifier.of("textures/rune/element/number.png");
 	public static final Identifier ITEM_ICON = ModIdentifier.of("textures/rune/element/item.png");
@@ -27,6 +32,13 @@ public class ElementView {
 
 	public static ElementView of(String name, Identifier icon, String text, @Nullable String tooltip) {
 		return new ElementView("script." + StylishOccult.NAMESPACE + ".element." + name, icon, text, tooltip);
+	}
+
+	/**
+	 * Get a numerical string of the given element
+	 */
+	public static String numerical(StackElement element) {
+		return FORMAT.format(element.value());
 	}
 
 	/**

@@ -105,10 +105,17 @@ public final class Ring extends BaseStack {
 	 */
 	@Override
 	public void reset(Consumer<StackElement> consumer) {
-		for (int i = 0; i < buffer.length; i ++) {
-			if (buffer[i] != null) {
-				consumer.accept(buffer[i]);
-				buffer[i] = null;
+		StackElement element;
+
+		while (true) {
+			move(-1);
+			element = buffer[offset];
+			buffer[offset] = null;
+
+			if (element != null) {
+				consumer.accept(element);
+			} else {
+				break;
 			}
 		}
 	}

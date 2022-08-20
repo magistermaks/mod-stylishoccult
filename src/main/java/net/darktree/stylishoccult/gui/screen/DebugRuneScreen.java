@@ -164,7 +164,7 @@ public class DebugRuneScreen extends CottonClientScreen {
 			panel.add(title, 7, 0, 36, 3);
 
 			// add entry description
-			WDynamicLabel body = new WDynamicLabel(() -> numericalView ? String.valueOf(element.value()) : view.getBody(), Formatting.DARK_GRAY.getColorValue());
+			WDynamicLabel body = new WDynamicLabel(() -> numericalView ? ElementView.numerical(element) : view.getBody(), Formatting.DARK_GRAY.getColorValue());
 			panel.add(body, 7, 3, 36, 3);
 
 			return panel;
