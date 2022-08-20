@@ -35,8 +35,8 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
 	private static final VoxelShape BOX = Voxels.shape(0, 0, 0, 16, 15, 16);
 
 	public GooFleshBlock() {
-		super( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, false ).noCollision().ticksRandomly());
-		setDefaultState( getDefaultState().with(TOP, false) );
+		super(RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, false).noCollision().ticksRandomly());
+		setDefaultState(getDefaultState().with(TOP, false));
 	}
 
 	@Override

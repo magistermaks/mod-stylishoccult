@@ -38,7 +38,7 @@ public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
 	public static final VoxelShape SMALL_CUBE = Voxels.shape(1, 1, 1, 15, 15, 15);
 
 	public PassiveFleshBlock() {
-		super( RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).ticksRandomly().slipperiness(0.8f) );
+		super(RegUtil.settings( Material.ORGANIC_PRODUCT, BlockSoundGroup.HONEY, 0.8F, 0.8F, true ).ticksRandomly().slipperiness(0.8f));
 		setDefaultState( getDefaultState().with(BLOODY, false) );
 	}
 
@@ -54,7 +54,7 @@ public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
 		builder.add(BLOODY);
 	}
 
-	@Deprecated
+	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SMALL_CUBE;
 	}
@@ -67,10 +67,10 @@ public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 
-		if( state.get( BLOODY ) ) {
+		if (state.get(BLOODY)) {
 			ItemStack stack = player.getStackInHand(hand);
 
-			if( ((BottleItem) ModItems.BLOOD_BOTTLE).fill( stack, world, player, hand ) ) {
+			if (((BottleItem) ModItems.BLOOD_BOTTLE).fill(stack, world, player, hand)) {
 				world.setBlockState( pos, state.with( BLOODY, false ) );
 				return ActionResult.SUCCESS;
 			}
@@ -98,9 +98,9 @@ public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
 	public void cleanse(World world, BlockPos pos, BlockState state) {
 		world.playSound(null, pos, soundGroup.getBreakSound(), SoundCategory.BLOCKS, 1, 1);
 
-		if( state.get(BLOODY) ) {
+		if (state.get(BLOODY)) {
 			world.setBlockState(pos, state.with(BLOODY, false));
-		}else{
+		} else {
 			world.setBlockState(pos, Blocks.AIR.getDefaultState());
 		}
 	}

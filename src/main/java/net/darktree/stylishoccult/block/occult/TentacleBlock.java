@@ -147,10 +147,10 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
 	}
 
 	public boolean grow(World world, BlockPos pos, int size, Random random) {
-		if( size > 1 ) {
+		if (size > 1) {
 			world.setBlockState( pos, getDefaultState().with(SIZE, size - 1) );
 			return false;
-		}else{
+		} else {
 			if (RandUtils.getBool(80, random)) {
 				world.setBlockState(pos, ModBlocks.EYE_FLESH.getDefaultState());
 			}
@@ -158,6 +158,7 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
 		}
 	}
 
+	@Override
 	public LootTable getDefaultLootTable() {
 		return LootTables.SIMPLE;
 	}

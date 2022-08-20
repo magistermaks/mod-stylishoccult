@@ -45,8 +45,11 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 			try {
 				AutomaticItemPlacementContext context = new AutomaticItemPlacementContext(world, target, Direction.UP, stack, Directions.UNDECIDED);
 				successful = stack.useOnBlock(context).isAccepted();
-			} catch (Exception e) {
-				StylishOccult.LOGGER.warn("Item usage operation interrupted for reasons unknown!", e);
+			} catch (Throwable throwable) {
+				// Food BlockItem's throw NPE on failed placement if the context is automatic
+				if (!stack.isFood()) {
+					StylishOccult.LOGGER.warn("Item usage operation interrupted for reasons unknown!", throwable);
+				}
 			}
 		} else {
 			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT);

@@ -112,8 +112,8 @@ public class OccultHelper {
 	}
 
 	private static void spawnCorruption(World world, BlockPos target, BlockState state) {
-		BlockState corruption = getCorruptionForBlock( world, target, state );
-		if( corruption != null ) {
+		BlockState corruption = getCorruptionForBlock(world, target, state);
+		if (corruption != null) {
 			world.setBlockState(target, corruption);
 		}
 	}

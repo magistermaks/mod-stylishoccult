@@ -30,19 +30,17 @@ public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFlesh
 	private static final VoxelShape SHAPE = Voxels.box(1, 1, 0, 15, 15, 16).box(0, 1, 1, 16, 15, 15).box(1, 0, 1, 15, 16, 15).build();
 
 	public EyeBlock() {
-		super( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 1.0F, 1.0F, true ).luminance(6) );
+		super(RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 1.0F, 1.0F, true ).luminance(6));
 		setDefaultState( getDefaultState().with(PERSISTENT, false) );
 	}
 
 	@Override
 	public void onLookAtTick(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-		if( !state.get(PERSISTENT) ) {
-			float value = ((PlayerEntityMadnessDuck) player).stylish_addMadness(0.03f);
-			((PlayerEntityClientDuck) player).stylish_startHeartbeatSound();
+		float value = ((PlayerEntityMadnessDuck) player).stylish_addMadness(0.03f);
+		((PlayerEntityClientDuck) player).stylish_startHeartbeatSound();
 
-			// notify the server
-			Network.MADNESS.send(value);
-		}
+		// notify the server
+		Network.MADNESS.send(value);
 	}
 
 	@Override
@@ -52,8 +50,8 @@ public class EyeBlock extends BuildingBlock implements ImpureBlock, FoliageFlesh
 
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
-		if( !world.getBlockState(pos).get(PERSISTENT) && direction.getAxis().isVertical() ) {
-			if( !(world.getBlockState(pos.up()).getBlock() instanceof TentacleBlock) && !(world.getBlockState(pos.down()).getBlock() instanceof TentacleBlock) ) {
+		if (!world.getBlockState(pos).get(PERSISTENT) && direction.getAxis().isVertical()) {
+			if (!(world.getBlockState(pos.up()).getBlock() instanceof TentacleBlock) && !(world.getBlockState(pos.down()).getBlock() instanceof TentacleBlock)) {
 				return Blocks.AIR.getDefaultState();
 			}
 		}

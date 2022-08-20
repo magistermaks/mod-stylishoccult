@@ -20,14 +20,14 @@ import java.util.Random;
 public class FleshBlock extends FullFleshBlock implements ImpureBlock {
 
 	public FleshBlock() {
-		super( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, true ).slipperiness(0.8f).ticksRandomly() );
+		super(RegUtil.settings(Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, true).slipperiness(0.8f).ticksRandomly());
 	}
 
 	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		OccultHelper.corruptAround(world, pos, random, true);
 
-		if( random.nextInt(256) == 0 && FossilizedFleshBlock.isPosValid(world, pos) && (BlockUtils.countInArea(world, pos, FossilizedFleshBlock.class, 4) < 3) ) {
+		if (random.nextInt(256) == 0 && FossilizedFleshBlock.isPosValid(world, pos) && (BlockUtils.countInArea(world, pos, FossilizedFleshBlock.class, 4) < 3)) {
 			world.setBlockState(pos, ModBlocks.BONE_FLESH.getDefaultState());
 		}
 	}

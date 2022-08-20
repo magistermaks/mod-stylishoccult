@@ -28,6 +28,7 @@ import net.minecraft.world.WorldAccess;
 
 import java.util.Random;
 
+// TODO cleanup
 public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplaceable {
 
 	public static final BooleanProperty UP = BooleanProperty.of("up");
@@ -71,12 +72,12 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 		VoxelShape shape = VoxelShapes.empty();
 		int bitfield = getBitfield(state);
 
-		if( (bitfield & 0b100000) != 0 ) shape = VoxelShapes.combine( SHAPES[0], shape, BooleanBiFunction.OR );
-		if( (bitfield & 0b010000) != 0 ) shape = VoxelShapes.combine( SHAPES[1], shape, BooleanBiFunction.OR );
-		if( (bitfield & 0b001000) != 0 ) shape = VoxelShapes.combine( SHAPES[2], shape, BooleanBiFunction.OR );
-		if( (bitfield & 0b000100) != 0 ) shape = VoxelShapes.combine( SHAPES[3], shape, BooleanBiFunction.OR );
-		if( (bitfield & 0b000010) != 0 ) shape = VoxelShapes.combine( SHAPES[4], shape, BooleanBiFunction.OR );
-		if( (bitfield & 0b000001) != 0 ) shape = VoxelShapes.combine( SHAPES[5], shape, BooleanBiFunction.OR );
+		if ((bitfield & 0b100000) != 0) shape = VoxelShapes.combine(SHAPES[0], shape, BooleanBiFunction.OR);
+		if ((bitfield & 0b010000) != 0) shape = VoxelShapes.combine(SHAPES[1], shape, BooleanBiFunction.OR);
+		if ((bitfield & 0b001000) != 0) shape = VoxelShapes.combine(SHAPES[2], shape, BooleanBiFunction.OR);
+		if ((bitfield & 0b000100) != 0) shape = VoxelShapes.combine(SHAPES[3], shape, BooleanBiFunction.OR);
+		if ((bitfield & 0b000010) != 0) shape = VoxelShapes.combine(SHAPES[4], shape, BooleanBiFunction.OR);
+		if ((bitfield & 0b000001) != 0) shape = VoxelShapes.combine(SHAPES[5], shape, BooleanBiFunction.OR);
 
 		return shape;
 	}
@@ -84,14 +85,14 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
 		BooleanProperty property = fromDirection(direction);
-		if( state.get( property ) && !canSupport(world, pos, direction) ) {
+		if (state.get( property ) && !canSupport(world, pos, direction)) {
 			state = state.with(property, false);
 			world.playSound(null, pos, soundGroup.getBreakSound(), SoundCategory.BLOCKS, 1, 1);
 		}
 
-		if( getBitfield(state) == 0b000000 ) {
+		if (getBitfield(state) == 0b000000) {
 			return Blocks.AIR.getDefaultState();
-		}else{
+		} else {
 			return state;
 		}
 	}
@@ -149,25 +150,25 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 			}
 		}
 
-		if( BlockUtils.countInArea(world, pos, GrowthBlock.class, 3) > 9 ) {
+		if (BlockUtils.countInArea(world, pos, GrowthBlock.class, 3) > 9) {
 			return;
 		}
 
-		if( count != 6 ) {
-			if( random.nextInt( count + 1 ) == 0 ) {
-				applyRandom( state, pos, world, random );
+		if (count != 6) {
+			if (random.nextInt(count + 1) == 0) {
+				applyRandom(state, pos, world, random);
 			}
 
-			BlockPos target = pos.offset( RandUtils.getEnum(Direction.class, random) );
+			BlockPos target = pos.offset(RandUtils.getEnum(Direction.class, random));
 
-			if( random.nextInt( 8 ) == 0 ) {
-				target = target.offset( RandUtils.getEnum(Direction.class, random) );
+			if (random.nextInt( 8 ) == 0) {
+				target = target.offset(RandUtils.getEnum(Direction.class, random));
 			}
 
 			BlockState targetState = world.getBlockState( target );
 
 			try {
-				if( targetState.getBlock() != this ) {
+				if (targetState.getBlock() != this) {
 					if (targetState.isAir() || targetState.getMaterial().isReplaceable() || targetState.canReplace(null)) {
 						applyRandom(getDefaultState(), target, world, random);
 						return;
@@ -177,7 +178,7 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 		}
 
 		int size = state.get(SIZE);
-		if( size < 3 && random.nextInt( 64 - count * 4 ) == 0 ) {
+		if (size < 3 && random.nextInt( 64 - count * 4 ) == 0) {
 			world.setBlockState(pos, state.with(SIZE, size + 1));
 		}
 
@@ -187,7 +188,7 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 		Direction side = RandUtils.getEnum(Direction.class, random);
 		BlockState target = state.with(fromDirection(side), true);
 
-		if( canSupport( world, pos, side ) ) {
+		if (canSupport( world, pos, side )) {
 			world.setBlockState( pos, target );
 		}
 	}
@@ -195,17 +196,17 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 	public static int getBitfield(BlockState state) {
 		int map = 0b000000;
 
-		if( state.get(UP)    ) map |= 0b100000;
-		if( state.get(DOWN)  ) map |= 0b010000;
-		if( state.get(SOUTH) ) map |= 0b001000;
-		if( state.get(NORTH) ) map |= 0b000100;
-		if( state.get(WEST)  ) map |= 0b000010;
-		if( state.get(EAST)  ) map |= 0b000001;
+		if (state.get(UP))    map |= 0b100000;
+		if (state.get(DOWN))  map |= 0b010000;
+		if (state.get(SOUTH)) map |= 0b001000;
+		if (state.get(NORTH)) map |= 0b000100;
+		if (state.get(WEST))  map |= 0b000010;
+		if (state.get(EAST))  map |= 0b000001;
 
 		return map;
 	}
 
-	private BooleanProperty fromDirection( Direction direction ) {
+	private BooleanProperty fromDirection(Direction direction) {
 		return switch (direction) {
 			case UP -> UP;
 			case DOWN -> DOWN;
@@ -221,7 +222,7 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 		return context.getStack().isEmpty() || context.getStack().getItem() != this.asItem();
 	}
 
-	private boolean canSupport(WorldAccess world, BlockPos pos, Direction direction ) {
+	private boolean canSupport(WorldAccess world, BlockPos pos, Direction direction) {
 		BlockPos support = pos.offset(direction);
 		BlockState state = world.getBlockState( support );
 		return state.isFullCube(world, support) || isShapeFullCube(state.getOutlineShape(world, support)) || state.isSideSolidFullSquare( world, support, direction.getOpposite() );
@@ -232,12 +233,12 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 		int count = Integer.bitCount(getBitfield(state));
 		world.playSound(null, pos, soundGroup.getBreakSound(), SoundCategory.BLOCKS, 1, 1);
 
-		if( count <= 1 ) {
+		if (count <= 1) {
 			world.setBlockState(pos, Blocks.AIR.getDefaultState());
-		}else{
-			for( Direction side : Direction.values() ) {
+		} else {
+			for (Direction side : Directions.ALL) {
 				BooleanProperty property = fromDirection(side);
-				if( state.get(property) ) {
+				if (state.get(property)) {
 					world.setBlockState(pos, state.with(property, false));
 					return;
 				}
