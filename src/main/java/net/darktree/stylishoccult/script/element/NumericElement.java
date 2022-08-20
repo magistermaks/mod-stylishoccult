@@ -3,11 +3,13 @@ package net.darktree.stylishoccult.script.element;
 import net.darktree.stylishoccult.script.element.view.ElementView;
 import net.minecraft.nbt.NbtCompound;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class NumericElement extends StackElement {
 
+	private static final DecimalFormat FORMAT = new DecimalFormat("#.######");
 	public static final NumericElement TRUE = new NumericElement(1);
 	public static final NumericElement FALSE = new NumericElement(0);
 
@@ -34,8 +36,7 @@ public class NumericElement extends StackElement {
 
 	@Override
 	public StackElement copy() {
-		// this is allowed as state non-mutable
-		return this;
+		return this; // this is allowed as state is non-mutable
 	}
 
 	@Override
@@ -53,7 +54,7 @@ public class NumericElement extends StackElement {
 
 	@Override
 	public ElementView view() {
-		return ElementView.of("number", ElementView.NUMBER_ICON, String.valueOf(value), null);
+		return ElementView.of("number", ElementView.NUMBER_ICON, FORMAT.format(value), null);
 	}
 
 }
