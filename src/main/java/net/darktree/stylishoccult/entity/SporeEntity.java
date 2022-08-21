@@ -20,7 +20,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class SporeEntity extends SparkEntity implements CorruptedEntity {
+public class SporeEntity extends SparkEntity {
 
 	Vec3d fixedTarget = null;
 

@@ -36,7 +36,7 @@ public class SparkEntity extends HostileEntity {
 		this.direction = new Vec3d(0, 0, 0);
 	}
 
-	public void setVentDirection( Direction direction, float power ) {
+	public void setVentDirection(Direction direction, float power) {
 		this.direction = new Vec3d( direction.getOffsetX(), direction.getOffsetY(), direction.getOffsetZ() ).multiply(power);
 	}
 
