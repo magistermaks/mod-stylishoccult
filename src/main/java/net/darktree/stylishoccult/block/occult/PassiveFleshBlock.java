@@ -66,7 +66,6 @@ public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
 
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-
 		if (state.get(BLOODY)) {
 			ItemStack stack = player.getStackInHand(hand);
 

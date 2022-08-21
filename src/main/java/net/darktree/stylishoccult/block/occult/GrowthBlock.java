@@ -1,5 +1,7 @@
 package net.darktree.stylishoccult.block.occult;
 
+import com.google.common.collect.ImmutableSet;
+import com.mojang.datafixers.util.Pair;
 import net.darktree.interference.Voxels;
 import net.darktree.interference.api.FluidReplaceable;
 import net.darktree.stylishoccult.StylishOccult;
@@ -28,7 +30,6 @@ import net.minecraft.world.WorldAccess;
 
 import java.util.Random;
 
-// TODO cleanup
 public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplaceable {
 
 	public static final BooleanProperty UP = BooleanProperty.of("up");
@@ -39,14 +40,14 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 	public static final BooleanProperty EAST = BooleanProperty.of("east");
 	public static final IntProperty SIZE = IntProperty.of("size", 1, 3);
 
-	public static final VoxelShape[] SHAPES = {
-			Voxels.shape(  0, 16,  0, 16, 15, 16 ), // UP
-			Voxels.shape(  0,  0,  0, 16,  1, 16 ), // DOWN
-			Voxels.shape(  0,  0, 15, 16, 16, 16 ), // SOUTH
-			Voxels.shape(  0,  0,  0, 16, 16,  1 ), // NORTH
-			Voxels.shape(  0,  0,  0,  1, 16, 16 ), // WEST
-			Voxels.shape( 15,  0,  0, 16, 16, 16 )  // EAST
-	};
+	private static final ImmutableSet<Pair<BooleanProperty, VoxelShape>> SHAPES = new ImmutableSet.Builder<Pair<BooleanProperty, VoxelShape>>()
+			.add(Pair.of(UP,    Voxels.shape(  0, 16,  0, 16, 15, 16 )))
+			.add(Pair.of(DOWN,  Voxels.shape(  0,  0,  0, 16,  1, 16 )))
+			.add(Pair.of(SOUTH, Voxels.shape(  0,  0, 15, 16, 16, 16 )))
+			.add(Pair.of(NORTH, Voxels.shape(  0,  0,  0, 16, 16,  1 )))
+			.add(Pair.of(WEST,  Voxels.shape(  0,  0,  0,  1, 16, 16 )))
+			.add(Pair.of(EAST,  Voxels.shape( 15,  0,  0, 16, 16, 16 )))
+			.build();
 
 	public static boolean hasSide(BlockState state) {
 		return state.get(EAST) || state.get(WEST) || state.get(NORTH) || state.get(SOUTH);
@@ -70,14 +71,10 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		VoxelShape shape = VoxelShapes.empty();
-		int bitfield = getBitfield(state);
 
-		if ((bitfield & 0b100000) != 0) shape = VoxelShapes.combine(SHAPES[0], shape, BooleanBiFunction.OR);
-		if ((bitfield & 0b010000) != 0) shape = VoxelShapes.combine(SHAPES[1], shape, BooleanBiFunction.OR);
-		if ((bitfield & 0b001000) != 0) shape = VoxelShapes.combine(SHAPES[2], shape, BooleanBiFunction.OR);
-		if ((bitfield & 0b000100) != 0) shape = VoxelShapes.combine(SHAPES[3], shape, BooleanBiFunction.OR);
-		if ((bitfield & 0b000010) != 0) shape = VoxelShapes.combine(SHAPES[4], shape, BooleanBiFunction.OR);
-		if ((bitfield & 0b000001) != 0) shape = VoxelShapes.combine(SHAPES[5], shape, BooleanBiFunction.OR);
+		for (Pair<BooleanProperty, VoxelShape> entry : SHAPES) {
+			if (state.get(entry.getFirst())) shape = VoxelShapes.combine(entry.getSecond(), shape, BooleanBiFunction.OR);
+		}
 
 		return shape;
 	}
@@ -85,16 +82,12 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
 		BooleanProperty property = fromDirection(direction);
-		if (state.get( property ) && !canSupport(world, pos, direction)) {
+		if (state.get(property) && !canSupport(world, pos, direction)) {
 			state = state.with(property, false);
 			world.playSound(null, pos, soundGroup.getBreakSound(), SoundCategory.BLOCKS, 1, 1);
 		}
 
-		if (getBitfield(state) == 0b000000) {
-			return Blocks.AIR.getDefaultState();
-		} else {
-			return state;
-		}
+		return getSideCount(state) == 0 ? Blocks.AIR.getDefaultState() : state;
 	}
 
 	@Override
@@ -120,8 +113,8 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 		BlockState state = getDefaultState();
 		boolean flag = false;
 
-		for( Direction side : Direction.values() ) {
-			if( canSupport( world, pos, side ) ) {
+		for (Direction side : Directions.ALL) {
+			if (canSupport(world, pos, side)) {
 				state = state.with(fromDirection(side), true);
 				flag = true;
 			}
@@ -132,7 +125,7 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 
 	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		int count = Integer.bitCount(getBitfield(state));
+		int count = getSideCount(state);
 
 		if (count == 0) {
 			StylishOccult.LOGGER.warn("Empty growth block was found and removed!");
@@ -178,7 +171,7 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 		}
 
 		int size = state.get(SIZE);
-		if (size < 3 && random.nextInt( 64 - count * 4 ) == 0) {
+		if (size < 3 && random.nextInt(64 - count * 4) == 0) {
 			world.setBlockState(pos, state.with(SIZE, size + 1));
 		}
 
@@ -188,22 +181,19 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 		Direction side = RandUtils.getEnum(Direction.class, random);
 		BlockState target = state.with(fromDirection(side), true);
 
-		if (canSupport( world, pos, side )) {
-			world.setBlockState( pos, target );
+		if (canSupport(world, pos, side)) {
+			world.setBlockState(pos, target);
 		}
 	}
 
-	public static int getBitfield(BlockState state) {
-		int map = 0b000000;
+	private int getSideCount(BlockState state) {
+		int count = 0;
 
-		if (state.get(UP))    map |= 0b100000;
-		if (state.get(DOWN))  map |= 0b010000;
-		if (state.get(SOUTH)) map |= 0b001000;
-		if (state.get(NORTH)) map |= 0b000100;
-		if (state.get(WEST))  map |= 0b000010;
-		if (state.get(EAST))  map |= 0b000001;
+		for (Pair<BooleanProperty, VoxelShape> entry : SHAPES) {
+			if (state.get(entry.getFirst())) count ++;
+		}
 
-		return map;
+		return count;
 	}
 
 	private BooleanProperty fromDirection(Direction direction) {
@@ -230,10 +220,9 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 
 	@Override
 	public void cleanse(World world, BlockPos pos, BlockState state) {
-		int count = Integer.bitCount(getBitfield(state));
 		world.playSound(null, pos, soundGroup.getBreakSound(), SoundCategory.BLOCKS, 1, 1);
 
-		if (count <= 1) {
+		if (getSideCount(state) <= 1) {
 			world.setBlockState(pos, Blocks.AIR.getDefaultState());
 		} else {
 			for (Direction side : Directions.ALL) {
@@ -248,7 +237,7 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 
 	@Override
 	public int impurityLevel(BlockState state) {
-		return (Integer.bitCount(getBitfield(state)) + state.get(SIZE)) * 3;
+		return (getSideCount(state) + state.get(SIZE)) * 3;
 	}
 
 }

@@ -92,13 +92,13 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
 		BlockState up = ctx.getWorld().getBlockState(ctx.getBlockPos().up());
 		BlockState down = ctx.getWorld().getBlockState(ctx.getBlockPos().down());
 
-		if( isValid(up, 0) != isValid(down, 0) ) {
+		if (isValid(up, 0) != isValid(down, 0)) {
 
 			Random random = new Random(ctx.getWorld().getTime() / 10);
 			int fallback = RandUtils.rangeInt(1, 6, random) + 1;
 
 			int size = Math.max(getSize(up, fallback), getSize(down, fallback)) - 1;
-			if( size >= 1 && size <= 6 ) {
+			if (size >= 1 && size <= 6) {
 				return getDefaultState().with(SIZE, size);
 			}
 		}
@@ -109,14 +109,14 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
 
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
-		BlockState state1 = super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
+		state = super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
 
-		if( state1.getBlock() instanceof TentacleBlock ) {
-			boolean flag = isStatic( world, pos.up() ) || isStatic( world, pos.down() );
-			return state1.with(STATIC, flag);
+		if (state.getBlock() == this) {
+			boolean flag = isStatic(world, pos.up()) || isStatic(world, pos.down());
+			return state.with(STATIC, flag);
 		}
 
-		return state1;
+		return state;
 	}
 
 	@Override
