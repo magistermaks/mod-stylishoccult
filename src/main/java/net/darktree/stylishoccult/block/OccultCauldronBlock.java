@@ -5,6 +5,7 @@ import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.block.entity.cauldron.OccultCauldronBlockEntity;
 import net.darktree.stylishoccult.block.fluid.ModFluids;
+import net.darktree.stylishoccult.entity.damage.ModDamageSource;
 import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.tag.ModTags;
@@ -20,7 +21,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -190,10 +190,10 @@ public class OccultCauldronBlock extends BlockWithEntity implements DefaultLoot 
 
 		if (item == ModItems.TWISTED_DAGGER) {
 			int damage = 2 + world.random.nextInt(2);
-			if (player.damage(DamageSource.GENERIC, damage)) {
+			if (player.damage(ModDamageSource.SACRIFICE, damage)) {
 				storage.insert((long) damage * StylishOccult.SETTING.rune_blood_yield);
+				return ActionResult.SUCCESS;
 			}
-			return ActionResult.SUCCESS;
 		}
 
 		return ActionResult.PASS;

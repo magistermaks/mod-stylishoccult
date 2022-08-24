@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.entity;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.entity.damage.ModDamageSource;
 import net.darktree.stylishoccult.entity.goal.FollowLanternGoal;
 import net.darktree.stylishoccult.entity.goal.FollowSparkGoal;
 import net.darktree.stylishoccult.particles.Particles;
@@ -10,7 +11,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.MerchantEntity;
@@ -55,7 +55,7 @@ public class SporeEntity extends SparkEntity {
 
 	@Override
 	protected void dealDamage() {
-		damage(DamageSource.GENERIC, StylishOccult.SETTING.spore_selfharm);
+		damage(ModDamageSource.REBOUND, StylishOccult.SETTING.spore_selfharm);
 	}
 
 	@Override

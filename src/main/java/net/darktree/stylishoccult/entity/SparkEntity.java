@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.entity;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.entity.damage.ModDamageSource;
 import net.darktree.stylishoccult.entity.goal.FollowSporeGoal;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.minecraft.block.BlockState;
@@ -129,7 +130,7 @@ public class SparkEntity extends HostileEntity {
 		this.setVelocity(this.getVelocity().multiply(1.0D, 0.6D, 1.0D));
 
 		if (this.age > maxAge) {
-			this.damage(DamageSource.STARVE, 1.0F);
+			this.damage(ModDamageSource.FADING, 1.0F);
 		}
 
 		if (this.getHealth() <= 0) {
@@ -139,7 +140,7 @@ public class SparkEntity extends HostileEntity {
 	}
 
 	protected void dealDamage() {
-		damage(DamageSource.GENERIC, StylishOccult.SETTING.spark_selfharm);
+		damage(ModDamageSource.REBOUND, StylishOccult.SETTING.spark_selfharm);
 	}
 
 	protected boolean hasTarget() {

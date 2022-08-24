@@ -147,6 +147,17 @@
 	"entity.stylish_occult.lava_spark": "Spark",
 	"entity.stylish_occult.spore": "Spore",
 
+	"death.attack.stylish_shock": "%1$s was shocked to death by ancient magic",
+	"death.attack.stylish_shock.player": "%1$s was shocked to death by ancient magic whilst trying to escape %2$s",
+	"death.attack.stylish_corruption": "%1$s's heart got corrupted and rotten away",
+	"death.attack.stylish_corruption.player": "%1$s's hearth got corrupted and rotten away whilst trying to escape %2$s",
+	"death.attack.stylish_sacrifice": "%1$s sacrificed themselves to ancient gods",
+	"death.attack.stylish_sacrifice.player": "%1$s sacrificed all they could but the gods did not save them from %2$s anyway",
+	"death.attack.stylish_fading": "%1$s faded away",
+	"death.attack.stylish_fading.player": "%1$s faded away whilst trying to kill %2$s",
+	"death.attack.stylish_rebound": "%1$s paid for the inflicted pain",
+	"death.attack.stylish_rebound.playe": "%1$s paid for the inflicted pain whilst trying to kill %2$s",
+
 	"sound.stylish_occult.lava_demon.wakeup": "Magmatic Demon Wakes Up",
 	"sound.stylish_occult.lava_demon.die": "Magmatic Demon Dies",
 	"sound.stylish_occult.vent": "Fire Vents",

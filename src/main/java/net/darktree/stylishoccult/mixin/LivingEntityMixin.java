@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.mixin;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.occult.GrowthBlock;
 import net.darktree.stylishoccult.duck.LivingEntityDuck;
+import net.darktree.stylishoccult.entity.damage.ModDamageSource;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
@@ -34,7 +35,7 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
 		if (tick - lastShockTaken > 20) {
 			this.lastShockTaken = tick;
 			damage = Math.min(this.getHealth(), damage);
-			this.damage(DamageSource.MAGIC, damage);
+			this.damage(ModDamageSource.SHOCK, damage);
 			return damage;
 		}
 

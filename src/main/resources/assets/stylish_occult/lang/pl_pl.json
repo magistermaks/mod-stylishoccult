@@ -91,6 +91,17 @@
 	"entity.stylish_occult.lava_spark": "Iskra",
 	"entity.stylish_occult.spore": "Zarodnik",
 
+	"death.attack.stylish_shock": "Gracz %1$s został porażony pradawną magią",
+	"death.attack.stylish_shock.player": "Gracz %1$s został porażony pradawną magią, uciekając przed: %2$s",
+	"death.attack.stylish_corruption": "Serce gracza %1$s zostało zatrute i zgniło",
+	"death.attack.stylish_corruption.player": "Serce gracza %1$s zostało zatrute i zgniło, uciekając przed: %2$s",
+	"death.attack.stylish_sacrifice": "Gracz %1$s poświęcił się starym bogom",
+	"death.attack.stylish_sacrifice.player": "Gracz %1$s poświęcił wszystko co mógł, ale bogowie i tak nie wybawili go od: %2$s",
+	"death.attack.stylish_fading": "%1$s zanikł",
+	"death.attack.stylish_fading.player": "%1$s zanikł, próbując pokonać: %2$s",
+	"death.attack.stylish_rebound": "%1$s zapłacił za zadany ból",
+	"death.attack.stylish_rebound.playe": "%1$s zapłacił za zadany ból, próbując pokonać: %2$s",
+
 	"sound.stylish_occult.lava_demon.wakeup": "Magmowy demon budzi się",
 	"sound.stylish_occult.lava_demon.die": "Magmowy demon umiera",
 	"sound.stylish_occult.vent": "Ogień ulatnia się",

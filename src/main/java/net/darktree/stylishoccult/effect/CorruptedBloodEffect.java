@@ -1,8 +1,8 @@
 package net.darktree.stylishoccult.effect;
 
+import net.darktree.stylishoccult.entity.damage.ModDamageSource;
 import net.darktree.stylishoccult.mixin.StatusEffectInstanceAccessor;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.util.math.BlockPos;
@@ -55,7 +55,7 @@ public class CorruptedBloodEffect extends SimpleStatusEffect {
 
 		if (amplifier > 0 && entity.world.getTime() % 4 == 0) {
 			if(entity.getHealth() > a / 3.0f || a >= 6) {
-				entity.damage(DamageSource.WITHER, a / 4.0f);
+				entity.damage(ModDamageSource.CORRUPTION, a / 4.0f);
 			}
 		}
 	}

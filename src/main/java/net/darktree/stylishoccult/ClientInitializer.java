@@ -10,8 +10,11 @@ import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.particles.Particles;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 
+@Environment(EnvType.CLIENT)
 public class ClientInitializer implements ClientModInitializer {
 
 	@Override
@@ -35,6 +38,7 @@ public class ClientInitializer implements ClientModInitializer {
 		MessageInjector.injectPlain("SplashScreenOutOfBoundsException!");
 		MessageInjector.injectPlain("Now with two poems!");
 		MessageInjector.injectPlain("You Poor Unfortunate Soul!");
+		MessageInjector.injectPlain("This line is printed by an example mod mixin!");
 
 		StylishOccult.LOGGER.info("Some sound effects for Stylish Occult are sourced from https://www.zapsplat.com");
 	}
