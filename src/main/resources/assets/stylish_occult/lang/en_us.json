@@ -37,9 +37,9 @@
 
 	"item.stylish_occult.flesh": "Flesh",
 	"item.stylish_occult.lava_heart": "Magmatic Orb",
-	"item.stylish_occult.blood_bottle": "Corrupted Blood Bottle",
+	"item.stylish_occult.blood_bottle": "Blood Bottle",
 	"item.stylish_occult.blood_bucket": "Blood Bucket",
-	"item.stylish_occult.error_tablet": "Runic Error Tablet",
+	"item.stylish_occult.error_tablet": "Runic Tablet",
 	"item.stylish_occult.veins": "Veins",
 	"item.stylish_occult.cooked_veins": "Cooked Veins",
 	"item.stylish_occult.lava_shard": "Magmatic Shard",
@@ -53,6 +53,7 @@
 	"item.stylish_occult.twisted_sword": "Twisted Bone Sword",
 	"item.stylish_occult.twisted_shovel": "Twisted Bone Shovel",
 	"item.stylish_occult.twisted_pickaxe": "Twisted Bone Pickaxe",
+	"item.stylish_occult.twisted_dagger": "Twisted Bone Knife",
 	"item.stylish_occult.twisted_axe": "Twisted Bone Axe",
 	"item.stylish_occult.twisted_hoe": "Twisted Bone Hoe",
 	"item.stylish_occult.twisted_helmet": "Twisted Bone Helmet",
@@ -60,6 +61,9 @@
 	"item.stylish_occult.twisted_leggings": "Twisted Bone Leggings",
 	"item.stylish_occult.twisted_boots": "Twisted Bone Boots",
 	"item.stylish_occult.staff": "Occult Staff",
+	"item.stylish_occult.lava_demon_head": "Magmatic Demon (Head)",
+	"item.stylish_occult.lava_demon_emitter": "Magmatic Demon (Emitter)",
+	"item.stylish_occult.lava_demon_body": "Magmatic Demon (Body)",
 
 	"tooltip.stylish_occult.candle": "Length: %s",
 	"tooltip.stylish_occult.rune": "Rune: %s",
@@ -69,6 +73,7 @@
 	"tooltip.stylish_occult.error_tablet.error.invalid_number": "Invalid number syntax!",
 	"tooltip.stylish_occult.error_tablet.error.number_too_long": "Number too long!",
 	"tooltip.stylish_occult.error_tablet.error.invalid_argument": "Invalid argument!",
+	"tooltip.stylish_occult.error_tablet.error.out_of_range": "Out of range!",
 	"tooltip.stylish_occult.error_tablet.error.invalid_argument_type": "Invalid argument type!",
 	"tooltip.stylish_occult.error_tablet.error.invalid_argument_count": "Invalid argument count!",
 	"tooltip.stylish_occult.error_tablet.error.nothing_to_return": "Nothing to return!",
@@ -76,9 +81,13 @@
 	"tooltip.stylish_occult.error_tablet.error.stack_too_long": "Too many elements on stack!",
 	"tooltip.stylish_occult.error_tablet.error.unmet_equivalency": "Unmet equivalency!",
 	"tooltip.stylish_occult.error_tablet.error.broken": "Damaged inscription!",
+	"tooltip.stylish_occult.error_tablet.dispose": "Right click to dispose of this tablet",
 	"tooltip.stylish_occult.altar_plate": "Place on top of a Runestone Table to create an altar",
 	"tooltip.stylish_occult.blood_amount": "Amount: %smb",
 	"tooltip.stylish_occult.debug_unavailable": "No debug information available!",
+	"tooltip.stylish_occult.dagger": "Use on a Occult Cauldron to make a sacrifice",
+	"tooltip.stylish_occult.waila_cauldron_amount": "%s droplets",
+	"tooltip.stylish_occult.lava_demon_item": "A part of a Lava Demon",
 
 	"rune.block.stylish_occult.rune_debug": "Inveniet",
 	"rune.block.stylish_occult.rune_tactus": "Tactus",
@@ -133,9 +142,21 @@
 	"rune.block.stylish_occult.rune_suspectum": "Suspectum",
 	"rune.block.stylish_occult.rune_valorem": "Valorem",
 	"rune.block.stylish_occult.rune_separatum": "Separatum",
+	"rune.block.stylish_occult.rune_somnum": "Somnum",
 
 	"entity.stylish_occult.lava_spark": "Spark",
 	"entity.stylish_occult.spore": "Spore",
+
+	"death.attack.stylish_shock": "%1$s was shocked to death by ancient magic",
+	"death.attack.stylish_shock.player": "%1$s was shocked to death by ancient magic whilst trying to escape %2$s",
+	"death.attack.stylish_corruption": "%1$s's heart got corrupted and rotten away",
+	"death.attack.stylish_corruption.player": "%1$s's hearth got corrupted and rotten away whilst trying to escape %2$s",
+	"death.attack.stylish_sacrifice": "%1$s sacrificed themselves to ancient gods",
+	"death.attack.stylish_sacrifice.player": "%1$s sacrificed all they could but the gods did not save them from %2$s anyway",
+	"death.attack.stylish_fading": "%1$s faded away",
+	"death.attack.stylish_fading.player": "%1$s faded away whilst trying to kill %2$s",
+	"death.attack.stylish_rebound": "%1$s paid for the inflicted pain",
+	"death.attack.stylish_rebound.playe": "%1$s paid for the inflicted pain whilst trying to kill %2$s",
 
 	"sound.stylish_occult.lava_demon.wakeup": "Magmatic Demon Wakes Up",
 	"sound.stylish_occult.lava_demon.die": "Magmatic Demon Dies",
@@ -152,6 +173,7 @@
 	"sound.stylish_occult.chisel": "Rune Chiseled",
 	"sound.stylish_occult.activate": "Rune Activated",
 	"sound.stylish_occult.inspect": "Rune Inspected",
+	"sound.stylish_occult.dispose": "Runic Tablet Disintegrates",
 
 	"script.stylish_occult.element.number": "Numerus",
 	"script.stylish_occult.element.item": "Item",
@@ -321,7 +343,7 @@
 	"advancements.stylish_occult.craft.title": "Equivalent Exchange",
 	"advancements.stylish_occult.craft.description": "To gain something must be lost",
 	"advancements.stylish_occult.place.title": "Encrusted With Blood",
-	"advancements.stylish_occult.place.description": "Build with the power of occult magic",
+	"advancements.stylish_occult.place.description": "Spooky action at a distance",
 	"advancements.stylish_occult.wake.title": "The Old Ones",
 	"advancements.stylish_occult.wake.description": "Awake the fiery beast sleeping in the depths",
 	"advancements.stylish_occult.hell.title": "Into Hell",
@@ -336,7 +358,11 @@
 	"advancements.stylish_occult.shard.description": "Find a Blood Shard",
 	"advancements.stylish_occult.stonehenge.title": "Circle Of Stone",
 	"advancements.stylish_occult.stonehenge.description": "Visit a Stonehenge",
+	"advancements.stylish_occult.guide.title": "Kitab al-Azif",
+	"advancements.stylish_occult.guide.description": "Find the Runonomicon",
+	"advancements.stylish_occult.sacrifice.title": "Sacrifices Must Be Made",
+	"advancements.stylish_occult.sacrifice.description": "Drain some blood using a Twisted Knife",
 
 	"patchouli.stylish_occult.runonomicon.name": "Runonomicon",
-	"patchouli.stylish_occult.runonomicon.text": "The guide to the forgotten secrets of life and death, and the occult art of runic blood engravings. $(br)$(br)By Abdul Alhazred"
+	"patchouli.stylish_occult.runonomicon.text": "The guide to the forgotten secrets of life and death, and the occult art of runic blood engravings. $(p)By Abdul Alhazred"
 }

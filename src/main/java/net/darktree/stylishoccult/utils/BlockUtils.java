@@ -10,77 +10,73 @@ import net.minecraft.world.World;
 
 public class BlockUtils {
 
-    public interface BlockStateComparator {
-        boolean call(BlockState state);
-    }
+	public interface BlockStateComparator {
+		boolean call(BlockState state);
+	}
 
-    @Deprecated
-    public static <T extends BlockEntity, Y extends BlockView> T getEntity(Class<T> clazz, Y world, BlockPos pos){
-        if( world != null && pos != null && clazz != null ) {
-            BlockEntity entity = world.getBlockEntity(pos);
-            if( clazz.isInstance( entity ) ) return clazz.cast( entity );
-        }
-        return null;
-    }
+	public static <T extends BlockEntity, Y extends BlockView> T get(Class<T> clazz, Y world, BlockPos pos){
+		BlockEntity entity = world.getBlockEntity(pos);
 
-    @Deprecated
-    public static boolean areInLine( BlockPos pos1, BlockPos pos2 ) {
-        int x = (pos1.getX() - pos2.getX() != 0) ? 1 : 0;
-        int y = (pos1.getY() - pos2.getY() != 0) ? 1 : 0;
-        int z = (pos1.getZ() - pos2.getZ() != 0) ? 1 : 0;
+		if (clazz.isInstance(entity)) {
+			return clazz.cast(entity);
+		}
 
-        return (x + y + z) == 1;
-    }
+		throw new RuntimeException("Failed to fetch block entity at " + pos.toShortString());
+	}
 
-    public static boolean touchesAir(BlockView world, BlockPos origin) {
-        for( Direction direction : Direction.values() ){
-            BlockState state = world.getBlockState( origin.offset( direction ) );
-            if( state.isAir() ) return true;
-        }
-        return false;
-    }
+	public static boolean touchesAir(BlockView world, BlockPos origin) {
+		for (Direction direction : Directions.ALL){
+			BlockState state = world.getBlockState(origin.offset(direction));
 
-    public static int countInArea(World world, BlockPos origin, Class<?> clazz, int radius) {
-        int count = 0;
-        BlockPos.Mutable pos = new BlockPos.Mutable();
+			if (state.isAir()) {
+				return true;
+			}
+		}
 
-        for( int x = -radius; x <= radius; x ++ ){
-            for( int y = -radius; y <= radius; y ++ ) {
-                for (int z = -radius; z <= radius; z++) {
-                    pos.set( x + origin.getX(), y + origin.getY(), z + origin.getZ());
-                    if( clazz.isInstance( world.getBlockState( pos ).getBlock() ) ) {
-                        count ++;
-                    }
-                }
-            }
-        }
+		return false;
+	}
 
-        return count;
-    }
+	public static int countInArea(World world, BlockPos origin, Class<?> clazz, int radius) {
+		int count = 0;
+		BlockPos.Mutable pos = new BlockPos.Mutable();
 
-    public static BlockPos find(World world, BlockPos origin, Block block, int radius, BlockUtils.BlockStateComparator comp) {
-        for( int x = -radius; x <= radius; x ++ ){
-            for( int y = -radius; y <= radius; y ++ ){
-                for( int z = -radius; z <= radius; z ++ ){
+		for (int x = -radius; x <= radius; x ++){
+			for (int y = -radius; y <= radius; y ++) {
+				for (int z = -radius; z <= radius; z++) {
+					pos.set(x + origin.getX(), y + origin.getY(), z + origin.getZ());
 
-                    BlockPos pos = new BlockPos( x + origin.getX(), Math.max( y + origin.getY(), 0 ), z + origin.getZ());
-                    BlockState state = world.getBlockState( pos );
+					if (clazz.isInstance(world.getBlockState(pos).getBlock())) {
+						count ++;
+					}
+				}
+			}
+		}
 
-                    if( state.getBlock() == block || (block == null) ) {
-                        if( comp != null ) {
-                            if( comp.call( state ) ){
-                                return pos;
-                            }
-                        }else{
-                            return pos;
-                        }
-                    }
+		return count;
+	}
 
-                }
-            }
-        }
+	public static BlockPos find(World world, BlockPos origin, Block block, int radius, BlockUtils.BlockStateComparator comp) {
+		for (int x = -radius; x <= radius; x ++){
+			for (int y = -radius; y <= radius; y ++){
+				for (int z = -radius; z <= radius; z ++){
 
-        return null;
-    }
+					BlockPos pos = new BlockPos(x + origin.getX(), Math.max(y + origin.getY(), 0), z + origin.getZ());
+					BlockState state = world.getBlockState(pos);
+
+					if (state.getBlock() == block || (block == null)) {
+						if (comp != null) {
+							if (comp.call(state)){
+								return pos;
+							}
+						}else{
+							return pos;
+						}
+					}
+				}
+			}
+		}
+
+		return null;
+	}
 
 }

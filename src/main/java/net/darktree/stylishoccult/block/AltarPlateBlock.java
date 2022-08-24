@@ -78,7 +78,7 @@ public class AltarPlateBlock extends BlockWithEntity implements DropsItself, Ver
 			return ActionResult.PASS;
 		}
 
-		return BlockUtils.getEntity(AltarPlateBlockEntity.class, world, pos).use(player.getStackInHand(hand), world.getRandom()) ? ActionResult.SUCCESS : ActionResult.PASS;
+		return BlockUtils.get(AltarPlateBlockEntity.class, world, pos).use(player.getStackInHand(hand), world.getRandom()) ? ActionResult.SUCCESS : ActionResult.PASS;
 	}
 
 	@Override

@@ -1,8 +1,8 @@
 package net.darktree.stylishoccult.item;
 
+import net.darktree.stylishoccult.particles.Particles;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.s2c.play.ParticleS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.world.World;
 
@@ -22,12 +22,15 @@ public class ThrownItemEntity extends ItemEntity {
 		if (mergeDelay > 0) {
 			mergeDelay --;
 
-			if (age % 2 == 0) {
-				world.getServer().getPlayerManager().sendToAround(null, prevX, prevY, prevZ, 32, world.getRegistryKey(), new ParticleS2CPacket(ParticleTypes.SMOKE, false, prevX, prevY, prevZ, 0, 0, 0, 0, 1));
+			// this entity exists only on the server side, but let's verify it anyway
+			// in case something else caused it to spawn
+			if (age % 2 == 0 && !world.isClient) {
+				Particles.spawn(world, ParticleTypes.SMOKE, prevX, prevY, prevZ, 1);
 			}
 		}
 	}
 
+	@Override
 	public boolean canMerge() {
 		return super.canMerge() && mergeDelay == 0;
 	}

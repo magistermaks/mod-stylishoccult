@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(StatusEffectInstance.class)
 public interface StatusEffectInstanceAccessor {
 
-    @Accessor("showParticles")
-    void stylish_setStoredParticlesFlag(boolean value );
+	@Accessor("showParticles")
+	void stylish_setStoredParticlesFlag(boolean value );
 
 }

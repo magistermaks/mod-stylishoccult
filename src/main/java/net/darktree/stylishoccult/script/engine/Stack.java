@@ -4,6 +4,8 @@ import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneExceptionType;
 import net.darktree.stylishoccult.script.element.StackElement;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
@@ -26,7 +28,7 @@ public final class Stack extends BaseStack {
 	public StackElement pull() {
 		try {
 			return stack.remove(stack.size() - 1);
-		}catch (Exception exception) {
+		} catch (Exception exception) {
 			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
 		}
 	}
@@ -37,7 +39,7 @@ public final class Stack extends BaseStack {
 	public void push(StackElement element) {
 		try {
 			stack.add(element);
-		}catch (Exception exception) {
+		} catch (Exception exception) {
 			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
 		}
 	}
@@ -48,7 +50,7 @@ public final class Stack extends BaseStack {
 	public void swap() {
 		try {
 			push(stack.remove(stack.size() - 2));
-		}catch (Exception exception) {
+		} catch (Exception exception) {
 			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
 		}
 	}
@@ -59,7 +61,7 @@ public final class Stack extends BaseStack {
 	public void duplicate() {
 		try {
 			push(peek(0).copy());
-		}catch (Exception exception) {
+		} catch (Exception exception) {
 			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT_COUNT);
 		}
 	}
@@ -98,34 +100,26 @@ public final class Stack extends BaseStack {
 	/**
 	 * Reset this stack, notifies the consumer of every dropped element
 	 */
+	@Override
 	public void reset(Consumer<StackElement> consumer) {
 		int length = stack.size();
 
-		for(int i = 0; i < length; i ++) {
+		for (int i = 0; i < length; i ++) {
 			consumer.accept(pull());
 		}
-	}
-
-	/**
-	 * Get stack size
-	 */
-	@Deprecated
-	public int size() {
-		return stack.size();
 	}
 
 	/**
 	 * Serialize the stack to {@link NbtCompound}
 	 */
 	public NbtCompound writeNbt(NbtCompound nbt) {
-		int length = stack.size();
+		NbtList list = new NbtList();
 
-		for(int i = 0; i < length; i ++) {
-			NbtCompound entry = new NbtCompound();
-			peek(i).writeNbt(entry);
-			nbt.put(String.valueOf(i), entry);
+		for (StackElement element : stack) {
+			list.add(element.writeNbt(new NbtCompound()));
 		}
 
+		nbt.put("s", list);
 		return nbt;
 	}
 
@@ -133,14 +127,12 @@ public final class Stack extends BaseStack {
 	 * Deserialize the stack from {@link NbtCompound}
 	 */
 	public void readNbt(NbtCompound nbt) {
-		try {
-			int size = nbt.getSize();
+		NbtList list = nbt.getList("s", NbtElement.COMPOUND_TYPE);
+		int size = Math.min(list.size(), capacity);
 
-			for( int i = 0; i < size; i ++ ) {
-				stack.add(StackElement.from(nbt.getCompound(String.valueOf(i))));
-			}
-		} catch (Exception exception) {
-			exception.printStackTrace();
+		for (int i = 0; i < size; i ++) {
+			NbtCompound entry = (NbtCompound) list.get(i);
+			stack.add(StackElement.from(entry));
 		}
 	}
 
@@ -148,7 +140,7 @@ public final class Stack extends BaseStack {
 	 * Copy elements from other stack
 	 */
 	public void from(Stack stack) {
-		for(StackElement element : stack.stack) {
+		for (StackElement element : stack.stack) {
 			this.stack.add(element.copy());
 		}
 	}

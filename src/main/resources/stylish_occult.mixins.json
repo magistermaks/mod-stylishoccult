@@ -4,9 +4,10 @@
 	"package": "net.darktree.stylishoccult.mixin",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
-		"BookIconMixin",
 		"CauldronBehaviourMixin",
+		"DirectionMixin",
 		"HungerManagerMixin",
+		"ItemUsageContextMixin",
 		"LivingEntityMixin",
 		"PlayerEntityMixin",
 		"ServerAdvancementLoaderMixin",
@@ -14,6 +15,7 @@
 	],
 	"client": [
 		"BackgroundRendererMixin",
+		"BookIconMixin",
 		"CameraMixin",
 		"InGameHudMixin",
 		"PlayerEntityClientMixin"

@@ -87,8 +87,9 @@ public class BloodCauldronBlock extends LeveledCauldronBlock {
 		if (item == ModItems.OCCULT_STAFF) {
 			Sounds.SPELL.play(world, pos);
 			incrementStat(player, item);
-			world.setBlockState(pos, ModBlocks.OCCULT_CAULDRON.getDefaultState());
-			BlockUtils.getEntity(OccultCauldronBlockEntity.class, world, pos).getStorage().insert(FluidConstants.BOTTLE * level);
+			boolean boil = OccultCauldronBlock.shouldBoil(world.getBlockState(pos.down()));
+			world.setBlockState(pos, ModBlocks.OCCULT_CAULDRON.getDefaultState().with(OccultCauldronBlock.BOILING, boil));
+			BlockUtils.get(OccultCauldronBlockEntity.class, world, pos).getStorage().insert(FluidConstants.BOTTLE * level);
 			return ActionResult.SUCCESS;
 		}
 

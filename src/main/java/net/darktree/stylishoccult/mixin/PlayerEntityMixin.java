@@ -1,6 +1,6 @@
 package net.darktree.stylishoccult.mixin;
 
-import net.darktree.stylishoccult.overlay.PlayerEntityDuck;
+import net.darktree.stylishoccult.overlay.PlayerEntityMadnessDuck;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin implements PlayerEntityDuck {
+public abstract class PlayerEntityMixin implements PlayerEntityMadnessDuck {
 
 	@Unique
 	private static final UUID MADNESS_SLOW_ID = UUID.fromString("1eaff00f-7207-1234-b3ff-d7a07ab1cdef");
@@ -41,8 +41,13 @@ public abstract class PlayerEntityMixin implements PlayerEntityDuck {
 	}
 
 	@Override
-	public void stylish_addMadness(float value) {
-		madness = MathHelper.clamp(madness + value, 0f, 1f);
+	public float stylish_setMadness(float value) {
+		return madness = MathHelper.clamp(value, 0f, 1f);
+	}
+
+	@Override
+	public float stylish_addMadness(float value) {
+		return stylish_setMadness(madness + value);
 	}
 
 	@Override

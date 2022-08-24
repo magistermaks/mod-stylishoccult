@@ -12,15 +12,15 @@ import java.util.Random;
 
 public abstract class SimpleFeature<T extends FeatureConfig> extends Feature<T> implements SimpleFeatureProvider {
 
-    public SimpleFeature(Codec<T> codec) {
-        super(codec);
-    }
+	public SimpleFeature(Codec<T> codec) {
+		super(codec);
+	}
 
-    abstract public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos target, T config);
+	abstract public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos target, T config);
 
-    @Override
-    public boolean generate(FeatureContext<T> context) {
-        return this.generate(context.getWorld(), context.getGenerator(), context.getRandom(), context.getOrigin(), context.getConfig());
-    }
+	@Override
+	public boolean generate(FeatureContext<T> context) {
+		return this.generate(context.getWorld(), context.getGenerator(), context.getRandom(), context.getOrigin(), context.getConfig());
+	}
 
 }

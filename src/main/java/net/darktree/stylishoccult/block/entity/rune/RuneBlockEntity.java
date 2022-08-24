@@ -1,71 +1,74 @@
 package net.darktree.stylishoccult.block.entity.rune;
 
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.SimpleBlockEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import org.jetbrains.annotations.Nullable;
 
 public class RuneBlockEntity extends SimpleBlockEntity {
 
-    private Script script;
-    private NbtCompound meta;
+	private final RuneBlockAttachment attachment;
+	private Script script;
+	private Direction from;
 
-    public RuneBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntities.RUNESTONE, pos, state);
+	public RuneBlockEntity(BlockPos pos, BlockState state) {
+		super(BlockEntities.RUNESTONE, pos, state);
 
-        script = null;
-        meta = null;
-    }
+		script = null;
+		attachment = new RuneBlockAttachment(this::markDirty);
+	}
 
-    @Override
-    public NbtCompound writeNbt(NbtCompound tag) {
-        if(script != null) tag.put("s", script.writeNbt(new NbtCompound()));
-        if(meta != null) tag.put("m", meta);
-        return super.writeNbt(tag);
-    }
+	@Override
+	public NbtCompound writeNbt(NbtCompound nbt) {
+		if (script != null) nbt.put("s", script.writeNbt(new NbtCompound()));
+		if (from != null) nbt.putByte("f", (byte) from.getId());
+		if (!attachment.isEmpty()) nbt.put("a", attachment.writeNbt(new NbtCompound()));
+		return super.writeNbt(nbt);
+	}
 
-    @Override
-    public void readNbt(NbtCompound nbt) {
-        try {
-            if( nbt.contains("s") ) script = Script.fromNbt( nbt.getCompound("s") );
-            if( nbt.contains("m") ) meta = nbt.getCompound("m");
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
-        super.readNbt(nbt);
-    }
+	@Override
+	public void readNbt(NbtCompound nbt) {
+		try {
+			if (nbt.contains("s")) script = Script.fromNbt(nbt.getCompound("s"));
+			if (nbt.contains("f")) from = Direction.byId(nbt.getByte("f"));
+			if (nbt.contains("a")) attachment.readNbt(nbt.getCompound("a"));
+		} catch (Exception exception) {
+			StylishOccult.LOGGER.error("Failed to deserialize rune block entity from NBT!", exception);
+		}
+		super.readNbt(nbt);
+	}
 
-    public void store(Script script) {
-        this.script = script;
-        markDirty();
-    }
+	public void store(Script script, @Nullable Direction from) {
+		this.script = script;
+		this.from = from;
+		markDirty();
+	}
 
-    public void clear() {
-        script = null;
-        markDirty();
-    }
+	public void clear() {
+		script = null;
+		from = null;
+		markDirty();
+	}
 
-    public Script getScript() {
-        return script;
-    }
+	public Script getScript() {
+		return script;
+	}
 
-    public boolean hasScript() {
-        return script != null;
-    }
+	public boolean hasScript() {
+		return script != null;
+	}
 
-    public boolean hasMeta() {
-        return meta != null;
-    }
+	public Direction getDirection() {
+		return from;
+	}
 
-    public NbtCompound getMeta() {
-        return meta;
-    }
-
-    public void setMeta( NbtCompound tag ) {
-        meta = tag;
-        markDirty();
-    }
+	public RuneBlockAttachment getAttachment() {
+		return attachment;
+	}
 
 }

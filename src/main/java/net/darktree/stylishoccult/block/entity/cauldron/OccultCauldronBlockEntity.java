@@ -26,7 +26,6 @@ public class OccultCauldronBlockEntity extends SimpleBlockEntity {
 
 	private final Storage storage;
 	private int amount = 0;
-
 	private int boiling = 10;
 	private int timer = 0;
 

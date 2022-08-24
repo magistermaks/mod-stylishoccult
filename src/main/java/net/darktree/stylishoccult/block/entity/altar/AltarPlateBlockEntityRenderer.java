@@ -18,12 +18,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
 
 import java.util.List;
-import java.util.Objects;
 
 @Environment(EnvType.CLIENT)
 public class AltarPlateBlockEntityRenderer implements BlockEntityRenderer<AltarPlateBlockEntity> {
 
-	private static final Identifier FIRE = new ModIdentifier("textures/particle/spark_0.png");
+	private static final Identifier FIRE = new ModIdentifier("textures/particle/altar_candle.png");
 
 	private final BlockRenderManager blockRenderer;
 	private final ItemRenderer itemRenderer;
@@ -35,7 +34,8 @@ public class AltarPlateBlockEntityRenderer implements BlockEntityRenderer<AltarP
 
 	@Override
 	public void render(AltarPlateBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		double time = Objects.requireNonNull(entity.getWorld()).getTime() + tickDelta;
+		// will someone notice this?
+		double time = Math.floorMod(entity.getWorld().getTime(), 3*60*60*20) + tickDelta;
 		double offset = (Math.sin(time / 12.0) + 1) / 12.0;
 
 		// render center item
@@ -60,7 +60,7 @@ public class AltarPlateBlockEntityRenderer implements BlockEntityRenderer<AltarP
 			float radius = (float) (Math.sin(time * 0.03f + 3 * stack.offset * MathHelper.TAU) / 20.0f) + (length * 0.022f) + 0.5f;
 
 			double x = Math.sin(angle) * radius;
-			double y = (Math.sin(time * 0.1f + 2 * stack.offset * MathHelper.TAU) + 1) / 10.0 + 0.2f;
+			double y = (Math.sin(time * 0.1 + 2 * stack.offset * MathHelper.TAU) + 1) / 10.0 + 0.2f;
 			double z = Math.cos(angle) * radius;
 
 			// render candle

@@ -1,15 +1,18 @@
 package net.darktree.stylishoccult.script.element;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneExceptionType;
 import net.darktree.stylishoccult.script.element.view.ElementView;
+import net.darktree.stylishoccult.utils.Directions;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -18,6 +21,7 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class FluidElement extends StackElement {
 
@@ -76,11 +80,12 @@ public class FluidElement extends StackElement {
 	@Override
 	public ElementView view() {
 		Identifier fluid = Registry.FLUID.getId(this.fluid.getFluid());
-		String text = amount + "x " + I18n.translate("block." + fluid.getNamespace() + "." + fluid.getPath());
+		String text = amount == 0 ? "(empty)" : amount + "x " + I18n.translate("block." + fluid.getNamespace() + "." + fluid.getPath());
 
 		return ElementView.of("fluid", ElementView.FLUID_ICON, text, fluid.toString());
 	}
 
+	@Override
 	public boolean equals(StackElement element) {
 		if (element instanceof FluidElement fluidElement) {
 			return fluidElement.amount == this.amount && fluidElement.fluid.equals(this.fluid);
@@ -94,16 +99,32 @@ public class FluidElement extends StackElement {
 		long remainder = insert(world, pos);
 
 		if (remainder > 0) {
-			// TODO do something creative here
-			// TODO spawn particles and/or place a source block if > FluidConstants.BLOCK
-			StylishOccult.LOGGER.info("{} units of fluid were lost to entropy!", remainder);
+			ParticleEffect particle = fluid.getFluid().getDefaultState().getParticle();
+			Random random = world.getRandom();
+
+			if (particle != null) {
+				for (Direction direction : Directions.ALL_EXCEPT_UP) {
+					BlockPos target = pos.offset(direction);
+
+					if (!world.getBlockState(target).isOpaqueFullCube(world, target)){
+						Direction.Axis axis = direction.getAxis();
+						double x = pos.getX() + (axis == Direction.Axis.X ? 0.5 + 0.53 * direction.getOffsetX() : random.nextFloat());
+						double y = pos.getY() + (axis == Direction.Axis.Y ? 0.5 + 0.53 * direction.getOffsetY() : random.nextFloat());
+						double z = pos.getZ() + (axis == Direction.Axis.Z ? 0.5 + 0.53 * direction.getOffsetZ() : random.nextFloat());
+
+						Particles.spawn(world, particle, x, y, z, 1);
+					}
+				}
+			}
+
+			StylishOccult.debug(remainder + " droplets of fluid were lost to entropy!");
 		}
 	}
 
 	private long insert(World world, BlockPos pos) {
 		long left = this.amount;
 
-		for(Direction direction : Direction.values()) {
+		for (Direction direction : Directions.ALL) {
 
 			// It should never be less than 0, but just to be sure...
 			if (left <= 0) {

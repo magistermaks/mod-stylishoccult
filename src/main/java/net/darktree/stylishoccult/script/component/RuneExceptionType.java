@@ -2,63 +2,68 @@ package net.darktree.stylishoccult.script.component;
 
 public enum RuneExceptionType {
 
-    /**
-     * The number is incorrectly formatted
-     */
-    INVALID_NUMBER("invalid_number"),
+	/**
+	 * The number is incorrectly formatted
+	 */
+	INVALID_NUMBER("invalid_number"),
 
-    /**
-     * The number is too long
-     */
-    NUMBER_TOO_LONG("number_too_long"),
+	/**
+	 * The number is too long
+	 */
+	NUMBER_TOO_LONG("number_too_long"),
 
-    /**
-     * Expected a different argument
-     */
-    INVALID_ARGUMENT("invalid_argument"),
+	/**
+	 * Expected a different argument
+	 */
+	INVALID_ARGUMENT("invalid_argument"),
 
-    /**
-     * Expected a different argument type
-     */
-    INVALID_ARGUMENT_TYPE("invalid_argument_type"),
+	/**
+	 * Operation was requested for a location outside the supported area
+	 */
+	OUT_OF_RANGE("out_of_range"),
 
-    /**
-     * Expected a different argument count
-     */
-    INVALID_ARGUMENT_COUNT("invalid_argument_count"),
+	/**
+	 * Expected a different argument type
+	 */
+	INVALID_ARGUMENT_TYPE("invalid_argument_type"),
 
-    /**
-     * Nothing left to return (e.g. from stack)
-     */
-    NOTHING_TO_RETURN("nothing_to_return"),
+	/**
+	 * Expected a different argument count
+	 */
+	INVALID_ARGUMENT_COUNT("invalid_argument_count"),
 
-    /**
-     * Internal problem, invalid block state or NBT tag
-     */
-    INVALID_STATE("invalid_state"),
+	/**
+	 * Nothing was left to return (e.g. from stack)
+	 */
+	NOTHING_TO_RETURN("nothing_to_return"),
 
-    /**
-     * Maximum stack size exceeded
-     */
-    STACK_TOO_LONG("stack_too_long"),
+	/**
+	 * Internal problem, invalid block state or NBT tag
+	 */
+	INVALID_STATE("invalid_state"),
 
-    /**
-     * Operation is in violation of the rule of equivalent exchange
-     */
-    UNMET_EQUIVALENCY("unmet_equivalency"),
+	/**
+	 * Maximum stack size exceeded
+	 */
+	STACK_TOO_LONG("stack_too_long"),
 
-    /**
-     * A broken rune activated
-     */
-    BROKEN("broken");
+	/**
+	 * Operation is in violation of the rule of Equivalent Exchange
+	 */
+	UNMET_EQUIVALENCY("unmet_equivalency"),
 
-    private final String name;
+	/**
+	 * A broken rune was activated
+	 */
+	BROKEN("broken");
 
-    RuneExceptionType( String name ) {
-        this.name = name;
-    }
+	private final String name;
 
-    public String getName() {
-        return name;
-    }
+	RuneExceptionType(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
 }

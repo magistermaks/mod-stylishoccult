@@ -1,0 +1,40 @@
+{
+	"name": "Runestones",
+	"icon": "stylish_occult:runestone",
+	"category": "stylish_occult:general",
+	"sortnum": 6,
+	"pages": [
+		{
+			"type": "patchouli:spotlight",
+			"item": "stylish_occult:runestone",
+			"title": "Blank Runestone",
+			"link_recipe": true,
+			"text": "Blank runestone can be obtained by smelting Crystalline Blackstone in a furnace, this material can only be found in the Nether, inside blackstone boulders as well as in Sanctums. $(p)Blank Runestone can be transmuted to different runes on the $(l:stylish_occult:general/dark_altar)Dark Altar$()."
+		},
+		{
+			"type": "patchouli:text",
+			"text": "Once you find some runes you can use them to create occult machines, this section will cover the basics, for more info on a specific rune see the Blood Runes category. $(p)As runes get activated a magical signal that can contain $(o)$(thing)$(t:Items, Fluids, Numbers, etc. \nAnything that exists within a signal)Elements$() is passed between them, that signal can be $(o)$(thing)$(t:Manipulated and transformed)Bended$() by each rune, changing its properties and the Elements within.",
+			"title": "Runic Contraptions"
+		},
+		{
+			"type": "patchouli:text",
+			"text": "Magical signals always travel in a straight line, unless their direction in $(thing)Bended$() by a rune, such as, for example $(l:stylish_occult:runes/directio)Directio$(). $(p)Some runes can split signals or duplicate the $(thing)Elements$() within, but remember that the rule of $(o)Equivalent Exchange$() can't be broken. If you try to duplicate Items or Fluids the void beyond will equalize the equation...",
+			"title": "Runic Contraptions"
+		},
+		{
+			"type": "patchouli:text",
+			"text": "$(thing)Elements$() exist within what's called a $(hs) and $(ds). You can view their contents by passing the magical signal through the $(l:stylish_occult:runes/debug)Inveniet Rune$() and touching it.$(br)$(li)High Stack, can contain up to 32 Elements, you can't add more, the void would stop you.$()$(li)Drop Stack, can contain up to 5 Elements, if you try to add more the oldest one will get rejected back into the $(o)$(t:Dropped from the rune onto the ground, \nor to a neighboring container like a chest)Material Plane$().$()",
+			"title": "Runic Contraptions"
+		},
+		{
+			"type": "patchouli:text",
+			"text": "When a rune takes elements from the $(hs) to do something with them, for example add their values like $(l:stylish_occult:runes/adaugeo)Adaugeo$(), they go to the $(ds). But can be returned back onto the $(hs) using $(l:stylish_occult:runes/ascendo)Ascendo$().$(p)When a rune creates new Elements they are typically added to the $(hs). Order of the elements on the stack can be manipulated.",
+			"title": "Runic Contraptions"
+		},
+		{
+			"type": "patchouli:text",
+			"text": "To start a runic impulse an $(thing)Entry Rune$() is needed, those usually don't conduct magical signals on their own but can create new ones when certain criteria are met. For example $(l:stylish_occult:runes/tactus)Tactus Rune$() activates when touched, and starts a new signal in every direction. $(p)There are also other runes with a similar function, like $(l:stylish_occult:runes/fortuitus)Fortuitus$() or $(l:stylish_occult:runes/inviso)Inviso$().",
+			"title": "Runic Contraptions"
+		}
+	]
+}

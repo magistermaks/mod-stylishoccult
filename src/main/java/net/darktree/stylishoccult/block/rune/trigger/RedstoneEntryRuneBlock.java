@@ -11,26 +11,27 @@ import net.minecraft.world.World;
 
 public class RedstoneEntryRuneBlock extends EntryRuneBlock {
 
-    private static final BooleanProperty POWERED = Properties.POWERED;
+	private static final BooleanProperty POWERED = Properties.POWERED;
 
-    public RedstoneEntryRuneBlock(String name) {
-        super(name);
-    }
+	public RedstoneEntryRuneBlock(String name) {
+		super(name);
+	}
 
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder.add(POWERED));
-    }
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		super.appendProperties(builder.add(POWERED));
+	}
 
-    @Override
-    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-        boolean power = world.isReceivingRedstonePower(pos);
+	@Override
+	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+		boolean power = world.isReceivingRedstonePower(pos);
 
-        if( state.get(POWERED) != power ) {
-            world.setBlockState( pos, state.with(POWERED, power) );
-            if( power ) {
-                emit(world, pos, null);
-            }
-        }
-    }
+		if (state.get(POWERED) != power) {
+			world.setBlockState(pos, state.with(POWERED, power));
+
+			if (power) {
+				emit(world, pos, null);
+			}
+		}
+	}
 }

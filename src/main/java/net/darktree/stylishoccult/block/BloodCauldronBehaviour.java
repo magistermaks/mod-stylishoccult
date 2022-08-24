@@ -47,7 +47,8 @@ public class BloodCauldronBehaviour {
 			Item item = stack.getItem();
 			incrementStats(player, item);
 			Sounds.SPELL.play(world, pos);
-			world.setBlockState(pos, ModBlocks.OCCULT_CAULDRON.getDefaultState());
+			boolean boil = OccultCauldronBlock.shouldBoil(world.getBlockState(pos.down()));
+			world.setBlockState(pos, ModBlocks.OCCULT_CAULDRON.getDefaultState().with(OccultCauldronBlock.BOILING, boil));
 		}
 
 		return ActionResult.success(world.isClient);

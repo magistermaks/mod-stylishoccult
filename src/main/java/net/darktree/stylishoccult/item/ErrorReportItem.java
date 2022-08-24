@@ -1,36 +1,66 @@
 package net.darktree.stylishoccult.item;
 
+import net.darktree.stylishoccult.sounds.SoundEffect;
+import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.Utils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.sound.PositionedSoundInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Random;
 
 public class ErrorReportItem extends Item {
 
-    public ErrorReportItem(Settings settings) {
-        super(settings);
-    }
+	public ErrorReportItem(Settings settings) {
+		super(settings);
+	}
 
-    @Override
-    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        NbtCompound tag = stack.getNbt();
-        try{
-            if( tag != null && !tag.isEmpty() ) {
-                String x = String.valueOf( tag.getInt("x") );
-                String y = String.valueOf( tag.getInt("y") );
-                String z = String.valueOf( tag.getInt("z") );
+	@Override
+	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+		NbtCompound nbt = stack.getNbt();
 
-                tooltip.add( Utils.tooltip( "error_tablet.error." + tag.getString("error") ) );
-                tooltip.add( Utils.tooltip( "error_tablet.location", x, y, z, tag.getString("rune") ) );
-                return;
-            }
-        }catch(Exception ignore) {}
-        tooltip.add( Utils.tooltip( "error_tablet.success") );
-    }
+		if (nbt != null && !nbt.isEmpty()) {
+			String x = String.valueOf(nbt.getInt("x"));
+			String y = String.valueOf(nbt.getInt("y"));
+			String z = String.valueOf(nbt.getInt("z"));
+
+			tooltip.add(Utils.tooltip("error_tablet.error." + nbt.getString("error")));
+			tooltip.add(Utils.tooltip("error_tablet.location", x, y, z, nbt.getString("rune")));
+		} else {
+			tooltip.add(Utils.tooltip("error_tablet.success"));
+		}
+
+		tooltip.add(Utils.tooltip("error_tablet.dispose").formatted(Formatting.DARK_GRAY));
+	}
+
+	@Override
+	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+		if (world.isClient) {
+			playLocalSound(world, Sounds.DISPOSE);
+		}
+
+		return TypedActionResult.consume(ItemStack.EMPTY);
+	}
+
+	@Environment(EnvType.CLIENT)
+	private void playLocalSound(World world, SoundEffect effect) {
+		Random random = world.getRandom();
+		float p = 0.9f + (random.nextFloat() - 0.5f) * 0.25f;
+		float v = 0.3f + (random.nextFloat() * 0.1f);
+
+		MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(effect.event, p, v));
+	}
 
 }

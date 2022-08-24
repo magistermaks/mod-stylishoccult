@@ -1,14 +1,16 @@
 package net.darktree.stylishoccult.block.entity.altar;
 
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.block.rune.VerticalRuneLink;
 import net.darktree.stylishoccult.data.json.AltarRitual;
 import net.darktree.stylishoccult.item.ModItems;
+import net.darktree.stylishoccult.item.ThrownItemEntity;
 import net.darktree.stylishoccult.network.Network;
+import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.script.element.ItemElement;
 import net.darktree.stylishoccult.sounds.Sounds;
-import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.SimpleBlockEntity;
 import net.darktree.stylishoccult.utils.Utils;
 import net.minecraft.block.Block;
@@ -17,10 +19,10 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.network.packet.s2c.play.ParticleS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -123,9 +125,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				pos.setZ(this.pos.getZ() + z);
 
 				if (this.world.getBlockState(pos).getBlock() == ModBlocks.ALTAR_PLATE) {
-					AltarPlateBlockEntity plate = BlockUtils.getEntity(AltarPlateBlockEntity.class, world, pos);
-
-					if (plate != null) {
+					if (world.getBlockEntity(pos) instanceof AltarPlateBlockEntity) {
 						state.addPillar(pos);
 					}
 				}
@@ -163,7 +163,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		boolean next = state.tick(active);
 
 		if (active) {
-			world.getServer().getPlayerManager().sendToAround(null, pos.getX() + 0.5, pos.getY() + 0.1, pos.getZ() + 0.5, 128, world.getRegistryKey(), new ParticleS2CPacket(ParticleTypes.SMOKE, false, this.pos.getX() + 0.45, this.pos.getY() + 0.1, this.pos.getZ() + 0.45, 0.1f, 0, 0.1f, 0.01f, 1));
+			Particles.spawn(world, ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.1, pos.getZ() + 0.5, 1);
 
 			if (next) {
 
@@ -214,11 +214,12 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 			}
 		}
 
+		Criteria.RITUAL.trigger(world, pos, new ItemStack(ritual.catalyst), new ItemStack(ritual.product));
 		Sounds.TRANSMUTE.play(world, pos);
 	}
 
 	/**
-	 * Throw the items in a circle around the altar
+	 * Throws the items in a circle around the altar
 	 */
 	private void ejectItems(List<Item> items) {
 		int count = items.size();
@@ -232,7 +233,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				float vx = world.random.nextFloat() * 0.2f - 0.1f;
 				float vz = world.random.nextFloat() * 0.2f - 0.1f;
 
-				Utils.ejectStack(world, x, y, z,new ItemStack(item), vx, 0.2f, vz);
+				spawnThrownItem(x, y, z, item, vx, 0.2f, vz);
 			}
 		} else {
 			float angle = MathHelper.TAU / count;
@@ -241,8 +242,19 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				float x = (float) Math.sin(angle * i) * 0.12f;
 				float z = (float) Math.cos(angle * i) * 0.12f;
 
-				Utils.ejectStack(world, pos.getX() + 0.5f, pos.getY() + 0.25f, pos.getZ() + 0.5f,new ItemStack(items.get(i)), x, 0.25f, z);
+				spawnThrownItem(pos.getX() + 0.5f, pos.getY() + 0.25f, pos.getZ() + 0.5f, items.get(i), x, 0.25f, z);
 			}
+		}
+	}
+
+	/**
+	 * Spawns in a ThrownItemEntity with a specified velocity
+	 */
+	private void spawnThrownItem(float x, float y, float z, Item item, float vx, float vy, float vz) {
+		if (world != null && !world.isClient && item != Items.AIR) {
+			ItemEntity itemEntity = new ThrownItemEntity(world, x, y, z, new ItemStack(item), vx, vy, vz, 20);
+			itemEntity.setToDefaultPickupDelay();
+			world.spawnEntity(itemEntity);
 		}
 	}
 
@@ -271,9 +283,8 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 	 */
 	private boolean tryStealItem() {
 		BlockPos pos = state.getNextPillar();
-		AltarPlateBlockEntity plate = BlockUtils.getEntity(AltarPlateBlockEntity.class, world, pos);
 
-		if (plate != null) {
+		if (world.getBlockEntity(pos) instanceof AltarPlateBlockEntity plate) {
 			ItemStack stack = plate.catalyst;
 
 			if (!stack.isEmpty()) {

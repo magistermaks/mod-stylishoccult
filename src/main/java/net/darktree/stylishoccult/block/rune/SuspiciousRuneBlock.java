@@ -1,12 +1,15 @@
 package net.darktree.stylishoccult.block.rune;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.block.fluid.ModFluids;
 import net.darktree.stylishoccult.duck.LivingEntityDuck;
+import net.darktree.stylishoccult.entity.SparkEntity;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.script.element.FluidElement;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.sounds.Sounds;
+import net.darktree.stylishoccult.utils.Directions;
 import net.darktree.stylishoccult.utils.OccultHelper;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -34,12 +37,13 @@ public class SuspiciousRuneBlock extends TransferRuneBlock {
 		Box box = new Box(x - 6, y - 6, z - 6, x + 6, y + 6, z + 6);
 
 		LivingTarget[] candidates = world.getEntitiesByClass(LivingEntity.class, box, entity ->
-				(entity.getGroup() != EntityGroup.UNDEAD)
+				entity.getGroup() != EntityGroup.UNDEAD
 						&& entity.isAttackable() && entity.isAlive() && !entity.isSpectator()
-						&& ((entity instanceof PlayerEntity && !((PlayerEntity) entity).isCreative()) || entity instanceof MobEntity)
+						&& ((entity instanceof PlayerEntity player && !player.isCreative()) || entity instanceof MobEntity)
+						&& !(entity instanceof SparkEntity)
 		).stream().map(entity -> new LivingTarget(entity, pos)).filter(LivingTarget::verify).toArray(LivingTarget[]::new);
 
-		if(candidates.length != 0) {
+		if (candidates.length != 0) {
 			return RandUtils.getArrayEntry(candidates, world.random);
 		}
 
@@ -66,9 +70,10 @@ public class SuspiciousRuneBlock extends TransferRuneBlock {
 
 		float yield = StylishOccult.SETTING.rune_blood_yield;
 		script.stack.push(new FluidElement(FluidVariant.of(ModFluids.STILL_BLOOD), (long) Math.ceil(yield * damage)));
+		Criteria.TRIGGER.trigger(world, pos, this, damage > 0);
 	}
 
-	public static class LivingTarget {
+	private static class LivingTarget {
 
 		public final LivingEntity entity;
 		public final Direction face;
@@ -86,7 +91,7 @@ public class SuspiciousRuneBlock extends TransferRuneBlock {
 			Direction closest = null;
 			double distance = 128;
 
-			for (Direction direction : Direction.values()) {
+			for (Direction direction : Directions.ALL) {
 				BlockPos target = pos.offset(direction);
 
 				if (!world.getBlockState(target).getCollisionShape(world, target).isEmpty()) {

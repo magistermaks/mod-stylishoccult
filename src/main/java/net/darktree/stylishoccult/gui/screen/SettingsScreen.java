@@ -13,7 +13,6 @@ import net.darktree.stylishoccult.gui.widget.WCenteredDynamicLabel;
 import net.darktree.stylishoccult.gui.widget.WDynamicButton;
 import net.darktree.stylishoccult.gui.widget.WSimpleLabel;
 import net.darktree.stylishoccult.gui.widget.WSimpleToggle;
-import net.darktree.stylishoccult.utils.Utils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.util.TriState;
@@ -87,16 +86,16 @@ public class SettingsScreen<T> extends CottonClientScreen {
 			root.add(scroll, 0, 0, 84, 72);
 
 			// unsaved warning label
-			WCenteredDynamicLabel info = new WCenteredDynamicLabel(() -> Utils.guiText("config.unsaved", config.getChangedCount()).getString());
+			WCenteredDynamicLabel info = new WCenteredDynamicLabel(() -> ScreenHelper.text("config.unsaved", config.getChangedCount()).getString());
 			root.add(info, 0, 78, 24, 6);
 
 			// cancel and quit button
-			WButton cancel = new WButton(Utils.guiText("config.done"));
+			WButton cancel = new WButton(ScreenHelper.text("config.done"));
 			cancel.setOnClick(() -> MinecraftClient.getInstance().setScreen(parent));
 			root.add(cancel, 47, 78, 18, 6);
 
 			// save button
-			WDynamicButton save = new WDynamicButton(Utils.guiText("config.save"), () -> config.getChangedCount() > 0);
+			WDynamicButton save = new WDynamicButton(ScreenHelper.text("config.save"), () -> config.getChangedCount() > 0);
 			save.setOnClick(config::applyAllChanges);
 			root.add(save, 66, 78, 18, 6);
 
@@ -111,10 +110,10 @@ public class SettingsScreen<T> extends CottonClientScreen {
 			WSimpleLabel title = new WSimpleLabel("config." + property.key + ".title", HorizontalAlignment.LEFT);
 			title.setVerticalAlignment(VerticalAlignment.CENTER);
 			title.setTooltip((builder, advanced) -> {
-				Arrays.stream(Utils.guiText("config." + property.key + ".description").getString().split("\n")).map(LiteralText::new).forEach(builder::add);
+				Arrays.stream(ScreenHelper.text("config." + property.key + ".description").getString().split("\n")).map(LiteralText::new).forEach(builder::add);
 
 				if (property.requiresRestart) {
-					builder.add(Utils.guiText("config.restart").formatted(Formatting.RED));
+					builder.add(ScreenHelper.text("config.restart").formatted(Formatting.RED));
 				}
 
 				if (advanced) {
@@ -124,7 +123,7 @@ public class SettingsScreen<T> extends CottonClientScreen {
 			option.add(title, 0, 0, 48, 6);
 
 			// reset button
-			WDynamicButton reset = new WDynamicButton(Utils.guiText("config.reset"), property::isNotDefault);
+			WDynamicButton reset = new WDynamicButton(ScreenHelper.text("config.reset"), property::isNotDefault);
 
 			// input filed
 			if (property.type == Boolean.class) {

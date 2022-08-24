@@ -18,6 +18,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class ExceptionCriterion extends AbstractCriterion<ExceptionCriterion.Conditions> {
+
 	static final Identifier ID = new ModIdentifier("exception");
 
 	public Identifier getId() {

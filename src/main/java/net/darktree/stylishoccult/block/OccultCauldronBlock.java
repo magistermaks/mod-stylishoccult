@@ -1,9 +1,11 @@
 package net.darktree.stylishoccult.block;
 
 import net.darktree.interference.api.DefaultLoot;
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.block.entity.cauldron.OccultCauldronBlockEntity;
 import net.darktree.stylishoccult.block.fluid.ModFluids;
+import net.darktree.stylishoccult.entity.damage.ModDamageSource;
 import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.tag.ModTags;
@@ -117,7 +119,7 @@ public class OccultCauldronBlock extends BlockWithEntity implements DefaultLoot 
 	}
 
 	private OccultCauldronBlockEntity getEntity(World world, BlockPos pos) {
-		return Objects.requireNonNull(BlockUtils.getEntity(OccultCauldronBlockEntity.class, world, pos));
+		return BlockUtils.get(OccultCauldronBlockEntity.class, world, pos);
 	}
 
 	@Override
@@ -186,6 +188,14 @@ public class OccultCauldronBlock extends BlockWithEntity implements DefaultLoot 
 			return ActionResult.SUCCESS;
 		}
 
+		if (item == ModItems.TWISTED_DAGGER) {
+			int damage = 2 + world.random.nextInt(2);
+			if (player.damage(ModDamageSource.SACRIFICE, damage)) {
+				storage.insert((long) damage * StylishOccult.SETTING.rune_blood_yield);
+				return ActionResult.SUCCESS;
+			}
+		}
+
 		return ActionResult.PASS;
 	}
 
@@ -198,7 +208,7 @@ public class OccultCauldronBlock extends BlockWithEntity implements DefaultLoot 
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(BOILING) && random.nextInt(4) == 0) {
 			if (getEntity(world, pos ).getStorage().getAmount() > 0) {
-				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, Sounds.BOIL.event, SoundCategory.BLOCKS, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
+				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, Sounds.BOIL.event, Sounds.BOIL.category, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
 			}
 		}
 	}
@@ -233,7 +243,7 @@ public class OccultCauldronBlock extends BlockWithEntity implements DefaultLoot 
 		return super.getStateForNeighborUpdate(state, direction, neighbor, world, pos, neighborPos);
 	}
 
-	private static boolean shouldBoil(BlockState neighbor) {
+	public static boolean shouldBoil(BlockState neighbor) {
 		return ModTags.HEAT_SOURCE.contains(neighbor.getBlock()) && (!neighbor.contains(Properties.LIT) || neighbor.get(Properties.LIT));
 	}
 

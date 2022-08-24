@@ -1,19 +1,19 @@
 package net.darktree.stylishoccult.script.component;
 
 public enum RuneType {
-    ENTRY("entry"),
-    INPUT("input"),
-    ACTOR("output"),
-    TRANSFER("transfer"),
-    LOGIC("logic");
+	ENTRY("entry"),
+	INPUT("input"),
+	ACTOR("output"),
+	TRANSFER("transfer"),
+	LOGIC("logic");
 
-    final String name;
+	final String name;
 
-    RuneType(String name) {
-        this.name = name;
-    }
+	RuneType(String name) {
+		this.name = name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 }

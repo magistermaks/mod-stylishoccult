@@ -1,5 +1,6 @@
-package net.darktree.stylishoccult.block.entity.cauldron;
+package net.darktree.stylishoccult.render;
 
+import net.darktree.stylishoccult.block.entity.cauldron.OccultCauldronBlockEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
@@ -16,7 +17,7 @@ import net.minecraft.util.math.Matrix3f;
 import net.minecraft.util.math.Matrix4f;
 
 @Environment(EnvType.CLIENT)
-public class OccultCauldronFluidRenderer {
+public class FluidRenderer {
 
 	public static void drawCauldronFluidQuad(MatrixStack matrices, VertexConsumerProvider buffers, FluidVariant fluid, long amount, int light) {
 		if (amount > 0) {

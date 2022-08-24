@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.rune;
 
+import net.darktree.stylishoccult.advancement.Criteria;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.script.element.ItemElement;
 import net.darktree.stylishoccult.script.engine.Script;
@@ -10,6 +11,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
@@ -18,6 +20,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -119,7 +122,7 @@ public class CraftRuneBlock extends TransferRuneBlock {
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		SimpleRay ray = new SimpleRay(player.getCameraPosVec(1), player.getRotationVec(1), pos);
 
-		if( !player.getAbilities().allowModifyWorld ) {
+		if (!player.getAbilities().allowModifyWorld) {
 			return ActionResult.PASS;
 		}
 
@@ -129,10 +132,10 @@ public class CraftRuneBlock extends TransferRuneBlock {
 			SlotSwitch selected = null;
 			float distance = Float.MAX_VALUE;
 
-			for( SlotSwitch slot : SLOTS ) {
+			for (SlotSwitch slot : SLOTS) {
 				float dist = slot.get(ray, direction);
 
-				if(dist < distance) {
+				if (dist < distance) {
 					distance = dist;
 					selected = slot;
 				}
@@ -168,11 +171,50 @@ public class CraftRuneBlock extends TransferRuneBlock {
 		if (optional.isPresent()) {
 			Recipe<CraftingInventory> recipe = optional.get();
 			script.stack.push(new ItemElement(recipe.craft(inventory)));
-			recipe.getRemainder(inventory).forEach(item -> script.ring.push(new ItemElement(item), world, pos));
-		} else {
-			for (int i = 0; i < 9; i++) {
-				script.ring.push(new ItemElement(inventory.getStack(i)), world, pos);
+
+			// take the ingredients
+			updateInputInventory(inventory, world, pos);
+		}
+
+		for (int i = 0; i < 9; i++) {
+			ItemStack stack = inventory.getStack(i);
+
+			if (!stack.isEmpty()) {
+				script.ring.push(new ItemElement(stack), world, pos);
 			}
+		}
+
+		Criteria.TRIGGER.trigger(world, pos, this, optional.isPresent());
+	}
+
+	private void updateInputInventory(CraftingInventory input, World world, BlockPos pos) {
+		DefaultedList<ItemStack> remainers = world.getRecipeManager().getRemainingStacks(RecipeType.CRAFTING, input, world);
+
+		for (int i = 0; i < remainers.size(); i ++) {
+			ItemStack item = input.getStack(i);
+			ItemStack reminder = remainers.get(i);
+
+			if (!item.isEmpty()) {
+				input.removeStack(i, 1);
+				item = input.getStack(i);
+			}
+
+			if (reminder.isEmpty()) {
+				continue;
+			}
+
+			if (item.isEmpty()) {
+				input.setStack(i, reminder);
+				continue;
+			}
+
+			if (ItemStack.areItemsEqualIgnoreDamage(item, reminder) && ItemStack.areNbtEqual(item, reminder)) {
+				reminder.increment(item.getCount());
+				input.setStack(i, reminder);
+				continue;
+			}
+
+			Block.dropStack(world, pos, reminder);
 		}
 	}
 
@@ -259,6 +301,7 @@ public class CraftRuneBlock extends TransferRuneBlock {
 			super(null, 0);
 		}
 
+		@Override
 		public void onContentChanged(Inventory inventory) {
 			// noop
 		}

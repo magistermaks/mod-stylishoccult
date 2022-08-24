@@ -9,7 +9,7 @@
 	"link_color": "EE0000",
 	"link_hover_color": "EE0088",
 	"progress_bar_color": "EE2222",
-	"model": "patchouli:book_red",
+	"model": "stylish_occult:runonomicon",
 	"creative_tab": "stylish_occult.stylish_occult_main",
 	"use_blocky_font": false,
 	"text_overflow_mode": "overflow"

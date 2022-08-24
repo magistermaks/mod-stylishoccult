@@ -9,18 +9,18 @@ import java.util.Random;
 
 public class RandomRuneBlock extends EntryRuneBlock {
 
-    public RandomRuneBlock(String name) {
-        super(name);
-    }
+	public RandomRuneBlock(String name) {
+		super(name);
+	}
 
-    @Override
-    public boolean hasRandomTicks(BlockState state) {
-        return true;
-    }
+	@Override
+	public boolean hasRandomTicks(BlockState state) {
+		return true;
+	}
 
-    @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        emit(world, pos, null);
-    }
+	@Override
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		emit(world, pos, null);
+	}
 
 }

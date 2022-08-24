@@ -4,6 +4,8 @@ import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneExceptionType;
 import net.darktree.stylishoccult.script.element.StackElement;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -32,7 +34,7 @@ public final class Ring extends BaseStack {
 	 * Push one element onto the ring
 	 */
 	public StackElement push(StackElement element, World world, BlockPos pos) {
-		if( buffer[offset] != null ) {
+		if (buffer[offset] != null) {
 			buffer[offset].drop(world, pos);
 		}
 
@@ -50,7 +52,7 @@ public final class Ring extends BaseStack {
 		StackElement element = buffer[offset];
 		buffer[offset] = null;
 
-		if(element == null) {
+		if (element == null) {
 			throw RuneException.of(RuneExceptionType.NOTHING_TO_RETURN);
 		}
 
@@ -61,17 +63,14 @@ public final class Ring extends BaseStack {
 	 * Serialize the ring to {@link NbtCompound}
 	 */
 	public NbtCompound writeNbt(NbtCompound nbt) {
-		for(int i = 0; i < buffer.length; i ++) {
-			NbtCompound entry = new NbtCompound();
+		NbtList list = new NbtList();
 
-			if(buffer[i] != null) {
-				buffer[i].writeNbt(entry);
-			}
-
-			nbt.put(String.valueOf(i), entry);
+		for (StackElement element : buffer) {
+			list.add(element != null ? element.writeNbt(new NbtCompound()) : new NbtCompound());
 		}
 
-		nbt.putShort("i", (short) offset);
+		nbt.put("r", list);
+		nbt.putShort("o", (short) offset);
 		return nbt;
 	}
 
@@ -79,23 +78,22 @@ public final class Ring extends BaseStack {
 	 * Deserialize the ring from {@link NbtCompound}
 	 */
 	public void readNbt(NbtCompound nbt) {
-		try {
-			for(int i = 0; i < buffer.length; i ++) {
-				NbtCompound entry = nbt.getCompound(String.valueOf(i));
-				buffer[i] = entry.isEmpty() ? null : StackElement.from(entry);
-			}
+		NbtList list = nbt.getList("r", NbtElement.COMPOUND_TYPE);
+		int size = Math.min(list.size(), capacity);
 
-			offset = nbt.getShort("i") % buffer.length;
-		} catch (Exception exception) {
-			exception.printStackTrace();
+		for (int i = 0; i < size; i ++) {
+			NbtCompound entry = (NbtCompound) list.get(i);
+			buffer[i] = entry.isEmpty() ? null : StackElement.from(entry);
 		}
+
+		offset = nbt.getShort("o") % buffer.length;
 	}
 
 	/**
 	 * Copy elements from other stack
 	 */
 	public void from(Ring ring) {
-		for(int i = 0; i < buffer.length; i ++) {
+		for (int i = 0; i < buffer.length; i ++) {
 			buffer[i] = ring.buffer[i] == null ? null : ring.buffer[i].copy();
 		}
 
@@ -105,9 +103,20 @@ public final class Ring extends BaseStack {
 	/**
 	 * Reset this ring, notifies the consumer of every dropped element
 	 */
+	@Override
 	public void reset(Consumer<StackElement> consumer) {
-		for(StackElement element : buffer) {
-			if(element != null) consumer.accept(element);
+		StackElement element;
+
+		while (true) {
+			move(-1);
+			element = buffer[offset];
+			buffer[offset] = null;
+
+			if (element != null) {
+				consumer.accept(element);
+			} else {
+				break;
+			}
 		}
 	}
 

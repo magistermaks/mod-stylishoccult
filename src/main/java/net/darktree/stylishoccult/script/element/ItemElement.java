@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.script.element;
 import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneExceptionType;
 import net.darktree.stylishoccult.script.element.view.ElementView;
+import net.darktree.stylishoccult.utils.Directions;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.client.resource.language.I18n;
@@ -43,7 +44,7 @@ public class ItemElement extends StackElement {
 
 	@Override
 	public StackElement copy() {
-		throw RuneException.of(RuneExceptionType.UNMET_EQUIVALENCY);
+  		throw RuneException.of(RuneExceptionType.UNMET_EQUIVALENCY);
 	}
 
 	@Override
@@ -71,11 +72,12 @@ public class ItemElement extends StackElement {
 	@Override
 	public ElementView view() {
 		Item item = stack.getItem();
-		String text = stack.getCount() + "x " + I18n.translate(item.getTranslationKey());
+		String text = stack.isEmpty() ? "(empty)" : stack.getCount() + "x " + I18n.translate(item.getTranslationKey());
 
 		return ElementView.of("item", ElementView.ITEM_ICON, text, Registry.ITEM.getId(item).toString());
 	}
 
+	@Override
 	public boolean equals(StackElement element) {
 		if (element instanceof ItemElement itemElement) {
 			return itemElement.stack.getItem() == this.stack.getItem();
@@ -91,14 +93,13 @@ public class ItemElement extends StackElement {
 	}
 
 	private ItemStack insert(World world, BlockPos pos) {
-		for(Direction direction : Direction.values()) {
+		for (Direction direction : Directions.ALL) {
 
 			Inventory inventory = HopperBlockEntity.getInventoryAt(world, pos.offset(direction));
 
 			if (inventory != null) {
 				return HopperBlockEntity.transfer(null, inventory, this.stack.copy(), direction.getOpposite());
 			}
-
 		}
 
 		return this.stack;

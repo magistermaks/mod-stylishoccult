@@ -34,8 +34,7 @@ public class NumericElement extends StackElement {
 
 	@Override
 	public StackElement copy() {
-		// this is allowed as state non-mutable
-		return this;
+		return this; // this is allowed as state is non-mutable
 	}
 
 	@Override
@@ -53,7 +52,7 @@ public class NumericElement extends StackElement {
 
 	@Override
 	public ElementView view() {
-		return ElementView.of("number", ElementView.NUMBER_ICON, String.valueOf(value), null);
+		return ElementView.of("number", ElementView.NUMBER_ICON, ElementView.numerical(this), null);
 	}
 
 }

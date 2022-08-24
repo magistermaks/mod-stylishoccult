@@ -85,6 +85,8 @@ public class Config<T> {
 	}
 
 	public interface ConfigProperty {
+		// TODO we really should call this somewhere
+		// TODO structures can cause epic crashing if not configured correctly rn
 		default void validate() {}
 	}
 

@@ -1,0 +1,15 @@
+{
+	"blood": 2000,
+	"catalyst": "stylish_occult:blood_shard",
+	"consume": false,
+	"ingredients": [
+		"stylish_occult:runestone",
+		"stylish_occult:flesh",
+		"stylish_occult:flesh",
+		"minecraft:clock",
+		"stylish_occult:flesh",
+		"stylish_occult:flesh"
+	],
+	"product": "stylish_occult:rune_somnum",
+	"count": 1
+}

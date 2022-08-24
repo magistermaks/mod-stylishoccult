@@ -8,13 +8,13 @@ import net.minecraft.world.World;
 
 public class RedstoneAnalogInputRuneBlock extends InputRuneBlock {
 
-    public RedstoneAnalogInputRuneBlock(String name) {
-        super(name);
-    }
+	public RedstoneAnalogInputRuneBlock(String name) {
+		super(name);
+	}
 
-    @Override
-    public void apply(Script script, World world, BlockPos pos) {
-        script.stack.push( new NumericElement(world.getReceivedRedstonePower(pos)) );
-    }
+	@Override
+	public void apply(Script script, World world, BlockPos pos) {
+		script.stack.push(new NumericElement(world.getReceivedRedstonePower(pos)));
+	}
 
 }

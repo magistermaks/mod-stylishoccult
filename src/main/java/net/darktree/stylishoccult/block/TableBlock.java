@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.block;
 import net.darktree.interference.Voxels;
 import net.darktree.interference.api.DropsItself;
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.block.entity.rune.RuneBlockAttachment;
 import net.darktree.stylishoccult.block.rune.EntryRuneBlock;
 import net.darktree.stylishoccult.block.rune.RuneBlock;
 import net.darktree.stylishoccult.block.rune.VerticalRuneLink;
@@ -103,7 +104,7 @@ public class TableBlock extends EntryRuneBlock implements DropsItself, VerticalR
 	}
 
 	@Override
-	public Direction[] getDirections(World world, BlockPos pos, Script script) {
+	public Direction[] getDirections(World world, BlockPos pos, BlockState state, Script script, RuneBlockAttachment attachment) {
 		return DOWN;
 	}
 

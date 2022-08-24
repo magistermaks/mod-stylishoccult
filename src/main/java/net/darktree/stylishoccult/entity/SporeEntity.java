@@ -1,6 +1,7 @@
 package net.darktree.stylishoccult.entity;
 
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.entity.damage.ModDamageSource;
 import net.darktree.stylishoccult.entity.goal.FollowLanternGoal;
 import net.darktree.stylishoccult.entity.goal.FollowSparkGoal;
 import net.darktree.stylishoccult.particles.Particles;
@@ -10,7 +11,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.MerchantEntity;
@@ -20,79 +20,79 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class SporeEntity extends SparkEntity implements CorruptedEntity {
+public class SporeEntity extends SparkEntity {
 
-    Vec3d fixedTarget = null;
+	Vec3d fixedTarget = null;
 
-    public SporeEntity(EntityType<? extends HostileEntity> entityType, World world) {
-        super(entityType, world);
-    }
+	public SporeEntity(EntityType<? extends HostileEntity> entityType, World world) {
+		super(entityType, world);
+	}
 
-    public static DefaultAttributeContainer.Builder createSporeAttributes() {
-        return createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, StylishOccult.SETTING.spore_health)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, StylishOccult.SETTING.spore_damage);
-    }
+	public static DefaultAttributeContainer.Builder createSporeAttributes() {
+		return createMobAttributes()
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, StylishOccult.SETTING.spore_health)
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, StylishOccult.SETTING.spore_damage);
+	}
 
-    @Override
-    protected void playRandomEffect(int c, boolean die) {
-        for (int i = 0; i < c; i ++) {
-            world.addParticle(die ? Particles.BLOOD_SPLASH : Particles.BLOOD_FALLING, this.getX(), this.getY(), this.getZ(), 0, 0.03f, 0);
-        }
+	@Override
+	protected void playRandomEffect(int c, boolean die) {
+		for (int i = 0; i < c; i ++) {
+			world.addParticle(die ? Particles.BLOOD_SPLASH : Particles.BLOOD_FALLING, this.getX(), this.getY(), this.getZ(), 0, 0.03f, 0);
+		}
 
-        if (die) {
-            Sounds.SPORE_ESCAPES.play(world, this.getBlockPos());
-        }
-    }
+		if (die) {
+			Sounds.SPORE_ESCAPES.play(world, this.getBlockPos());
+		}
+	}
 
-    @Override
-    protected void addSpecificGoals() {
-        this.targetSelector.add(1, new FollowSparkGoal(this, true));
-        this.targetSelector.add(1, new FollowLanternGoal(this));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, MerchantEntity.class, false));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, IronGolemEntity.class, true));
-    }
+	@Override
+	protected void addSpecificGoals() {
+		this.targetSelector.add(1, new FollowSparkGoal(this, true));
+		this.targetSelector.add(1, new FollowLanternGoal(this));
+		this.targetSelector.add(3, new ActiveTargetGoal<>(this, MerchantEntity.class, false));
+		this.targetSelector.add(3, new ActiveTargetGoal<>(this, IronGolemEntity.class, true));
+	}
 
-    @Override
-    protected void dealDamage() {
-        damage(DamageSource.GENERIC, StylishOccult.SETTING.spore_selfharm);
-    }
+	@Override
+	protected void dealDamage() {
+		damage(ModDamageSource.REBOUND, StylishOccult.SETTING.spore_selfharm);
+	}
 
-    @Override
-    public SoundEvent getAmbientSound() {
-        return null;
-    }
+	@Override
+	public SoundEvent getAmbientSound() {
+		return null;
+	}
 
-    @Override
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.BLOCK_HONEY_BLOCK_BREAK;
-    }
+	@Override
+	protected SoundEvent getDeathSound() {
+		return SoundEvents.BLOCK_HONEY_BLOCK_BREAK;
+	}
 
-    public void setFixedTarget(Vec3d target) {
-        fixedTarget = target;
-    }
+	public void setFixedTarget(Vec3d target) {
+		fixedTarget = target;
+	}
 
-    @Override
-    protected Box getTargetBoundingBox() {
-        return fixedTarget != null ? Utils.box(0, 0, 0, 16, 16, 16).offset(fixedTarget) : super.getTargetBoundingBox();
-    }
+	@Override
+	protected Box getTargetBoundingBox() {
+		return fixedTarget != null ? Utils.box(0, 0, 0, 16, 16, 16).offset(fixedTarget) : super.getTargetBoundingBox();
+	}
 
-    @Override
-    protected Vec3d getTargetPosition() {
-        return fixedTarget != null ? fixedTarget : super.getTargetPosition();
-    }
+	@Override
+	protected Vec3d getTargetPosition() {
+		return fixedTarget != null ? fixedTarget : super.getTargetPosition();
+	}
 
-    @Override
-    protected void tryAttackTarget() {
-        if (fixedTarget != null) {
-            dealDamage();
-        }else{
-            super.tryAttackTarget();
-        }
-    }
+	@Override
+	protected void tryAttackTarget() {
+		if (fixedTarget != null) {
+			dealDamage();
+		}else{
+			super.tryAttackTarget();
+		}
+	}
 
-    protected boolean hasTarget() {
-        return fixedTarget != null || super.hasTarget();
-    }
+	protected boolean hasTarget() {
+		return fixedTarget != null || super.hasTarget();
+	}
 
 }

@@ -22,34 +22,34 @@ import org.apache.logging.log4j.Logger;
 
 public class StylishOccult implements ModInitializer {
 
-    public static final Logger LOGGER = LogManager.getLogger("Stylish Occult");
-    public static final String NAMESPACE = "stylish_occult";
+	public static final Logger LOGGER = LogManager.getLogger("Stylish Occult");
+	public static final String NAMESPACE = "stylish_occult";
 
-    public static final Config<Settings> CONFIG = Config.of(Settings.class, NAMESPACE).request();
-    public static Settings SETTING = CONFIG.getConfigured();
+	public static final Config<Settings> CONFIG = Config.of(Settings.class, NAMESPACE).request();
+	public static Settings SETTING = CONFIG.getConfigured();
 
-    @Deprecated
-    public static void debug(String message) {
-        if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
-            LOGGER.info(message);
-        }
-    }
+	@Deprecated
+	public static void debug(String message) {
+		if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
+			LOGGER.info(message);
+		}
+	}
 
-    @Override
-    public void onInitialize() {
-        Sounds.init();
-        ModBlocks.init();
-        Network.init();
-        ModItems.init();
-        LootTables.init();
-        Particles.init();
-        BlockEntities.init();
-        ModEntities.init();
-        WorldGen.init();
-        ModEffects.init();
-        ModTags.init();
-        Criteria.init();
-        ResourceLoaders.init();
-    }
+	@Override
+	public void onInitialize() {
+		Sounds.init();
+		ModBlocks.init();
+		Network.init();
+		ModItems.init();
+		LootTables.init();
+		Particles.init();
+		BlockEntities.init();
+		ModEntities.init();
+		WorldGen.init();
+		ModEffects.init();
+		ModTags.init();
+		Criteria.init();
+		ResourceLoaders.init();
+	}
 
 }

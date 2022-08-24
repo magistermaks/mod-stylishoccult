@@ -12,15 +12,15 @@ import net.minecraft.world.World;
 
 public class ClickRuneBlock extends EntryRuneBlock {
 
-    public ClickRuneBlock(String name) {
-        super(name);
-    }
+	public ClickRuneBlock(String name) {
+		super(name);
+	}
 
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        emit(world, pos, player);
-        Sounds.ACTIVATE.play(world, pos);
-        return ActionResult.SUCCESS;
-    }
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		emit(world, pos, player);
+		Sounds.ACTIVATE.play(world, pos);
+		return ActionResult.SUCCESS;
+	}
 
 }

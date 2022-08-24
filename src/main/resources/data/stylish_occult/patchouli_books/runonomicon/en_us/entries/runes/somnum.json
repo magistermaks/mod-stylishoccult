@@ -1,0 +1,23 @@
+{
+	"name": "Somnum Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/somnum.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_somnum",
+	"sortnum": 52,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "somnum",
+			"title": "Somnum Rune"
+		},
+		{
+			"type": "stylish_occult:page_short_symbol",
+			"text1": "Somnum Rune removes the the top stack element and waits for that many game ticks",
+			"text2": "before continuing.",
+			"recipe": "stylish_occult:altar/rune/somnum.json",
+			"rune": "somnum",
+			"symbol": "flow",
+			"footer": "circle"
+		}
+	]
+}

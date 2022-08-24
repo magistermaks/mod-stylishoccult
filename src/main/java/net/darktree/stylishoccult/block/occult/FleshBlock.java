@@ -19,31 +19,31 @@ import java.util.Random;
 
 public class FleshBlock extends FullFleshBlock implements ImpureBlock {
 
-    public FleshBlock() {
-        super( RegUtil.settings( Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, true ).slipperiness(0.8f).ticksRandomly() );
-    }
+	public FleshBlock() {
+		super(RegUtil.settings(Material.ORGANIC_PRODUCT, Sounds.FLESH, 0.8F, 0.8F, true).slipperiness(0.8f).ticksRandomly());
+	}
 
-    @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        OccultHelper.corruptAround(world, pos, random, true);
+	@Override
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		OccultHelper.corruptAround(world, pos, random, true);
 
-        if( random.nextInt(256) == 0 && FossilizedFleshBlock.isPosValid(world, pos) && (BlockUtils.countInArea(world, pos, FossilizedFleshBlock.class, 4) < 3) ) {
-            world.setBlockState(pos, ModBlocks.BONE_FLESH.getDefaultState());
-        }
-    }
+		if (random.nextInt(256) == 0 && FossilizedFleshBlock.isPosValid(world, pos) && (BlockUtils.countInArea(world, pos, FossilizedFleshBlock.class, 4) < 3)) {
+			world.setBlockState(pos, ModBlocks.BONE_FLESH.getDefaultState());
+		}
+	}
 
-    @Override
-    public void cleanse(World world, BlockPos pos, BlockState state) {
-        OccultHelper.cleanseFlesh(world, pos, state);
-    }
+	@Override
+	public void cleanse(World world, BlockPos pos, BlockState state) {
+		OccultHelper.cleanseFlesh(world, pos, state);
+	}
 
-    @Override
-    public int impurityLevel(BlockState state) {
-        return 30;
-    }
+	@Override
+	public int impurityLevel(BlockState state) {
+		return 30;
+	}
 
-    @Override
-    public LootTable getInternalLootTableId() {
-        return LootTables.GENERIC_FLESH;
-    }
+	@Override
+	public LootTable getDefaultLootTable() {
+		return LootTables.GENERIC_FLESH;
+	}
 }

@@ -11,6 +11,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
 public class InsightCriterion extends AbstractCriterion<InsightCriterion.Conditions> {
+
 	static final Identifier ID = new ModIdentifier("insight");
 
 	public Identifier getId() {

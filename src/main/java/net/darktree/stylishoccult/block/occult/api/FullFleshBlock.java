@@ -16,6 +16,7 @@ public abstract class FullFleshBlock extends SimpleBlock {
 		super(settings);
 	}
 
+	@Override
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (random.nextInt(40) == 0) {

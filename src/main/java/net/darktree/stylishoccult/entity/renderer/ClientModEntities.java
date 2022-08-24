@@ -8,9 +8,9 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 @Environment(EnvType.CLIENT)
 public class ClientModEntities {
 
-    public static void init() {
-        EntityRendererRegistry.register(ModEntities.SPARK, SparkEntityRenderer::new);
-        EntityRendererRegistry.register(ModEntities.SPORE, SporeEntityRenderer::new);
-    }
+	public static void init() {
+		EntityRendererRegistry.register(ModEntities.SPARK, SparkEntityRenderer::new);
+		EntityRendererRegistry.register(ModEntities.SPORE, SporeEntityRenderer::new);
+	}
 
 }

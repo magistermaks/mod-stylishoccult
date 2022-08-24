@@ -39,10 +39,10 @@ public class Settings {
 	public float fern_chance = 5.0f;
 
 	@Config.Entry(group="feature", min=0, max=100)
-	public float wall_chance = 1.4f;
+	public float wall_chance = 5f;
 
 	@Config.Entry(group="feature", min=0, max=100)
-	public float wall_rune_chance = 29.0f;
+	public float wall_rune_chance = 45.0f;
 
 	@Config.Entry(group="feature", min=0, max=100)
 	public float demon_chance = 25.0f;
@@ -57,7 +57,7 @@ public class Settings {
 	public float emitter_buried = 26.0f;
 
 	@Config.Entry(group="demon", min=0, max=100)
-	public float disguise_chance = 12.0f;
+	public float disguise_chance = 14.0f;
 
 	@Config.Entry(group="demon", min=0, max=100)
 	public float calm_chance_1 = 40.0f;
@@ -78,7 +78,7 @@ public class Settings {
 	public int fire_ball_timeout_min = 180;
 
 	@Config.Entry(group="demon", min=0)
-	public float spark_spawn_chance = 0.005263f;
+	public float spark_spawn_chance = 0.5263f;
 
 	@Config.Entry(group="demon", min=1)
 	public int spread_lock_buried_rarity = 6;

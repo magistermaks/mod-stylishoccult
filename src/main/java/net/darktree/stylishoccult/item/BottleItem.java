@@ -19,72 +19,71 @@ import net.minecraft.world.World;
 
 public class BottleItem extends Item {
 
-    public BottleItem(Settings settings) {
-        super(settings);
-    }
+	public BottleItem(Settings settings) {
+		super(settings);
+	}
 
-    public void onConsumed( ItemStack stack, World world, LivingEntity user ) {
+	public void onConsumed( ItemStack stack, World world, LivingEntity user ) {
 
-    }
+	}
 
-    @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        super.finishUsing(stack, world, user);
+	@Override
+	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+		super.finishUsing(stack, world, user);
 
-        if (user instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)user;
-            Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
-            serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
-        }
+		if (user instanceof ServerPlayerEntity serverPlayerEntity) {
+			Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
+			serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
+		}
 
-        onConsumed( stack, world, user );
+		onConsumed( stack, world, user );
 
-        if (stack.isEmpty()) {
-            return new ItemStack(Items.GLASS_BOTTLE);
-        } else {
-            if (user instanceof PlayerEntity && !((PlayerEntity)user).getAbilities().creativeMode) {
-                ItemStack itemStack = new ItemStack(Items.GLASS_BOTTLE);
-                PlayerEntity playerEntity = (PlayerEntity)user;
-                if (!playerEntity.getInventory().insertStack(itemStack)) {
-                    playerEntity.dropItem(itemStack, false);
-                }
-            }
+		if (stack.isEmpty()) {
+			return new ItemStack(Items.GLASS_BOTTLE);
+		} else {
+			if (user instanceof PlayerEntity player && !player.getAbilities().creativeMode) {
+				ItemStack itemStack = new ItemStack(Items.GLASS_BOTTLE);
 
-            return stack;
-        }
-    }
+				if (!player.getInventory().insertStack(itemStack)) {
+					player.dropItem(itemStack, false);
+				}
+			}
 
-    @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.DRINK;
-    }
+			return stack;
+		}
+	}
 
-    @Override
-    public SoundEvent getEatSound() {
-        return getDrinkSound();
-    }
+	@Override
+	public UseAction getUseAction(ItemStack stack) {
+		return UseAction.DRINK;
+	}
 
-    @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        return ItemUsage.consumeHeldItem(world, user, hand);
-    }
+	@Override
+	public SoundEvent getEatSound() {
+		return getDrinkSound();
+	}
 
-    public boolean fill(ItemStack stack, World world, PlayerEntity player, Hand hand) {
-        if( stack.getItem() == Items.GLASS_BOTTLE && player != null ) {
-            stack.decrement(1);
-            world.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-            ItemStack target = new ItemStack(this);
+	@Override
+	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+		return ItemUsage.consumeHeldItem(world, user, hand);
+	}
 
-            if (stack.isEmpty()) {
-                player.setStackInHand(hand, target);
-            } else if (!player.getInventory().insertStack(target)) {
-                player.dropItem(target, false);
-            }
+	public boolean fill(ItemStack stack, World world, PlayerEntity player, Hand hand) {
+		if (stack.getItem() == Items.GLASS_BOTTLE && player != null) {
+			stack.decrement(1);
+			world.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+			ItemStack target = new ItemStack(this);
 
-            return true;
-        }
+			if (stack.isEmpty()) {
+				player.setStackInHand(hand, target);
+			} else if (!player.getInventory().insertStack(target)) {
+				player.dropItem(target, false);
+			}
 
-        return false;
-    }
+			return true;
+		}
+
+		return false;
+	}
 
 }

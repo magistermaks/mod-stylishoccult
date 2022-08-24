@@ -10,7 +10,7 @@ public class CrystallineBlackstone extends BuildingBlock {
 	}
 
 	@Override
-	public LootTable getInternalLootTableId() {
+	public LootTable getDefaultLootTable() {
 		return LootTables.CRYSTALLINE_BLACKSTONE;
 	}
 
