@@ -2,16 +2,24 @@
 next
 - Patchouli is no longer an optional dependency
 - Changed the runonomicon's texture
-- Fixed the `stylish_occult:insight` criterion never being triggered
-- Replaced the buggy `stylish_occult:trigger` criterion with `stylish_occult:special_rune_trigger`
-- Fixed 'place' and 'craft' advancements being granted even for failed operations
 - Added `stylish_occult:ascend` and `stylish_occult:altar` criteria, currently unused
-- Removed 'urn_feature' as it was now obsolete with the new urns
 - Added Somnum (Sleep) rune - suspend execution
 - Added Twisted Bone Knifes
+- Added custom death messages
 - Altar Rituals now require way less blood to perform
 - Runic tablets can now be destroyed by right-clicking
-- Fixed many bugs
+- Minor Talisman Script optimizations
+- Replaced the buggy `stylish_occult:trigger` criterion with `stylish_occult:special_rune_trigger`
+- Removed 'urn_feature' as it was now obsolete with the new urns
+- Fixed the `stylish_occult:insight` criterion never being triggered
+- Fixed 'place' and 'craft' advancements being granted even for failed operations
+- Fixed loot tables getting corrupted
+- Fixed WTHIT showing "stone" for angry lava demons
+- Fixed Occult Cauldrons being broken when playing on a server
+- Fixed runic altar candle animation getting jagged after a (long) while
+- Fixed runic scrips breaking on chunk borders of unloaded chunks
+- Fixed runes not dropping stored items when broken while being active
+- Fixed debug rune showing drop stack in incorrect order
 
 0.9.0 release <2022/08/10>
 - Added Suspicious (Suspectum) rune - harvesting blood
