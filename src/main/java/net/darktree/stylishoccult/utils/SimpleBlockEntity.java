@@ -26,6 +26,7 @@ public abstract class SimpleBlockEntity extends BlockEntity {
 		return createNbt();
 	}
 
+	// TODO cleanup
 	public void update(BlockState cached) {
 		this.markDirty();
 

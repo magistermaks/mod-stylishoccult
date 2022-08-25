@@ -125,6 +125,7 @@ public class WorldGen {
 				new BoulderFeature(DefaultFeatureConfig.CODEC)
 		);
 
+		// FIXME structures are borked
 //		// Structures
 //		WorldGen.addStructure(
 //				new ModIdentifier("sanctum"),

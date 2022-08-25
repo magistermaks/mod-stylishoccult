@@ -22,6 +22,7 @@ import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 import java.util.Arrays;
 import java.util.Random;
 
+// FIXME broken
 public class LavaDemonFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	public LavaDemonFeature(Codec<DefaultFeatureConfig> codec) {

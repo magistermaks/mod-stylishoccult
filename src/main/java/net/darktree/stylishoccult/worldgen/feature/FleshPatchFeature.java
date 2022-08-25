@@ -15,6 +15,7 @@ import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 
 import java.util.Arrays;
 
+// FIXME broken
 public class FleshPatchFeature extends OreFeature implements SimpleFeatureProvider {
 
 	public FleshPatchFeature(Codec<OreFeatureConfig> codec) {

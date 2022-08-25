@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
+// FIXME broken
 public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	public WallsFeature(Codec<DefaultFeatureConfig> config) {
