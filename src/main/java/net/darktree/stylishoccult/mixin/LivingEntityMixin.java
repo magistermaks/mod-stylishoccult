@@ -18,6 +18,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import java.util.Optional;
+
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin implements LivingEntityDuck {
 
@@ -26,6 +28,9 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
 
 	@Shadow
 	public abstract float getHealth();
+
+	@Shadow
+	private Optional<BlockPos> climbingPos;
 
 	@Unique
 	private long lastShockTaken = 0;
@@ -42,10 +47,11 @@ public abstract class LivingEntityMixin implements LivingEntityDuck {
 		return 0;
 	}
 
-	@Inject(method="isClimbing", at=@At(value="INVOKE_ASSIGN", target="Lnet/minecraft/entity/LivingEntity;getBlockStateAtPos()Lnet/minecraft/block/BlockState;"), locals=LocalCapture.CAPTURE_FAILHARD, cancellable=true)
+	@Inject(method="isClimbing", at=@At("TAIL"), locals=LocalCapture.CAPTURE_FAILHARD, cancellable=true)
 	public void stylish_isClimbing(CallbackInfoReturnable<Boolean> info, BlockPos pos, BlockState state) {
 		if (state.getBlock() == ModBlocks.GROWTH) {
 			if (GrowthBlock.hasSide(state)) {
+				this.climbingPos = Optional.of(pos);
 				info.setReturnValue(true);
 			}
 		}

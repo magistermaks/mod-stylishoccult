@@ -28,7 +28,7 @@ public abstract class TimedRuneBlock extends RuneBlock {
 	 */
 	protected final void setTimeout(World world, BlockPos pos, int timeout) {
 		world.setBlockState(pos, world.getBlockState(pos).with(WAITING, true), FLAGS);
-		world.getBlockTickScheduler().schedule(pos, this, timeout);
+		world.createAndScheduleBlockTick(pos, this, timeout);
 	}
 
 	protected abstract void onTimeoutEnd(World world, BlockPos pos);

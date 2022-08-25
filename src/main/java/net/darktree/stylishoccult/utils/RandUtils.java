@@ -1,6 +1,9 @@
 package net.darktree.stylishoccult.utils;
 
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
 
 import java.util.Random;
 
@@ -21,6 +24,12 @@ public class RandUtils {
 
 	public static <E> E getArrayEntry(E[] array, Random random) {
 		return array[random.nextInt(array.length)];
+	}
+
+	@SuppressWarnings("unchecked")
+	public static <T> T pickFromTag(TagKey<T> tag, Random random, T fallback) {
+		Registry<T> registry = (Registry<T>) Registry.REGISTRIES.get(tag.registry().getValue());
+		return registry == null ? fallback : registry.getEntryList(tag).flatMap(blocks -> blocks.getRandom(random)).map(RegistryEntry::value).orElse(fallback);
 	}
 
 }

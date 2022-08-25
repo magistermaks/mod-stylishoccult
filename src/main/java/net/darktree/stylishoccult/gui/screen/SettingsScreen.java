@@ -49,8 +49,7 @@ public class SettingsScreen<T> extends CottonClientScreen {
 	}
 
 	@Override
-	public void onClose() {
-		assert this.client != null;
+	public void close() {
 		this.client.setScreen(this.screen);
 	}
 

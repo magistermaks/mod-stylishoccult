@@ -127,8 +127,8 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
 
 	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (!world.getBlockTickScheduler().isScheduled(pos, this)) {
-			world.getBlockTickScheduler().schedule(pos, this, 100);
+		if (!world.getBlockTickScheduler().isQueued(pos, this)) {
+			world.createAndScheduleBlockTick(pos, this, 100);
 		}
 	}
 
@@ -140,9 +140,9 @@ public class VentBlock extends SimpleBlock implements FoliageFleshBlock, ImpureB
 
 		if (random.nextInt(5) == 0) {
 			world.setBlockState(pos, state.with(ACTIVE, false));
-			world.getBlockTickScheduler().schedule(pos, this, random.nextInt(450) + 250);
+			world.createAndScheduleBlockTick(pos, this, random.nextInt(450) + 250);
 		} else {
-			world.getBlockTickScheduler().schedule(pos, this, 20);
+			world.createAndScheduleBlockTick(pos, this, 20);
 		}
 	}
 

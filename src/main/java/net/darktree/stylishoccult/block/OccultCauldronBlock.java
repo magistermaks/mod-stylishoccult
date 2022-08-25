@@ -244,7 +244,7 @@ public class OccultCauldronBlock extends BlockWithEntity implements DefaultLoot 
 	}
 
 	public static boolean shouldBoil(BlockState neighbor) {
-		return ModTags.HEAT_SOURCE.contains(neighbor.getBlock()) && (!neighbor.contains(Properties.LIT) || neighbor.get(Properties.LIT));
+		return neighbor.isIn(ModTags.HEAT_SOURCE) && (!neighbor.contains(Properties.LIT) || neighbor.get(Properties.LIT));
 	}
 
 	@Override

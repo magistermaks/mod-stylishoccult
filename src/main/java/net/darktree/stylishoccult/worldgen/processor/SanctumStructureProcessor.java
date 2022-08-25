@@ -38,7 +38,7 @@ public class SanctumStructureProcessor extends SimpleStructureProcessor {
 	}
 
 	private BlockState getRune(Random random) {
-		return ModTags.RUNES.getRandom(random).getDefaultState().with(RuneBlock.FROZEN, true);
+		return RandUtils.pickFromTag(ModTags.RUNES, random, Blocks.AIR).getDefaultState().with(RuneBlock.FROZEN, true);
 	}
 
 	@Override

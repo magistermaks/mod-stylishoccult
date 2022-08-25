@@ -40,7 +40,7 @@ public class LogicRuneBlock extends RuneBlock {
 			script.stack.push(value ? NumericElement.TRUE : NumericElement.FALSE);
 		}
 
-		public static final LogicFunction EXCHANGE = (script, world, pos) -> script.stack.swap();
+		public static final LogicFunction SWAP = (script, world, pos) -> script.stack.swap();
 		public static final LogicFunction DUPLICATE = (script, world, pos) -> script.stack.duplicate();
 		public static final LogicFunction NOT = (script, world, pos) -> put(script, get(script, world, pos) == 0);
 		public static final LogicFunction INVERT = (script, world, pos) -> put(script, -get(script, world, pos));

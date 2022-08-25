@@ -49,7 +49,7 @@ public class FieryLanternBlock extends SimpleBlock implements Waterloggable {
 
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		world.getBlockTickScheduler().schedule(pos, this, 20);
+		world.createAndScheduleBlockTick(pos, this, 20);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class FieryLanternBlock extends SimpleBlock implements Waterloggable {
 			}
 		}
 
-		world.getBlockTickScheduler().schedule(pos, this, 20);
+		world.createAndScheduleBlockTick(pos, this, 20);
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class FieryLanternBlock extends SimpleBlock implements Waterloggable {
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
 		if (state.get(WATERLOGGED)) {
-			world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+			world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
 		}
 
 		return attachedDirection(state).getOpposite() == direction && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);

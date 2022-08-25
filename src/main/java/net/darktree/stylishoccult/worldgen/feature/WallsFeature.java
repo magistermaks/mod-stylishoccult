@@ -8,19 +8,22 @@ import net.darktree.stylishoccult.tag.ModTags;
 import net.darktree.stylishoccult.utils.Directions;
 import net.darktree.stylishoccult.utils.RandUtils;
 import net.darktree.stylishoccult.utils.SimpleFeature;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CandleBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.CountConfig;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
+import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
@@ -175,9 +178,11 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	private void generateRune(StructureWorldAccess world, BlockPos pos, Random random) {
 		if (RandUtils.getBool(StylishOccult.SETTING.wall_rune_chance, random)) {
-			world.setBlockState(pos, ModTags.RUNES.getRandom(random).getDefaultState().with(RuneBlock.FROZEN, true), 3);
+			BlockState state = RandUtils.pickFromTag(ModTags.RUNES, random, Blocks.AIR).getDefaultState().with(RuneBlock.FROZEN, true);
+			world.setBlockState(pos, state, 3);
 		} else {
-			world.setBlockState(pos, ModTags.RUNIC_WALL.getRandom(random).getDefaultState(), 3);
+			BlockState state = RandUtils.pickFromTag(ModTags.RUNES, random, Blocks.AIR).getDefaultState();
+			world.setBlockState(pos, state, 3);
 		}
 	}
 
@@ -187,10 +192,17 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	@Override
 	public ConfiguredFeature<?, ?> configure() {
-		return configure( new DefaultFeatureConfig() )
-				.decorate( Decorator.COUNT_MULTILAYER.configure(
-						new CountConfig(1)
-				) );
+		return new ConfiguredFeature<>(this, new DefaultFeatureConfig());
+	}
+
+	@Override
+	public PlacedFeature placed(RegistryEntry<ConfiguredFeature<?, ?>> configured) {
+		return new PlacedFeature(
+				configured,
+				Arrays.asList(
+						CountPlacementModifier.of(1)
+				)
+		);
 	}
 
 }

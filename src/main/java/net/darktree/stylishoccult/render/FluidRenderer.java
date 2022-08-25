@@ -45,8 +45,8 @@ public class FluidRenderer {
 		float v2 = sprite.getMaxV();
 
 		MatrixStack.Entry entry = matrices.peek();
-		Matrix4f position = entry.getModel();
-		Matrix3f normal = entry.getNormal();
+		Matrix4f position = entry.getPositionMatrix();
+		Matrix3f normal = entry.getNormalMatrix();
 
 		buffer.vertex(position,  0.5f, 0.5f, -0.5f).color(r, g, g, 255).texture(u1, v1).light(light).normal(normal, 0, 1, 0).next();
 		buffer.vertex(position, -0.5f, 0.5f, -0.5f).color(r, g, g, 255).texture(u2, v1).light(light).normal(normal, 0, 1, 0).next();

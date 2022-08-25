@@ -52,7 +52,7 @@ public class ArcaneAshBlock extends SimpleBlock {
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		if (!state.get(PERSISTENT)) {
-			world.getBlockTickScheduler().schedule(pos, this, 120 + world.random.nextInt(40));
+			world.createAndScheduleBlockTick(pos, this, 120 + world.random.nextInt(40));
 
 			if (!world.isClient) {
 				Network.ASH.send(pos, (ServerWorld) world);

@@ -24,11 +24,11 @@ public class RuneBlockEntity extends SimpleBlockEntity {
 	}
 
 	@Override
-	public NbtCompound writeNbt(NbtCompound nbt) {
+	public void writeNbt(NbtCompound nbt) {
 		if (script != null) nbt.put("s", script.writeNbt(new NbtCompound()));
 		if (from != null) nbt.putByte("f", (byte) from.getId());
 		if (!attachment.isEmpty()) nbt.put("a", attachment.writeNbt(new NbtCompound()));
-		return super.writeNbt(nbt);
+		super.writeNbt(nbt);
 	}
 
 	@Override

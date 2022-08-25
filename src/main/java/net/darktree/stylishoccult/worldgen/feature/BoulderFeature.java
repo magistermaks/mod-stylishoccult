@@ -9,13 +9,17 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.CountConfig;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
+import net.minecraft.world.gen.feature.FeatureConfig;
+import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.CountMultilayerPlacementModifier;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class BoulderFeature extends SimpleFeature<DefaultFeatureConfig> {
@@ -66,7 +70,7 @@ public class BoulderFeature extends SimpleFeature<DefaultFeatureConfig> {
 			if (RandUtils.getBool(StylishOccult.SETTING.boulder_blackstone_chance, random)) {
 				world.setBlockState(pos, Blocks.BLACKSTONE.getDefaultState(), 3);
 			} else {
-				world.setBlockState(pos, ModTags.BOULDER_FILLER.getRandom(random).getDefaultState(), 3);
+				world.setBlockState(pos, RandUtils.pickFromTag(ModTags.BOULDER_FILLER, random, Blocks.AIR).getDefaultState(), 3);
 			}
 		}
 
@@ -81,10 +85,18 @@ public class BoulderFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	@Override
 	public ConfiguredFeature<?, ?> configure() {
-		return configure( new DefaultFeatureConfig() )
-				.decorate( Decorator.COUNT_MULTILAYER.configure(
-						new CountConfig(1)
-				) );
+		return new ConfiguredFeature<>(this, FeatureConfig.DEFAULT);
+	}
+
+	@Override
+	public PlacedFeature placed(RegistryEntry<ConfiguredFeature<?, ?>> configured) {
+		return new PlacedFeature(
+				configured,
+				Arrays.asList(
+						CountMultilayerPlacementModifier.of(3),
+						BiomePlacementModifier.of()
+				)
+			);
 	}
 
 }

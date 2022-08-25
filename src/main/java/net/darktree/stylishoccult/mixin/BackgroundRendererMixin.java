@@ -28,8 +28,8 @@ public abstract class BackgroundRendererMixin {
 		}
 	}
 
-	@Inject(method="applyFog", at=@At(value="INVOKE", remap=false, target="Lcom/mojang/blaze3d/systems/RenderSystem;setShaderFogEnd(F)V", ordinal=1, shift=At.Shift.AFTER))
-	private static void stylish_applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, CallbackInfo ci) {
+	@Inject(method="applyFog", at=@At("TAIL"))
+	private static void stylish_applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, CallbackInfo info) {
 		if (SubmersionExtension.under_blood) {
 			RenderSystem.setShaderFogStart(1);
 			RenderSystem.setShaderFogEnd(4);

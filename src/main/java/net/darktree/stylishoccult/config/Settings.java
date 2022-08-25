@@ -30,7 +30,7 @@ public class Settings {
 	public int flesh_stone_vain_size = 12;
 
 	@Config.Entry(group="feature", min=1, restart=true)
-	public int flesh_stone_vain_count = 3;
+	public int flesh_stone_vain_count = 4;
 
 	@Config.Entry(group="feature", min=0, max=100)
 	public float grass_patch_chance = 98.0f;

@@ -82,7 +82,7 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 			if (cooldown != 0) {
 				state = state.with(COOLDOWN, cooldown - 1);
 				world.setBlockState(pos, state);
-				world.getBlockTickScheduler().schedule(pos, this, getDelayLength());
+				world.createAndScheduleBlockTick(pos, this, getDelayLength());
 
 				if (cooldown == 3) {
 					executeStoredScript(world, pos, state);
@@ -90,7 +90,7 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 			} else {
 				onDelayEnd(world, pos);
 			}
-		} catch(RuneException exception) {
+		} catch (RuneException exception) {
 			getEntity(world, pos).getScript().handle(exception, world, pos);
 		}
 	}
@@ -165,7 +165,7 @@ public abstract class RuneBlock extends SimpleBlock implements BlockEntityProvid
 		state = state.with(COOLDOWN, 3);
 		world.setBlockState(pos, state);
 		onTriggered(script, world, pos, state);
-		world.getBlockTickScheduler().schedule(pos, this, getDelayLength());
+		world.createAndScheduleBlockTick(pos, this, getDelayLength());
 	}
 
 	protected final RuneBlockEntity getEntity(World world, BlockPos pos) {

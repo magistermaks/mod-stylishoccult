@@ -90,13 +90,13 @@ public class SparkVentBlock extends SimpleBlock {
 	}
 
 	private void schedule( World world, BlockPos pos ) {
-		world.getBlockTickScheduler().schedule(pos, this, (int) StylishOccult.SETTING.vent_timeout.get(world) + world.random.nextInt( 100 ));
+		world.createAndScheduleBlockTick(pos, this, (int) StylishOccult.SETTING.vent_timeout.get(world) + world.random.nextInt( 100 ));
 	}
 
 	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if( state.get(ACTIVE) ) {
-			if( !world.getBlockTickScheduler().isScheduled(pos, this) ) {
+		if (state.get(ACTIVE)) {
+			if (!world.getBlockTickScheduler().isQueued(pos, this)) {
 				schedule( world, pos );
 			}
 		}

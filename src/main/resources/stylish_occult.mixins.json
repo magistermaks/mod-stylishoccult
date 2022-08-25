@@ -15,7 +15,6 @@
 	],
 	"client": [
 		"BackgroundRendererMixin",
-		"BookIconMixin",
 		"CameraMixin",
 		"InGameHudMixin",
 		"PlayerEntityClientMixin"

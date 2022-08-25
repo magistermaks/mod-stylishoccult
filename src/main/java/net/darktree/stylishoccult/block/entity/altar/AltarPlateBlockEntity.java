@@ -66,7 +66,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				pickup = 40;
 				Block.dropStack(world, pos, catalyst);
 				catalyst = ItemStack.EMPTY;
-				update();
+				update(null);
 				return true;
 			}
 
@@ -75,7 +75,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				pickup = 40;
 				Block.dropStack(world, pos, taken);
 				playSound(SoundEvents.BLOCK_CANDLE_BREAK);
-				update();
+				update(null);
 				return true;
 			}
 
@@ -86,7 +86,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 			if (candles.size() < 64) {
 				candles.add(AltarRingItemStack.create(stack.split(1), random));
 				playSound(SoundEvents.BLOCK_CANDLE_PLACE);
-				update();
+				update(null);
 			}
 
 			return true;
@@ -95,7 +95,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		if (catalyst.isEmpty()) {
 			catalyst = stack.split(1);
 			playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE);
-			update();
+			update(null);
 			return true;
 		}
 
@@ -191,7 +191,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 					state.notifyCauldrons(world);
 					state.reset();
 					active = false;
-					update();
+					update(blockState);
 				}
 			}
 		}
@@ -271,7 +271,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				if (stack.getCount() >= 0) {
 					this.catalyst = stack.split(1);
 
-					update();
+					update(null);
 					break;
 				}
 			}
@@ -290,7 +290,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 			if (!stack.isEmpty()) {
 				state.addIngredient(stack);
 				plate.catalyst = ItemStack.EMPTY;
-				plate.update();
+				plate.update(null);
 
 				Network.ARC.send(pos, (ServerWorld) world,
 						this.pos.getX() + 0.5, this.pos.getY() + 0.1, this.pos.getZ() + 0.5,
@@ -311,7 +311,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		world.playSound(null, pos, event, SoundCategory.BLOCKS, 1, 1 + world.random.nextFloat() / 2.0f);
 	}
 
-	public NbtCompound writeNbt(NbtCompound nbt) {
+	public void writeNbt(NbtCompound nbt) {
 		nbt.put("catalyst", this.catalyst.writeNbt(new NbtCompound()));
 		nbt.putInt("pickup", this.pickup);
 		nbt.putBoolean("active", this.active);
@@ -330,8 +330,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		}
 
 		nbt.put("ring", ring);
-
-		return super.writeNbt(nbt);
+		super.writeNbt(nbt);
 	}
 
 	@Override

@@ -32,7 +32,7 @@ public abstract class ServerAdvancementLoaderMixin {
 	@Shadow @Final private LootConditionManager conditionManager;
 
 	@Inject(method="apply(Ljava/util/Map;Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/util/profiler/Profiler;)V", at=@At(value="INVOKE", target="Lnet/minecraft/advancement/AdvancementManager;load(Ljava/util/Map;)V", shift=At.Shift.BEFORE), locals=LocalCapture.CAPTURE_FAILHARD)
-	private void stylish_apply(Map<Identifier, JsonElement> map, ResourceManager resourceManager, Profiler profiler, CallbackInfo info, Map<Identifier, Advancement.Task> tasks, AdvancementManager advancementManager) {
+	private void stylish_apply(Map<Identifier, JsonElement> map, ResourceManager resourceManager, Profiler profiler, CallbackInfo info, Map<Identifier, Advancement.Builder> tasks, AdvancementManager advancementManager) {
 		ModItems.RUNESTONES.forEach(item -> {
 			Identifier itemId = Registry.ITEM.getId(item);
 			Identifier taskId = ModIdentifier.of("gather/" + itemId.getPath());
@@ -42,7 +42,7 @@ public abstract class ServerAdvancementLoaderMixin {
 	}
 
 	@Unique
-	private Advancement.Task getRuneTask(Identifier itemId, Identifier taskId) {
+	private Advancement.Builder getRuneTask(Identifier itemId, Identifier taskId) {
 		JsonObject advancement = new JsonObject();
 
 		// match only this one item
@@ -82,9 +82,9 @@ public abstract class ServerAdvancementLoaderMixin {
 	}
 
 	@Unique
-	private Advancement.Task toTask(JsonObject json, Identifier id) {
+	private Advancement.Builder toTask(JsonObject json, Identifier id) {
 		JsonObject jsonObject = JsonHelper.asObject(json, "advancement");
-		return Advancement.Task.fromJson(jsonObject, new AdvancementEntityPredicateDeserializer(id, this.conditionManager));
+		return Advancement.Builder.fromJson(jsonObject, new AdvancementEntityPredicateDeserializer(id, this.conditionManager));
 	}
 
 }
