@@ -1,4 +1,8 @@
 
+0.10.1 release <2022/08/25>
+- Removed incorrect Java 17 requirement
+- Fixed a small mistake in Locus rune description
+
 0.10.0 release <2022/08/24>
 - Patchouli is no longer an optional dependency
 - Changed the runonomicon's texture
