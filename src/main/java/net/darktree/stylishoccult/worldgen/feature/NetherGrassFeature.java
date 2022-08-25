@@ -14,12 +14,11 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.PlacedFeature;
-import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.CountMultilayerPlacementModifier;
 
 import java.util.Arrays;
 import java.util.Random;
 
-// FIXME broken
 public class NetherGrassFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	private final static int RADIUS = 7;
@@ -76,7 +75,7 @@ public class NetherGrassFeature extends SimpleFeature<DefaultFeatureConfig> {
 		return new PlacedFeature(
 				configured,
 				Arrays.asList(
-						CountPlacementModifier.of(3)
+						CountMultilayerPlacementModifier.of(3)
 				)
 		);
 	}

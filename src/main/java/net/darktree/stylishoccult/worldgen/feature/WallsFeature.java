@@ -20,14 +20,13 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.PlacedFeature;
-import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.CountMultilayerPlacementModifier;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
-// FIXME broken
 public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	public WallsFeature(Codec<DefaultFeatureConfig> config) {
@@ -182,8 +181,7 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 			BlockState state = RandUtils.pickFromTag(ModTags.RUNES, random, Blocks.AIR).getDefaultState().with(RuneBlock.FROZEN, true);
 			world.setBlockState(pos, state, 3);
 		} else {
-			BlockState state = RandUtils.pickFromTag(ModTags.RUNES, random, Blocks.AIR).getDefaultState();
-			world.setBlockState(pos, state, 3);
+			world.setBlockState(pos, RandUtils.pickFromTag(ModTags.RUNIC_WALL, random, Blocks.AIR).getDefaultState(), 3);
 		}
 	}
 
@@ -201,7 +199,7 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 		return new PlacedFeature(
 				configured,
 				Arrays.asList(
-						CountPlacementModifier.of(1)
+						CountMultilayerPlacementModifier.of(1)
 				)
 		);
 	}

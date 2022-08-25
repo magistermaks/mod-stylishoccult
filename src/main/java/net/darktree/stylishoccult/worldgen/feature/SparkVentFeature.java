@@ -18,12 +18,11 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.PlacedFeature;
-import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.CountMultilayerPlacementModifier;
 
 import java.util.Arrays;
 import java.util.Random;
 
-// FIXME broken
 public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	private final static BlockState VENT = ModBlocks.SPARK_VENT.getDefaultState();
@@ -71,10 +70,10 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
 	}
 
 	private boolean generateSource(StructureWorldAccess world, Random random, BlockPos pos) {
-		if( RandUtils.getBool(95.0f, random) ) {
+		if (RandUtils.getBool(95.0f, random)) {
 			world.setBlockState(pos, LAVA, 2);
 
-			for (int i = random.nextInt(9); i > 0; i --) {
+			for (int i = random.nextInt(10); i > 0; i --) {
 				Direction dir = RandUtils.getEnum(Direction.class, random);
 
 				if (dir != Direction.UP) {
@@ -111,7 +110,7 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
 		return new PlacedFeature(
 				configured,
 				Arrays.asList(
-						CountPlacementModifier.of(3)
+						CountMultilayerPlacementModifier.of(3)
 				)
 		);
 	}

@@ -9,10 +9,11 @@ import net.minecraft.world.gen.feature.PlacedFeature;
 public interface SimpleFeatureProvider {
 
 	ConfiguredFeature<?, ?> configure();
-	PlacedFeature placed(RegistryEntry<ConfiguredFeature<?, ?>> configured); // TODO make it return just hte array
+	PlacedFeature placed(RegistryEntry<ConfiguredFeature<?, ?>> configured); // TODO make it return just the array
 
 	default void debugWrite(BlockPos pos) {
-		StylishOccult.debug("Generated feature '" + this.getClass().getSimpleName() + "' generated at: " + pos.toShortString());
+		String xyz = pos.getX() + " " + pos.getY() + " " + pos.getZ();
+		StylishOccult.debug("Generated feature '" + this.getClass().getSimpleName() + "' generated at: " + xyz);
 	}
 
 }
