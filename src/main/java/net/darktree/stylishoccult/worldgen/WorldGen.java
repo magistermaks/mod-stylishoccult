@@ -3,6 +3,7 @@ package net.darktree.stylishoccult.worldgen;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
+import net.darktree.stylishoccult.mixin.StructureFeatureAccessor;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.darktree.stylishoccult.utils.SimpleFeatureProvider;
 import net.darktree.stylishoccult.worldgen.feature.*;
@@ -10,6 +11,8 @@ import net.darktree.stylishoccult.worldgen.processor.BlackstoneStructureProcesso
 import net.darktree.stylishoccult.worldgen.processor.DeepslateStructureProcessor;
 import net.darktree.stylishoccult.worldgen.processor.SanctumStructureProcessor;
 import net.darktree.stylishoccult.worldgen.processor.StoneStructureProcessor;
+import net.darktree.stylishoccult.worldgen.structure.SanctumStructure;
+import net.darktree.stylishoccult.worldgen.structure.StonehengeStructure;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -24,10 +27,7 @@ import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.*;
 
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -42,18 +42,10 @@ public class WorldGen {
 		BiomeModifications.addFeature(selector, step, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 	}
 
-//	public static void addStructure(Identifier id, StructureConfig config, boolean adjustsSurface, Predicate<BiomeSelectionContext> selector, StructureFeature<DefaultFeatureConfig> feature, GenerationStep.Feature step) {
-//		ConfiguredStructureFeature<DefaultFeatureConfig, ?> configured = feature.configure(new DefaultFeatureConfig());
-//		FabricStructureBuilder<?, ?> builder = FabricStructureBuilder.create(id, feature).step(step).defaultConfig(config.spacing, config.separation, config.salt).superflatFeature(configured);
-//		if (adjustsSurface) builder.adjustsSurface();
-//		builder.register();
-//		Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, new Identifier(id.getNamespace(), "configured_" + id.getPath()), configured);
-//
-//		// add to biomes
-//		BiomeModifications.create(id).add(ModificationPhase.ADDITIONS, selector, (context) -> {
-//			context.getGenerationSettings().addBuiltInStructure(configured);
-//		});
-//	}
+	public static void addStructure(Identifier id, JigsawFeature structure, GenerationStep.Feature step) {
+		Registry.register(Registry.STRUCTURE_FEATURE, id, structure);
+		StructureFeatureAccessor.stylish_getStructureGenerationStepMap().put(structure, step);
+	}
 
 	public static StructureProcessorList addProcessorList(String name, StructureProcessor processor) {
 		return BuiltinRegistries.add(BuiltinRegistries.STRUCTURE_PROCESSOR_LIST, new ModIdentifier(name), new StructureProcessorList(ImmutableList.of(processor))).value();
@@ -62,10 +54,6 @@ public class WorldGen {
 	public static StructureProcessorType<?> addProcessorType(String name, Supplier<StructureProcessor> supplier) {
 		return StructureProcessorType.register(StylishOccult.NAMESPACE + "_" + name + "_processor", Codec.unit(supplier));
 	}
-
-//	public static StructurePoolFeatureConfig getPool(DynamicRegistryManager registry, String path, int size) {
-//		return new StructurePoolFeatureConfig(() -> registry.get(Registry.STRUCTURE_POOL_KEY).get(new ModIdentifier(path)), size);
-//	}
 
 	// Structure processors
 	private static final StructureProcessorList STONE_DECAY_PROCESSOR = WorldGen.addProcessorList("stone_decay", new StoneStructureProcessor());
@@ -125,23 +113,18 @@ public class WorldGen {
 				new BoulderFeature(DefaultFeatureConfig.CODEC)
 		);
 
-		// FIXME structures are borked
-//		// Structures
-//		WorldGen.addStructure(
-//				new ModIdentifier("sanctum"),
-//				StylishOccult.SETTING.sanctum, true,
-//				BiomeSelectors.foundInTheNether().and(BiomeSelectors.excludeByKey(BiomeKeys.BASALT_DELTAS, BiomeKeys.SOUL_SAND_VALLEY)),
-//				new SanctumStructure(8, 4),
-//				GenerationStep.Feature.SURFACE_STRUCTURES
-//		);
-//
-//		WorldGen.addStructure(
-//				new ModIdentifier("stonehenge"),
-//				StylishOccult.SETTING.stonehenge, true,
-//				BiomeSelectors.foundInOverworld().and(BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.JUNGLE, Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.TAIGA)),
-//				new StonehengeStructure(6),
-//				GenerationStep.Feature.SURFACE_STRUCTURES
-//		);
+		// Structures
+		WorldGen.addStructure(
+				new ModIdentifier("sanctum"),
+				new SanctumStructure(8, 4),
+				GenerationStep.Feature.SURFACE_STRUCTURES
+		);
+
+		WorldGen.addStructure(
+				new ModIdentifier("stonehenge"),
+				new StonehengeStructure(4),
+				GenerationStep.Feature.SURFACE_STRUCTURES
+		);
 
 	}
 

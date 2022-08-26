@@ -11,7 +11,8 @@
 		"LivingEntityMixin",
 		"PlayerEntityMixin",
 		"ServerAdvancementLoaderMixin",
-		"StatusEffectInstanceAccessor"
+		"StatusEffectInstanceAccessor",
+		"StructureFeatureAccessor"
 	],
 	"client": [
 		"BackgroundRendererMixin",

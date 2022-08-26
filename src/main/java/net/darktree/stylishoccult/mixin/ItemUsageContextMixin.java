@@ -12,12 +12,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ItemUsageContext.class)
-public class ItemUsageContextMixin {
+public abstract class ItemUsageContextMixin {
 
 	@Shadow @Final private BlockHitResult hit;
 
 	@Inject(method="getSide", at=@At("HEAD"), cancellable=true)
-	public void getSide(CallbackInfoReturnable<Direction> info) {
+	public void stylish_getSide(CallbackInfoReturnable<Direction> info) {
 		if (hit.getSide() == Directions.UNDECIDED) {
 			info.setReturnValue(Direction.UP);
 		}
