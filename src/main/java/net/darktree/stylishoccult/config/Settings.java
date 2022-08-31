@@ -1,7 +1,6 @@
 package net.darktree.stylishoccult.config;
 
 import net.darktree.stylishoccult.utils.DifficultyBased;
-import net.darktree.stylishoccult.utils.StructureConfig;
 
 public class Settings {
 
@@ -121,12 +120,6 @@ public class Settings {
 
 	@Config.Entry(group="other", restart=true)
 	public boolean add_guide_to_loottables = true;
-
-	@Config.Entry(group="structure", restart=true)
-	public StructureConfig sanctum = new StructureConfig(10, 7, 48151, 5);
-
-	@Config.Entry(group="structure", restart=true)
-	public StructureConfig stonehenge = new StructureConfig(30, 14, 62342, 4);
 
 	@Config.Entry(group="difficulty")
 	public DifficultyBased spread_anger_chance = new DifficultyBased(50.0f, 33.0f, 25.0f, 20.0f);

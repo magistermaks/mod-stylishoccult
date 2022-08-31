@@ -1,0 +1,10 @@
+{
+	"replace": false,
+	"values": [
+		"#c:in_nether",
+		{
+			"id": "#c:nether",
+			"required": false
+		}
+	]
+}

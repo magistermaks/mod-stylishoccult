@@ -4,7 +4,7 @@
 		"start_pool": "stylish_occult:stonehenge/start",
 		"size": 1
 	},
-	"biomes": "#minecraft:has_structure/mineshaft",
+	"biomes": "#stylish_occult:has_structure/stonehenge",
 	"step": "surface_structures",
 	"spawn_overrides": {
 

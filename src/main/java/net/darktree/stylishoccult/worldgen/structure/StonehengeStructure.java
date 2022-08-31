@@ -82,4 +82,5 @@ public class StonehengeStructure extends JigsawFeature {
 //			this.setBoundingBoxFromChildren();
 //		}
 //	}
+
 }

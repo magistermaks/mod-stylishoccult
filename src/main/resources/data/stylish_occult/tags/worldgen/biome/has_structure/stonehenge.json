@@ -1,0 +1,10 @@
+{
+	"replace": false,
+	"values": [
+		"#c:in_overworld",
+		{
+			"id": "#c:overworld",
+			"required": false
+		}
+	]
+}
