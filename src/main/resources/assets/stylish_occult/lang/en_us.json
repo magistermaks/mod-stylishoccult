@@ -366,6 +366,8 @@
 	"advancements.stylish_occult.guide.description": "Find the Runonomicon",
 	"advancements.stylish_occult.sacrifice.title": "Sacrifices Must Be Made",
 	"advancements.stylish_occult.sacrifice.description": "Drain some blood using a Twisted Knife",
+	"advancements.stylish_occult.mine.title": "Dwarven Blood",
+	"advancements.stylish_occult.mine.description": "Crack blocks with blood",
 
 	"patchouli.stylish_occult.runonomicon.name": "Runonomicon",
 	"patchouli.stylish_occult.runonomicon.text": "The guide to the forgotten secrets of life and death, and the occult art of runic blood engravings. $(p)By Abdul Alhazred"

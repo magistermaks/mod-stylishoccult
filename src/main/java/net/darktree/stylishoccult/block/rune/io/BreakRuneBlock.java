@@ -20,8 +20,10 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
+// TODO cleanup
 public class BreakRuneBlock extends TimedRuneBlock implements TargetingRune {
 
+	// FIXME :tiny_potato:
 	private int breakProgress = 0;
 	private int maxProgress = 0;
 	private BlockState state = Blocks.AIR.getDefaultState();
@@ -86,6 +88,7 @@ public class BreakRuneBlock extends TimedRuneBlock implements TargetingRune {
 
 		int i = (int) ((float)this.breakProgress / this.getMaxProgress() * 10);
 
+		// FIXME
 		world.setBlockBreakingInfo(16492, target, i);
 
 		if (this.breakProgress >= this.getMaxProgress()) {
