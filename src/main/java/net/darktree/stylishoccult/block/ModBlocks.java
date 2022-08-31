@@ -103,7 +103,7 @@ public class ModBlocks {
 	public static final Block LESS_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("minus", LogicRuneBlock.Functions.LESS));
 	public static final Block MORE_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("magis", LogicRuneBlock.Functions.MORE));
 	public static final Block IF_RUNE_BLOCK = RegUtil.rune(new IfRuneBlock("si"));
-	public static final Block PLACE_RUNE_BLOCK = RegUtil.rune(new PlaceRuneBlock("locus", 64));
+	public static final Block PLACE_RUNE_BLOCK = RegUtil.rune(new PlaceRuneBlock("locus"));
 	public static final Block INCREMENT_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("incrementum", LogicRuneBlock.Functions.INCREMENT));
 	public static final Block DECREMENT_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("decrementum", LogicRuneBlock.Functions.DECREMENT));
 	public static final Block REDSTONE_ANALOG_OUT_RUNE_BLOCK = RegUtil.rune(new RedstoneAnalogOutputRuneBlock("scribo"));
@@ -127,6 +127,10 @@ public class ModBlocks {
 	public static final Block VALUE_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("valorem", LogicRuneBlock.Functions.VALUE));
 	public static final Block SEPARATE_RUNE_BLOCK = RegUtil.rune(new SeparateRuneBlock("separatum"));
 	public static final Block SLEEP_RUNE_BLOCK = RegUtil.rune(new SleepRuneBlock("somnum"));
+	public static final Block BOUNCE_RUNE_BLOCK = RegUtil.rune(new BounceRuneBlock("revertere"));
+	public static final Block TEST_RUNE_BLOCK = RegUtil.rune(new TestRuneBlock("probo"));
+	public static final Block PURGE_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("purgo", LogicRuneBlock.Functions.PURGE));
+	public static final Block BREAK_RUNE_BLOCK = RegUtil.rune(new BreakRuneBlock("confractus"));
 
 	public static void init() {
 		StylishOccult.LOGGER.info("Loaded " + RUNESTONES.size() + " runes!");

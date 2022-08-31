@@ -1,0 +1,22 @@
+{
+	"name": "Confractus Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/confractus.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_confractus",
+	"sortnum": 56,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "confractus",
+			"title": "Confractus Rune"
+		},
+		{
+			"type": "stylish_occult:page_long_symbol",
+			"text1": "Confractus Rune can be used to break a block in the world, it takes 3 elements from",
+			"text2": "the $(hs). Numerical values of those elements will be treated as x, y, and z block offsets from the rune's position.",
+			"recipe": "stylish_occult:altar/rune/confractus.json",
+			"rune": "confractus",
+			"symbol": "arcane"
+		}
+	]
+}

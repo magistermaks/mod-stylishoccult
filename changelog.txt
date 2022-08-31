@@ -1,4 +1,11 @@
 
+0.11.0 release
+- Added Revertere (bounce) rune - reverse the signal direction
+- Added Probo (test) rune - check if a block exists
+- Added Purgo (purge) rune - remove all elements from drop stack
+- Added Confractus (break) rune - break blocks in the world
+- Fixed an error in Evigilio's description
+
 0.10.1 release <2022/08/25>
 - Removed incorrect Java 17 requirement
 - Fixed a small mistake in Locus rune description
