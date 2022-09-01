@@ -50,7 +50,7 @@ public class LavaDemonFeature extends SimpleFeature<DefaultFeatureConfig> {
 			BlockPos target = pos.offset(direction);
 
 			if ((world.getBlockState(target).getBlock() == Blocks.STONE)) {
-				world.setBlockState(target, ModBlocks.LAVA_DEMON.getDefaultState().with(LavaDemonBlock.ANGER, 2).with(LavaDemonBlock.PART, LavaDemonPart.HEAD), 3);
+				placeBlock(world, target, ModBlocks.LAVA_DEMON.getDefaultState().with(LavaDemonBlock.ANGER, 2).with(LavaDemonBlock.PART, LavaDemonPart.HEAD));
 				this.debugWrite(target);
 			}
 		}

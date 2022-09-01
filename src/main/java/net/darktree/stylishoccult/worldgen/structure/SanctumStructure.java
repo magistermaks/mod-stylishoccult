@@ -8,10 +8,11 @@ import net.minecraft.world.gen.chunk.VerticalBlockSample;
 import net.minecraft.world.gen.feature.JigsawFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
+// FIXME
 public class SanctumStructure extends JigsawFeature {
 
 	public SanctumStructure(int depth, int clearance) {
-		super(StructurePoolFeatureConfig.CODEC, 0, false, false, context -> canGenerate(context, depth, clearance));
+		super(StructurePoolFeatureConfig.CODEC, 33, false, false, context -> canGenerate(context, depth, clearance));
 	}
 
 	private static boolean canGenerate(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> context, int depth, int clearance) {

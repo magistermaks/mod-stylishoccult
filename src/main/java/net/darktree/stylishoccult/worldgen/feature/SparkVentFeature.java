@@ -34,7 +34,6 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	@Override
 	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-
 		if (!RandUtils.getBool(StylishOccult.SETTING.spark_vent_chance, random)) {
 			return false;
 		}
@@ -57,7 +56,7 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
 				if (world.getBlockState(floor).getBlock() == Blocks.NETHERRACK) {
 
 					boolean hasSource = generateSource(world, random, source);
-					world.setBlockState(vent, VENT.with(SparkVentBlock.ACTIVE, hasSource), 2);
+					placeBlock(world, vent, VENT.with(SparkVentBlock.ACTIVE, hasSource));
 
 					this.debugWrite(pos);
 					return true;
@@ -71,7 +70,7 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	private boolean generateSource(StructureWorldAccess world, Random random, BlockPos pos) {
 		if (RandUtils.getBool(95.0f, random)) {
-			world.setBlockState(pos, LAVA, 2);
+			placeBlock(world, pos, LAVA);
 
 			for (int i = random.nextInt(10); i > 0; i --) {
 				Direction dir = RandUtils.getEnum(Direction.class, random);
@@ -83,7 +82,7 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 						Block block = world.getBlockState(tmp).getBlock();
 						if (block == Blocks.NETHERRACK || block == Blocks.LAVA) {
-							world.setBlockState(tmp, LAVA, 2);
+							placeBlock(world, tmp, LAVA);
 							pos = tmp;
 						}
 

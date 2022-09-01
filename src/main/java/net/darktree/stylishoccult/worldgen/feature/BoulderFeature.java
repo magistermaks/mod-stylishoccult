@@ -64,13 +64,13 @@ public class BoulderFeature extends SimpleFeature<DefaultFeatureConfig> {
 	private void generateBlock(StructureWorldAccess world, BlockPos.Mutable pos, Random random, boolean edge, int erosion, boolean fire) {
 		if (edge) {
 			if (!StylishOccult.SETTING.boulder_erode || random.nextInt(4 - erosion) != 0) {
-				world.setBlockState(pos, Blocks.BLACKSTONE.getDefaultState(), 3);
+				placeBlock(world, pos, Blocks.BLACKSTONE);
 			}
 		} else {
 			if (RandUtils.getBool(StylishOccult.SETTING.boulder_blackstone_chance, random)) {
-				world.setBlockState(pos, Blocks.BLACKSTONE.getDefaultState(), 3);
+				placeBlock(world, pos, Blocks.BLACKSTONE);
 			} else {
-				world.setBlockState(pos, RandUtils.pickFromTag(ModTags.BOULDER_FILLER, random, Blocks.AIR).getDefaultState(), 3);
+				placeBlock(world, pos, RandUtils.pickFromTag(ModTags.BOULDER_FILLER, random, Blocks.AIR));
 			}
 		}
 
@@ -78,7 +78,7 @@ public class BoulderFeature extends SimpleFeature<DefaultFeatureConfig> {
 			BlockPos target = pos.offset(RandUtils.getEnum(Direction.class, random));
 
 			if(world.getBlockState(target.down()).getBlock() == Blocks.NETHERRACK && world.getBlockState(target).isAir()) {
-				world.setBlockState(target, Blocks.FIRE.getDefaultState(), 3);
+				placeBlock(world, target, Blocks.FIRE);
 			}
 		}
 	}

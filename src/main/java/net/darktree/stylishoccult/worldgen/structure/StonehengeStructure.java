@@ -23,6 +23,8 @@ public class StonehengeStructure extends JigsawFeature {
 	}
 
 	private static boolean canGenerate(ChunkGenerator generator, ChunkPos pos, HeightLimitView view, int slope) {
+
+		// look into using StructureGeneratorFactory.Context#getCornerHeights
 		ImmutableList<BlockPos> list = ImmutableList.of(
 				new BlockPos(pos.getStartX(), 0, pos.getStartZ()),
 				new BlockPos(pos.getEndX(), 0, pos.getStartZ()),

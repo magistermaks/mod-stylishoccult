@@ -157,18 +157,18 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 	private void placeRandomDecoration(StructureWorldAccess world, BlockPos pos, Random random, int base) {
 		int height = pos.getY() - base;
 
-		if (height > 2 || random.nextInt(3) == 0) {
-			world.setBlockState(pos, Blocks.CANDLE.getDefaultState()
+		if (height > 2 || random.nextInt(2) == 0) {
+			placeBlock(world, pos, Blocks.CANDLE.getDefaultState()
 					.with(CandleBlock.CANDLES, random.nextInt(4) + 1)
-					.with(CandleBlock.LIT, random.nextInt(8) != 0), 3);
+					.with(CandleBlock.LIT, random.nextInt(8) != 0));
 		} else {
-			world.setBlockState(pos, LootBoxes.URN_BLOCK.getDefaultState(), 3);
+			placeBlock(world, pos, LootBoxes.URN_BLOCK.getDefaultState());
 		}
 	}
 
 	private static boolean touchesRunes(BlockView world, BlockPos origin) {
-		for (Direction direction : Directions.HORIZONTAL){
-			if(world.getBlockState(origin.offset(direction)).getBlock() instanceof RuneBlock) {
+		for (Direction direction : Directions.HORIZONTAL) {
+			if (world.getBlockState(origin.offset(direction)).getBlock() instanceof RuneBlock) {
 				return true;
 			}
 		}
@@ -179,9 +179,9 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 	private void generateRune(StructureWorldAccess world, BlockPos pos, Random random) {
 		if (RandUtils.getBool(StylishOccult.SETTING.wall_rune_chance, random)) {
 			BlockState state = RandUtils.pickFromTag(ModTags.RUNES, random, Blocks.AIR).getDefaultState().with(RuneBlock.FROZEN, true);
-			world.setBlockState(pos, state, 3);
+			placeBlock(world, pos, state);
 		} else {
-			world.setBlockState(pos, RandUtils.pickFromTag(ModTags.RUNIC_WALL, random, Blocks.AIR).getDefaultState(), 3);
+			placeBlock(world, pos, RandUtils.pickFromTag(ModTags.RUNIC_WALL, random, Blocks.AIR));
 		}
 	}
 

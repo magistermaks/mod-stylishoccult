@@ -40,11 +40,9 @@ public class NetherGrassFeature extends SimpleFeature<DefaultFeatureConfig> {
 		if (world.getBlockState( pos.down() ).getBlock() == Blocks.NETHERRACK) {
 
 			if (pos.getY() > 1 && pos.getY() < 255) {
-
 				int g = RADIUS * RADIUS;
 
-				for (int m = 0; m < g; m ++) {
-
+				for (int i = 0; i < g; i ++) {
 					BlockPos target = pos.add(
 							random.nextInt(RADIUS) - random.nextInt(RADIUS),
 							random.nextInt(HEIGHT) - random.nextInt(HEIGHT),
@@ -52,9 +50,8 @@ public class NetherGrassFeature extends SimpleFeature<DefaultFeatureConfig> {
 					);
 
 					if (world.isAir(target) && target.getY() > 0 && GRASS.canPlaceAt(world, target)) {
-						world.setBlockState(target, RandUtils.getBool(StylishOccult.SETTING.fern_chance, random) ? FERN : GRASS, 2);
+						placeBlock(world, target, RandUtils.getBool(StylishOccult.SETTING.fern_chance, random) ? FERN : GRASS);
 					}
-
 				}
 
 				return true;
