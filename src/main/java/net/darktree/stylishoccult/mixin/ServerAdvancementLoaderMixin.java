@@ -26,8 +26,6 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.Map;
 
-// FIXME broken, investigate
-
 @Mixin(ServerAdvancementLoader.class)
 public abstract class ServerAdvancementLoaderMixin {
 

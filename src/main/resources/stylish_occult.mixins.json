@@ -18,6 +18,8 @@
 		"BackgroundRendererMixin",
 		"CameraMixin",
 		"InGameHudMixin",
+		"PatchouliBookIcon",
+		"PatchouliTextureIconMixin",
 		"PlayerEntityClientMixin"
 	],
 	"injectors": {
