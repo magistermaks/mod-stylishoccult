@@ -131,6 +131,7 @@ public class ModBlocks {
 	public static final Block TEST_RUNE_BLOCK = RegUtil.rune(new TestRuneBlock("probo"));
 	public static final Block PURGE_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("purgo", LogicRuneBlock.Functions.PURGE));
 	public static final Block BREAK_RUNE_BLOCK = RegUtil.rune(new BreakRuneBlock("confractus"));
+	public static final Block MODULO_RUNE_BLOCK = RegUtil.rune(new LogicRuneBlock("manet", LogicRuneBlock.Functions.MODULO));
 
 	public static void init() {
 		StylishOccult.LOGGER.info("Loaded " + RUNESTONES.size() + " runes!");

@@ -4,6 +4,7 @@
 - Added Probo (test) rune - check if a block exists
 - Added Purgo (purge) rune - remove all elements from drop stack
 - Added Confractus (break) rune - break blocks in the world
+- Added Manet (modulo) rune - modulo operation
 - Added new advancement (Dwarven Blood)
 - Fixed an error in Evigilio's description
 - Fixed Adiungo rune reversing the stack order

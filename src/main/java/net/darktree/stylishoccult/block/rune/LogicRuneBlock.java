@@ -59,6 +59,7 @@ public class LogicRuneBlock extends RuneBlock {
 		public static final LogicFunction YEET = (script, world, pos) -> script.stack.pull().drop(world, pos);
 		public static final LogicFunction OVER = (script, world, pos) -> script.stack.over();
 		public static final LogicFunction PURGE = (script, world, pos) -> script.ring.reset(element -> element.drop(world, pos));
+		public static final LogicFunction MODULO = (script, world, pos) -> put(script, get(script, world, pos) % get(script, world, pos));
 
 		public static final LogicFunction VALUE = (script, world, pos) -> {
 			try {

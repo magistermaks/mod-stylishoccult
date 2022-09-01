@@ -1,0 +1,23 @@
+{
+	"name": "Manet Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/manet.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_manet",
+	"sortnum": 57,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "manet",
+			"title": "Manet Rune"
+		},
+		{
+			"type": "stylish_occult:page_short_symbol",
+			"text1": "Manet Rune drops the two top $(hs) elements and puts back a result of a",
+			"text2": "modulo operation performed on their numerical values in their place.",
+			"recipe": "stylish_occult:altar/rune/manet.json",
+			"rune": "manet",
+			"symbol": "math",
+			"footer": "tolkien"
+		}
+	]
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "stylish_occult:block/rune/common/basic",
+	"textures": {
+		"rune": "stylish_occult:rune/manet"
+	}
+}
