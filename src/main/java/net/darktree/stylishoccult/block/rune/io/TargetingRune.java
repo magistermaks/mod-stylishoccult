@@ -15,13 +15,11 @@ public interface TargetingRune {
 		int y = (int) Math.round(script.pull(world, pos).value());
 		int z = (int) Math.round(script.pull(world, pos).value());
 
-		BlockPos target = pos.add(x, y, z);
-
-		if (!target.isWithinDistance(pos, RANGE)) {
+		if ((Math.abs(x) > RANGE) || (Math.abs(z) > RANGE) || (y > RANGE)) {
 			throw RuneException.of(RuneExceptionType.OUT_OF_RANGE);
 		}
 
-		return target;
+		return pos.add(x, y, z);
 	}
 
 }

@@ -4,7 +4,9 @@
 - Added Probo (test) rune - check if a block exists
 - Added Purgo (purge) rune - remove all elements from drop stack
 - Added Confractus (break) rune - break blocks in the world
+- Added new advancement (Dwarven Blood)
 - Fixed an error in Evigilio's description
+- Fixed Adiungo rune reversing the stack order
 
 0.10.1 release <2022/08/25>
 - Removed incorrect Java 17 requirement
