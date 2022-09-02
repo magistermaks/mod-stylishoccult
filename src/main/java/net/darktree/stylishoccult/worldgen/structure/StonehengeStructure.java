@@ -24,7 +24,7 @@ public class StonehengeStructure extends JigsawFeature {
 
 	private static boolean canGenerate(ChunkGenerator generator, ChunkPos pos, HeightLimitView view, int slope) {
 
-		// look into using StructureGeneratorFactory.Context#getCornerHeights
+		// TODO look into using StructureGeneratorFactory.Context#getCornerHeights
 		ImmutableList<BlockPos> list = ImmutableList.of(
 				new BlockPos(pos.getStartX(), 0, pos.getStartZ()),
 				new BlockPos(pos.getEndX(), 0, pos.getStartZ()),
@@ -62,27 +62,5 @@ public class StonehengeStructure extends JigsawFeature {
 
 		return max - min <= slope;
 	}
-
-//	public static class Start extends MarginedStructureStart<DefaultFeatureConfig> {
-//		public Start(StructureFeature<DefaultFeatureConfig> structure, ChunkPos pos, int i, long l) {
-//			super(structure, pos, i, l);
-//		}
-//
-//		@Override
-//		public void init(DynamicRegistryManager registry, ChunkGenerator generator, StructureManager manager, ChunkPos pos, Biome biome, DefaultFeatureConfig config, HeightLimitView view) {
-//			BlockPos target = new BlockPos(pos.x * 16 + 8, 0, pos.z * 16 + 8);
-//
-//			// generate pool based structure
-//			StructurePoolFeatureConfig pool = WorldGen.getPool(registry, "stonehenge/start", StylishOccult.SETTING.stonehenge.depth);
-//			StructurePoolBasedGenerator.generate(registry, pool, PoolStructurePiece::new, generator, manager, target, this, this.random, false, true, view);
-//
-//			// center the structure on the chunk center
-//			StructurePiece piece = this.children.get(0);
-//			Vec3i center = piece.getBoundingBox().getCenter();
-//			piece.translate(target.getX() - center.getX(), 0, target.getZ() - center.getZ());
-//
-//			this.setBoundingBoxFromChildren();
-//		}
-//	}
 
 }

@@ -1,22 +1,30 @@
 package net.darktree.stylishoccult.worldgen.structure;
 
-import net.minecraft.structure.StructureGeneratorFactory;
+import net.minecraft.structure.PoolStructurePiece;
+import net.minecraft.structure.pool.StructurePoolBasedGenerator;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.VerticalBlockSample;
-import net.minecraft.world.gen.feature.JigsawFeature;
+import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
-// FIXME
-public class SanctumStructure extends JigsawFeature {
+import java.util.Optional;
+
+public class SanctumStructure extends StructureFeature<StructurePoolFeatureConfig> {
 
 	public SanctumStructure(int depth, int clearance) {
-		super(StructurePoolFeatureConfig.CODEC, 33, false, false, context -> canGenerate(context, depth, clearance));
-	}
+		super(StructurePoolFeatureConfig.CODEC, context -> {
+			int i = getPlacementHeight(context.chunkGenerator(), context.chunkPos(), context.world(), depth, clearance);
 
-	private static boolean canGenerate(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> context, int depth, int clearance) {
-		return getPlacementHeight(context.chunkGenerator(), context.chunkPos(), context.world(), depth, clearance) != Integer.MIN_VALUE;
+			if (i == Integer.MIN_VALUE) {
+				return Optional.empty();
+			}
+
+			BlockPos pos = new BlockPos(context.chunkPos().getStartX(), i, context.chunkPos().getStartZ());
+			return StructurePoolBasedGenerator.generate(context, PoolStructurePiece::new, pos, false, false);
+		});
 	}
 
 	private static int getPlacementHeight(ChunkGenerator generator, ChunkPos pos, HeightLimitView view, int depth, int clearance) {
@@ -39,7 +47,7 @@ public class SanctumStructure extends JigsawFeature {
 		return Integer.MIN_VALUE;
 	}
 
-	public static boolean verifyPlacementPosition(ChunkGenerator generator, HeightLimitView view, ChunkPos pos, int y, int depth, int clearance) {
+	private static boolean verifyPlacementPosition(ChunkGenerator generator, HeightLimitView view, ChunkPos pos, int y, int depth, int clearance) {
 		VerticalBlockSample sample = generator.getColumnSample(pos.getStartX(),  pos.getStartZ(), view);
 
 		for (int i = 0; i < clearance; i ++) {
@@ -63,35 +71,4 @@ public class SanctumStructure extends JigsawFeature {
 		return hit;
 	}
 
-//	public static class Start extends MarginedStructureStart<DefaultFeatureConfig> {
-//		public Start(StructureFeature<DefaultFeatureConfig> s, ChunkPos c, int i, long l) {
-//			super(s, c, i, l);
-//		}
-//
-//		@Override
-//		public void init(DynamicRegistryManager registry, ChunkGenerator generator, StructureManager manager, ChunkPos pos, Biome biome, DefaultFeatureConfig config, HeightLimitView view) {
-//
-//			SanctumStructure feature = (SanctumStructure) this.getFeature();
-//			int l = feature.getPlacementHeight(generator, pos, view);
-//
-//			if (l == Integer.MIN_VALUE) {
-//				return;
-//			}
-//
-//			BlockPos target = new BlockPos(pos.x * 16 + 8, l, pos.z * 16 + 8);
-//			StructurePoolFeatureConfig pool = WorldGen.getPool(registry, "sanctum/start", StylishOccult.SETTING.sanctum.depth);
-//			StructurePoolBasedGenerator.generate(registry, pool, PoolStructurePiece::new, generator, manager, target, this, this.random, false, false, view);
-//
-//			// center the structure on the chunk center
-//			Vec3i center = this.children.get(0).getBoundingBox().getCenter();
-//			int xOffset = target.getX() - center.getX();
-//			int zOffset = target.getZ() - center.getZ();
-//
-//			for(StructurePiece piece : this.children){
-//				piece.translate(xOffset, 0, zOffset);
-//			}
-//
-//			this.setBoundingBoxFromChildren();
-//		}
-//	}
 }

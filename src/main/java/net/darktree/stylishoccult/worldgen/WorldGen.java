@@ -42,7 +42,7 @@ public class WorldGen {
 		BiomeModifications.addFeature(selector, step, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 	}
 
-	public static void addStructure(Identifier id, JigsawFeature structure, GenerationStep.Feature step) {
+	public static void addStructure(Identifier id, StructureFeature<StructurePoolFeatureConfig> structure, GenerationStep.Feature step) {
 		Registry.register(Registry.STRUCTURE_FEATURE, id, structure);
 		StructureFeatureAccessor.stylish_getStructureGenerationStepMap().put(structure, step);
 	}
