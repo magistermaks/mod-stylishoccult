@@ -2,11 +2,12 @@ package net.darktree.stylishoccult.worldgen.feature;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
+import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.LavaDemonBlock;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.property.LavaDemonPart;
+import net.darktree.stylishoccult.tag.ModTags;
 import net.darktree.stylishoccult.utils.SimpleFeature;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.StructureWorldAccess;
@@ -22,7 +23,6 @@ import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 import java.util.List;
 import java.util.Random;
 
-// TODO adjust spawning
 public class LavaDemonFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	public LavaDemonFeature(Codec<DefaultFeatureConfig> codec) {
@@ -31,11 +31,6 @@ public class LavaDemonFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	@Override
 	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-
-//		if (!RandUtils.getBool(StylishOccult.SETTING.demon_chance, random)) {
-//			return false;
-//		}
-
 		if (world.getBlockState(pos).isAir()) {
 
 			if (!world.getBlockState(pos.down()).isAir()) {
@@ -49,7 +44,7 @@ public class LavaDemonFeature extends SimpleFeature<DefaultFeatureConfig> {
 			Direction direction = Direction.Type.HORIZONTAL.random(random);
 			BlockPos target = pos.offset(direction);
 
-			if ((world.getBlockState(target).getBlock() == Blocks.STONE)) {
+			if (world.getBlockState(target).isIn(ModTags.LAVA_DEMON_REPLACEABLE)) {
 				placeBlock(world, target, ModBlocks.LAVA_DEMON.getDefaultState().with(LavaDemonBlock.ANGER, 2).with(LavaDemonBlock.PART, LavaDemonPart.HEAD));
 				this.debugWrite(target);
 			}
@@ -66,7 +61,7 @@ public class LavaDemonFeature extends SimpleFeature<DefaultFeatureConfig> {
 	@Override
 	public List<PlacementModifier> modifiers() {
 		return ImmutableList.of(
-				CountPlacementModifier.of(100),
+				CountPlacementModifier.of(StylishOccult.SETTING.demon_chance),
 				SquarePlacementModifier.of(),
 				HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(80))
 		);

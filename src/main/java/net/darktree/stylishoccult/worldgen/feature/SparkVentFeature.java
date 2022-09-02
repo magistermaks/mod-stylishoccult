@@ -48,7 +48,7 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
 			BlockPos source = vent.down();
 			if (world.getBlockState(source).getBlock() == Blocks.NETHERRACK) {
 
-				if( BlockUtils.touchesAir(world, source) ) {
+				if (BlockUtils.touchesAir(world, source)) {
 					return false;
 				}
 

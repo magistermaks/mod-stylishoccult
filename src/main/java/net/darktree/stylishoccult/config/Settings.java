@@ -23,7 +23,7 @@ public class Settings {
 	public int flesh_vain_size = 30;
 
 	@Config.Entry(group="feature", min=1, restart=true)
-	public int flesh_vain_count = 2;
+	public int flesh_vain_count = 1;
 
 	@Config.Entry(group="feature", min=1, restart=true)
 	public int flesh_stone_vain_size = 12;
@@ -43,11 +43,11 @@ public class Settings {
 	@Config.Entry(group="feature", min=0, max=100)
 	public float wall_rune_chance = 45.0f;
 
-	@Config.Entry(group="feature", min=0, max=100)
-	public float demon_chance = 25.0f;
+	@Config.Entry(group="feature", min=0, restart=true)
+	public int demon_chance = 80;
 
 	@Config.Entry(group="feature", min=0, max=100)
-	public float spark_vent_chance = 16.0f;
+	public float spark_vent_chance = 13.0f;
 
 	@Config.Entry(group="demon", min=0, max=100)
 	public float emitter_exposed = 44.0f;

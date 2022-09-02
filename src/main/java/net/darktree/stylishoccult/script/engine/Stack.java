@@ -67,7 +67,7 @@ public final class Stack extends BaseStack {
 	}
 
 	/**
-	 * over (a, b -> a, b, a) => void
+	 * over (a, b, c -> b, c, a) => void
 	 */
 	public void over() {
 		try {

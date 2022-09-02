@@ -5,6 +5,8 @@ import net.darktree.stylishoccult.block.rune.TimedRuneBlock;
 import net.darktree.stylishoccult.script.component.RuneType;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.Directions;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.DustParticleEffect;
@@ -61,6 +63,7 @@ public class SleepRuneBlock extends TimedRuneBlock {
 	}
 
 	@Override
+	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(TimedRuneBlock.WAITING)) {
 

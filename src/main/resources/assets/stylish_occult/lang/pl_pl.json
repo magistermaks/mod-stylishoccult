@@ -161,7 +161,7 @@
 	"gui.stylish_occult.config.feature.wall_rune_chance.title": "Procent run na ścianach",
 	"gui.stylish_occult.config.feature.wall_rune_chance.description": "Procentowa szansa pojawienia się runy na runicznej ścianie",
 	"gui.stylish_occult.config.feature.demon_chance.title": "Szansa generacji demonów",
-	"gui.stylish_occult.config.feature.demon_chance.description": "Procentowa szansa genracji magmowego demona",
+	"gui.stylish_occult.config.feature.demon_chance.description": "",
 	"gui.stylish_occult.config.feature.spark_vent_chance.title": "Szansa genracji ujść magmy",
 	"gui.stylish_occult.config.feature.spark_vent_chance.description": "Procentowa szansa generacji ujścia magmy",
 	"gui.stylish_occult.config.demon": "Magmowy demon",

@@ -12,6 +12,7 @@ import net.darktree.stylishoccult.block.property.LavaDemonPart;
 import net.darktree.stylishoccult.loot.LootManager;
 import net.darktree.stylishoccult.loot.LootTables;
 import net.darktree.stylishoccult.sounds.Sounds;
+import net.darktree.stylishoccult.tag.ModTags;
 import net.darktree.stylishoccult.utils.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -180,7 +181,7 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 					StylishOccult.SETTING.max_search_radius,
 					(BlockState s) -> s.get(PART) == LavaDemonPart.HEAD);
 
-			if (world.getBlockState(target).getBlock() == net.minecraft.block.Blocks.STONE) {
+			if (world.getBlockState(target).isIn(ModTags.LAVA_DEMON_REPLACEABLE)) {
 				if (origin != null) {
 					int j = BlockUtils.touchesAir(world, pos)
 							? StylishOccult.SETTING.spread_lock_exposed_rarity

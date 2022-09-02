@@ -39,6 +39,9 @@ public class ModTags {
 	// list of blacks that will be used to generate runic walls, except the runes, those are picked separately - from the runes block tag
 	public static TagKey<Block> RUNIC_WALL = TagKey.of(Registry.BLOCK_KEY, ModIdentifier.of("runic_wall"));
 
+	// list of blocks that can be removed by lava demons when spreading
+	public static TagKey<Block> LAVA_DEMON_REPLACEABLE = TagKey.of(Registry.BLOCK_KEY, ModIdentifier.of("lava_demon_replaceable"));
+
 	public static void init() {
 		// noop
 	}

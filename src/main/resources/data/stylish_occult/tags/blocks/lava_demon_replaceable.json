@@ -1,0 +1,7 @@
+{
+	"replace": false,
+	"values": [
+		"#minecraft:base_stone_overworld",
+		"#minecraft:stone_ore_replaceables"
+	]
+}

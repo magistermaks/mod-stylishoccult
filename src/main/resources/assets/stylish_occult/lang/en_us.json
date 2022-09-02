@@ -226,7 +226,7 @@
 	"gui.stylish_occult.config.feature.wall_rune_chance.title": "Runic Wall Runestone Chance",
 	"gui.stylish_occult.config.feature.wall_rune_chance.description": "Percentage chance of Rune blocks being \nplaced as a part of the wall",
 	"gui.stylish_occult.config.feature.demon_chance.title": "Lava Demon Chance",
-	"gui.stylish_occult.config.feature.demon_chance.description": "Percentage chance of Lava Demon being \ngenerated in the overworld",
+	"gui.stylish_occult.config.feature.demon_chance.description": "Liczba prób stworzenia magmowego demona \nna świecie, na chunk",
 	"gui.stylish_occult.config.feature.spark_vent_chance.title": "Spark Vent Chance",
 	"gui.stylish_occult.config.feature.spark_vent_chance.description": "Percentage chance of Spark Vent being \ngenerated in the nether",
 	"gui.stylish_occult.config.demon": "Lava Demon",
