@@ -45,7 +45,7 @@ public class LavaDemonFeature extends SimpleFeature<DefaultFeatureConfig> {
 			BlockPos target = pos.offset(direction);
 
 			if (world.getBlockState(target).isIn(ModTags.LAVA_DEMON_REPLACEABLE)) {
-				placeBlock(world, target, ModBlocks.LAVA_DEMON.getDefaultState().with(LavaDemonBlock.ANGER, 2).with(LavaDemonBlock.PART, LavaDemonPart.HEAD));
+				placeBlock(world, target, ModBlocks.LAVA_DEMON.getDefaultState().with(LavaDemonBlock.PART, LavaDemonPart.HEAD));
 				this.debugWrite(target);
 			}
 		}
