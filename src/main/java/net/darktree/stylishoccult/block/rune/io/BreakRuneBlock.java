@@ -167,7 +167,7 @@ public class BreakRuneBlock extends TimedRuneBlock implements TargetingRune {
 	}
 
 	private void spawnWorkParticles(World world, BlockPos pos, Random random) {
-		Direction direction = RandUtils.getEnum(Direction.class, random);
+		Direction direction = RandUtils.pickFromEnum(Direction.class, random);
 		BlockPos target = pos.offset(direction);
 
 		if (!world.getBlockState(target).isOpaqueFullCube(world, target)) {

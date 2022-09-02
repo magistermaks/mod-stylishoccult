@@ -24,7 +24,7 @@ public class ItemEntry extends AbstractEntry {
 
 	@Override
 	public List<ItemStack> getLoot(Random random, LootContext context) {
-		if (RandUtils.getBool(this.chance, random)) {
+		if (RandUtils.nextBool(this.chance, random)) {
 			ItemStack stack = this.stack.copy();
 			stack.setCount(random.nextInt( (amountMax - amountMin) + 1 ) + amountMin);
 			return asList(stack);

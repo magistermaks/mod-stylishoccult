@@ -84,10 +84,11 @@ public class Config<T> {
 
 	}
 
+	/**
+	 * Used to mark classes that need to be recursively added to the config
+	 */
 	public interface ConfigProperty {
-		// TODO we really should call this somewhere
-		// TODO structures can cause epic crashing if not configured correctly rn
-		default void validate() {}
+
 	}
 
 	public interface HeaderProvider {

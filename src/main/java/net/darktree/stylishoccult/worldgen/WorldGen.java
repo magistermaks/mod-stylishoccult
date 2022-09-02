@@ -38,7 +38,7 @@ public class WorldGen {
 		Identifier id = new ModIdentifier(name);
 		Registry.register(Registry.FEATURE, id, (Feature<?>) feature);
 		ConfiguredFeature<?, ?> configured = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, id, feature.configure());
-		Registry.register(BuiltinRegistries.PLACED_FEATURE, id, feature.placed(RegistryEntry.of(configured)));
+		Registry.register(BuiltinRegistries.PLACED_FEATURE, id, new PlacedFeature(RegistryEntry.of(configured), feature.modifiers()));
 		BiomeModifications.addFeature(selector, step, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 	}
 

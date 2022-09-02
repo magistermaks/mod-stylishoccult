@@ -1,17 +1,18 @@
 package net.darktree.stylishoccult.worldgen.feature;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.utils.SimpleFeatureProvider;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
 import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class FleshPatchFeature extends OreFeature implements SimpleFeatureProvider {
 
@@ -38,15 +39,13 @@ public class FleshPatchFeature extends OreFeature implements SimpleFeatureProvid
 	}
 
 	@Override
-	public PlacedFeature placed(RegistryEntry<ConfiguredFeature<?, ?>> configured) {
-		return new PlacedFeature(
-				configured,
-				Arrays.asList(
-						CountPlacementModifier.of(StylishOccult.SETTING.flesh_vain_count), // number of veins per chunk
-						SquarePlacementModifier.of(),
-						PlacedFeatures.BOTTOM_TO_TOP_RANGE,
-						BiomePlacementModifier.of()
-				));
+	public List<PlacementModifier> modifiers() {
+		return ImmutableList.of(
+				CountPlacementModifier.of(StylishOccult.SETTING.flesh_vain_count),
+				SquarePlacementModifier.of(),
+				PlacedFeatures.BOTTOM_TO_TOP_RANGE,
+				BiomePlacementModifier.of()
+		);
 	}
 
 }

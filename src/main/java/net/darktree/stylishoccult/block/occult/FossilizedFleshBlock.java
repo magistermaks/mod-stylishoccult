@@ -50,9 +50,9 @@ public class FossilizedFleshBlock extends FullFleshBlock implements ImpureBlock 
 
 	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (RandUtils.getBool(33.0f, random)) {
+		if (RandUtils.nextBool(33.0f, random)) {
 			if (BlockUtils.countInArea(world, pos, FossilizedFleshBlock.class, 4) < 5) {
-				BlockPos target = pos.offset(RandUtils.getEnum(Direction.class, random));
+				BlockPos target = pos.offset(RandUtils.pickFromEnum(Direction.class, random));
 				BlockState targetState = world.getBlockState( target );
 
 				if (targetState.getBlock() == ModBlocks.DEFAULT_FLESH && isPosValid(world, target)) {

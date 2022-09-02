@@ -76,10 +76,10 @@ public class GooFleshBlock extends SimpleBlock implements ImpureBlock {
 	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (StylishOccult.SETTING.infinite_flesh_growth) {
-			BlockPos target = pos.offset(RandUtils.getEnum(Direction.class, random));
+			BlockPos target = pos.offset(RandUtils.pickFromEnum(Direction.class, random));
 			BlockState targetState = world.getBlockState(target);
 
-			if (RandUtils.getBool(5f, random) && targetState.getBlock() instanceof FluidBlock) {
+			if (RandUtils.nextBool(5f, random) && targetState.getBlock() instanceof FluidBlock) {
 				world.setBlockState(target, state.with(TOP, world.getBlockState(target.up()).isAir()));
 			}
 		}

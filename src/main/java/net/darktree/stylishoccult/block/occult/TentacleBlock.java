@@ -95,7 +95,7 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
 		if (isValid(up, 0) != isValid(down, 0)) {
 
 			Random random = new Random(ctx.getWorld().getTime() / 10);
-			int fallback = RandUtils.rangeInt(1, 6, random) + 1;
+			int fallback = RandUtils.nextInt(1, 6, random) + 1;
 
 			int size = Math.max(getSize(up, fallback), getSize(down, fallback)) - 1;
 			if (size >= 1 && size <= 6) {
@@ -151,7 +151,7 @@ public class TentacleBlock extends SimpleBlock implements ImpureBlock, FoliageFl
 			world.setBlockState( pos, getDefaultState().with(SIZE, size - 1) );
 			return false;
 		} else {
-			if (RandUtils.getBool(80, random)) {
+			if (RandUtils.nextBool(80, random)) {
 				world.setBlockState(pos, ModBlocks.EYE_FLESH.getDefaultState());
 			}
 			return true;

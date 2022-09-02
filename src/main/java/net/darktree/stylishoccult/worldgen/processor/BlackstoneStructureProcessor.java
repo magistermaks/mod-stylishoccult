@@ -18,7 +18,7 @@ public class BlackstoneStructureProcessor extends SimpleStructureProcessor {
 	@Override
 	public BlockState process(Random random, Block block, BlockState state) {
 		if (block == Blocks.RED_CANDLE) return permuteCandle(state, random);
-		if (block == LootBoxes.URN_BLOCK && RandUtils.getBool(25f, random)) return Blocks.AIR.getDefaultState();
+		if (block == LootBoxes.URN_BLOCK && RandUtils.nextBool(25f, random)) return Blocks.AIR.getDefaultState();
 		if (block == Blocks.RED_WOOL) return RandUtils.pickFromTag(ModTags.RUNES, random, Blocks.AIR).getDefaultState();
 
 		return null;
@@ -26,8 +26,8 @@ public class BlackstoneStructureProcessor extends SimpleStructureProcessor {
 
 	private BlockState permuteCandle(BlockState source, Random random) {
 		return source
-				.with(CandleBlock.LIT, RandUtils.getBool(80f, random))
-				.with(CandleBlock.CANDLES, RandUtils.rangeInt(1, 4, random));
+				.with(CandleBlock.LIT, RandUtils.nextBool(80f, random))
+				.with(CandleBlock.CANDLES, RandUtils.nextInt(1, 4, random));
 	}
 
 	@Override

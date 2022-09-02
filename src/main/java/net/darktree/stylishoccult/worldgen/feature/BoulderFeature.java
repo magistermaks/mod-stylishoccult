@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.worldgen.feature;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.tag.ModTags;
@@ -9,17 +10,16 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
 import net.minecraft.world.gen.placementmodifier.CountMultilayerPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class BoulderFeature extends SimpleFeature<DefaultFeatureConfig> {
@@ -37,11 +37,11 @@ public class BoulderFeature extends SimpleFeature<DefaultFeatureConfig> {
 		BlockPos.Mutable pos = target.mutableCopy();
 		int extend = MathHelper.ceil(radius);
 
-		if (!RandUtils.getBool(StylishOccult.SETTING.boulder_chance, random)) {
+		if (!RandUtils.nextBool(StylishOccult.SETTING.boulder_chance, random)) {
 			return false;
 		}
 
-		boolean fire = RandUtils.getBool(StylishOccult.SETTING.boulder_fire_chance, random);
+		boolean fire = RandUtils.nextBool(StylishOccult.SETTING.boulder_fire_chance, random);
 
 		for (int x = -extend; x < extend; x ++) {
 			for (int y = -extend; y < extend; y ++) {
@@ -67,7 +67,7 @@ public class BoulderFeature extends SimpleFeature<DefaultFeatureConfig> {
 				placeBlock(world, pos, Blocks.BLACKSTONE);
 			}
 		} else {
-			if (RandUtils.getBool(StylishOccult.SETTING.boulder_blackstone_chance, random)) {
+			if (RandUtils.nextBool(StylishOccult.SETTING.boulder_blackstone_chance, random)) {
 				placeBlock(world, pos, Blocks.BLACKSTONE);
 			} else {
 				placeBlock(world, pos, RandUtils.pickFromTag(ModTags.BOULDER_FILLER, random, Blocks.AIR));
@@ -75,7 +75,7 @@ public class BoulderFeature extends SimpleFeature<DefaultFeatureConfig> {
 		}
 
 		if (fire && random.nextBoolean()) {
-			BlockPos target = pos.offset(RandUtils.getEnum(Direction.class, random));
+			BlockPos target = pos.offset(RandUtils.pickFromEnum(Direction.class, random));
 
 			if(world.getBlockState(target.down()).getBlock() == Blocks.NETHERRACK && world.getBlockState(target).isAir()) {
 				placeBlock(world, target, Blocks.FIRE);
@@ -89,14 +89,11 @@ public class BoulderFeature extends SimpleFeature<DefaultFeatureConfig> {
 	}
 
 	@Override
-	public PlacedFeature placed(RegistryEntry<ConfiguredFeature<?, ?>> configured) {
-		return new PlacedFeature(
-				configured,
-				Arrays.asList(
-						CountMultilayerPlacementModifier.of(3),
-						BiomePlacementModifier.of()
-				)
-			);
+	public List<PlacementModifier> modifiers() {
+		return ImmutableList.of(
+				CountMultilayerPlacementModifier.of(3),
+				BiomePlacementModifier.of()
+		);
 	}
 
 }

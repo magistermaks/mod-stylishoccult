@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.worldgen.feature;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.darktree.lootboxes.LootBoxes;
 import net.darktree.stylishoccult.StylishOccult;
@@ -13,18 +14,17 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.CandleBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.placementmodifier.CountMultilayerPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
@@ -37,8 +37,8 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 		BlockPos target = pos.down();
 
-		if (RandUtils.getBool(StylishOccult.SETTING.wall_chance, random) && world.getBlockState(target).isSolidBlock(world, target)) {
-			generateWall(getAxis(random), world, target, RandUtils.rangeInt(2, 5, random), (float) RandUtils.rangeInt(83, 90, random), random);
+		if (RandUtils.nextBool(StylishOccult.SETTING.wall_chance, random) && world.getBlockState(target).isSolidBlock(world, target)) {
+			generateWall(getAxis(random), world, target, RandUtils.nextInt(2, 5, random), (float) RandUtils.nextInt(83, 90, random), random);
 			decorate(world, target, random);
 			this.debugWrite(target);
 		}
@@ -69,11 +69,11 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 		boolean hasChild = true;
 
 		int ah = height, ad = 0;
-		while (RandUtils.getBool(chance, random)) {
+		while (RandUtils.nextBool(chance, random)) {
 			ah += random.nextInt(2) - 2;
 			ad --;
 
-			if (hasChild && RandUtils.getBool(25.0f, random)) {
+			if (hasChild && RandUtils.nextBool(25.0f, random)) {
 				generateWall(child, world, pos.offset(axis, ad), ah + 1, chance, random );
 				hasChild = false;
 			}
@@ -82,11 +82,11 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 		}
 
 		int bh = height, bd = 0;
-		while (RandUtils.getBool(chance, random)) {
+		while (RandUtils.nextBool(chance, random)) {
 			bh += random.nextInt(2) - 2;
 			bd ++;
 
-			if (hasChild && RandUtils.getBool(25.0f, random)) {
+			if (hasChild && RandUtils.nextBool(25.0f, random)) {
 				generateWall(child, world, pos.offset(axis, bd), bh + 1, chance, random );
 				hasChild = false;
 			}
@@ -142,7 +142,7 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 		// pick random candidates
 		Collections.shuffle(qualified, random);
-		int slots = RandUtils.rangeInt(0, 5, random);
+		int slots = RandUtils.nextInt(0, 5, random);
 
 		for (BlockPos position : qualified) {
 			if (slots > 0) {
@@ -177,7 +177,7 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 	}
 
 	private void generateRune(StructureWorldAccess world, BlockPos pos, Random random) {
-		if (RandUtils.getBool(StylishOccult.SETTING.wall_rune_chance, random)) {
+		if (RandUtils.nextBool(StylishOccult.SETTING.wall_rune_chance, random)) {
 			BlockState state = RandUtils.pickFromTag(ModTags.RUNES, random, Blocks.AIR).getDefaultState().with(RuneBlock.FROZEN, true);
 			placeBlock(world, pos, state);
 		} else {
@@ -195,12 +195,9 @@ public class WallsFeature extends SimpleFeature<DefaultFeatureConfig> {
 	}
 
 	@Override
-	public PlacedFeature placed(RegistryEntry<ConfiguredFeature<?, ?>> configured) {
-		return new PlacedFeature(
-				configured,
-				Arrays.asList(
-						CountMultilayerPlacementModifier.of(1)
-				)
+	public List<PlacementModifier> modifiers() {
+		return ImmutableList.of(
+				CountMultilayerPlacementModifier.of(1)
 		);
 	}
 

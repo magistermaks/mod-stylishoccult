@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.worldgen.feature;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.block.LavaDemonBlock;
 import net.darktree.stylishoccult.block.ModBlocks;
@@ -8,18 +9,17 @@ import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
 import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 // TODO adjust spawning
@@ -64,14 +64,11 @@ public class LavaDemonFeature extends SimpleFeature<DefaultFeatureConfig> {
 	}
 
 	@Override
-	public PlacedFeature placed(RegistryEntry<ConfiguredFeature<?, ?>> configured) {
-		return new PlacedFeature(
-				configured,
-				Arrays.asList(
-						CountPlacementModifier.of(100),
-						SquarePlacementModifier.of(),
-						HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(80))
-				)
+	public List<PlacementModifier> modifiers() {
+		return ImmutableList.of(
+				CountPlacementModifier.of(100),
+				SquarePlacementModifier.of(),
+				HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(80))
 		);
 	}
 

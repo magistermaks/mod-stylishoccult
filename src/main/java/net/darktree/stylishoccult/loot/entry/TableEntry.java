@@ -25,7 +25,7 @@ public class TableEntry extends AbstractEntry {
 
 	@Override
 	public List<ItemStack> getLoot(Random random, LootContext context) {
-		if (RandUtils.getBool(this.chance, random)) {
+		if (RandUtils.nextBool(this.chance, random)) {
 			return table.getLoot(random, context);
 		}
 

@@ -70,9 +70,9 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 		super.onStacksDropped(state, world, pos, stack);
 
 		int i = switch (state.get(PART)) {
-			case BODY -> RandUtils.rangeInt(1, 3, world.random);
-			case EMITTER -> RandUtils.rangeInt(5, 7, world.random);
-			case HEAD -> RandUtils.rangeInt(7, 20, world.random);
+			case BODY -> RandUtils.nextInt(1, 3, world.random);
+			case EMITTER -> RandUtils.nextInt(5, 7, world.random);
+			case HEAD -> RandUtils.nextInt(7, 20, world.random);
 		};
 
 		this.dropExperience(world, pos, i);
@@ -154,8 +154,8 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 			}
 		}
 
-		if (material == LavaDemonMaterial.STONE && RandUtils.getBool(StylishOccult.SETTING.disguise_chance, random)) {
-			material = RandUtils.getEnum(LavaDemonMaterial.class, random);
+		if (material == LavaDemonMaterial.STONE && RandUtils.nextBool(StylishOccult.SETTING.disguise_chance, random)) {
+			material = RandUtils.pickFromEnum(LavaDemonMaterial.class, random);
 		}
 
 		return material;
@@ -172,7 +172,7 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 
 		// Spreading
 		if (state.get(CAN_SPREAD)) {
-			BlockPos target = pos.offset(RandUtils.getEnum(Direction.class, random));
+			BlockPos target = pos.offset(RandUtils.pickFromEnum(Direction.class, random));
 			BlockPos origin = BlockUtils.find(
 					world,
 					target,
@@ -194,11 +194,11 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 					}
 
 					if (BlockUtils.touchesAir(world, target)) {
-						if (RandUtils.getBool(StylishOccult.SETTING.emitter_exposed, random)) {
+						if (RandUtils.nextBool(StylishOccult.SETTING.emitter_exposed, random)) {
 							targetState = targetState.with(PART, LavaDemonPart.EMITTER);
 						}
 					} else {
-						if (RandUtils.getBool(StylishOccult.SETTING.emitter_buried, random)) {
+						if (RandUtils.nextBool(StylishOccult.SETTING.emitter_buried, random)) {
 							targetState = targetState.with(PART, LavaDemonPart.EMITTER);
 						}
 					}
@@ -220,7 +220,7 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 
 		// Calming 2 -> 1
 		if (state.get(ANGER) == 2) {
-			if (RandUtils.getBool(StylishOccult.SETTING.calm_chance_1, random)) {
+			if (RandUtils.nextBool(StylishOccult.SETTING.calm_chance_1, random)) {
 				world.setBlockState(pos, state.with(ANGER, 1));
 				return;
 			}
@@ -228,7 +228,7 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 
 		// Calming 1 -> 0
 		if (state.get(ANGER) == 1){
-			if (RandUtils.getBool(StylishOccult.SETTING.calm_chance_2, random)) {
+			if (RandUtils.nextBool(StylishOccult.SETTING.calm_chance_2, random)) {
 				if (BlockUtils.find(world, pos, ModBlocks.LAVA_DEMON, StylishOccult.SETTING.calm_radius, (BlockState s) -> s.get(ANGER) == 2) == null ) {
 					world.setBlockState(pos, state.with(ANGER, 0));
 				}

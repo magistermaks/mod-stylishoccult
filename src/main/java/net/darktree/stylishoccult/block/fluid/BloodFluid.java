@@ -52,7 +52,7 @@ public abstract class BloodFluid extends BloodFlowableFluid {
 
 	@Override
 	public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
-		if ((state.isStill() || state.get(FALLING)) && RandUtils.getBool(20f, random)) {
+		if ((state.isStill() || state.get(FALLING)) && RandUtils.nextBool(20f, random)) {
 			world.addParticle(Particles.UNDER_BLOOD, (double)pos.getX() + random.nextDouble(), (double)pos.getY() + random.nextDouble(), (double)pos.getZ() + random.nextDouble(), 0.0, 0.0, 0.0);
 		}
 	}

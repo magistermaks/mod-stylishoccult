@@ -18,9 +18,9 @@ public class DeepslateStructureProcessor  extends SimpleStructureProcessor {
 
 	@Override
 	public BlockState process(Random random, Block block, BlockState state) {
-		if (block == Blocks.DEEPSLATE_BRICKS) return RandUtils.getArrayEntry(BRICKS, random).getDefaultState();
-		if (block == Blocks.COBBLED_DEEPSLATE_SLAB) return RandUtils.getArrayEntry(SLAB, random).getDefaultState();
-		if (block == Blocks.POLISHED_DEEPSLATE_WALL) return RandUtils.getArrayEntry(WALLS, random).getDefaultState();
+		if (block == Blocks.DEEPSLATE_BRICKS) return RandUtils.pickFromArray(BRICKS, random).getDefaultState();
+		if (block == Blocks.COBBLED_DEEPSLATE_SLAB) return RandUtils.pickFromArray(SLAB, random).getDefaultState();
+		if (block == Blocks.POLISHED_DEEPSLATE_WALL) return RandUtils.pickFromArray(WALLS, random).getDefaultState();
 
 		return null;
 	}

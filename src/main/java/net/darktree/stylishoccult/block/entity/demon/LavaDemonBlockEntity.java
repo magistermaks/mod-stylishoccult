@@ -57,8 +57,8 @@ public class LavaDemonBlockEntity extends BlockEntity {
 		PlayerEntity player = getNearbyPlayer();
 
 		// Spread anger
-		if (anger == 2 && RandUtils.getBool(StylishOccult.SETTING.spread_anger_chance.get(d), random)) {
-			BlockPos target = pos.offset(RandUtils.getEnum(Direction.class, random));
+		if (anger == 2 && RandUtils.nextBool(StylishOccult.SETTING.spread_anger_chance.get(d), random)) {
+			BlockPos target = pos.offset(RandUtils.pickFromEnum(Direction.class, random));
 			BlockState targetState = world.getBlockState(target);
 
 			if (targetState.getBlock() == ModBlocks.LAVA_DEMON) {
@@ -107,11 +107,11 @@ public class LavaDemonBlockEntity extends BlockEntity {
 		}
 
 		// summon spark
-		if (d != Difficulty.PEACEFUL && RandUtils.getBool(StylishOccult.SETTING.spark_spawn_chance, random) && (anger > 0) && (part != LavaDemonPart.BODY) && (player != null) ) {
+		if (d != Difficulty.PEACEFUL && RandUtils.nextBool(StylishOccult.SETTING.spark_spawn_chance, random) && (anger > 0) && (part != LavaDemonPart.BODY) && (player != null) ) {
 			if (BlockUtils.touchesAir(world, pos)) {
 
 				for (int i = 0; i < 10; i ++){
-					Direction dir = RandUtils.getEnum(Direction.class, random);
+					Direction dir = RandUtils.pickFromEnum(Direction.class, random);
 					BlockPos targetPos = pos.offset(dir);
 					if( world.getBlockState(targetPos).isAir() ) {
 

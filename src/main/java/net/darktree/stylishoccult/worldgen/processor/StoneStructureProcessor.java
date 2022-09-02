@@ -22,13 +22,13 @@ public class StoneStructureProcessor extends SimpleStructureProcessor {
 
 	@Override
 	public BlockState process(Random random, Block block, BlockState state) {
-		if (block == Blocks.STONE_BRICKS) return RandUtils.getArrayEntry(BRICKS, random).getDefaultState();
-		if (block == Blocks.MOSSY_STONE_BRICKS) return RandUtils.getArrayEntry(MOSSY_BRICKS, random).getDefaultState();
-		if (block == Blocks.MOSSY_COBBLESTONE_SLAB) return RandUtils.getArrayEntry(MOSSY_SLAB, random).getDefaultState();
-		if (block == Blocks.COBBLESTONE_SLAB) return RandUtils.getArrayEntry(SLAB, random).getDefaultState();
-		if (block == Blocks.STONE) return RandUtils.getArrayEntry(STONE, random).getDefaultState();
-		if (block == Blocks.STONE_BRICK_STAIRS) return copyStair(state, RandUtils.getArrayEntry(STAIR, random));
-		if (block == LootBoxes.URN_BLOCK && RandUtils.getBool(70f, random)) return Blocks.AIR.getDefaultState();
+		if (block == Blocks.STONE_BRICKS) return RandUtils.pickFromArray(BRICKS, random).getDefaultState();
+		if (block == Blocks.MOSSY_STONE_BRICKS) return RandUtils.pickFromArray(MOSSY_BRICKS, random).getDefaultState();
+		if (block == Blocks.MOSSY_COBBLESTONE_SLAB) return RandUtils.pickFromArray(MOSSY_SLAB, random).getDefaultState();
+		if (block == Blocks.COBBLESTONE_SLAB) return RandUtils.pickFromArray(SLAB, random).getDefaultState();
+		if (block == Blocks.STONE) return RandUtils.pickFromArray(STONE, random).getDefaultState();
+		if (block == Blocks.STONE_BRICK_STAIRS) return copyStair(state, RandUtils.pickFromArray(STAIR, random));
+		if (block == LootBoxes.URN_BLOCK && RandUtils.nextBool(70f, random)) return Blocks.AIR.getDefaultState();
 
 		return null;
 	}

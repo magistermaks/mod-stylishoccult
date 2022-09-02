@@ -14,8 +14,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import vazkii.patchouli.client.book.BookIcon;
 
-// FIXME rewrite
-
 @Pseudo
 @Mixin(value=BookIcon.TextureIcon.class, remap=false)
 public abstract class PatchouliTextureIconMixin implements PatchouliTextureIconDuck {

@@ -137,7 +137,7 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 			if( BlockUtils.countInArea(world, pos, FoliageFleshBlock.class, 3) != 0 ) {
 				return;
 			}else{
-				if (RandUtils.getBool(10, random)) {
+				if (RandUtils.nextBool(10, random)) {
 					return;
 				}
 			}
@@ -152,10 +152,10 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 				applyRandom(state, pos, world, random);
 			}
 
-			BlockPos target = pos.offset(RandUtils.getEnum(Direction.class, random));
+			BlockPos target = pos.offset(RandUtils.pickFromEnum(Direction.class, random));
 
 			if (random.nextInt( 8 ) == 0) {
-				target = target.offset(RandUtils.getEnum(Direction.class, random));
+				target = target.offset(RandUtils.pickFromEnum(Direction.class, random));
 			}
 
 			BlockState targetState = world.getBlockState( target );
@@ -178,7 +178,7 @@ public class GrowthBlock extends SimpleBlock implements ImpureBlock, FluidReplac
 	}
 
 	private void applyRandom( BlockState state, BlockPos pos, ServerWorld world, Random random ) {
-		Direction side = RandUtils.getEnum(Direction.class, random);
+		Direction side = RandUtils.pickFromEnum(Direction.class, random);
 		BlockState target = state.with(fromDirection(side), true);
 
 		if (canSupport(world, pos, side)) {

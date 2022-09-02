@@ -41,9 +41,9 @@ public class ValveEntry extends AbstractEntry {
 		// minecraft.gamepedia.com/Fortune
 
 		return switch (level) {
-			case 1 -> RandUtils.getBool(66.6f, random) ? 1 : 2;
-			case 2 -> RandUtils.getBool(50.0f, random) ? 1 : (RandUtils.getBool(50.0f, random) ? 2 : 3);
-			case 3 -> RandUtils.getBool(40.0f, random) ? 1 : (RandUtils.getBool(33.3f, random) ? 2 : (RandUtils.getBool(50.0f, random) ? 3 : 4));
+			case 1 -> RandUtils.nextBool(66.6f, random) ? 1 : 2;
+			case 2 -> RandUtils.nextBool(50.0f, random) ? 1 : (RandUtils.nextBool(50.0f, random) ? 2 : 3);
+			case 3 -> RandUtils.nextBool(40.0f, random) ? 1 : (RandUtils.nextBool(33.3f, random) ? 2 : (RandUtils.nextBool(50.0f, random) ? 3 : 4));
 			default -> 1;
 		};
 	}

@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.worldgen.feature;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.ModBlocks;
@@ -8,15 +9,14 @@ import net.darktree.stylishoccult.utils.SimpleFeature;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.placementmodifier.CountMultilayerPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class NetherGrassFeature extends SimpleFeature<DefaultFeatureConfig> {
@@ -33,7 +33,7 @@ public class NetherGrassFeature extends SimpleFeature<DefaultFeatureConfig> {
 	@Override
 	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 
-		if (!RandUtils.getBool(StylishOccult.SETTING.grass_patch_chance, random)) {
+		if (!RandUtils.nextBool(StylishOccult.SETTING.grass_patch_chance, random)) {
 			return false;
 		}
 
@@ -50,7 +50,7 @@ public class NetherGrassFeature extends SimpleFeature<DefaultFeatureConfig> {
 					);
 
 					if (world.isAir(target) && target.getY() > 0 && GRASS.canPlaceAt(world, target)) {
-						placeBlock(world, target, RandUtils.getBool(StylishOccult.SETTING.fern_chance, random) ? FERN : GRASS);
+						placeBlock(world, target, RandUtils.nextBool(StylishOccult.SETTING.fern_chance, random) ? FERN : GRASS);
 					}
 				}
 
@@ -68,12 +68,9 @@ public class NetherGrassFeature extends SimpleFeature<DefaultFeatureConfig> {
 	}
 
 	@Override
-	public PlacedFeature placed(RegistryEntry<ConfiguredFeature<?, ?>> configured) {
-		return new PlacedFeature(
-				configured,
-				Arrays.asList(
-						CountMultilayerPlacementModifier.of(3)
-				)
+	public List<PlacementModifier> modifiers() {
+		return ImmutableList.of(
+				CountMultilayerPlacementModifier.of(3)
 		);
 	}
 

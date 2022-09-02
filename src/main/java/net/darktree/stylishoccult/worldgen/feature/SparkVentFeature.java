@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.worldgen.feature;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.darktree.stylishoccult.StylishOccult;
 import net.darktree.stylishoccult.block.ModBlocks;
@@ -12,15 +13,14 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.placementmodifier.CountMultilayerPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
@@ -34,7 +34,7 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
 
 	@Override
 	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-		if (!RandUtils.getBool(StylishOccult.SETTING.spark_vent_chance, random)) {
+		if (!RandUtils.nextBool(StylishOccult.SETTING.spark_vent_chance, random)) {
 			return false;
 		}
 
@@ -69,11 +69,11 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
 	}
 
 	private boolean generateSource(StructureWorldAccess world, Random random, BlockPos pos) {
-		if (RandUtils.getBool(95.0f, random)) {
+		if (RandUtils.nextBool(95.0f, random)) {
 			placeBlock(world, pos, LAVA);
 
 			for (int i = random.nextInt(10); i > 0; i --) {
-				Direction dir = RandUtils.getEnum(Direction.class, random);
+				Direction dir = RandUtils.pickFromEnum(Direction.class, random);
 
 				if (dir != Direction.UP) {
 					BlockPos tmp = pos.offset(dir);
@@ -105,12 +105,9 @@ public class SparkVentFeature extends SimpleFeature<DefaultFeatureConfig> {
 	}
 
 	@Override
-	public PlacedFeature placed(RegistryEntry<ConfiguredFeature<?, ?>> configured) {
-		return new PlacedFeature(
-				configured,
-				Arrays.asList(
-						CountMultilayerPlacementModifier.of(3)
-				)
+	public List<PlacementModifier> modifiers() {
+		return ImmutableList.of(
+				CountMultilayerPlacementModifier.of(3)
 		);
 	}
 

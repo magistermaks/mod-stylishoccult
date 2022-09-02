@@ -39,12 +39,12 @@ public class WormsBlock extends BuildingBlock implements ImpureBlock, FoliageFle
 
 	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (RandUtils.getBool(60, random) && BlockUtils.countInArea(world, pos, WormsBlock.class, 2) < 4) {
+		if (RandUtils.nextBool(60, random) && BlockUtils.countInArea(world, pos, WormsBlock.class, 2) < 4) {
 
 			BlockPos target = pos
-					.offset(RandUtils.getEnum(Direction.class, random))
-					.offset(RandUtils.getEnum(Direction.class, random))
-					.offset(RandUtils.getEnum(Direction.class, random));
+					.offset(RandUtils.pickFromEnum(Direction.class, random))
+					.offset(RandUtils.pickFromEnum(Direction.class, random))
+					.offset(RandUtils.pickFromEnum(Direction.class, random));
 
 			BlockState stateTarget = world.getBlockState(target);
 			BlockState stateDown = world.getBlockState(target.down());

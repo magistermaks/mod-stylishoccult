@@ -66,7 +66,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				pickup = 40;
 				Block.dropStack(world, pos, catalyst);
 				catalyst = ItemStack.EMPTY;
-				update(null);
+				update();
 				return true;
 			}
 
@@ -75,7 +75,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				pickup = 40;
 				Block.dropStack(world, pos, taken);
 				playSound(SoundEvents.BLOCK_CANDLE_BREAK);
-				update(null);
+				update();
 				return true;
 			}
 
@@ -86,7 +86,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 			if (candles.size() < 64) {
 				candles.add(AltarRingItemStack.create(stack.split(1), random));
 				playSound(SoundEvents.BLOCK_CANDLE_PLACE);
-				update(null);
+				update();
 			}
 
 			return true;
@@ -95,7 +95,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 		if (catalyst.isEmpty()) {
 			catalyst = stack.split(1);
 			playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE);
-			update(null);
+			update();
 			return true;
 		}
 
@@ -191,7 +191,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 					state.notifyCauldrons(world);
 					state.reset();
 					active = false;
-					update(blockState);
+					update();
 				}
 			}
 		}
@@ -271,7 +271,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 				if (stack.getCount() >= 0) {
 					this.catalyst = stack.split(1);
 
-					update(null);
+					update();
 					break;
 				}
 			}
@@ -290,7 +290,7 @@ public class AltarPlateBlockEntity extends SimpleBlockEntity {
 			if (!stack.isEmpty()) {
 				state.addIngredient(stack);
 				plate.catalyst = ItemStack.EMPTY;
-				plate.update(null);
+				plate.update();
 
 				Network.ARC.send(pos, (ServerWorld) world,
 						this.pos.getX() + 0.5, this.pos.getY() + 0.1, this.pos.getZ() + 0.5,

@@ -178,7 +178,7 @@ public class OccultCauldronBlockEntity extends SimpleBlockEntity {
 
 		@Override
 		protected void onFinalCommit() {
-			update(null);
+			update();
 		}
 
 	}

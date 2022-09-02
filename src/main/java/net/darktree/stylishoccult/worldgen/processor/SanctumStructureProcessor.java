@@ -25,14 +25,14 @@ public class SanctumStructureProcessor extends SimpleStructureProcessor {
 
 	@Override
 	public BlockState process(Random random, Block block, BlockState state) {
-		if (block == Blocks.BLACK_WOOL) return RandUtils.getArrayEntry(RUBBLE, random).getDefaultState(); else
-		if (block == Blocks.POLISHED_BLACKSTONE_BRICKS) return RandUtils.getBool(6f, random) ? getRune(random) : RandUtils.getArrayEntry(BRICKS, random).getDefaultState(); else
-		if (block == Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS) return copyStair(state, RandUtils.getArrayEntry(STAIRS, random)); else
-		if (block == Blocks.POLISHED_BLACKSTONE_BRICK_SLAB) return copySlab(state, RandUtils.getArrayEntry(SLABS, random)); else
-		if (block == LootBoxes.URN_BLOCK && RandUtils.getBool(50f, random)) return Blocks.AIR.getDefaultState(); else
-		if (block == Blocks.RED_CANDLE) return RandUtils.getBool(20f, random) ? Blocks.AIR.getDefaultState() : state.with(CandleBlock.CANDLES, RandUtils.rangeInt(1, 4, random)); else
-		if (block == ModBlocks.EYES_FLESH || block == ModBlocks.WARTS_FLESH) return state.with(EyesBlock.SIZE, RandUtils.rangeInt(1, 3, random)); else
-		if (block == Blocks.BLACKSTONE && RandUtils.getBool(20f, random)) return ModBlocks.CRYSTALLINE_BLACKSTONE.getDefaultState();
+		if (block == Blocks.BLACK_WOOL) return RandUtils.pickFromArray(RUBBLE, random).getDefaultState(); else
+		if (block == Blocks.POLISHED_BLACKSTONE_BRICKS) return RandUtils.nextBool(6f, random) ? getRune(random) : RandUtils.pickFromArray(BRICKS, random).getDefaultState(); else
+		if (block == Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS) return copyStair(state, RandUtils.pickFromArray(STAIRS, random)); else
+		if (block == Blocks.POLISHED_BLACKSTONE_BRICK_SLAB) return copySlab(state, RandUtils.pickFromArray(SLABS, random)); else
+		if (block == LootBoxes.URN_BLOCK && RandUtils.nextBool(50f, random)) return Blocks.AIR.getDefaultState(); else
+		if (block == Blocks.RED_CANDLE) return RandUtils.nextBool(20f, random) ? Blocks.AIR.getDefaultState() : state.with(CandleBlock.CANDLES, RandUtils.nextInt(1, 4, random)); else
+		if (block == ModBlocks.EYES_FLESH || block == ModBlocks.WARTS_FLESH) return state.with(EyesBlock.SIZE, RandUtils.nextInt(1, 3, random)); else
+		if (block == Blocks.BLACKSTONE && RandUtils.nextBool(20f, random)) return ModBlocks.CRYSTALLINE_BLACKSTONE.getDefaultState();
 
 		return null;
 	}

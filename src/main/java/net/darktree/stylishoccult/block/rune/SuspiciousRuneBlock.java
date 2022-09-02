@@ -44,7 +44,7 @@ public class SuspiciousRuneBlock extends TransferRuneBlock {
 		).stream().map(entity -> new LivingTarget(entity, pos)).filter(LivingTarget::verify).toArray(LivingTarget[]::new);
 
 		if (candidates.length != 0) {
-			return RandUtils.getArrayEntry(candidates, world.random);
+			return RandUtils.pickFromArray(candidates, world.random);
 		}
 
 		return null;
@@ -131,7 +131,7 @@ public class SuspiciousRuneBlock extends TransferRuneBlock {
 		public float getDamage() {
 			Random random = entity.world.random;
 			float f = Math.min(1.5f - MathHelper.sqrt(this.distance) / 6f, 1f);
-			return f * ((random.nextFloat() + RandUtils.rangeInt(1, 5, random)) / (OccultHelper.getBoneArmor(entity) + 1));
+			return f * ((random.nextFloat() + RandUtils.nextInt(1, 5, random)) / (OccultHelper.getBoneArmor(entity) + 1));
 		}
 
 		/**

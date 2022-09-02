@@ -26,12 +26,11 @@ public abstract class SimpleBlockEntity extends BlockEntity {
 		return createNbt();
 	}
 
-	// TODO cleanup
-	public void update(BlockState cached) {
+	public void update() {
 		this.markDirty();
 
 		if (world != null && !world.isClient) {
-			BlockState state = cached == null ? world.getBlockState(pos) : cached;
+			BlockState state = world.getBlockState(pos);
 			world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
 		}
 	}

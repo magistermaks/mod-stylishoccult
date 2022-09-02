@@ -44,7 +44,7 @@ public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
 
 	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (StylishOccult.SETTING.infinite_flesh_growth && RandUtils.getBool(5f, random)) {
+		if (StylishOccult.SETTING.infinite_flesh_growth && RandUtils.nextBool(5f, random)) {
 			world.setBlockState(pos, ModBlocks.DEFAULT_FLESH.getDefaultState());
 		}
 	}
