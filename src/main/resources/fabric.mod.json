@@ -35,6 +35,7 @@
 		"fabric": ">=0.30.0",
 		"minecraft": "1.17.x",
 		"interference": ">=1.5.0",
+		"java": ">=17",
 		"patchouli": "*"
 	},
 	"custom": {
