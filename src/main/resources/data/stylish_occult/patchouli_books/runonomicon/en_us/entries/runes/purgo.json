@@ -1,0 +1,22 @@
+{
+	"name": "Purgo Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/purgo.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_purgo",
+	"sortnum": 55,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "purgo",
+			"title": "Purgo Rune"
+		},
+		{
+			"type": "stylish_occult:page_separated",
+			"text1": "Purgo Rune drops all element from the $(ds).",
+			"text2": "The rule of $(o)Equivalent Exchange$() applies, no physical object will get destroyed.",
+			"recipe": "stylish_occult:altar/rune/purgo.json",
+			"rune": "purgo",
+			"separator": "symbols"
+		}
+	]
+}

@@ -20,6 +20,10 @@ public class SleepRuneBlock extends TimedRuneBlock {
 		super(RuneType.TRANSFER, name);
 	}
 
+	protected Direction getTargetDirection(Script script) {
+		return script.direction;
+	}
+
 	@Override
 	public void apply(Script script, World world, BlockPos pos) {
 		RuneBlockAttachment attachment = getEntity(world, pos).getAttachment();
@@ -52,7 +56,7 @@ public class SleepRuneBlock extends TimedRuneBlock {
 	protected void onTimeoutEnd(World world, BlockPos pos) {
 		RuneBlockAttachment attachment = getEntity(world, pos).getAttachment();
 		Script script = attachment.getScript().drops(true);
-		propagateTo(world, pos, script, Directions.of(script.direction), null);
+		propagateTo(world, pos, script, Directions.of(getTargetDirection(script)), null);
 		attachment.clear();
 	}
 

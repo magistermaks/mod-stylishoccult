@@ -11,6 +11,10 @@ public class NumericElement extends StackElement {
 	public static final NumericElement TRUE = new NumericElement(1);
 	public static final NumericElement FALSE = new NumericElement(0);
 
+	public static NumericElement bool(boolean value) {
+		return value ? TRUE : FALSE;
+	}
+
 	final double value;
 
 	public NumericElement(double value) {

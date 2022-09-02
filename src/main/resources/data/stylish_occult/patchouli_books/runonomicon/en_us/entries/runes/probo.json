@@ -1,0 +1,21 @@
+{
+	"name": "Probo Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/probo.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_probo",
+	"sortnum": 54,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "probo",
+			"title": "Probo Rune"
+		},
+		{
+			"type": "stylish_occult:page_long_none",
+			"text1": "Probo Rune can be used to check if a block exists in the world at the given position. It takes 3 elements from",
+			"text2": "the $(hs), and treats their numerical values as x, y, and z block offsets from the rune's position. Either 1 or a 0 will be added to the $(hs).",
+			"recipe": "stylish_occult:altar/rune/probo.json",
+			"rune": "probo"
+		}
+	]
+}

@@ -17,12 +17,13 @@ public class PlayerRuneBlock extends InputRuneBlock {
 		this.box = new Box(distance, distance, distance, -distance, -distance, -distance);
 	}
 
-	private boolean check( World world, Box box ) {
+	private boolean check(World world, Box box) {
 		return !world.getNonSpectatingEntities(PlayerEntity.class, box).isEmpty();
 	}
 
 	@Override
 	public void apply(Script script, World world, BlockPos pos) {
-		script.stack.push(check(world, box.offset(pos)) ? NumericElement.TRUE : NumericElement.FALSE);
+		script.stack.push(NumericElement.bool(check(world, box.offset(pos))));
 	}
+
 }

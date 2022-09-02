@@ -8,35 +8,26 @@ import net.darktree.stylishoccult.script.component.RuneExceptionType;
 import net.darktree.stylishoccult.script.element.ItemElement;
 import net.darktree.stylishoccult.script.engine.Script;
 import net.darktree.stylishoccult.utils.Directions;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.AutomaticItemPlacementContext;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-public class PlaceRuneBlock extends ActorRuneBlock {
+public class PlaceRuneBlock extends ActorRuneBlock implements TargetingRune {
 
-	private final int range;
-
-	public PlaceRuneBlock(String name, int range) {
+	public PlaceRuneBlock(String name) {
 		super(name);
-		this.range = range;
 	}
 
 	@Override
 	public void apply(Script script, World world, BlockPos pos) {
 		ItemElement element = script.stack.pull().cast(ItemElement.class);
 
-		int x = (int) Math.round(script.pull(world, pos).value());
-		int y = (int) Math.round(script.pull(world, pos).value());
-		int z = (int) Math.round(script.pull(world, pos).value());
-
-		BlockPos target = pos.add(x, y, z);
+		BlockPos target = getTarget(script, world, pos);
 		boolean successful = false;
-
-		if (!target.isWithinDistance(pos, range)) {
-			throw RuneException.of(RuneExceptionType.OUT_OF_RANGE);
-		}
 
 		ItemStack stack = element.stack;
 		script.ring.push(element, world, pos);
@@ -47,8 +38,12 @@ public class PlaceRuneBlock extends ActorRuneBlock {
 				successful = stack.useOnBlock(context).isAccepted();
 			} catch (Throwable throwable) {
 				// Food BlockItem's throw NPE on failed placement if the context is automatic
-				if (!stack.isFood()) {
-					StylishOccult.LOGGER.warn("Item usage operation interrupted for reasons unknown!", throwable);
+				if (!(stack.isFood() && stack.getItem() instanceof BlockItem)) {
+					StylishOccult.LOGGER.warn("Item usage operation interrupted for reasons unknown for item: " + stack.getItem().toString());
+
+					if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
+						StylishOccult.LOGGER.error(throwable);
+					}
 				}
 			}
 		} else {

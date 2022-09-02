@@ -12,7 +12,7 @@
 		},
 		{
 			"type": "stylish_occult:page_separated",
-			"text1": "Tactus Rune activates when powered with a redstone signal, but it doesn't conduct magic on its own.",
+			"text1": "Evigilo Rune activates when powered with a redstone signal, but it doesn't conduct magic on its own.",
 			"text2": "No elements are added to or removed from the $(hs) by this rune.",
 			"recipe": "stylish_occult:altar/rune/evigilo.json",
 			"rune": "evigilo",

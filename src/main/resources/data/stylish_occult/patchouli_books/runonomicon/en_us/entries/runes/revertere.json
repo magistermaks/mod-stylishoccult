@@ -1,0 +1,22 @@
+{
+	"name": "Revertere Rune",
+	"icon": "stylish_occult_rune;stylish_occult:textures/rune/revertere.png",
+	"category": "stylish_occult:runes",
+	"advancement": "stylish_occult:gather/rune_revertere",
+	"sortnum": 53,
+	"pages": [
+		{
+			"type": "stylish_occult:rune",
+			"rune": "revertere",
+			"title": "Revertere Rune"
+		},
+		{
+			"type": "stylish_occult:page_long_symbol",
+			"text1": "Revertere Rune redirects the incoming signal back in the direction it came",
+			"text2": "from. No elements are added or removed from the $(hs) by this rune.",
+			"recipe": "stylish_occult:altar/rune/revertere.json",
+			"rune": "revertere",
+			"symbol": "flow"
+		}
+	]
+}

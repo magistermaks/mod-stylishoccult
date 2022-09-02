@@ -1,0 +1,33 @@
+{
+	"parent": "stylish_occult:occult/gather",
+	"display": {
+		"icon": {
+			"item": "stylish_occult:rune_confractus"
+		},
+		"title": {
+			"translate": "advancements.stylish_occult.mine.title"
+		},
+		"description": {
+			"translate": "advancements.stylish_occult.mine.description"
+		},
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"trigger": {
+			"trigger": "stylish_occult:special_rune_trigger",
+			"conditions": {
+				"distance": 16,
+				"rune": "confractus",
+				"successful": true
+			}
+		}
+	},
+	"requirements": [
+		[
+			"trigger"
+		]
+	]
+}
