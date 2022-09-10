@@ -1,3 +1,6 @@
 {
-	"parent": "stylish_occult:block/rune/revertere"
+	"parent": "stylish_occult:block/rune/common/item",
+	"textures": {
+		"rune": "stylish_occult:rune/revertere"
+	}
 }

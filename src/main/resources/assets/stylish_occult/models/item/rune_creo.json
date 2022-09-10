@@ -1,4 +1,7 @@
 {
-	"parent": "stylish_occult:block/rune/creo"
+	"parent": "stylish_occult:block/rune/common/item",
+	"textures": {
+		"rune": "stylish_occult:rune/creo"
+	}
 }
 

@@ -1,0 +1,72 @@
+{
+	"credit": "Made with Blockbench by magistermaks",
+	"parent": "block/block",
+	"textures": {
+		"stone": "stylish_occult:block/runestone",
+		"particle": "stylish_occult:block/runestone"
+	},
+	"jmxl": true,
+	"jmx": {
+		"materials": {
+			"rune": { "layers": [ { "layer": "cutout_mipped", "emissive": true, "diffuse": false } ] }
+		}
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "x", "origin": [0, 8, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#stone", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#stone", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#stone", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#stone", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#stone", "cullface": "up"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#stone", "cullface": "down"}
+			}
+		},
+		{
+			"from": [-0.1, 1.5, 1.5],
+			"to": [-0.1, 14.5, 14.5],
+			"rotation": {"angle": 0, "axis": "x", "origin": [0, 8, 0]},
+			"faces": {
+				"west": {"uv": [0, 0, 15, 15], "texture": "#rune", "tintindex": 0, "cullface": "west", "jmx_material": "#rune"}
+			}
+		},
+		{
+			"from": [1.5, 1.5, 16.1],
+			"to": [14.5, 14.5, 16.1],
+			"faces": {
+				"south": {"uv": [0, 0, 15, 15], "texture": "#rune", "tintindex": 0, "cullface": "south", "jmx_material": "#rune"}
+			}
+		},
+		{
+			"from": [16.1, 1.5, 1.5],
+			"to": [16.1, 14.5, 14.5],
+			"faces": {
+				"east": {"uv": [0, 0, 15, 15], "texture": "#rune", "tintindex": 0, "cullface": "east", "jmx_material": "#rune"}
+			}
+		},
+		{
+			"from": [1.5, 16.1, 1.5],
+			"to": [14.5, 16.1, 14.5],
+			"faces": {
+				"up": {"uv": [0, 0, 15, 15], "rotation": 270, "texture": "#rune", "tintindex": 0, "cullface": "up", "jmx_material": "#rune"}
+			}
+		},
+		{
+			"from": [1.5, -0.1, 1.5],
+			"to": [14.5, -0.1, 14.5],
+			"faces": {
+				"down": {"uv": [0, 0, 15, 15], "rotation": 90, "texture": "#rune", "tintindex": 0, "cullface": "down", "jmx_material": "#rune"}
+			}
+		},
+		{
+			"from": [1.5, 1.5, -0.1],
+			"to": [14.5, 14.5, -0.1],
+			"faces": {
+				"north": {"uv": [0, 0, 15, 15], "texture": "#rune", "tintindex": 0, "cullface": "north", "jmx_material": "#rune"}
+			}
+		}
+	]
+}

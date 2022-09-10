@@ -1,4 +1,7 @@
 {
-	"parent": "stylish_occult:block/rune/numerus/quinque"
+	"parent": "stylish_occult:block/rune/common/item",
+	"textures": {
+		"rune": "stylish_occult:rune/numerus/5"
+	}
 }
 

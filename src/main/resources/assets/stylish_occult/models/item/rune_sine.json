@@ -1,4 +1,7 @@
 {
-	"parent": "stylish_occult:block/rune/sine"
+	"parent": "stylish_occult:block/rune/common/item",
+	"textures": {
+		"rune": "stylish_occult:rune/sine"
+	}
 }
 

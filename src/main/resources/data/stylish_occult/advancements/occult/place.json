@@ -2,7 +2,7 @@
 	"parent": "stylish_occult:occult/gather",
 	"display": {
 		"icon": {
-			"item": "stylish_occult:rune_creo"
+			"item": "stylish_occult:rune_locus"
 		},
 		"title": {
 			"translate": "advancements.stylish_occult.place.title"

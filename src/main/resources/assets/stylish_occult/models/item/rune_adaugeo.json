@@ -1,4 +1,7 @@
 {
-	"parent": "stylish_occult:block/rune/adaugeo"
+	"parent": "stylish_occult:block/rune/common/item",
+	"textures": {
+		"rune": "stylish_occult:rune/adaugeo"
+	}
 }
 

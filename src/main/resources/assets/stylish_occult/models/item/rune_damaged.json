@@ -1,4 +1,7 @@
 {
-	"parent": "stylish_occult:block/rune/damaged/1"
+	"parent": "stylish_occult:block/rune/common/item",
+	"textures": {
+		"rune": "stylish_occult:rune/damaged/1"
+	}
 }
 

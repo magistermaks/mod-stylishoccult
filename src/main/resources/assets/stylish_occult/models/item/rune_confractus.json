@@ -1,3 +1,6 @@
 {
-	"parent": "stylish_occult:block/rune/confractus"
+	"parent": "stylish_occult:block/rune/common/item",
+	"textures": {
+		"rune": "stylish_occult:rune/confractus"
+	}
 }

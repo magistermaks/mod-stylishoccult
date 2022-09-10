@@ -34,7 +34,7 @@ public class FleshStone extends BuildingBlock implements AxeScrapeable {
 			Criteria.SCRAPE.trigger((ServerPlayerEntity) entity);
 		}
 
-		Block.dropStack(world, pos, new ItemStack(ModItems.VEINS, world.random.nextInt(3) + 1));
+		Block.dropStack(world, pos, new ItemStack(ModItems.VEINS, world.random.nextInt(5) + 1));
 		return AxeScrapeHelper.scrapeOff(world, pos, entity, Blocks.STONE.getDefaultState());
 	}
 
