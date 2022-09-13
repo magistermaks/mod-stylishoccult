@@ -3,11 +3,13 @@ package net.darktree.stylishoccult.mixin;
 import net.darktree.stylishoccult.duck.PatchouliTextureIconDuck;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import vazkii.patchouli.client.book.BookIcon;
 
+@Pseudo
 @Mixin(value=BookIcon.class, remap=false)
 public interface PatchouliBookIcon {
 

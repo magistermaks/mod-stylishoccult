@@ -1,5 +1,6 @@
 package net.darktree.stylishoccult.block.occult;
 
+import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.occult.api.FoliageFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
 import net.darktree.stylishoccult.sounds.Sounds;
@@ -42,8 +43,8 @@ public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock, Foliag
 
 	public static BlockState getStateToFit(World world, BlockPos pos) {
 		BlockState state = world.getBlockState(pos);
-		int distance = ( state.getBlock() instanceof LeavesBlock ) ? state.get( DISTANCE ) : 7;
-		return state.getBlock().getDefaultState().with(DISTANCE, distance);
+		int distance = (state.getBlock() instanceof LeavesBlock) && state.contains(DISTANCE) ? state.get(DISTANCE) : 7;
+		return ModBlocks.LEAVES_FLESH.getDefaultState().with(DISTANCE, distance).with(PERSISTENT, state.get(PERSISTENT));
 	}
 
 }

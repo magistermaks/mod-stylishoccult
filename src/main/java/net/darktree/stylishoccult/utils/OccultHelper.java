@@ -154,7 +154,7 @@ public class OccultHelper {
 			Block block = state.getBlock();
 
 			if (block instanceof FluidBlock) {
-				if( RandUtils.nextBool(25.0f, random) ) {
+				if (RandUtils.nextBool(25.0f, random)) {
 					return ModBlocks.GOO_FLESH.getDefaultState().with(GooFleshBlock.TOP, world.getBlockState(pos.up()).isAir());
 				}
 			} else {
