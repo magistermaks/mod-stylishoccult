@@ -2,7 +2,7 @@ package net.darktree.stylishoccult.block.occult;
 
 import net.darktree.interference.Voxels;
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.advancement.Criteria;
+import net.darktree.stylishoccult.advancement.ModCriteria;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.occult.api.FullFleshBlock;
 import net.darktree.stylishoccult.block.occult.api.ImpureBlock;
@@ -111,7 +111,7 @@ public class PassiveFleshBlock extends FullFleshBlock implements ImpureBlock {
 
 	public void ascend(World world, BlockPos.Mutable pos) {
 		world.setBlockState(pos, ModBlocks.DEFAULT_FLESH.getDefaultState());
-		Criteria.ASCEND.trigger(world, pos);
+		ModCriteria.ASCEND.trigger(world, pos);
 	}
 
 }

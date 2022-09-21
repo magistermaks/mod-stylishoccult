@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.network;
 
 import io.netty.buffer.Unpooled;
-import net.darktree.stylishoccult.advancement.Criteria;
+import net.darktree.stylishoccult.advancement.ModCriteria;
 import net.darktree.stylishoccult.overlay.PlayerEntityMadnessDuck;
 import net.darktree.stylishoccult.utils.ModIdentifier;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
@@ -28,7 +28,7 @@ public class MadnessC2SPacket {
 	private void apply(PlayerEntity player, float madness) {
 		if (player instanceof ServerPlayerEntity serverPlayer) {
 			((PlayerEntityMadnessDuck) player).stylish_setMadness(madness);
-			Criteria.INSIGHT.trigger(serverPlayer, madness);
+			ModCriteria.INSIGHT.trigger(serverPlayer, madness);
 		}
 	}
 

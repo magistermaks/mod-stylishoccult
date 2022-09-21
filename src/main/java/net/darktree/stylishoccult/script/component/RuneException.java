@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.script.component;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.advancement.Criteria;
+import net.darktree.stylishoccult.advancement.ModCriteria;
 import net.darktree.stylishoccult.block.rune.RuneBlock;
 import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.network.Network;
@@ -29,7 +29,7 @@ public class RuneException extends RuntimeException {
 		double x = pos.getX(), y = pos.getY(), z = pos.getZ();
 		boolean safe = mode == SafeMode.ENABLED;
 		RuneBlock rune = (RuneBlock) world.getBlockState(pos).getBlock();
-		Criteria.EXCEPTION.trigger(world, pos, rune, getMessage(), safe);
+		ModCriteria.EXCEPTION.trigger(world, pos, rune, getMessage(), safe);
 
 		if (safe) {
 			Network.DEFUSE.send(pos, (ServerWorld) world);

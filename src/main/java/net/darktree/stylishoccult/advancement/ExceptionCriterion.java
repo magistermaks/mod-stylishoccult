@@ -21,10 +21,12 @@ public class ExceptionCriterion extends AbstractCriterion<ExceptionCriterion.Con
 
 	static final Identifier ID = new ModIdentifier("exception");
 
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 
+	@Override
 	public ExceptionCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		return new ExceptionCriterion.Conditions(extended, jsonObject);
 	}
@@ -63,6 +65,7 @@ public class ExceptionCriterion extends AbstractCriterion<ExceptionCriterion.Con
 			return (this.defused == defused) && (this.distance > distance) && (this.exception == null || message.equals(this.exception)) && this.rune.test(stack);
 		}
 
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject json = super.toJson(predicateSerializer);
 			json.add("rune", this.rune.toJson());

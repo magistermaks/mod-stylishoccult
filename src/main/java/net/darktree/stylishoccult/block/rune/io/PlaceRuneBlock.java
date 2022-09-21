@@ -1,7 +1,7 @@
 package net.darktree.stylishoccult.block.rune.io;
 
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.advancement.Criteria;
+import net.darktree.stylishoccult.advancement.ModCriteria;
 import net.darktree.stylishoccult.block.rune.ActorRuneBlock;
 import net.darktree.stylishoccult.script.component.RuneException;
 import net.darktree.stylishoccult.script.component.RuneExceptionType;
@@ -50,7 +50,7 @@ public class PlaceRuneBlock extends ActorRuneBlock implements TargetingRune {
 			throw RuneException.of(RuneExceptionType.INVALID_ARGUMENT);
 		}
 
-		Criteria.TRIGGER.trigger(world, pos, this, successful);
+		ModCriteria.TRIGGER.trigger(world, pos, this, successful);
 	}
 
 }

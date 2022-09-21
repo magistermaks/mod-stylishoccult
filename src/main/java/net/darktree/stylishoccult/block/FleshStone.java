@@ -2,7 +2,7 @@ package net.darktree.stylishoccult.block;
 
 import net.darktree.interference.AxeScrapeHelper;
 import net.darktree.interference.api.AxeScrapeable;
-import net.darktree.stylishoccult.advancement.Criteria;
+import net.darktree.stylishoccult.advancement.ModCriteria;
 import net.darktree.stylishoccult.item.ModItems;
 import net.darktree.stylishoccult.loot.LootTable;
 import net.darktree.stylishoccult.loot.LootTables;
@@ -31,7 +31,7 @@ public class FleshStone extends BuildingBlock implements AxeScrapeable {
 	@Override
 	public Optional<BlockState> getScrapedState(World world, BlockPos pos, BlockState state, PlayerEntity entity) {
 		if (!world.isClient) {
-			Criteria.SCRAPE.trigger((ServerPlayerEntity) entity);
+			ModCriteria.SCRAPE.trigger((ServerPlayerEntity) entity);
 		}
 
 		Block.dropStack(world, pos, new ItemStack(ModItems.VEINS, world.random.nextInt(5) + 1));

@@ -1,6 +1,6 @@
 package net.darktree.stylishoccult.block.rune.io;
 
-import net.darktree.stylishoccult.advancement.Criteria;
+import net.darktree.stylishoccult.advancement.ModCriteria;
 import net.darktree.stylishoccult.block.entity.rune.RuneBlockAttachment;
 import net.darktree.stylishoccult.block.rune.TimedRuneBlock;
 import net.darktree.stylishoccult.particles.Particles;
@@ -54,7 +54,7 @@ public class BreakRuneBlock extends TimedRuneBlock implements TargetingRune {
 			boolean completed = tickBlockBreak(world, pos, progress, script, (removed) -> {
 				propagateTo(world, pos, script.drops(true), Directions.of(script.direction), null);
 				attachment.clear();
-				Criteria.TRIGGER.trigger(world, pos, this, removed);
+				ModCriteria.TRIGGER.trigger(world, pos, this, removed);
 			});
 
 			if (!completed) {

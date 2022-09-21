@@ -20,10 +20,12 @@ public class RitualCriterion extends AbstractCriterion<RitualCriterion.Condition
 
 	static final Identifier ID = new ModIdentifier("altar");
 
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 
+	@Override
 	public RitualCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		return new RitualCriterion.Conditions(extended, jsonObject);
 	}
@@ -53,6 +55,7 @@ public class RitualCriterion extends AbstractCriterion<RitualCriterion.Condition
 			return (this.distance > distance) && this.catalyst.test(catalyst) && this.product.test(product);
 		}
 
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject json = super.toJson(predicateSerializer);
 			json.add("catalyst", this.catalyst.toJson());

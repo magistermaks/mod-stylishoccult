@@ -1,6 +1,6 @@
 package net.darktree.stylishoccult;
 
-import net.darktree.stylishoccult.advancement.Criteria;
+import net.darktree.stylishoccult.advancement.ModCriteria;
 import net.darktree.stylishoccult.block.ModBlocks;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.config.Config;
@@ -48,7 +48,7 @@ public class StylishOccult implements ModInitializer {
 		WorldGen.init();
 		ModEffects.init();
 		ModTags.init();
-		Criteria.init();
+		ModCriteria.init();
 		ResourceLoaders.init();
 	}
 

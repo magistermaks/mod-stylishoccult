@@ -14,10 +14,12 @@ public class WakeDemonCriterion extends AbstractCriterion<WakeDemonCriterion.Con
 
 	static final Identifier ID = new ModIdentifier("wake_demon");
 
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 
+	@Override
 	public WakeDemonCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		return new WakeDemonCriterion.Conditions(extended);
 	}
@@ -31,6 +33,7 @@ public class WakeDemonCriterion extends AbstractCriterion<WakeDemonCriterion.Con
 			super(WakeDemonCriterion.ID, player);
 		}
 
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			return super.toJson(predicateSerializer);
 		}

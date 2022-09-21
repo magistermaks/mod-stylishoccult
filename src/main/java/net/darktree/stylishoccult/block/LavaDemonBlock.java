@@ -4,7 +4,7 @@ import net.darktree.interference.api.DefaultLoot;
 import net.darktree.interference.api.MutableHardness;
 import net.darktree.interference.mixin.HardnessAccessor;
 import net.darktree.stylishoccult.StylishOccult;
-import net.darktree.stylishoccult.advancement.Criteria;
+import net.darktree.stylishoccult.advancement.ModCriteria;
 import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.block.entity.demon.LavaDemonBlockEntity;
 import net.darktree.stylishoccult.block.property.LavaDemonMaterial;
@@ -98,7 +98,7 @@ public class LavaDemonBlock extends BlockWithEntity implements MutableHardness, 
 		world.setBlockState(pos, state.with(ANGER, 2));
 
 		if (!world.isClient && player != null) {
-			Criteria.WAKE.trigger((ServerPlayerEntity) player);
+			ModCriteria.WAKE.trigger((ServerPlayerEntity) player);
 		}
 	}
 

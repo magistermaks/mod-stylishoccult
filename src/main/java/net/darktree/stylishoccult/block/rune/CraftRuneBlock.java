@@ -1,6 +1,6 @@
 package net.darktree.stylishoccult.block.rune;
 
-import net.darktree.stylishoccult.advancement.Criteria;
+import net.darktree.stylishoccult.advancement.ModCriteria;
 import net.darktree.stylishoccult.network.Network;
 import net.darktree.stylishoccult.script.element.ItemElement;
 import net.darktree.stylishoccult.script.engine.Script;
@@ -184,7 +184,7 @@ public class CraftRuneBlock extends TransferRuneBlock {
 			}
 		}
 
-		Criteria.TRIGGER.trigger(world, pos, this, optional.isPresent());
+		ModCriteria.TRIGGER.trigger(world, pos, this, optional.isPresent());
 	}
 
 	private void updateInputInventory(CraftingInventory input, World world, BlockPos pos) {

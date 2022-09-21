@@ -18,10 +18,12 @@ public class AscendCriterion extends AbstractCriterion<AscendCriterion.Condition
 
 	static final Identifier ID = new ModIdentifier("ascend");
 
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 
+	@Override
 	public AscendCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		return new AscendCriterion.Conditions(extended, jsonObject);
 	}
@@ -47,6 +49,7 @@ public class AscendCriterion extends AbstractCriterion<AscendCriterion.Condition
 			return (this.distance > distance);
 		}
 
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject json = super.toJson(predicateSerializer);
 			json.addProperty("distance", this.distance);

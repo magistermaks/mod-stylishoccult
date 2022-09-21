@@ -14,10 +14,12 @@ public class ScrapeFleshCriterion extends AbstractCriterion<ScrapeFleshCriterion
 
 	static final Identifier ID = new ModIdentifier("scrape_flesh");
 
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 
+	@Override
 	public ScrapeFleshCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		return new ScrapeFleshCriterion.Conditions(extended);
 	}
@@ -31,6 +33,7 @@ public class ScrapeFleshCriterion extends AbstractCriterion<ScrapeFleshCriterion
 			super(ScrapeFleshCriterion.ID, player);
 		}
 
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			return super.toJson(predicateSerializer);
 		}

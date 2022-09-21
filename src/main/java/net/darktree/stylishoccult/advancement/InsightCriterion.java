@@ -14,10 +14,12 @@ public class InsightCriterion extends AbstractCriterion<InsightCriterion.Conditi
 
 	static final Identifier ID = new ModIdentifier("insight");
 
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 
+	@Override
 	public InsightCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		return new InsightCriterion.Conditions(extended, jsonObject);
 	}
@@ -38,6 +40,7 @@ public class InsightCriterion extends AbstractCriterion<InsightCriterion.Conditi
 			return this.value <= value;
 		}
 
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject json = super.toJson(predicateSerializer);
 			json.addProperty("value", this.value);

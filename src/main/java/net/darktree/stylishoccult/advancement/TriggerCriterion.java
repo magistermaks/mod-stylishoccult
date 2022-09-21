@@ -19,10 +19,12 @@ public class TriggerCriterion extends AbstractCriterion<TriggerCriterion.Conditi
 
 	static final Identifier ID = new ModIdentifier("special_rune_trigger");
 
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 
+	@Override
 	public TriggerCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		return new TriggerCriterion.Conditions(extended, jsonObject);
 	}
