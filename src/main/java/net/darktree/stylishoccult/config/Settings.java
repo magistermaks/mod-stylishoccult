@@ -47,7 +47,7 @@ public class Settings {
 	public int demon_chance = 80;
 
 	@Config.Entry(group="feature", min=0, max=100)
-	public float spark_vent_chance = 13.0f;
+	public float spark_vent_chance = 9.0f;
 
 	@Config.Entry(group="demon", min=0, max=100)
 	public float emitter_exposed = 44.0f;
