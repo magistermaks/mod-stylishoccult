@@ -1,4 +1,7 @@
 
+0.12.2 release
+- Fixed fleshy leaves (for real now)
+
 0.12.1 release
 - Improved accessibility (a little)
 - Tweaked default worldgen feature spawn rates

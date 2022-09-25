@@ -43,8 +43,9 @@ public class LeavesFleshBlock extends LeavesBlock implements ImpureBlock, Foliag
 
 	public static BlockState getStateToFit(World world, BlockPos pos) {
 		BlockState state = world.getBlockState(pos);
-		int distance = (state.getBlock() instanceof LeavesBlock) && state.contains(DISTANCE) ? state.get(DISTANCE) : 7;
-		return ModBlocks.LEAVES_FLESH.getDefaultState().with(DISTANCE, distance).with(PERSISTENT, state.get(PERSISTENT));
+		final int distance = (state.getBlock() instanceof LeavesBlock) && state.contains(DISTANCE) ? state.get(DISTANCE) : 7;
+		final boolean persistent = state.contains(PERSISTENT) ? state.get(PERSISTENT) : false;
+		return ModBlocks.LEAVES_FLESH.getDefaultState().with(DISTANCE, distance).with(PERSISTENT, persistent);
 	}
 
 }
