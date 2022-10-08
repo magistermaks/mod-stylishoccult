@@ -1,6 +1,9 @@
 
 0.12.2 release
 - Fixed fleshy leaves (for real now)
+- Balancing
+- Magma Demon Emitters now emit smoke when charging
+- Minor polish translation fixes
 
 0.12.1 release
 - Improved accessibility (a little)

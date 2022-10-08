@@ -7,6 +7,7 @@ import net.darktree.stylishoccult.block.entity.BlockEntities;
 import net.darktree.stylishoccult.block.property.LavaDemonPart;
 import net.darktree.stylishoccult.entity.ModEntities;
 import net.darktree.stylishoccult.entity.SparkEntity;
+import net.darktree.stylishoccult.particles.Particles;
 import net.darktree.stylishoccult.sounds.Sounds;
 import net.darktree.stylishoccult.utils.BlockUtils;
 import net.darktree.stylishoccult.utils.RandUtils;
@@ -16,6 +17,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.SmallFireballEntity;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -31,7 +33,8 @@ public class LavaDemonBlockEntity extends BlockEntity {
 	private int timeout = 50;
 	private int interval = 0;
 	private int amount = 4;
-	private static final TargetPredicate PLAYER_PREDICATE = new TargetPredicate(true).setBaseMaxDistance(16.0);
+	private int spark = 0;
+	private static final TargetPredicate PLAYER_PREDICATE = new TargetPredicate(true).setBaseMaxDistance(12.0);
 
 	public LavaDemonBlockEntity(BlockPos pos, BlockState state) {
 		super(BlockEntities.LAVA_DEMON, pos, state);
@@ -48,6 +51,10 @@ public class LavaDemonBlockEntity extends BlockEntity {
 
 		if (interval >= 0) {
 			interval -= 1;
+		}
+
+		if (spark >= 0) {
+			spark -= 1;
 		}
 
 		Difficulty d = world.getDifficulty();
@@ -69,8 +76,13 @@ public class LavaDemonBlockEntity extends BlockEntity {
 			}
 		}
 
+		// check if attack is needed
+		if (d == Difficulty.PEACEFUL || anger == 0 || player == null) {
+			return;
+		}
+
 		// shoot fireballs
-		if (d != Difficulty.PEACEFUL && timeout < 1 && interval < 1 && (anger > 0) && (part == LavaDemonPart.HEAD) && (player != null) && !player.isCreative()) {
+		if (timeout < 1 && interval < 1 && part == LavaDemonPart.HEAD && !player.isCreative()) {
 			if (areInLine(player.getBlockPos(), pos) || areInLine(player.getBlockPos().up(), pos)) {
 
 				if (amount <= 0) {
@@ -107,29 +119,35 @@ public class LavaDemonBlockEntity extends BlockEntity {
 		}
 
 		// summon spark
-		if (d != Difficulty.PEACEFUL && RandUtils.nextBool(StylishOccult.SETTING.spark_spawn_chance, random) && (anger > 0) && (part != LavaDemonPart.BODY) && (player != null) ) {
-			if (BlockUtils.touchesAir(world, pos)) {
+		if (part != LavaDemonPart.BODY) {
+			spawnSmoke(random, Math.max(3 - spark / 20, 0));
 
-				for (int i = 0; i < 10; i ++){
-					Direction dir = RandUtils.pickFromEnum(Direction.class, random);
-					BlockPos targetPos = pos.offset(dir);
-					if( world.getBlockState(targetPos).isAir() ) {
+			if (spark <= 0) {
+				spark = RandUtils.nextInt(StylishOccult.SETTING.spark_spawn_time_min, StylishOccult.SETTING.spark_spawn_time_max, random);
 
-						if( part == LavaDemonPart.HEAD && (dir == Direction.DOWN || dir == Direction.UP) ) {
-							continue;
+				if (BlockUtils.touchesAir(world, pos)) {
+
+					for (int i = 0; i < StylishOccult.SETTING.spark_spawn_attempts; i++) {
+						Direction dir = RandUtils.pickFromEnum(Direction.class, random);
+						BlockPos targetPos = pos.offset(dir);
+						if (world.getBlockState(targetPos).isAir()) {
+
+							if (part == LavaDemonPart.HEAD && (dir == Direction.DOWN || dir == Direction.UP)) {
+								continue;
+							}
+
+							SparkEntity sparkEntity = ModEntities.SPARK.create(world);
+
+							if (sparkEntity == null) {
+								throw new RuntimeException("Unable to summon Spark!");
+							}
+
+							sparkEntity.refreshPositionAndAngles(targetPos, 0.0F, 0.0F);
+							sparkEntity.initialize(((ServerWorld) world), world.getLocalDifficulty(targetPos), SpawnReason.REINFORCEMENT, null, null);
+							world.spawnEntity(sparkEntity);
+
+							break;
 						}
-
-						SparkEntity sparkEntity = ModEntities.SPARK.create(world);
-
-						if (sparkEntity == null) {
-							throw new RuntimeException("Unable to summon Spark!");
-						}
-
-						sparkEntity.refreshPositionAndAngles(targetPos, 0.0F, 0.0F);
-						sparkEntity.initialize(((ServerWorld) world), world.getLocalDifficulty(targetPos), SpawnReason.REINFORCEMENT, null, null);
-						world.spawnEntity(sparkEntity);
-
-						break;
 					}
 				}
 			}
@@ -156,6 +174,28 @@ public class LavaDemonBlockEntity extends BlockEntity {
 		int z = (pos1.getZ() - pos2.getZ() != 0) ? 1 : 0;
 
 		return (x + y + z) == 1;
+	}
+
+	private void spawnSmoke(Random random, int count) {
+		assert world != null;
+
+		if (!StylishOccult.SETTING.warning_particles) {
+			return;
+		}
+
+		for (int i = 0; i < count; i ++) {
+			Direction direction = RandUtils.pickFromEnum(Direction.class, random);
+			BlockPos target = pos.offset(direction);
+
+			if (!world.getBlockState(target).isOpaqueFullCube(world, target)) {
+				Direction.Axis axis = direction.getAxis();
+				double x = axis == Direction.Axis.X ? 0.5 + 0.5625 * direction.getOffsetX() : random.nextFloat();
+				double y = axis == Direction.Axis.Y ? 0.5 + 0.5625 * direction.getOffsetY() : random.nextFloat();
+				double z = axis == Direction.Axis.Z ? 0.5 + 0.5625 * direction.getOffsetZ() : random.nextFloat();
+
+				Particles.spawn(world, ParticleTypes.SMOKE, pos.getX() + x, pos.getY() + y, pos.getZ() + z, 1);
+			}
+		}
 	}
 
 }

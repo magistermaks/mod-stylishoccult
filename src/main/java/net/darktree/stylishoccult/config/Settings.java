@@ -26,10 +26,10 @@ public class Settings {
 	public int flesh_vain_count = 1;
 
 	@Config.Entry(group="feature", min=1, restart=true)
-	public int flesh_stone_vain_size = 12;
+	public int flesh_stone_vain_size = 10;
 
 	@Config.Entry(group="feature", min=1, restart=true)
-	public int flesh_stone_vain_count = 4;
+	public int flesh_stone_vain_count = 3;
 
 	@Config.Entry(group="feature", min=0, max=100)
 	public float grass_patch_chance = 98.0f;
@@ -44,7 +44,7 @@ public class Settings {
 	public float wall_rune_chance = 45.0f;
 
 	@Config.Entry(group="feature", min=0, restart=true)
-	public int demon_chance = 80;
+	public int demon_chance = 60;
 
 	@Config.Entry(group="feature", min=0, max=100)
 	public float spark_vent_chance = 9.0f;
@@ -74,19 +74,28 @@ public class Settings {
 	public int fire_ball_amount_min = 4;
 
 	@Config.Entry(group="demon", min=0)
-	public int fire_ball_timeout_min = 180;
-
-	@Config.Entry(group="demon", min=0)
-	public float spark_spawn_chance = 0.5263f;
+	public int fire_ball_timeout_min = 200;
 
 	@Config.Entry(group="demon", min=1)
-	public int spread_lock_buried_rarity = 6;
+	public int spark_spawn_attempts = 7;
 
 	@Config.Entry(group="demon", min=1)
-	public int spread_lock_exposed_rarity = 10;
+	public int spark_spawn_time_min = 120;
 
 	@Config.Entry(group="demon", min=1)
-	public int max_search_radius = 5;
+	public int spark_spawn_time_max = 300;
+
+	@Config.Entry(group="demon")
+	public boolean warning_particles = true;
+
+	@Config.Entry(group="demon", min=1)
+	public int spread_lock_buried_rarity = 5;
+
+	@Config.Entry(group="demon", min=1)
+	public int spread_lock_exposed_rarity = 9;
+
+	@Config.Entry(group="demon", min=1)
+	public int max_search_radius = 4;
 
 	@Config.Entry(group="other", min=0)
 	public int poison_time_min = 40;
@@ -95,19 +104,19 @@ public class Settings {
 	public int rune_blood_yield = 100;
 
 	@Config.Entry(group="other", min=1, restart=true)
-	public float spark_health = 1.0f;
+	public float spark_health = 0.5f;
 
 	@Config.Entry(group="other", min=0, restart=true)
-	public float spark_damage = 1.0f;
+	public float spark_damage = 0.5f;
 
 	@Config.Entry(group="other", min=0)
 	public float spark_selfharm = 0.4f;
 
 	@Config.Entry(group="other", min=1, restart=true)
-	public float spore_health = 1.0f;
+	public float spore_health = 0.5f;
 
 	@Config.Entry(group="other", min=0, restart=true)
-	public float spore_damage = 1.0f;
+	public float spore_damage = 0.5f;
 
 	@Config.Entry(group="other", min=0)
 	public float spore_selfharm = 0.4f;
@@ -128,7 +137,7 @@ public class Settings {
 	public DifficultyBased spark_live_time = new DifficultyBased(13, 10, 5, 4);
 
 	@Config.Entry(group="difficulty")
-	public DifficultyBased vent_timeout = new DifficultyBased(150, 250, 350, 400);
+	public DifficultyBased vent_timeout = new DifficultyBased(200, 300, 400, 500);
 
 	@Config.Entry(group="difficulty")
 	public DifficultyBased rune_error_explosion = new DifficultyBased(2.5f, 2.0f, 1.5f, 1.0f);

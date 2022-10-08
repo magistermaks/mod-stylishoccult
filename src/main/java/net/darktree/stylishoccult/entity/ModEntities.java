@@ -15,19 +15,19 @@ public class ModEntities {
 
 	public static final EntityType<SparkEntity> SPARK = FabricEntityTypeBuilder
 			.create(SpawnGroup.MONSTER, SparkEntity::new)
-			.dimensions(EntityDimensions.fixed(0.25f, 0.3f))
+			.dimensions(EntityDimensions.fixed(0.4f, 0.4f))
 			.build();
 
 	public static final EntityType<SporeEntity> SPORE = FabricEntityTypeBuilder
 			.create(SpawnGroup.MONSTER, SporeEntity::new)
-			.dimensions(EntityDimensions.fixed(0.3f, 0.3f))
+			.dimensions(EntityDimensions.fixed(0.4f, 0.4f))
 			.build();
 
 	public static void init() {
-		Registry.register( Registry.ENTITY_TYPE, new ModIdentifier("lava_spark"), SPARK);
+		Registry.register(Registry.ENTITY_TYPE, new ModIdentifier("lava_spark"), SPARK);
 		FabricDefaultAttributeRegistry.register(SPARK, SparkEntity.createSparkAttributes());
 
-		Registry.register( Registry.ENTITY_TYPE, new ModIdentifier("spore"), SPORE );
+		Registry.register(Registry.ENTITY_TYPE, new ModIdentifier("spore"), SPORE);
 		FabricDefaultAttributeRegistry.register(SPORE, SporeEntity.createSporeAttributes());
 	}
 
