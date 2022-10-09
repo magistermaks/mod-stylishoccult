@@ -3,8 +3,9 @@
 - Fixed fleshy leaves (for real now)
 - Balancing
 - Magma Demon Emitters now emit smoke when charging
-- Minor polish translation fixes
+- Minor Polish translation fixes
 - Updated bundled LootBoxes to 0.1.5, this fixes issues with floating urns in superflat worlds
+- Fixed a game crash caused by invalid config values
 
 0.12.1 release
 - Improved accessibility (a little)

@@ -460,10 +460,17 @@ public class Config<T> {
 		String value = config.get(key);
 		if (value == null) return def;
 
-		Object parsed = parse(clazz, value);
+		Object parsed;
+
+		try {
+			parsed = parse(clazz, value);
+		} catch (Exception exception) {
+			LOGGER.warn("Failed to parse config entry '" + value + "' as type '" + clazz.getName() + "'!");
+			return def;
+		}
 
 		if (parsed == null) {
-			LOGGER.warn("Filed to map config entry to type!");
+			LOGGER.warn("Failed to map config entry to type!");
 			return def;
 		}
 
