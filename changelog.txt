@@ -4,6 +4,7 @@
 - Balancing
 - Magma Demon Emitters now emit smoke when charging
 - Minor polish translation fixes
+- Updated bundled LootBoxes to 0.1.5, this fixes issues with floating urns in superflat worlds
 
 0.12.1 release
 - Improved accessibility (a little)
