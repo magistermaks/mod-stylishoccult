@@ -58,8 +58,8 @@ dependencies {
     modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}-FABRIC"
 
     // Loot Boxes
-    modImplementation "net.darktree:lootboxes:${project.lootboxes}"
-    include "net.darktree:lootboxes:${project.lootboxes}"
+    modImplementation "net.darktree:lootboxes:${project.lootboxes_version}"
+    include "net.darktree:lootboxes:${project.lootboxes_version}"
 
 //    // JMXL
 //    modImplementation "net.darktree:JMXL:${project.jmxl_version}"
