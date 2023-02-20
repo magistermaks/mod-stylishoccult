@@ -12,7 +12,7 @@ repositories {
 
     maven {
         allowInsecureProtocol = true
-        url 'http://maven.darktree.net'
+        url 'http://darktree.net/maven'
     }
 
     mavenLocal()
